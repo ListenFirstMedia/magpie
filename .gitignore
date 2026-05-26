@@ -1,0 +1,29 @@
+# macOS junk
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Credentials — defensive: the current file has no secrets (Google SSO only),
+# but keep it out of git so a future password addition doesn't leak.
+# If you want a checked-in template, rename to credentials.example.md.
+config/credentials.md
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Python cache (from the ad-hoc _make_pdf*.py scripts)
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# Temp / scratch
+*.tmp
+*.bak
+*.orig

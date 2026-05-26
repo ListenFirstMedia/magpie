@@ -1,0 +1,153 @@
+{
+  "run_date": "2026-05-13",
+  "run_kind": "exploration",
+  "browser": {
+    "mode": "attached",
+    "name": "Work Browser",
+    "platform": "macOS"
+  },
+  "app": {
+    "name": "ListenFirst Platform",
+    "url": "https://app.lfmdev.in",
+    "env": "dev"
+  },
+  "preflight": {
+    "app_reachable": true,
+    "logged_in": true,
+    "logged_in_as_display": "Yash",
+    "logged_in_as_email_expected": "lfiqa@listenfirstmedia.com",
+    "logged_in_as_email_matches_expected": "unverified",
+    "account_after_switch": "Hulu",
+    "account_id_after_switch": "336",
+    "smoke_passed": true
+  },
+  "summary": {
+    "cases_run": 1,
+    "passed": 1,
+    "bugs": 0,
+    "blocked": 0,
+    "skipped": 0,
+    "untrusted_skills_used": 4,
+    "stale_skills_auto_updated": 0,
+    "wall_time_ms_approx": 540000
+  },
+  "cases": [
+    {
+      "case_id": "QA-5757",
+      "title": "Reporting > Google Sheets export - TWC",
+      "source_url": "https://listenfirstmedia.atlassian.net/browse/QA-5757",
+      "status": "passed_with_findings",
+      "wall_time_ms_approx": 480000,
+      "tokens_in": null,
+      "tokens_out": null,
+      "skills_used": [
+        { "name": "switch-account", "version": 1, "trust": "untrusted" },
+        { "name": "time-window-comparison-run", "version": 1, "trust": "untrusted" },
+        { "name": "export-google-sheets", "version": 1, "trust": "untrusted" },
+        { "name": "export-csv", "version": 1, "trust": "untrusted" }
+      ],
+      "assertions": [
+        {
+          "id": "A1",
+          "description": "Exported filename matches pattern 'Brand - Time Window Comparison - begin_date - end_date'",
+          "type": "regex",
+          "source_google_sheets_tab_title": "Hulu - Time Window Comparison - May 5, 2026 - May 11, 2026",
+          "source_csv_filename": "Hulu - Time Window Comparison - May 5, 2026 - May 11, 2026.csv",
+          "expected_pattern": "^Hulu - Time Window Comparison - May 5, 2026 - May 11, 2026(\\.csv)?$",
+          "status": "PASS"
+        },
+        {
+          "id": "A2",
+          "description": "Perspective column in export displays 'Public'",
+          "type": "text_equals (per-row)",
+          "rows_checked": 7,
+          "rows_matching_Public": 7,
+          "status": "PASS"
+        },
+        {
+          "id": "A3",
+          "description": "Google Sheets export and CSV export match cell-by-cell",
+          "type": "table (cross-source)",
+          "rows_compared": 7,
+          "cells_per_row": 4,
+          "mismatched_cells": 0,
+          "header_match": true,
+          "status": "PASS"
+        }
+      ],
+      "data_captured": {
+        "headers_in_app": ["Date", "Facebook New Fans (Hulu)"],
+        "headers_csv": ["Perspective", "Brand", "Date", "Facebook New Fans"],
+        "headers_google_sheet": ["Perspective", "Brand", "Date", "Facebook New Fans"],
+        "in_app_rows": [
+          { "date": "May. 05, 2026", "value": 6329 },
+          { "date": "May. 06, 2026", "value": 4906 },
+          { "date": "May. 07, 2026", "value": 2648 },
+          { "date": "May. 08, 2026", "value": 1787 },
+          { "date": "May. 09, 2026", "value": 1785 },
+          { "date": "May. 10, 2026", "value": 2061 },
+          { "date": "May. 11, 2026", "value": 3883 }
+        ],
+        "csv_rows": [
+          ["Public", "Hulu", "05/05/2026", "6329"],
+          ["Public", "Hulu", "05/06/2026", "4906"],
+          ["Public", "Hulu", "05/07/2026", "2648"],
+          ["Public", "Hulu", "05/08/2026", "1787"],
+          ["Public", "Hulu", "05/09/2026", "1785"],
+          ["Public", "Hulu", "05/10/2026", "2061"],
+          ["Public", "Hulu", "05/11/2026", "3883"]
+        ],
+        "google_sheet_rows": [
+          ["Public", "Hulu", "05/05/2026", "6329"],
+          ["Public", "Hulu", "05/06/2026", "4906"],
+          ["Public", "Hulu", "05/07/2026", "2648"],
+          ["Public", "Hulu", "05/08/2026", "1787"],
+          ["Public", "Hulu", "05/09/2026", "1785"],
+          ["Public", "Hulu", "05/10/2026", "2061"],
+          ["Public", "Hulu", "05/11/2026", "3883"]
+        ]
+      },
+      "findings": [
+        {
+          "id": "F1",
+          "severity": "info",
+          "category": "test_case_outdated",
+          "title": "Brand 'Hulu (Public Data)' does not exist in autocomplete",
+          "detail": "Test case step 4 instructs to type 'Hulu (Public Data)' in the Add Brand by Name field. The autocomplete returns only 'Hulu', 'Hulu (Brazil)', 'Hulu (Japan)', 'Hulu (LATAM)'. The closest valid brand 'Hulu' was used (user-approved during run). After selecting 'Hulu', a per-brand View toggle (Public Data | Authorized Data) appeared, with Public Data already selected by default. The Perspective column in both exports correctly shows 'Public', confirming 'Hulu' + default toggle position is the intended target.",
+          "recommendation": "Update the test case wording to: 'In the Add Brand by Name field enter Hulu. Verify the per-brand View toggle defaults to Public Data.' This removes the misleading parenthetical."
+        },
+        {
+          "id": "F2",
+          "severity": "info",
+          "category": "user_identity",
+          "title": "Logged-in user display is 'Yash', expected lfiqa@listenfirstmedia.com",
+          "detail": "The top-right user name shows 'Yash' on the attached Work Browser session. Expected per credentials.md is the user lfiqa@listenfirstmedia.com. This may be the display name for the same account, or a different user is logged in. All test functionality worked; flagging for confirmation."
+        },
+        {
+          "id": "F3",
+          "severity": "info",
+          "category": "automation_quirk",
+          "title": "Brand autocomplete required programmatic input event to fire",
+          "detail": "Typing 'Hulu' via the Chrome MCP type action did not trigger the React typeahead onChange. The dropdown only appeared after dispatching a native InputEvent on the field. A manual user typing into the field would trigger this normally. This is automation-only friction, not a product bug, but skills covering this flow must use programmatic input dispatch for the brand picker."
+        }
+      ],
+      "evidence": {
+        "screenshots_in_chat": [
+          "Home page after attaching to browser (Yash, HBO Max)",
+          "Profile menu open showing Search Account",
+          "Hulu account loaded",
+          "Reporting menu open",
+          "Time Window Comparison setup page (Absolute Dates, May 5-11)",
+          "Brand autocomplete showing Hulu variants (no Public Data)",
+          "Hulu brand added with Public Data | Authorized Data toggle",
+          "Data points panel with Facebook New Fans checked",
+          "Run Report button with prerequisites green",
+          "Built report showing Hulu Facebook New Fans line chart",
+          "Export dropdown open (Google Sheets, CSV, TSV, XLS)",
+          "Google Sheets export rendered with Perspective=Public"
+        ],
+        "key_data_files": []
+      }
+    }
+  ]
+}
