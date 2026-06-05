@@ -84,6 +84,10 @@ item?.click();
 - Recent Searches appear above the Results list; do not confuse them — only items under the literal `Results` heading reflect the current search.
 - The profile dropdown click target is small. The button has no `data-testid`; we rely on `find` by username. If engineering can add `data-testid="user-menu-trigger"` it would harden this skill.
 
+## Known bug history
+
+See `knowledge-base/bug-history.md`. No open bugs currently tied to this skill's flows; 0 historical defects (all closed) are catalogued there.
+
 ## Changelog
 - **v2** (2026-05-13): Added explicit "Recent Searches does NOT trigger switch" warning. Re-observed during QA-458 when an attempt to switch to Adam Orfei via Recent Searches silently failed. Only clicks under the `Results` heading switch accounts.
 - **v1** (2026-05-13): Initial draft from QA-5757 exploration run. Successful switch from `HBO Max` to `Hulu` (account_id=336).

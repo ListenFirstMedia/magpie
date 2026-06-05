@@ -139,6 +139,12 @@ Both lines are SVG line elements drawn on top of the bar chart, NOT additional b
 - **A "as a line" assertion** can be verified by checking that the corresponding element is a path/line with stroke and NO width matching a bar (`<rect>`). Or, behaviorally, the legend swatch shows a horizontal-line pattern (solid for Cohort, dashed for Competitor) rather than a filled-square swatch.
 - **A "tooltip with value" assertion** is verified by hovering near the right-edge label and reading the resulting tooltip text. The tooltip format is consistent: `<Label>: <numericValue>` with no thousands separators.
 
+## Known bug history
+
+See `knowledge-base/bug-history.md` for the full per-ticket bug list. Highest-priority open bugs currently tied to this skill's flows:
+
+- LFMP-31961 (Major) — Reporting > TWC > New Followers > The data is not displayed correctly.     [from QA-281]
+
 ## Changelog
 - **v4** (2026-05-13): Added Aggregate interval semantics and Cohort/Competitor Average overlay-line behavior + assertion patterns (from QA-126530 run).
 - **v3** (2026-05-13): Added Relative Dates flow (Start/End numbers, Before/After direction, Key Date column on brand rows, Bulk Select Key Date for multi-brand). Linked to new `keydate-picker` skill. Documented the Filter Metrics → category-level `On` button shortcut for enabling many metrics at once (subcategories need their own `On` clicks; deeply nested metrics may require expanding the tree first).

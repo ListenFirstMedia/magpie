@@ -93,6 +93,10 @@ The Google Sheet is **not** owned by the test user's Google Drive. The LFM expor
 | Sheet opens empty or with #REF errors | BUG (data pipeline broken) | report with sheet ID and timestamp |
 | Sheet opens but is inaccessible to the test user | Sheet ownership / sharing bug | flag; ask user to share to make readable |
 
+## Known bug history
+
+See `knowledge-base/bug-history.md`. No open bugs currently tied to this skill's flows; 40 historical defects (all closed) are catalogued there.
+
 ## Changelog
 - **v2** (2026-05-13): Documented the MCP-visibility caveat (new tab often outside MCP group), `window.open` hook pattern, sheet ownership (service account, not user Drive), and the three-path filename capture (tab title / URL hook / user share).
 - **v1** (2026-05-13): Initial draft from QA-5757. Google Sheets export from TWC report produced the expected filename and 7 rows of data matching the in-app table.

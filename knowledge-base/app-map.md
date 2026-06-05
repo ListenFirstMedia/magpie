@@ -33,6 +33,7 @@ Inventory of pages, URLs, and navigation paths. Built up incrementally as explor
 - Content Performance
 - Social Recap
 - Follower Demographics
+- Affinities (new — first observed 2026-05-27 on Adam Orfei account; no skill yet)
 
 ## Brand picker (Add Brand By Name)
 

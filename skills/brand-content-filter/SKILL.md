@@ -97,5 +97,9 @@ Filter-type → URL key mapping (partial — extend as discovered):
 - `Apply Filter` button is enabled only when at least one filter value is checked.
 - The pill toggle on `Include`/`Exclude` is a separate concept — set it after applying for "NOT" semantics.
 
+## Known bug history
+
+See `knowledge-base/bug-history.md`. No open bugs currently tied to this skill's flows; 0 historical defects (all closed) are catalogued there.
+
 ## Changelog
 - **v1** (2026-05-18): Initial draft from QA-91412 (Publish Type = Reel on FX Networks). URL-encoding pattern documented from observed URL params.

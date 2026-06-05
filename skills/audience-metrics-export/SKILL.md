@@ -58,5 +58,13 @@ Since the file isn't captured automatically yet, both assertions are currently d
 | Export dropdown is greyed out | No data loaded yet | wait longer for the page to populate after Apply |
 | No file in Downloads after Metrics click | Either silent failure or the export is using a path my hooks miss | report; check console for errors |
 
+## Known bug history
+
+See `knowledge-base/bug-history.md` for the full per-ticket bug list. Highest-priority open bugs currently tied to this skill's flows:
+
+- DATA-12089 (Major) — Brand > Paid - TikTok Paid Data not Displaying     [from QA-20988]
+- DATA-12043 (Major) — Data is not coming in for YouTube channel in brand > audience page.     [from QA-116113]
+- LFMP-31903 (Minor) — BrandSet > Partnerships > Avg. Engagements per Post > Export > Png file does download without .png extention     [from QA-12532]
+
 ## Changelog
 - **v1** (2026-05-13): Initial draft from QA-110071. Steps captured; the download-capture problem documented as the primary friction point.

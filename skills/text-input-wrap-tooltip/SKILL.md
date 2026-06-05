@@ -83,5 +83,9 @@ For each, repeat Step 1+2 with the same long text input.
 - The DOM inspection approach (`scrollWidth > clientWidth`) is more reliable than visual screenshots for truncation detection.
 - Container width on dev `app.lfmdev.in` ≈ 263px for the global typeahead input, 299px for the dropdown result wrapper. Production may differ.
 
+## Known bug history
+
+See `knowledge-base/bug-history.md`. No open bugs currently tied to this skill's flows; 0 historical defects (all closed) are catalogued there.
+
 ## Changelog
 - **v1** (2026-05-18): Initial draft from QA-95226 (UCLA — Lowell Milken Center for Music of American Jewish Experience). Wrap mode confirmed for 60-char brand name in 263px container.

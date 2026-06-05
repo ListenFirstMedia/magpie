@@ -90,5 +90,9 @@ Spec patterns commonly encountered:
 - Render the first page, last page, and at least one middle page. The footer pattern should be consistent across all; a mid-page check catches inconsistencies.
 - Save rasterized PNGs to the outputs folder with `qa-<id>-pdf-page-NN.png` naming so they can be referenced in the case report.
 
+## Known bug history
+
+See `knowledge-base/bug-history.md`. No open bugs currently tied to this skill's flows; 83 historical defects (all closed) are catalogued there.
+
 ## Changelog
 - **v1** (2026-05-20): Initial draft from QA-23969 PDF inspection. Used `pdftoppm` for rasterization (`pdftotext` returned 0 lines because the PDF is image-based). Footer pattern was confirmed deviation across pages 1, 5, 13 — filed as BC-4.

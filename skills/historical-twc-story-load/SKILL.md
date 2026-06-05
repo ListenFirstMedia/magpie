@@ -64,5 +64,9 @@ For tests like QA-329:
 - Some saved stories include View=Authorized Data on the brand, but the test may expect Public — read the toggle state explicitly rather than assuming.
 - The story URL pattern is shared between dev and stage (`app-reporting.lfmdev.in` vs `app-reporting.stage.lfmprod.in`) — the case may give multiple URLs; pick the env matching the run.
 
+## Known bug history
+
+See `knowledge-base/bug-history.md`. No open bugs currently tied to this skill's flows; 0 historical defects (all closed) are catalogued there.
+
 ## Changelog
 - **v1** (2026-05-13): Initial draft from QA-329 run. Verified 4 assertions for The Walking Dead story 119501 on Hulu / Jan 1-7, 2023 / FB+TW+IG+YT New Fans-Followers-Subscribers / Show Graphs+Tables.

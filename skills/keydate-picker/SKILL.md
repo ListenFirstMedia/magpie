@@ -79,5 +79,9 @@ When picking a keydate, the LFM frontend probably hits a `/api/.../seasons/{seas
 - The chained Auto-Select uses the same `Auto-Select:` placeholder label for both Season and Episode triggers — locate them by ORDER (first / second on the page) or by their relative DOM position to the `→` arrow.
 - Greyed-out seasons/episodes mean no data is available — the test should pick a season/episode the brand actually has.
 
+## Known bug history
+
+See `knowledge-base/bug-history.md`. No open bugs currently tied to this skill's flows; 30 historical defects (all closed) are catalogued there.
+
 ## Changelog
 - **v1** (2026-05-13): Initial draft from QA-458 exploration run. Successful Season 9 Episode 16 selection for The Walking Dead → resolved to Mar 31, 2019.

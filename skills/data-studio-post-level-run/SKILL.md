@@ -110,5 +110,11 @@ Always check both the `Sum` column and each daily column separately. The identit
 | Math identity fails for a metric pair | **BUG** — data inconsistency between metrics | file with the exact row, column, expected vs actual numbers |
 | Em dash appears for a metric on a day other metrics have data | Data pipeline gap — `Engagements` populated but `Likes`/`Comments` not, or vice versa | flag for backend investigation |
 
+## Known bug history
+
+See `knowledge-base/bug-history.md` for the full per-ticket bug list. Highest-priority open bugs currently tied to this skill's flows:
+
+- LFMP-31977 (Major) — Reporting > Data Studio Report - Save to dashboard dropdown remains visible when graph tile is missing     [from QA-96818]
+
 ## Changelog
 - **v1** (2026-05-13): Initial draft from QA-84084 exploration. Math identity (Engagements = Likes + Comments) confirmed for MTV Public Data on May 07, 2026 (Sum=433, Likes=413, Comments=20).

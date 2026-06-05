@@ -11,7 +11,8 @@ You are continuing work on the magpie regression-testing framework for the Liste
 2. skills/REGISTRY.md — every skill we have, its trust state, and what it covers
 3. skills/_shared/spec-adherence-rules.md — the 6 hard rules (NON-NEGOTIABLE)
 4. knowledge-base/app-map.md, knowledge-base/known-quirks.md, knowledge-base/glossary.md
-5. config/credentials.md — the test account and how to log in
+5. knowledge-base/bug-history.md — what bugs (open + closed) have ever been linked to the test you're about to run; grep for the QA-ID
+6. config/credentials.md — the test account and how to log in
 
 I'll send you Jira test case links (e.g. https://listenfirstmedia.atlassian.net/browse/QA-XXXXX) or paste English test cases directly. For each case:
 

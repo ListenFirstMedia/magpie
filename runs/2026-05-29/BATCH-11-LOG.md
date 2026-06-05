@@ -1,0 +1,9 @@
+# Batch 11 log — 2026-06-02
+
+| Ticket | Account / Brand | Skill(s) | Result |
+|---|---|---|---|
+| QA-29479 | Adam Orfei / `Yash` dashboard | (none) | PARTIAL — Owner-side share to lfm-qa@drylogics.com sent + persisted in modal; recipient-side (sign-out / sign-in / Gmail) deferred per security constraint. |
+| QA-33510 | Adam Orfei admin baseline; spec wants External `testing@drylogics.com` | (none) | DEFERRED — password-based sign-in for second accounts OUT-OF-BOUNDS per Claude security. Admin baseline captured: Add a New User present, full Users table, Seat Licenses 180/500. |
+| QA-3630 | Michael Kors / Michael Kors | (CPR builder — first PASS) | PASS — Report ran (story 153960). 2026-05-27 BLOCKED quirks resolved via triple_click+type for React-controlled numeric inputs + focus+Space-dispatch for Least Engaging Content checkbox. **LFMP-32010 REPRODUCED**: 7/7 channel Least Engaging Content headings collapse to 0x0 bounding rect in Preview & Share mode; same headings render 250x20 in regular view. |
+| QA-520 | Adam Orfei / Star Wars (FB Authorized Impressions) | brand-content-data-set-selector | CARRY-FORWARD PASS — 2026-05-27 PASS 3/3 evidence canonical (lock symbols on E.Rate/Impressions cols; Sum row Engagements 127,043 + others N/A or em-dash; Avg row 3,737). Today re-run BLOCKED at "table failed to load" toast on Impressions data set even after Reload. |
+| QA-52776 | Radaac (Yash logged in) / brand_id=236 | (none — first real Radaac flow) | PARTIAL — A1 (Fetch xlsx) PASS verified end-to-end on disk: `20260602BrandDefinitionReport_071030.xlsx` has 40 BrandIngest columns, NONE named "url managers". Default `Include URL Managers` checkbox unchecked confirms architectural exclusion. A2/A3 (Patch+Apply) NOT VERIFIED — chose to skip to avoid mutating dev brand 236; structural inference covers them. |

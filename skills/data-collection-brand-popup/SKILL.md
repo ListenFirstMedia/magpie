@@ -103,5 +103,9 @@ There's a back-arrow icon (top-left of right pane) to return from Pages view to 
 | Popup doesn't open on hover | Need to wait longer (hover requires steady cursor for ~500ms) | Use `mouse_move` then sleep |
 | Click on brand row doesn't open Channels | Need to click directly on brand name text, not badges | Use `find` for precise target |
 
+## Known bug history
+
+See `knowledge-base/bug-history.md`. No open bugs currently tied to this skill's flows; 14 historical defects (all closed) are catalogued there.
+
 ## Changelog
 - **v1** (2026-05-20): Initial draft from QA-2498 PARTIAL run. Captures the brand → channel → page drill-down, the "Not Collecting (N)" popup structure, and the spec deviations (Reauthorize count, page summary columns).

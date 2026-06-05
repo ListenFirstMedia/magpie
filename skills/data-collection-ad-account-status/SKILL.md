@@ -66,5 +66,9 @@ For tests like QA-127567:
 - The expand chevron has no `data-testid` — locate by row text + position. The clickable area is the rightmost column of the parent row.
 - The Status column is empty (no whitespace) for multi-AA parents — `textContent` won't return "Empty" or any placeholder.
 
+## Known bug history
+
+See `knowledge-base/bug-history.md`. No open bugs currently tied to this skill's flows; 0 historical defects (all closed) are catalogued there.
+
 ## Changelog
 - **v1** (2026-05-13): Initial draft from QA-127567 run. Verified for Scorpion/Facebook/Scorpion-page with 2 ad accounts both showing "Not Collecting".

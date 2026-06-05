@@ -65,5 +65,12 @@ For tests like QA-533:
 - For "Original Post" labeled posts, the post link is usually on the Date column. For "Reel"/"Video"-typed posts the channel icon is the link.
 - The Layout selector buttons have no `data-testid`; rely on the accessibility label ("Table View" / "Grid View" / "Detail View").
 
+## Known bug history
+
+See `knowledge-base/bug-history.md` for the full per-ticket bug list. Highest-priority open bugs currently tied to this skill's flows:
+
+- LFMP-32016 (Major) — Story post data is not being displayed on the Brand > Content page     [from QA-19557]
+- APPS-58817 (Major) — Brand Content - Posts deleted from Native are still visible in LF app     [from QA-19557]
+
 ## Changelog
 - **v1** (2026-05-13): Initial draft from QA-533 run. Verified for MTV brand under Viacom account. Full post text successfully retrieved via `title` attribute.

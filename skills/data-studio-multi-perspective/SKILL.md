@@ -75,5 +75,9 @@ Legend: ■ Michael Kors [P]   ■ MTV [P]   ■ MTV
 - The Authorized toggle is **brand-specific** — some brands on some accounts have no Authorized data, so the toggle renders disabled (`al-toggle__switch--disabled`). That's not a bug.
 - Tested on Adam Orfei + MTV. Recommended to also verify on at least one more account/brand pair before promoting to `stable`.
 
+## Known bug history
+
+See `knowledge-base/bug-history.md`. No open bugs currently tied to this skill's flows; 3 historical defects (all closed) are catalogued there.
+
 ## Changelog
 - **v1** (2026-05-18): Initial draft from QA-86318. Verified dual-MTV-perspective added correctly, legend showed `MTV [P]` and `MTV`.

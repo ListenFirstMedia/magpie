@@ -129,5 +129,9 @@ Click each via `ref` and verify the posts re-render in the new layout.
 | Posts count doesn't update after Apply Filter | Apply Filter button click missed | Use `find` + ref for the Apply Filter button |
 | Tag value capitalized in code but lowercase in chip | Platform auto-lowercases | Expected behavior, not a bug |
 
+## Known bug history
+
+See `knowledge-base/bug-history.md`. No open bugs currently tied to this skill's flows; 8 historical defects (all closed) are catalogued there.
+
 ## Changelog
 - **v1** (2026-05-20): Initial draft from QA-1677 PASS run. Documents the React-aware input pattern, the 4th-checkbox toggle pattern, the lowercase auto-normalization, and Delete-All-Tags cleanup pattern.

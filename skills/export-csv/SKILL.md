@@ -147,6 +147,10 @@ Failure signature: after Ok, modal stays open; no "Your export has successfully 
 
 If queued successfully, the toast appears within ~1 second, and the bell-icon notification arrives within ~30 seconds.
 
+## Known bug history
+
+See `knowledge-base/bug-history.md`. No open bugs currently tied to this skill's flows; 46 historical defects (all closed) are catalogued there.
+
 ## Changelog
 - **v1** (2026-05-13): Initial draft from QA-5757. CSV content matched Google Sheets content cell-by-cell (7 rows × 4 columns, 0 mismatches).
 - **v2** (2026-05-18): Added server-side-queued export variant from QA-531. Documents BC-2 (CDN filename bug). Records new working pattern: fetch the CDN URL directly with `credentials: 'include'` instead of intercepting blobs.

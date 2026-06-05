@@ -57,5 +57,9 @@ If a test asserts "the user's name has been added to Actor" with no specific nam
 - The Description column omits the `#` prefix sometimes present in Jira case text — `#{First last}` in Jira is list-numbering syntax, not an expected prefix in the actual UI.
 - "User Created" rows often pair with "User Deactivated" rows soon after — testing teams typically create then deactivate the test user.
 
+## Known bug history
+
+See `knowledge-base/bug-history.md`. No open bugs currently tied to this skill's flows; 0 historical defects (all closed) are catalogued there.
+
 ## Changelog
 - **v1** (2026-05-13): Initial draft from QA-20337 run. All 4 assertions verified deterministically.

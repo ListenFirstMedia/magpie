@@ -90,5 +90,9 @@ Different mutation, similar protocol:
 2. **Cleanup:** click the tag chip on the post → "Remove tag" → confirm.
 3. Email step (Step 7 of QA-116177) requires Gmail integration, currently NOT available.
 
+## Known bug history
+
+See `knowledge-base/bug-history.md`. No open bugs currently tied to this skill's flows; 0 historical defects (all closed) are catalogued there.
+
 ## Changelog
 - **v1** (2026-05-18): Initial scaffold from skipped batch 6 cases (QA-84202, QA-85175, QA-115037, QA-16775, QA-116177). Not yet executed — awaits user mutation-OK.

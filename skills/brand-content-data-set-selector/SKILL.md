@@ -60,5 +60,12 @@ target?.click();
 | Clicking a custom data set doesn't change the trigger label | Selection didn't take | re-try with a real coordinate click on the option |
 | Section header reads something other than `Custom Data Set` | Copy change — STALE SKILL CANDIDATE | flag |
 
+## Known bug history
+
+See `knowledge-base/bug-history.md` for the full per-ticket bug list. Highest-priority open bugs currently tied to this skill's flows:
+
+- APPS-57985 (High) — Thumbnail Issue for LinkedIn Posts     [from QA-98368]
+- LFMP-31886 (Minor) — Data Display Inconsistency: Benchmark Owned Average Row value missing parentheses in Video views column     [from QA-2706]
+
 ## Changelog
 - **v1** (2026-05-13): Initial draft from QA-109059. Section presence verified; creation-order assertion flagged as a bug.

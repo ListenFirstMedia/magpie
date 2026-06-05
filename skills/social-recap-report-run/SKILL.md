@@ -112,5 +112,13 @@ Clicking Reporting → Social Recap from the main nav navigates cross-subdomain.
 - "Source Links" adds hyperlinks below each datapoint in the rendered report linking to the source platform post.
 - Each Run Report creates a new persisted report (`report_id` increments). Previous report IDs remain accessible via direct URL.
 
+## Known bug history
+
+See `knowledge-base/bug-history.md` for the full per-ticket bug list. Highest-priority open bugs currently tied to this skill's flows:
+
+- LFMP-31925 (Major) — Reporting > Social Recap ->  %YOY is not Present in Video Views Donut in Report.     [from QA-23969]
+- LFMP-31918 (Major) — Thumbnail Issue : Report > Social Recap - Thumbnail not showing properly for some posts after downloading report and also for normal reports.     [from QA-837]
+- LFMP-31798 (Major) — Reporting > Social Recap - Up and down arrows do not appear correctly in the doughnut charts in the export.      [from QA-837]
+
 ## Changelog
 - **v1** (2026-05-20): Initial draft from QA-23969 end-to-end run. Per `_shared/spec-adherence-rules.md`: brand name exact-match (Rule 1), explicit Authorized toggle click (Rule 2), every step performed in order (Rule 3), download verification deferred to user per Rule 6.

@@ -49,5 +49,9 @@ Reporting → Data Studio supports a Custom date range with a hard cap of **365 
 - This skill is page-only; it does not validate that data actually exists for the selected range. Combine with metric selection + Go to verify data rendering (see `data-studio-post-level-run` skill).
 - The 365-day cap is enforced via the date picker UI. The underlying `from`/`to` URL params are not protected from manual URL edits — that's a separate test.
 
+## Known bug history
+
+See `knowledge-base/bug-history.md`. No open bugs currently tied to this skill's flows; 0 historical defects (all closed) are catalogued there.
+
 ## Changelog
 - **v1** (2026-05-18): Initial draft from QA-83835. Both directions of the auto-adjust were verified on Adam Orfei.

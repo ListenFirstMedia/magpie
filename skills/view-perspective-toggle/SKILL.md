@@ -122,5 +122,9 @@ On 1386px-wide screenshots the indicator can look ambiguous. Zoom in (`computer.
 | Click moves indicator but data doesn't refresh | Page caching | Hard reload + retry |
 | URL says one perspective but indicator is on opposite side | Quirk B | Click toggle to match the spec, then proceed |
 
+## Known bug history
+
+See `knowledge-base/bug-history.md`. No open bugs currently tied to this skill's flows; 0 historical defects (all closed) are catalogued there.
+
 ## Changelog
 - **v1** (2026-05-20): Initial draft after a multi-session QA-91412 re-execution that revealed how easy it is to mis-read the URL `perspective` param vs the actual visual toggle state. Documents Rule 2 from `_shared/spec-adherence-rules.md`.

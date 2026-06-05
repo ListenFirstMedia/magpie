@@ -113,5 +113,9 @@ Compare against the report's "Aggregate" row Response Rate, AND against the Shee
 - Skill assumes sheet is in MCP tab group. Combine with `export-google-sheets` v2 upstream.
 - For YouTube (QA-129802), substitute "Total Subscribers" for "Total Followers" — formula is identical.
 
+## Known bug history
+
+See `knowledge-base/bug-history.md`. No open bugs currently tied to this skill's flows; 0 historical defects (all closed) are catalogued there.
+
 ## Changelog
 - **v1** (2026-05-18): Initial scaffold from QA-129673/801/802 deferral. Not yet executed end-to-end.

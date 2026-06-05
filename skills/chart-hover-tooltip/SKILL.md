@@ -103,5 +103,11 @@ target.dispatchEvent(new MouseEvent('mouseleave', {bubbles: true}));
 | `.recharts-tooltip-wrapper` | The tooltip container |
 | `.recharts-default-tooltip` | Default tooltip styling |
 
+## Known bug history
+
+See `knowledge-base/bug-history.md` for the full per-ticket bug list. Highest-priority open bugs currently tied to this skill's flows:
+
+- LFMP-31781 (Minor) — Brand Insights - Hovering Functionality - twitter icon color is blue     [from QA-1124]
+
 ## Changelog
 - **v1** (2026-05-18): Initial scaffold from QA-96670 hover-test deferral. Not yet executed end-to-end (HBO Max Threads had no data).
