@@ -114,3 +114,8 @@ See `knowledge-base/bug-history.md`. No open bugs currently tied to this skill's
 ## Changelog
 - **v1** (2026-05-18): Initial draft from QA-134174 (Sony Pictures / Spider-Man: Across the Spider-Verse). All 4 options + Daily default + Auto default verified.
 - **v2** (2026-05-29): +3 separate-day verifications (QA-134182, QA-134184, QA-134188 on Adam Orfei / MTV). Added Steps 6-9: end-side `»` suppression, Daily/Weekly/Monthly per-month arrow nav, Quarterly per-year arrow nav, historical lower bounds (Daily/Weekly/Monthly = Nov 27 2013; Quarterly = Jan 01 2014), and the APPS-58615 partial-month X-axis extension rule.
+
+## 2026-06-11 batch-3 update (QA-134174, Sony Pictures / Spider-Verse)
+
+- Brand>Insights date popup: `Make a Selection` = Auto (default), `Interval` dropdown default **Daily**, options in order Daily / Weekly / Monthly / Quarterly (custom divs, not <select>). Select Mode radio = Active Posts. Historical banner: "Historical data is available back to Jun. 09, 2019" (brand-dependent).
+- Negative checks: Brand>Content date popup (Make a Selection + Lifetime/In Window, NO Interval) and Data Studio custom picker (calendars only) do NOT have this Interval selector; TWC keeps its own legacy interval dropdown outside the date popup.

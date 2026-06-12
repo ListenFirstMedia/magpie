@@ -32,6 +32,24 @@ Index of every skill in this project, with its current trust state and last veri
 | [settings-custom-data-sets](settings-custom-data-sets/SKILL.md) | 1 | untrusted | 2026-06-02 | 5 | **NEW (documented retroactively 2026-05-29) from QA-104870 / QA-106218 / QA-109062.** Settings > Custom Data Sets: Basic View, Create flow (per-channel metric picker), and Brand>Content support (Data Set dropdown + CSV export reflecting active CDS). +2 from batch-7 re-runs 2026-06-02: QA-104870 (Basic View — 9 rows verified, ellipsis menu Edit/Delete/Duplicate order PASS), QA-106218 (Create + Delete cleanup — `QA-106218-rerun-2236` with 7 metrics, lock-icon assignment to Comments/Shares/Engagement Rate/Impressions confirmed). |
 | [data-collection-brand-popup](data-collection-brand-popup/SKILL.md) | 1 | untrusted | 2026-05-20 | 1 | **NEW from QA-2498.** Brand → Channels → Pages drill-down with hover popups. Documents the "Not Collecting (N)" header format, Learn More Zendesk href, and spec variances around Reauthorize button count + Page Summary columns. |
 
+| [brand-paid-ads-table](brand-paid-ads-table/SKILL.md) | 1 | untrusted | 2026-06-11 | 1 | **NEW from QA-121438.** Brand>Paid single-select channels, Table View, Group Table by Delivery Type (Dark/Promoted, collapsed by default). Documents the Invalid-date-compare full-tile-failure trap. |
+| [brand-sets-content-posts](brand-sets-content-posts/SKILL.md) | 1 | untrusted | 2026-06-11 | 1 | **NEW from QA-420/QA-395.** Brand Sets>Content 100-post infinite scroll (Table+Detail) + Rankings Rank-by dropdown groups. |
+
+### 2026-06-11 batch-3 credits (22 cases, 10 accounts)
+
+- time-window-comparison-run → **v5** (+3: QA-129801/129802/129673; duplicate-hidden-datepicker guard, Cross-Channel tree, Aggregate interval, Change-Settings reuse)
+- export-google-sheets → **v4** (TWC GS export hang CONFIRMED systemic — 2nd account repro, Export control lockout)
+- dashboard-mutation-flows → **v2** (+1 QA-85175 — found OPEN bug: Remove-from-Dashboard fires no API call; drag/order/delete all verified)
+- response-rate-math-verifier → **v2** (+3 — IG/YT daily exact-math PASS, Aggregate implied-footprint PASS; zero-posts-day rule)
+- brand-content-filter → **v2** (+2: QA-121304 Collaborator Name incl. NEW "Collaborator Combined Followers" option; QA-91412 Publish Type Reel)
+- export-csv (+5: QA-531/71007/122942 queued CSVs, QA-115716 blob CSV, QA-116177 sentiment CSV 2,184 rows)
+- data-studio-multi-perspective (+1 QA-86318), data-studio-historical-limit (+1 QA-83835), data-studio-post-level-run (+1 QA-80360/111213 — trash-is-a-BUTTON targeting)
+- brand-insights-interval-picker (+1 QA-134174 — Interval Daily/Weekly/Monthly/Quarterly on Insights popup, absent elsewhere)
+- chart-hover-tooltip (+1 QA-96670 Threads bar/area/pie tooltips), text-input-wrap-tooltip (+1 QA-95226), brand-content-table-view (+1 QA-122942 — Shares column note)
+- switch-account (+9 switches incl. **Wasserman via normal switcher** — supersedes the re-auth blocker note)
+- settings-audit-logs, audience-metrics-export, historical-twc-story-load, data-collection-ad-account-status — not exercised this batch.
+
+
 ## Trust lifecycle
 
 - **untrusted** — newly created; every use is flagged in the report; no auto-updates allowed

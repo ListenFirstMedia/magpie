@@ -81,3 +81,9 @@ See `knowledge-base/bug-history.md`. No open bugs currently tied to this skill's
 
 ## Changelog
 - **v1** (2026-05-18): Initial draft from QA-86318. Verified dual-MTV-perspective added correctly, legend showed `MTV [P]` and `MTV`.
+
+## 2026-06-11 batch-3 update (QA-86318 re-pass, Adam Orfei)
+
+- Add MTV twice → toggle second row to Authorized via the row-scoped `.al-toggle input` (`row.querySelector('.al-toggle input').click()` — input.click() works; clicking the styled div does not).
+- **Hazard:** the page-level **Mode: Brand|Metric** switch is ALSO an `.al-toggle` — an unscoped "first toggle" query will flip Mode instead of the brand perspective. Always scope to the brand `<tr>`.
+- Legend re-verified: `MTV [P]` + `MTV`; data rows render for both (report 295888; FB Eng 59,907 / TW Eng 22,328 — P and Authorized identical for public-capable metrics, expected).

@@ -103,3 +103,12 @@ See `knowledge-base/bug-history.md`. No open bugs currently tied to this skill's
 
 ## Changelog
 - **v1** (2026-05-18): Initial draft from QA-91412 (Publish Type = Reel on FX Networks). URL-encoding pattern documented from observed URL params.
+
+## 2026-06-11 batch-3 updates
+
+- **Collaborator Name (QA-121304, APV IG Sep 10-16 2025):** filter list order is now Collaborated → Collaborated Total → **Collaborator Combined Followers (NEW option)** → Collaborator Name. Child panel has its own Search + Or/And radios + custom (non-input) checkboxes: click the NAME TEXT (real coordinate click); checked rows float to top. Apply Filter → URL `filters={"content_collaborator_names":{"operator":"or","values":["amazonmgmstudios"],"not":"false"}}`; Posts 211→3, all rows carry the 👥(n) collaborator badge. List is alphabetical (underscore first: `_harrietslater`), unique, 20 names for that window.
+- **Publish Type = Reel (QA-91412, FX public FB):** child checkbox is selectable only after the parent dropdown scrolled into viewport; green filter chip appears immediately; Apply Filter → `filters={"content_post_class":{"operator":"or","values":["reel"],"not":"false"}}`. FB Reels public = ALL metrics en-dash (Sum row and every post card) — expected, not a bug.
+- Clicking outside the child panel closes BOTH dropdowns and loses selection — keep clicks inside the panel; verify chip + Apply-enabled state before applying.
+
+## Changelog (cont.)
+- **v2** (2026-06-11): Collaborator Name flow + Collaborator Combined Followers option; Publish Type Reel flow; selection-loss pitfall.

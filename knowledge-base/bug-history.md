@@ -2,7 +2,7 @@
 
 Cross-reference for every magpie test in `runs/2026-05-27/`. Before re-running a test, grep this file for the QA-ID to see what bugs have ever been linked to that test case — open ones must be reproduced (or confirmed-still-present), closed ones must be verified-still-fixed.
 
-- **Last updated:** 2026-05-29
+- **Last updated:** 2026-06-11
 - **Source:** Atlassian MCP `getJiraIssue` → `issuelinks` → filtered to `issuetype IN {Bug, Test Failure}`.
 - **Total tickets catalogued:** 59
 - **Total open Bug/Test-Failure links:** 15
@@ -2069,3 +2069,35 @@ _None._
 - QA-111242 (Major open)
 - QA-92735, QA-94977, QA-95067 (shared layout bug)
 
+
+---
+
+# 2026-06-11 batch-3 additions
+
+## QA-85175 — Dashboards - Drag and Drop Tile Ordering
+
+- **Skill:** `dashboard-mutation-flows`
+- **My latest run (2026-06-11):** ❌ FAIL on assertions 10/11
+### Open bugs (1 — needs filing)
+- **UNFILED (Major, 2026-06-11):** tile "Remove from Dashboard" removes the tile client-side only — **no API request fired** (network shows only Mixpanel/NewRelic). Tile returns after reload; Edit/Order popup never reflects the removal. Repro 2/2 on Adam Orfei, dashboard 6295 "Order3 0611", MTV Insights Engagements tile.
+- All other steps PASS: drag 2nd→3rd, 2nd→1st, 1st→2nd persist via OK; delete flow + confirm copy verified.
+
+## QA-5757-family — TWC Export → Google Sheets (cross-ref QA-129801/129802/129673)
+
+- **Skill:** `export-google-sheets`
+- **Status escalation (2026-06-11):** hang REPRODUCED on Wasserman (story 154443) after the 2026-06-10 Adam Orfei repro (story 154359) → systemic TWC GS export breakage on dev, not an MCP visibility artifact. Spinner >60s, no window.open, Export control locked until reload. CSV/TSV/XLS unaffected. **Critical — needs filing/escalation.**
+
+## QA-121438 — Brand - Paid - Group by Delivery Type (Instagram)
+
+- **Skill:** `brand-paid-ads-table` (new)
+- **My latest run (2026-06-11):** ✅ PASS (Dark 69 + Promoted 193 = 262; expand/collapse verified)
+### Observation (needs triage)
+- Paid page with `from/to` but no `compare_*` URL params → "Compared to: Invalid date - Invalid date" + ALL tiles fail to load, reload doesn't recover (see known-quirks).
+
+## QA-129801 / QA-129802 / QA-129673 — Response Rate exclusion trio (Wasserman, FIAWEC)
+
+- **Skill:** `response-rate-math-verifier`
+- **My latest run (2026-06-11):** ✅ PASS on all data assertions (IG daily, YT daily incl. zero-posts-day `–`, Cross-Channel aggregate w/ implied footprint denominator 32,688,963). Export step verified via CSV because of the GS bug above. QA-129608 (footprint-sum precondition) still to be run standalone.
+
+## Batch-3 PASS log (no new defects)
+QA-86318, QA-80360, QA-83835, QA-531 (filename = manual check), QA-116177 (email step = manual), QA-1515, QA-111213, QA-122942, QA-115716, QA-134174, QA-395 (2 spec-drift notes), QA-71007, QA-91412, QA-121304, QA-420, QA-95226, QA-96670. Full evidence: `QA-test-run-batch3-2026-06-11.md`.

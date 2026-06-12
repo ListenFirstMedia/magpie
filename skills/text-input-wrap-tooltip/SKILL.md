@@ -89,3 +89,7 @@ See `knowledge-base/bug-history.md`. No open bugs currently tied to this skill's
 
 ## Changelog
 - **v1** (2026-05-18): Initial draft from QA-95226 (UCLA — Lowell Milken Center for Music of American Jewish Experience). Wrap mode confirmed for 60-char brand name in 263px container.
+
+## 2026-06-11 batch-3 update (QA-95226 re-pass, UCLA)
+
+- All four contexts re-verified: global search + Brand page brand-picker + Brand Sets set-picker render long names on 2 rows (item height 40px ≈ 2×20px lines); TWC builder typeahead ellipsizes (`text-overflow: ellipsis`) with full name in `title` attr (hover tooltip). Brand "Lowell Milken Center for Music of American Jewish Experience" (brand 290318) and set "UCLA School of the Arts and Architecture Roll-up" are the fixtures.

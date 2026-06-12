@@ -118,3 +118,10 @@ See `knowledge-base/bug-history.md` for the full per-ticket bug list. Highest-pr
 
 ## Changelog
 - **v1** (2026-05-13): Initial draft from QA-84084 exploration. Math identity (Engagements = Likes + Comments) confirmed for MTV Public Data on May 07, 2026 (Sum=433, Likes=413, Comments=20).
+
+## 2026-06-11 batch-3 updates (QA-80360 page-level / QA-111213 page+post)
+
+- **Page-level metrics config:** selected metrics render in `.metrics__table-wrapper table` rows = channel icon (`.channel-icon`) + metric name + trash. **Trash icons are `<button class="fas fa-trash button--unset…">` — dispatch events on the BUTTON; clicks on the inner `<i>` silently no-op** (this also applies to brand-row removal).
+- Metric tree close = `.metrics__tree-modal__close`. Tree summaries: "Engagements" appears twice (section header + node) — pick by index or scope.
+- Page Level ⇄ Post Level switch preserves brand + dates; Show Configuration reopens builder on a story.
+- IG leaves verified: Page level Engagements>Impressions node contains `Instagram Views` (report 295925, Sum 116,351,436); Post level Impressions node contains `Instagram Post Impressions` (report 295927, data renders). Builder typeahead sometimes needs a real click + retype (cmd+a then type) when the React-setter path leaves a stale concatenated value.

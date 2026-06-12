@@ -91,3 +91,9 @@ See `knowledge-base/bug-history.md`. No open bugs currently tied to this skill's
 ## Changelog
 - **v2** (2026-05-13): Added explicit "Recent Searches does NOT trigger switch" warning. Re-observed during QA-458 when an attempt to switch to Adam Orfei via Recent Searches silently failed. Only clicks under the `Results` heading switch accounts.
 - **v1** (2026-05-13): Initial draft from QA-5757 exploration run. Successful switch from `HBO Max` to `Hulu` (account_id=336).
+
+## 2026-06-11 batch-3 update — Wasserman IS reachable via the LFQA account switcher
+
+- 9 clean switches in one session: Adam Orfei → Hulu → Sony Pictures → Disney Entertainment Television → Disney Ad Sales → FX Networks → Amazon Prime Video → UCLA → HBO Max → **Wasserman** — all via LFQA menu → Search Account → Results row. No Cognito re-auth was required for Wasserman (supersedes the 2026-06-04 "Wasserman requires re-authentication" note; the earlier blocker was the missing FIAWEC brand under Adam Orfei, not account ACL).
+- Search Account input only renders after the LFQA menu is open AND the page is scrolled to top; first click on the menu can be eaten by an open overlay — Escape, scroll top, retry.
+- Account search names can drift from test wording: "Max" → account is "HBO Max"; "Fx Networks" matches "FX Networks".

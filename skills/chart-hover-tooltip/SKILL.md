@@ -111,3 +111,9 @@ See `knowledge-base/bug-history.md` for the full per-ticket bug list. Highest-pr
 
 ## Changelog
 - **v1** (2026-05-18): Initial scaffold from QA-96670 hover-test deferral. Not yet executed end-to-end (HBO Max Threads had no data).
+
+## 2026-06-11 batch-3 update (QA-96670 Threads, HBO Max Sep 2025)
+
+- Insights big-number tooltips verified Threads-only: bar `Sep. 12, 2025` + `Threads: 1 (0.0%)`; Views area `Threads: 194,857 (+999.0%)`; Pie (after graph-type switch) `Threads: 70` — all include the channel icon. Real `computer.hover` works; synthetic mouse events do NOT trigger these tooltips, and the tooltip div may not match `[class*=tooltip]` queries — verify via screenshot.
+- Graph-type dropdown options on big numbers: Area, Bar, Line, Pie, Table. FGR/New Posts default Bar; Views default Area.
+- Account/brand drift: test says "Max" — dev account+brand are "HBO Max" (brand 155614). Current-week Threads data was zero; used Sep 2025.

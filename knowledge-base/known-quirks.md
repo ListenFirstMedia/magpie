@@ -381,3 +381,49 @@ Each entry should explain *why* it's accepted so we can revisit when product dec
 - **Why accepted:** Workaround is trivial (Clear All click).
 - **Affected assertions:** Any Brand Sets > Content cross-test that mixes filter-on vs filter-off states. Magpie tests should ALWAYS invoke Clear All explicitly when transitioning to a filter-off state.
 - **Revisit if:** URL re-write stops re-applying the saved filter, or `filters=%7B%7D` becomes authoritative.
+
+### Chrome MCP click-coordinate space flip-flops between 1:1 CSS and 1.225× mid-session (NEW 2026-06-11)
+
+- **First observed:** 2026-06-11 (batch-3, multiple cases)
+- **Behavior:** Within one session the click/hover coordinate space alternates between equal-to-CSS (screenshot 1280×570) and 1.225×CSS (screenshot 1568×698/767), apparently when the window/zoom state changes. Clicks computed with the wrong factor land ~18% off and silently no-op (e.g., Apply buttons toggling the wrong channel ghost).
+- **Why accepted:** MCP/browser scaling behavior, not a product bug.
+- **Workaround:** Before every coordinate click, derive the factor from the latest screenshot width (`1280 → 1.0`, `1568 → 1.225`); recompute element rects fresh after any scroll/expand. Also: clicks at coordinates below the viewport bottom silently no-op — scroll the target into view first.
+- **Revisit if:** Chrome MCP normalizes the coordinate space.
+
+### Reporting datepickers have a hidden duplicate instance in DOM (NEW 2026-06-11)
+
+- **First observed:** 2026-06-11 (QA-83835 Data Studio, then TWC builder)
+- **Behavior:** TWO `.from-calendar`/`.to-calendar`/`.datepicker-days` instances exist; only one is visible. Synthetic events on the hidden one appear to work (headers change when queried via `querySelector`, which returns the hidden first instance) but the real picker is untouched — the report then runs on the default range, mimicking a "custom range ignored" product bug.
+- **Workaround:** always filter pickers by `offsetParent` before reading or clicking; prefer real coordinate clicks on the visible calendar.
+- **Affected skills:** `time-window-comparison-run`, `data-studio-historical-limit`, `keydate-picker`.
+- **Revisit if:** the duplicate instance is removed.
+
+### Trash/remove icons are BUTTONs — events on the inner `<i>` no-op (NEW 2026-06-11)
+
+- **First observed:** 2026-06-11 (QA-80360/83835 Data Studio brand+metric rows)
+- **Behavior:** Row-removal trash controls render as `<button class="fas fa-trash button--unset …"><i…/></button>`. Dispatching mouse events on the inner icon (the element usually matched by `i[class*=trash]`) does nothing; dispatching the same events on the BUTTON works.
+- **Workaround:** query `button[class*=fa-trash]` (or closest('button')) before dispatching.
+- **Affected skills:** `data-studio-post-level-run`, `data-studio-multi-perspective`, any builder row-removal flow.
+
+### Dropdown togglers need full mousedown/mouseup/click dispatch (NEW 2026-06-11)
+
+- **First observed:** 2026-06-11 (QA-85175 Save to Dashboard, top-nav Dashboards, Options menu)
+- **Behavior:** `.dropdown-name`-style togglers ignore bare `.click()` and are flaky with plain coordinate clicks; a full synthetic `mousedown → mouseup → click` MouseEvent sequence opens them reliably. Dropdown option lists (`.selector-dropdown`) exist as ~30 empty DOM instances; only the open one has rows.
+- **Affected skills:** `dashboard-mutation-flows`, any Save-to-Dashboard or Options-menu flow.
+
+### Brand > Paid: carried-over from/to without compare params → "Invalid date" + all tiles fail (NEW 2026-06-11)
+
+- **First observed:** 2026-06-11 (QA-121438, APV)
+- **Behavior:** Navigating `#explore/brand/paid` with `from/to` but no `compare_from/compare_to` renders "Compared to: Invalid date - Invalid date" and every tile shows "This tile failed to load"; reload does not recover. With full params the page works.
+- **Why noted:** Bug-ish (graceful default expected) — worth a ticket; meanwhile always pass compare params.
+- **Affected skills:** `brand-paid-ads-table`.
+
+### Wasserman reachable via normal account switcher (SUPERSEDES 2026-06-04 entry)
+
+- **Observed:** 2026-06-11 (QA-129801/802/673)
+- **Behavior:** LFQA menu → Search Account → "Wasserman" switches cleanly, no Cognito re-auth. The 2026-06-04 blocker ("Wasserman-only TWC tests require account-session switch outside Adam Orfei") was about FIAWEC not being visible under Adam Orfei — solved by switching accounts, which works normally.
+- **Action:** Wasserman TWC trio (QA-129801/129802/129673) is fully automatable; QA-129608 also unblocked for a future run.
+
+### Brand>Insights renderer hang NOT reproduced on 2026-06-11
+
+- HBO Max (Threads, Sep 2025 month window), Sony Pictures Spider-Verse, Hulu (May 2024 + FGR tiles), FX public year-range Content all rendered cleanly in one session. Keep the 2026-06-04 quirk entry but treat the hang as intermittent/env-load-dependent rather than permanent.
