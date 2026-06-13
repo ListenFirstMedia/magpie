@@ -1,10 +1,10 @@
 ---
 name: audience-metrics-export
-version: 1
-last_verified: 2026-05-13
-last_passed_run: 2026-05-13
+version: 2
+last_verified: 2026-06-08
+last_passed_run: 2026-06-08
 trust: untrusted
-pass_streak: 0
+pass_streak: 11
 preconditions: [user-logged-in, account-set, brand-set]
 postconditions: [metrics-file-downloaded]
 inputs: [brand_id, channel, date_from, date_to]
@@ -66,5 +66,53 @@ See `knowledge-base/bug-history.md` for the full per-ticket bug list. Highest-pr
 - DATA-12043 (Major) — Data is not coming in for YouTube channel in brand > audience page.     [from QA-116113]
 - LFMP-31903 (Minor) — BrandSet > Partnerships > Avg. Engagements per Post > Export > Png file does download without .png extention     [from QA-12532]
 
+## v2 — Brand > Insights tile parity (2026-06-08)
+
+The per-tile `Export → PNG` (and CSV) pipeline documented for Brand > Audience tiles applies **identically** to Brand > Insights tiles. The Export dropdown structure, the click sequence (`computer.left_click` Export-button center + JS-find-and-click of inner PNG text node), and the filename schema all match.
+
+### Brand > Insights filename schema (verified QA-114845 batch 9 2026-06-04)
+
+```
+<Brand>-Insights-<TileName>-<ChartType>-YYYY-MM-DD-YYYY-MM-DD.png
+```
+
+Examples on Michael Kors:
+- `Michael Kors-Insights-Total Followers-Pie-2026-05-27-2026-06-02.png` (49,210 bytes)
+- `Michael Kors-Insights-Fan Growth Rate-Bar-2026-05-27-2026-06-02.png` (72,926 bytes)
+
+### Filename pattern parity across 3 surfaces
+
+| Surface | Filename schema |
+|---|---|
+| Brand > Audience | `<Brand>-Audience-<TileName>[-<SubMetric>]-YYYY-MM-DD-YYYY-MM-DD.png` |
+| Brand > Insights | `<Brand>-Insights-<TileName>-<ChartType>-YYYY-MM-DD-YYYY-MM-DD.png` |
+| Brand > Paid | `<Brand>-Paid-<TileName>-<ChartType>-YYYY-MM-DD-YYYY-MM-DD.png` |
+
+The differentiating segment is the second token (`Audience`/`Insights`/`Paid`); everything else (brand prefix, tile name, optional chart type, date range) follows the same pattern.
+
+### PNG content invariant
+
+Every per-tile PNG export contains:
+- ListenFirst logo + wordmark top-left.
+- Brand title line below the logo.
+- Tile title (e.g., `Total Followers`).
+- Legend chips (one per channel/series).
+- Chart matching the on-page tile.
+- Footer: `<Surface name>` + `Date: MMM. DD, YYYY-MMM. DD, YYYY`.
+
+### Brand>Insights renderer freeze caveat
+
+Brand>Insights with multi-channel default may hang the renderer (per `brand-channels-threads` skill notes). Workaround: use `tabs_close_mcp` + open a fresh tab with a single-channel filter (`channels=instagram`) before exporting tiles.
+
+## Additional Failure signatures (v2)
+
+| Signature | Interpretation | Action |
+|---|---|---|
+| Brand>Insights tile Export dropdown structurally different from Brand>Audience | Schema divergence — file as UX consistency bug | File bug |
+| Filename second segment ≠ surface name (`Audience`/`Insights`/`Paid`) | Filename schema regression | File bug |
+| PNG footer date format ≠ `MMM. DD, YYYY-MMM. DD, YYYY` | Footer template regression | File bug |
+| Brand>Insights tile hangs before PNG download | Multi-channel renderer freeze | Fresh tab + single channel filter |
+
 ## Changelog
+- **v2** (2026-06-08): Explicitly covers Brand>Insights tiles (QA-114845: Total Followers Pie 49KB, Fan Growth Rate Bar 73KB). Filename pattern parity Brand>Audience ↔ Brand>Insights ↔ Brand>Paid documented. Brand>Insights renderer-freeze workaround folded in.
 - **v1** (2026-05-13): Initial draft from QA-110071. Steps captured; the download-capture problem documented as the primary friction point.

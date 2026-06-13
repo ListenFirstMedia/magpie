@@ -1,0 +1,9 @@
+QA-134445|Brand > Partnerships - Verify layered tag filtering (Include + Exclude) works as expected
+QA-134446|Brand > Stories - Verify layered tag filtering (Include + Exclude) works as expected
+QA-134447|Brand > Paid - Verify layered tag filtering (Include + Exclude) works as expected
+QA-134636|Listening> "Data Last Updated"Timestamp
+QA-135429|Settings > Custom Metrics  - Edit functionality
+QA-135837|Verify search field retains entered value after selecting filter options
+QA-137557|Settings > Custom Metrics - Multiplication & Division Operators - Create & Save
+QA-137558|Settings > Custom Metrics - All Operators (+ − × ÷) - Save & Verify in Time Window Comparison
+QA-137874|Data Collection - Channel Collection Status Validation 2

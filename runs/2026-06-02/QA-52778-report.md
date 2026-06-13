@@ -1,4 +1,28 @@
-# QA-52778 — Brand Definition Update - Include URL Manager (PARTIAL — A1 PASS, A2 FAIL FINDING, A3 PASS; A4-A7 NOT VERIFIED to avoid mutation)
+# QA-52778 — Brand Definition Update - Include URL Manager (RE-VERDICT 2026-06-05: PASS — A2 FAIL FINDING RETRACTED, was Chrome-MCP-only artifact)
+
+## RE-VERDICT 2026-06-05
+
+LFIQA analyst executed the full Fetch / Patch / Apply chain through the real Radaac UI with `Include URL Managers` checked and provided the three xlsx outputs. All three contain the `url_managers` column with populated multi-platform / multi-tenant data for Family Guy (brand 236):
+
+- **Fetch** (`20260605BrandDefinitionReport_4f1694.xlsx`, 5,980 B, 41 cols) — `url_managers` at col 40
+- **Patch** (`20260605PatchBrandDefinitionReport_0fb143.xlsx`, 7,417 B, 42 cols) — `url_managers` at col 41
+- **Apply** (`20260605ApplyBrandDefinitionReport_d5996d.xlsx`, 7,417 B, 42 cols) — `url_managers` at col 41
+
+Sample data: `youtube|http://www.youtube.com/user/ANIMATIONonFOX|FX Networks + Hulu + Disney General Entertainment + Disney Ad Sales + Freeform`, `instagram|familyguyfox|FX Networks + Hulu + Disney General Entertainment + ...`
+
+**Re-verdict: A1 PASS, A2 PASS, A3 PASS, A4-A7 PASS (chain end-to-end). Overall: PASS.**
+
+**Why the original 2026-06-04 batch-5 sub-agent saw a 40-column / no-url_managers xlsx:** The Radaac jQuery UI dialog Submit button is JS-resistant from Chrome MCP (real quirk, documented). The sub-agent's fallback — direct URL GET `?brand_ids=236&include_url_mgrs=on` — returned the no-flag schema. The flag handling on the Radaac backend depends on session-form state set up by the form's real submit handler, not just the URL param. Without that state, the backend silently ignores `include_url_mgrs`.
+
+**Lesson for future Chrome-MCP runs:** The URL-GET fallback is safe for filter-only Radaac reports (QA-54202, QA-43914 use it cleanly) but NOT safe for Brand Definitions because of the Include URL Managers session-state dependency. Drive the real button via pointerdown+pointerup+click event sequence on a focused element instead.
+
+The original (now-retracted) finding write-up follows for the record.
+
+---
+
+## Original 2026-06-04 finding (RETRACTED)
+
+
 
 - **Source:** https://listenfirstmedia.atlassian.net/browse/QA-52778
 - **Run date:** 2026-06-04 (QA-4325 batch 5 re-run)

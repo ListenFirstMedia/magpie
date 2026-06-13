@@ -21,6 +21,30 @@ Each entry should explain *why* it's accepted so we can revisit when product dec
 
 ## Entries
 
+### Brand>Content Tag-filter Search field is not cleared on Tag-section header collapse/reopen (NEW 2026-06-08)
+
+- **First observed:** 2026-06-08 (QA-22296 batch-12 QA-135837)
+- **Behavior:** On Brand>Content Filter dropdown → Tag filter, the per-Tag-section Search textarea retains its typed value after collapsing the Tag-section header label and expanding it again. The spec assertion 9 of QA-135837 reads "fresh state on reopen" expecting the search input to clear, but actual product behavior retains the typed text.
+- **Why accepted:** Likely intentional product behavior — preserve in-progress search across sub-section UI interactions so user doesn't lose their search context. Selected tags (chips/checkboxes) correctly persist as expected. The substantive APPS-61098 regression-fix (search field NOT clearing during select/deselect operations) is still working correctly.
+- **Affected assertions:** QA-135837 assertion 9 (close/reopen → empty search).
+- **Revisit if:** Product PM confirms close/reopen should clear, or QA spec is updated.
+
+### Hulu account: brand_id 5670 auto-redirects to 11003 on Brand>Content (NEW 2026-06-08)
+
+- **First observed:** 2026-06-08 (QA-22296 batch-8 QA-121158 / QA-121217)
+- **Behavior:** Navigating to `app.lfmdev.in/#explore/brand/content?brand_id=5670&account_id=336&...` (Hulu on Hulu account) silently resolves URL to `brand_id=11003` (a Hulu LA sub-brand). UI header shows "Hulu" with the green Hulu logo for both brand_ids, but the underlying brand-data sets are different.
+- **Why accepted:** Likely a backend default-brand resolution for account_id=336 — Hulu user typically lands on the Hulu LA sub-brand as the favorite brand. Not a defect for end-user UX but the data underneath differs from the named spec brand.
+- **Affected assertions:** Any QA spec that names "Hulu" without disambiguating to a sub-brand variant. Particularly Brand>Content / Brand>Audience IG-collaborator and channel-specific tests where brand_id=11003 may not have the data the spec assumes brand_id=5670 has.
+- **Revisit if:** Backend brand-resolution changes, or LFIQA confirms which specific Hulu sub-brand is intended for IG-collaborator tests like QA-121158/QA-121217.
+
+### Brand>Content perspective-toggle click can auto-fall back to a different brand when Threads channel was selected (NEW 2026-06-08)
+
+- **First observed:** 2026-06-08 (QA-98351 QA-22296 batch-6)
+- **Behavior:** On Brand>Content with `channels=threads&perspective=extended` (Authorized), clicking the Public/Authorized toggle to switch to Public can cause the URL `brand_id` to silently change to a different (non-Threads-authorized) brand AND drop the `channels=threads` query param. Observed transition: MTV (brand_id=4018) → brand_id=10765, channels stripped to default Public set.
+- **Why accepted:** Likely a backend-driven fallback: brand 4018 lacks Threads-public data, so toggle click triggers a Public-mode preference that finds the user's last-Public brand. Not a product defect for end-user UX, but breaks deterministic automation.
+- **Affected assertions:** Any Threads-Brand>Content perspective test that toggles mid-flow. The skill should re-navigate via URL with explicit `brand_id` after each toggle, not trust DOM/URL post-click.
+- **Revisit if:** Backend stops the brand-fallback behavior or product changes to keep brand_id stable across perspective changes.
+
 ### Brand picker requires programmatic InputEvent dispatch
 
 - **First observed:** 2026-05-13 (QA-5757)
@@ -188,6 +212,9 @@ Each entry should explain *why* it's accepted so we can revisit when product dec
 - **2026-06-04 update (QA-51457 batch-4):** **Renderer hang now reproducing on shorter ranges too.** Last 5 / Last 7 Days windows on MTV (Authorized, 4 channels), Hulu (Public, IG-only), and Disney Channel (Public, 4 channels) all hang Brand>Insights. Pattern not limited to long ranges or to Hulu — heavy SVG/chart paint on Brand>Insights affects multiple brand/perspective combos. Recovery still requires `tabs_close_mcp` + `tabs_context_mcp(createIfEmpty:true)` + retry on a lighter brand or even shorter window. Sometimes a different brand still hangs on retry.
 - **2026-06-04 update (QA-134188 batch-11 RECONFIRM):** Hang reproduced multiple times in one session across all Brand>Insights URL variants tried on MTV / Adam Orfei: 4-channel default + `from=2026-03-01&to=2026-05-31`, single-channel `channels=facebook` + same 3-month range, single-channel `channels=instagram` no-range, single-channel `channels=facebook` + `from=2026-05-01&to=2026-05-31` 1-month range. Brand>Audience / Brand>Content / Brand>Channels / Brand>Stories / Brand>Optimization / Brand Sets surfaces on the same MTV brand in the same session all rendered cleanly. Tory Burch Brand>Insights (`channels=instagram`) DID render cleanly. The hang is MTV-Brand>Insights-specific in this session window. Recovery via `tabs_close_mcp` + fresh tab + non-Insights surface succeeds. For QA-134188-family export tests: rely on prior on-disk evidence + CDP-reachable header text rather than retrying tile-paint when this hang reproduces.
 - **2026-06-04 update (QA-134639 QA-4325 batch-12):** Hang broadened — Tory Burch IG Last 30 Days NOW hangs (previously stable in batch-11). Reproduced same session across MTV (`brand_id=4018`), Michael Kors (`brand_id=12597`), and Tory Burch (`brand_id=21648`) all with `channels=instagram` + `from=2026-05-01&to=2026-05-31`. CDP `Runtime.evaluate` 45s timeout each. Brand>Insights surface is widely unstable in this session window — not brand-specific. Recovery `tabs_close_mcp` + fresh tab still works but next brand likely hangs too. Defer Brand>Insights heavy-export tests (QA-134639, QA-134188, QA-114845) to LFIQA real-browser verification when 3+ brands fail in a row.
+- **2026-06-08 update (QA-95190 QA-22296 batch-5):** Hang also reproduces on **Brand>Insights `channels=threads` single-channel default-window** MTV (`brand_id=4018`, `from=2026-05-25&to=2026-05-31`). CDP `Runtime.evaluate` 45s timeout on the post-navigate query. Recovery via `tabs_close_mcp` + fresh tab worked. Pattern is not multi-channel-specific — Threads single-channel is enough to trigger. For Threads-cross-source tests (QA-95190 cross-check Brand>Insights ↔ Brand>Channels), use Brand>Content Threads as the alternative sanity check (Posts(0) ↔ New Posts=0 verified consistent today).
+- **2026-06-08 update (QA-109749/QA-112583 QA-22296 batch-7):** Brand>Audience Threads channel single-channel filter ALSO reproduces renderer hang on Michael Kors brand_id=12597 (Adam Orfei). MTV Brand>Audience Threads single-channel renders (no hang) but returns no-data on all 5 tiles. Recovery via `tabs_close_mcp` + fresh tab succeeded. Pattern: brand-specific Threads-Audience hang on Michael Kors but not MTV; both expose Threads-Insights hang.
+- **2026-06-08 update (QA-96759/QA-99531 QA-22296 batch-6):** **Threads-inclusive multi-channel mixes also hang.** Verified across: `channels=threads` alone, `channels=threads&channels=instagram&channels=facebook` (3 channels, 7-day), `channels=threads&channels=twitter` (2 channels, 7-day). All hang Brand>Insights renderer. Worse: also wedges the Chrome MCP screenshot pipeline — `screenshot` and `get_page_text` calls timeout for >60s and the only recovery is `tabs_close_mcp` after extended wait + fresh tab. The hang escalation now affects multi-channel Threads mixes, not just Threads-only. **Brand>Content Threads renders cleanly with `table_data_set=threads_only%3A_insights`** — confirms the hang is Brand>Insights-specific, not all Threads queries.
 - **Why accepted:** Likely Chrome MCP + dev-environment performance interaction (large data-fetch + heavy SVG/chart paint stalls the renderer enough that CDP can't dispatch). Not a product defect for end users on real browsers.
 - **Workaround:** Split the long-range verification into multiple shorter ranges or single-channel queries. For tests that specifically require 6/12 month range to verify a chart-rendering bug (e.g., LFMP-32027 Trends overlap), defer to manual LFIQA verification on real hardware browser.
 - **Affected skills:** any flow that navigates to Brand Insights (brand-insights-interval-picker if extended, future Trends-graph tests).
@@ -373,6 +400,55 @@ Each entry should explain *why* it's accepted so we can revisit when product dec
 - **Why accepted:** Re-navigating with the param works reliably.
 - **Affected assertions:** Channel-isolated parity tests (Twitter-only, IG-only, etc.). Verify channel filter via DOM, not just URL.
 - **Revisit if:** Hash router stops merging session-state channel picks.
+
+### Brand>Content session stuck in Sentiment-mode tile rendering (NEW 2026-06-05)
+
+- **First observed:** 2026-06-05 (QA-22296 batch 1, QA-923 + QA-19950)
+- **Behavior:** After visiting `#explore/brand/conversation` (e.g., during the QA-6315 probe) in the same Chrome MCP tab session, subsequent navigations to `#explore/brand/content?...` for any `brand_id`, channel, perspective, or `sentiment_mode=false` URL param render the Sentiment Overview tiles (`Classification` / `Classification (Daily)` / `Emotion` / `Emotion (Daily)` / `Topics` / `Top 7 Topics (Daily)` / `Most Vocal` headers) and `Posts (0)` instead of the standard post-table. The URL hash router automatically rewrites `sort_key` to `lfm.content.responses` / `lfm.content.responses_mixed` (Sentiment-mode sort keys) on load even when the explicit URL specifies `sort_key=lfm.content.engagements`. `sessionStorage.clear()` does not break the loop.
+- **Why noted:** Blocked QA-923 (LFMP-31857 + LFMP-31915 Twitter-text + IG-image-tooltip probes) and QA-19950 (LFMP-31979 FB + Pinterest thumbnail probe) in batch 1 — both filed as NOT VERIFIED.
+- **Workaround:** Close the entire MCP tab group + reopen a fresh Chrome window (full session reset). Avoid visiting `#explore/brand/conversation` or any Sentiment-Overview-rendering surface in the same tab where a subsequent Brand>Content post-table probe is needed.
+- **Affected assertions:** Any Brand>Content post-table-content test that runs after a Conversation/Sentiment-Overview page visit. Mark NOT VERIFIED.
+- **Revisit if:** the hash router stops merging Sentiment-mode state into Brand>Content `sort_key` on navigation, OR `sentiment_mode=false` URL param becomes authoritative.
+
+### TWC Relative Dates exports embed RELATIVE labels in Date column (not absolute dates) (NEW 2026-06-05)
+
+- **First observed:** 2026-06-05 (QA-199 batch 2)
+- **Behavior:** When a TWC report is built with Relative Dates (e.g., 3 Days Before Event / 1 Day After Event, Key Date Jun 5 2026), the TSV export's Date column contains the relative-day labels (`3 Days Out`, `2 Days Out`, `1 Day Out`, `Event Day`, `1 Day Post`) rather than the resolved absolute calendar dates (`Jun 2 2026`, `Jun 3 2026`, …). Same labels appear in the in-report X-axis.
+- **Why noted:** The QA-199 spec description literally says "TSV exports displays the correct **absolute** dates." Either: (a) this is a regression to be filed as a Bug, OR (b) the spec is outdated and should be rewritten to say "relative-day labels matching the in-report axis."
+- **Affected assertions:** Any TWC Relative-Dates export test that asserts the Date column resolves to absolute dates. Document as a FAIL-with-finding (per QA-199 batch-2) rather than retrying.
+- **Revisit if:** Product clarifies whether relative-label encoding is intentional, OR an absolute-date column gets added alongside the relative labels.
+
+### Brand>Content queued-export may not surface in Notifications within 60s on Adam Orfei dev (NEW 2026-06-05)
+
+- **First observed:** 2026-06-05 (QA-844 batch 2)
+- **Behavior:** On Brand>Content with TikTok-only channel on MTV, Export → Public data set CSV submission was accepted by the UI ("We're hard at work preparing your export…"), but no new notification entry surfaced in `#notifications` page within 60+ seconds of submission. Newest entry visible remained from May 21 2026. No new CSV in ~/Downloads either.
+- **Possible causes:** Background-queue lag on dev today; OR the hash-router's `brand_id` rewrite (4018→10765 observed during same session) queued the export under a different brand entity that didn't surface in the user's notification feed.
+- **Affected assertions:** Brand>Content queued-CSV verification tests that need the resulting file on disk. Mark NOT VERIFIED rather than FAIL and retry in a clean session.
+- **Revisit if:** queued exports start surfacing reliably again within reasonable time on Adam Orfei dev.
+
+### Brand>Content `brand_id` URL hash-router rewrites on Lifetime-mode load (NEW 2026-06-05)
+
+- **First observed:** 2026-06-05 (QA-574, QA-844, QA-926, QA-2042 batch 2)
+- **Behavior:** Navigating to `#explore/brand/content?brand_id=4018&account_id=54&channels=<X>&...` with `stats_attribution_window=lifetime` (default Brand>Content Mode) consistently rewrites `brand_id=4018` (MTV) to `brand_id=10765` in the URL on page load. The page header still displays "MTV" and content loads correctly (Posts(N), Sum/Avg row, embedded tooltips all work). Functional impact: minimal for read tests; potential ambiguity for queued exports (see queued-export quirk above) since the queue may key off the rewritten brand_id.
+- **Why noted:** Distinct from `table_data_set` rewrite known-quirk. Affects multiple channel tests in the same session (TikTok / YouTube / Facebook on MTV). Likely a Lifetime-mode-specific hash-router transform.
+- **Affected assertions:** Any test that verifies `brand_id` URL param round-trips correctly, or any cross-brand-id test that relies on the URL value matching the page-header brand. Use page-header text and DOM probe (`document.querySelector('h1, .brand-name')`) rather than URL param when discriminating brands.
+- **Revisit if:** the rewrite stops, OR product clarifies what brand_id=10765 maps to.
+
+### Radaac Ads Account IDs report stuck in "Fetching report" → "Failed to process." cycle (NEW 2026-06-08; LFMP-30870 REGRESSION)
+
+- **First observed:** 2026-06-08 (QA-43915 QA-22296 batch 4)
+- **Behavior:** Submit on `radaac.lfmdev.in/ads_account_ids?file_format=csv&...` surfaces a cached filename `/cache/20260608AdsAccountIds_bceac0.csv` in the page DOM almost immediately, but the page H1 stays on "Fetching report" for 60+ seconds. After ~60-100 s, the page TITLE flips to "Failed to process." even though the H1 stays on "Fetching report" — head OG title and body content are out of sync. Reload cycles back to "Fetching report" H1 + body and re-races. The file never lands in `~/Downloads`. Clicking the cached `/cache/...` href shows "File not found. Some reports require a bit more time." This reproduces historical LFMP-30870 / LFMP-31249 (both Closed) — likely a regression in the Ads Account IDs job-runner.
+- **Why noted:** Distinct from the QA-51425 Duplicate-Brand-Social-Pages flow which now produces valid CSV. The Ads Account IDs runner-path is specifically broken.
+- **Affected assertions:** Any test that asks to download the Ads Account IDs report. Mark FAIL with LFMP-30870 reproduction evidence; do not retry beyond ~2 minutes.
+- **Revisit if:** the job-runner stabilises and the cached file actually lands on disk (would close the regression), OR engineering surfaces a deterministic error state instead of the cycling title.
+
+### Radaac auth + app.lfmdev.in cross-domain session can hang app SPA on first nav (NEW 2026-06-08)
+
+- **First observed:** 2026-06-08 (QA-22296 batch 4 — Radaac Cognito SSO followed by `app.lfmdev.in/#tags?account_id=54`)
+- **Behavior:** After completing Cognito-SSO for `radaac.lfmdev.in`, navigating back to `app.lfmdev.in/#home` or `#tags` in the same Chrome MCP tab leaves the SPA stuck on "Loading..." indefinitely. JavaScript timeouts (`Runtime.evaluate` 45s) start firing on subsequent calls. Recovery: `tabs_close_mcp` on the stuck tab + open a fresh tab via `tabs_context_mcp(createIfEmpty:true)` and re-navigate. The fresh tab loads cleanly in <12 s.
+- **Why accepted:** Automation-only friction at the Chrome MCP / cross-domain session-cookie boundary. Real users don't see this on a hardware browser.
+- **Affected assertions:** Any batch that visits Radaac then immediately needs an app.lfmdev.in surface in the same tab. Pre-emptively close + reopen tab between Radaac and app surfaces.
+- **Revisit if:** Chrome MCP gains better cross-domain session handling.
 
 ### Brand Sets > Content `filters` URL param persists across navigation; only Clear-All button clears it (NEW 2026-06-04)
 

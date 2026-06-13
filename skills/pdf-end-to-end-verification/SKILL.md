@@ -1,10 +1,10 @@
 ---
 name: pdf-end-to-end-verification
-version: 1
-last_verified: 2026-05-20
-last_passed_run: 2026-05-20
+version: 2
+last_verified: 2026-06-08
+last_passed_run: 2026-06-08
 trust: untrusted
-pass_streak: 1
+pass_streak: 12
 preconditions: [pdf-file-available-in-uploads]
 postconditions: [pdf-content-and-filename-verified]
 inputs: [pdf_path, expected_filename_pattern, expected_page_footer_pattern]
@@ -94,5 +94,61 @@ Spec patterns commonly encountered:
 
 See `knowledge-base/bug-history.md`. No open bugs currently tied to this skill's flows; 83 historical defects (all closed) are catalogued there.
 
+## v2 — jsPDF variant for CPR + TWC (2026-06-08)
+
+The original v1 skill scope was Social Recap PDFs (multi-page, large; ~1-2MB). v2 extends to two more jsPDF-producing flows that emit 1-page PDFs:
+
+### CPR Download (QA-23991)
+
+- **Filename schema:** `<Brand>-Content Performance(<MM DD, YYYY> - <MM DD, YYYY>).pdf`.
+- **Example:** `MTV-Content Performance(May 31, 2026 - Jun 6, 2026).pdf` (294K, 1 page).
+- **Engine:** jsPDF 3.0.1 (per `pdfinfo` Producer field).
+- **Page size:** A4 (595.28 × 841.89 pts).
+- **Text extraction:** `pdftotext` returns 0 lines — content embedded as canvas image, same as Social Recap.
+
+### TWC Download (QA-24021)
+
+- **Filename schema:** `<Brand>-Time Window Comparison(<MM DD, YYYY> - <MM DD, YYYY>).pdf`.
+- **Example:** `MTV-Time Window Comparison(May 31, 2026 - Jun 6, 2026).pdf` (313K, 1 page).
+- **Engine:** jsPDF 3.0.1.
+- **Page size:** A4.
+- **Text extraction:** `pdftotext` returns 0 lines.
+
+### Common pipeline
+
+For all three jsPDF flows (Social Recap, CPR, TWC), the verification pipeline is:
+```
+~/Downloads/<filename>.pdf
+  → pdfinfo (validates jsPDF Producer + page count)
+  → pdftotext -layout (returns 0 lines for image-rasterized PDFs — skip)
+  → pdftoppm -r 80 -f 1 -l 1 -png <file>.pdf page
+  → Read tool on page-01.png
+  → assert visible text content (header, brand name, chart elements, footer)
+```
+
+### Rasterized PNG output convention
+
+Save the rasterized pages to `runs/<date>/qa-<ticket>-png/page-NN.png` so they're discoverable from the case report.
+
+## Filename schema summary (cross-flow)
+
+| Flow | Filename |
+|---|---|
+| Social Recap | `<Brand>-Weekly Social Recap(<MM DD, YYYY> - <MM DD, YYYY>).pdf` (multi-page) |
+| CPR | `<Brand>-Content Performance(<MM DD, YYYY> - <MM DD, YYYY>).pdf` (1-page typical) |
+| TWC | `<Brand>-Time Window Comparison(<MM DD, YYYY> - <MM DD, YYYY>).pdf` (1-page typical) |
+
+All three are client-side jsPDF renders → no Recent Activity notifications bell entry is generated (server-side CDN exports DO generate bell entries; jsPDF exports do NOT).
+
+## Additional Failure signatures (v2)
+
+| Signature | Interpretation | Action |
+|---|---|---|
+| jsPDF download <100K | Likely empty/blank PDF (APPS-55569 historic) | Rasterize page 1; if blank, file bug |
+| Filename schema deviates from `<Brand>-<ReportType>(<dates>).pdf` | Schema regression (APPS-49527 / IF-3 historic) | File bug |
+| Recent Activity bell entry appears for jsPDF download | Engine has switched server-side (no longer jsPDF) | Verify `pdfinfo` Producer; if still jsPDF, the bell entry is a duplicate trigger |
+| `pdfinfo` Producer ≠ `jsPDF 3.0.1` | Engine version drift OR engine switched | Document; cross-check filename schema for regression |
+
 ## Changelog
+- **v2** (2026-06-08): jsPDF variant for CPR (QA-23991, 294K) + TWC Download (QA-24021, 313K) in addition to the original Social Recap PDF. Pattern: `~/Downloads/*.pdf` → `pdftoppm` → Read on rendered PNG. Filename-schema summary table added covering all three jsPDF flows.
 - **v1** (2026-05-20): Initial draft from QA-23969 PDF inspection. Used `pdftoppm` for rasterization (`pdftotext` returned 0 lines because the PDF is image-based). Footer pattern was confirmed deviation across pages 1, 5, 13 — filed as BC-4.

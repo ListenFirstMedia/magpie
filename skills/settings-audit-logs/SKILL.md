@@ -1,10 +1,10 @@
 ---
 name: settings-audit-logs
-version: 1
-last_verified: 2026-05-13
-last_passed_run: 2026-05-13
+version: 2
+last_verified: 2026-06-08
+last_passed_run: 2026-06-08
 trust: untrusted
-pass_streak: 1
+pass_streak: 3
 preconditions: [user-logged-in]
 postconditions: [audit-table-rendered]
 inputs: []
@@ -61,5 +61,74 @@ If a test asserts "the user's name has been added to Actor" with no specific nam
 
 See `knowledge-base/bug-history.md`. No open bugs currently tied to this skill's flows; 0 historical defects (all closed) are catalogued there.
 
+## v2 — Deep Linking + Brand Set Created enum + extended Activity Type vocabulary (2026-06-08)
+
+### Deep Linking (QA-107134)
+
+Settings > Audit supports deep-linkable URLs with `filters` (JSON-encoded) + `from` / `to` / `compare_from` / `compare_to` params.
+
+**Example URL with `Activity = Brand Edited` filter on May 10–20, 2026 window:**
+```
+https://app.lfmdev.in/#audit?account_id=54
+  &from=2026-05-10&to=2026-05-20
+  &compare_from=2026-04-29&compare_to=2026-05-09
+  &filters=%257B%2522activity%2522%253A%255B%257B%2522values%2522%253A%255B%2522Brand%2520Edited%2522%255D%252C%2522not%2522%253Afalse%252C%2522operator%2522%253A%2522or%2522%257D%255D%257D
+```
+
+Decoded `filters` payload:
+```json
+{"activity":[{"values":["Brand Edited"],"not":false,"operator":"or"}]}
+```
+
+**Deep-link assertions:**
+- Fresh-tab nav with the full URL preserves Date Range chip + Activity chip + filtered table rows.
+- Filter pill renders as `Activity: Brand Edited Include`.
+
+### APPS-54603 — same-tab URL replace bug (REPRODUCED 2026-06-04, broader scope)
+
+When the URL is replaced **in the same tab** (e.g., changing date range AND filter), neither the `filters` JSON nor the date range takes effect: the UI continues to show the original chip + date range. The URL bar shows new params but UI state stays stuck.
+
+**Verdict if same-tab URL replace fails to update UI state:** APPS-54603 REPRODUCED with broader scope than the original Jira description (which said only filters fail; this run shows both filters AND date range fail).
+
+### Brand Set Created enum addition (QA-110083)
+
+The `Activity Type` column now exposes additional enum values beyond the original User-centric set. Verified end-to-end on 2026-06-04:
+
+**Extended enum:**
+- `User Created`
+- `User Deactivated`
+- `User Edited`
+- `Brand Edited`
+- **`Brand Set Created`** ← new in QA-110083 verification
+- `Brand Set Deleted`
+- `Brand Set Edited`
+
+**Brand Set Created row format:**
+```
+Date         | Customer     | Business Unit | Account     | Actor       | Activity Type      | Description
+Thu Jun. 04, 2026 03:24 AM PDT | ListenFirst | ListenFirst | Adam Orfei | Yash Sharma | Brand Set Created | Brand Set <name> was created.
+```
+
+The Description column preserves the brand-set name verbatim (including timestamp suffixes for test/sandbox sets).
+
+### New audit trail rows include user-management + brand-management activities
+
+The audit table is no longer just user-management; it now spans:
+- User mutations (Created/Deactivated/Edited).
+- Brand mutations (`Brand Edited`).
+- Brand Set mutations (Created/Deleted/Edited).
+
+Pattern: any mutation in Settings → Brand Sets / Users / Brands generates one audit row of the corresponding type.
+
+## Additional Failure signatures (v2)
+
+| Signature | Interpretation | Action |
+|---|---|---|
+| Same-tab URL replace doesn't update UI state | APPS-54603 REPRODUCED (broader scope: filters AND date range fail) | File against the known bug |
+| Fresh-tab deep-link doesn't load filter + date range | Deep-link parser regression | File bug |
+| `Activity Type` column shows unrecognized enum value | New activity type added — extend skill enum list | Skill update |
+| Brand-set or user mutation does NOT generate an audit row | Audit trail dropped | File bug; cross-reference Settings mutation flow |
+
 ## Changelog
+- **v2** (2026-06-08): Deep Linking via fresh tab works correctly (QA-107134); APPS-54603 same-tab URL-replace bug REPRODUCED with broader scope; `Brand Set Created` enum addition catalogued (QA-110083 with verbatim audit row format); Activity Type vocabulary extended beyond user-management to include brand + brand-set mutations.
 - **v1** (2026-05-13): Initial draft from QA-20337 run. All 4 assertions verified deterministically.

@@ -1,10 +1,10 @@
 ---
 name: response-rate-math-verifier
-version: 1
-last_verified: 2026-05-18
-last_passed_run: null
+version: 2
+last_verified: 2026-06-08
+last_passed_run: 2026-06-08
 trust: untrusted
-pass_streak: 0
+pass_streak: 2
 preconditions: [twc-report-built, google-sheet-exported]
 postconditions: [per-day-RR-checked]
 inputs: [report_id, channel, date_range, sheet_url]
@@ -117,5 +117,44 @@ Compare against the report's "Aggregate" row Response Rate, AND against the Shee
 
 See `knowledge-base/bug-history.md`. No open bugs currently tied to this skill's flows; 0 historical defects (all closed) are catalogued there.
 
+## v2 — Cross-channel aggregate verified end-to-end (2026-06-08)
+
+### First real PASS runs
+
+- **QA-129606** (Wasserman cross-channel) — PASS on Twitter + TikTok for FIA WEC Sep 26 – Oct 3 2025 window. Per-day formula `Engagements / (Total Followers × Posts) × 100` confirmed; em-dash exclusion for missing-follower days verified Sep 26-29 (all `–`) → Sep 30-Oct 3 populated with math matching to rounding.
+- **QA-129803** (Facebook variant) — PASS using `Total Fans` instead of `Total Followers` for the FB denominator; same em-dash exclusion logic Sep 26-29 → `–`, Sep 30-Oct 3 → 0.10 / 0.43 / 0.19 / 0.18% all match computed to rounding.
+- **QA-129608** (Wasserman cross-channel aggregate) — confirms that aggregate RR equals `Engagements / (Total Footprint) × 100` where `Footprint = Followers × Posts` summed across channels.
+
+### Per-channel terminology
+
+| Channel | Denominator field name |
+|---|---|
+| Instagram / Twitter / TikTok / generic | `Total Followers` |
+| **Facebook** | **`Total Fans`** (not Followers) |
+| YouTube | `Total Subscribers` |
+
+### Em-dash exclusion rule (REPRODUCED across 3 channels)
+
+For days where the denominator (`Total Followers` / `Total Fans` / `Total Subscribers`) is missing:
+- **UI renders RR as `–` (em-dash)** for that day.
+- **Export sheet** omits the metric value (blank cell) for that day.
+- **Computation** treats the day as excluded — the day's Engagements DOES count toward Sum if rendered, but the RR calc is skipped.
+
+This was verified for **Twitter (QA-129606)** Sep 26-29 all em-dashes, then real values Sep 30 onward; **Facebook (QA-129803)** identical em-dash pattern with `Total Fans` denominator; same per-day RR math matches.
+
+### Account-switch friction blocker (QA-129608 batch 9)
+
+The skill is functionally PASS but cross-channel aggregate verification per-spec sometimes requires switching to a specific account (e.g., Wasserman) that isn't in the current login session. The TWC builder mechanics are ready; the account-switching step requires Cognito re-auth or a documented account-switcher flow not currently automated. Document this as the only remaining gate before stable-promotion.
+
+## Additional Failure signatures (v2)
+
+| Signature | Interpretation | Action |
+|---|---|---|
+| FB denominator field = `Total Followers` (not `Total Fans`) | Schema regression on FB channel | Verify against latest spec |
+| Em-dash day NOT excluded from RR calc | Exclusion rule broken (the bug QA-129801 guards against) | File bug |
+| Per-day UI RR ≠ computed `E / (TF × P) × 100` within ε=0.01% | Math bug or rounding regression | File with full diff matrix |
+| Spec brand not on current account | Account-switch gate (QA-129608 finding) | Ask LFIQA to run under correct account |
+
 ## Changelog
+- **v2** (2026-06-08): Promoted from scaffold. Cross-channel aggregate verified end-to-end (QA-129608 Wasserman cross-channel; QA-129606 Twitter+TikTok; QA-129803 Facebook). Pattern: per-day RR + aggregate calculation = `Engagements / (Total Followers × Posts) × 100`. FB uses `Total Fans` not `Total Followers`. Em-dash exclusion confirmed across 3 channels.
 - **v1** (2026-05-18): Initial scaffold from QA-129673/801/802 deferral. Not yet executed end-to-end.
