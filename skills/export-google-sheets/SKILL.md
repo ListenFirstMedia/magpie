@@ -100,3 +100,13 @@ See `knowledge-base/bug-history.md`. No open bugs currently tied to this skill's
 ## Changelog
 - **v2** (2026-05-13): Documented the MCP-visibility caveat (new tab often outside MCP group), `window.open` hook pattern, sheet ownership (service account, not user Drive), and the three-path filename capture (tab title / URL hook / user share).
 - **v1** (2026-05-13): Initial draft from QA-5757. Google Sheets export from TWC report produced the expected filename and 7 rows of data matching the in-app table.
+
+## 2026-06-11 batch-3 update — TWC Google Sheets export hang is now a CONFIRMED systemic bug
+
+- Reproduced on a **second account/report**: Wasserman, TWC story 154443 (FIAWEC). Export → Google Sheets spins >60 s, `window.open` hook never fires, no Sheet tab anywhere.
+- While the GS export is stuck, the **entire Export control is locked** (replaced by spinner) — CSV/TSV/XLS cannot be selected until a full page reload.
+- Combined with the 2026-06-10 Adam Orfei repro (QA-5757, The Walking Dead story 154359): treat TWC GS export as **broken on dev**, not an MCP-visibility quirk. Do not wait beyond ~60 s; reload and use CSV (blob hook) for export-parity assertions; file/escalate the bug.
+- Non-TWC GS exports still work (Audience "Metrics" export, dashboard-tile GS export QA-92841) — the breakage is TWC-specific.
+
+## Changelog (cont.)
+- **v4** (2026-06-11): TWC GS hang reconfirmed cross-account; Export-control lockout documented; CSV fallback canonicalized.

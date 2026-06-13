@@ -55,3 +55,8 @@ See `knowledge-base/bug-history.md`. No open bugs currently tied to this skill's
 
 ## Changelog
 - **v1** (2026-05-18): Initial draft from QA-83835. Both directions of the auto-adjust were verified on Adam Orfei.
+
+## 2026-06-11 batch-3 update (QA-83835 re-pass)
+
+- Both clamp directions re-verified (start Jun 10 2025 ⇄ end Jun 9 2026; moving start to Jun 3 auto-pulled end to Jun 2 2026; moving end back to Jun 9 pushed start to Jun 10). Year-long MTV FB Total Fans report rendered (295904).
+- **Same duplicate-hidden-datepicker trap as TWC:** two `.from-calendar` instances; filter by `offsetParent` or your day-clicks silently apply to the hidden one and the report runs on the default 7D (looked exactly like a "custom range ignored" product bug — it wasn't).

@@ -206,3 +206,17 @@ This pattern is confirmed required for:
 - **v3** (2026-05-13): Added Relative Dates flow (Start/End numbers, Before/After direction, Key Date column on brand rows, Bulk Select Key Date for multi-brand). Linked to new `keydate-picker` skill. Documented the Filter Metrics → category-level `On` button shortcut for enabling many metrics at once (subcategories need their own `On` clicks; deeply nested metrics may require expanding the tree first).
 - **v2** (2026-05-13): Added hover-not-click for Reporting menu; "Recent Searches" caveat in brand picker; em-dash data freshness behavior; default date range shifts daily.
 - **v1** (2026-05-13): Initial draft from QA-5757 exploration run. Successful build of TWC report for Hulu / Public Data / 2026-05-05 → 2026-05-11 / Facebook New Fans.
+
+## 2026-06-11 batch-3 updates (QA-129801 / QA-129802 / QA-129673, Wasserman)
+
+- **CRITICAL caveat — duplicate hidden datepicker:** TWO `.from-calendar` / `.to-calendar` / `.datepicker-days` instances exist in DOM. Synthetic events on the hidden one "succeed" silently but change nothing (cost 3 false attempts). ALWAYS filter `[...document.querySelectorAll('.datepicker-days')].filter(c => c.offsetParent)` before reading headers or clicking arrows/days.
+- **Calendar day clicks must be inside the viewport.** A coordinate click below `innerHeight` silently no-ops. Scroll the picker into view, re-read the day cell rect, then click.
+- **Channel group clear:** the per-channel `Off` link (inside the channel summary row) clears all selected metrics for that channel in one click — find via ancestor walk from the `Channel ( N / M )` summary, dispatch full `mousedown/mouseup/click`.
+- **`<details>` expansion:** channel + sub-group summaries only render children after a REAL coordinate click on the summary (synthetic dispatch toggles state but children stay unrendered). Leaf checkbox clicks via `span.controlled-check-box > label` still work synthetically once rendered.
+- **Cross-Channel group:** lives at the top of the By Channel tree as `Cross-Channel ( n / 62 )` with sub-groups Audience & Growth (3), Content (24), Engagement (2), Impressions & Reach (10), Interest (4), Paid (9).
+- **Change Settings reuse:** on a story page, Change Settings reopens the full builder with brand/dates/metrics preserved — much cheaper than rebuilding when only interval/channel/metrics change between sibling tests (used for IG→YT→Aggregate trio).
+- **Interval = Aggregate:** via `.lfm-dropdown-select-box` ("Days") → `.lfm-dropdown-option` "Aggregate". Aggregate report renders one table per metric with a single Brand|Value row.
+- **Google Sheets export hang RE-CONFIRMED on second account (Wasserman story 154443):** spinner >60 s, no `window.open`, Export control locked until page reload. CSV via blob-hook is the reliable export-verification fallback.
+
+## Changelog (cont.)
+- **v5** (2026-06-11): hidden-duplicate-datepicker guard, real-click summary expansion, Off-link channel clear, Cross-Channel tree map, Change Settings reuse pattern, Aggregate interval, GS-hang reconfirmation.

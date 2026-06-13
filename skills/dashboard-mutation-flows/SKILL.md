@@ -168,3 +168,15 @@ Use JS-fallback `find` + ref-based click for each:
 ## Changelog
 - **v2** (2026-06-08): Promoted from scaffold to PASS. Save filtered tile to Dashboard end-to-end + cleanup (QA-88219, QA-89390). MUTATING — cleanup non-optional. Documents the React-aware InputEvent setter for Dashboard Name + the JS-fallback `find`-by-text-match pattern for inconsistent coordinate clicks. +4 streak across QA-88219, QA-110083 (brand-set wizard extension), QA-89390 RECONFIRM, QA-104876 (Settings entity cleanup pattern carry).
 - **v1** (2026-05-18): Initial scaffold from skipped batch 6 cases (QA-84202, QA-85175, QA-115037, QA-16775, QA-116177). Not yet executed — awaits user mutation-OK.
+
+## 2026-06-11 batch-3 updates (QA-85175, Adam Orfei, dashboard "Order3 0611" id=6295)
+
+- **BUG (Major, open): tile "Remove from Dashboard" never persists.** Click removes the tile from the page instantly but fires ZERO API calls (only Mixpanel/NewRelic beacons in the network log). After reload the tile is back; the Edit (Order) popup keeps listing it the whole time. 2/2 repro. Treat any "popup reflects removal" assertion as expected-FAIL until fixed.
+- **Save to Dashboard dropdown:** toggler needs full `mousedown/mouseup/click` MouseEvent dispatch (bare `.click()` and plain coordinate clicks are flaky). Dropdown rows live in `.selector-dropdown` (30 empty instances exist in DOM; only the open one has rows). Click the dashboard-name row element via `.click()` after opening; success toast = `You've successfully added this tile to: <name>`.
+- **Dashboard Menu (left button) → pick dashboard:** coordinate clicks unreliable; use `find` → ref click to open, then full-event dispatch on the name row. Top-nav "Dashboards" CLICK navigates to the default dashboard — the dashboard list opens via the page-level Dashboard Menu button, not the nav item.
+- **Order modal drag (no HTML5 draggable):** synthetic `mousedown` on the row label + 8 stepped `mousemove`s (±70–120 px) + `mouseup` reorders reliably; rank numbers renumber automatically; OK persists (verified after reload).
+- **Delete:** Options → Delete → confirm text `Are you absolutely sure you want to delete your "<name>" dashboard? Click "Ok" to continue.` → redirects to default dashboard; menu entry gone.
+- Dashboard ids are NOT strictly sequential (created 6295 while 6260-6264 existed; 6264 = another user's, shows "You can only share dashboards that you've created").
+
+## Changelog (cont.)
+- **v2** (2026-06-11): Remove-from-Dashboard persistence bug, full-event-dispatch requirement, selector-dropdown row mechanics, drag recipe, delete confirm text.

@@ -74,3 +74,9 @@ See `knowledge-base/bug-history.md` for the full per-ticket bug list. Highest-pr
 
 ## Changelog
 - **v1** (2026-05-13): Initial draft from QA-533 run. Verified for MTV brand under Viacom account. Full post text successfully retrieved via `title` attribute.
+
+## 2026-06-11 batch-3 update (QA-122942 Hulu IG public)
+
+- Table View headers (IG public): Rank, Date, Channel, Brand, Type, Live, Publish Type, Sponsor, Text, Engagements, Reactions, Comments, **Shares**, Response Rate, Video Views, Video Response Rate, Actions — Video Views sits directly after Response Rate ✓. Detail View metric stack: Engagements, Reactions, Comments, Response Rate, Video Views (below RR ✓), Video Response Rate (no Shares row in Detail).
+- Note: a `Shares` column shows for IG public with en-dash values — test specs often omit it; don't fail on its presence.
+- Layout icon ref-clicks can silently not switch — verify via `th` headers after clicking; coordinate-click the first icon if needed.

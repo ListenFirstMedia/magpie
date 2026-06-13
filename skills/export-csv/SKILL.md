@@ -155,3 +155,10 @@ See `knowledge-base/bug-history.md`. No open bugs currently tied to this skill's
 - **v1** (2026-05-13): Initial draft from QA-5757. CSV content matched Google Sheets content cell-by-cell (7 rows × 4 columns, 0 mismatches).
 - **v2** (2026-05-18): Added server-side-queued export variant from QA-531. Documents BC-2 (CDN filename bug). Records new working pattern: fetch the CDN URL directly with `credentials: 'include'` instead of intercepting blobs.
 - **v2.1** (2026-05-18): Added "Export modal Ok button quirk" failure signature from QA-122942 and QA-71007.
+
+## 2026-06-11 batch-3 updates
+
+- **In-page blob capture re-proven** (Insights FGR tile CSV, 3× TWC story CSVs): hook `URL.createObjectURL` (FileReader→text) + `HTMLAnchorElement.prototype.click` (capture `download` filename). Insights tile filename schema confirmed: `Hulu-Insights-Fan Growth Rate-2024-05-05-2024-05-09.csv` with headers `Date,Brand Name,Channel,Fan Growth Rate` and Channel=`Cross-Channel`.
+- **Queued Brand>Content exports** (Star Wars, Disney Channel, Hulu, MTV sentiment): notification body format re-confirmed — `Your Content Export with Select Data Sets for <Brand> from Mon. DD, YYYY to Mon. DD, YYYY is now ready. Download file.` / sentiment variant `Your Sentiment Export for <Brand> …`. Link = `analytics-cdn.lfmdev.in/<reportid>-<hash>.csv`; `fetch(href)` from the app page works without explicit credentials. Content-disposition is NOT exposed cross-origin, so the saved-filename assertion (`<Brand>-Brand-Content-YYYYMMDD-YYYYMMDD-posts.csv`) needs a one-time manual Downloads check.
+- **Export modal:** "Export Select Data Sets" — View toggle CSV|Google Sheets (CSV default), pre-checks the active data set, greys out datasets for unselected channels. Export button disabled while posts are loading. A queued export snapshots the CURRENT channel filter at OK-click time — re-filtering afterwards does not change an already-queued export.
+- Rate metrics export as raw fractions (17-digit floats); en-dash → empty string cells; bell count is per-account.

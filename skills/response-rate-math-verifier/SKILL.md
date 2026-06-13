@@ -158,3 +158,13 @@ The skill is functionally PASS but cross-channel aggregate verification per-spec
 ## Changelog
 - **v2** (2026-06-08): Promoted from scaffold. Cross-channel aggregate verified end-to-end (QA-129608 Wasserman cross-channel; QA-129606 Twitter+TikTok; QA-129803 Facebook). Pattern: per-day RR + aggregate calculation = `Engagements / (Total Followers × Posts) × 100`. FB uses `Total Fans` not `Total Followers`. Em-dash exclusion confirmed across 3 channels.
 - **v1** (2026-05-18): Initial scaffold from QA-129673/801/802 deferral. Not yet executed end-to-end.
+
+## 2026-06-11 batch-3 — full Wasserman trio PASS (QA-129801 IG / QA-129802 YT / QA-129673 Aggregate)
+
+- **IG daily (story 154443, FIAWEC Sep 26–Oct 3 2025):** Total Followers `–` Sep 26-29; RR `–` on those days; Engagements present all days. Math exact: 54,826/(1,234,260×3)=1.48% · 69,022/(1,234,991×2)=2.79% · 51,032/(1,235,413×3)=1.38% · 78,698/(1,235,835×4)=1.59%.
+- **YT daily (story 154444):** denominator uses **Total Subscribers**. Oct 1 had subscribers but **0 posts → RR `–`** (footprint 0 handled gracefully). 1,767/1,070,000=0.17% · 1,557/1,080,000=0.14% · 772/1,080,000=0.07%.
+- **Aggregate Cross-Channel (story 154445, Feb 9–15 2026):** RR 0.41%, Eng 133,538, Posts 39, TF 4,020,499. Export raw 0.00408511 ⇒ implied footprint denominator **32,688,963** ≠ Eng/TF (3.32%) — confirms footprint-sum formula. Full footprint-sum verification still needs QA-129608 run.
+- **CSV exports** mirror UI exactly: rate columns are raw fractions (e.g. `0.014806712794170866`), excluded days are empty strings. Use blob-hook CSV (GS export broken on TWC).
+
+## Changelog (cont.)
+- **v2** (2026-06-11): IG + YT + Aggregate variants all verified; zero-posts day rule; raw-fraction export convention; implied-denominator technique for aggregate.
