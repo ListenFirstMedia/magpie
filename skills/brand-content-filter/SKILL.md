@@ -1,15 +1,15 @@
 ---
 name: brand-content-filter
-version: 1
-last_verified: 2026-05-18
-last_passed_run: 2026-05-18
+version: 2
+last_verified: 2026-06-08
+last_passed_run: 2026-06-08
 trust: untrusted
-pass_streak: 1
+pass_streak: 22
 preconditions: [brand-content-loaded]
 postconditions: [filter-applied]
 inputs: [filter_type, filter_value, operator]
 outputs: [filtered_post_count]
-related_pages: ["/#explore/brand/content"]
+related_pages: ["/#explore/brand/content", "/#explore/brand/stories", "/#explore/brand/paid", "/#explore/brand/partnerships", "/#explore/brand/optimization", "/#explore/competitive/content", "/#explore/competitive/partnerships"]
 ---
 
 # Brand Content Filter Dropdown
@@ -101,7 +101,75 @@ Filter-type → URL key mapping (partial — extend as discovered):
 
 See `knowledge-base/bug-history.md`. No open bugs currently tied to this skill's flows; 0 historical defects (all closed) are catalogued there.
 
+## v2 — Layered tag filtering across 7 surfaces (2026-06-08)
+
+The Tag sub-filter is the most complex variant of the Filter widget and appears with identical structure across 7 distinct surfaces. The widget supports layered Include + Exclude pills with OR / AND operators within each pill.
+
+### 7 surfaces verified
+
+| Surface | URL | Filter dropdown options |
+|---|---|---|
+| Brand > Content | `/#explore/brand/content` | Branded Content / Collaborated / Content Type / ... / Tag / Text Search |
+| Brand > Stories | `/#explore/brand/stories` | Branded Content / Collaborated / ... / Tag / Text Search |
+| Brand > Paid | `/#explore/brand/paid` | Ad Name / Ads Account ID / Campaign / Delivery Type / Publish Day / Publish Time / Tag / Text Search |
+| Brand > Partnerships | `/#explore/brand/partnerships` | Collaborated / Collaborated Total / Collaborator Name / Content Type / Publish Day / Publish Time / Publish Type / Sponsor Name / Tag / Text Search |
+| Brand > Optimization | `/#explore/brand/optimization` | (same set as Brand>Content; layered Tag widget identical) |
+| Brand Sets > Content | `/#explore/competitive/content` | (layered widget identical) |
+| Brand Sets > Partnerships | `/#explore/competitive/partnerships` | (layered widget identical) |
+
+### Layered Include + Exclude — URL JSON encoding
+
+Two-pill state (Include `jbkaxlx` OR + Exclude `+tag`) encodes as:
+```
+filters={"content_tags":[
+  {"operator":"or","values":[" jbkaxlx"],"not":"false"},
+  {"operator":"or","values":["+tag"],"not":"true"}
+]}
+```
+
+### Include-only OR / AND operator flip
+
+Single-pill Include state: green-outline `or-label` chip with `not:"false"`. Pill operator-button flip changes URL operator value:
+```
+{"content_tags":[{"operator":"or","values":["jbkaxlx","+tag"],"not":"false"}]}
+{"content_tags":[{"operator":"and","values":["jbkaxlx","+tag"],"not":"false"}]}
+```
+
+### Exclude OR pill CSS
+
+```
+or-label exclude     → red background rgb(235, 64, 64)
+or-label             → green-outline (Include)
+option-row disabled  → greyed (cannot select same tag in both Include + Exclude)
+```
+
+### "OR + None backend rejection" quirk
+
+Brand > Content with `Tag = None` + `Operator = OR`:
+- UI accepts the combination, URL encodes as `{"content_tags":[{"operator":"or","values":[""],"not":"false"}]}`.
+- Backend returns **"Table failed to load"** error pane (the empty-string value + OR-operator combination is rejected server-side).
+- Workaround: use `Tag = None` with `Include` only (no OR-merging) — that path encodes `values:[""]` and renders cleanly.
+
+### Save/Load Filter buttons + deep-link re-hydration
+
+Both `Save Filter` and `Load Filter` buttons render alongside `Apply Filter` and `Clear All` on the Filter row. Direct URL nav with the filters JSON re-hydrates the pill with ~10-25s latency.
+
+### CPR Tag Filter divergence (QA-134516)
+
+CPR builder's Tag Filter lacks the Include/Exclude toggle exposed on Brand surfaces — structural divergence flagged. PASS-with-finding rather than a bug.
+
+## Additional Failure signatures (v2)
+
+| Signature | Interpretation | Action |
+|---|---|---|
+| `Tag = None` + OR operator returns "Table failed to load" | Backend rejects empty-string OR-merge | Switch to Include-only (no OR) |
+| Pill operator button doesn't flip OR ↔ AND on click | Toggle event-binding regression | File bug |
+| Exclude pill background not `rgb(235, 64, 64)` | Color regression | Capture RGB; if persistent, file UI ticket |
+| Direct URL nav with `filters` JSON doesn't re-hydrate pill | Deep-link parser regression | File bug; cross-reference settings-audit-logs APPS-54603 |
+| CPR Tag Filter shows Include/Exclude toggle | Structural divergence resolved | Update skill + remove this note |
+
 ## Changelog
+- **v2** (2026-06-08): Layered tag filtering across 7 surfaces (Brand>Content + Brand>Stories + Brand>Paid + Brand>Partnerships + Brand>Optimization + Brand Sets>Content + Brand Sets>Partnerships). Documents the URL JSON encoding for layered Include+Exclude + OR/AND combinations, the "OR + None backend rejection" quirk on Brand>Content, the Save/Load Filter buttons, the CPR Tag Filter structural divergence, and the pill green-outline/red-fill CSS.
 - **v1** (2026-05-18): Initial draft from QA-91412 (Publish Type = Reel on FX Networks). URL-encoding pattern documented from observed URL params.
 
 ## 2026-06-11 batch-3 updates

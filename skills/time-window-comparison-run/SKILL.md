@@ -1,10 +1,10 @@
 ---
 name: time-window-comparison-run
-version: 4
-last_verified: 2026-05-13
-last_passed_run: 2026-05-13
+version: 5
+last_verified: 2026-06-08
+last_passed_run: 2026-06-08
 trust: untrusted
-pass_streak: 4
+pass_streak: 17
 preconditions: [user-logged-in, account-set]
 postconditions: [report-built]
 inputs: [brand_name, perspective, data_points, date_range_type, start_date, end_date, keydate_season, keydate_episode]
@@ -145,7 +145,63 @@ See `knowledge-base/bug-history.md` for the full per-ticket bug list. Highest-pr
 
 - LFMP-31961 (Major) — Reporting > TWC > New Followers > The data is not displayed correctly.     [from QA-281]
 
+## v5 — × ÷ operators + controlled-check-box workaround + th.prev JS-fallback
+
+### × ÷ operators in custom-metric column (QA-137558)
+
+Custom metrics created with the new APPS-60358 × and ÷ operators (per `settings-custom-metrics` v2) render correctly as TWC table columns. The calc engine evaluates the formula at query time.
+
+**TWC-side flow:**
+1. Add brand → set perspective → date range.
+2. In Filter Metrics search input (`input.corner-box.controlled-text-input` inside `.al-data-selection__filter`), type the custom metric name (e.g. `Automation - All Operators Metric`).
+3. The custom metric appears under a `Custom Metrics` section in the picker — click the `label.controlled-check-box__label` matching exact text.
+4. Run Report.
+5. Results table column header matches the custom-metric name verbatim; cell value is the calculated numeric.
+
+### `controlled-check-box` focus + Space-dispatch (CARRY FROM CPR builder)
+
+The TWC Options panel uses the same `controlled-check-box` React widget as CPR (see `cpr-builder` skill). For Options like `Show Cohort Average`, `Show Competitor Average`, `Show Source Links`:
+
+```javascript
+const cb = [...document.querySelectorAll('i[role="checkbox"]')]
+  .find(el => /<option text>/i.test(el.closest('label, .controlled-check-box')?.textContent || ''));
+cb.focus();
+cb.dispatchEvent(new KeyboardEvent('keydown', {bubbles:true, key:' ', code:'Space'}));
+cb.dispatchEvent(new KeyboardEvent('keyup',   {bubbles:true, key:' ', code:'Space'}));
+```
+
+**Assertion:** `aria-checked` flips to `true`. Use this pattern for any Options checkbox; coordinate clicks land on the wrapper not the toggle.
+
+### `th.prev/th.next` JS-fallback for date-picker arrows
+
+The Absolute Dates calendar exposes its `previous month` / `next month` arrows as `<th class="prev">` / `<th class="next">` cells. The clickable hitboxes are tiny and can miss coordinate-based clicks. Multi-month navigation (e.g., June 2026 → Sep 2025) needs many clicks in succession.
+
+**JS-fallback for `N` month-back navigations:**
+```javascript
+const prev = document.querySelector('th.prev');
+for (let i = 0; i < N; i++) {
+  prev.click();
+  await new Promise(r => setTimeout(r, 150));
+}
+```
+
+The `setTimeout(150)` is required between clicks — the React re-render needs time to re-bind the `prev` reference. Without the wait, only the first click registers.
+
+This pattern is confirmed required for:
+- QA-129606 batch 8 (Absolute Days Sep 26 – Oct 3 2025 multi-month nav).
+- QA-129803 batch 9 (Facebook variant of same flow).
+- QA-198 / QA-281 (Relative Dates long intervals — still need calendar nav for the Key Date picker via `keydate-picker` skill).
+
+## Additional Failure signatures (v5)
+
+| Signature | Interpretation | Action |
+|---|---|---|
+| Custom metric column renders blank in results table | Calc engine couldn't evaluate the formula (e.g., division by zero day) | Inspect formula chips + brand context |
+| Options checkbox doesn't flip on coordinate click | `controlled-check-box` quirk | Use focus + Space-dispatch |
+| Calendar nav `th.prev.click()` stalls after first click | React handler re-binding lag | Add `await setTimeout(150)` between clicks |
+
 ## Changelog
+- **v5** (2026-06-08): × ÷ operators in custom-metric columns (QA-137558); `controlled-check-box` focus+Space workaround for Options panel (overdue documentation); `th.prev/th.next` JS-fallback with `setTimeout(150)` for multi-month calendar nav.
 - **v4** (2026-05-13): Added Aggregate interval semantics and Cohort/Competitor Average overlay-line behavior + assertion patterns (from QA-126530 run).
 - **v3** (2026-05-13): Added Relative Dates flow (Start/End numbers, Before/After direction, Key Date column on brand rows, Bulk Select Key Date for multi-brand). Linked to new `keydate-picker` skill. Documented the Filter Metrics → category-level `On` button shortcut for enabling many metrics at once (subcategories need their own `On` clicks; deeply nested metrics may require expanding the tree first).
 - **v2** (2026-05-13): Added hover-not-click for Reporting menu; "Recent Searches" caveat in brand picker; em-dash data freshness behavior; default date range shifts daily.

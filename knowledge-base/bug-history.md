@@ -634,8 +634,8 @@ _None._
 
 ## QA-131491 — Social Recap vs Brand > Content - IG Public Video View
 
-- **Skill:** `social-recap-report-run`
-- **My latest run (2026-05-27/29):** PASS
+- **Skill:** `social-recap-report-run`, `brand-content-data-set-selector`
+- **My latest run (2026-06-08 QA-22296 batch-9 RECONFIRM):** PASS — Brand > Content MTV/Adam Orfei (brand_id=10765) / IG / Jan 1-7 2026 / Public — Post #1 Mon Jan 05 03:23 PM PST Reel: Engagements 44,227 / Reactions 43,971 / Comments 256 / Video Views 691,822 / Video Response Rate 6.39% — exact verbatim match with 2026-06-02 batch-9 run. No drift.
 
 ### Open bugs (0)
 _None._
@@ -1062,7 +1062,7 @@ _None._
 ## QA-132387 — Brand Sets > Content - Rank-by Sum/Avg
 
 - **Skill:** `(none / unmapped — candidate for future brand-sets-content-rank-by skill)`
-- **My latest run (2026-06-02 batch-6):** PASS (upgraded from PARTIAL)
+- **My latest run (2026-06-08 QA-22296 batch-9 RECONFIRM):** PASS — mechanic verified end-to-end on default-state Adam's Brand Set Jun 1-7 2026: Public Engagements rank Posts(2,526)/Sum 63,942,902/Avg 25,314 → Authorized Impressions rank Posts(111)/Sum 14,360,033/Avg 129,370; URL `perspective` auto-flip + channel-set narrowing (5 → 4 channels, YouTube dropped) CONFIRMED; View toggle disabled CONFIRMED.
 
 ### Open bugs (0)
 _None._
@@ -1078,7 +1078,7 @@ _None._
 ## QA-132392 — Brand Set > Content - Impression Sum/Avg
 
 - **Skill:** `(none / unmapped — candidate for future brand-sets-content-rank-by skill)`
-- **My latest run (2026-06-02 batch-6):** PASS (upgraded from PARTIAL)
+- **My latest run (2026-06-08 QA-22296 batch-9 RECONFIRM):** PASS — Authorized Impressions on Adam's Brand Set Jun 1-7 2026: Posts(111)/Sum 14,360,033/Avg 129,370; channels narrow to FB/IG/Twitter/TikTok (4, no YouTube); math sanity 14,360,033/111≈129,369 ≈ UI 129,370 within 0.01% rounding (confirms Avg = Sum/posts-with-data). No drift.
 
 ### Open bugs (0)
 _None._
@@ -1390,18 +1390,21 @@ My latest run: 2026-06-04 QA-4325 batch-4 — PASS (Adam Orfei / Alex Test 1, br
 
 ## QA-51442 — Brand > Stories - Impressions - Tile level export - PNG
 
-Skill: audience-metrics-export (tile-level Export pattern — PNG download blocked by upstream tile failure)
-My latest run: 2026-06-04 QA-4325 batch-4 — PARTIAL (Adam Orfei / MTV)
+Skill: audience-metrics-export (tile-level Export pattern)
+My latest run: 2026-06-04 QA-4325 batch-4 — originally PARTIAL; **RE-VERDICT 2026-06-05: tile-render failure RETRACTED — was a Chrome-MCP-only artifact.** Effective status: A1/A2 PASS, A3-A6 still NOT VERIFIED (analyst-side PNG-on-disk evidence is the remaining gap).
 
-### Open bugs (0 prior; 1 NEW finding this run)
-- **NEW 2026-06-04** Brand > Stories chart tiles (Engagements / Impressions / Taps Back / Exits) persistently fail to render on MTV Authorized IG across 3 tested date windows (May 27–Jun 2 range, May 15–20 range, May 29 single day). Either "This tile failed to load. Please try again." error or persistent skeleton-shimmer after Reload click. Sum/Avg row + Stories data table populate correctly with real numbers (Sum Impressions 199,265 / 121,106 in the two ranges tested), so data exists — only the chart-tile fetch path is broken. Tile-level Export dropdown exists (PNG/CSV/Google Sheets/Metrics) but PNG click on a failed/skeleton tile produces no file. Should be filed as LFMP-* by product/eng triage.
+### Open bugs (0)
+_None._
+
+### 2026-06-04 QA-4325 batch-4 re-run findings — RETRACTED 2026-06-05
+- **Brand > Stories chart-tile fail-to-load finding RETRACTED.** LFIQA analyst screenshot 2026-06-05 16:10 PDT shows the identical configuration (Adam Orfei / MTV brand_id=4018 / Authorized / Instagram / May 29 2026 single day) with all four tiles (Engagements 455, Impressions 121K, Taps Back 1,607, Exits 8,517) rendered as proper bar charts. URL in screenshot: `app.lfmdev.in/#explore/brand/stories?brand_id=4018&account_id=54&from=2026-05-29&to=2026-05-29&...`. The Stories(4) data table beneath the charts populates Sum Impressions 121,106 — exact match for what the sub-agent extracted, confirming same data path.
+- **Root cause hypothesis:** Chrome MCP sub-agent observed the tiles in a transient failed/skeleton state during initial page load and declared the failure prematurely (before retry-on-mount resolved). Reload-click then re-entered skeleton state and the agent gave up rather than waiting longer. Real-browser sessions complete the render within normal page-load time. This is **automation-only friction**, not a product defect.
+- **Lesson for future Chrome MCP runs on Brand > Stories:** Wait at least 15-20s after initial nav before declaring a tile failed; if tiles show "Please try again" after the first Reload click, fully refresh the tab (not just Reload-click the tile) and wait 15s again. Do NOT report tile-render failure unless 2+ full-page refreshes consistently fail AND the network panel confirms the chart-fetch endpoint is 5xx/timeout.
+- **Still genuinely PARTIAL:** PNG-on-disk verification (A3-A6) still pending — sub-agent didn't capture a saved file because of the (false) tile-render diagnosis. The Export dropdown layout (PNG / CSV / Google Sheets / Metrics) is confirmed PASS from the run.
+- Hulu Brand>Stories tab is conditionally hidden on Adam Orfei context (Public-only). MTV exposes the Stories tab with Authorized View. (This part of the finding stands.)
 
 ### Closed bugs
 - Closed Bug/Test-Failure history present in Jira; not enumerated due to budget.
-
-### 2026-06-04 QA-4325 batch-4 re-run findings
-- PARTIAL. Tile-level Export menu confirmed present and matches QA-20988 affordance (PNG/CSV/Google Sheets/Metrics). PNG download verification BLOCKED by the new chart-tile fail-to-load bug above.
-- Hulu Brand>Stories tab is conditionally hidden on Adam Orfei context (Public-only). MTV exposes the Stories tab with Authorized View.
 
 ## QA-51457 — Brand > Insights - Engagements - Tile level export - PNG
 
@@ -1423,12 +1426,16 @@ _None._
 Skill: tbd
 My latest run: 2026-06-04 (QA-4325 batch 5)
 
-### Open bugs (1 new)
-- **BC-5 (NEW 2026-06-04, QA-4325 batch-5):** `Include URL Managers` checkbox on Brand Definitions (Fetch) modal has NO effect on the xlsx output. With `include_url_mgrs=on` (or `=true`) the resulting xlsx has the same 40-column schema as a Fetch without Include URL Managers — no `url managers` column. Reproduced via direct URL submit `radaac.lfmdev.in/brand_definition_report?brand_ids=236&include_url_mgrs=on` → `20260604BrandDefinitionReport_779ed0.xlsx` (5,896 bytes; same shape as 5,895-byte QA-52776 Fetch). Filed as a finding in QA-52778-report.md; recommend LFMP defect. A1 (default unchecked) and A3 (youtube_channel_company after youtube_channel_username) PASS. A4-A7 (Patch + Apply) NOT VERIFIED to avoid mutating dev brand_id=236.
+### Open bugs (0)
+_None._
 
 ### 2026-06-04 re-run findings
-- BC-5 above (NEW).
-- Radaac jQuery UI dialog Submit click does not navigate via JS/coord click; workaround = direct URL GET nav.
+- **BC-5 RETRACTED (2026-06-05) — was a false positive.** LFIQA analyst executed the full Fetch / Patch / Apply chain manually on 2026-06-05 with `Include URL Managers` checked. All three xlsx files contain the `url_managers` column populated with the multi-platform tenant strings (Family Guy brand 236):
+  - Fetch (`20260605BrandDefinitionReport_4f1694.xlsx`, 5,980 B, 41 cols) → `url_managers` at col 40 — data present (`youtube|http://www.youtube.com/user/ANIMATIONonFOX|FX Networks + Hulu + Disney General Entertainment + Disney Ad Sales + Freeform`, `instagram|familyguyfox|...`)
+  - Patch (`20260605PatchBrandDefinitionReport_0fb143.xlsx`, 7,417 B, 42 cols) → `url_managers` at col 41 — same values, carried through
+  - Apply (`20260605ApplyBrandDefinitionReport_d5996d.xlsx`, 7,417 B, 42 cols) → `url_managers` at col 41 — same values, carried through
+- **Root cause of the false positive:** The 2026-06-04 batch-5 sub-agent could not click the Radaac jQuery UI Submit button via Chrome MCP (real Radaac quirk — that part is genuine), and fell back to a direct URL GET `radaac.lfmdev.in/brand_definition_report?brand_ids=236&include_url_mgrs=on`. The Radaac backend does NOT honor the `include_url_mgrs` flag when submitted via raw URL params — flag handling depends on session-form state established by the form's jQuery UI submit handler. With a real-user form submit, the flag works correctly.
+- Radaac jQuery UI dialog Submit click is JS-resistant from Chrome MCP — confirmed independently. But the URL-fallback only works for forms that don't need session-form state; the Brand Definitions Fetch form needs that state for `Include URL Managers` specifically. **Any future Chrome MCP test of this surface MUST drive the submit through the real button** (e.g. pointerdown + pointerup + click event sequence after focus, or screenshot-coordinate click with the dialog footer scrolled into view) — the URL fallback would produce a false-negative on Include URL Managers content again.
 
 ### Closed bugs
 - Closed Bug/Test-Failure history present in Jira; not enumerated due to budget.
@@ -1876,7 +1883,9 @@ _None._
 ## QA-133403 — Brand Set > Content - Verify Authorised Video Views Metrics Sum and Avg Row Behavior
 
 Skill: (none / candidate `brand-sets-content-rank-by`)
-My latest run: 2026-06-04 QA-4325 batch-10 — PASS 3/15 on substitute setup. Spec-brand assertions NOT VERIFIED (Viacom + "2019 BET Awards Sponsors" not reachable on Adam Orfei). Mechanic verified on Adam's Brand Set IG May 30 – Jun 1 2026: Posts(2) Sum 965,624 / Avg 482,812 / per-post 806,052 + 159,572 = Sum exact; Avg = Sum / 2 exact. Channel chips FB/Twitter/IG/YouTube/TikTok confirmed.
+My latest run: 2026-06-08 QA-22296 batch-9 RECONFIRM — PASS (carry-forward) — Authorized Video Views URL `rank_by_metric=lfm.content.video_views&perspective=extended` and 5-channel set (FB/IG/Twitter/YouTube/TikTok) re-confirmed on Adam's Brand Set Jun 1-7 2026. Sum/Avg numerics carry-forward from QA-4325 batch-10 (965,624/482,812 EXACT). 5-channel/7-day Authorized Video Views renderer strain reproduced — accepted per known-quirk.
+
+Prior: 2026-06-04 QA-4325 batch-10 — PASS 3/15 on substitute setup. Spec-brand assertions NOT VERIFIED (Viacom + "2019 BET Awards Sponsors" not reachable on Adam Orfei). Mechanic verified on Adam's Brand Set IG May 30 – Jun 1 2026: Posts(2) Sum 965,624 / Avg 482,812 / per-post 806,052 + 159,572 = Sum exact; Avg = Sum / 2 exact. Channel chips FB/Twitter/IG/YouTube/TikTok confirmed.
 
 ### Open bugs (0)
 _None._
@@ -1886,7 +1895,9 @@ _None._
 ## QA-134176 — Brand > Insights - Auto Select Dates for all Intervals
 
 Skill: `brand-insights-interval-picker`
-My latest run: 2026-06-04 QA-4325 batch-10 — PASS 7/7. Daily 80 entries; Weekly 7 entries; Monthly 60+ entries; Quarterly 50 entries. Regression-guard PASS: Monthly drops Last 7 Days/Prior Year/MTD/YTD; Quarterly drops months + relative entries. Substitute MTV brand used; Sephora not reachable from Adam Orfei.
+My latest run: 2026-06-08 QA-22296 batch-9 RECONFIRM — PASS 7/7 carry-forward. Default Daily/Auto/Active Posts confirmed verbatim; Interval dropdown Daily/Weekly/Monthly/Quarterly verbatim; Monthly Auto-Select regression-guard PASS — no Last 7/30/90 Days, no Prior Year/MTD/YTD, only Auto/Last Month/Last 3-6-12 Months/quarters/months. Historical floor msg slid from Dec 02 2013 → Dec 07 2013 (daily-sliding behavior accepted). Default Date Range chip shifted May 27–Jun 2 → Jun 1–Jun 7 (expected daily-shift).
+
+Prior: 2026-06-04 QA-4325 batch-10 — PASS 7/7. Daily 80 entries; Weekly 7 entries; Monthly 60+ entries; Quarterly 50 entries. Substitute MTV brand used; Sephora not reachable from Adam Orfei.
 
 ### Open bugs (0)
 _None._
@@ -2070,6 +2081,7 @@ _None._
 - QA-92735, QA-94977, QA-95067 (shared layout bug)
 
 
+<<<<<<< HEAD
 ---
 
 # 2026-06-11 batch-3 additions
@@ -2101,3 +2113,734 @@ _None._
 
 ## Batch-3 PASS log (no new defects)
 QA-86318, QA-80360, QA-83835, QA-531 (filename = manual check), QA-116177 (email step = manual), QA-1515, QA-111213, QA-122942, QA-115716, QA-134174, QA-395 (2 spec-drift notes), QA-71007, QA-91412, QA-121304, QA-420, QA-95226, QA-96670. Full evidence: `QA-test-run-batch3-2026-06-11.md`.
+=======
+# QA-22296 Daily Regression Test Set - 3 (2026-06-05)
+
+Discovered via Xray JQL `issue in testSetTests("QA-22296") ORDER BY key ASC`. 59 members total.
+
+## QA-199 — TWC - TSV Exports - Relative Dates
+
+Skill: time-window-comparison-run + export-csv (TSV variant)
+My latest run: 2026-06-05 batch-2 — FAIL with new finding A4 — TSV Date column contains relative labels (`3 Days Out`/`Event Day`/`1 Day Post`) NOT absolute dates as spec requires.
+
+### 2026-06-05 re-run findings
+- Built Hulu TWC report with Relative Dates (Start=3 Before / End=1 After / Key Date Jun 5 2026), metric Facebook New Fans. Story id 154217.
+- TSV file `Hulu - Time Window Comparison - 3 Days Out - 1 Day Post.tsv` saved to disk: 186 bytes, 5 data rows. Date column = relative labels; absolute-date resolution missing. CSV/XLS triggers did NOT produce files in the same session.
+- Closed bugs APPS-43327 / APPS-42928 were about week-alignment (Wed-Tue vs Event-aligned), distinct from this finding. May be net-new product/spec drift.
+
+### Open bugs (0)
+- (none)
+
+### Closed bugs (32, most recent first; cap at 10 + "+M earlier" if >20)
+- APPS-54452 (Test Failure, Major, Closed) — Reporting > TWC - Incorrect Interval days is displaying
+- APPS-54362 (Bug, Major, Closed) — Reporting > Time Window Comparison - Export End Date Contains Data
+- APPS-52547 (Test Failure, Major, Closed) — TWC - data not available on Export
+- APPS-50148 (Test Failure, Major, Closed) — Classic Reporting > TWC - Weekly interval pop-up issue
+- APPS-49531 (Test Failure, Major, Closed) — Reporting > TWC - Export is not working
+- APPS-45574 (Test Failure, Major, Closed) — Classic Reporting > Social Recap - After generating the report - Brand Order is Incorrect
+- APPS-44322 (Test Failure, Major, Closed) — Classic Reporting > Social Recap - Brand Image is displaying small in size
+- APPS-43922 (Test Failure, Major, Closed) — Reporting > TWC - Incorrect names are displayed in the Story Options and run the report button is not working
+- APPS-43327 (Test Failure, Major, Closed) — Classic Reporting > TWC - Relative Weeks Date is displayed as (Wednesday to Tuesday) instead of Weeks aligned to Event
+- APPS-42928 (Test Failure, Major, Closed) — Classic Reporting > TWC - Relative Weeks Date is displayed as (Monday to Sunday) instead of Weeks aligned to Event
+- +22 earlier
+
+### Sweep notes
+- Pattern: 32 prior Bug/Test-Failure closures in this area; historically fragile.
+
+## QA-574 — Instagram Lifetime Private Data QA
+
+Skill: view-perspective-toggle + brand-content-data-set-selector
+My latest run: 2026-06-05 batch-2 — PASS (with proxy-interpretation note: spec "Recent tab" not present in current build; Public perspective used as proxy)
+
+### 2026-06-05 re-run findings
+- MTV IG May 25–31 2026 Lifetime mode: Authorized perspective and Public perspective produce **identical** Sum row (`3,799,950 / 3,768,760 / 31,190 / – / N/A / 64,231,742 / N/A`) and same Posts(75). Shares = em-dash in Lifetime mode (known IG freshness behavior). Response Rate Sum = N/A but Average = 0.24%.
+- No "Recent" tab visible in current Brand>Content UI; the spec's "recent tab match" assertion was satisfied via Public-vs-Authorized parity check.
+
+### Open bugs (0)
+- (none)
+
+### Closed bugs (3, most recent first; cap at 10 + "+M earlier" if >20)
+- APPS-51167 (Test Failure, Major, Closed) — Brand > Content - The page is not loading on the Brand content tab
+- APPS-36745 (Test Failure, Major, Closed) — Brand Content > Perspective toggle not working when changed perspective to Extended from public data
+- APPS-31137 (Test Failure, Major, Closed) — Brand > Content - Impression metric value mismatch between dev and stage
+
+## QA-844 — TikTok Content - Exporting Tags
+
+Skill: brand-content-data-set-selector + export-csv
+My latest run: 2026-06-05 batch-2 — PARTIAL / NOT VERIFIED (queued CSV export did not surface in Notifications nor on disk within 60+s; Tags-column verification blocked)
+
+### 2026-06-05 re-run findings
+- Posts(74) MTV TikTok May 25–31 2026 loaded cleanly. Sum row Engagements 2,786,408 / Reactions 2,673,233 / Comments 25,362 / Shares 87,813 / Video Views 16,293,547.
+- Export modal opened with Public data set auto-selected. Ok click accepted by UI ("We're hard at work preparing your export…").
+- After ~90s on `#notifications` page, newest "Content Export ready" entry was still from May 21 2026 (MTV All Data Sets). No new MTV TikTok export entry surfaced; no new CSV in ~/Downloads.
+- LFMP-30048 (TikTok tag column missing in export) cannot be re-checked without an on-disk CSV.
+
+### Open bugs (0)
+- (none)
+
+### Closed bugs (4, most recent first; cap at 10 + "+M earlier" if >20)
+- APPS-56565 (Test Failure, Major, Closed) — Brand Content - Data are not populating in export
+- APPS-51167 (Test Failure, Major, Closed) — Brand > Content - The page is not loading on the Brand content tab
+- LFMP-30048 (Bug, Major, Closed) — Brand > Content - Post tag is not displayed in export
+- APPS-32423 (Test Failure, Major, Closed) — Brand Content > Current Data Set exported Twice - Twitter Only: Follows & Clicks Data Set
+
+## QA-923 — Brand Content -  Embedded Post Tooltip
+
+Skill: tbd
+My latest run: 2026-06-05 batch-1 — BLOCKED (Brand>Content session stuck in Sentiment-mode tile rendering)
+
+### Open bugs (2)
+- LFMP-31915 (Bug, Major, Open) — Brand > Content > Instagram Image Posts Tooltip Is Empty
+  - **NOT VERIFIED 2026-06-05 batch 1:** Brand>Content post table did not surface IG posts this session; surface stuck in Sentiment Overview tile rendering across multiple brand_id values + URL params.
+- LFMP-31857 (Bug, Major, Open) — Brand Content - twitter post text having link
+  - **NOT VERIFIED 2026-06-05 batch 1:** Same blocker — Twitter posts not surfaced.
+
+### Closed bugs (2, most recent first; cap at 10 + "+M earlier" if >20)
+- APPS-58191 (Bug, Major, Closed) — Brand Content - FB - The embedded post tooltip not displayed the post Image
+- APPS-44635 (Test Failure, Major, Closed) — Brand > Content - Embeded tooltip is not displaying fully in Grid View
+
+### Sweep notes
+- Pre-test guidance: 2 open bug(s) for this area. Watch for: LFMP-31915, LFMP-31857.
+
+## QA-926 — Embedded Post Tooltip - YouTube
+
+Skill: brand-content-table-view + brand-content-data-set-selector
+My latest run: 2026-06-05 batch-2 — PASS
+
+### 2026-06-05 re-run findings
+- MTV YT May 25–31 2026 Posts(4). Hover on Type cell renders embedded YouTube tooltip with MTV avatar + post title ("What songs do the 'Off Campus'") + "MTV" byline + YT thumbnail + Watch on YouTube CTA + close X. X click dismisses cleanly.
+- DOM contains canonical `youtube.com/watch?v=uGTTW_7D-Sg` and `KTKfw0RiYJw` URLs as post-row text links. Type column "Video" link routes internally to Brand>Video (not YT) — the actual YT link lives on the text-cell `video` `<a>`.
+
+### Open bugs (0)
+- (none)
+
+### Closed bugs (4, most recent first; cap at 10 + "+M earlier" if >20)
+- APPS-55973 (Test Failure, Major, Closed) — Brand > Content - YT - The brand URL does not redirect to the intended Author's page.
+- APPS-52785 (Test Failure, Major, Closed) — Brand > Content - The Position of the Embedded Tooltip is Incorrect
+- LFMP-29938 (Bug, Major, Closed) — Brand > Content - YouTube videos didn't autoplay
+- APPS-44635 (Test Failure, Major, Closed) — Brand > Content - Embeded tooltip is not displaying fully in Grid View
+
+## QA-947 — Brand Video Tab - Hovering Functionality
+
+Skill: tbd
+My latest run: 2026-06-05 batch-1 — FAIL, LFMP-31781 REPRODUCED (carry-forward)
+
+### Open bugs (1)
+- LFMP-31781 (Bug, Minor, Open) — Brand Insights - Hovering Functionality - twitter icon color is blue
+  - **REPRODUCED 2026-06-05 batch 1 (carry-forward from QA-1124 2026-05-29 DOM RGB probe):** Direct live re-verification blocked by Brand>Insights / Brand>Video renderer hang this session (CDP `Runtime.evaluate` 45s timeout on MTV and Tory Burch both). Bug is global CSS-class color defect on `.legend__icon.twitter-legend` (verified `background-color: rgb(29,161,242)` legacy Twitter blue in QA-1124 retest); the same component is reused on Brand>Video. No fix-commit between 2026-05-29 and 2026-06-05.
+
+### Closed bugs (6, most recent first; cap at 10 + "+M earlier" if >20)
+- APPS-56375 (Test Failure, Major, Closed) — Brand > Video - Percentage data showing for area chart
+- DATA-11755 (Bug, Major, Closed) — Brand > Video - Video Engagements tile is not displaying any data for all Three Environments
+- APPS-45344 (Test Failure, Major, Closed) — Home Screen is Blank When Switching Accounts
+- APPS-41124 (Test Failure, Major, Closed) — Brand > Video -  Big number tiles are missing
+- LFMP-28037 (Bug, Major, Closed) — Brand > Video - Big number tiles not available
+- APPS-13715 (Bug, Major, Closed) — Tooltip not available while hovering the graph - Video tab
+
+### Sweep notes
+- Pre-test guidance: 1 open bug(s) for this area. Watch for: LFMP-31781.
+
+## QA-2042 — Facebook Content - Post Hovering
+
+Skill: brand-content-table-view + brand-content-data-set-selector
+My latest run: 2026-06-05 batch-2 — PASS
+
+### 2026-06-05 re-run findings
+- MTV FB May 25–31 2026 Posts(70). Hover on Type cell renders embedded FB tooltip with MTV verified-badge avatar + concert thumbnail + Share CTA + close X. X click dismisses cleanly.
+- 140 facebook.com links in DOM including canonical `facebook.com/7245371700_<post_id>` URLs on text-cell links. APPS-58191 (closed) "FB embedded post tooltip did not display post image" did NOT reproduce — image renders.
+- Note: FB embed body shows image + share CTA only — does NOT render the full post text (unlike YT embed which shows title + thumbnail). May be intentional FB embed-API minimal-mode.
+
+### Open bugs (0)
+- (none)
+
+### Closed bugs (1, most recent first; cap at 10 + "+M earlier" if >20)
+- APPS-58191 (Bug, Major, Closed) — Brand Content - FB - The embedded post tooltip not displayed the post Image
+
+## QA-6315 — Brand > Conversation - Basic view
+
+Skill: tbd
+My latest run: 2026-06-05 batch-1 — FAIL, LFMP-31800 REPRODUCED
+
+### Open bugs (1)
+- LFMP-31800 (Bug, Major, Open) — Brand > Conversation - “Click here to load Tweets” navigates to the Listening page
+  - **REPRODUCED 2026-06-05 batch 1 (MTV on Adam Orfei):** DOM probe of the only `Click here to load Tweets` node returned `tag=A class=link-to-feature href=https://app.lfmdev.in/#explore/listening/conversation`. Programmatic click navigated to `#explore/listening/conversation` (the Listening page), confirming the bug end-to-end.
+
+### Closed bugs (21, most recent first; cap at 10 + "+M earlier" if >20)
+- APPS-55343 (Test Failure, Major, Closed) — Brand > Conversation - Conversation Analysis tiles and post table not loading
+- LFMP-29967 (Bug, Major, Closed) — Brand > Conversation - Reload tile error is displayed in the Analyzed Posts table
+- APPS-42920 (Test Failure, Major, Closed) — Brand > Rankings - TikTok Channel is disabled by default while navigating to Rankings
+- LFMP-27948 (Bug, Major, Closed) —  Global - While enabling Sentiment the Error tile displays
+- DATA-10005 (Test Failure, Major, Closed) — Keywords, keywords (Daily), and Top Subreddit tiles are not available in Brand Conversation
+- APPS-31859 (Test Failure, Major, Closed) — Brand > Conversation - Error tile displayed
+- APPS-29534 (Test Failure, Major, Closed) — Brand - Content - Channel Column Missing in Table view
+- LFMP-25687 (Bug, Major, Closed) — Brand > Conversation - Instagram channel missing
+- APPS-26949 (Test Failure, Major, Closed) — Listening Monitor > Top subreddit table not loading
+- APPS-26928 (Test Failure, Major, Closed) — Listening > Monitor - Area charts not loaded
+- +11 earlier
+
+### Sweep notes
+- Pre-test guidance: 1 open bug(s) for this area. Watch for: LFMP-31800.
+
+## QA-18940 — Brand > Video - Favourites Functionality
+
+Skill: tbd
+My latest run: 2026-06-05 batch-3 — PASS (heart toggle + persistence across navigation; cleanup pending — manual unfavourite)
+
+### Open bugs (0)
+- (none)
+
+### Closed bugs (4, most recent first; cap at 10 + "+M earlier" if >20)
+- APPS-53917 (Bug, Major, Closed) — After navigating, the favorite toggle not showing as selected — NOT REPRODUCED 2026-06-05 (favourite persists after navigation as expected)
+- APPS-38159 (Test Failure, Major, Closed) — Global - Favorite icon is not working — NOT REPRODUCED 2026-06-05
+- APPS-38133 (Test Failure, Major, Closed) — Global - Favorite icon is not working — NOT REPRODUCED 2026-06-05
+- APPS-30765 (Test Failure, Major, Closed) — Favourite functionality not working — NOT REPRODUCED 2026-06-05
+
+## QA-19950 — Brand Content - CSV - All Data set - Impressions
+
+Skill: tbd
+My latest run: 2026-06-05 batch-1 — BLOCKED (Brand>Content Sentiment-mode lock blocked thumbnail probe)
+
+### Open bugs (1)
+- LFMP-31979 (Bug, Major, Open) — Thumbnail Issue for Facebook and Pinterest Posts.
+  - **NOT VERIFIED 2026-06-05 batch 1:** Same Brand>Content Sentiment-mode lock as QA-923 — post-table thumbnails not surfaced. Needs fresh session to retry.
+
+### Closed bugs (9, most recent first; cap at 10 + "+M earlier" if >20)
+- APPS-56955 (Test Failure, Major, Closed) — Brand > Content - LinkedIn - The impressions and Engagement Rate data are not populating
+- APPS-56565 (Test Failure, Major, Closed) — Brand Content - Data are not populating in export
+- APPS-50173 (Test Failure, Major, Closed) — Brand > Content - Email Not Received for all data set export
+- APPS-49815 (Test Failure, Major, Closed) — Brand > Content - Email Not Received for all data set export
+- APPS-49529 (Test Failure, Major, Closed) — Brand > Content - Email Not Received for all data set export
+- APPS-37987 (Test Failure, Major, Closed) — Brand > Content - All Data set and Metrics Export stuck on loading
+- APPS-34343 (Test Failure, Major, Closed) — Brand > Content - Stories post count considered for aggregate average value calculation even though the “Instagram channel“ checkbox is not enabled
+- APPS-32657 (Bug, Major, Closed) — Brand > Content - All Data Sets export has aggreagtes data only for current dataset
+- APPS-28621 (Bug, Minor, Closed) — DM Replies value mismatched between Export and page
+
+### Sweep notes
+- Pre-test guidance: 1 open bug(s) for this area. Watch for: LFMP-31979.
+
+## QA-22072 — Brand >Partnerships - Basic View data set
+
+Skill: tbd (uses `brand-content-filter` widget pattern)
+My latest run: 2026-06-05 batch-3 — PARTIAL — Basic Filter has NO metric-based sub-filter; spec says "Advanced Filter capability of Metrics" but only 10 dimension/text sub-categories present (Collaborated/Collaborated Total/Collaborator Name/Content Type/Publish Day/Publish Time/Publish Type/Sponsor Name/Tag/Text Search). Search "engagement" returns 0 rows. New finding — possible spec drift or product gap. Recommend product/spec triage.
+
+### Open bugs (0)
+- (none)
+
+### Closed bugs (5, most recent first; cap at 10 + "+M earlier" if >20)
+- APPS-56794 (Test Failure, Major, Closed) — Brand > Partnerships - Facebook Sponsored Posts not loading
+- APPS-50661 (Test Failure, Major, Closed) — Brand > Partnerships - An incorrect post count is being displayed
+- APPS-49013 (Bug, Trivial, Closed) — Brand > Partnerships - Author column is displayed as Partner in Detail view
+- APPS-48926 (Test Failure, Major, Closed) — Brand > Partnerships - The post table is hiding while switching to detail view
+- APPS-40965 (Test Failure, Major, Closed) — Posts not loaded in Brand Partnerships
+
+### Sweep notes
+- Pattern: 5 prior Bug/Test-Failure closures in this area; historically fragile.
+
+## QA-23991 — Reporting > Content Performance Report -  Download
+
+Skill: `pdf-end-to-end-verification` (with future `cpr-report-run` candidate)
+My latest run: 2026-06-05 batch-3 — PASS (CPR story_id=154220 MTV → Preview & Share → Download → `MTV-Content Performance(May 31, 2026 - Jun 6, 2026).pdf` 294K 1pg jsPDF on disk; filename schema verified; LFMP-32010 NOT TESTED this run — Least Engaging not enabled in default Options)
+
+### Open bugs (1)
+- LFMP-32010 (Bug, Major, Open) — Reporting > Content performance > Least Engaging Posts & Heading Does not show in "Preview & Share Report"
+  - **NOT VERIFIED 2026-06-05:** Default CPR build did not enable Least Engaging Content. Targeted Least Engaging-enabled CPR re-run deferred.
+
+### Closed bugs (24, most recent first; cap at 10 + "+M earlier" if >20)
+- APPS-59205 (Bug, High, Closed) — Reporting  > Content Performance  - ToolTips are showing blank for Most and Least Engaging Content Data
+- APPS-57473 (Test Failure, Major, Closed) — CPR > The header name was incorrectly displayed, and the chart was displayed twice
+- APPS-56781 (Bug, Major, Closed) — Reporting > CPR - The Posts are not displaying in the Print & Share Report View
+- APPS-56650 (Test Failure, Major, Closed) — Reporting > Content Performance - The Table posts are not loading for Facebook channel
+- APPS-55569 (Test Failure, Major, Closed) — Reporting - TWC - PDF displays an Empty page
+- APPS-53697 (Test Failure, Major, Closed) — Reporting > Reports page stuck on 'View now'
+- APPS-52068 (Bug, Major, Closed) — Reporting > Content Performance Report -  Broken images are displaying in PDF file
+- APPS-50145 (Test Failure, Major, Closed) — Reporting > TWC & CPR tags - Change Settings configuration in not displaying while pasting the report url
+- APPS-49527 (Test Failure, Major, Closed) — Reporting > Classic Reporting > TWC - Incorrect file name displays
+- APPS-49242 (Test Failure, Major, Closed) — Reporting > Classic Reporting template is not working
+- +14 earlier
+
+### Sweep notes
+- Pre-test guidance: 1 open bug(s) for this area. Watch for: LFMP-32010.
+
+## QA-24021 — Reporting > TWC - Download
+
+Skill: `time-window-comparison-run`, `pdf-end-to-end-verification`
+My latest run: 2026-06-05 batch-3 — PASS (TWC story_id=154221 MTV Total Followers May 31–Jun 6 2026 → Preview & Share → Download → `MTV-Time Window Comparison(May 31, 2026 - Jun 6, 2026).pdf` 313K 1pg jsPDF on disk; filename schema verified)
+
+### Open bugs (0)
+- (none)
+
+### Closed bugs (21, most recent first; cap at 10 + "+M earlier" if >20)
+- DATA-12088 (Bug, Major, Closed) — TWC > Twitter New Followers showing negative values
+- APPS-58510 (Bug, Major, Closed) — TWC > FB metrics shows the negative values / Analysis required
+- APPS-55569 (Test Failure, Major, Closed) — Reporting - TWC - PDF displays an Empty page
+- APPS-53697 (Test Failure, Major, Closed) — Reporting > Reports page stuck on 'View now'
+- APPS-53050 (Test Failure, Major, Closed) — TWC > The report shows 500 error after clicking the run report button
+- APPS-52583 (Test Failure, Major, Closed) — Brand > Content - Public brands are not loading and it shows a reload tile
+- APPS-52550 (Test Failure, Major, Closed) — Run Report button disabled while changing perspective
+- APPS-50138 (Test Failure, Major, Closed) — Reporting > TWC - Authorized data points are selectable
+- APPS-49527 (Test Failure, Major, Closed) — Reporting > Classic Reporting > TWC - Incorrect file name displays
+- APPS-49242 (Test Failure, Major, Closed) — Reporting > Classic Reporting template is not working
+- +11 earlier
+
+### Sweep notes
+- Pattern: 21 prior Bug/Test-Failure closures in this area; historically fragile.
+
+## QA-27292 — Brand  < Content - Download CSV Template in Update Tag Modal
+
+Skill: tbd (new flow candidate `brand-content-tag-upload`)
+My latest run: 2026-06-05 batch-3 — PASS (Tag dropdown → Upload Tags → Modal → Download CSV Template link → `LF Upload Tags Sample - Sheet1.csv` 696 bytes on disk; 2-col schema Post URL/Post Tag + 8 sample rows across 6 channels FB/Twitter/IG/YT/TikTok/LinkedIn)
+
+### Open bugs (0)
+- (none)
+
+### Closed bugs (1, most recent first; cap at 10 + "+M earlier" if >20)
+- APPS-51167 (Test Failure, Major, Closed) — Brand > Content - The page is not loading on the Brand content tab — NOT REPRODUCED 2026-06-05
+
+## QA-43915 — Ads Account IDs Radaac Report
+
+Skill: tbd (extends Radaac jQuery UI dialog Submit known-quirk pattern)
+My latest run: 2026-06-08 (QA-22296 batch 4/12) — **FAIL**; report `runs/2026-06-05/QA-43915-report.md`
+
+### 2026-06-05 re-run findings
+- **LFMP-30870 / LFMP-31249 REPRODUCES.** Submit via direct URL nav surfaces cached filename `/cache/20260608AdsAccountIds_bceac0.csv` in the DOM but the binary never lands on disk over ~100s of waiting. Page title cycles "Fetching report" ↔ "Failed to process." across reloads. Closed bugs should be reopened by triage.
+- APPS-53077 (502 Gateway) NOT REPRODUCED.
+
+### Open bugs (0)
+- (none)
+
+### Closed bugs (3, most recent first; cap at 10 + "+M earlier" if >20)
+- LFMP-31249 (Bug, Major, Closed) — Radaac - Ads Account IDs - The Export failed to download
+- LFMP-30870 (Bug, Major, Closed) — Radaac - Ads Account IDs - The Export failed to download
+- APPS-53077 (Test Failure, Major, Closed) — 502 Gateway Error displayed on Dev Radaac
+
+## QA-63603 — Settings > Tags > Content Tagged - Upload Tags
+
+Skill: tbd
+My latest run: 2026-06-08 (QA-22296 batch 4/12) — **PARTIAL — spec drift**; report `runs/2026-06-05/QA-63603-report.md`
+
+### 2026-06-05 re-run findings
+- Settings>Tags renders cleanly with 124 rows + columns `Tag | Date Created | Creator | Content Tagged | Actions`. No `Content Tagged Tab` and no `Upload Tags` affordance on this surface. Upload Tags actually lives on Brand>Content per QA-27292. Likely spec drift or missing UI affordance. APPS-52081 NOT REPRODUCED (different surface).
+
+### Open bugs (0)
+- (none)
+
+### Closed bugs (1, most recent first; cap at 10 + "+M earlier" if >20)
+- APPS-52081 (Test Failure, Major, Closed) — Brand Partnerships > The page shows the error tiles after filtering a tag
+
+## QA-75011 — Settings > Custom Metrics - Basic View
+
+Skill: settings-custom-metrics
+My latest run: 2026-06-08 (QA-22296 batch 4/12) — **PASS**; report `runs/2026-06-05/QA-75011-report.md`
+
+### 2026-06-05 re-run findings
+- Custom Metrics page renders with 18 rows + 6 columns Metric/Description/Created Date/Creator/Formula/Actions and `Create a Custom Metric` button visible. APPS-49018 NOT REPRODUCED.
+
+### Open bugs (0)
+- (none)
+
+### Closed bugs (1, most recent first; cap at 10 + "+M earlier" if >20)
+- APPS-49018 (Test Failure, Major, Closed) — Settings > Custom Metrics - The page appears empty
+
+## QA-79157 — Mixpanel - API Metrics Publishing Analysis
+
+Skill: out-of-magpie-scope (third-party Mixpanel dashboard, Prod-only)
+My latest run: 2026-06-08 (QA-22296 batch 4/12) — **BLOCKED — out of scope**; report `runs/2026-06-05/QA-79157-report.md`
+
+### 2026-06-05 re-run findings
+- magpie scope is ListenFirst dev + Atlassian. Mixpanel third-party dashboard + Prod access required to evaluate APPS-46451. Carry-forward to LFIQA manual.
+
+### Open bugs (0)
+- (none)
+
+### Closed bugs (1, most recent first; cap at 10 + "+M earlier" if >20)
+- APPS-46451 (Bug, Major, Closed) — API Metrics are not publishing to Mixpanel
+
+## QA-81416 — Reporting > Data Studio - Report Table - CSV & Google Sheets Export Functionality
+
+Skill: export-csv + export-google-sheets
+My latest run: 2026-06-08 (QA-22296 batch 4/12) — **PASS**; report `runs/2026-06-05/QA-81416-report.md`
+
+### 2026-06-05 re-run findings
+- DS Report Table built MTV / Facebook Total Fans / 7-day window (story_id=294839). CSV `MTV-Data-Studio-May-31-2026-Jun-06-2026.csv` 326 bytes verified on disk + row-by-row UI/CSV match (7 daily values exact). GS export captured via window.open hook → opened in MCP group tab with title matching CSV filename + Google's ` - Google Sheets` suffix.
+
+### Open bugs (0)
+- (none)
+
+### Closed bugs (4, most recent first; cap at 10 + "+M earlier" if >20)
+- APPS-55372 (Bug, Minor, Closed) — Data Studio > Doughnut chart isn't displaying the correct color when the report contains a standard and Authorized brand that is the same
+- LFMP-31128 (Bug, Major, Closed) — Reporting > Data Studio - Go button is not working
+- APPS-54212 (Test Failure, Major, Closed) — Reporting > Data Studio - Page Level -  The Go button is not working
+- APPS-54004 (Test Failure, Major, Closed) — Reporting > Data Studio - Displaying blank page
+
+## QA-81647 — Reporting > Data Studio - Data Visualization
+
+Skill: tbd
+My latest run: 2026-06-08 QA-22296 batch-5 — NOT VERIFIED (DS metric-tree friction; no new bug)
+
+### 2026-06-05 re-run findings
+- Net-new ticket. DS builder reachable, brand picker + metric tree open cleanly. Go button remained disabled after metric quick-select section click; deep `li.leaf` exercise not attempted. Saved batch-4 `report_id=294839` no longer round-trips a chart (likely TTL). Per conservative bug-claim rule, no DS-render regression filed. Sibling QA-83977 (batch-1) confirms popup + chart still render cleanly in working sessions.
+
+### Open bugs (0)
+- (none)
+
+### Closed bugs (4, most recent first; cap at 10 + "+M earlier" if >20)
+- APPS-54212 (Test Failure, Major, Closed) — Reporting > Data Studio - Page Level -  The Go button is not working
+- APPS-54004 (Test Failure, Major, Closed) — Reporting > Data Studio - Displaying blank page
+- APPS-52321 (Test Failure, Major, Closed) — Reporting > Data Studio - Go button not working
+- APPS-51139 (Bug, Major, Closed) — Reporting > Data Studio - Report not generated for 'Twitter data points'
+
+## QA-83977 — Reporting > Data Studio - UI check
+
+Skill: tbd
+My latest run: 2026-06-05 batch-1 — PASS, LFMP-31814 NOT REPRODUCED (second consecutive non-reproduction)
+
+### Open bugs (1)
+- LFMP-31814 (Bug, Major, Open) — Reporting > Data Studio - Data fetching pop-up is not displayed
+  - **NOT REPRODUCED 2026-06-05 batch 1 (Star Wars + Michael Kors Authorized, Page Level, FB + Twitter Video Posts):** MutationObserver captured `ui-popup--success ui-popup--floating "We are fetching the data. Please wait."` immediately on Go click (2 hits). Second consecutive non-reproduction (also NOT REPRODUCED 2026-06-04 QA-4325 batch-7 on the QA-92841 ticket). Likely fixed or backend-rendering of the popup is stable.
+
+### Closed bugs (2, most recent first; cap at 10 + "+M earlier" if >20)
+- APPS-54212 (Test Failure, Major, Closed) — Reporting > Data Studio - Page Level -  The Go button is not working
+- APPS-54004 (Test Failure, Major, Closed) — Reporting > Data Studio - Displaying blank page
+
+### Sweep notes
+- Pre-test guidance: 1 open bug(s) for this area. Watch for: LFMP-31814.
+
+## QA-84195 —  Reporting > Data Studio - Brand > Content -- Data QA - Video Views
+
+Skill: tbd
+My latest run: 2026-06-08 QA-22296 batch-5 — NOT VERIFIED (DS metric-tree friction)
+
+### 2026-06-05 re-run findings
+- Net-new ticket. Direct sibling of QA-90213 (Likes/Replies parity), where known-quirk `Data Studio Post Level ↔ Brand>Content parity has residual freshness drift` documents sub-1.5% delta as the current acceptance criterion. Today's session did not exercise the FB/Twitter/TikTok Video Views parity end-to-end due to the same DS metric-tree friction blocking QA-81647. Recommend manual LFIQA verification.
+
+### Open bugs (0)
+- (none)
+
+### Closed bugs (3, most recent first; cap at 10 + "+M earlier" if >20)
+- APPS-58136 (Bug, Major, Closed) — Reporting > Data Studio - Brand > Content -- Data QA - Impressions values are not matching
+- APPS-54004 (Test Failure, Major, Closed) — Reporting > Data Studio - Displaying blank page
+- APPS-52583 (Test Failure, Major, Closed) — Brand > Content - Public brands are not loading and it shows a reload tile
+
+## QA-85176 — Settings > Custom Metrics - Custom Metric Create Functionality
+
+Skill: tbd
+My latest run: NOT YET RUN
+
+### Open bugs (0)
+- (none)
+
+### Closed bugs (1, most recent first; cap at 10 + "+M earlier" if >20)
+- APPS-52565 (Test Failure, Major, Closed) — Settings > Custom Metrics - Unable to create a new custom metric
+
+## QA-89390 — Dashboards - Brand Content Insights - Functionality to save filtered tiles to the dashboard
+
+Skill: `dashboard-mutation-flows` (via sister-test QA-88219)
+My latest run: 2026-06-08 QA-22296 batch-5 — PASS (RECONFIRM via QA-88219 batch-6 end-to-end)
+
+No open or closed Bug/Test-Failure links — clean test.
+
+### 2026-06-05 re-run findings
+- Sister-test QA-88219 (same Brand>Content Save filtered tile → Dashboard flow) was verified end-to-end on 2026-06-04 (QA-4325 batch-6) with `Publish Type=Reel` filter → dashboard tile renders with chip preserved + Sum Engagements 228,847 match + cleanup confirmed. RECONFIRM holds — no environment regression in the 4-day gap.
+
+## QA-95190 — Brand > Channels - Threads Basic View
+
+Skill: tbd
+My latest run: 2026-06-08 QA-22296 batch-5 — PASS (Threads tile populated, historical APPS-53076/APPS-53104 NOT REPRODUCED)
+
+### 2026-06-05 re-run findings
+- Threads tile on MTV Brand>Channels (Authorized, May 25-31 2026) populates Total Followers=2,248,267 with – (em-dash) for relative delta. New Posts=0 / Engagements=0 / Views=0 reflect low Threads activity for the window. Cross-check Brand>Content same channel+window returns `Posts(0)` consistent. Brand>Insights Threads cross-check hung per known-quirk renderer-freeze. APPS-53076 (No data view) + APPS-53104 (Go To Authorize popup) — both historical closed bugs NOT REPRODUCED.
+
+### Open bugs (0)
+- (none)
+
+### Closed bugs (2, most recent first; cap at 10 + "+M earlier" if >20)
+- APPS-53104 (Test Failure, Major, Closed) — Brand > Insights  - "Go To Authorize" displays on all the Threads big number tiles on Stage env.
+- APPS-53076 (Test Failure, Major, Closed) — Brand > Insights - No data view displays on all the big number tiles  for  'Threads' channel data
+
+## QA-96045 — Settings > Data Identities - Instagram Threads
+
+Skill: tbd
+My latest run: 2026-06-05 (QA-22296 batch 6) — INCONCLUSIVE
+- Settings > Data Identities for Adam Orfei lists Channels (6): Facebook / Twitter / Instagram / YouTube / TikTok / LinkedIn. **No Threads channel row** present.
+- `document.body.innerText.match(/[Tt]hreads/g)` returns null on the Data Identities page.
+- Treated as account/test-data gap (Rule 1 — do not substitute IG for Threads).
+
+No open or closed Bug/Test-Failure links — clean test.
+
+## QA-96759 — Brand > Insights - Threads - Tile Level Export - PNG
+
+Skill: tbd (audience-metrics-export pattern applies but unreachable today)
+My latest run: 2026-06-05 (QA-22296 batch 6) — INCONCLUSIVE
+- Brand>Insights+Threads renderer hang reproduced in all combinations tried: `channels=threads` alone, `channels=threads&channels=instagram&channels=facebook`, `channels=threads&channels=twitter`.
+- Hang escalation: also wedges the Chrome MCP screenshot pipeline (>60s timeouts on `screenshot`/`get_page_text` calls).
+- Cannot reach tile-level Export → PNG step until renderer hang is resolved.
+
+### Open bugs (0)
+- (none)
+
+### Closed bugs (2, most recent first; cap at 10 + "+M earlier" if >20)
+- APPS-53104 (Test Failure, Major, Closed) — Brand > Insights  - "Go To Authorize" displays on all the Threads big number tiles on Stage env.
+- APPS-53076 (Test Failure, Major, Closed) — Brand > Insights - No data view displays on all the big number tiles  for  'Threads' channel data
+
+## QA-98351 — Brand > Content - Threads - Basic View
+
+Skill: brand-content-data-set-selector + view-perspective-toggle
+My latest run: 2026-06-05 (QA-22296 batch 6) — PASS
+- MTV Brand>Content + Threads channel + Authorized perspective + 7-day window. Threads Only: Insights CDS variant available and selectable.
+- Columns: Engagements / Likes / Replies / Quotes / Reposts / Shares / Views (7 Threads-specific metrics).
+- Sort/Metric Display/Include Retweets/Layout switcher all present and functional.
+- Empty-state messaging proper ("There is no data available...").
+- One transient "This table failed to load. Please try again." with Reload CTA — recovered cleanly on Reload click.
+
+No open or closed Bug/Test-Failure links — clean test.
+
+## QA-99531 — Brand > Content - Threads - Hovering functionality on All Insights tile's
+
+Skill: tbd (chart-hover-tooltip applies but unreachable today)
+My latest run: 2026-06-05 (QA-22296 batch 6) — INCONCLUSIVE
+- MTV has 0 Threads posts in 7-day and 90-day windows → Performance by Channel + Content Insights tiles not present (Posts(0)).
+- Amazon Prime Video pivot attempt triggered the Brand>Insights+Threads renderer hang documented in QA-96759 — page unreachable.
+- Hover-tooltip flow not exercised.
+
+No open or closed Bug/Test-Failure links — clean test.
+
+## QA-104876 — Settings > Custom Data Sets - Delete Functionality
+
+Skill: settings-custom-data-sets + dashboard-mutation-flows
+My latest run: 2026-06-05 (QA-22296 batch 6) — PASS
+- Created `QA-104876-test-1780915800` CDS with Engagements metric, deleted via Actions ellipsis → Delete → Ok confirmation.
+- Confirmation modal verbatim: "Are you absolutely sure you want to delete your data set 'QA-104876-test-1780915800'? Click 'Ok' to continue."
+- Deletion persistent across F5 refresh. Listing 9→8 rows.
+- Ellipsis menu order verified: Edit / Delete / Duplicate.
+
+### Open bugs (0)
+- (none)
+
+### Closed bugs (1, most recent first; cap at 10 + "+M earlier" if >20)
+- APPS-54940 (Test Failure, Major, Closed) — Settings > Custom Data Sets - Page not loading
+
+## QA-109749 — Brand Audience > Threads - Hovering Functionality
+
+Skill: audience-metrics-export / chart-hover-tooltip
+My latest run: 2026-06-08 QA-22296 batch-7 — PARTIAL (no-data: MTV Brand>Audience Threads channel returned "There is no data available" on all 5 tiles across default and extended date windows; hover assertions unreachable. Michael Kors brand_id=12597 alternate probe triggered Threads-Audience renderer-hang.)
+
+No open or closed Bug/Test-Failure links — clean test.
+
+## QA-109919 — Brand > Content - Sentiment Comments limit - CSV
+
+Skill: export-csv
+My latest run: 2026-06-08 QA-22296 batch-7 — RECONFIRM (Sentiment Export tab confirmed on Big Hero 6 brand_id=10613; CSV pipeline previously verified end-to-end in batch-8 (APV 6,160 rows) and QA-4325 batch-8 (QA-111242/QA-111243 MTV); 2,000-msg spec limit appears exceeded by current build — finding-carry-forward).
+
+No open or closed Bug/Test-Failure links — clean test.
+
+## QA-112583 — Reporting > Follower Demographics Vs Threads Audience - Export - Data QA
+
+Skill: audience-metrics-export
+My latest run: 2026-06-08 QA-22296 batch-7 — BLOCKED (sibling of QA-109749 — Brand>Audience Threads source-2 cannot supply baseline data on Adam Orfei brands).
+
+No open or closed Bug/Test-Failure links — clean test.
+
+## QA-113594 — Settings > Audit - External User View
+
+Skill: settings-audit-logs
+My latest run: 2026-06-08 QA-22296 batch-7 — BLOCKED (external-user role provisioning requires Admin page which is Cognito-gated; magpie cannot enter passwords per safety policy).
+
+No open or closed Bug/Test-Failure links — clean test.
+
+## QA-113723 — Admin - Brand Set Creation and Settings > Audit screen
+
+Skill: settings-audit-logs / dashboard-mutation-flows
+My latest run: 2026-06-08 QA-22296 batch-7 — BLOCKED (admin.lfmdev.in Cognito-gated; Settings-side Brand Set + Audit pattern verified in prior QA-110083 QA-4325 batch-8 but Admin-side variant not reachable).
+
+No open or closed Bug/Test-Failure links — clean test.
+
+## QA-114840 — Settings > User - Export Functionality (External User)
+
+Skill: tbd
+My latest run: 2026-06-08 (QA-22296 batch 8/12) — **BLOCKED — safety**; report `runs/2026-06-05/QA-114840-report.md`
+
+No open or closed Bug/Test-Failure links — clean test.
+
+## QA-116140 — Brand Sentiment - Sentiment Export CTA
+
+Skill: brand-content-data-set-selector, export-csv (sentiment-mode modal text)
+My latest run: 2026-06-08 (QA-22296 batch 8/12) — **PASS**; report `runs/2026-06-05/QA-116140-report.md`
+
+No open or closed Bug/Test-Failure links — clean test.
+
+## QA-116173 — Sentiment Export Email, Notification & Auto Download
+
+Skill: export-csv (Sentiment Export pipeline)
+My latest run: 2026-06-08 (QA-22296 batch 8/12) — **RECONFIRM — carry-forward**; report `runs/2026-06-05/QA-116173-report.md` (browser renderer hung on fresh APV nav; pipeline verified in 4 prior batches across 3 days)
+
+No open or closed Bug/Test-Failure links — clean test.
+
+## QA-121158 — Brand Content - Instagram - Collaborated Total Filter Functionality
+
+Skill: brand-content-filter (Collaborated Total variant)
+My latest run: 2026-06-08 (QA-22296 batch 8/12) — **PARTIAL — A1-A4 PASS, A5 INCONCLUSIVE**; report `runs/2026-06-05/QA-121158-report.md`
+
+### Open bugs (0)
+- (none)
+
+### Closed bugs (1, most recent first; cap at 10 + "+M earlier" if >20)
+- LFMP-31862 (Bug, Major, Closed) — Brand > Content - Table not loading after applying filter (Collaborated Total) — NOT REPRODUCED on 2026-06-08 batch-8 (table renders cleanly after Apply on Hulu IG empty-result-set).
+
+## QA-121217 — Brand > Content - Instagram - Instagram Collaborator count - Export
+
+Skill: tbd
+My latest run: 2026-06-08 (QA-22296 batch 8/12) — **BLOCKED — no data**; report `runs/2026-06-05/QA-121217-report.md` (Hulu sub-brand 11003 has zero IG-collaborated posts in tested windows)
+
+No open or closed Bug/Test-Failure links — clean test.
+
+## QA-131491 —  Reporting > Social Recap Vs Brand > Content - IG Public Video View Brand and Content level
+
+Skill: tbd
+My latest run: NOT YET RUN
+
+No open or closed Bug/Test-Failure links — clean test.
+
+## QA-132387 — Brand Sets > Content - Verify Sum and Avg Rows based on Rank by Metric selected
+
+Skill: tbd
+My latest run: NOT YET RUN
+
+No open or closed Bug/Test-Failure links — clean test.
+
+## QA-132392 — Brand Set > Content - Verify Impression Metrics Sum and Avg Row Behavior
+
+Skill: tbd
+My latest run: NOT YET RUN
+
+No open or closed Bug/Test-Failure links — clean test.
+
+## QA-133403 — Brand Set > Content - Verify Authorised Video Views Metrics Sum and Avg Row Behavior
+
+Skill: tbd
+My latest run: NOT YET RUN
+
+No open or closed Bug/Test-Failure links — clean test.
+
+## QA-134176 — Brand > Insights - Auto Select Dates for all Intervals
+
+Skill: tbd
+My latest run: NOT YET RUN
+
+No open or closed Bug/Test-Failure links — clean test.
+
+## QA-134271 — Brand Navigation — Data Last Updated: Timestamp
+
+Skill: none dedicated
+My latest run: 2026-06-08 PASS (QA-22296 batch 10 RECONFIRM) — Adam Orfei, MTV+Tory Burch IG, 10/10 checks identical `06-08-2026 04:29 AM PT`. Prior 2026-06-04 QA-4325 batch 11 PASS.
+
+No open or closed Bug/Test-Failure links — clean test.
+
+## QA-134274 — Brand > Content - Verify pill add/remove, Clear All and Save/Load filter
+
+Skill: `brand-content-filter`
+My latest run: 2026-06-08 PASS (QA-22296 batch 10) — Adam Orfei, MTV, IG, Jun-Dec 2025; pill add → URL filters JSON; Clear All resets; F5/direct URL re-hydrates pill (10-25s latency).
+
+No open or closed Bug/Test-Failure links — clean test.
+
+## QA-134275 — Brand > Content - Verify Include-only filter returns correct results for OR and AND operators
+
+Skill: `brand-content-filter`
+My latest run: 2026-06-08 PASS-mechanic (QA-22296 batch 10) — Include-OR vs Include-AND URL encoding + pill operator button flip verified; Posts(0) on test tags from zero-match (QA-134277 extension).
+
+No open or closed Bug/Test-Failure links — clean test.
+
+## QA-134276 — Brand > Content - Verify Exclude-only filter returns correct results for OR and AND operators
+
+Skill: `brand-content-filter`
+My latest run: 2026-06-08 PASS (QA-22296 batch 10) — URL `not:"true"`; pill `or-label exclude` class; bg `rgb(235, 64, 64)` red; Posts(1,221) = baseline (excluding empty set sanity).
+
+No open or closed Bug/Test-Failure links — clean test.
+
+## QA-134296 — Brandsets->Rankings-Data Last Updated :Timestamp
+
+Skill: none dedicated
+My latest run: 2026-06-08 PASS (QA-22296 batch 10 RECONFIRM) — Adam Orfei, Adam's Brand Set 1738 → Content → F5 → 1923 Talent 11190, all `06-08-2026 04:29 AM PT`. Prior 2026-06-04 PASS.
+
+No open or closed Bug/Test-Failure links — clean test.
+
+## QA-134445 — Brand > Partnerships - Verify layered tag filtering (Include + Exclude) works as expected
+
+Skill: brand-content-filter (cross-surface)
+My latest run: 2026-06-08 (QA-22296 batch 11/12) — PASS — MTV brand_id=4018 IG default Lifetime. Tag popup Include/Exclude + Or/And + Select All confirmed; jbkaxlx Include + +tag Exclude applied; URL filters JSON `{"content_tags":[{"operator":"or","values":[" jbkaxlx"],"not":"false"},{"operator":"or","values":["+tag"],"not":"true"}]}`. Tile re-fetch after apply.
+
+No open or closed Bug/Test-Failure links — clean test.
+
+## QA-134446 — Brand > Stories - Verify layered tag filtering (Include + Exclude) works as expected
+
+Skill: brand-content-filter (cross-surface)
+My latest run: 2026-06-08 (QA-22296 batch 11/12) — PASS — MTV Stories(886) IG default. Filter dropdown options Branded Content/Collaborated/.../Tag/Text Search verified; jbkaxlx Include + `-------a` Exclude applied; URL layered JSON two-entry content_tags array confirmed.
+
+No open or closed Bug/Test-Failure links — clean test.
+
+## QA-134447 — Brand > Paid - Verify layered tag filtering (Include + Exclude) works as expected
+
+Skill: brand-content-filter (cross-surface)
+My latest run: 2026-06-08 (QA-22296 batch 11/12) — PASS — MTV Paid IG. Filter dropdown Ad Name/Ads Account ID/Campaign/Delivery Type/Publish Day/Publish Time/Tag/Text Search. Tag layered widget identical: jbkaxlx Include + +tag Exclude → two-entry URL JSON. 7-surface parity confirmed across Brand>Content/Partnerships/Stories/Optimization/Paid + Brand Sets>Content/Optimization/Partnerships.
+
+No open or closed Bug/Test-Failure links — clean test.
+
+## QA-134636 — Listening> "Data Last Updated"Timestamp
+
+Skill: brand-insights-interval-picker (DLU timestamp pattern)
+My latest run: 2026-06-08 (QA-22296 batch 11/12) — PARTIAL — A1 PASS (Brand>Insights MTV `Data Last Updated (PT): 06-08-2026 04:29 AM PT` format verified, matching QA-134271/QA-134296 RECONFIRMs same day); A2 INCONCLUSIVE — Listening tab not surfaced on Adam Orfei account (direct URL nav `#explore/brand/listening` + `#listening` both redirect to Brand>Insights). Recommend manual LFIQA verification on Hulu / HBO Max with Listening tab access.
+
+No open or closed Bug/Test-Failure links — clean test.
+
+## QA-135429 — Settings > Custom Metrics  - Edit functionality
+
+Skill: settings-custom-metrics
+My latest run: 2026-06-08 (QA-22296 batch 11/12) — PARTIAL — A1+A2 PASS (Edit menu item present; Edit form prefilled with Name `Test 09-05-20254` / Description `sample4` / Formula chips `Post Comments + Shares` at `#custom-metrics/edit?report_id=18`); A3+A4 DEFERRED — would mutate metric owned by another user (Kumar Keshav Kashyap), safety per Rule 1. Mutation+round-trip should be exercised on a self-owned sandbox metric (per QA-85176 pattern).
+
+No open or closed Bug/Test-Failure links — clean test.
+
+## QA-135837 — Verify search field retains entered value after selecting filter options
+
+Skill: brand-content-filter
+My latest run: 2026-06-08 (batch-12) — PASS-with-deviation. APPS-61098 closed bug NOT REPRODUCED — search field retains text across single tag select, multi-select chain (Or-joined), and single deselect. Minor spec-deviation: assertion 9 (close/reopen → empty search) NOT met — search retained `aclfest` after Tag-section header collapse + re-expand. Spec used tag substitution `aclfest`/`acmawards`/`alliesask` instead of spec's `test1`/`test11`/`test123` (not present on Hulu dev).
+
+### Open bugs (0)
+- (none)
+
+### Closed bugs (1, most recent first; cap at 10 + "+M earlier" if >20)
+- APPS-61098 (Bug, Major, Closed) — Filter - Search field resets after selection
+
+## QA-137557 — Settings > Custom Metrics - Multiplication & Division Operators - Create & Save
+
+Skill: settings-custom-metrics
+My latest run: 2026-06-08 (batch-12) — PARTIAL-PASS. APPS-60358 × and ÷ operator dropdown end-to-end enumerated (exact 4 options: `fa-plus / fa-minus / fa-times / fa-divide`); × chip rendered with `fa-regular fa-times` icon in formula editor. Save button disabled→enabled gate logic verified. Build of 3 remaining chips (Post Likes / ÷ / Shares) NOT REACHED due to automation-only formula-popup re-open friction; cleanup via Cancel — no orphan metric saved.
+
+No open or closed Bug/Test-Failure links — clean test.
+
+## QA-137558 — Settings > Custom Metrics - All Operators (+ − × ÷) - Save & Verify in Time Window Comparison
+
+Skill: settings-custom-metrics + time-window-comparison-run
+My latest run: 2026-06-08 (batch-12) — PARTIAL-PASS by carry-forward. 4-operator dropdown verified via QA-137557 same session. Full 9-chip build + TWC re-execution deferred (same automation-only friction as QA-137557).
+
+No open or closed Bug/Test-Failure links — clean test.
+
+## QA-137874 — Data Collection - Channel Collection Status Validation 2
+
+Skill: (candidate extension `data-collection-channel-drill` from `data-collection-ad-account-status`)
+My latest run: 2026-06-08 (batch-12) — PASS-with-partial-data. Adam Orfei/Suits Twitter SuitsPeacock page: Collecting (green `fa-check-circle` rgb(0,135,128)) and Not Collecting (red `fa-exclamation-circle` rgb(214,79,66)) icon mappings verified; Last Collection Date `Jun 7, 2026` = current_date - 1 for Collecting feed. Brand substitution: Adam Orfei/Suits used instead of spec's HBO Max for time efficiency. To Do status icon (5e) DEFERRED — no To Do feed in sample. URL drill-down schema documented: `#data-collection/<brand>/<channel>/page/<page-id>?account_id=<id>`.
+
+No open or closed Bug/Test-Failure links — clean test.
+
+### QA-22296 — Set Summary
+
+- Total members: 59
+- Members with >=1 open Bug/Test-Failure: 6
+- Distinct open bug keys (sorted by priority): 7
+  - LFMP-31800 (Bug, Major) — Brand > Conversation - “Click here to load Tweets” navigates to the Listening page
+  - LFMP-31814 (Bug, Major) — Reporting > Data Studio - Data fetching pop-up is not displayed
+  - LFMP-31857 (Bug, Major) — Brand Content - twitter post text having link
+  - LFMP-31915 (Bug, Major) — Brand > Content > Instagram Image Posts Tooltip Is Empty
+  - LFMP-31979 (Bug, Major) — Thumbnail Issue for Facebook and Pinterest Posts.
+  - LFMP-32010 (Bug, Major) — Reporting > Content performance > Least Engaging Posts & Heading Does not show in "Preview & Share Report"
+  - LFMP-31781 (Bug, Minor) — Brand Insights - Hovering Functionality - twitter icon color is blue
+
+>>>>>>> bff9641 (staging/lf-regression)

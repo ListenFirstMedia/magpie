@@ -17,8 +17,9 @@
 
 Notes:
 - For members with both a `-report.md` and a `-RECONFIRM-report.md` (QA-92735, QA-103246, QA-111242, QA-130076, QA-134182, QA-134184, QA-134188, QA-92841), the LATER verdict is used as the headline. All eight re-confirmations PASS; QA-92841 specifically reversed from PARTIAL (batch-1) to PASS (batch-7).
-- QA-51442 counted as PARTIAL (mechanic verified, PNG blocked by new chart-tile-failure finding).
-- QA-52778 counted as PARTIAL (A1+A3 PASS, A2 FAIL-with-finding flagged; A4-A7 deferred per `mutating: POTENTIALLY` precaution).
+- ~~QA-51442 counted as PARTIAL (mechanic verified, PNG blocked by new chart-tile-failure finding).~~ **RE-VERDICT 2026-06-05: chart-tile-failure RETRACTED — was a Chrome-MCP-only artifact (premature failure detection on tile-render).** LFIQA analyst screenshot 2026-06-05 16:10 PDT shows all 4 chart tiles rendered correctly on the identical MTV / Authorized / IG / May 29 configuration. Effective status: A1+A2 PASS, A3-A6 still NOT VERIFIED (PNG-on-disk download not captured). Counted as PARTIAL (not BLOCKED, not FAIL).
+- ~~QA-52778 counted as PARTIAL (A1+A3 PASS, A2 FAIL-with-finding flagged; A4-A7 deferred per `mutating: POTENTIALLY` precaution).~~ **RE-VERDICT 2026-06-05: PASS** — LFIQA analyst manually executed the full Fetch / Patch / Apply chain. All three xlsx outputs contain a populated `url_managers` column. BC-5 was a false positive caused by the Chrome-MCP URL-fallback workaround not triggering the backend's session-state path for `Include URL Managers`. See `QA-52778-report.md` header for full re-verdict.
+- **Corrected tally after 2 retractions: PASS 37 (66.1%), PARTIAL/DEFERRED 11 (19.6%), BLOCKED 7 (12.5%), FAIL 1 (1.8%).** New-bug list shrinks by 2 (BC-5 + Brand>Stories tile-fail both retracted). Remaining net-new findings: 14.
 - QA-134517 counted as FAIL-with-finding (Tag Filter missing Include/Exclude — sibling of CPR QA-134516 finding).
 - "BLOCKED" includes safety-policy blockers (Cognito), spec-drift blockers, persistent renderer-hang blockers, and account-credential blockers.
 

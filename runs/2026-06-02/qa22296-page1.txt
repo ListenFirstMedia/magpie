@@ -1,0 +1,50 @@
+QA-199|TWC - TSV Exports - Relative Dates
+QA-574|Instagram Lifetime Private Data QA
+QA-844|TikTok Content - Exporting Tags
+QA-923|Brand Content -  Embedded Post Tooltip
+QA-926|Embedded Post Tooltip - YouTube
+QA-947|Brand Video Tab - Hovering Functionality
+QA-2042|Facebook Content - Post Hovering
+QA-6315|Brand > Conversation - Basic view
+QA-18940|Brand > Video - Favourites Functionality
+QA-19950|Brand Content - CSV - All Data set - Impressions
+QA-22072|Brand >Partnerships - Basic View data set 
+QA-23991|Reporting > Content Performance Report -  Download
+QA-24021|Reporting > TWC - Download
+QA-27292|Brand  < Content - Download CSV Template in Update Tag Modal
+QA-43915|Ads Account IDs Radaac Report
+QA-63603|Settings > Tags > Content Tagged - Upload Tags
+QA-75011|Settings > Custom Metrics - Basic View
+QA-79157|Mixpanel - API Metrics Publishing Analysis
+QA-81416|Reporting > Data Studio - Report Table - CSV & Google Sheets Export Functionality
+QA-81647|Reporting > Data Studio - Data Visualization
+QA-83977|Reporting > Data Studio - UI check
+QA-84195| Reporting > Data Studio - Brand > Content -- Data QA - Video Views
+QA-85176|Settings > Custom Metrics - Custom Metric Create Functionality
+QA-89390|Dashboards - Brand Content Insights - Functionality to save filtered tiles to the dashboard
+QA-95190|Brand > Channels - Threads Basic View
+QA-96045|Settings > Data Identities - Instagram Threads 
+QA-96759|Brand > Insights - Threads - Tile Level Export - PNG
+QA-98351|Brand > Content - Threads - Basic View
+QA-99531|Brand > Content - Threads - Hovering functionality on All Insights tile's
+QA-104876|Settings > Custom Data Sets - Delete Functionality
+QA-109749|Brand Audience > Threads - Hovering Functionality
+QA-109919|Brand > Content - Sentiment Comments limit - CSV
+QA-112583|Reporting > Follower Demographics Vs Threads Audience - Export - Data QA
+QA-113594|Settings > Audit - External User View 
+QA-113723|Admin - Brand Set Creation and Settings > Audit screen
+QA-114840|Settings > User - Export Functionality (External User)
+QA-116140|Brand Sentiment - Sentiment Export CTA
+QA-116173|Sentiment Export Email, Notification & Auto Download
+QA-121158|Brand Content - Instagram - Collaborated Total Filter Functionality
+QA-121217|Brand > Content - Instagram - Instagram Collaborator count - Export
+QA-131491| Reporting > Social Recap Vs Brand > Content - IG Public Video View Brand and Content level
+QA-132387|Brand Sets > Content - Verify Sum and Avg Rows based on Rank by Metric selected
+QA-132392|Brand Set > Content - Verify Impression Metrics Sum and Avg Row Behavior
+QA-133403|Brand Set > Content - Verify Authorised Video Views Metrics Sum and Avg Row Behavior
+QA-134176|Brand > Insights - Auto Select Dates for all Intervals
+QA-134271|Brand Navigation — Data Last Updated: Timestamp
+QA-134274|Brand > Content - Verify pill add/remove, Clear All and Save/Load filter
+QA-134275|Brand > Content - Verify Include-only filter returns correct results for OR and AND operators
+QA-134276|Brand > Content - Verify Exclude-only filter returns correct results for OR and AND operators
+QA-134296|Brandsets->Rankings-Data Last Updated :Timestamp

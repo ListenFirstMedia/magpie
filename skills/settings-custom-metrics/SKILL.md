@@ -1,10 +1,10 @@
 ---
 name: settings-custom-metrics
-version: 1
-last_verified: 2026-05-29
-last_passed_run: 2026-05-29
+version: 2
+last_verified: 2026-06-08
+last_passed_run: 2026-06-08
 trust: untrusted
-pass_streak: 1
+pass_streak: 11
 preconditions: [account-context]
 postconditions: [custom-metric-row-present, info-mode-toggled-off]
 inputs: [metric_name, metric_description, formula_tokens]
@@ -115,6 +115,82 @@ Used by:
 
 See `knowledge-base/bug-history.md`. No open bugs currently tied to this skill's flows; 1 historical defects (all closed) are catalogued there.
 
+## v2 — Edit flow + × ÷ operators + Delete flow (2026-06-08)
+
+### Edit flow (QA-135429)
+
+The Actions ellipsis menu on each Custom Metrics row exposes an `Edit` option in addition to `Delete` / `Duplicate`.
+
+- **URL on Edit click:** `#custom-metrics/edit?report_id={id}`.
+- **Form prefills:**
+  - `Name` text input: the metric name.
+  - `Description` textarea: the metric description.
+  - Formula builder area: each chip re-rendered with its channel icon + label.
+- **Buttons:** `Cancel` + `Save`.
+- **Cancel:** returns to `#custom-metrics` list with the row unchanged.
+
+**Safety:** A1+A2 (presence + prefill) can be verified read-only. A3+A4 (Save mutates) require a **self-owned sandbox metric** to exercise — never edit a metric owned by another user.
+
+### × ÷ operators — APPS-60358 implementation (QA-137557, QA-137558)
+
+The formula-builder Operators dropdown now exposes 4 operators (was 2 before APPS-60358):
+
+| Operator | Icon class | Label |
+|---|---|---|
+| `+` | `fa-plus` | Addition |
+| `−` | `fa-minus` | Subtraction |
+| `×` | `fa-times` | Multiplication |
+| `÷` | `fa-divide` | Division |
+
+**Probe:**
+```javascript
+const items = [...document.querySelectorAll('.lfm-dropdown-option i[class*="fa-"]')]
+  .map(i => i.className).filter(c => /fa-(plus|minus|times|divide)/.test(c));
+// items.length === 4 → APPS-60358 implementation present
+```
+
+**Verdict:** if exactly 4 operator-icon items are enumerated under Operators → APPS-60358 implementation present (NOT REPRODUCED as a bug).
+
+The `×` chip renders with `i.fa-regular.fa-times` in the formula editor. Selecting `×` after `Post Comments` produces the 2-chip formula `[Post Comments, ×]` — Save remains disabled until a 3rd chip is added per strict-alternation rule.
+
+### TWC verification of all-operators custom metric (QA-137558)
+
+After creating a metric with all 4 operators (e.g., `[Post Comments, +, Post Likes, −, Shares, ×, 2, ÷, 100]`):
+1. Reporting > TWC.
+2. Add brand.
+3. In Filter Metrics search input, type the custom metric name.
+4. Click the custom-metric checkbox (Custom Metrics section).
+5. Run Report → results table column renders with the custom metric value cell.
+
+### Automation-only friction: formula-popup re-open after chip add
+
+After each chip addition, the React click-handler on the formula input gets unmounted/remounted. Subsequent coordinate clicks at the formula input row often DON'T re-trigger the builder popup until React re-binds.
+
+**Workaround:** wait ~2-3s after each chip addition before clicking the formula input again. If that fails, refresh the page and re-build from start. Automation-only — end-users with hardware mouse click normally.
+
+### Delete flow stays in this skill (QA-135430, QA-104876 carry-pattern)
+
+The Delete flow stays in `settings-custom-metrics` rather than being split off, because the confirmation modal pattern is shared across all Settings entities (custom metrics, custom data sets, brand sets, users):
+```
+Title: Delete
+Body:  Are you absolutely sure you want to delete your <entity> '<name>'? Click 'Ok' to continue.
+Buttons: Cancel + Ok
+```
+
+After Ok click: row immediately removed from listing; F5-refresh-persistent.
+
+## Additional Failure signatures (v2)
+
+| Signature | Interpretation | Action |
+|---|---|---|
+| Operators dropdown shows only `+ −` (no `× ÷`) | APPS-60358 implementation regression | File bug |
+| Edit option absent from Actions ellipsis | UI regression | File bug |
+| Edit form does not prefill Name/Description/Formula | React state-restore regression | File bug |
+| × chip renders without `fa-times` icon | Icon class regression | File bug |
+| TWC custom-metric column renders blank instead of calculated value | Calc engine regression | File bug |
+| Formula-popup doesn't reopen after first chip addition | Automation-only friction (React handler re-binding lag) | Wait 2-3s; refresh + restart if persistent |
+
 ## Changelog
 
+- **v2** (2026-06-08): Edit flow (QA-135429); × ÷ operators APPS-60358 implementation verified end-to-end via 4-icon FontAwesome enumeration (QA-137557 reaches Create; QA-137558 ↔ TWC verification); Save modal Constant-vs-Constants drift retained; Delete flow stays in this skill; APPS-60358 4-operator dropdown enumerated NOT REPRODUCED as a bug. +9 streak across batches: QA-85176, QA-134173, QA-134185, QA-135430, QA-75011, QA-85176 RECONFIRM, QA-135429, QA-137557, QA-137558.
 - **v1** (2026-05-29): initial skill — created from QA-85176, QA-134173, QA-134185 (PASS / PASS / PASS). Documents formula-builder strict-alternation, X-removal cycle, Info-mode tooltip toggle on both list and create pages, and the three known spec/UI copy drifts.

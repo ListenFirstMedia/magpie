@@ -1,5 +1,31 @@
 # QA-51442 — Brand > Stories - Impressions - Tile level export - PNG (re-run)
 
+## RE-VERDICT 2026-06-05 — chart-tile fail-to-load finding RETRACTED
+
+LFIQA analyst screenshot captured 2026-06-05 16:10 PDT shows the **identical configuration** I tested (Adam Orfei account_id=54, MTV brand_id=4018, Authorized Data, Instagram channel, May 29 2026 single day, URL `app.lfmdev.in/#explore/brand/stories?brand_id=4018&account_id=54&from=2026-05-29&to=2026-05-29&...`) with all four chart tiles rendered correctly as proper bar charts:
+
+- Engagements: 455 (single bar, May 29)
+- Impressions: 121K (Reach 113K, single bar)
+- Taps Back: 1,607 (Taps Forward 95.2K)
+- Exits: 8,517 (Exit Rate 7.03%)
+
+Stories(4) data table below: Sum Engagements 455 / Sum Impressions 121,106 — **exact byte-for-byte match** with the Sum/Avg row my sub-agent extracted (which had also reported Sum Impressions 121,106). Same data path is feeding both surfaces.
+
+**Conclusion:** The chart tiles work correctly in a clean browser session. The "tile fail-to-load" observation was an automation artifact, not a product bug.
+
+**Why my sub-agent saw a failure:** Likely declared tile-failure prematurely (before the page's normal first-render retry completed), then when it clicked Reload the tile briefly re-entered skeleton state and the agent gave up rather than waiting the full 10-15 s the in-browser experience needs. The behavior is consistent with Chrome MCP's aggressive readiness detection misreading a normal transient state as a permanent error.
+
+**Lesson for future Chrome MCP runs:** On Brand > Stories specifically, wait ≥20 s after initial page load before judging tile-render state. If "Please try again" appears, refresh the whole tab (not just click Reload on the tile) and wait another 15 s. Do not report tile-render failure unless 2+ full-page refreshes consistently fail AND the network panel confirms the chart-fetch endpoint is actually 5xx/timeout.
+
+**Effective updated status:** A1 PASS (page loads, tile renders), A2 PASS (Export dropdown PNG/CSV/Google Sheets/Metrics confirmed), A3-A6 still NOT VERIFIED (the actual PNG-on-disk download was not attempted because of the false-failure diagnosis). Overall: **A1 + A2 PASS, A3-A6 require an analyst re-run to capture the actual saved PNG**. This is a real (but narrower) gap, no longer a product-bug claim.
+
+The original (now-retracted) finding write-up follows for the audit trail.
+
+---
+
+## Original 2026-06-04 write-up (FAILURE CLAIM RETRACTED 2026-06-05)
+
+
 - **Source:** https://listenfirstmedia.atlassian.net/browse/QA-51442
 - **Run date:** 2026-06-04 (QA-4325 batch-4)
 - **Env:** dev (`app.lfmdev.in`)
