@@ -503,3 +503,21 @@ Each entry should explain *why* it's accepted so we can revisit when product dec
 ### Brand>Insights renderer hang NOT reproduced on 2026-06-11
 
 - HBO Max (Threads, Sep 2025 month window), Sony Pictures Spider-Verse, Hulu (May 2024 + FGR tiles), FX public year-range Content all rendered cleanly in one session. Keep the 2026-06-04 quirk entry but treat the hang as intermittent/env-load-dependent rather than permanent.
+
+## 2026-06-13 (run 2, TWC cluster)
+- **Account-switch dropdown is hover-driven**: to automate, remove `.is-hidden` from `.navigation-controls-user .navigation-menu-dropdown`, set the Search Account input via React value-setter + `input` event, then dispatch mousedown/mouseup/click on the `.lfm-ta-option` row. Coordinate clicks on the LFQA header or option rows silently no-op.
+- **TWC brand typeahead options** are `.lfm-ta-option` inside `.typeahead-options-list` (`.account-name` child). Same event-dispatch pattern when real clicks miss.
+- **controlled-check-box state**: `aria-checked` lives on a CHILD element, not always the `span.controlled-check-box` itself — read `span.querySelector('[aria-checked]')`; toggle via dispatch on the inner `label`.
+- **In-page XLS verification**: the extension blocks large base64 strings in JS results; instead parse the xlsx inside the page (manual zip walk + `DecompressionStream('deflate-raw')` on `xl/worksheets/sheet1.xml` + sharedStrings) and compare to CSV in-page.
+- **Weekly relative TWC** shows a "Choose the Ending Day of Weekly Intervals" modal after Run Report (default: Use the Weekday of Each Brand's Key Date); it also prints the resolved campaign window — use it to verify Start/End math.
+- **TWC graph no-data convention**: absent bar + `<title>No Data</title>` on the axis label (brand-name title otherwise); en-dash appears only in tables.
+- **Channel banner img regression (intermittent)**: TWC story/preview can render `img.channel-banner-img` with `src=null` (empty box, label missing) instead of font-icon + label; re-render fixes it. Watch in Preview & Share checks (QA-19482 BUG-3).
+- **Months-interval TWC header label** shows only the start month ("June 2025") — Days/Aggregate show full spans (QA-457 BUG-4).
+- **Extension idle drop**: after long idle, all tab calls return "No tab available" — recover with `select_browser` + `tabs_create_mcp`; previous tab IDs may land in a different tab group (navigate refuses), so continue in the fresh tab.
+- **Metric rename drift**: "Average/… Responses per Post" no longer exists — "Responses" → "Engagements" family (affects QA-457-era specs).
+
+## 2026-06-13 (run 3+4)
+- **Audience/Insights tile PNG export**: header = LISTENFIRST logo → Brand Name → tile title; footer (bottom of PNG) = Tab Name ("Brand Audience"/"Brand Insights") + "Date: <start>-<end>". To verify PNG contents, capture the image/png blob via the createObjectURL hook and render it in a full-screen overlay <img> (scroll top→bottom) — base64 in JS results is blocked.
+- **Filename format (exports)**: single-hyphen separators (`Brand-Tab-Chart-YYYY-MM-DD-YYYY-MM-DD`); colons in chart names stripped; `.png`/`.csv` not always in the anchor download attr though blob MIME is correct. Don't flag as a bug per Rule 6.
+- **Social Recap "Social Footprint - All-Time" async tile can hang forever** (AsyncPoller polls every ~60s, never resolves, no console error) → keeps the **Preview & Share Report** button disabled (spinner) → blocks the entire PDF preview/download/share flow. Hit on Adam Orfei + ListenFirst (Authorized), 3/3 reloads (QA-23969 blocker bug). Any Social Recap PDF case may be blocked by this; try a lighter brand or wait 10+ min.
+- **CSV by graph type**: Area/Line/Bar → time-series CSV (Date,Brand,Channel,Metric); Table → flat CSV (Brand,Channel,Metric — no Date).
