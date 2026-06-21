@@ -2,7 +2,7 @@
 
 Cross-reference for every magpie test in `runs/2026-05-27/`. Before re-running a test, grep this file for the QA-ID to see what bugs have ever been linked to that test case — open ones must be reproduced (or confirmed-still-present), closed ones must be verified-still-fixed.
 
-- **Last updated:** 2026-06-11
+- **Last updated:** 2026-06-13
 - **Source:** Atlassian MCP `getJiraIssue` → `issuelinks` → filtered to `issuetype IN {Bug, Test Failure}`.
 - **Total tickets catalogued:** 59
 - **Total open Bug/Test-Failure links:** 15
@@ -2080,3 +2080,24 @@ _None._
 - QA-111242 (Major open)
 - QA-92735, QA-94977, QA-95067 (shared layout bug)
 
+
+---
+
+# 2026-06-13 QA-22296 re-run — open-bug verdict summary
+
+Full report: `runs/2026-06-13/QA-22296-CUMULATIVE-REPORT.md`. 59/59 members executed (38 PASS, 7 PARTIAL/NOT-VERIFIED, 2 FAIL, 12 BLOCKED).
+
+**REPRODUCED (keep open):**
+- LFMP-31800 (Major) — QA-6315 Brand>Conversation "Click here to load Tweets" → navigates to Listening page. Direct repro.
+- LFMP-31781 (Minor) — QA-947 Twitter legend blue; carry-forward (Brand>Video hang blocked DOM read).
+
+**NOT REPRODUCED (recommend eng confirm closure):**
+- LFMP-31915 (IG image tooltip empty) — QA-923, tooltip populates.
+- LFMP-31979 (FB/Pinterest thumbnails) — QA-19950, FB thumbs render.
+- LFMP-31814 (DS UI) — QA-83977, 3rd consecutive non-repro.
+- LFMP-31862 — QA-121158 collaborated filter works.
+- APPS-61098 (QA-135837), APPS-60358 (QA-137557), APPS-49018 (QA-75011), APPS-53076/53104 (QA-95190).
+
+**CARRY-FORWARD (not re-verifiable):** LFMP-30870 (QA-43915 Radaac, Cognito-blocked); LFMP-31857 (QA-923 Twitter text-link — signal present).
+
+**Cross-cutting dev-stability finding:** Brand>Insights / Brand>Video **renderer hang** froze the Chrome MCP CDP pipeline repeatedly on MTV — blocked QA-947, QA-18940, QA-89390, QA-96759 and prevented re-drive of QA-134176. Recommend perf ticket (cf. APPS-55565). New finding (re-confirmed): TWC Relative-Dates export emits relative labels in the Date column (TSV+CSV) instead of absolute dates (QA-199).

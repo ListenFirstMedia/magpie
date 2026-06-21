@@ -21,6 +21,67 @@ Each entry should explain *why* it's accepted so we can revisit when product dec
 
 ## Entries
 
+### Data Studio layered tag filter NOW has Include/Exclude (FIXED 2026-06-13)
+
+- **First observed fixed:** 2026-06-13 (QA-4325 QA-134517) — was a FAIL on 2026-06-02.
+- **Behavior:** The Data Studio Post-Level **Filters → Tag** panel now exposes the full layered structure — **Include/Exclude radios + Or/And radios + Select All/None + tag list** — matching Brand>Content/Optimization/Brand Sets. Previously (2026-06-02 run) the DS tag filter was **missing Include/Exclude** (QA-134517 FAIL).
+- **Why noted:** A prior FAIL is resolved; the layered tag-filter component is now consistent across all 4 surfaces (Brand>Content, Brand>Optimization, Brand Sets>Content, Data Studio). Recommend closing the QA-134517 bug.
+- **Revisit if:** DS tag filter regresses.
+
+### SPA route quirks: hyphenated Settings routes + stale hash params (NEW 2026-06-13)
+
+- **First observed:** 2026-06-13 (QA-4325 QA-135430).
+- **Behavior:** (a) **Custom Metrics route is `#custom-metrics` (hyphen)**, not `#custom_metrics` (underscore) — the underscore URL renders a blank page. (b) Navigating to a Settings hash route while a stale query string from another page is in the URL can leave the page blank / not re-render. Workaround: navigate via the **Settings dropdown menu link**, or to `#home` first then the target. (Also: Data Studio sometimes renders blank on direct URL nav — load via the **Reporting menu**.)
+- **Why accepted:** Automation/routing friction, not a product defect for end users (who click menu links).
+- **Revisit if:** the SPA router normalizes route names / handles stale params.
+
+### Audit deep-link opens a NEW tab (APPS-54603 possible fix) (NEW 2026-06-13)
+
+- **First observed:** 2026-06-13 (QA-4325 QA-107134).
+- **Behavior:** Clicking an entity deep-link in a Settings>Audit Description (e.g., a Brand Set name) opened the entity detail page in a **new tab** (`#brand-sets/detail?brand_set_id=…`). The prior run flagged **APPS-54603** (same-tab URL-replace) — not reproduced this run.
+- **Why noted:** Possible fix of APPS-54603; flag for eng re-confirm before closing.
+- **Revisit if:** same-tab-replace behavior returns.
+
+### Data Studio post-level Impressions require In-Window + Authorized view (NEW 2026-06-13)
+
+- **First observed:** 2026-06-13 (QA-4325 QA-84194)
+- **Behavior:** In Data Studio → Post Level, the Impressions metric tree (Impressions / Public Impressions / Reach + channel sub-metrics) is **greyed/disabled** while Window Mode = **Lifetime** and/or the brand's View = **Public**. Switching Window Mode to **In-Window** *and* the brand row's View toggle to **Authorized Data** enables them; MTV then returns Authorized Impressions (Sum 39,726,174 for Jun 9–15).
+- **Why accepted:** Impressions are window-based, private/authorized metrics — not available in lifetime/public context by design. This is the precise characterization of the long-noted "DS metric-tree friction."
+- **Affected assertions:** Any DS post-level Impressions/Reach data-QA. Engagements (public) is unaffected.
+- **Revisit if:** Product exposes lifetime/public Impressions, or the metric-tree disables differently.
+
+### Brand>Stories & Brand>Paid trend-tile charts fail to render under Chrome MCP (NEW 2026-06-13)
+
+- **First observed:** 2026-06-13 (QA-4325 QA-51442, QA-72455, QA-83928)
+- **Behavior:** The trend tiles on Brand>Stories and Brand>Paid persistently show "This tile failed to load. Please try again." (chart canvas never paints), while the **data table** below renders correctly (e.g., Stories Impressions Sum 1,248,958). Reload of an individual tile goes to a permanent skeleton. Tile-level **PNG export** therefore produces no file (nothing to rasterize), but the **CSV** export (table-based) works fine.
+- **Why accepted:** Chrome-MCP/CDP rendering artifact (matches the prior-run retraction of the Brand>Stories tile-fail). The data layer is healthy; only the chart render under CDP is affected — **not a product defect**.
+- **Affected assertions:** Tile-render & tile-PNG assertions on Stories/Paid under Chrome MCP. Verify those manually / in a real browser.
+- **Revisit if:** Tiles render under CDP after a Chrome-MCP upgrade, or a real-browser check shows the tile genuinely failing.
+
+### Brand>Insights renderer hang now reproduces across brands (UPDATE 2026-06-13)
+
+- **First observed:** 2026-06-13 (QA-4325 QA-51457) — escalation of the long-known MTV hang
+- **Behavior:** Brand>Insights froze the whole CDP pipeline (screenshot / JS / tab-close >45s) on **both MTV and #1 Happy Family USA** this session — previously mostly MTV-specific. Recovery = abandon the frozen tab, open a fresh one, and avoid Insights.
+- **Why accepted:** Treated as an environment/perf blocker (cf. APPS-55565), not a functional defect in the feature under test. Puts all Brand>Insights cases at risk under Chrome MCP.
+- **Affected assertions:** Any Brand>Insights case (QA-51457, QA-114845, QA-134176/134182/134184/134188/134639). 
+- **Revisit if:** Insights loads under CDP without hanging; worth a perf ticket regardless.
+
+### Async exports (Content/Paid CSV) need the anchor-click hook, not createObjectURL (NEW 2026-06-13)
+
+- **First observed:** 2026-06-13 (QA-4325 QA-28405, QA-83928)
+- **Behavior:** Content/Paid CSV exports are **asynchronous** ("Your export has successfully been queued"). The file is delivered later via an **auto-download (an `<a href>` to a signed CDN URL)** + a notifications-bell entry ("…is now ready. Download file.") + email. A `URL.createObjectURL` hook captures nothing; hooking `HTMLAnchorElement.prototype.click` to grab the href + in-page `fetch(url,{credentials:'include'})` is the reliable Rule-6 verification. (DS PNG/Social-Recap PDF, by contrast, DO emit a real Blob via `createObjectURL`.) LF Content CSVs also carry a "Data Set" preamble row before the true header.
+- **Why accepted:** Automation-only verification mechanics; not a product behavior.
+- **Affected assertions:** Any CSV-export verification on Content/Paid/Brand-Set.
+- **Revisit if:** Export delivery changes to a synchronous blob.
+
+### Channel-selector icons are not exposed as accessibility refs; Audience needs from/to (NEW 2026-06-13)
+
+- **First observed:** 2026-06-13 (QA-4325 QA-72455, QA-92735)
+- **Behavior:** (a) The Brand>Paid/Content channel icon toggles (FB/X/IG/YT/TikTok/LinkedIn/Threads) are not addressable via `find` (no refs) and are too small for reliable coordinate clicks — use the URL `channels=` param or a DOM-dispatched click instead. (b) Navigating to Brand>Audience without `from`/`to` query params leaves the sub-nav stuck on skeleton (~25s); always include the full date params.
+- **Why accepted:** Automation-only friction.
+- **Affected assertions:** None directly; fold into the brand-paid/brand-audience nav skills.
+- **Revisit if:** The channel toggles gain accessible roles.
+
 ### Brand>Content Tag-filter Search field is not cleared on Tag-section header collapse/reopen (NEW 2026-06-08)
 
 - **First observed:** 2026-06-08 (QA-22296 batch-12 QA-135837)
@@ -503,3 +564,36 @@ Each entry should explain *why* it's accepted so we can revisit when product dec
 ### Brand>Insights renderer hang NOT reproduced on 2026-06-11
 
 - HBO Max (Threads, Sep 2025 month window), Sony Pictures Spider-Verse, Hulu (May 2024 + FGR tiles), FX public year-range Content all rendered cleanly in one session. Keep the 2026-06-04 quirk entry but treat the hang as intermittent/env-load-dependent rather than permanent.
+
+### Brand>Content tag export = one column per tag name (NEW 2026-06-13)
+
+- **First observed:** 2026-06-13 (QA-22296 re-run batch-1 QA-844)
+- **Behavior:** When a Brand>Content CSV export includes tagged posts, each applied tag is emitted as its **own column** whose header is the tag name (e.g. `hi`). The cell holds the tag name for tagged rows and is blank for untagged rows — there is no single delimited "Tags"/"Content Tags" column. If no posts in the result set are tagged, no tag column appears at all.
+- **Why it matters:** QA-844-style assertions ("CSV header includes Tags column") PASS as long as the tag-named column is present and correctly populated. Don't fail the case looking for a literal "Tags" header.
+- **Affected:** export-csv skill; QA-844, QA-27292, tag-export tests.
+- **Revisit if:** product consolidates tags into a single column.
+
+### Twitter embedded post tooltip can render empty (no oEmbed) (NEW 2026-06-13)
+
+- **First observed:** 2026-06-13 (QA-22296 re-run batch-1 QA-923, Amazon Prime Video Twitter)
+- **Behavior:** Hovering a Twitter post Type link opens the embedded-tooltip frame, but the tweet embed stays blank (white box + X) even after several seconds, whereas Instagram embeds populate fine (after a ~4s lag).
+- **Why accepted (provisional):** Most likely an X/Twitter-platform oEmbed restriction (tweets frequently fail to embed since X API changes), not an LFM rendering defect — parallels the Pinterest blank-embed quirk (QA-929). Treat as observation, not auto-bug.
+- **Affected:** QA-923, QA-2042 (FB/Twitter embedded tooltip tests).
+- **Revisit if:** LFM switches to a server-rendered tweet preview, or X embeds start working.
+
+### APV Brand>Content post-table renderer transient (NEW 2026-06-13)
+
+- **First observed:** 2026-06-13 (QA-22296 re-run batch-1 QA-923)
+- **Behavior:** Amazon Prime Video (brand_id=25864) Brand>Content post table stays skeleton >15-20s on first paint per channel; `location.reload()` recovers it. Seen on both Twitter and Instagram channels this run.
+- **Why accepted:** dev-env stability family (cf. APPS-55565); recovers on reload.
+- **Affected:** any APV Brand>Content case.
+- **Revisit if:** first-paint render stops needing a reload.
+
+### TWC/DS brand typeahead needs a REF-based focus click (not coordinate / value-setter) (NEW 2026-06-13)
+
+- **First observed:** 2026-06-13 (QA-4325 re-run QA-298, Hulu/Yash session)
+- **Behavior:** On the TWC (and Data Studio) "Search for a Brand" typeahead, coordinate `left_click` + `type` and even the React `value`-setter + dispatched `input` event leave the field effectively unfocused — the value may set but the **Results dropdown never renders**, so the brand can't be added. Repro'd across two fresh tabs.
+- **Fix:** `find` the "Search for a Brand" textbox → `left_click` by **ref** (this properly focuses it) → then `type` the brand name; Results render normally and the exact-match row is selectable (Rule 1). Same ref-click approach fixes metric checkboxes and Run Report.
+- **Why accepted:** automation-only focus quirk (real users click+type fine); session-dependent (worked via coord earlier in the 2026-06-13 QA-22296 run, failed in the later Hulu/Yash session).
+- **Affected:** time-window-comparison-run, data-studio-post-level-run, any brand-picker flow.
+- **Revisit if:** Chrome MCP coordinate clicks reliably focus React inputs.
