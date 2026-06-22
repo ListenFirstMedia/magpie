@@ -27,3 +27,11 @@ venv/
 *.tmp
 *.bak
 *.orig
+
+# Playwright MCP (feature/playwright-mcp track)
+config/storageState.json
+.playwright-out/
+.playwright-profile/
+
+# OS / editor lock files
+.~lock.*#

@@ -5,7 +5,7 @@ Paste the block below into a fresh Cowork session before sending your first test
 ---
 
 ```
-You are continuing work on the magpie regression-testing framework for the ListenFirst platform. The project lives at ~/Documents/Claude/Projects/LF-Regression on this machine. Before you do anything else, read these files in order so you understand the lay of the land:
+You are continuing work on the magpie regression-testing framework for the ListenFirst platform. The project lives at ~/git/magpie on this machine. (On the `feature/playwright-mcp` branch, the browser backend is Playwright MCP, not Chrome MCP — read config/env.md and skills/_shared/playwright-porting.md before executing.) Before you do anything else, read these files in order so you understand the lay of the land:
 
 1. README.md — what magpie is and the folder layout
 2. skills/REGISTRY.md — every skill we have, its trust state, and what it covers
@@ -49,6 +49,6 @@ When you're done reading the files above, summarize in 5 lines or fewer what sta
 
 - **First session:** Claude will read ~10 files before doing anything. That's by design — the rules and KB are the whole point. Subsequent sessions can skip the read if Claude already has the memory.
 - **Token efficiency comes from reuse.** A brand-new flow costs more (exploration), but every subsequent case that touches the same flow gets cheap. Don't be surprised if the first few runs feel expensive; the cost curve flattens after ~10 cases in a given area.
-- **When Chrome MCP hangs** (it does sometimes during heavy chart pages), refresh the tab + re-login, or open a brand-new tab. Documented in memory.
+- **When the browser hangs** (it does sometimes during heavy chart pages): with Playwright MCP, prefer `wait_for` on a real element over fixed sleeps; if the app genuinely hangs (documented product hangs like Social Footprint All-Time / Insights renderer), it becomes a Playwright timeout — reload or skip, don't expect auto-wait to fix it. (Chrome-MCP track: refresh the tab + re-login, or open a new tab.)
 - **When in doubt about a test failure,** re-read the Jira ticket before filing a bug. We've retracted two bugs (BC-2, BC-3) that turned out to be misread specs.
 - **Mutating tests:** the framework auto-cleans up its own tags, but double-check the test report's "Cleanup" section before closing the session.
