@@ -31,13 +31,17 @@ Log in by hand in the window that opens. It writes `config/storageState.json` (g
 Goal: prove the two real risks (Google SSO headless; charts invisible to the a11y tree) plus downloads, on a small set before wider porting.
 
 1. **`data-studio-post-level-run`** — numeric/deterministic; magpie's only *stable* skill. Proves the core loop + math-identity assertions.
-2. **TWC export (QA-198: TSV / CSV / XLS / Google Sheets)** — proves `page.on('download')` for CSV/TSV/XLS and `page.on('popup')` for the Google Sheets new tab (hardest export path).
+2. **TWC export (QA-198: TSV / CSV / XLS)** — proves `page.on('download')` for the file exports. **Google Sheets is out of scope** (see below).
 3. **`chart-hover-tooltip`** — proves whether Recharts tooltips read via `.hover()` or need synthetic events / a screenshot fallback.
 
 Run headless via `claude -p` (or interactively first). **Success criteria:**
 - SSO session holds across all three (no login redirect).
-- CSV/TSV/XLS verified on disk; Google Sheets URL captured.
+- CSV/TSV/XLS verified on disk.
 - Chart tooltip read — record in `knowledge-base/known-quirks.md` whether `.hover()` sufficed.
+
+### Out of scope — Google Sheets export
+
+GS export opens a separate `docs.google.com` tab that requires Google **2FA** on its own auth surface, which is impractical to bypass on every unattended run. On this track, **skip all Google Sheets steps and assertions** (the `export-google-sheets` skill is deferred). File exports (CSV/TSV/XLS) and on-disk verification stay in scope and cover the export pipeline. Revisit only if a service-account / non-interactive GS auth path becomes available.
 
 Record the spike outcome in a run report under `runs/<date>/` and note new findings in `known-quirks.md`.
 
