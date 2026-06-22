@@ -1,0 +1,15 @@
+{
+  "_comment": "Playwright MCP for this project (feature/playwright-mcp track). Add --headless to args once storageState auth is validated. Jira fetch uses a separate, interactively-authenticated Atlassian MCP that may be absent in headless `claude -p` runs — pre-fetch test cases into testcases/english/ during an interactive session, or wire a remote Atlassian MCP server here. See MIGRATION.md.",
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "@playwright/mcp@latest",
+        "--browser", "chrome",
+        "--storage-state", "./config/storageState.json",
+        "--save-session",
+        "--output-dir", "./.playwright-out"
+      ]
+    }
+  }
+}

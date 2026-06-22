@@ -33,7 +33,7 @@ Test cases come from Jira via the Atlassian MCP, which is **interactively authen
 
 ## Capture defaults
 
-- **Traces:** auto-saved to `.playwright-out/` (`--save-trace`) — the Playwright-native replacement for ad-hoc screenshots
+- **Session artifacts:** saved to `.playwright-out/` (`--save-session`) — the Playwright-native record of actions/snapshots, replacing ad-hoc screenshots
 - **Console / network:** captured per case (errors/warnings, 4xx/5xx flagged)
 - **Screenshots:** on assertion failure or bug, plus for any chart/canvas assertion the a11y tree can't read
 - **Downloads:** via Playwright `download` events → saved under `.playwright-out/` and verified on disk. **Google Sheets export is out of scope** (Google 2FA on a separate auth surface) — skip GS steps/assertions; CSV/TSV/XLS file exports stay in scope. See MIGRATION.md.
