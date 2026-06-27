@@ -1,0 +1,61 @@
+{
+  "date": "2026-06-27",
+  "total": 10,
+  "run": 10,
+  "passed": 6,
+  "failed": 0,
+  "blocked": 3,
+  "unknown": 1,
+  "cases": [
+    {
+      "id": "QA-100764",
+      "status": "BLOCKED",
+      "report": "runs/2026-06-27/QA-100764-report.md"
+    },
+    {
+      "id": "QA-103246",
+      "status": "PASS",
+      "report": "runs/2026-06-27/QA-103246-report.md"
+    },
+    {
+      "id": "QA-103248",
+      "status": "PASS",
+      "report": "runs/2026-06-27/QA-103248-report.md"
+    },
+    {
+      "id": "QA-10387",
+      "status": "BLOCKED",
+      "report": "runs/2026-06-27/QA-10387-report.md"
+    },
+    {
+      "id": "QA-104870",
+      "status": "PASS",
+      "report": "runs/2026-06-27/QA-104870-report.md"
+    },
+    {
+      "id": "QA-104876",
+      "status": "PASS",
+      "report": "runs/2026-06-27/QA-104876-report.md"
+    },
+    {
+      "id": "QA-1053",
+      "status": "BLOCKED",
+      "report": "runs/2026-06-27/QA-1053-report.md"
+    },
+    {
+      "id": "QA-106218",
+      "status": "PASS",
+      "report": "runs/2026-06-27/QA-106218-report.md"
+    },
+    {
+      "id": "QA-106221",
+      "status": "PASS",
+      "report": "runs/2026-06-27/QA-106221-report.md"
+    },
+    {
+      "id": "QA-107134",
+      "status": "UNKNOWN",
+      "report": "runs/2026-06-27/QA-107134-report.md"
+    }
+  ]
+}

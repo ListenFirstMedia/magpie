@@ -33,5 +33,16 @@ config/storageState.json
 .playwright-out/
 .playwright-profile/
 
+# Login credentials for automated Cognito email/password sign-in
+.env
+config/.env
+
 # OS / editor lock files
 .~lock.*#
+
+# Safety net: stray browser artifacts dumped to the repo root via a bare filename
+# (Playwright MCP saves bare filenames to CWD). Real evidence belongs in .playwright-out/
+# or runs/<date>/. Root-level only — subdirectory pngs/ymls are unaffected.
+/*.png
+/*.yml
+/*.yaml

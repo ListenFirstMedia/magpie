@@ -21,6 +21,139 @@ Each entry should explain *why* it's accepted so we can revisit when product dec
 
 ## Entries
 
+### Playwright MCP track (feature/playwright-mcp) — newest first
+
+_Findings from headless Playwright MCP regression runs against `app.lfmdev.in`. Many supersede Chrome-MCP-era quirks below._
+
+### 2026-06-27 — Settings surfaces do not inherit the active Home account context
+
+- **First observed:** 2026-06-27 (QA-106218; reconfirmed implicitly in QA-104870)
+- **Behavior:** With an account active on `#home` (e.g. Adam Orfei), navigating Settings → Custom Data Sets loaded the page under a *different* account from Recent Searches (Hulu, account_id=336) without any user-initiated switch. Re-navigating to `#home` then also showed the carried-over account — i.e. the cold `#home` label did not reflect the account the app actually resolved on first real navigation.
+- **Why accepted (for now):** Likely persisted "current account" session-state carryover from a prior LFQA session plus a possibly stale cold-render header label. Flagged as a **candidate Minor/UX bug** (product to confirm whether Settings surfaces are intentionally account-independent), NOT a functional defect — every Custom Data Sets assertion passes once the account is explicitly set. Treat as a precondition step, not a failure.
+- **Affected assertions:** Any Settings-surface test with an account precondition — switch to the spec account via user-menu → Search Account → click the **Results** entry (not Recent Searches) and re-verify the breadcrumb before evaluating.
+- **Revisit if:** Settings pages start honoring the global account selection on first navigation, or product confirms intended behavior.
+
+### 2026-06-27 — Max brand (Adam Orfei dev) has no Threads channel — Brand>Content
+
+- **First observed:** 2026-06-27 (QA-100764, BLOCKED)
+- **Behavior:** On the Adam Orfei account, the **Max** brand (brand_id=412264) Brand>Content channel selector offers only Facebook / X (Twitter) / Instagram / TikTok / YouTube — **no Threads** (and no LinkedIn/Pinterest) toggle. Navigating with `&channels=threads` is rewritten by the hash router with the param **stripped**. DOM `.channel-icon`/`.channel-ghost` sets confirm Threads absent.
+- **Why accepted:** Test-data / data-collection gap, not a product defect in the Daily Post Analysis modal. Threads cases written against Max cannot run as-is on this account.
+- **Affected assertions:** Any Brand>Content (or DPA-modal) Threads case targeting Max — BLOCKED on test-data, do not substitute another channel (Rule 1). Needs LFIQA/product to either enable Threads collection for Max, name the specific account where Max has Threads, or update the stale brand/channel pairing.
+- **Revisit if:** Threads data collection is enabled for Max, or the spec is updated to a brand that collects Threads.
+
+### 2026-06-22 — QA-198 TWC export-to-disk spike (Disney Ad Sales)
+
+- **Playwright MCP download-to-disk WORKS (key win).** Clicking an export option fires a Playwright
+  `download` event and the file is saved to the `--output-dir` (`.playwright-out/`) automatically —
+  confirmed for **CSV, TSV, XLS** on the TWC report (report 154984). Filenames are slugified
+  (spaces/commas → `-`), e.g. `Disney-Channel---Time-Window-Comparison---Jun-14-2026---Jun-20-2026.csv`.
+- **TWC exports are SYNCHRONOUS** — direct download, no "queued / notification-bell / signed-CDN
+  anchor" async path. (Contrast the Chrome-MCP note that Content/Paid CSV exports are async; that
+  does not apply to TWC.) No `URL.createObjectURL` or anchor-click hook needed.
+- **TWC brand picker accepts Playwright real keystrokes.** `pressSequentially` triggers the React
+  typeahead onChange — the documented `Object.getOwnPropertyDescriptor(...).set` + `dispatchEvent`
+  workaround in `time-window-comparison-run/SKILL.md` is **obsolete** under Playwright. (Same as DS.)
+  Note: `browser_type` with `slowly:true` APPENDS — `fill('')` first to clear between brands.
+- **TWC metric checkboxes are the same `.controlled-check-box`** and respond to trusted
+  `browser_click` (no focus+Space dispatch needed) — consistent with the DS finding.
+- **Brand exact-text gotcha:** the FOX News option renders as **"FOX News"** (uppercase FOX), not
+  "Fox News" as written in the QA-198 steps. Match case-insensitively or verify the rendered label.
+- **Export verification on disk:** CSV header = `Perspective, Brand, Date, <metrics…>`; 28 data rows
+  (4 brands × 7 days). TSV is byte-identical to CSV. XLS (saved `.xlsx`) carries the same header +
+  rows + values. No en-dash in any export for this window; rate metric serialized as a raw float
+  (e.g. `0.000104…`), not a `%` string.
+- **Screenshot filename caveat:** `browser_take_screenshot` with a bare `filename` saves to the CWD
+  (repo root), NOT `--output-dir`. Use a path under `.playwright-out/` or expect the file at root
+  (it won't be gitignored there).
+
+### 2026-06-22 — chart-hover-tooltip spike (QA-96670, Brand>Insights, HBO Max)
+
+- **`browser_hover` triggers the chart tooltip natively (trusted hover).** No synthetic
+  `mousemove`/`mouseover` dispatch needed. The Chrome-MCP-era finding ("synthetic events don't fire;
+  only real `computer.hover` works") is **obsolete** under Playwright.
+- **`chart-hover-tooltip/SKILL.md` is STALE.** Insights charts are **D3 / custom SVG**, NOT Recharts.
+  Real markup: bars are `rect.bar.<channel>-<YYYY-MM-DD>` (e.g. `rect.bar.twitter-2026-06-14`),
+  donut is `.arc`/`.donut-center-label`, axes are `.axis .tick .domain`. The skill's Recharts
+  selectors (`.recharts-rectangle`, `.recharts-tooltip-wrapper`, `.recharts-dot`) **do not exist**
+  here. Needs a rewrite.
+- **Tooltip is readable in the DOM** at selector **`.al-bar-chart__tooltip`** — screenshot fallback
+  NOT required. Format: `Mon. DD, YYYY` then one line per channel `Channel: value (±%)`
+  (matches QA-96670 A2/A4). Bar `<title>` elements are empty; the tooltip is JS-driven.
+- **The Brand>Insights "renderer hang" did NOT reproduce.** Earlier failures (30s `wait_for`
+  timeout, page closing) were caused by navigating to Insights with **missing/invalid compare
+  dates** (no `compare_from`/`compare_to`), not a renderer perf hang. With valid dates the tiles
+  render fine and fast. The Chrome-MCP "Insights hang" quirk should be re-characterized as a
+  date-validation issue under Playwright.
+- **Account switch flow (verified):** LFIQA menu (`.navigation-menu-header`, hover) → "Search
+  Account" input → type name → click the brand under **Results** → app reloads into that account
+  **and auto-populates valid `from`/`to`/`compare_from`/`compare_to`**. This is also why the DS case
+  earlier had no date issues. Switched Michael Kors (657… acct 328) → HBO Max (acct 657,
+  brand 155614).
+
+### 2026-06-22 — Playwright MCP tooling findings (Data Studio post-level spike)
+
+Re-validating Chrome-MCP-era quirks under Playwright's trusted-event model. Case:
+`data-studio-post-level-run`, Michael Kors, 7D, report_id 298410.
+
+- **`.controlled-check-box` works with a normal Playwright click (BIG WIN).** A `browser_click`
+  on the `.controlled-check-box` span flipped `far fa-square` → `fas fa-check-square`,
+  `aria-checked=true`, and **persisted** (no React revert) — verified 0.8s later. The Chrome-MCP
+  quirk (synthetic `.click()` reverts; needed `focus()`+Space dispatch) **does not apply** under
+  Playwright. Same expected for CPR numeric inputs / TWC Options checkboxes. Use real
+  `browser_click`, not JS `.click()`.
+- **Custom widgets are not in the accessibility tree.** The brand `al-typeahead` options and the
+  metric-tree checkboxes have no listbox/option/checkbox roles, so they don't appear in
+  `browser_snapshot`. Pattern that worked: `browser_evaluate` to locate the element by text/class
+  and tag it (`el.setAttribute('data-spk', …)`), then `browser_click('[data-spk=…]')` for a trusted
+  click. Avoids brittle snapshot refs.
+- **Brand picker responds to typed input**, but `browser_type` with `slowly:true`
+  (`pressSequentially`) **appends** — it does not clear first. Clear with an empty `fill('')` before
+  typing, or the value concatenates (saw "MTVMichael Kors").
+- **"Search for a Metric" filter works**: typing "Engagements" surfaced the Engagements rollup +
+  per-channel variants (Facebook/Twitter/Instagram/YouTube/TikTok/LinkedIn/Threads/Pinterest).
+- **DS data grid = `.al-table` → `.al-table__row` → `.al-table__cell`** (metric name in
+  `.al-table__metric`). NOT a `<table>`/`role=row`; query `.al-table__row` directly. Row text order:
+  Metric, Brand, perspective badge (P/A), Sum, Average, then one cell per day.
+- **Em-dash (`–`) = missing day** confirmed (Facebook Jun16/Jun20). Per-row Σ(daily) == Sum holds.
+- **Direct-URL nav to Data Studio rendered fine** this run — the Chrome-MCP "blank on direct nav"
+  quirk did not reproduce under Playwright (still prefer menu nav if a blank page appears).
+
+### 2026-06-22 — storageState auth replay is unreliable; use programmatic login (RESOLVED)
+
+**Symptom.** Pre-flight step 2 failed. `browser_navigate('https://app.lfmdev.in')` redirected to the
+Cognito hosted-UI login form. Console showed the app JS fully bootstrapped (`Bootstrapping
+application` → `global storage initialized`) and *then* the client redirected to login — i.e. the app
+ran its own session check and found itself unauthenticated. `config/storageState.json` was only
+~12 min old, so this was not simple expiry.
+
+**Root cause — confirmed by inspecting a live authenticated session** (`browser_evaluate` after a
+successful login):
+- The app session is **`apc_session`** (localStorage) **+ `apc_user`** (611 chars, **`sessionStorage`**)
+  **+** a server-side **HttpOnly cookie** on the app domain (not JS-visible).
+- There are **no discrete Cognito tokens** (`idToken`/`accessToken`/`refreshToken`,
+  `CognitoIdentityServiceProvider.*`) in localStorage or sessionStorage. The Cognito side rides in the
+  HttpOnly cookie.
+- Playwright `storageState` (`--save-storage` / `--storage-state`) serializes **only cookies +
+  localStorage — never sessionStorage.** So `apc_user` is dropped on capture, and the captured file
+  also lacked the app-domain session cookie (it only had `G_ENABLED_IDPS` on `.app.lfmdev.in` plus
+  `auth.lfmdev.in` Cognito cookies). Replay is therefore missing two of the three required pieces →
+  redirect to login. Re-capturing the same way cannot fix this.
+
+**Resolution — programmatic email/password login (adopted).** Logging in fresh at the start of each
+run rebuilds the full session (localStorage + sessionStorage + HttpOnly cookie) and renders the
+dashboard. Verified headed end-to-end on 2026-06-22:
+1. `browser_navigate('https://app.lfmdev.in')` → redirected to Cognito hosted UI.
+2. Fill the **"With existing account"** form: Email address, Password (creds from gitignored
+   `config/.env`: `LFM_EMAIL` / `LFM_PASSWORD`).
+3. Click that form's **Sign in** button → `oauth_callback` → dashboard (`#home`, title
+   "Home - ListenFirst").
+
+Note there are **two** "Sign in" buttons on the page (Corporate-email SSO vs. existing-account).
+Target the existing-account form specifically, e.g.
+`page.locator('form').filter({ hasText: 'With existing account' }).getByRole('button', { name: 'Sign in' })`.
+
+`storageState.json` is no longer required for auth and can be ignored/removed for this track.
+
 ### Data Studio layered tag filter NOW has Include/Exclude (FIXED 2026-06-13)
 
 - **First observed fixed:** 2026-06-13 (QA-4325 QA-134517) — was a FAIL on 2026-06-02.

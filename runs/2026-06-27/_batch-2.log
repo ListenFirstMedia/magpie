@@ -1,0 +1,69 @@
+>> QA-104876 (full) — Sat Jun 27 18:14:47 IST 2026  [timeout 900s]
+QA-104876 executed in full — **PASS (3/3)**.
+
+**What ran:** Pre-flight login succeeded (Home renders). Ran the safe create+delete cycle from the `settings-custom-data-sets` v2 skill on the Amazon Prime Video account (case names no account, so no switch needed). Created throwaway CDS `QA-104876-test-20260627`, then exercised Delete via Actions menu → confirm modal → Ok → reload. The pre-existing real CDS "Amazon Reporting" was left untouched.
+
+**Assertions:**
+- A1 — Confirmation modal verbatim: `Are you absolutely sure you want to delete your data set "QA-104876-test-20260627"? Click "Ok" to continue.` (Cancel + Ok) — PASS
+- A2 — Row removed immediately after Ok (DOM-verified) — PASS
+- A3 — Deletion persists after hard reload — PASS
+
+**Evidence:** 3 screenshots under `.playwright-out/QA-104876-0{1,2,3}-*.png` plus exact post-delete DOM reads.
+
+**Bugs:** none.
+
+Report written to `runs/2026-06-27/QA-104876-report.md`. Account left in original state (no residual test data).
+scripts/run-case.sh: line 80: 14423 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID}"; pkill -P "$CLAUDE_PID" 2> /dev/null; kill -9 "$CLAUDE_PID" 2> /dev/null;
+fi )
+>> done (rc=0) — report: runs/2026-06-27/QA-104876-report.md
+>> QA-1053 (full) — Sat Jun 27 18:19:46 IST 2026  [timeout 900s]
+>> TIMEOUT after 900s — killing QA-1053
+>> QA-106218 (full) — Sat Jun 27 18:34:46 IST 2026  [timeout 900s]
+QA-106218 executed in full — **PASS, 14/14 assertions**. Report at `runs/2026-06-27/QA-106218-report.md`.
+
+Key points:
+- **Login + precondition:** Logged in fresh via the existing-account Cognito form. Home was on Adam Orfei, but the Custom Data Sets page loaded under **"Account: Hulu"** — I switched to Adam Orfei via the user-menu account search (picked from **Results**, not Recent Searches) and re-verified before proceeding.
+- **Create flow:** Built a CDS named `QA-106218-20260627-183914` with the 7 spec metrics. All assertions held — lock icons on Comments/Shares/Engagement Rate/Impressions (A7), no icons on Engagements/Reactions/Response Rate (A8), "Selected Metrics (7)" (A9), timestamp persistent (A10), and the listing row showed metrics in exact added order (A13).
+- **Cleanup:** Deleted the created CDS (Actions → Delete → Ok) so no mutation persists; confirmed the row was removed.
+- **Bugs filed (markdown only):** (1) Settings > Custom Data Sets didn't inherit the active account context (loaded Hulu instead of Adam Orfei) — flagged for product. (2) Known timestamp format variance (`(PT):` + space vs spec's pipe) — non-blocking.
+
+Two non-blocking variances were scored PASS per the skill's documented guidance; no functional defect in the Create flow.
+scripts/run-case.sh: line 80: 15556 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID}"; pkill -P "$CLAUDE_PID" 2> /dev/null; kill -9 "$CLAUDE_PID" 2> /dev/null;
+fi )
+>> done (rc=0) — report: runs/2026-06-27/QA-106218-report.md
+>> QA-106221 (full) — Sat Jun 27 18:43:30 IST 2026  [timeout 900s]
+QA-106221 complete — **PASS, 5/5 assertions**. Report written to `runs/2026-06-27/QA-106221-report.md`.
+
+**Summary:**
+- **Pre-flight:** logged in via the existing-account Cognito form, confirmed `#home`, Custom Data Sets loaded under Adam Orfei (no drift this run).
+- **Precondition:** QA-106218's CDS had been self-deleted in its own cleanup, so I recreated the exact initial order (`Engagements, Reactions, Response Rate, Comments, Shares, Engagement Rate, Impressions`, Impressions@7) via the Create flow rather than substituting a different CDS.
+- **Edit flow:**
+  - A1 — header reads exactly `Edit Custom Data Set` ✅
+  - A2 — dragged Engagements to #3 using the product's keyboard-accessible DnD (Space/ArrowDown×2/Space); page's own live region confirmed "moved from position 1 to 3" ✅
+  - A3 — deleted #7 Impressions; header → "Selected Metrics (6)" ✅
+  - A4 — added Twitter "Views" (key `twitter.post.public_impressions`); only the Twitter icon shown ✅
+  - A5 — saved; persisted order = `Reactions, Response Rate, Engagements, Comments, Shares, Engagement Rate, Views` ✅
+- **Cleanup:** deleted the transient CDS (verbatim confirm modal), account back to 7 CDS.
+- **Bugs filed:** none. One non-bug carry-forward note flagging the QA-106218→QA-106221 dependency fragility (106218 self-cleans, so 106221 must own its setup).
+
+Evidence screenshots: `QA-106221-01-edit-final-order.png`, `QA-106221-02-listing-saved-order.png`.
+scripts/run-case.sh: line 80: 16089 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID}"; pkill -P "$CLAUDE_PID" 2> /dev/null; kill -9 "$CLAUDE_PID" 2> /dev/null;
+fi )
+>> done (rc=0) — report: runs/2026-06-27/QA-106221-report.md
+>> QA-107134 (full) — Sat Jun 27 18:52:28 IST 2026  [timeout 900s]
+QA-107134 executed in full. Verdict: **PASS**.
+
+**Results:**
+- **A1/A2 PASS** — Fresh-tab deep link preserved account (Adam Orfei, id=54), date range (Jun 21–27 2026), and the `Activity: Brand Set Created` filter (17 identical rows).
+- **A3 probe — APPS-54603 REPRODUCED (broader scope)** — Same-tab URL replace left the UI stuck on the old date range *and* old filter, even though the address bar showed the new params. The same URL loaded correctly in a fresh tab (38 `User Created` rows, Jun 1–10), proving the URL is valid and only the in-place re-route is broken. The ticket implies only filters fail; date range failed too.
+
+Reused `settings-audit-logs` v2; all 5 steps done via real UI (Settings menu nav, checkbox + Apply Filter). No Jira tickets created — bug captured in the report only.
+
+Report: `runs/2026-06-27/QA-107134-report.md`; screenshots `QA-107134-01..04` under `.playwright-out/`.
+scripts/run-case.sh: line 80: 16648 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID}"; pkill -P "$CLAUDE_PID" 2> /dev/null; kill -9 "$CLAUDE_PID" 2> /dev/null;
+fi )
+>> done (rc=0) — report: runs/2026-06-27/QA-107134-report.md

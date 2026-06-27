@@ -12,18 +12,26 @@
 - **Viewport:** Playwright default (set `--viewport-size` in `.mcp.json` if a case needs a fixed size)
 - **Network:** real, no throttling
 
-## Auth (storageState)
+## Auth (programmatic email/password login)
 
-The app is **Google SSO** — there are no stored passwords. Headless runs reuse a captured session:
+The app supports a Cognito **email/password** path ("With existing account" on the hosted UI). We log
+in fresh at the start of every run rather than replaying a saved session.
 
-1. One-time interactive capture:
-   ```
-   npx playwright open --save-storage=config/storageState.json https://app.lfmdev.in
-   ```
-   Complete the Google SSO login by hand in the window that opens; the session is written to `config/storageState.json`.
-2. `.mcp.json` points Playwright MCP at that file via `--storage-state ./config/storageState.json`.
-3. The file is **gitignored**. For CI, store its contents as the `LFM_STORAGE_STATE` secret.
-4. **Refresh:** the SSO session expires periodically. When pre-flight fails on a login redirect, re-run the capture command.
+**Why not storageState:** `--save-storage` serializes only cookies + localStorage, never
+sessionStorage. This app's live session needs `apc_user` (sessionStorage) + `apc_session`
+(localStorage) + a server-side HttpOnly cookie, so storageState replay lands on the login page even
+right after capture. See known-quirks.md (2026-06-22).
+
+**Login flow (driven via Playwright MCP):**
+1. Credentials live in **`config/.env`** (gitignored): `LFM_EMAIL`, `LFM_PASSWORD`.
+2. `browser_navigate('https://app.lfmdev.in')` → redirects to the Cognito hosted UI.
+3. Fill the **"With existing account"** form (Email address + Password) and click **its** Sign in
+   button. There are two "Sign in" buttons on the page — target the existing-account form
+   specifically (not the Corporate-email/SSO one).
+4. Wait for `app.lfmdev.in/#home` (title "Home - ListenFirst") to render.
+
+**CI:** provide `LFM_EMAIL` / `LFM_PASSWORD` as secrets. `storageState.json` is no longer used for
+auth on this track.
 
 ## Jira ingestion caveat
 
@@ -42,8 +50,10 @@ Test cases come from Jira via the Atlassian MCP, which is **interactively authen
 ## Pre-flight (run at start of every regression run)
 
 1. Confirm app is reachable (HEAD on base URL → 2xx/3xx)
-2. Confirm the storageState session is valid — navigate to `app.lfmdev.in`, assert the dashboard renders **without** a login redirect. If redirected → auth expired → re-capture storageState and abort.
-3. Confirm dashboard renders (one canonical assertion)
+2. Log in — navigate to `app.lfmdev.in`; when redirected to the Cognito hosted UI, fill the
+   "With existing account" form from `config/.env` and submit (see "Auth" above).
+3. Confirm dashboard renders (one canonical assertion) at `app.lfmdev.in/#home` **without** remaining
+   on a login redirect. If login fails (still on `auth.lfmdev.in`), verify `config/.env` creds.
 4. If any step fails: abort the run, emit a smoke-failure report, do not run remaining cases
 
 ## Run cadence

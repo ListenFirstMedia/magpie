@@ -178,5 +178,15 @@ Use JS-fallback `find` + ref-based click for each:
 - **Delete:** Options → Delete → confirm text `Are you absolutely sure you want to delete your "<name>" dashboard? Click "Ok" to continue.` → redirects to default dashboard; menu entry gone.
 - Dashboard ids are NOT strictly sequential (created 6295 while 6260-6264 existed; 6264 = another user's, shows "You can only share dashboards that you've created").
 
+## Read-only / navigation details (merged from `dashboards-crud` 2026-06-10 snapshot)
+
+Non-mutating dashboard surfaces consolidated here so all dashboard knowledge lives in one skill:
+
+- **Short link (QA-16775):** the pin/link icon (bottom-right circular button, real coordinate click) opens an input `https://app.lfmdev.in/#s/<slug>` + a copy icon. The short link resolves to the full dashboard URL **without** the `create=success` param.
+- **Saved-tile anatomy:** header link `<Brand> (<Category>: <Tab>)`, perspective label top-right, data identical to the source page. Action links sit **below** the tile: `Insights | Content | Remove from Dashboard` (test cases that say "right side" are stale).
+- **Share modal (inspect only — do NOT add recipients):** Options menu = exactly Edit / Share / Delete. Share modal: `People:` email input + Add, owner row, `Copy Link | Bulk Share this Dashboard`, Cancel, and Share (disabled until a recipient is added). Agent policy: inspect only, hand off any actual share.
+- **Tile-naming caveat:** Insights tile names vary by account config — Adam Orfei has "Fan Growth Rate"; the Michael Kors account has BOTH "Follower Growth" and "Fan Growth Rate". Resolve tiles by regex, not exact name.
+
 ## Changelog (cont.)
 - **v2** (2026-06-11): Remove-from-Dashboard persistence bug, full-event-dispatch requirement, selector-dropdown row mechanics, drag recipe, delete confirm text.
+- **v2.1** (2026-06-27): Merged unique read-only/nav coverage from the retired `dashboards-crud` snapshot (short link, saved-tile anatomy, share modal read-only, tile-naming regex caveat).

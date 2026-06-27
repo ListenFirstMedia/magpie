@@ -1,0 +1,60 @@
+>> QA-100764 (full) — Sat Jun 27 14:30:58 IST 2026
+QA-100764: **BLOCKED — test-data gap.**
+
+- Pre-flight login PASS; Steps 1–2 PASS (navigated Brand→Content; switched to exact-match **Max** brand, brand_id=412264, per Rule 1).
+- **Step 3 blocked:** Max's Brand>Content channel selector offers only Facebook / X / Instagram / TikTok / YouTube — **no Threads** toggle. Confirmed by UI screenshot, DOM probe, and `channels=threads` being stripped by the router.
+- Because Threads gates every assertion (A1 = "Threads channel icon displaying…"), A1–A6 are all NOT VERIFIED. Per Rule 1 I did not substitute another channel; per Rule 3 I did not fake the modal steps.
+
+Report written to `runs/2026-06-27/QA-100764-report.md` with steps, assertions table, evidence (3 screenshots under `.playwright-out/`), and a Bugs-filed section flagging the Threads-for-Max data gap for LFIQA/product to resolve (enable Threads collection, name the correct account, or update the stale spec).
+>> done — report: runs/2026-06-27/QA-100764-report.md
+>> QA-103246 (full) — Sat Jun 27 14:39:43 IST 2026
+QA-103246 executed in full. Report at `runs/2026-06-27/QA-103246-report.md`.
+
+**Result: PASS** on all in-scope assertions.
+
+| Assertion | Status |
+|---|---|
+| A1 PNG filename `MTV-Daily Content Analysis-Bar-2026-05-15-2026-05-20.png` | PASS |
+| A2 LISTENFIRST logo + MTV in header | PASS |
+| A3 date range footer below chart | PASS |
+| A4 PNG matches modal (empty May 16 bar) | PASS |
+| A5 / A6 Google Sheets | OUT OF SCOPE (Playwright MCP track per `config/env.md`) |
+| A7 May 16 TikTok endash (DATA-12209) | PASS — **DATA-12209 reproduced** |
+| A8 close dismisses modal | PASS |
+
+Highlights: brand verified as exactly **MTV** (Rule 1); chart switched to Bar via explicit dropdown click (Rule 2/3); PNG verified by reading the actual file off disk, 847×573 RGBA (Rule 6) — not inferred. DATA-12209 reproduced: all six metrics show `–` on 2026-05-16 while May 15/17 carry real values, and the exported PNG shows an empty May 16 slot. **No new bugs filed** — the only defect exercised is the already-open DATA-12209.
+>> done — report: runs/2026-06-27/QA-103246-report.md
+>> QA-103248 (full) — Sat Jun 27 14:47:23 IST 2026
+QA-103248 executed in full and report written to `runs/2026-06-27/QA-103248-report.md`.
+
+**Result: PASS** (all in-scope assertions).
+
+- **A1** ✅ Filename `Love Island USA (Peacock)-Daily Content Analysis-Bar-2026-06-22-2026-06-25.png` — verified as the actual saved file on disk (43,855 bytes), satisfying Rule 6.
+- **A2** ✅ LISTENFIRST logo + wordmark top-left, above the brand name.
+- **A3** ✅ "Daily Content Analysis" + "Date: Jun. 22, 2026-Jun. 25, 2026" below the graph.
+- **A4** ✅ PNG bars/legend match the modal (Sum 2,578,064 = per-day sum; Avg 644,516).
+- **A8** ✅ Modal closes, grid restored.
+- **A5/A6/A7** ⛔ Out of scope — Google Sheets export is excluded per `config/env.md` (Google 2FA). The Export menu was confirmed to *offer* the GS option, but the flow wasn't driven.
+
+Spec-adherence notes: brand set selected via the exact typeahead Result `LF // TV // Episodic` (not the `Plus` variant; Rule 1); Bar chart selected via explicit dropdown click (Rule 2/3); PNG verified against the real saved file, not DOM signals (Rule 6). The A1 strikethrough was non-blocking — the current build's filename still contains "Daily Content Analysis".
+
+**Bugs filed: none.**
+>> done — report: runs/2026-06-27/QA-103248-report.md
+>> QA-10387 (full) — Sat Jun 27 14:58:19 IST 2026
+>> QA-10387 (full) — Sat Jun 27 17:51:58 IST 2026  [timeout 900s]
+>> TIMEOUT after 900s — killing QA-10387
+>> QA-104870 (full) — Sat Jun 27 18:06:58 IST 2026  [timeout 900s]
+Done. QA-104870 executed in full against `app.lfmdev.in` under the correct account.
+
+**Result: PASS** — 12/13 assertions PASS, A5 N/A (empty-table state not observable on Adam Orfei, which has 7 data sets). No bugs filed.
+
+Key points:
+- Pre-flight login via the "With existing account" Cognito form succeeded.
+- **Account precondition required correction**: the session's persisted account was Hulu (336) and surfaced on first navigation, despite the cold home label reading "Adam Orfei". I switched to Adam Orfei (account_id=54) via the LFQA menu → Search Account → Results, then re-ran all steps. Flagged the cold-load label inconsistency as an observation for human review, not a filed bug.
+- A1 (order Brands→Custom Data Sets), A2 (active-class highlight), A3 (breadcrumb), A6 (verbatim helper text), A7 (Create button right-side), A8 (5 column headers), A9 (Edit/Delete/Duplicate order), A10–A13 (table contents incl. `Mon. DD, YYYY` dates) all verified with exact evidence.
+
+Report: `runs/2026-06-27/QA-104870-report.md`; 3 screenshots under `.playwright-out/`.
+scripts/run-case.sh: line 80: 13597 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID}"; pkill -P "$CLAUDE_PID" 2> /dev/null; kill -9 "$CLAUDE_PID" 2> /dev/null;
+fi )
+>> done (rc=0) — report: runs/2026-06-27/QA-104870-report.md

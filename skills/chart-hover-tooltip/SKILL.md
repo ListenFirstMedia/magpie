@@ -1,10 +1,10 @@
 ---
 name: chart-hover-tooltip
-version: 1
-last_verified: 2026-05-18
-last_passed_run: null
+version: 2
+last_verified: 2026-06-22
+last_passed_run: 2026-06-22
 trust: untrusted
-pass_streak: 0
+pass_streak: 1
 preconditions: [chart-rendered-with-data]
 postconditions: [tooltip-text-captured]
 inputs: [chart_type, datapoint_index]
@@ -12,18 +12,58 @@ outputs: [tooltip_text]
 related_pages: ["/#explore/brand/insights", "/#explore/brand/audience"]
 ---
 
-# Chart Hover Tooltip — JS Workaround
+# Chart Hover Tooltip
 
-Native Chrome MCP `hover` is hit-or-miss on chart elements because:
+> **2026-06-22 — Playwright MCP rewrite. READ THE "Playwright MCP" SECTION FIRST.**
+> Under Playwright MCP, `browser_hover` is a **trusted** hover and triggers chart tooltips natively —
+> the JS synthetic-event workaround below is **no longer needed**. The charts are also **D3 SVG, not
+> Recharts**, so the `.recharts-*` selectors in the legacy steps **do not exist** in the current
+> build. The legacy "Chrome MCP / Recharts" content is retained below for history only.
+
+## Playwright MCP — current approach (Brand > Insights, verified 2026-06-22)
+
+The Brand>Insights big-number tiles render **D3 / custom SVG** charts, not Recharts. Real markup:
+- Bars: `rect.bar.<channel>-<YYYY-MM-DD>` (e.g. `rect.bar.twitter-2026-06-14`).
+- Donut: `.arc` / `.donut-center-label`; axes: `.axis .tick .domain`.
+- Bar `<title>` elements are **empty** — the tooltip is JS-driven, not a native SVG title.
+
+**Steps:**
+1. Ensure tiles are loaded with a **valid date + compare-date window**. If you reach Insights with
+   missing/invalid `compare_from`/`compare_to`, tiles never load (looks like a hang — it is NOT).
+   Switching account via the LFIQA menu, or navigating via the Brand menu after a Home load with
+   dates, sets valid compare dates. (See `knowledge-base/known-quirks.md` 2026-06-22.)
+2. Locate a populated datapoint and tag it (custom SVG is not in the a11y tree):
+   ```js
+   // browser_evaluate
+   const bar = document.querySelector('rect.bar.twitter-2026-06-14'); // pick a non-zero one
+   bar.setAttribute('data-spk','hoverbar');
+   ```
+3. `browser_hover` the tagged element — `[data-spk="hoverbar"]`. No synthetic events needed.
+4. Read the tooltip from the DOM at **`.al-bar-chart__tooltip`** (no screenshot required):
+   ```js
+   document.querySelector('.al-bar-chart__tooltip')?.textContent
+   ```
+   Format: `Mon. DD, YYYY` then one line per channel `Channel: value (±%)`, e.g.
+   `Jun. 14, 2026 · Facebook: 4,994 (+108.4%) · Twitter: 13,183 (+2.7%) · …`.
+   This satisfies QA-96670 A2 (bar) / A4 (area) format checks.
+5. A screenshot (`browser_take_screenshot`) is a fallback only if the tooltip selector changes.
+
+Used by:
+- **QA-96670** — Brand Insights chart hovers (account "Max" → HBO Max; current-week Threads data may
+  be zero, use a populated channel/window).
+- Any test asserting on chart-tooltip content.
+
+---
+
+## Legacy (Chrome MCP / Recharts) — historical, superseded 2026-06-22
+
+The notes below assume Chrome MCP + Recharts and are kept for history. Do not use the
+synthetic-event dispatch or `.recharts-*` selectors under Playwright MCP.
+
+Native Chrome MCP `hover` was hit-or-miss on chart elements because:
 1. Recharts/D3 charts use SVG paths, not block-level elements — hover events bubble inconsistently.
 2. MCP's `hover` action dispatches a single `mouseover` but Recharts often needs both `mousemove` AND `mouseover` to render its tooltip.
 3. Zero-data charts have no datapoints to hover.
-
-This skill documents the JS-based workaround that reliably triggers and captures tooltip content.
-
-Used by:
-- **QA-96670** — Brand Insights Threads chart hovers (deferred this session).
-- Any test that asserts on chart-tooltip content (bar tooltip, area tooltip, pie tooltip).
 
 ## Steps
 
@@ -110,6 +150,11 @@ See `knowledge-base/bug-history.md` for the full per-ticket bug list. Highest-pr
 - LFMP-31781 (Minor) — Brand Insights - Hovering Functionality - twitter icon color is blue     [from QA-1124]
 
 ## Changelog
+- **v2** (2026-06-22): Playwright MCP rewrite. Confirmed Insights charts are **D3 SVG, not Recharts**
+  (`rect.bar.<channel>-<date>`, `.arc` donut). `browser_hover` triggers the tooltip natively (no
+  synthetic events); tooltip is DOM-readable at `.al-bar-chart__tooltip` (no screenshot needed).
+  Verified end-to-end on HBO Max (brand 155614). "Insights renderer hang" re-diagnosed as
+  invalid/missing compare dates. Legacy Recharts content demoted to a historical section.
 - **v1** (2026-05-18): Initial scaffold from QA-96670 hover-test deferral. Not yet executed end-to-end (HBO Max Threads had no data).
 
 ## 2026-06-11 batch-3 update (QA-96670 Threads, HBO Max Sep 2025)

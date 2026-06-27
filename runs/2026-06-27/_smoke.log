@@ -1,0 +1,8 @@
+>> QA-100764 (--login-only) — Sat Jun 27 17:49:23 IST 2026  [timeout 900s]
+Login succeeded — URL is `app.lfmdev.in/#home...` with title "Home - ListenFirst: Home".
+
+LOGIN OK https://app.lfmdev.in/#home?account_id=54&from=2026-06-20&to=2026-06-26&compare_from=2026-06-13&compare_to=2026-06-19
+scripts/run-case.sh: line 80: 13160 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID}"; pkill -P "$CLAUDE_PID" 2> /dev/null; kill -9 "$CLAUDE_PID" 2> /dev/null;
+fi )
+>> done (rc=0) — report: runs/2026-06-27/QA-100764-report.md

@@ -1,10 +1,10 @@
 ---
 name: data-studio-post-level-run
-version: 1
-last_verified: 2026-05-13
-last_passed_run: 2026-05-13
+version: 2
+last_verified: 2026-06-22
+last_passed_run: 2026-06-22
 trust: untrusted
-pass_streak: 1
+pass_streak: 2
 preconditions: [user-logged-in, account-set]
 postconditions: [report-built]
 inputs: [brand_name, perspective, metric_names, date_range, interval, window_mode]
@@ -15,6 +15,25 @@ related_pages: ["/#explore/reporting/data_studio"]
 # Run a Data Studio Post-Level report
 
 End-to-end: Reporting → Data Studio → Post Level, add a brand, select metrics, click Go.
+
+## Playwright MCP notes (verified 2026-06-22, Michael Kors, report 298410)
+
+- **Brand picker** (`input` in "Add a Brand"): Playwright real keystrokes trigger the React
+  typeahead. `browser_type` with `slowly:true` **appends** — clear with an empty `fill('')` first.
+  Options render in `.al-typeahead__option` (class `dropdown-option--add-brand`), which are **not in
+  the accessibility tree** — tag the exact-match option in `browser_evaluate`
+  (`el.setAttribute('data-spk',…)`) then `browser_click('[data-spk=…]')`.
+- **Metric tree**: open `Select Metrics` (`.metrics__tree-modal`). Type in the **Search for a Metric**
+  input to filter (e.g. "Engagements" surfaces the Engagements rollup + per-channel variants). The
+  metric checkboxes are `.controlled-check-box` and respond to a **trusted `browser_click`** — the
+  Chrome-MCP focus+Space dispatch is **not needed**. `far fa-square` → `fas fa-check-square` on
+  select; verify via the icon class. Close with `.metrics__tree-modal__close`.
+- **Data grid**: rendered as `.al-table` → `.al-table__row` → `.al-table__cell` (metric name in
+  `.al-table__metric`), NOT a `<table>`/`role=row`. Query `.al-table__row` directly. Row order:
+  Metric, Brand, perspective badge (P/A), Sum, Average, then one cell per day. Σ(daily) == Sum holds;
+  `–` (em dash) = missing day (excluded from Sum, but Average divides by the full day count).
+- **Navigation**: drive via the **Reporting menu**, not hand-built URLs (per project rule). Direct-URL
+  nav did render this run, but menu nav is the standard.
 
 ## Steps
 
@@ -117,6 +136,11 @@ See `knowledge-base/bug-history.md` for the full per-ticket bug list. Highest-pr
 - LFMP-31977 (Major) — Reporting > Data Studio Report - Save to dashboard dropdown remains visible when graph tile is missing     [from QA-96818]
 
 ## Changelog
+- **v2** (2026-06-22): Playwright MCP validation (Michael Kors, 7D, report 298410). Added "Playwright
+  MCP notes": trusted `browser_click` on `.controlled-check-box` (focus+Space obsolete), DOM-tagging
+  for non-a11y typeahead/tree widgets, `fill('')`-before-type to avoid appended input, and the data
+  grid selectors (`.al-table__row`/`.al-table__cell`). Confirmed Engagements rollup ≈ Σ(channel
+  engagements) and Σ(daily)=Sum; em-dash = missing day.
 - **v1** (2026-05-13): Initial draft from QA-84084 exploration. Math identity (Engagements = Likes + Comments) confirmed for MTV Public Data on May 07, 2026 (Sum=433, Likes=413, Comments=20).
 
 ## 2026-06-11 batch-3 updates (QA-80360 page-level / QA-111213 page+post)

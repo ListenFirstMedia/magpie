@@ -1,10 +1,10 @@
 ---
 name: time-window-comparison-run
-version: 5
-last_verified: 2026-06-08
-last_passed_run: 2026-06-08
+version: 6
+last_verified: 2026-06-22
+last_passed_run: 2026-06-22
 trust: untrusted
-pass_streak: 17
+pass_streak: 18
 preconditions: [user-logged-in, account-set]
 postconditions: [report-built]
 inputs: [brand_name, perspective, data_points, date_range_type, start_date, end_date, keydate_season, keydate_episode]
@@ -16,6 +16,24 @@ related_skills: [keydate-picker]
 # Run a Time Window Comparison report
 
 End-to-end: open the TWC builder, add a brand, pick metrics, optionally choose date range type, run the report.
+
+## Playwright MCP notes (verified 2026-06-22, QA-198, Disney Ad Sales)
+
+Under **Playwright MCP**, several Chrome-MCP workarounds in this skill are **obsolete**:
+
+- **Brand picker (Step 4):** Playwright real keystrokes trigger the React typeahead — type with
+  `browser_type` (`pressSequentially`) and the dropdown populates. The
+  `Object.getOwnPropertyDescriptor(...).set` + `dispatchEvent` workaround is **not needed**.
+  Caveat: `slowly:true` typing **appends**; clear the field with an empty `fill('')` before each new
+  brand. Pick the exact match from **Results**. **Exact-text gotcha:** "Fox News" renders as
+  **"FOX News"** (uppercase) — match case-insensitively.
+- **Metric checkboxes (Step 7) & Options checkboxes:** the `.controlled-check-box` widget responds to
+  a **trusted `browser_click`** on `.controlled-check-box__label` — the v5 `focus()`+Space-dispatch
+  workaround is **not needed** under Playwright.
+- **Custom widgets aren't in the accessibility tree.** Brand options, metric checkboxes, and the
+  Run/Export buttons don't appear in `browser_snapshot`. Locate by text/class in `browser_evaluate`,
+  tag with `el.setAttribute('data-spk', …)`, then `browser_click('[data-spk=…]')`.
+- **Exports → see "Exporting the report" below.** CSV/TSV/XLS download to disk synchronously.
 
 ## Steps
 
@@ -93,6 +111,26 @@ input.focus();
 - **Assertion (during):** a "Building Your Story" interstitial briefly appears.
 - **Assertion (after):** URL changes to `/#story/time_window_comparison/<numeric_id>`. Page shows a brand panel with `Type` and `Manufacturer`, plus a line chart and a data table for the chosen metric. Header shows `Time Window Comparison (<begin_date> - <end_date>)`.
 
+### Step 9 — Export (QA-198 etc.)
+
+On the built report, the **Export** control (`div.export-btn-container.lfm-button-dropdown` /
+`button.cta-wrapper.call-to-action-button.export`) opens a dropdown of `.lfm-option-label` items:
+**Google Sheets · CSV · TSV · XLS**.
+
+- **Download-to-disk works under Playwright MCP (synchronous).** Clicking a format option fires a
+  Playwright `download` event; the file is saved to the configured `--output-dir`
+  (`.playwright-out/`). No async queue / notification-bell / signed-CDN anchor (unlike Content/Paid
+  CSV). No `URL.createObjectURL`/anchor-click hook needed.
+- **Flow per format:** click Export → tag the format label → `browser_click` it → the download event
+  reports the saved path. The dropdown closes after each pick, so re-click Export for the next
+  format. Filenames are slugified: `<Brand> - Time Window Comparison - <begin> - <end>.<ext>`
+  (XLS saves as `.xlsx`).
+- **Verifying on disk:** CSV header = `Perspective, Brand, Date, <metric…>`; one row per brand×day.
+  TSV is byte-identical data to CSV (tab-delimited). XLS carries the same header/rows/values. Rate
+  metrics serialize as a raw float (e.g. `0.000104…`), not a `%` string. Em-dash days appear as
+  empty/absent cells. **Google Sheets is out of scope** for headless runs (Google 2FA on a separate
+  auth surface) — skip A10-style GS assertions.
+
 ## Data freshness — em-dash rows
 
 The data table for a metric may show `–` (an em dash) for any date past the "Data Last Updated" timestamp. This is **normal data freshness behavior**, not a bug, and should not fail an assertion unless the case specifically tests that all dates in range have data. The current `Data Last Updated (PT)` value is shown in the Home page header and reflects the most recent ETL run.
@@ -160,6 +198,10 @@ Custom metrics created with the new APPS-60358 × and ÷ operators (per `setting
 
 ### `controlled-check-box` focus + Space-dispatch (CARRY FROM CPR builder)
 
+> **Superseded under Playwright MCP (2026-06-22):** a trusted `browser_click` on
+> `.controlled-check-box__label` flips and persists `aria-checked` — the focus+Space dispatch below
+> is a Chrome-MCP-only workaround. Kept for history / Chrome-MCP fallback.
+
 The TWC Options panel uses the same `controlled-check-box` React widget as CPR (see `cpr-builder` skill). For Options like `Show Cohort Average`, `Show Competitor Average`, `Show Source Links`:
 
 ```javascript
@@ -201,6 +243,11 @@ This pattern is confirmed required for:
 | Calendar nav `th.prev.click()` stalls after first click | React handler re-binding lag | Add `await setTimeout(150)` between clicks |
 
 ## Changelog
+- **v6** (2026-06-22): Playwright MCP validation (QA-198, Disney Ad Sales, 4 brands / 3 datapoints).
+  Added "Playwright MCP notes" + Step 9 (Export). Confirmed obsolete-under-Playwright: brand-picker
+  React dispatch workaround (real keystrokes work) and `controlled-check-box` focus+Space (trusted
+  click works). Documented synchronous CSV/TSV/XLS download-to-disk to `--output-dir`, and the
+  "FOX News" uppercase exact-text gotcha. GS out of scope.
 - **v5** (2026-06-08): × ÷ operators in custom-metric columns (QA-137558); `controlled-check-box` focus+Space workaround for Options panel (overdue documentation); `th.prev/th.next` JS-fallback with `setTimeout(150)` for multi-month calendar nav.
 - **v4** (2026-05-13): Added Aggregate interval semantics and Cohort/Competitor Average overlay-line behavior + assertion patterns (from QA-126530 run).
 - **v3** (2026-05-13): Added Relative Dates flow (Start/End numbers, Before/After direction, Key Date column on brand rows, Bulk Select Key Date for multi-brand). Linked to new `keydate-picker` skill. Documented the Filter Metrics → category-level `On` button shortcut for enabling many metrics at once (subcategories need their own `On` clicks; deeply nested metrics may require expanding the tree first).

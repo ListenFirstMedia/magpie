@@ -1,10 +1,10 @@
 ---
 name: brand-content-dpa-modal
 version: 1
-last_verified: 2026-06-08
-last_passed_run: 2026-06-08
+last_verified: 2026-06-27
+last_passed_run: 2026-06-27
 trust: untrusted
-pass_streak: 5
+pass_streak: 7
 preconditions: [account-context, brand-or-brand-set-selected, posts-loaded]
 postconditions: [dpa-modal-rendered, exports-verified]
 inputs: [brand_or_brand_set_id, post_index, chart_type, date_window]
@@ -138,4 +138,5 @@ See `knowledge-base/bug-history.md`. Highest-priority open bugs currently tied t
 
 ## Changelog
 
+- **v1 reconfirm** (2026-06-27): QA-103246 (Brand>Content MTV TikTok PNG export, DATA-12209 reproduced) + QA-103248 (Brand Sets>Content Love Island USA TikTok PNG export, 8/8) both PASS on the PNG path; Google Sheets steps OUT OF SCOPE on the Playwright MCP track (Google 2FA — see `config/env.md`), so A5/A6/A7 are not-tested rather than failed. QA-100764 (Threads variant) BLOCKED on a test-data gap (Max has no Threads channel), not skill drift. pass_streak 5→7. **REGISTRY.md row added during the 2026-06-27 harvest — this skill had no registry entry before.**
 - **v1** (2026-06-08): Initial draft from QA-99380 (Graph) + QA-99416 (Table + endash math) + QA-100764 (Threads variant) + QA-103246 (PNG+GS export with DATA-12209) + QA-103248 (Brand Sets variant with 7-day workaround). Documents filename schemas, PST↔PDT timezone-label drift, the Adam's Brand Set 76K-post hang workaround, and the endash-in-denominator average math.

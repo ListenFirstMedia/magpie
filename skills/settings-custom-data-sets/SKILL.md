@@ -1,10 +1,10 @@
 ---
 name: settings-custom-data-sets
-version: 2
-last_verified: 2026-06-08
-last_passed_run: 2026-06-08
-trust: untrusted
-pass_streak: 6
+version: 3
+last_verified: 2026-06-27
+last_passed_run: 2026-06-27
+trust: stable
+pass_streak: 10
 preconditions: [account-context]
 postconditions: [custom-data-set-listed, brand-content-data-set-applied]
 inputs: [data_set_name, metrics_list]
@@ -23,6 +23,10 @@ Used by:
 - **QA-104870** (Basic View) — PASS 12/13 + 1 N/A. Spec's "blank table state" assertion is N/A on Adam Orfei (already has 6 custom CDS).
 - **QA-106218** (Create flow) — PASS 13/14 + minor format variance. Spec writes `MM-DD-YYYY | HH:MM AM/PM PT` (pipe separator); UI uses space separator. Functional behavior matches.
 - **QA-109062** (Brand>Content export) — PASS 7/7 end-to-end. CSV downloaded with spec-compliant filename, columns include all configured + breakdown metrics, no leaked LF data sets in export.
+- **QA-104876** (Delete) — PASS 3/3 (2026-06-27 reconfirm). Create→Delete→reload cycle on Amazon Prime Video; verbatim confirmation modal; refresh-persistent.
+- **QA-104870** (Basic View) — PASS 12/13 + 1 N/A (2026-06-27 reconfirm). Dropdown order, breadcrumb, description text, Actions menu order all match.
+- **QA-106218** (Create) — PASS 14/14 (2026-06-27 reconfirm). 7-metric build with lock-icon parity; timestamp format variance non-blocking.
+- **QA-106221** (Edit) — PASS 5/5 (2026-06-27, **edit flow first exercised**). Reorder via keyboard DnD, delete #7, search-add Twitter Views, save-persist.
 
 ## Steps
 
@@ -116,7 +120,45 @@ Listing count returns to N-1 pre-create rows. No mutation persists across the te
 | F5 refresh restores the deleted row | Delete not persisting server-side | File bug |
 | Actions menu order ≠ `Edit / Delete / Duplicate` | UI regression | File bug |
 
+## v3 — Edit flow (QA-106221 reorder / delete / search-add / save-persist)
+
+The Actions ellipsis → **Edit** opens `/#custom-data-sets/edit?...&report_id=<n>` with header `Edit Custom Data Set` (sole `<h1>`). The Selected Metrics table is the same widget as Create, plus reorder affordances.
+
+### Reorder a metric (keyboard-accessible DnD — preferred over synthetic mouse drag)
+Jira flags step-4 drag as "Not Recommended" for automation; use the product's own accessible DnD instead of a mouse drag:
+- Each row is `<tr aria-roledescription="You are currently at a draggable item at position N. Press space bar to lift.">` and exposes a Position `<input type=number min=1 max=7>` cell.
+- **Sequence:** focus the row → `Space` (lift) → `ArrowDown`/`ArrowUp` ×k → `Space` (drop).
+- **Verify** via the page's own `role=log` live region, e.g. `You have dropped the item. It has moved from position 1 to 3.` (Second reorder path: type the target rank into the Position spinbutton — available, not required.)
+
+### Delete a metric within Edit
+- Click the row's Remove (trash) button. Header count decrements, e.g. `Selected Metrics (7)` → `Selected Metrics (6)`. (Distinct from deleting the whole CDS — that is the v2 Actions→Delete flow.)
+
+### Search-and-add a channel-scoped metric
+- Type into **Search Metric Name** (e.g. `Views`) → tree filters to matching leaves under each channel.
+- The **same metric label can appear under multiple channels** (e.g. `Views` under Twitter / Instagram / Threads, each a distinct DCR key). Pick the spec-named channel's leaf — verify by the single channel icon on the added row and the DCR key (e.g. Twitter `Views` = `twitter.post.public_impressions`).
+
+### Save
+- Click **Save** → navigates straight to the listing; the row's Metrics cell reflects the final order. **No success toast/modal is shown** on Save (same as Create — see note below).
+
+### Dependency / precondition note
+QA-106221's spec depends on a CDS with a known initial order (Impressions at #7) left by QA-106218 — but QA-106218 self-cleans (deletes its CDS). A faithful run **recreates the exact initial-order CDS via the Create flow** as setup, then deletes it post-test. Do not substitute a differently-ordered pre-existing CDS.
+
+## Additional Failure signatures (v3)
+
+| Signature | Interpretation | Action |
+|---|---|---|
+| Edit header ≠ `Edit Custom Data Set` | Wrong route / UI regression | Investigate |
+| Reorder live-region not announcing position change | Keyboard DnD not wired | File bug |
+| Added "Views" row shows >1 channel icon | Wrong leaf selected (label collides across channels) | Re-pick spec channel |
+
+## Notes / Observations (carry-forward)
+
+- **No "Success" toast/modal on Create or Save** under Playwright (v1 noted a `Custom data set successfully created!` Ok modal; not observed on the 2026-06-27 runs — navigation to the listing is the only confirmation). A11 (Create) and Save assertions require navigation only, so this is non-blocking; noted for skill accuracy.
+- **Checkboxes/remove accept Playwright trusted clicks directly** — the Chrome-MCP `controlled-check-box` focus+Space workaround is **not** needed under Playwright.
+- **Account context not inherited on the Settings surface** — the Custom Data Sets page may load under a Recent-Searches account (e.g. Hulu) instead of the active Home account; switch via user-menu → Search Account → Results entry before evaluating. See `known-quirks.md`.
+
 ## Changelog
 
+- **v3** (2026-06-27): Edit flow (QA-106221) — keyboard-accessible DnD reorder + live-region verification, in-Edit metric delete, search-and-add of a channel-scoped metric (label-collides-across-channels caveat), save-persistence with no success toast, and the QA-106218→QA-106221 precondition-recreate pattern. **Promoted untrusted → stable** (passes on separate days 2026-06-02, 2026-06-08, 2026-06-27).
 - **v2** (2026-06-08): Delete flow (QA-104876 mutating create+delete cycle). Documents the verbatim confirmation modal text, the F5-persistent deletion behavior, and the consistent confirmation-modal pattern shared across Settings entities (custom metrics / custom data sets / brand sets / users).
 - **v1** (2026-05-27): initial skill — QA-104870 (Basic View), QA-106218 (Create), QA-109062 (Brand>Content export). All PASS in original session; documented retroactively on 2026-05-29 as part of the cross-batch skill/KB sweep.
