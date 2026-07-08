@@ -1,10 +1,10 @@
 ---
 name: brand-content-data-set-selector
 version: 1
-last_verified: 2026-05-13
-last_passed_run: 2026-05-13
-trust: untrusted
-pass_streak: 1
+last_verified: 2026-06-28
+last_passed_run: 2026-06-28
+trust: stable
+pass_streak: 34
 preconditions: [user-logged-in, account-set]
 postconditions: [data-set-applied-on-brand-content]
 inputs: [brand_id, data_set_name]
@@ -67,5 +67,24 @@ See `knowledge-base/bug-history.md` for the full per-ticket bug list. Highest-pr
 - APPS-57985 (High) — Thumbnail Issue for LinkedIn Posts     [from QA-98368]
 - LFMP-31886 (Minor) — Data Display Inconsistency: Benchmark Owned Average Row value missing parentheses in Video views column     [from QA-2706]
 
+## Headed-Playwright mechanics + Impressions-data-set lock behavior (QA-520, 2026-07-02)
+
+- **Change the brand on Brand>Content:** click the **chevron next to the heart** (`.brand-selector-dropdown-container i.fa-chevron-down`, TRUSTED click) → a **`textarea.lfm-textarea` placeholder "Search for a Brand"** appears (it's a textarea, NOT an `<input>`; set via React textarea setter + `input` event) → click the `.lfm-ta-option` result.
+- **Channel = single (e.g. Facebook only):** the channel toggles are `.channel-ghost.<name>.enabled`; disable the unwanted ones with **TRUSTED clicks** (synthetic no-op), then click **Apply** (`channels=facebook` in URL).
+- **Data Set dropdown** (`.lfm-dropdown-select-box`) needs a **TRUSTED click** to fully render the option list (a synthetic click showed a truncated list of only Public/Engagements); then click the `.lfm-dropdown-option` (e.g. "Impressions"). Full FB list incl. Impressions/Video Views/Clicks/Reels/etc.
+- **Impressions data set on an UNAUTHORIZED brand (e.g. Star Wars, Facebook):** aggregate shows **only Engagements** with a value; all Impression/Reach metrics are **locked** (`.fa-lock`). Verified pattern — **Sum:** Engagements value, Engagement Rate/Reach/Organic Reach/Paid Reach/Engaged User Rate = **N/A**, Impressions/Organic/Paid Impressions = **–**. **Average:** Engagements = avg, all others = **–**. (Aggregate Sum/Average toggle: see brand-content-table-view — Table-View-only.)
+
+## Export pop-up — context-dependent data-set enablement (QA-1519, 2026-07-02)
+
+The **Export** button (`.cta-wrapper.call-to-action-button.content-export-btn`; click the inner CTA, the outer `.content-export-btn` div intercepts pointer events; it's briefly `disabled` while a new data set's table loads — wait) opens **"Export Select Data Sets"** (View: CSV / Google Sheets toggle). The pop-up:
+- Pre-checks **only the currently-active data set** (e.g. selecting "Engagements Breakdown" as the table data set → only that box is checked on open).
+- The **enabled vs disabled** set of checkboxes depends on the active data set's **channel compatibility**:
+  - **Engagements Breakdown** → Instagram-Only sets ENABLED, Facebook-Only sets DISABLED.
+  - **Clicks** → Facebook-Only sets ENABLED, Instagram-Only sets DISABLED.
+  - In both, **Public, Engagements Breakdown, Impressions, Video Views, Clicks, Reels, Twitter Only: Engagements & Follows, YouTube Only: Basic/Insights/Premium/Subscribers & Playlists/Cards** stay enabled; **Threads-Only, Pinterest-Only, and custom (brand-specific) sets** are disabled.
+- Detect state in JS: iterate `.controlled-check-box`/`label` rows; `disabled` = class `disabled` OR ancestor `[class*=disabled]` OR `opacity<0.6` OR `input.disabled`; `checked` = `input.checked`/`aria-checked`.
+- **Export delivery is async by EMAIL** (banner: "an email to lfqa@listenfirstmedia.com"), NOT a synchronous file download (unlike TWC/Stories). Verifying the emailed CSV/filename/columns and Google Sheets is **out of scope** on the Playwright track (email inbox + Google 2FA). Verify the in-app pop-up (selection + enablement) and defer the emailed-artifact assertions.
+
 ## Changelog
 - **v1** (2026-05-13): Initial draft from QA-109059. Section presence verified; creation-order assertion flagged as a bug.
+- **v1.1** (2026-07-02): Headed-Playwright brand-change (chevron→textarea→.lfm-ta-option), single-channel trusted-click + Apply, data-set dropdown trusted-click, Impressions-data-set lock/N-A/– aggregate pattern (QA-520).

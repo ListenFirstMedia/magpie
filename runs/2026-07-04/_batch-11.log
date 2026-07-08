@@ -1,0 +1,54 @@
+>> QA-132387 (full) — Sat Jul  4 12:41:17 IST 2026  [timeout 900s]
+>> TIMEOUT after 900s — killing QA-132387 (process tree)
+>> QA-132392 (full) — Sat Jul  4 13:18:38 IST 2026  [timeout 900s]
+>> TIMEOUT after 900s — killing QA-132392 (process tree)
+>> QA-134173 (full) — Sat Jul  4 13:33:38 IST 2026  [timeout 900s]
+QA-134173 executed in full — **PASS** (10/10 assertions).
+
+**Summary:** All 18 steps ran via real UI interaction on the Custom Metrics list page (Adam Orfei account). With Info mode off, hovering produces no tooltip; clicking Info activates a persistent lower-left tooltip that dynamically updates per column, matching the spec strings exactly:
+
+- Metric → "The name of your custom metric"
+- Description → "The description of your custom metric"
+- Created Date → header "Date Created" / "The date when your custom metric was created"
+- Creator → "The user who created your custom metric"
+- Formula → "The formula that makes up your custom metric"
+
+Clicking Info again removes the tooltip modal from the DOM. The only variance — column header "Created Date" vs tooltip header "Date Created" — is a previously documented copy drift, not a new bug.
+
+Report: `runs/2026-07-04/QA-134173-report.md`; screenshots under `.playwright-out/QA-134173/`. No bugs filed.
+scripts/run-case.sh: line 123:  7859 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-04/QA-134173-report.md
+>> QA-134182 (full) — Sat Jul  4 13:38:09 IST 2026  [timeout 900s]
+>> TIMEOUT after 900s — killing QA-134182 (process tree)
+QA-134182 complete — **PASS (15/15)**.
+
+Executed all 4 phases of the Brand > Insights interval date-selector case on MTV / Adam Orfei:
+- **Daily (A1–A5):** end-calendar right-arrow suppressed at current month; Make-a-Selection caps at Last 12 Months; per-month arrow nav — all PASS.
+- **Weekly (A6–A9):** end-arrow suppressed; window caps at Last 52 Weeks; per-month arrow nav — all PASS.
+- **Quarterly (A10–A13):** end-arrow suppressed at current year; window = quarters Q2 2026→Q2 2014; arrow nav is per-**year** (documented accepted granularity vs spec's generic "month" wording) — all PASS.
+- **Monthly (A14–A15):** Sep 15–Dec 15 accepted with no error, extended to Sep 1–Dec 31; chart X-axis shows Sep/Oct/Nov/Dec 2025 (APPS-58615) — PASS.
+
+**Notable:** the tab crashed once mid-Phase-D when switching to Monthly after a long overlay session; recovered via re-login + re-nav and Phase D completed cleanly with no recurrence — flagged as a transient automation/renderer artifact, not filed as a bug. No bugs filed.
+
+Report: `runs/2026-07-04/QA-134182-report.md`; screenshots under `.playwright-out/QA-134182/`.
+>> QA-134184 (full) — Sat Jul  4 13:57:52 IST 2026  [timeout 900s]
+Done. **QA-134184 — PASS (8/8).**
+
+Executed all 9 steps on **Hulu** (account_id=336, brand_id=5670) via Brand > Insights, driving the real Quarterly interval picker (real clicks, quarter selections confirmed against resolved URL dates and chart X-axis buckets).
+
+Key results:
+- **A1** — Interval dropdown: Daily/Weekly/Monthly/**Quarterly** (Quarterly below Monthly).
+- **A2/A3** — Selecting Quarterly switched to quarter-granular month grid; auto-selected the last complete quarter (**Q2 2026, Apr–Jun**, correct for 2026-07-04).
+- **A4** — Jan→Jun = Q1+Q2 → `2026-01-01/06-30`.
+- **A5** — Partial Feb–May snapped to full Jan→Jun quarters.
+- **A6** — Oct–Dec → single **Q4 2025** bucket.
+- **A7** — Sep–Dec extended backward to Jul → **Q3 + Q4 2025** (confirms the non-obvious APPS-58615 rule).
+- **A8** — Jul–Dec → **Q3 + Q4 2025**.
+
+No bugs filed. Report at `runs/2026-07-04/QA-134184-report.md`; 12 screenshots under `.playwright-out/QA-134184/`. The out-of-scope Insights tiles that showed "failed to load" did not affect any picker assertion.
+scripts/run-case.sh: line 123: 10029 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-04/QA-134184-report.md

@@ -1,15 +1,15 @@
 ---
 name: chart-hover-tooltip
-version: 2
-last_verified: 2026-06-22
-last_passed_run: 2026-06-22
+version: 3
+last_verified: 2026-07-02
+last_passed_run: 2026-07-02
 trust: untrusted
-pass_streak: 1
+pass_streak: 3
 preconditions: [chart-rendered-with-data]
 postconditions: [tooltip-text-captured]
 inputs: [chart_type, datapoint_index]
 outputs: [tooltip_text]
-related_pages: ["/#explore/brand/insights", "/#explore/brand/audience"]
+related_pages: ["/#explore/brand/insights", "/#explore/brand/audience", "/#explore/brand/stories"]
 ---
 
 # Chart Hover Tooltip
@@ -54,6 +54,14 @@ Used by:
 - Any test asserting on chart-tooltip content.
 
 ---
+
+## Brand > Stories big-number tiles — bar + Pie/donut hover (QA-949, verified 2026-07-02)
+
+Same D3-SVG stack as Insights. Verified on Michael Kors (brand 3801), Instagram, Insights data set.
+
+- **Big-number bars:** `rect.bar` with class `bar <metric-key>-<YYYY-MM-DD>`, e.g. `bar instagram.story_insight.engagements-2026-06-26`. The metric key uses **dots** (`instagram.story_insight.impressions`), so match on the full `getAttribute('class')` string rather than a CSS class selector. Pick a **non-zero-height** bar. `browser_hover` it → tooltip at `[class*=tooltip]` reads `MMM. DD, YYYY` + `Instagram: <value> (±%)` (e.g. `Jun. 26, 2026 Instagram: 528 (+999.0%)`). All four Stories tiles (Engagements / Impressions / Taps Back / Exits) hover identically.
+- **Switch a tile to Pie:** open the tile's graph-type selector `.tile-level-data-viz-buttton-container .selector-dropdown-container` (label shows current type e.g. "Bar"), then click the `.list-item` option (Area / Bar / Line / **Pie** / Table).
+- **Pie/donut hover — pointer interception gotcha:** the chart is a `svg.donut` with arc `path.arc` (also `path[data-datapoint]`). `browser_hover` on the arc **times out** because the parent `svg.donut` "intercepts pointer events" and the arc's bbox-center is the donut hole. Workaround: dispatch `mouseover`+`mousemove` **on the arc path** with a `clientX/clientY` on the ring (donut center ± ~radius 64), then read `[class*=tooltip]`. Tooltip = `Instagram: <value>` (e.g. `Instagram: 233,698`) — no date line for pie. (This is the one place synthetic mouse events DO work for the tooltip.)
 
 ## Legacy (Chrome MCP / Recharts) — historical, superseded 2026-06-22
 
@@ -149,7 +157,12 @@ See `knowledge-base/bug-history.md` for the full per-ticket bug list. Highest-pr
 
 - LFMP-31781 (Minor) — Brand Insights - Hovering Functionality - twitter icon color is blue     [from QA-1124]
 
+## 2026-07-02 QA-1124 reconfirm (Hulu Brand>Insights Public, 30-day) — full 7-chart + Aggregate sweep
+
+Verified `.chart-tooltip` for bars (Follower Growth / New Posts / Engagements = `Mon. DD, YYYY` + per-channel `Channel: value (±%)`), rate bars (Response Rate / Fan Growth Rate = `date` + `<Metric>: X%`), Views **area** (`date` + `Twitter: value` — Views is Twitter-only for Public), and the Total Followers **donut** (`.al-donut__tooltip` reachable by dispatching `mouseover/mousemove` on the `path[data-datapoint*=facebook]` at its bbox center → `Facebook: 6,205,450 / …`). **Data Visualization dropdown** → options `.option__row`: `Data View: Count/Share`, `Channel View: Channel/Aggregate`; selecting **Channel View: Aggregate** collapses charts to a single series (Views tooltip → `date` + `Views: <value>`, no channel split). Note: the aggregate video-views tooltip is labeled **"Views"**, not "Public Video Views" (spec's older wording). The Public/Authorized **perspective toggle swaps the brand entity id** (Authorized 5670 → Public 11003 for Hulu) — same brand.
+
 ## Changelog
+- **v3** (2026-07-02): Added Brand > Stories big-number bar hover (`rect.bar` metric-key-with-dots) + Pie/donut hover with the `svg.donut` pointer-interception workaround (dispatch mouse events on the arc path at a ring coordinate). Tile graph-type selector `.tile-level-data-viz-buttton-container`. Verified QA-949 (Michael Kors IG). +1 streak.
 - **v2** (2026-06-22): Playwright MCP rewrite. Confirmed Insights charts are **D3 SVG, not Recharts**
   (`rect.bar.<channel>-<date>`, `.arc` donut). `browser_hover` triggers the tooltip natively (no
   synthetic events); tooltip is DOM-readable at `.al-bar-chart__tooltip` (no screenshot needed).

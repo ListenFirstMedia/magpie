@@ -1,0 +1,8 @@
+>> QA-198 (--login-only) — Sat Jul  4 02:12:36 IST 2026  [timeout 900s]
+The URL is now `app.lfmdev.in/#home` with title "Home - ListenFirst: Home". Login succeeded.
+
+LOGIN OK https://app.lfmdev.in/#home
+scripts/run-case.sh: line 123: 81780 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-04/QA-198-report.md

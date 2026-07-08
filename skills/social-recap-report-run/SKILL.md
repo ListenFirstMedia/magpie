@@ -1,10 +1,10 @@
 ---
 name: social-recap-report-run
-version: 2
-last_verified: 2026-06-08
-last_passed_run: 2026-06-08
+version: 3
+last_verified: 2026-07-02
+last_passed_run: 2026-07-02
 trust: untrusted
-pass_streak: 8
+pass_streak: 10
 preconditions: [account-context]
 postconditions: [social-recap-report-built]
 inputs: [primary_brand, perspective, additional_brands, options]
@@ -171,6 +171,21 @@ Some BPC tile thumbnails don't render correctly in the downloaded PDF (image src
 | Donut center arrow missing or inverted in downloaded PDF | LFMP-31798 REPRODUCED | File against the known bug |
 | BPC tile thumbnail blank in downloaded PDF | LFMP-31918 REPRODUCED | File against the known bug |
 
+## v3 — headed-Playwright control selectors + LFMP-31798/31918 NOT reproduced (QA-837, 2026-07-02)
+
+### Preview & Share / Download / Share are `<div>`s, not `<button>`s
+Under headed Playwright, the report action controls are plain DIVs (a `find`/query for `button`/`a` by text will MISS them):
+- **Preview & Share Report** = `div.preview-and-share-btn` (on the rendered story page). Text is `Preview & Share Report` (ampersand, not "and"). Match across ALL elements by text, or by class.
+- After clicking it, the nav header (`nav.navigation-header`) swaps its links for `div.share-btn` ("Share") and `div.download-btn` ("Download").
+- **Download** = `div.download-btn`. A TRUSTED click triggers the PDF download silently to the MCP `--output-dir` (`./.playwright-out/`), filename like `Hulu-Weekly-Social-Recap-Jun-25-2026---Jul-1-2026-.pdf`.
+
+### Multi-brand layout verified (QA-837, Hulu + Conan)
+2-brand build → **4-page PDF**: brands render in **add-order** (Hulu pp.1–2, Conan pp.3–4), each brand starts a **new page** with its own name/logo/sidebar header (Social Footprint All-Time, Social Activity for-the-window, Best Performing Content, Social Activity YTD). Downloaded PDF matches the in-app preview.
+
+### LFMP-31798 & LFMP-31918 NOT reproduced on 2026-07-02 build
+Contrary to the v2 "REPRODUCED" notes: this run's PDF showed **all** Best-Performing-Content thumbnails rendered (incl. Conan IG image posts → 31918 clear) and donut YOY arrows rendered normally as arrows, **not** □ boxes (→ 31798 clear). Both may be fixed or intermittent — **re-probe every run** (rasterize BPC page for thumbnails; rasterize donut center for arrow glyphs) and only file if actually seen.
+
 ## Changelog
+- **v3** (2026-07-02): Headed control selectors (`div.preview-and-share-btn`, `div.download-btn`/`div.share-btn` in `nav.navigation-header`); multi-brand add-order + per-brand page-break verified (QA-837 Hulu+Conan, 4pp); LFMP-31798 + LFMP-31918 did NOT reproduce this run — downgraded to re-probe-each-run. +1 streak (QA-837 PASS).
 - **v2** (2026-06-08): `controlled-check-box` focus+Space-dispatch quirk for Options checkboxes (overdue from 2026-05-27); IG VV parity (QA-131491 691,822) + YouTube VV parity (QA-131492 67,332) + Multi-brand PDF (QA-837); LFMP-31798 doughnut arrows REPRODUCED + LFMP-31918 thumbnail REPRODUCED. +7 streak across QA-23969, QA-131491, QA-131492, QA-837 (×2), QA-19486, QA-131491 RECONFIRM.
 - **v1** (2026-05-20): Initial draft from QA-23969 end-to-end run. Per `_shared/spec-adherence-rules.md`: brand name exact-match (Rule 1), explicit Authorized toggle click (Rule 2), every step performed in order (Rule 3), download verification deferred to user per Rule 6.

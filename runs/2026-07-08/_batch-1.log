@@ -1,0 +1,79 @@
+>> QA-129606 (full) — Wed Jul  8 15:40:17 IST 2026  [timeout 2400s]
+QA-129606 executed in full. **Verdict: PASS** (in-scope UI assertions; Google Sheets steps skipped as out-of-scope).
+
+**What ran:** Wasserman account → TWC builder → brand "FIA World Endurance Championship (FIAWEC)" (exact Results match) → Absolute Days Sep 26–Oct 3, 2025 → Twitter (story 155745) and TikTok (story 155746) run separately, each with Total Followers / Engagements / Posts / Response Rate.
+
+**Key findings:**
+- **A3/A4 exclusion rule confirmed.** Twitter shows Total Followers and Response Rate only Sep 30–Oct 3; Sep 26–29 have Engagements+Posts but no followers → RR correctly `–` (the exact "abnormally high RR" guard the case tests).
+- **A5 math matches** on every computable Twitter day (0.13% / 0.79% / 0.44% / 0.20%).
+- **TikTok** correctly shows RR `–` on all days — no day has both followers *and* posts>0 (Oct 1–3 have followers but 0 posts → zero footprint), so the RR tile reads "no data available." Exclusion + zero-posts guard both behave correctly.
+
+No bugs filed. Report at `runs/2026-07-08/QA-129606-report.md`; screenshots under `.playwright-out/QA-129606/`.
+scripts/run-case.sh: line 123: 80135 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-08/QA-129606-report.md
+>> QA-130076 (full) — Wed Jul  8 15:53:10 IST 2026  [timeout 2400s]
+Done. Verdict: **BLOCKED — test-data gap.**
+
+**QA-130076** executed end-to-end on **Viacom** (account_id=181, precondition met):
+- Pre-flight login + account switch: PASS
+- Step 1 (Settings → Notifications): PASS — page rendered, 58 notifications
+- Step 2 (review lost-auth message): **no lost-authorization notification exists.** All 58 notifications are Export/Fetch entries for MTV. `Status = Not Collecting` → **Notifications (0)**. Subscriptions → Data Collection toggle is **OFF** (governs future delivery only, no backfill).
+
+Assertions **A1–A4 are Not Evaluable** — there is no "We lost data collection…" / NOT COLLECTING message to assert on. Per Rules 1/3/5, no substitute was used. This is a **test-data gap, not a bug**, and reproduces the documented 2026-07-01 known-quirk exactly (revisit-trigger still unmet). Nothing hung — the block is data, not render.
+
+Report: `runs/2026-07-08/QA-130076-report.md`. Evidence screenshots under `.playwright-out/QA-130076/`. No bugs filed.
+scripts/run-case.sh: line 123: 80825 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-08/QA-130076-report.md
+>> QA-131492 (full) — Wed Jul  8 16:00:01 IST 2026  [timeout 2400s]
+Done. **QA-131492 verdict: PASS (2/2).**
+
+- **A1** — Report loads: Social Recap story `155747` rendered ("Social Recap > MTV", Jan 1–7 2026); Brand>Content also loaded cleanly.
+- **A2** — Cross-source parity holds exactly: Social Recap BPC **YouTube** card (fab fa-youtube) and the Brand→Content first/only YouTube post are the same post — "Lights, Camera, Debate w/ Tom Blyth & Emily Bader" (Jan 5 2026 06:00 AM PST) — both **Video Views = 68,580** (Likes/Reactions 2,066, Comments 80 also match).
+
+Executed on MTV (brand_id=10765, verified canonical via the QA-131491 IG post cross-check), Public perspective on both surfaces, per the 6 spec-adherence rules: exact "MTV" from the typeahead Results, explicit Public toggle confirmed visually, all steps in order. The Week-interval date picker auto-snapped Jan 1→7; channel selection required a DOM-dispatched click (per the known channel-icon quirk).
+
+Report: `runs/2026-07-08/QA-131492-report.md`. Evidence: 7 screenshots under `.playwright-out/QA-131492/`. No bugs filed.
+
+Note: prior skill note recorded this YouTube VV as 67,332; it's now 68,580 — expected lifetime-VV drift, and the parity (both surfaces agree) is intact.
+scripts/run-case.sh: line 123: 81373 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-08/QA-131492-report.md
+>> QA-132387 (full) — Wed Jul  8 16:20:03 IST 2026  [timeout 2400s]
+Case complete. **QA-132387 — Brand Sets > Content, Sum/Avg by Rank-by metric → PASS (16/16 in-scope assertions).**
+
+Executed all 10 steps on Adam Orfei / Adam's Brand Set / Last 30 Days / Instagram / Grid (Public), per spec:
+- **Views (A5–A10):** Grid→Detail→Table→Grid all highlighted correctly; Sum/Avg constant (Engagements Sum **100,080,593** / Avg **69,069**, Posts **1,449**).
+- **Rank-by (A11, A15, A16):** each of the 6 metrics (Engagements, Comments, Reactions, Shares, Video Views, Public Impressions) surfaced its own column in the Sum/Avg rows with valid numeric values — no N/A/endash where data exists.
+- **CSV export (A13, A14):** verified end-to-end on disk for Engagements (1,449 rows) and Public Impressions (2,685 rows) — page data matches CSV, and **0 Sum/Avg rows** in either export.
+
+Report: `runs/2026-07-08/QA-132387-report.md`.
+
+Three findings flagged (markdown only, no Jira):
+1. **Candidate bug (Major)** — all-5-channel `data-api/content` query returns **HTTP 500** on this brand set; grid stays blank until a channel filter narrows it. IG-only returns 200.
+2. **Candidate UX bug** — changing Rank By silently resets the applied channel filter.
+3. **Observation** — post count varies by rank-by metric under identical filters (Reactions 9,287 vs Engagements 1,449).
+
+Scope: Shares & Public Impressions are not offered on Instagram by the app (metric-channel gating), so they were read on Twitter — not a substitution. Google Sheets steps skipped (out of scope).
+scripts/run-case.sh: line 123: 82154 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-08/QA-132387-report.md
+>> QA-132392 (full) — Wed Jul  8 16:50:53 IST 2026  [timeout 2400s]
+QA-132392 executed in full. **Verdict: PASS (15/15).**
+
+Summary:
+- Set up Adam Orfei → Brand Sets > Content → Adam's Brand Set, Last 30 Days, Lifetime, Detail view, Rank by **Impressions (Authorized)**.
+- **A1–A4** (full brand set): Sum 123,012,368 / Avg 292,887, Posts (420), channels FB/Twitter/IG/TikTok, no endash — all pass.
+- **A5–A8** (MTV filter + CSV): Sum 109,646,569 / Avg 268,742; Avg = Sum ÷ 408 posts-with-data confirmed against the CSV (408 of 411 rows carry an Impressions value); synchronous CSV download matches UI and has no Sum/Avg rows.
+- **A9–A15** (NBA filter + CSV): all posts NBA; Impressions/Share show gold lock icons + `N/A` (unauthorized); aggregate Sum/Avg = endash; CSV = 3,000 NBA rows, all Impressions blank, no Sum/Avg rows.
+
+Report: `runs/2026-07-08/QA-132392-report.md`. Artifacts under `.playwright-out/QA-132392/`. No bugs filed. Notable finding: Brand Sets > Content CSV export is **synchronous** (direct disk download), unlike the async-email Brand > Content export — noted in the report.
+scripts/run-case.sh: line 123: 83121 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-08/QA-132392-report.md

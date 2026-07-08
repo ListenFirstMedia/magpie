@@ -1,0 +1,121 @@
+== batch run: 66 cases from batches/qa22298.txt, 14 batches of 5 ==
+>> smoke gate: login pre-flight
+>> smoke gate passed
+== batch 1/14 ==
+  -> [1/66] QA-198
+  -> [2/66] QA-281
+  -> [3/66] QA-457
+  -> [4/66] QA-520
+  -> [5/66] QA-837
+   checkpoint written: runs/2026-07-04/summary.json
+== batch 2/14 ==
+  -> [6/66] QA-929
+  -> [7/66] QA-949
+  -> [8/66] QA-1053
+  -> [9/66] QA-1124
+  -> [10/66] QA-1519
+   checkpoint written: runs/2026-07-04/summary.json
+== batch 3/14 ==
+  -> [11/66] QA-1677
+  -> [12/66] QA-2035
+  -> [13/66] QA-2498
+== batch run: 66 cases from batches/qa22298.txt, 14 batches of 5 ==
+>> smoke gate: login pre-flight
+>> smoke gate passed
+== batch 1/14 ==
+  -> [1/66] QA-198 — skip (already PASS)
+  -> [2/66] QA-281 — skip (already FAIL)
+  -> [3/66] QA-457
+  -> [4/66] QA-520 — skip (already PASS)
+  -> [5/66] QA-837 — skip (already FAIL)
+   checkpoint written: runs/2026-07-04/summary.json
+== batch 2/14 ==
+  -> [6/66] QA-929 — skip (already FAIL)
+  -> [7/66] QA-949
+  -> [8/66] QA-1053
+  -> [9/66] QA-1124 — skip (already PASS)
+  -> [10/66] QA-1519 — skip (already PASS)
+   checkpoint written: runs/2026-07-04/summary.json
+== batch 3/14 ==
+  -> [11/66] QA-1677 — skip (already FAIL)
+  -> [12/66] QA-2035 — skip (already PASS)
+  -> [13/66] QA-2498 — skip (already PASS)
+  -> [14/66] QA-2706
+  -> [15/66] QA-3630
+   checkpoint written: runs/2026-07-04/summary.json
+== batch 4/14 ==
+  -> [16/66] QA-12532
+  -> [17/66] QA-19482
+  -> [18/66] QA-19557
+  -> [19/66] QA-20988
+  -> [20/66] QA-23969
+   checkpoint written: runs/2026-07-04/summary.json
+== batch 5/14 ==
+  -> [21/66] QA-24544
+  -> [22/66] QA-27854
+  -> [23/66] QA-27856
+  -> [24/66] QA-28799
+  -> [25/66] QA-29479
+   checkpoint written: runs/2026-07-04/summary.json
+== batch 6/14 ==
+  -> [26/66] QA-33510
+  -> [27/66] QA-43916
+!! usage/rate limit at QA-43916 — waiting 1800s then resuming (attempt 1/48) Sat Jul  4 03:46:05 IST 2026
+  -> [28/66] QA-51425
+  -> [29/66] QA-51490
+  -> [30/66] QA-52776
+   checkpoint written: runs/2026-07-04/summary.json
+== batch 7/14 ==
+  -> [31/66] QA-65554
+  -> [32/66] QA-85176
+  -> [33/66] QA-90213
+  -> [34/66] QA-96038
+  -> [35/66] QA-96665
+   checkpoint written: runs/2026-07-04/summary.json
+== batch 8/14 ==
+  -> [36/66] QA-96818
+  -> [37/66] QA-98368
+  -> [38/66] QA-100764
+  -> [39/66] QA-103248
+  -> [40/66] QA-104870
+   checkpoint written: runs/2026-07-04/summary.json
+== batch 9/14 ==
+  -> [41/66] QA-106218
+  -> [42/66] QA-109062
+  -> [43/66] QA-109920
+  -> [44/66] QA-110074
+  -> [45/66] QA-116113
+   checkpoint written: runs/2026-07-04/summary.json
+== batch 10/14 ==
+  -> [46/66] QA-129606
+  -> [47/66] QA-129803
+  -> [48/66] QA-130076
+  -> [49/66] QA-131491
+  -> [50/66] QA-131492
+   checkpoint written: runs/2026-07-04/summary.json
+== batch 11/14 ==
+  -> [51/66] QA-132387
+  -> [52/66] QA-132392
+  -> [53/66] QA-134173
+  -> [54/66] QA-134182
+  -> [55/66] QA-134184
+   checkpoint written: runs/2026-07-04/summary.json
+== batch 12/14 ==
+  -> [56/66] QA-134185
+  -> [57/66] QA-134188
+  -> [58/66] QA-134277
+  -> [59/66] QA-134448
+  -> [60/66] QA-134449
+   checkpoint written: runs/2026-07-04/summary.json
+== batch 13/14 ==
+  -> [61/66] QA-134516
+  -> [62/66] QA-134594
+  -> [63/66] QA-135319
+  -> [64/66] QA-135321
+  -> [65/66] QA-138031
+   checkpoint written: runs/2026-07-04/summary.json
+== batch 14/14 ==
+  -> [66/66] QA-139187
+   checkpoint written: runs/2026-07-04/summary.json
+== done. summary: runs/2026-07-04/summary.json ==
+PASS 27 / FAIL 15 / BLOCKED 20 / SKIPPED 2 / UNKNOWN 2  (of 66 run)

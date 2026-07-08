@@ -1,0 +1,52 @@
+>> QA-1677 (full) — Sat Jul  4 01:59:35 IST 2026  [timeout 900s]
+**QA-1677 → FAILED (blocked by open bug).**
+
+The case carries an open linked defect **LFMP-32155(Open)**, so per spec-adherence Rule 7 (open-bug auto-fail) I screened it out before pre-flight — no login, no browser, no mutation (the case adds a real tag to an MTV post, which was correctly avoided).
+
+Report written to `runs/2026-07-04/QA-1677-report.md` with all 9 assertions marked BLOCKED and the block reason cited. It will re-run automatically once LFMP-32155 closes and the case cache is refreshed.
+scripts/run-case.sh: line 123: 80207 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-04/QA-1677-report.md
+>> QA-2035 (full) — Sat Jul  4 02:00:08 IST 2026  [timeout 900s]
+QA-2035 executed in full. **Verdict: PASS.**
+
+- **Setup:** Logged in (lfiqa), switched to **Viacom** (acct 181), Brand → Content, selected exact **MTV** from typeahead Results (Rule 1), entered Sentiment mode, ran Sentiment Export → CSV → OK.
+- **A1 PASS (Rule 6):** verified against the real Playwright download event — server name `MTV-Brand Content-2026-06-26-2026-07-02-comments-sentiment.csv` matches the spec format. (The CDN link's raw hash `300433-…csv` is the documented BC-2 signal, not the saved name — did not treat it as a defect.)
+- **A2–A5 PASS:** columns include Comment Classified / Comment Emotion / Topic 1–4; dates span the full Jun 26–Jul 2 range in MM/DD/YYYY; DOW column in abbreviated form.
+- **A6:** time is `11:53 PM` — HH:MM XM correct but **no `PST` suffix** (known spec drift, not a bug).
+- **A7 / Google Sheets (steps 7–9):** skipped, out of scope.
+
+No bugs filed. Report: `runs/2026-07-04/QA-2035-report.md`; artifacts under `.playwright-out/QA-2035/`.
+scripts/run-case.sh: line 123: 80672 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-04/QA-2035-report.md
+>> QA-2498 (full) — Sat Jul  4 02:11:09 IST 2026  [timeout 900s]
+QA-2498 executed in full — **PASS 12/12**.
+
+Key result: this run **reverses the 2026-06-29 BLOCK**. HBO Max's Facebook channel now carries a red exclamation again (2 non-collecting feeds: Facebook Earned Comments + Facebook Posts, both Authorized), so A6–A8 were fully testable and passed — no substitution needed (Rule 1).
+
+- **A1–A5** (brand-level popup): "Not Collecting (11)", Learn More → Zendesk article 21272713329300 (`_blank`, verified via href per Rule 6), 11 Reauthorize (1/feed), all feeds "(Authorized)".
+- **A6–A8** (Facebook channel popup): "Not Collecting (2)", Learn More icon, 2 Reauthorize.
+- **A9–A12**: channels+collecting list shown, Facebook page "HBO Max" listed, page popup + summary table show Start Date / Last Collection Date / Status (no "Posts Tracked").
+
+Documented spec-vs-UI variances (not bugs): A1 wording, A3/A8 Reauthorize count = #feeds, A4 "(Authorized)" vs example "(Public)", A10/A12 no "Posts Tracked". **No bugs filed.**
+
+Report: `runs/2026-07-04/QA-2498-report.md`. Evidence screenshots under `.playwright-out/QA-2498/`. Note: the browser session dropped twice mid-run and was recovered with re-auth + deep-link re-nav — an environment stability blip, not a product defect.
+>> QA-2706 (full) — Sat Jul  4 02:39:55 IST 2026  [timeout 900s]
+QA-2706 → **FAILED (blocked by open bug)**. Not run.
+
+The cached case lists an OPEN linked defect **LFMP-31886(Open)**, so per Rule 7 (open-bug auto-fail) I screened it out without opening the browser or running pre-flight. Report written to `runs/2026-07-04/QA-2706-report.md` with all six assertions marked BLOCKED and no bugs filed. It'll re-run automatically once LFMP-31886 closes and the cache refreshes.
+scripts/run-case.sh: line 123: 84928 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-04/QA-2706-report.md
+>> QA-3630 (full) — Sat Jul  4 02:40:34 IST 2026  [timeout 900s]
+**QA-3630 → FAILED (blocked by open bug).**
+
+The case has an open linked defect **LFMP-32010(Open)**. Per Rule 7 (open-bug auto-fail), I did not run any steps or open the browser — a case with an open linked defect can't produce a trustworthy PASS. Report written to `runs/2026-07-04/QA-3630-report.md` with all 14 assertions marked BLOCKED. It will be picked up automatically once LFMP-32010 closes and the cache refreshes.
+scripts/run-case.sh: line 123: 85411 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-04/QA-3630-report.md

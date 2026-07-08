@@ -1,10 +1,10 @@
 ---
 name: switch-account
 version: 2
-last_verified: 2026-05-13
-last_passed_run: 2026-05-13
+last_verified: 2026-07-02
+last_passed_run: 2026-07-02
 trust: untrusted
-pass_streak: 3
+pass_streak: 21
 preconditions: [user-logged-in]
 postconditions: [account-switched]
 inputs: [account_name]
@@ -97,3 +97,26 @@ See `knowledge-base/bug-history.md`. No open bugs currently tied to this skill's
 - 9 clean switches in one session: Adam Orfei → Hulu → Sony Pictures → Disney Entertainment Television → Disney Ad Sales → FX Networks → Amazon Prime Video → UCLA → HBO Max → **Wasserman** — all via LFQA menu → Search Account → Results row. No Cognito re-auth was required for Wasserman (supersedes the 2026-06-04 "Wasserman requires re-authentication" note; the earlier blocker was the missing FIAWEC brand under Adam Orfei, not account ACL).
 - Search Account input only renders after the LFQA menu is open AND the page is scrolled to top; first click on the menu can be eaten by an open overlay — Escape, scroll top, retry.
 - Account search names can drift from test wording: "Max" → account is "HBO Max"; "Fx Networks" matches "FX Networks".
+
+## 2026-07-02 — headed Playwright mechanics (QA-68691, Viacom → Michael Kors)
+
+Under interactive headed Playwright the reliable sequence is:
+- **Open the LFQA menu by HOVER, not click** — clicking toggles it (a second click closes it). Hover to reveal `Search Account` + `Results`.
+- **Set the Search Account value via JS**, not `.fill()`: the input (`input.account-typeahead-input`) reports "not visible" to Playwright's fill/type. Use the React setter:
+  ```javascript
+  const inp = document.querySelector('input.account-typeahead-input');
+  const setter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
+  setter.call(inp, '<account_name>'); inp.dispatchEvent(new Event('input', {bubbles:true}));
+  ```
+- **Click the `.lfm-ta-option` Results row** — NOT the `.account-name` leaf and NOT the `.typeahead-options-list` container (those don't trigger the switch). Full `mouseover/mousedown/mouseup/click` dispatch on the `.lfm-ta-option` under the `Results` header works.
+- Verify: URL `account_id` changes + breadcrumb `Account: <name>`.
+
+## 2026-07-02 refinement (QA-949, Sephora → Michael Kors) — React-setter is flaky for triggering Results
+
+The React value-setter above **does not reliably fire the live search**: for Sephora it produced a `.lfm-ta-option` under `Results`, but for **Michael Kors it showed only the `Recent Searches` list** (no `Results` section), so a click would have hit Recent Searches (which does NOT switch — see Step 3). **Prefer trusted typing** to surface Results:
+- Clear the input via the React setter (set `''` + dispatch `input`), then `browser_type` **slowly** (`pressSequentially`) the account name into `input.account-typeahead-input`.
+- Wait ~2s, confirm a `Results` header is present (not just `Recent Searches`), then click the `.lfm-ta-option` whose text equals the account name.
+- The earlier QA-68691 note that the input "reports not visible to type/fill" did not recur here — `browser_type` on the tagged input worked. If typing is ever rejected as not-visible, fall back to the React setter and, if only Recent Searches shows, retype a character to nudge the live search.
+
+### 2026-07-02 (QA-2498) — do NOT put a `browser_evaluate` between hover and type
+The menu is **hover-only** and closes the instant the pointer leaves. The reliable sequence is **`browser_hover` the user-menu → `browser_type` into `input.account-typeahead-input` immediately** (browser_type moves the pointer onto the input, which is inside the menu, keeping it open). If you insert a `browser_evaluate` (even just to clear the field) between the hover and the type, the pointer leaves and the menu closes → the Results dropdown never renders (this cost several retries switching Hulu→HBO Max). Tag the input in the SAME evaluate that opens/prepares things, or just `browser_type` by CSS selector `input.account-typeahead-input` right after hovering. This same hover-then-act-immediately rule applies to the Settings > Data Collection "Search for a brand" typeahead.

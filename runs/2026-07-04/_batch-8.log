@@ -1,0 +1,47 @@
+>> QA-96818 (full) — Sat Jul  4 08:37:04 IST 2026  [timeout 900s]
+API Error: The socket connection was closed unexpectedly. For more information, pass `verbose: true` in the second argument to fetch()
+>> QA-98368 (full) — Sat Jul  4 08:52:16 IST 2026  [timeout 900s]
+>> TIMEOUT after 900s — killing QA-98368 (process tree)
+>> QA-100764 (full) — Sat Jul  4 09:29:24 IST 2026  [timeout 900s]
+Done. **QA-100764 → BLOCKED (test-data gap).**
+
+Executed pre-flight login (Adam Orfei, acct 54) and steps 1–2 cleanly: navigated Brand > Content and selected the **exact** "Max" brand (brand_id=412264) from the typeahead Results per Rule 1. Step 3 ("Enable Threads channel only") is **unperformable** — Max's channel selector (`data-ui-name="channel_selector"`) exposes only Facebook / Twitter / Instagram / TikTok / YouTube, with no Threads toggle. Since step 3 is the sole precondition for the DPA modal, A1–A6 are all Not Evaluable.
+
+This reproduces the standing known-quirk (Max has no Threads channel on Brand>Content; first seen on this case 2026-06-27, re-confirmed 2026-07-01, now again 2026-07-04). Not a product bug — the selector, typeahead, and brand resolution all work; it's a test-data/collection gap. No substitute channel used (Rule 1/3/5). No bugs filed.
+
+Report: `runs/2026-07-04/QA-100764-report.md`. Evidence: `.playwright-out/QA-100764/step3-channel-selector-no-threads.png`, `step3-full-max-content.png`.
+scripts/run-case.sh: line 123: 99132 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-04/QA-100764-report.md
+>> QA-103248 (full) — Sat Jul  4 09:34:28 IST 2026  [timeout 900s]
+QA-103248 complete — **PASS**.
+
+**Verdict:** PASS on all in-scope assertions (A1–A4 PNG export + A8 close). A5–A7 (Google Sheets) skipped as out of scope.
+
+**What ran:** Logged in, switched to Adam Orfei (54), selected brand set **LF // TV // Episodic** (exact typeahead match), opened the Daily Post Analysis modal on post #1 **Love Island USA (Peacock)** (TikTok, Jun 26–Jul 02, 2026), switched the chart to **Bar**, exported **PNG**, and closed the modal.
+
+**Key evidence:**
+- PNG download-event filename `Love Island USA (Peacock)-Daily Content Analysis-Bar-2026-06-26-2026-07-02.png` — matches A1 format.
+- Read the file on disk (Rule 6): LISTENFIRST logo/wordmark top-left (A2), "Daily Content Analysis" + date footer (A3), bars/legend/scale identical to the modal (A4).
+- Table math reconciles: Sum 2,886,218 = Σ daily; Average 412,317 = Sum/7.
+- Modal removed + grid restored (A8).
+
+Report at `runs/2026-07-04/QA-103248-report.md`; screenshots under `.playwright-out/QA-103248/`. No bugs filed.
+scripts/run-case.sh: line 123: 99688 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-04/QA-103248-report.md
+>> QA-104870 (full) — Sat Jul  4 09:43:05 IST 2026  [timeout 900s]
+QA-104870 complete — **PASS** (12/13 assertions PASS, A5 N/A).
+
+**Summary:**
+- Pre-flight login succeeded; switched to Adam Orfei (account 54) via the account typeahead Results row.
+- All 4 steps executed via UI: hover Settings → click Custom Data Sets → click first-row ellipsis → review table.
+- **12 PASS**: A1 (Custom Data Sets after Brands), A2 (active/selected), A3 (breadcrumb `Account: Adam Orfei | Settings > Custom Data Sets`), A4 (listing with 5 CDS), A6 (verbatim description), A7 (Create button right-side), A8 (columns Data Set/Created Date/Creator/Metrics/Actions), A9 (Edit/Delete/Duplicate order), A10–A13 (name/date `Mon. DD, YYYY`/creator/comma-separated metrics).
+- **A5 N/A**: blank-table empty state unreachable on Adam Orfei (has 5 CDS); no substitution/mutation done.
+- No bugs filed. Report at `runs/2026-07-04/QA-104870-report.md`; screenshots under `.playwright-out/QA-104870/`.
+scripts/run-case.sh: line 123:   500 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-04/QA-104870-report.md

@@ -1,10 +1,10 @@
 ---
 name: keydate-picker
-version: 1
-last_verified: 2026-05-13
-last_passed_run: 2026-05-13
+version: 2
+last_verified: 2026-07-02
+last_passed_run: 2026-07-02
 trust: untrusted
-pass_streak: 1
+pass_streak: 8
 preconditions: [twc-builder-open, relative-dates-selected, brand-row-present]
 postconditions: [keydate-set-on-brand-row]
 inputs: [season_label, episode_label]
@@ -83,5 +83,12 @@ When picking a keydate, the LFM frontend probably hits a `/api/.../seasons/{seas
 
 See `knowledge-base/bug-history.md`. No open bugs currently tied to this skill's flows; 30 historical defects (all closed) are catalogued there.
 
+## Per-brand Calendar key date (QA-281, 2026-07-02, interactive headed)
+
+- **For an arbitrary calendar date** (e.g. Feb 1, 2025), use each brand row's **"Select Key Date"** button in the TWC Add-Brands table — it opens a **plain calendar** (not the Season/Episode Filter view). Navigate: click the month-header (e.g. "July 2026") → month grid → **`.prev`/`.next` year arrows with FULL mouse events** (`mouseover/mousedown/mouseup/click`; a synthetic `.click()` may not advance the year) → click the month cell (`.month`) → click the day cell (`td.day`, exclude `.old/.new/.disabled`). Watch the year read-back — the arrows can overshoot; correct with `.next`.
+- **Set per-brand, one at a time** — each brand's calendar **resets to the current month** when opened. Verify each row's Key Date column shows the date after selecting.
+- **Bulk Select Key Date is NOT usable for arbitrary dates:** its dialog opens a **Filter** view (TV Show Season/Episode, Film, Consumer Brand); the **"Calendar" toggle is stuck** (clicking it does not switch to a calendar). Use the per-brand Select Key Date instead.
+
 ## Changelog
 - **v1** (2026-05-13): Initial draft from QA-458 exploration run. Successful Season 9 Episode 16 selection for The Walking Dead → resolved to Mar 31, 2019.
+- **v2** (2026-07-02): Per-brand Calendar key-date navigation for arbitrary dates (QA-281 Feb 1 2025); Bulk-dialog Calendar-toggle-stuck caveat.

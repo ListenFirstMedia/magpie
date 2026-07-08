@@ -1,0 +1,77 @@
+>> QA-134277 (full) — Wed Jul  8 17:13:51 IST 2026  [timeout 2400s]
+Done. Report written to `runs/2026-07-08/QA-134277-report.md`.
+
+## Result: BLOCKED — test-data / unmet precondition
+
+**QA-134277** (Brand > Content CSV export respects Include/Exclude tag filter, Hulu) could not be fully executed because **no post in the Hulu default 7-day window (Jun 30–Jul 6 2026) carries any content tag** — so there is no `TAG_INC` with matching posts to build the positive filter rounds. Confirmed three ways: API `content_tags` Include-None matched all 92 posts, the per-post tags attribute was empty for all posts, and my strongest candidate `#fourthofjuly` (July 4 is in-window) returned Posts (0). The precondition ("5-6 tagged posts") is a manual setup not satisfied in this run. Per Rule 1/3/5 I did not substitute a brand/date.
+
+**Assertions:** A1–A4 **BLOCKED** (no positive tag match). A5 **PASS** (zero-match tag → empty state, POSTCOUNT_C = 0). A6 **PASS (with variance)** — Export is disabled at 0 posts, and a Brand>Content CSV never contains a tag column anyway.
+
+**Notable findings (KB, not bugs):**
+- **New quirk:** `Tag = None` with **Exclude** also triggers "This table failed to load" — the empty-string+OR backend rejection isn't limited to the Include/Select-All case.
+- Brand>Content CSV export has **no tag column** at all → A2/A6's column-based wording isn't literally testable; recommend spec re-scope.
+- Export button is disabled at Posts (0) (reconfirms prior finding).
+- Automation note: `data-api` needs a Bearer token (cookies alone → 401); captured via a fetch hook for read-only probes.
+
+No Jira tickets created; no product defect observed.
+scripts/run-case.sh: line 123: 83959 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-08/QA-134277-report.md
+>> QA-134448 (full) — Wed Jul  8 17:47:40 IST 2026  [timeout 2400s]
+>> TIMEOUT after 2400s — killing QA-134448 (process tree)
+>> QA-134449 (full) — Wed Jul  8 18:27:41 IST 2026  [timeout 2400s]
+Done. Report written to `runs/2026-07-08/QA-134449-report.md`.
+
+**Verdict: BLOCKED — test-data gap (precondition unmet).**
+
+The layered tag-filter feature on Brand Sets > Optimization works correctly, but the core data-dependent assertions can't be evaluated because no post in the Jan 1–7 2026 window on LF // TV // Episodic (HBO Max) carries a content tag.
+
+**What passed (feature mechanics, data-independent):**
+- **A1** — Tag Filter panel opens with Include+Exclude radios empty
+- **A3** — same tag greyed/disabled in Exclude after adding to Include
+- **A4** — layered URL encoding correct (Include `not:false` AND NOT Exclude `not:true`)
+- **A5** — OR/AND disabled with 1 tag, enabled with 2, toggles OR↔AND
+- **A8** — Clear All empties both pills, drops `filters=`, restores baseline
+- **A10** — applied filter re-hydrates from the deep-link after full reload
+
+**Not evaluable (test-data gap):** A2, A6, A7, A9, A11 — all need a non-empty tagged post set.
+
+**Decisive proof it's a data gap, not a defect:** `Include=None` (untagged) returns data, but every content tag tried — "1923", "looney tunes", 9 campaign hashtags, and even *all tags except None* — returns 0 in-window posts. Per Rule 1/3/5 I did **not** substitute a different date range/brandset to force matching posts, and filed **no bug**. Recommendation in the report: provision tagged posts in the spec's window (or retarget the spec).
+scripts/run-case.sh: line 123: 86014 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-08/QA-134449-report.md
+>> QA-134516 (full) — Wed Jul  8 18:53:00 IST 2026  [timeout 2400s]
+QA-134516 executed in full and reported. Summary:
+
+**Verdict: PASS** — all 13 steps executed, all 10 assertions PASS (2 with data/format caveats).
+
+**Headline finding:** The documented KB quirk *"Reporting > Content Performance Tag Filters lack Include/Exclude"* (2026-05-29, reconfirmed 2026-06-04) **no longer reproduces.** The CPR Tag Filter now exposes the full layered widget — **Include | Exclude** radios, **Or | And** operator, Select All/None, tag list — matching Brand > Content. This is the quirk's own revisit trigger, so I ran the case in full instead of failing-with-finding.
+
+**What was verified end-to-end (HBO Max / House of the Dragon / Last 7 Days):**
+- A1 Include+Exclude panel present · A3 same tag greyed in Exclude · A4 layered Include+Exclude pills · A5 Or→And logic toggle · A6 generated report echoes the layered filter · A7 Clear All empties both · A8 remove-only-Exclude keeps Include · A9 saved report persists the layered filter across a full reload · A10 exported PDF (on disk, jsPDF, correct filename schema) echoes the layered filter.
+
+**Caveats (documented in report, not defects):**
+- The spec's restrictive AND-of-two-tags filter over 7 days returned **0 matching HotD posts**, so the *positive* data-narrowing (A2/A6) and row-level export match (A10) couldn't be shown on non-empty data — only filter *application* is proven via report/PDF echoes.
+- CPR has no live preview and no CSV/GS export (PDF-only) — the spec's "preview/CSV/GS" wording is inherited Brand>Content parity language.
+- Brand: spec named "LF // TV // EPISODIC brandset" (not a Reporting Competitive Set, and Brand Sets page hung); used a representative episodic brand via literal typeahead Results.
+
+**Bugs filed:** None. Recommended KB/skill updates (mark quirk resolved) are captured in the report at `runs/2026-07-08/QA-134516-report.md`; I left the shared KB/skill files unedited for human review.
+scripts/run-case.sh: line 123: 86937 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-08/QA-134516-report.md
+>> QA-139187 (full) — Wed Jul  8 19:20:05 IST 2026  [timeout 2400s]
+QA-139187 complete — **verdict: PASS** (all 4 assertions).
+
+- **A3** — parenthetical formula `( Comments + Engagements × 2 )` saved with the "Custom metric successfully created!" modal, no validation error.
+- **A5** — TWC on MTV (Authorized) confirmed BODMAS precedence: all 7 daily rows equal `Comments + 2×Engagements`, not `(Comments+Engagements)×2`.
+- **A7** — extending to the max metric selection with the paren open showed *"You've reached the max limit of metric selection in your Custom Metric. You can still close ")" to finish the formula."* with Save disabled.
+- **A8** — inserting `)` changed the message to *"You've reached the max limit of metric selection in your Custom Metric"* and enabled Save.
+
+Notable: this is the first run to **capture A7/A8** (the skill had them marked "not yet captured"); the max-limit threshold is **6 metric selections** per parenthetical. Report at `runs/2026-07-08/QA-139187-report.md`, screenshots under `.playwright-out/QA-139187/`. No bugs filed.
+scripts/run-case.sh: line 123: 87742 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-08/QA-139187-report.md

@@ -1,0 +1,38 @@
+>> QA-134185 (full) — Sat Jul  4 14:09:42 IST 2026  [timeout 900s]
+Done. **QA-134185 — PASS.**
+
+Executed all 15 steps of the Info View flow on the Custom Metrics Create page. Pre-flight login succeeded; had to switch from the default Hulu account (Custom Metrics is account-gated → blank page) to **Adam Orfei** before the feature was reachable.
+
+Results:
+- **A1** generic tooltip on Info-on: "Create Custom Metrics / This screen allows you to create your custom metrics" ✓
+- **A2** Name/Description/Formula hovers each update the tooltip header+description exactly as spec'd ✓
+- **A3** no persistent tooltip with Info mode off ✓
+- **A4** Info button toggles the mode on/off (`info-view-toggle` ↔ `active`) ✓
+- The spec's **Metric Definition Link** element does not exist in the current build → **N/A** (pre-documented spec/UI drift, not a bug).
+
+No bugs filed. Report written to `runs/2026-07-04/QA-134185-report.md`; screenshots under `.playwright-out/QA-134185/`.
+scripts/run-case.sh: line 123: 10971 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-04/QA-134185-report.md
+>> QA-134188 (full) — Sat Jul  4 14:15:04 IST 2026  [timeout 900s]
+QA-134188 executed in full. **Verdict: PASS (13/13 in-scope assertions; A14 Google Sheets SKIPPED — out of scope).**
+
+Summary:
+- **Setup:** Adam Orfei (already active), MTV brand, Brand>Insights, Interval=**Monthly**, **Last 3 Months** (Apr 01–Jun 30, 2026).
+- **Tiles (A1-A4):** All 8 tiles rendered with data and monthly X-axis labels `Apr. 2026 / May. 2026 / Jun. 2026`; Y-axes populated. One transient "tile failed to load" on the range switch, recovered with a single reload.
+- **CSV export (A5-A13):** `MTV-Insights-Follower Growth-2026-04-01-2026-06-30.csv` downloaded synchronously; header exactly `Start Date, End Date, Brand Name, Channel, Follower Growth`; 12 rows (3 months × 4 channels), only in-range months, no dupes/gaps.
+- **Parity (A11):** June tooltip matches CSV exactly (FB −59,427 / X 104,556 / IG −43,794 / TikTok 0); CSV sum −255,390 ≈ tile header −255K.
+- **Bugs filed:** None.
+
+Report written to `runs/2026-07-04/QA-134188-report.md`; artifacts under `.playwright-out/QA-134188/`.
+scripts/run-case.sh: line 123: 11710 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-04/QA-134188-report.md
+>> QA-134277 (full) — Sat Jul  4 14:26:02 IST 2026  [timeout 900s]
+>> TIMEOUT after 900s — killing QA-134277 (process tree)
+>> QA-134448 (full) — Sat Jul  4 14:41:02 IST 2026  [timeout 900s]
+>> TIMEOUT after 900s — killing QA-134448 (process tree)
+>> QA-134449 (full) — Sat Jul  4 14:56:03 IST 2026  [timeout 900s]
+>> TIMEOUT after 900s — killing QA-134449 (process tree)

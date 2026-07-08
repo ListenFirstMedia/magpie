@@ -1,0 +1,73 @@
+>> QA-33510 (full) — Sat Jul  4 03:42:29 IST 2026  [timeout 900s]
+Report written. Done.
+
+**QA-33510 → SKIPPED — external-user precondition (deferred)**
+
+The case requires authenticating as `testing@drylogics.com` (External-role user), a different identity than `config/.env`. In-app account switching can't change the logged-in identity/role, so the flow was not attempted per SCOPE RULES — no browser session opened.
+
+This matches the 2026-06-28 known-quirk: that user is Admin on the reachable account (Adam Orfei), so A1/A2 can't be evaluated. Not a bug, not filed. Report at `runs/2026-07-04/QA-33510-report.md`.
+scripts/run-case.sh: line 123: 91905 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-04/QA-33510-report.md
+>> QA-43916 (full) — Sat Jul  4 03:43:23 IST 2026  [timeout 900s]
+You've hit your session limit · resets 4:10am (Asia/Calcutta)
+>> QA-43916 (full) — Sat Jul  4 04:16:05 IST 2026  [timeout 900s]
+QA-43916 — **PASS (3/3)**.
+
+All five steps executed via UI, spec brand "Michael Kors" selected exactly from the dropdown (no substitution), Submit driven by a trusted Playwright click (no URL workaround).
+
+- **A1** — TSV download fired ~5s after Submit; file on disk (387 B).
+- **A2** — server name `20260703NotConfigured_72519b.tsv` matches `YYYYMMDDNotConfigured_<6hex>.tsv` (spec's `da6b7c` is illustrative; hash varies per run).
+- **A3** — all 11 columns present in exact order; genuine tab-delimited (the 3 commas are inside a display-name value, not delimiters).
+
+Report: `runs/2026-07-04/QA-43916-report.md`. Evidence + screenshots under `.playwright-out/QA-43916/`. No bugs filed.
+scripts/run-case.sh: line 123: 92941 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-04/QA-43916-report.md
+>> QA-51425 (full) — Sat Jul  4 04:21:14 IST 2026  [timeout 900s]
+QA-51425 — **PASS (5/5)**. Report written to `runs/2026-07-04/QA-51425-report.md`.
+
+All five steps executed in order via the real UI (search → open modal → File format dropdown → CSV → Submit); the modal Submit responded to a trusted click, so no URL-GET workaround was needed.
+
+- **A1** — modal description matches the spec text verbatim ✓
+- **A2** — CSV downloaded ~4s after Submit (Playwright download event) ✓
+- **A3** — filename `20260703DuplicateBrandSocialPages_8b0b04.csv` matches the `YYYYMMDDDuplicateBrandSocialPages_<hash>.csv` format ✓
+- **A4** — header is exactly the 6 spec columns (`brand id,brand name,title category,channel,url,perspective`; lowercased as documented for this report); proper CSV parse confirms all 15,198 data rows have 6 fields ✓
+- **A5** — no Duplicate column present ✓
+
+File is genuinely comma-delimited (no CSV→TSV regression). No bugs filed; no Google Sheets steps to skip.
+scripts/run-case.sh: line 123: 93570 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-04/QA-51425-report.md
+>> QA-51490 (full) — Sat Jul  4 04:25:25 IST 2026  [timeout 900s]
+QA-51490 complete — **PASS (12/12)**.
+
+**Summary:**
+- Pre-flight login OK; screened open bugs (none) → ran normally.
+- **Precondition fix:** the session defaulted to Adam Orfei, where "Hulu" resolved to the Public-only brand 11003 (no Content Engagement Rate tile, perspective locked). Per the account-precondition rule I switched to the **Hulu account (336)**, where the Hulu brand (5670, Authorized) has the tile. No brand substitution.
+- Executed all 10 steps: CER tile → Area → CSV, → Table → CSV, → Line → PNG.
+- Verified both CSVs on disk (Area = 7 daily Cross-Channel rows with Date column; Table = flat single row without Date, value 1.34% matching the tile) and the PNG via multimodal read (title, legend, footer date, axes).
+- All 12 assertions PASS; no bugs filed.
+
+Report: `runs/2026-07-04/QA-51490-report.md`. Artifacts under `.playwright-out/QA-51490/`.
+scripts/run-case.sh: line 123: 94138 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-04/QA-51490-report.md
+>> QA-52776 (full) — Sat Jul  4 04:36:48 IST 2026  [timeout 900s]
+QA-52776 complete — **PASS (3/3)**.
+
+Executed all 14 steps in order across the three Radaac reports (Brand Definitions Fetch → Patch → Apply, Brand ID 236, "Include URL Managers" left unchecked per the Exclude spec):
+
+- **A1** — Fetch xlsx: 40 columns (`brand_id`…`last_reviewed`), no `url managers`. PASS
+- **A2** — Patch xlsx: `record_type` + same 40 columns, no `url managers`. PASS
+- **A3** — Apply xlsx: `record_type` + same 40 columns, no `url managers`. PASS
+
+Each file was downloaded to disk via a real Playwright `download` event and verified by parsing the saved bytes (Rule 6) — no `url*manager*` string anywhere in any file. Cache-race and hidden-dialog quirks matched the 2026-06-28 known-quirks entry; the one-off Apply 502 did not recur. No bugs filed. Report at `runs/2026-07-04/QA-52776-report.md`.
+scripts/run-case.sh: line 123: 94916 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-04/QA-52776-report.md

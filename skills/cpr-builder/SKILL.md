@@ -1,10 +1,10 @@
 ---
 name: cpr-builder
 version: 1
-last_verified: 2026-06-08
-last_passed_run: 2026-06-08
+last_verified: 2026-06-28
+last_passed_run: 2026-06-28
 trust: untrusted
-pass_streak: 2
+pass_streak: 3
 preconditions: [user-logged-in, account-context]
 postconditions: [cpr-story-built]
 inputs: [brand_name, perspective, channels, options, visual_top_count, additional_top_count, least_engaging]

@@ -1,0 +1,19 @@
+== batch run: 10 cases from batches/qa22298-recover-remaining.txt, 2 batches of 5 ==
+>> smoke gate: login pre-flight
+>> smoke gate passed
+== batch 1/2 ==
+  -> [1/10] QA-129606
+  -> [2/10] QA-130076
+  -> [3/10] QA-131492
+  -> [4/10] QA-132387
+  -> [5/10] QA-132392
+   checkpoint written: runs/2026-07-08/summary.json
+== batch 2/2 ==
+  -> [6/10] QA-134277
+  -> [7/10] QA-134448
+  -> [8/10] QA-134449
+  -> [9/10] QA-134516
+  -> [10/10] QA-139187
+   checkpoint written: runs/2026-07-08/summary.json
+== done. summary: runs/2026-07-08/summary.json ==
+PASS 6 / FAIL 0 / BLOCKED 4 / SKIPPED 0 / UNKNOWN 0  (of 10 run)

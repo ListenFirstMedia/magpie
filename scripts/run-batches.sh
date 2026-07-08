@@ -14,6 +14,13 @@ set -uo pipefail
 cd "$(dirname "$0")/.."
 
 BATCH_SIZE="${BATCH_SIZE:-5}"
+# On a Claude usage/session limit (or transient rate-limit/overload):
+#   ON_LIMIT=wait (default) → sleep LIMIT_WAIT and auto-resume the SAME case, up to MAX_LIMIT_WAITS
+#                             times (poll-until-reset). Unattended-friendly; no manual re-run needed.
+#   ON_LIMIT=stop           → exit cleanly and resume on the next invocation (old behavior).
+ON_LIMIT="${ON_LIMIT:-wait}"
+LIMIT_WAIT="${LIMIT_WAIT:-1800}"          # sleep between resume attempts, seconds (default 30 min)
+MAX_LIMIT_WAITS="${MAX_LIMIT_WAITS:-48}"  # safety cap: 48 x 30min ~= 24h of waiting before giving up
 DATE="$(date +%F)"
 RUN_DIR="runs/${DATE}"
 RESULTS="${RUN_DIR}/results.tsv"
@@ -49,7 +56,8 @@ counts={}
 for c in cases: counts[c["status"]]=counts.get(c["status"],0)+1
 json.dump({"date":date,"total":total,"run":len(cases),
            "passed":counts.get("PASS",0),"failed":counts.get("FAIL",0),
-           "blocked":counts.get("BLOCKED",0),"unknown":counts.get("UNKNOWN",0),
+           "blocked":counts.get("BLOCKED",0),"skipped":counts.get("SKIPPED",0),
+           "unknown":counts.get("UNKNOWN",0),
            "cases":cases}, open(summary_path,"w"), indent=2)
 PY
 }
@@ -57,12 +65,19 @@ PY
 status_of() {  # parse a case report for its result; echo PASS/FAIL/BLOCKED/UNKNOWN
   local report="$1" line
   [[ -f "$report" ]] || { echo "BLOCKED"; return; }
-  line=$(grep -iE 'result:' "$report" | head -1)   # matches **Result:** PASS and **Result: PASS**
-  if   printf '%s' "$line" | grep -qi 'pass';  then echo "PASS"
-  elif printf '%s' "$line" | grep -qi 'fail';  then echo "FAIL"
-  elif printf '%s' "$line" | grep -qi 'block'; then echo "BLOCKED"
-  elif grep -qiE 'smoke-failure|LOGIN FAIL|BLOCKED' "$report"; then echo "BLOCKED"
-  else echo "UNKNOWN"; fi
+  line=$(grep -iE '(result|verdict|status):' "$report" | head -1)   # verdict wording varies: Result:/Verdict:/Status:
+  # Take the status keyword AFTER the label, and use the LEFTMOST match — so
+  # "BLOCKED - pre-flight login failure" resolves to BLOCKED, not FAIL (the word "failure").
+  local rest first
+  rest=${line#*:}
+  first=$(printf '%s' "$rest" | grep -oiE 'passed|pass|skipped|skip|blocked|block|failed|fail' | head -1 | tr 'A-Z' 'a-z')
+  case "$first" in
+    pass*)  echo "PASS";    return;;
+    skip*)  echo "SKIPPED"; return;;
+    block*) echo "BLOCKED"; return;;
+    fail*)  echo "FAIL";    return;;
+  esac
+  if grep -qiE 'smoke-failure|LOGIN FAIL|BLOCKED' "$report"; then echo "BLOCKED"; else echo "UNKNOWN"; fi
 }
 
 # --- smoke gate (once) ---
@@ -87,7 +102,28 @@ while [[ $idx -lt $TOTAL ]]; do
       echo "  -> [$((idx+1))/${TOTAL}] ${id} — skip (already ${pre})"
     else
       echo "  -> [$((idx+1))/${TOTAL}] ${id}"
-      scripts/run-case.sh "$id" >>"${RUN_DIR}/_batch-${batch}.log" 2>&1 || true
+      # Run the case; on a usage/session limit (or transient rate-limit/overload), either
+      # wait-and-resume the SAME case (ON_LIMIT=wait) or stop cleanly (ON_LIMIT=stop).
+      waits=0
+      while :; do
+        scripts/run-case.sh "$id" >>"${RUN_DIR}/_batch-${batch}.log" 2>&1 || true
+        if tail -8 "${RUN_DIR}/_batch-${batch}.log" | grep -qiE 'session limit|hit your .*limit|usage limit|rate.?limit|overloaded|status 429'; then
+          # No trustworthy result was produced — drop any partial/UNKNOWN report so the retry re-judges.
+          [[ "$(status_of "$report")" == "UNKNOWN" ]] && rm -f "$report"
+          if [[ "$ON_LIMIT" == "wait" && $waits -lt $MAX_LIMIT_WAITS ]]; then
+            waits=$((waits+1))
+            echo "!! usage/rate limit at ${id} — waiting ${LIMIT_WAIT}s then resuming (attempt ${waits}/${MAX_LIMIT_WAITS}) $(date)"
+            rebuild_summary   # checkpoint before the long sleep
+            sleep "$LIMIT_WAIT"
+            continue          # retry the SAME case after the window (may reset) — loops until it clears or cap hit
+          fi
+          printf '%s\t%s\t%s\n' "$id" "$(status_of "$report")" "$report" >> "$RESULTS"
+          rebuild_summary
+          echo "!! usage/session limit at ${id}; ON_LIMIT=${ON_LIMIT} / max waits reached — stopping cleanly at $(date). Re-run to resume."
+          exit 3
+        fi
+        break   # case finished without a limit signal
+      done
     fi
     printf '%s\t%s\t%s\n' "$id" "$(status_of "$report")" "$report" >> "$RESULTS"
   done
@@ -96,4 +132,4 @@ while [[ $idx -lt $TOTAL ]]; do
 done
 
 echo "== done. summary: ${SUMMARY} =="
-python3 -c "import json;s=json.load(open('${SUMMARY}'));print(f\"PASS {s['passed']} / FAIL {s['failed']} / BLOCKED {s['blocked']} / UNKNOWN {s['unknown']}  (of {s['run']} run)\")"
+python3 -c "import json;s=json.load(open('${SUMMARY}'));print(f\"PASS {s['passed']} / FAIL {s['failed']} / BLOCKED {s['blocked']} / SKIPPED {s.get('skipped',0)} / UNKNOWN {s['unknown']}  (of {s['run']} run)\")"

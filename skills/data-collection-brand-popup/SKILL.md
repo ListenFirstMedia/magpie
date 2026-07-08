@@ -1,10 +1,10 @@
 ---
 name: data-collection-brand-popup
 version: 1
-last_verified: 2026-05-20
-last_passed_run: 2026-05-20
+last_verified: 2026-06-29
+last_passed_run: 2026-06-29
 trust: untrusted
-pass_streak: 1
+pass_streak: 2
 preconditions: [on-data-collection-page]
 postconditions: [brand-popup-inspected]
 inputs: [brand_name]
@@ -100,6 +100,7 @@ There's a back-arrow icon (top-left of right pane) to return from Pages view to 
 | Signature | Interpretation | Action |
 |---|---|---|
 | No red ! badge on target channel | Channel is fully collecting — can't test red-! flows | Document as BLOCKED, not bug |
+| **Spec names Facebook but HBO Max Facebook is fully collecting (2026-06-29)** | Test-data drift — the non-collecting feeds migrated to Pinterest/Threads/TikTok; Facebook has no red ! | A6–A8 NOT EVALUABLE (BLOCKED). Per Rule 1 do NOT substitute Threads/Pinterest/TikTok. Recommend spec owner retarget. |
 | Popup doesn't open on hover | Need to wait longer (hover requires steady cursor for ~500ms) | Use `mouse_move` then sleep |
 | Click on brand row doesn't open Channels | Need to click directly on brand name text, not badges | Use `find` for precise target |
 
@@ -109,3 +110,4 @@ See `knowledge-base/bug-history.md`. No open bugs currently tied to this skill's
 
 ## Changelog
 - **v1** (2026-05-20): Initial draft from QA-2498 PARTIAL run. Captures the brand → channel → page drill-down, the "Not Collecting (N)" popup structure, and the spec deviations (Reauthorize count, page summary columns).
+- **2026-06-29** (QA-2498 re-run, Playwright MCP, HBO Max acct 657): PARTIAL PASS. Brand-level popup A1–A5 PASS (header "Not Collecting (4)", Learn More → Zendesk article 21272713329300 new tab, 4 Reauthorize = 1/item, all 4 non-collecting feeds suffixed "(Authorized)" — Pinterest User / Threads ×2 / TikTok Ads). A9/A11 PASS. A10/A12 PASS w/ variance (page summary cols Data Feed/Start Date/Last Collection Date/Status, no "Posts Tracked"). **A6–A8 BLOCKED — Facebook now fully collecting on HBO Max (test-data drift); red-! channel popup not triggerable; no substitution (Rule 1).** Selectors confirmed under Playwright: brand search is `textarea.brand-filter-typeahead`; dropdown options `.lfm-ta-option[data-row][title]`; badges `.status-badge.red/.blue` w/ `.fas.fa-exclamation-circle`/`.fa-plus-circle`; brand popup container `.status-badge-tooltip-container`.

@@ -1,0 +1,8 @@
+>> QA-129606 (--login-only) — Wed Jul  8 15:38:59 IST 2026  [timeout 2400s]
+Login succeeded, dashboard rendered at #home.
+
+LOGIN OK https://app.lfmdev.in/#home?account_id=328&from=2026-06-30&to=2026-07-06&compare_from=2026-06-23&compare_to=2026-06-29
+scripts/run-case.sh: line 123: 79987 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-08/QA-129606-report.md

@@ -1,0 +1,73 @@
+>> QA-24544 (full) — Sat Jul  4 02:58:24 IST 2026  [timeout 900s]
+QA-24544 executed in full — all 15 steps, ending signed out.
+
+**Verdict: PASS** (in-scope evaluable assertions A1 + A5 pass).
+
+| Assertion | Status |
+|---|---|
+| A1 — brand added to Add Brands | PASS (Michael Kors) |
+| A2 — recipient row updates | NOT EVALUABLE |
+| A3 — Action="Remove" | NOT EVALUABLE |
+| A4 — success prompt | NOT EVALUABLE |
+| A5 — shared report displays | PASS |
+
+Why A2–A4 aren't evaluable: the config/.env login (`lfiqa@listenfirstmedia.com`) **is** the spec's share recipient (step 8), so it's a self-share. The Add button triggered the platform guard "You've already shared this with lfiqa@listenfirstmedia.com" and the modal Share button was `inactive`/inert — correct product behavior, not a bug. This reproduces the documented 2026-06-29 known-quirk exactly. I did run the full end-to-end path (report built → share → sign out → sign in as lfiqa → Adam Orfei → paste `#story/155549` → report re-rendered → sign out), so A5 passes literally, though cross-user access can't be proven on this identity.
+
+Report: `runs/2026-07-04/QA-24544-report.md`. Evidence screenshots under `.playwright-out/QA-24544/`. No bugs filed.
+scripts/run-case.sh: line 123: 88411 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-04/QA-24544-report.md
+>> QA-27854 (full) — Sat Jul  4 03:10:00 IST 2026  [timeout 900s]
+QA-27854 executed in full. **Verdict: PASS (4/4 in-scope).**
+
+- **A1 (bell dropdown)** — PASS: "Import Tags" card, "Jul 03, 2026 05:06 am", message `"LF_Upload_Tags.csv" has been successfully uploaded...`, "download detail log" hyperlinked.
+- **A2 (Notifications table)** — PASS: Import Tags row present, New Status cell blank.
+- **A3 (success email template)** — PASS via Gmail MCP: "ListenFirst Bulk Tagging Complete!" body matches spec.
+- **A4 (failure email template)** — PASS via Gmail MCP: "ListenFirst Bulk Tagging Error" body matches spec; detail-log S3 path scoped to account 54 (Adam Orfei).
+
+Accepted variances (not bugs): A1 date-format is the documented illustrative-string quirk; email verification is template-level only (operator-mailbox caveat). Steps 3–4 gmail.com surface treated as out of scope. No bugs filed.
+
+Report: `runs/2026-07-04/QA-27854-report.md`; screenshots under `.playwright-out/QA-27854/`.
+scripts/run-case.sh: line 123: 89199 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-04/QA-27854-report.md
+>> QA-27856 (full) — Sat Jul  4 03:14:51 IST 2026  [timeout 900s]
+QA-27856 executed. **Verdict: PASS** (in-scope assertions).
+
+- **Pre-flight:** logged in via Cognito "existing account" form; landed on `#home?account_id=54` (Adam Orfei) — precondition satisfied, no switch needed.
+- **Step 1 / A1 (PASS):** Bell dropdown showed the **Import Tags** card — header "Import Tags", date "Jul 03, 2026 05:06 am", message `"LF_Upload_Tags.csv" has been successfully uploaded...`, with a hyperlinked "download detail log".
+- **Step 2 / A2 (PASS):** Clicking the link downloaded **`results.csv`** (394 B) with header `Post Url,Social Channel,Tags,Error` and 5 valid rows (all Error empty).
+- **Steps 3–4 / A3–A4 (SKIPPED):** Bulk Tagging mail is a Gmail/Google-auth surface = out of scope.
+
+Two cosmetic spec-vs-UI variances (filename underscores vs spaces; "Post Url" vs "Post URL") documented — not defects. No bugs filed. Report at `runs/2026-07-04/QA-27856-report.md`; artifacts in `.playwright-out/QA-27856/`.
+scripts/run-case.sh: line 123: 89732 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-04/QA-27856-report.md
+>> QA-28799 (full) — Sat Jul  4 03:18:40 IST 2026  [timeout 900s]
+>> TIMEOUT after 900s — killing QA-28799 (process tree)
+QA-28799 executed end-to-end. **Verdict: PASS** (all in-scope assertions A1–A8; A9/A10 out of scope).
+
+**Summary**
+- Precondition met on landing (Adam Orfei, acct 54).
+- **A1** redirect to Add New User ✓ · **A2** Role default "Analyst" ✓ · **A3** after selecting Account=Drylogics the Role dropdown listed all four spec roles (Admin/Analyst/Analyst (No Spend)/LF Employee) plus a Drylogics-custom "TEST" ✓ — note A3 must be checked *after* step 3, since role options are account-dependent.
+- **A4** Add User enables once email text is present ✓ · **A5** exact error `Received invalid email: 'qa28799autotest.com'` + red input ✓.
+- **A6** new user (`qa28799-auto-20260704@drylogics-qatest.com`) appears in the filtered Users list ✓ · **A7** shows in classic admin `/admin/users` as Id 20801 ✓.
+- **A8** deactivated via Actions→Deactivate→Ok; confirmed by seat-count 313→314, modal naming the user, and the row moving to Deactivated Users ✓. **Cleanup complete** — no lingering active test user.
+- **A9/A10** (Dev Mixpanel) skipped as out of scope (third-party auth surface, like Google Sheets).
+
+**Bugs filed:** none.
+
+**Notable (in report, not bugs):** (1) success toasts for add/deactivate are transient and weren't captured verbatim — behavior verified via seat-count deltas + modal naming + list membership; (2) the classic Admin is now reachable via same-user re-auth (same Cognito client_id), superseding the 2026-06-04 "Admin BLOCKED" quirk; (3) the main-app tab crashed while the admin tab was open (recovered by re-nav); (4) leftover `qa28799-*` users from prior runs remain active in Drylogics and should be swept.
+
+Report: `runs/2026-07-04/QA-28799-report.md`.
+>> QA-29479 (full) — Sat Jul  4 03:41:02 IST 2026  [timeout 900s]
+**QA-29479 → SKIPPED (external-user precondition, deferred).** Report written to `runs/2026-07-04/QA-29479-report.md`.
+
+The case is unrunnable on the unattended track: every assertion sits behind two out-of-scope gates at once — step 7 requires signing in as a **different identity** (`lfm-qa@drylogics.com`, which in-app account switching can't satisfy), and step 9 requires **Gmail** (Google-auth, out of scope). Steps 1–5 are creator-side setup with no attached assertion, so there's nothing in-scope to fall back on. Per the SCOPE RULES I didn't launch the browser or spend the budget exploring. No bugs filed (unmet precondition, not a defect).
+scripts/run-case.sh: line 123: 91412 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-04/QA-29479-report.md

@@ -1,0 +1,49 @@
+>> QA-134516 (full) — Sat Jul  4 15:11:03 IST 2026  [timeout 900s]
+>> TIMEOUT after 900s — killing QA-134516 (process tree)
+>> QA-134594 (full) — Sat Jul  4 15:26:03 IST 2026  [timeout 900s]
+**QA-134594 — Brand > Video > Instagram > Public Data: PASS.**
+
+Executed all 8 steps in order on Hulu (account 336). Results:
+- **11/11 in-scope assertions PASS**; 5(c) is **N/A** (empty-state message not triggerable — 30 IG posts present; no substitution per Rule 1).
+- 3(a)/3(b): Instagram present in selector; all 3 metric tiles show FB/Twitter/Instagram/TikTok/- Compared To legends under Public.
+- 4(a): all 6 tiles present. 4(b)/4(c): Instagram-only legends + content after Apply.
+- 5(a): columns Legend/Channel/Type/Text/Video Views. 5(b): Video Views sort verified (re-sorted ascending).
+- 6(a)/6(b): Best Performing Videos all Instagram; "Sort: Video Views" default.
+- 7: "Page Video Views" absent under Public. 8: after toggling to Authorized, tile renames to "Page Video Views" and "Public Page Video Views" disappears.
+
+**No bugs filed.** Two automation-only notes (flaky Brand>Video brand-picker widget; transient first-load tile-render that self-recovered) — neither is a product defect.
+
+Report: `runs/2026-07-04/QA-134594-report.md`; screenshots under `.playwright-out/QA-134594/`. Skill `view-perspective-toggle` reused successfully (separate-day pass).
+scripts/run-case.sh: line 123: 16123 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-04/QA-134594-report.md
+>> QA-135319 (full) — Sat Jul  4 15:36:02 IST 2026  [timeout 900s]
+QA-135319 executed in full — **PASS (10/10)**.
+
+**Summary:** On Hulu Brand > Content (spec brand exact match, Posts baseline 121), I drove the Tag filter through every step and verified each assertion via DOM state + zoomed screenshots:
+
+- **A1–A3** (defaults): Include selected, Exclude not; `Or` selected-but-disabled; `And` disabled — all confirmed with 0 tags.
+- **A4–A5** (toggle): Exclude→selected, then Include→re-selected cleanly.
+- **A6–A7**: after adding TAG_1, Include + OR defaults retained.
+- **A8**: green Include pill `#1 streaming premiere` (border `rgb(76,237,159)`).
+- **A9**: red Exclude pill `#90s4eva` (`exclude-filter`, border `rgb(236,76,76)`).
+- **A10**: hover-removed the Exclude pill → Posts stayed **121**, no `filters=` in URL (never applied), Include pill remained → no impact.
+
+No Google Sheets steps involved. No bugs filed. Report written to `runs/2026-07-04/QA-135319-report.md`; screenshots under `.playwright-out/QA-135319/`.
+scripts/run-case.sh: line 123: 16711 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-04/QA-135319-report.md
+>> QA-135321 (full) — Sat Jul  4 15:47:22 IST 2026  [timeout 900s]
+**QA-135321 → FAILED (blocked by open bug LFMP-32155).** Screened out by Rule 7 before running; no browser opened. Report written to `runs/2026-07-04/QA-135321-report.md`.
+scripts/run-case.sh: line 123: 17320 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-04/QA-135321-report.md
+>> QA-138031 (full) — Sat Jul  4 15:47:55 IST 2026  [timeout 900s]
+**QA-138031 → FAILED (blocked by open bug).** Not executed. The cached case file lists an OPEN linked bug **APPS-61562 (QA Ready)**, which triggers spec-adherence Rule 7 (open-bug auto-fail): no browser launched, no pre-flight, all 7 assertions marked NOT RUN. Report written to `runs/2026-07-04/QA-138031-report.md`. It re-runs automatically once APPS-61562 closes and the cache is refreshed.
+scripts/run-case.sh: line 123: 17792 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-04/QA-138031-report.md

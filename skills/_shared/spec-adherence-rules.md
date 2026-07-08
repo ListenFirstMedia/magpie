@@ -115,3 +115,12 @@ This rule generalizes: never assert that a user-visible behavior is broken based
 - "The dropdown shows no options" because the JS query returned nothing → could be a hidden overflow scroll; screenshot first
 - "The chart has no data" because the SVG path is empty → could be rendering at 0 height due to CSS; verify with the user
 - "The export silently fails" because no `URL.createObjectURL` hook fired → could use a different download path; ask the user to check Downloads folder
+
+## Rule 7 — Open-bug auto-fail (screen before running)
+
+Before executing any steps, read the case file's **"## Open linked bugs"** section (baked in from Jira at cache time, since the unattended `claude -p` run has no Jira/Atlassian MCP access).
+
+- If it says **"None open"** → screen passed; run the case normally.
+- If it lists **any OPEN bug** (e.g. `LFMP-31961(Open)`, or a Bug/Test Failure/Problem in `QA Ready`/`Code Review`/`Open`/`To Do`) → **do NOT run the case.** Immediately write the report with verdict **`FAILED (blocked by open bug)`**, cite the bug key(s), and STOP. Do not open the browser flow for that case.
+
+Rationale: a case with an open linked defect can't produce a trustworthy PASS; running it wastes the per-case budget and risks a misleading result. Re-runs pick it up automatically once the bug closes and the cache is refreshed. (This mirrors the interactive open-bug-auto-fail discipline.)

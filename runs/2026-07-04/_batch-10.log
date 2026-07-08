@@ -1,0 +1,25 @@
+>> QA-129606 (full) — Sat Jul  4 10:39:15 IST 2026  [timeout 900s]
+>> TIMEOUT after 900s — killing QA-129606 (process tree)
+>> QA-129803 (full) — Sat Jul  4 10:54:15 IST 2026  [timeout 900s]
+QA-129803 executed end-to-end. **Verdict: PASS (5/5 in-scope).**
+
+- Account switched to **Wasserman**, brand **FIA World Endurance Championship (FIAWEC)** (exact Results match), Facebook, Absolute Days **Sep 26 – Oct 3, 2025**, metrics Total Fans + Engagements/Posts/Response Rate. Report built (story 155592).
+- **A1** loads clean · **A3** Total Fans em-dash Sep 26–29, populated Sep 30–Oct 3 · **A4** Response Rate mirrors Total Fans presence exactly · **A5** formula `Eng/(Fans×Posts)×100` matches UI to rounding (0.10/0.43/0.19/0.18%) · **A2** Engagements present on UI (all 8 days).
+- **Google Sheets** step + the "vs Google Sheet" halves of A2/A5 skipped as out of scope; judged on in-scope UI assertions.
+- No bugs filed. Report: `runs/2026-07-04/QA-129803-report.md`; evidence under `.playwright-out/QA-129803/`.
+scripts/run-case.sh: line 123:  4714 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-04/QA-129803-report.md
+>> QA-130076 (full) — Sat Jul  4 11:03:23 IST 2026  [timeout 900s]
+API Error: The socket connection was closed unexpectedly. For more information, pass `verbose: true` in the second argument to fetch()
+>> QA-131491 (full) — Sat Jul  4 11:54:05 IST 2026  [timeout 900s]
+Done. **QA-131491 → FAILED (blocked by open bug DATA-12223, QA Ready).**
+
+Per Rule 7 (open-bug auto-fail), the case has an open linked defect, so I marked it blocked without running any steps — no pre-flight, no browser session. Report written to `runs/2026-07-04/QA-131491-report.md` with all four assertions marked BLOCKED. It will re-run automatically once DATA-12223 closes and the case cache is refreshed.
+scripts/run-case.sh: line 123:  5871 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-04/QA-131491-report.md
+>> QA-131492 (full) — Sat Jul  4 11:54:37 IST 2026  [timeout 900s]
+API Error: The socket connection was closed unexpectedly. For more information, pass `verbose: true` in the second argument to fetch()

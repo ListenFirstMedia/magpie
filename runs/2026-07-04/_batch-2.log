@@ -1,0 +1,63 @@
+>> QA-929 (full) — Sat Jul  4 01:12:10 IST 2026  [timeout 900s]
+QA-929 **not executed** — blocked at the open-bug gate.
+
+- **Verdict:** FAILED (blocked by open bug) — **LFMP-31979 (Open)**, per Rule 7 (open-bug auto-fail).
+- No browser/pre-flight started; all six assertions marked BLOCKED.
+- Report: `runs/2026-07-04/QA-929-report.md`. No new bugs filed.
+
+Re-runs will pick it up once LFMP-31979 closes and the cache refreshes (note: its fixed Jun 21–22 2023 date range has also aged past the ~3-year retention floor, so verify that too before trusting a future PASS).
+scripts/run-case.sh: line 123: 77562 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-04/QA-929-report.md
+>> QA-949 (full) — Sat Jul  4 01:12:46 IST 2026  [timeout 900s]
+API Error: The socket connection was closed unexpectedly. For more information, pass `verbose: true` in the second argument to fetch()
+>> QA-1053 (full) — Sat Jul  4 01:22:12 IST 2026  [timeout 900s]
+>> TIMEOUT after 900s — killing QA-1053 (process tree)
+>> QA-1124 (full) — Sat Jul  4 01:37:13 IST 2026  [timeout 900s]
+QA-1124 complete — **PASS (13/13)**.
+
+Executed all 14 steps on Brand > Insights / Hulu under **Public Data** (perspective toggle clicked explicitly, Rule 2), 30-day range (Jun 3 – Jul 2). Every chart hover produced the spec-format tooltip:
+
+- **Bars** (Follower Growth / New Posts / Engagements): `Mon. DD, YYYY` + per-channel `Channel: value (±%)`, tooltip channels = legend chips (FB/Twitter/IG/TikTok), hovered channel carries `--selected` highlight.
+- **Rate bars** (Response Rate 0.31%, Fan Growth Rate 0.68%): `date` + `Chart Name: value`.
+- **Views area**: Twitter-only (`Twitter: 271,682`).
+- **Total Followers donut**: `Facebook: 6,209,733` + all channels with icons.
+- **Channel View: Aggregate** collapsed charts to single series (bars 120→30); aggregate Engagements `Engagements: 482,536` and **Public Video Views** `Public Video Views: 9,355,961` both chart-name-prefixed.
+
+No open bugs to screen, no out-of-scope steps, no new defects. Report at `runs/2026-07-04/QA-1124-report.md`; evidence under `.playwright-out/QA-1124/`.
+scripts/run-case.sh: line 123: 79056 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-04/QA-1124-report.md
+>> QA-1519 (full) — Sat Jul  4 01:49:36 IST 2026  [timeout 900s]
+QA-1519 complete. **Verdict: PASS** (all in-scope assertions).
+
+Executed the full flow on Hulu (account_id=336) / Hulu brand (brand_id=5670), Table View:
+
+| Assertion | Result |
+|---|---|
+| A1 — only "Engagements Breakdown" checked | PASS |
+| A2 — EB context enabled set (15, IG-Only enabled, FB-Only disabled) | PASS (exact match) |
+| A6 — only "Clicks" checked | PASS |
+| A7 — Clicks context enabled set (15, FB-Only enabled, IG-Only disabled) | PASS (exact match) |
+| A3/A4/A5/A8 | SKIPPED — emailed CSV + Google Sheets out of scope |
+
+The context-dependent enablement flip (EB→Instagram-Only, Clicks→Facebook-Only) matched the spec exactly. Export fires async by email/notification, so the emailed-CSV columns/filename (A3/A4/A8) and Google Sheets (A5) were correctly skipped per scope rules.
+
+Report: `runs/2026-07-04/QA-1519-report.md`. Evidence screenshots under `.playwright-out/QA-1519/`. No bugs filed.
+scripts/run-case.sh: line 123: 79635 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-04/QA-1519-report.md
+>> QA-949 (full) — Sat Jul  4 02:19:11 IST 2026  [timeout 900s]
+court
+<invoke name="Read">
+<parameter name="file_path">/Users/yashsharma/git/magpie/.playwright-out/QA-949/step2-stories-loaded.png</parameter>
+</invoke>
+scripts/run-case.sh: line 123: 82903 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-04/QA-949-report.md
+>> QA-1053 (full) — Sat Jul  4 02:24:54 IST 2026  [timeout 900s]
+>> TIMEOUT after 900s — killing QA-1053 (process tree)

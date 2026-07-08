@@ -80,3 +80,9 @@ See `knowledge-base/bug-history.md` for the full per-ticket bug list. Highest-pr
 - Table View headers (IG public): Rank, Date, Channel, Brand, Type, Live, Publish Type, Sponsor, Text, Engagements, Reactions, Comments, **Shares**, Response Rate, Video Views, Video Response Rate, Actions — Video Views sits directly after Response Rate ✓. Detail View metric stack: Engagements, Reactions, Comments, Response Rate, Video Views (below RR ✓), Video Response Rate (no Shares row in Detail).
 - Note: a `Shares` column shows for IG public with en-dash values — test specs often omit it; don't fail on its presence.
 - Layout icon ref-clicks can silently not switch — verify via `th` headers after clicking; coordinate-click the first icon if needed.
+
+## Aggregate Sum/Average toggle — Table-View only (QA-520, 2026-07-02)
+
+- The aggregate row's **Sum ↔ Average toggle only renders in Table View** (not Grid/Detail; and it disappears if the data set/channels are changed and the layout resets — re-select Table View to bring it back).
+- It lives in **`.aggregate-row-toggle-container`** (a `.toggle-container` with `.toggle-data-label` "Sum" / "Average"). To flip, TRUSTED-click its inner **`label.toggle-switch-label`** (`.toggle-switch-checkbox` false=Sum, true=Average).
+- ⚠ **Do NOT select a global `.toggle-switch-label`** — the FIRST one on Brand>Content is the **Public/Authorized perspective** toggle. Clicking it changes perspective AND resets the data set (→Public) and channels (→all). Always scope to `.aggregate-row-toggle-container`.

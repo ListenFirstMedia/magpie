@@ -1,10 +1,10 @@
 ---
 name: time-window-comparison-run
 version: 6
-last_verified: 2026-06-22
-last_passed_run: 2026-06-22
+last_verified: 2026-07-02
+last_passed_run: 2026-07-02
 trust: untrusted
-pass_streak: 18
+pass_streak: 22
 preconditions: [user-logged-in, account-set]
 postconditions: [report-built]
 inputs: [brand_name, perspective, data_points, date_range_type, start_date, end_date, keydate_season, keydate_episode]
@@ -163,6 +163,14 @@ When the test specifies `Interval = Aggregate`:
 - Switching to Aggregate collapses the per-day time series into a single value per brand per metric — the chart renders **3 bars** (one per brand) instead of a line chart per metric over time.
 - The chart axis labels are the brand names (MTV, Star Wars, HBO Max …), not dates.
 
+### Lock (unauthorized) vs en-dash (no-data) — differ between graph and table (QA-1053, 2026-07-02)
+
+Two distinct "no value" states render differently:
+- **Unauthorized metric** (brand lacks authorization for that metric): **lock glyph** at the chart baseline (colored to match the brand's legend swatch) AND a **🔒 (`i.far.fa-lock`)** in the metric table cell.
+- **No-data metric** (authorized but the value is empty): **"No Data"** text at the chart baseline (no bar) AND an **en-dash `–`** in the metric table cell.
+
+QA-1053 (Hulu + Full Frontal with Samantha Bee + Snowfall, Aggregate, Relative Start 5 Days Before Event, Key Date Jan 1 2024, Use Authorized Data, metrics Instagram Comments + TikTok Total Followers): Instagram Comments → Full Frontal & Snowfall show **lock** (both graph + table); TikTok Total Followers → Hulu 5,500,000 & Full Frontal 149,700 have data, Snowfall = **en-dash in table / "No Data" in graph**. Detection: table locks = `i.far.fa-lock`; table en-dash = a leaf cell whose text is exactly `–`; graph no-data = an x-axis label element whose text contains `No Data`. **Use Authorized Data (Where Available)** only flips brands that actually have authorized access (Hulu), leaving others Public — which is what produces the lock state for the others.
+
 ## Cohort Average / Competitor Average as overlay lines
 
 Two Options-section checkboxes under General add horizontal reference lines to the bar chart:
@@ -265,5 +273,14 @@ This pattern is confirmed required for:
 - **Interval = Aggregate:** via `.lfm-dropdown-select-box` ("Days") → `.lfm-dropdown-option` "Aggregate". Aggregate report renders one table per metric with a single Brand|Value row.
 - **Google Sheets export hang RE-CONFIRMED on second account (Wasserman story 154443):** spinner >60 s, no `window.open`, Export control locked until page reload. CSV via blob-hook is the reliable export-verification fallback.
 
+## Relative dates + Weekly interval + per-brand Key Date (QA-281, 2026-07-02, interactive headed)
+
+- **Relative Dates flow:** click **Relative Dates**; set **Interval** via the `.lfm-dropdown-select-box` → `.lfm-dropdown-option` (e.g. "Weeks"). Fill **Start** and **End** numeric spinbuttons (React-aware setter + `input` event; `.fill()` may report "not visible"). Start/End each have a **Before/After** `.lfm-dropdown` ("Event"). Spec "15 weeks out → 1 week out" = both **Before**; the app labels the resulting window e.g. "15 Weeks Out through 1 Week Post".
+- **Per-brand Key Date:** each brand row in Add Brands has a **"Select Key Date"** button → opens a **plain calendar** (navigate: click month-header → month-grid → `.prev`/`.next` year arrows with FULL mouse events (synthetic `.click()` may no-op) → click month → click day). Set it **one brand at a time** (the Bulk Select Key Date dialog's "Calendar" toggle is stuck — see keydate-picker). Verify the row's Key Date column shows the date.
+- **Weekly + key date → required "Choose the Ending Day of Weekly Intervals" modal** appears when you click **Run Report** (it intercepts pointer events until resolved). Options: **Use the Weekday of Each Brand's Key Date** / **Use the Weekday of Primary Brand's Key Date** / **Or Select a Day (Su–Sa)**. Pick one → **Ok** → the report then generates (story URL). The modal also shows the computed Primary Brand campaign window.
+- **Report options** (Show Change / Show Share / Show Metrics Tables) are `li`-wrapped checkboxes; toggling them adds **Change / Change % / Share** columns to the export.
+
 ## Changelog (cont.)
 - **v5** (2026-06-11): hidden-duplicate-datepicker guard, real-click summary expansion, Off-link channel clear, Cross-Channel tree map, Change Settings reuse pattern, Aggregate interval, GS-hang reconfirmation.
+- **v6** (2026-07-02): Relative/Weekly + per-brand Key-Date flow, the required "Choose the Ending Day of Weekly Intervals" modal, and Show Change/Share export columns (QA-281 interactive headed). LFMP-31961 (chart clips negative net-followers; table/export correct) reconfirmed open.
+- **v6.1** (2026-07-02): Aggregate + Relative (Start N Days Before Event) lock-vs-en-dash semantics — lock glyph/`i.far.fa-lock` for unauthorized, "No Data"(graph)/`–`(table) for no-data; "Use Authorized Data (Where Available)" only flips authorized brands (QA-1053, Hulu+Full Frontal+Snowfall). +3 streak (QA-1053, plus QA-198/QA-949-adjacent reuse this session).

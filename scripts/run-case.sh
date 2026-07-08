@@ -51,6 +51,38 @@ TASK: Execute test case ${CASE_FILE} in full — every step, in order, applying 
 spec-adherence rules (exact brand from the typeahead Results; explicit toggle clicks; never
 fake a download/export verification). Reuse the matching skill; do not improvise brands/dates.
 
+STEP TIME BUDGET — 5 MINUTES MAX PER STEP (hard rule):
+Never wait on or retry a single step/render for more than ~5 minutes. Use BOUNDED waits
+(browser_wait_for with an explicit short timeout), never open-ended ones. If a page, chart,
+tile, or element has NOT finished rendering within ~5 minutes on one step:
+  1. STOP waiting. Take a screenshot to .playwright-out/${ID}/<step>-stuck.png.
+  2. ANALYZE it yourself (you are multimodal): read that screenshot PLUS the DOM
+     (browser_snapshot / browser_evaluate) and decide what is actually happening —
+     stuck spinner, partial render, error banner, unexpected state, or it already rendered
+     something you can use.
+  3. MAKE A CALL — do not hang:
+     - Transient hang → ONE reload + retry (still inside the 5-min budget).
+     - Already usable → proceed and read the value.
+     - Still stuck → the WHOLE CASE is BLOCKED. Write the report with verdict
+       'BLOCKED - render-hang at step N' (cite the screenshot) and STOP. Do not continue or
+       report a partial PASS — one stuck in-scope step makes the case result untrustworthy.
+  EXCEPTIONS (these do NOT block the whole case):
+     - A stuck/unavailable GOOGLE SHEETS step → just skip it (out of scope) and keep judging the
+       case on the in-scope assertions (PASS still possible).
+     - An external-user precondition → the whole case is SKIPPED (not BLOCKED) — see SCOPE RULES.
+
+SCOPE RULES (apply before and during execution):
+- EXTERNAL-USER / SECOND-IDENTITY cases: if the preconditions require authenticating as a
+  DIFFERENT user identity than config/.env (e.g. an 'External' role user, or signing in as a
+  second account) — which in-app account-switching CANNOT satisfy — do NOT attempt the flow.
+  Immediately write the report with verdict 'SKIPPED - external-user precondition (deferred)'
+  and stop. Do not spend the timeout exploring. (Account/brand SWITCHES of the SAME user are fine.)
+- GOOGLE SHEETS is OUT OF SCOPE (Google 2FA). Execute every OTHER step of the case normally;
+  SKIP only the Google Sheets steps/assertions (never open docs.google.com). Judge the case on
+  the IN-SCOPE (non-GS) assertions only: if those pass, the verdict is PASS — add a note
+  'GS steps skipped (out of scope)'. Do NOT mark the whole case BLOCKED merely because the GS
+  assertion was skipped. (CSV/TSV/XLS exports stay in scope and must be verified on disk.)
+
 ARTIFACTS: Save ALL screenshots and page snapshots under .playwright-out/${ID}/<name> —
 always pass that full relative path to browser_take_screenshot / browser_snapshot. NEVER pass a
 bare filename: a bare filename lands in the repo root and clutters it (see known-quirks.md).
@@ -63,16 +95,23 @@ fi
 
 echo ">> ${ID} (${MODE}) — $(date)  [timeout ${CASE_TIMEOUT}s]"
 
+# Recursively kill a process and ALL descendants (claude spawns node MCP + chrome children
+# that survive a kill of the parent PID alone — the bug behind 90-min "capped" cases).
+kill_tree() {
+  local pid=$1 child
+  for child in $(pgrep -P "$pid" 2>/dev/null); do kill_tree "$child"; done
+  kill -9 "$pid" 2>/dev/null
+}
+
 # Run claude in the background and enforce a hard per-case timeout via a watchdog
-# (macOS has no `timeout` binary). On overrun, kill the case and its child browser.
+# (macOS has no `timeout` binary). On overrun, kill the whole process tree.
 claude -p "$PROMPT" --dangerously-skip-permissions &
 CLAUDE_PID=$!
 (
   sleep "$CASE_TIMEOUT"
   if kill -0 "$CLAUDE_PID" 2>/dev/null; then
-    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID}"
-    pkill -P "$CLAUDE_PID" 2>/dev/null
-    kill -9 "$CLAUDE_PID" 2>/dev/null
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"
+    kill_tree "$CLAUDE_PID"
   fi
 ) &
 WATCHDOG_PID=$!

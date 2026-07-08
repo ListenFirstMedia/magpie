@@ -1,10 +1,10 @@
 ---
 name: radaac-report-runner
 version: 1
-last_verified: 2026-06-08
-last_passed_run: 2026-06-08
+last_verified: 2026-06-28
+last_passed_run: 2026-06-28
 trust: untrusted
-pass_streak: 7
+pass_streak: 8
 preconditions: [user-logged-into-platform, cognito-sso-allowed]
 postconditions: [radaac-report-downloaded-on-disk]
 inputs: [report_name, filter_inputs, file_format]

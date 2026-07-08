@@ -1,0 +1,62 @@
+{
+  "date": "2026-07-08",
+  "total": 10,
+  "run": 10,
+  "passed": 6,
+  "failed": 0,
+  "blocked": 4,
+  "skipped": 0,
+  "unknown": 0,
+  "cases": [
+    {
+      "id": "QA-129606",
+      "status": "PASS",
+      "report": "runs/2026-07-08/QA-129606-report.md"
+    },
+    {
+      "id": "QA-130076",
+      "status": "BLOCKED",
+      "report": "runs/2026-07-08/QA-130076-report.md"
+    },
+    {
+      "id": "QA-131492",
+      "status": "PASS",
+      "report": "runs/2026-07-08/QA-131492-report.md"
+    },
+    {
+      "id": "QA-132387",
+      "status": "PASS",
+      "report": "runs/2026-07-08/QA-132387-report.md"
+    },
+    {
+      "id": "QA-132392",
+      "status": "PASS",
+      "report": "runs/2026-07-08/QA-132392-report.md"
+    },
+    {
+      "id": "QA-134277",
+      "status": "BLOCKED",
+      "report": "runs/2026-07-08/QA-134277-report.md"
+    },
+    {
+      "id": "QA-134448",
+      "status": "BLOCKED",
+      "report": "runs/2026-07-08/QA-134448-report.md"
+    },
+    {
+      "id": "QA-134449",
+      "status": "BLOCKED",
+      "report": "runs/2026-07-08/QA-134449-report.md"
+    },
+    {
+      "id": "QA-134516",
+      "status": "PASS",
+      "report": "runs/2026-07-08/QA-134516-report.md"
+    },
+    {
+      "id": "QA-139187",
+      "status": "PASS",
+      "report": "runs/2026-07-08/QA-139187-report.md"
+    }
+  ]
+}

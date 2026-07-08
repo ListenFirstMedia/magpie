@@ -1,0 +1,30 @@
+>> QA-12532 (full) — Sat Jul  4 02:41:09 IST 2026  [timeout 900s]
+**QA-12532 → FAILED (blocked by open bug).**
+
+Screened out per Rule 7 before any browser flow — the cached case file lists two OPEN linked bugs (**LFMP-31903**, **LFMP-32116**). No pre-flight, no steps run. Report written to `runs/2026-07-04/QA-12532-report.md`. Re-runs will pick it up once both bugs close.
+scripts/run-case.sh: line 123: 85885 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-04/QA-12532-report.md
+>> QA-19482 (full) — Sat Jul  4 02:41:46 IST 2026  [timeout 900s]
+>> TIMEOUT after 900s — killing QA-19482 (process tree)
+>> QA-19557 (full) — Sat Jul  4 02:56:46 IST 2026  [timeout 900s]
+**QA-19557 → FAILED (blocked by open bug).** Not run. The case file lists two OPEN linked bugs (APPS-58817, LFMP-32016), so per Rule 7 (open-bug auto-fail) I skipped pre-flight/login and the entire browser flow and wrote the blocked report to `runs/2026-07-04/QA-19557-report.md`. Assertions A1/A2 marked BLOCKED; no defect filed. It'll re-run automatically once both bugs close and the cache refreshes.
+scripts/run-case.sh: line 123: 87017 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-04/QA-19557-report.md
+>> QA-20988 (full) — Sat Jul  4 02:57:18 IST 2026  [timeout 900s]
+**QA-20988 — FAILED (blocked by open bug).** Not executed. The cached case file lists an open linked defect, **DATA-12089 (Code Review)**, so per Rule 7 (open-bug auto-fail) the browser flow was skipped entirely. Report written to `runs/2026-07-04/QA-20988-report.md`. It re-runs automatically once DATA-12089 closes and the cache refreshes.
+scripts/run-case.sh: line 123: 87482 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-04/QA-20988-report.md
+>> QA-23969 (full) — Sat Jul  4 02:57:52 IST 2026  [timeout 900s]
+**QA-23969 — FAILED (blocked by open bug).** Not executed.
+
+Case has open linked bug `LFMP-31925(Open)`, so per Rule 7 (open-bug auto-fail) I screened it out without running the browser flow. Report written to `runs/2026-07-04/QA-23969-report.md`. Re-runs will pick it up once LFMP-31925 closes and the cache refreshes.
+scripts/run-case.sh: line 123: 87944 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-04/QA-23969-report.md

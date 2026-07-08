@@ -1,10 +1,10 @@
 ---
 name: settings-custom-metrics
-version: 2
-last_verified: 2026-06-08
-last_passed_run: 2026-06-08
+version: 3
+last_verified: 2026-07-03
+last_passed_run: 2026-07-03
 trust: untrusted
-pass_streak: 11
+pass_streak: 13
 preconditions: [account-context]
 postconditions: [custom-metric-row-present, info-mode-toggled-off]
 inputs: [metric_name, metric_description, formula_tokens]
@@ -179,6 +179,21 @@ Buttons: Cancel + Ok
 
 After Ok click: row immediately removed from listing; F5-refresh-persistent.
 
+## v3 — Parentheses menu, account-gating, BODMAS (QA-139187)
+
+### Parentheses in the formula builder
+The formula dropdown now has a **4th top-level option: `Parentheses ▶`** (order: Metrics / Constant / Operators / **Parentheses**). Its submenu offers two chips: **`(`** and **`)`**. A parenthetical formula like `( Comments + Engagements × 2 )` is built as: Parentheses→`(`, Metrics→ListenFirst→Comments, Operators→`+`, Metrics→ListenFirst→Engagements, Operators→`×`, Constant→`2`, Parentheses→`)`. **Save stays disabled while a `(` is unclosed; closing `)` enables Save.** On Save: standard "Custom metric successfully created!" modal, no validation error (QA-139187 A3 PASS).
+
+### Custom Metrics is ACCOUNT-GATED
+"Custom Metrics" appears in the Settings menu for some accounts (e.g. **Adam Orfei**) but NOT others (e.g. **Hulu**). Under a non-entitled account, navigating `#custom-metrics` renders a **blank page**. When a case's precondition names an account (e.g. "logged in as Adam Orfei"), switch to it first — the feature won't be reachable otherwise. ([[account-precondition]])
+
+### BODMAS verification via TWC
+To prove operator precedence (QA-139187 A5): create the metric, then in TWC (Authorized, e.g. MTV) select the **custom metric AND its component metrics** (same names, e.g. ListenFirst `Comments` + `Engagements` via the metric Filter box), run, and check `custom == Comments + 2×Engagements` per row (NOT `(Comments+Engagements)×2`). All 7 daily rows matched exactly → precedence correct.
+- ⚠ **TWC gotcha:** toggling the per-brand Authorized switch (`label[for="0-perspective-toggle"]`) **AFTER** selecting metrics DROPS the earlier selections — the custom metric silently fails to render in the output. **Set Authorized FIRST, then select all metrics**, then Run.
+
+### Max-limit validation (A7/A8) — NOT YET CAPTURED
+QA-139187 A7/A8 expect, at an 11-part formula: "You've reached the max limit of metric selection in your Custom Metric. You can still close ')' to finish the formula." (Save disabled while `(` open) → closing `)` keeps a max-limit message and enables Save. **Not yet verified** — building 11 operands via the dropdown is very high-interaction, and under automation a re-entered **Constant replaces the trailing operand instead of appending** (state hard to track). Needs a focused run; document the exact max-count when captured.
+
 ## Additional Failure signatures (v2)
 
 | Signature | Interpretation | Action |
@@ -192,5 +207,6 @@ After Ok click: row immediately removed from listing; F5-refresh-persistent.
 
 ## Changelog
 
+- **v3** (2026-07-03): +1 from QA-139187 (Parenthetical Expressions — A3 Save-with-parentheses + A5 BODMAS both PASS; A7/A8 max-limit not yet captured). Added the **Parentheses** formula-menu option (`(`/`)`), **account-gating** of the Custom Metrics feature (Adam Orfei yes, Hulu no — blank page otherwise), **BODMAS verification via TWC** (select custom + component metrics, compare per-row) with the **Authorized-toggle-drops-selections** gotcha (set Authorized before selecting metrics), and a note that the max-limit validation (A7/A8) remains uncaptured (Constant re-entry replaces trailing operand under automation).
 - **v2** (2026-06-08): Edit flow (QA-135429); × ÷ operators APPS-60358 implementation verified end-to-end via 4-icon FontAwesome enumeration (QA-137557 reaches Create; QA-137558 ↔ TWC verification); Save modal Constant-vs-Constants drift retained; Delete flow stays in this skill; APPS-60358 4-operator dropdown enumerated NOT REPRODUCED as a bug. +9 streak across batches: QA-85176, QA-134173, QA-134185, QA-135430, QA-75011, QA-85176 RECONFIRM, QA-135429, QA-137557, QA-137558.
 - **v1** (2026-05-29): initial skill — created from QA-85176, QA-134173, QA-134185 (PASS / PASS / PASS). Documents formula-builder strict-alternation, X-removal cycle, Info-mode tooltip toggle on both list and create pages, and the three known spec/UI copy drifts.

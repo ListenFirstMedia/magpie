@@ -1,0 +1,53 @@
+>> QA-106218 (full) — Sat Jul  4 09:49:25 IST 2026  [timeout 900s]
+QA-106218 complete — **PASS (14/14)**.
+
+Executed all 9 steps in order on Adam Orfei (account switched via the user-menu Results row, since the Settings surface had loaded under "Sony Pictures"). Built the 7-metric custom data set exactly per spec and verified every assertion:
+
+- **A1–A5** (create page): breadcrumb, "Create Custom Data Set" header, Data Last Updated timestamp, name box placeholder, and the 12-node metrics order all match.
+- **A6–A10** (metric selection): 3 Public metrics checked → Selected Metrics (3); +4 breakdown/impressions metrics → (7); lock icons (`fas fa-lock`) present on Comments/Shares/Engagement Rate/Impressions and absent on Engagements/Reactions/Response Rate; timestamp stays visible.
+- **A11–A14** (listing): navigated to the listing, new row present with metrics in the exact added order, timestamp non-clickable.
+
+Only variance: A3/A14 timestamp renders `... (PT): 07-03-2026 04:29 PM` (space) vs the spec's pipe form — a pre-documented cosmetic difference, non-blocking. **No bugs filed.**
+
+Cleaned up the mutation (deleted the created CDS; listing back to 5). Report at `runs/2026-07-04/QA-106218-report.md`; evidence under `.playwright-out/QA-106218/`.
+scripts/run-case.sh: line 123:  1252 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-04/QA-106218-report.md
+>> QA-109062 (full) — Sat Jul  4 09:57:46 IST 2026  [timeout 900s]
+>> TIMEOUT after 900s — killing QA-109062 (process tree)
+>> QA-109920 (full) — Sat Jul  4 10:12:47 IST 2026  [timeout 900s]
+QA-109920 executed in full — **PASS (3/3)**.
+
+- **A1** — Read popup opened from the Positive Classification donut.
+- **A2** — message verbatim: "2,000 Sample Comments. To view all possible comments, please export your result as on screen display is limited to 2,000."
+- **A3** — exported CSV has **6,161** comments (all Positive) → far exceeds 2,000.
+
+Exact spec config used throughout: Amazon Prime Video (exact typeahead match, not a regional variant), Apr 1–7 2025, explicit Sentiment toggle + donut hover, CSV verified on disk. Report at `runs/2026-07-04/QA-109920-report.md`; screenshots under `.playwright-out/QA-109920/`. No bugs filed.
+scripts/run-case.sh: line 123:  2137 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-04/QA-109920-report.md
+>> QA-110074 (full) — Sat Jul  4 10:26:46 IST 2026  [timeout 900s]
+QA-110074 complete — **PASS**.
+
+Executed the full case on the Playwright MCP track: logged in as lfiqa/Adam Orfei (acct 54), selected the exact **MTV** brand via typeahead (brand_id=4018, Rule 1), enabled **Threads only** + Apply, and set the date range **Mar 16–22, 2025** by driving both calendars of the two-calendar picker (verified range-start/range-end before Ok).
+
+All 5 tile PNGs exported and verified on disk (fresh 10:35–10:37, `.playwright-out/`):
+- Followers By Country (choropleth), Followers By City (dot map), Geo Breakdown By Country (table, USA 24%), Geo Breakdown By City (table, Mexico City 6%), Gender Breakdown (donut 42/50/8).
+
+Assertions A1–A4 all PASS: filename `MTV-Audience-<Chart>-2025-03-16-2025-03-22.png`, title = MTV + chart name, PNGs match the explorer charts, footer `Brand Audience` + `Date: Mar. 16, 2025-Mar. 22, 2025`. Minor pre-documented cosmetic variances only (segment separator `-` vs spec `" - "`; two-line title layout) — no bugs filed.
+
+Report: `runs/2026-07-04/QA-110074-report.md`.
+scripts/run-case.sh: line 123:  2775 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-04/QA-110074-report.md
+>> QA-116113 (full) — Sat Jul  4 10:38:41 IST 2026  [timeout 900s]
+**QA-116113 → FAILED (blocked by open bug).**
+
+The case's "Open linked bugs" section lists **DATA-12043 (Code Review)** as open. Per spec-adherence Rule 7 (open-bug auto-fail), I did not run the flow — no browser opened, all 6 assertions marked BLOCKED. Report written to `runs/2026-07-04/QA-116113-report.md`. It'll be picked up automatically once DATA-12043 closes and the cache refreshes.
+scripts/run-case.sh: line 123:  3422 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-04/QA-116113-report.md

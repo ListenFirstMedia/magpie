@@ -1,0 +1,68 @@
+>> QA-198 (full) — Sat Jul  4 00:37:25 IST 2026  [timeout 900s]
+QA-198 complete — **PASS** (9/9 in-scope assertions).
+
+Executed the full case on **Disney Ad Sales** end-to-end: built the TWC report (Absolute dates; brands Disney Channel, CBS News, CNN, FOX News; metrics Instagram Follower Growth Rate, New Followers, Facebook New Fans → story 155546), then exported and verified CSV/TSV/XLS on disk.
+
+Key results:
+- **A1** — Export dropdown offered Google Sheets · CSV · TSV · XLS.
+- **A2/A3** — Exports carried exactly the 3 selected metrics with the 4 brands in report order.
+- **A4** — Dates 06/26–07/02/2026 match the report.
+- **A5** — Rate serialized as raw float (`0.0001085…`).
+- **A6** — No en-dash; every cell populated.
+- **A7/A8/A9** — CSV values cross-check the report; TSV byte-identical to CSV; XLS (.xlsx, 29 rows) matches CSV.
+- **A10 (Google Sheets)** — skipped, out of scope (Google 2FA).
+
+No bugs. Report written to `runs/2026-07-04/QA-198-report.md`; artifacts under `.playwright-out/QA-198/`.
+scripts/run-case.sh: line 123: 75210 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-04/QA-198-report.md
+>> QA-281 (full) — Sat Jul  4 00:48:38 IST 2026  [timeout 900s]
+**QA-281 — FAILED (blocked by open bug).**
+
+Screened per Rule 7: the case has an open linked bug **LFMP-31961(Open)**, so I did not run the flow or open the browser. Report written to `runs/2026-07-04/QA-281-report.md` with verdict `FAILED (blocked by open bug)` and A1 marked BLOCKED. It will auto-run once LFMP-31961 closes and the cache refreshes.
+scripts/run-case.sh: line 123: 75833 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-04/QA-281-report.md
+>> QA-457 (full) — Sat Jul  4 00:49:05 IST 2026  [timeout 900s]
+>> TIMEOUT after 900s — killing QA-457 (process tree)
+>> QA-520 (full) — Sat Jul  4 01:04:05 IST 2026  [timeout 900s]
+QA-520 complete — **PASS (4/4)**.
+
+Executed all 7 steps on Adam Orfei / Star Wars (exact typeahead match) / Facebook-only / Impressions data set / Table View:
+
+- **A4** — only Engagements shows values; all 8 other metrics show the lock symbol on 8/8 per-post rows. PASS
+- **A5a** — Engagement Rate, Reach, Organic Reach, Paid Reach, Engaged User Rate = **N/A** (Sum). PASS
+- **A5b** — Impressions, Organic Impressions, Paid Impressions = **–** (Sum). PASS
+- **A7** — aggregate Average = **–** for all except Engagements (1,156). PASS
+
+Sum Engagements = 9,247, Avg = 1,156. No bugs filed. Report at `runs/2026-07-04/QA-520-report.md`; screenshots under `.playwright-out/QA-520/`.
+scripts/run-case.sh: line 123: 76920 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-04/QA-520-report.md
+>> QA-837 (full) — Sat Jul  4 01:11:38 IST 2026  [timeout 900s]
+QA-837 — **FAILED (blocked by open bug)**. Not executed.
+
+The case file lists two OPEN linked bugs (LFMP-31798, LFMP-31918), so per Rule 7 (open-bug auto-fail) I skipped the browser flow entirely and wrote the blocked report to `runs/2026-07-04/QA-837-report.md`. It'll re-run automatically once those bugs close and the cache refreshes.
+scripts/run-case.sh: line 123: 77095 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-04/QA-837-report.md
+>> QA-457 (full) — Sat Jul  4 02:13:43 IST 2026  [timeout 900s]
+**QA-457 → BLOCKED (stage environment not reachable).**
+
+QA-457's sole assertion is *"Ensure dev and stage data match"* and step 9 is *"repeat all steps in a new tab for stage"* — it's a cross-environment (dev↔stage) parity check. This harness is single-environment: `config/env.md` and `config/.env` only cover `app.lfmdev.in` (dev), with no stage URL or stage credential anywhere. The parity assertion is therefore Not Evaluable, and per Rule 1/3/5 I did not fabricate a stage side or a match/mismatch.
+
+I still executed the reachable dev side to prove the flow is healthy:
+- Pre-flight login → `#home` ✅
+- Switched Viacom → **Disney Ad Sales** (id=634, exact Results option, not the `[Internal]` variant) ✅
+- Reporting → TWC builder loaded on dev ✅ (Absolute Dates default; Show Change/Show Share present & togglable)
+- Exact brand **"Disney Channel"** confirmed in the dev typeahead ✅
+
+No product bug — this is a harness scope limit. Report: `runs/2026-07-04/QA-457-report.md`; evidence screenshot: `.playwright-out/QA-457/dev-twc-builder-disney-ad-sales.png`. The report recommends either adding a stage env to config or re-scoping the case to single-environment data-QA.
+scripts/run-case.sh: line 123: 82000 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-04/QA-457-report.md

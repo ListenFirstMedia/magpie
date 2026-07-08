@@ -1,0 +1,49 @@
+>> QA-65554 (full) — Sat Jul  4 04:44:47 IST 2026  [timeout 900s]
+Done. QA-65554 executed.
+
+**Verdict: PASS (in-scope) — Google Sheets assertions skipped (out of scope).**
+
+- Pre-flight login succeeded; landed on **Adam Orfei** (account_id=54), the precondition account.
+- Steps 1–2 (hover Settings → click Tags) rendered the Tags grid (21 rows).
+- Step 3: the Export dropdown offers **CSV + Google Sheets** (`option--gs`).
+- The whole case is a Google-Sheets export verification (title "…- GS"): **A1** (GS filename) and **A3** (GS↔page parity) require opening the sheet → skipped per scope rules (never open docs.google.com).
+- **A2 PASS on the in-app source**: the Tags table columns are exactly **Tag, Date Created, Creator, Content Tagged** (+Actions), with populated data captured as the parity reference.
+
+No bugs. Report at `runs/2026-07-04/QA-65554-report.md`; screenshots under `.playwright-out/QA-65554/`.
+scripts/run-case.sh: line 123: 95782 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-04/QA-65554-report.md
+>> QA-85176 (full) — Sat Jul  4 04:48:59 IST 2026  [timeout 900s]
+QA-85176 complete — **PASS, 14/14 assertions**.
+
+Executed the full Create-a-Custom-Metric flow end-to-end on Adam Orfei (account_id=54, precondition already met) using the `settings-custom-metrics` skill:
+
+- **A1** Save initially disabled ✓
+- **A2** Dropdown = Metrics / Constant / Operators (disabled) / Parentheses ✓ *(Constant singular + Parentheses = documented drifts)*
+- **A3** Channel order ListenFirst→Facebook→Twitter→YouTube→Instagram→TikTok→Wikipedia ✓
+- **A4** Facebook metrics show icon + name + DCR key ✓
+- **A5/A6** Typeahead filters; selecting adds chip (icon + name only) ✓
+- **A7** Metric selection enables Operators, disables Metrics ✓
+- **A8** Operators +/−/×/÷ available ✓ *(× ÷ = APPS-60358, superset of spec)*
+- **A9** `+` chip added ✓
+- **A10** ListenFirst submenu = 15 metrics, overflow-y:auto (max-height 450px, scrollH 756 > clientH 448) → scrollbar ✓
+- **A11/A12** X-removal of last metric then last operator behaves correctly, Save toggles disabled/enabled ✓
+- **A13** "Custom metric successfully created!" modal ✓
+- **A14** New row on list page: `QA-85176 Sample Metric 20260704-045101`, Created "Jul. 04 2026", formula `facebook.page.total_post_comments_c + lfm.cross_channel_shares.public_shares_v5` ✓
+
+**Bugs filed:** none. Report written to `runs/2026-07-04/QA-85176-report.md`; 10 screenshots under `.playwright-out/QA-85176/`.
+scripts/run-case.sh: line 123: 95959 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-04/QA-85176-report.md
+>> QA-90213 (full) — Sat Jul  4 05:00:18 IST 2026  [timeout 900s]
+API Error: The socket connection was closed unexpectedly. For more information, pass `verbose: true` in the second argument to fetch()
+>> QA-96038 (full) — Sat Jul  4 05:33:57 IST 2026  [timeout 900s]
+API Error: The socket connection was closed unexpectedly. For more information, pass `verbose: true` in the second argument to fetch()
+>> QA-96665 (full) — Sat Jul  4 08:36:30 IST 2026  [timeout 900s]
+QA-96665 → **FAILED (blocked by open bug)**. Case has an open linked bug (LFMP-32027) in its screening section, so per Rule 7 it was not run — no browser flow opened. Report written to `runs/2026-07-04/QA-96665-report.md`.
+scripts/run-case.sh: line 123: 97785 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-04/QA-96665-report.md

@@ -1,0 +1,12 @@
+# QA-22298 recovery — still remaining after 2026-07-07/08 interactive session (7 done)
+# Run: CASE_TIMEOUT=2400 scripts/run-batches.sh batches/qa22298-recover-remaining.txt
+QA-129606
+QA-130076
+QA-131492
+QA-132387
+QA-132392
+QA-134277
+QA-134448
+QA-134449
+QA-134516
+QA-139187

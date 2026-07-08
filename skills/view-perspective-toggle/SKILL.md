@@ -1,10 +1,10 @@
 ---
 name: view-perspective-toggle
-version: 1
-last_verified: 2026-05-20
-last_passed_run: 2026-05-20
+version: 2
+last_verified: 2026-07-03
+last_passed_run: 2026-07-03
 trust: untrusted
-pass_streak: 1
+pass_streak: 11
 preconditions: [brand-page-loaded-with-view-toggle]
 postconditions: [perspective-confirmed-by-screenshot]
 inputs: [target_perspective]  # "Public" or "Authorized"
@@ -39,6 +39,12 @@ View: Public Data  [● ───────]  Authorized Data
 The indicator's POSITION indicates which side is selected:
 - Indicator on LEFT (under "Public Data" text) = **Public Data is selected**
 - Indicator on RIGHT (under "Authorized Data" text) = **Authorized Data is selected**
+
+**Selector varies by page.** Two forms seen: `input.al-toggle__checkbox` (older) and **`input.toggle-switch-checkbox#perspective`** with a clickable `label.toggle-switch-label[for="perspective"]` (Brand > Video, 2026-07). The container is `div.toggle-container[data-ui-name="perspective"]`. Same `checked` convention applies to both: **`checked:false` = Public Data, `checked:true` = Authorized Data.** Click the `<label for="perspective">` (not the hidden checkbox).
+
+**Toggling swaps the brand entity + brand perspective (not just a view flag).** On Hulu, Authorized = `brand_id=5670&perspective=extended`; Public Data = `brand_id=11003&perspective=standard`. The URL brand_id CHANGES when you flip the toggle — expected, not a bug. (Same 5670↔11003 entity swap seen in Insights.) Channel set can also shrink under Public (e.g. LinkedIn drops).
+
+**Tile-rename is a reliable confirmation signal on Video:** the middle Video tile is **"Public Page Video Views"** under Public Data and **"Page Video Views"** under Authorized. Asserting which name is present is a clean, non-visual way to confirm the active perspective (QA-134594 steps 7 & 8).
 
 ### Step 2 — Inspect current state via JS (don't trust URL)
 
@@ -127,4 +133,5 @@ On 1386px-wide screenshots the indicator can look ambiguous. Zoom in (`computer.
 See `knowledge-base/bug-history.md`. No open bugs currently tied to this skill's flows; 0 historical defects (all closed) are catalogued there.
 
 ## Changelog
+- **v2** (2026-07-03): +1 from QA-134594 (Brand > Video Public Data, PASS). Added the alternate selector `input.toggle-switch-checkbox#perspective` / `label.toggle-switch-label[for="perspective"]` (container `div.toggle-container[data-ui-name=perspective]`), documented the **brand-entity swap** on toggle (Hulu Authorized 5670/extended ↔ Public 11003/standard; brand_id changes are expected), and the **Video tile-rename** confirmation signal ("Public Page Video Views" ⇄ "Page Video Views").
 - **v1** (2026-05-20): Initial draft after a multi-session QA-91412 re-execution that revealed how easy it is to mis-read the URL `perspective` param vs the actual visual toggle state. Documents Rule 2 from `_shared/spec-adherence-rules.md`.
