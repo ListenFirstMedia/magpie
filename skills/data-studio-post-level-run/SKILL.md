@@ -1,10 +1,10 @@
 ---
 name: data-studio-post-level-run
 version: 2
-last_verified: 2026-06-22
-last_passed_run: 2026-06-22
-trust: untrusted
-pass_streak: 2
+last_verified: 2026-07-07
+last_passed_run: 2026-07-07
+trust: stable
+pass_streak: 9
 preconditions: [user-logged-in, account-set]
 postconditions: [report-built]
 inputs: [brand_name, perspective, metric_names, date_range, interval, window_mode]
@@ -93,6 +93,11 @@ const rows = [...document.querySelectorAll('[role="row"], [class*="row"], tr')]
 ```
 
 Each row contains, in order: metric name, brand name + perspective badge (`P` or `A`), Sum, Average, then daily values left-to-right.
+
+## 2026-07-07 addendum (QA-80360, Page Level, Michael Kors)
+
+- **Category subheaders (e.g. "New Video Posts" under Posts) are not searchable leaf metrics.** Typing the subheader's exact name into "Search for a Metric" returns zero results. Click the subheader's `<h4>` element directly instead — it expands the tree to reveal its channel-specific children (Facebook/Twitter/Instagram Video Posts, YouTube Posts, etc.), which ARE individually searchable/checkable.
+- **Some metric-tree leaves render duplicate hidden DOM nodes** sharing the same `for=` attribute (e.g. two `label[for="lfm.activity_score.youtube_post_delta_checkbox"]`, one hidden). A locator matching by text can resolve to the hidden copy and time out — use `.nth(1)` (or filter by `:visible`) when a first attempt times out on "element is not visible".
 
 ## Known quirks
 

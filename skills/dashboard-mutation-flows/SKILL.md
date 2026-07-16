@@ -1,7 +1,7 @@
 ---
 name: dashboard-mutation-flows
-version: 2
-last_verified: 2026-06-08
+version: 3
+last_verified: 2026-07-07
 last_passed_run: 2026-06-08
 trust: untrusted
 pass_streak: 4
@@ -188,5 +188,9 @@ Non-mutating dashboard surfaces consolidated here so all dashboard knowledge liv
 - **Tile-naming caveat:** Insights tile names vary by account config — Adam Orfei has "Fan Growth Rate"; the Michael Kors account has BOTH "Follower Growth" and "Fan Growth Rate". Resolve tiles by regex, not exact name.
 
 ## Changelog (cont.)
+- **v3** (2026-07-07, QA-85175 re-run, Playwright MCP, Adam Orfei dashboard "QA-85175-TEST-20260707" id=6267):
+  - **NEW BUG (Major): dashboard renders NO tiles after Edit → drag-reorder → Ok**, even after a hard reload, despite the reorder persisting correctly server-side (confirmed via re-opening the Edit modal, which still lists all tiles with the correct new order). Zero tile-fetch network requests fire on load; console shows repeated React "replacing rendered children" warnings suggestive of an error-boundary remount. This is DIFFERENT from the 2026-06-11 "Remove from Dashboard doesn't persist" bug — that one is a false-positive removal; this one is a renders-nothing-after-persisted-reorder regression.
+  - **Delete-via-Options-menu can silently no-op** on a dashboard already in this broken (tile-less) state — the confirm modal's Ok click did nothing, no error. **Fix:** use the Dashboard Menu → "view all" list modal (`#view-all-modal`)'s inline `Delete` link instead, and **always verify cleanup by checking the dashboard count/list**, never assume a click succeeded.
+  - **NEW BUG (confirmed 2× independently, QA-84202): "Cancel" in the Order/Tile Edit modal does not discard an in-progress drag.** Drag a row → click Cancel → re-open Edit: the modal shows the dragged (uncommitted) order, not the last-saved order. The modal's row-order state isn't reset from the server on open — it persists across drag/cancel/reopen. Also: immediately after clicking Ok (no reload yet), the dashboard page's h4 tiles do NOT live-update to the new order — the empty-render bug above only appears after a subsequent reload.
 - **v2** (2026-06-11): Remove-from-Dashboard persistence bug, full-event-dispatch requirement, selector-dropdown row mechanics, drag recipe, delete confirm text.
 - **v2.1** (2026-06-27): Merged unique read-only/nav coverage from the retired `dashboards-crud` snapshot (short link, saved-tile anatomy, share modal read-only, tile-naming regex caveat).

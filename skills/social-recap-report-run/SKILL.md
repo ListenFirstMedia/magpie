@@ -1,10 +1,10 @@
 ---
 name: social-recap-report-run
-version: 3
-last_verified: 2026-07-02
-last_passed_run: 2026-07-02
+version: 2
+last_verified: 2026-07-15
+last_passed_run: 2026-07-15
 trust: untrusted
-pass_streak: 10
+pass_streak: 9
 preconditions: [account-context]
 postconditions: [social-recap-report-built]
 inputs: [primary_brand, perspective, additional_brands, options]
@@ -187,5 +187,6 @@ Contrary to the v2 "REPRODUCED" notes: this run's PDF showed **all** Best-Perfor
 
 ## Changelog
 - **v3** (2026-07-02): Headed control selectors (`div.preview-and-share-btn`, `div.download-btn`/`div.share-btn` in `nav.navigation-header`); multi-brand add-order + per-brand page-break verified (QA-837 Hulu+Conan, 4pp); LFMP-31798 + LFMP-31918 did NOT reproduce this run — downgraded to re-probe-each-run. +1 streak (QA-837 PASS).
+- **v2 addendum** (2026-07-15): QA-131491 3rd separate-day reconfirm (QA-22296 remaining batch, Playwright MCP) — MTV IG Public Jan 1-7 2026 parity value 691,822 held with zero drift across all fields (Engagements/Reactions/Comments/Response Rate/Video Response Rate), not just Video Views. Stable-promotion eligible (3+ separate-day passes: 2026-06-02, 2026-06-08, 2026-07-15).
 - **v2** (2026-06-08): `controlled-check-box` focus+Space-dispatch quirk for Options checkboxes (overdue from 2026-05-27); IG VV parity (QA-131491 691,822) + YouTube VV parity (QA-131492 67,332) + Multi-brand PDF (QA-837); LFMP-31798 doughnut arrows REPRODUCED + LFMP-31918 thumbnail REPRODUCED. +7 streak across QA-23969, QA-131491, QA-131492, QA-837 (×2), QA-19486, QA-131491 RECONFIRM.
 - **v1** (2026-05-20): Initial draft from QA-23969 end-to-end run. Per `_shared/spec-adherence-rules.md`: brand name exact-match (Rule 1), explicit Authorized toggle click (Rule 2), every step performed in order (Rule 3), download verification deferred to user per Rule 6.

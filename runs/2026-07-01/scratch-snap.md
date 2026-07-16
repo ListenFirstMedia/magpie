@@ -1,0 +1,775 @@
+- generic [active] [ref=f36e1]:
+  - navigation [ref=f36e2]:
+    - navigation [ref=f36e3]:
+      - link "ListenFirst" [ref=f36e5] [cursor=pointer]:
+        - /url: https://app.lfmdev.in/#home
+        - img "ListenFirst" [ref=f36e6]
+      - generic [ref=f36e7]:
+        - link "Home" [ref=f36e11] [cursor=pointer]:
+          - /url: "#home"
+        - link "Dashboards" [ref=f36e15] [cursor=pointer]:
+          - /url: "#dashboards"
+        - generic [ref=f36e17]:
+          - generic [ref=f36e18]: Brand
+          - generic [ref=f36e19]: 
+        - generic [ref=f36e21]:
+          - generic [ref=f36e22]: Brand Sets
+          - generic [ref=f36e23]: 
+        - generic [ref=f36e25]:
+          - generic [ref=f36e26]: Reporting
+          - generic [ref=f36e27]: 
+      - generic [ref=f36e28]:
+        - generic [ref=f36e30]:
+          - generic [ref=f36e33]: 
+          - generic: Off On Off On
+        - generic [ref=f36e36] [cursor=pointer]:
+          - generic [ref=f36e37]: 
+          - generic [ref=f36e38]: (14)
+          - text:                  
+        - generic [ref=f36e42]:
+          - generic [ref=f36e43]: 
+          - text: Settings
+        - generic [ref=f36e45]:
+          - generic [ref=f36e47]:
+            - generic [ref=f36e48]: 
+            - text: LFQA
+          - generic:  
+        - generic [ref=f36e97]: 
+  - generic [ref=f36e56]:
+    - main [ref=f36e57]:
+      - generic [ref=f36e58]:
+        - generic [ref=f36e59]:
+          - generic [ref=f36e61]:
+            - generic [ref=f36e106]:
+              - generic [ref=f36e107]: "Account: Hulu"
+              - generic [ref=f36e108]: "|"
+              - generic "Brand" [ref=f36e110]
+              - generic [ref=f36e111]: 
+              - generic "Insights" [ref=f36e113]
+            - generic [ref=f36e67]:
+              - generic [ref=f36e68]:
+                - generic [ref=f36e114]:
+                  - generic [ref=f36e115]: "Data Collection Status:"
+                  - generic [ref=f36e117] [cursor=pointer]:
+                    - generic [ref=f36e118]: 
+                    - generic [ref=f36e119]: "13"
+                  - generic [ref=f36e121] [cursor=pointer]:
+                    - generic [ref=f36e122]: 
+                    - generic [ref=f36e123]: "2"
+                  - generic [ref=f36e125] [cursor=pointer]:
+                    - generic [ref=f36e126]: 
+                    - generic [ref=f36e127]: "16"
+                - button " Help Center" [ref=f36e70] [cursor=pointer]:
+                  - link " Help Center" [ref=f36e72]:
+                    - /url: https://listenfirst.zendesk.com/hc/en-us
+                    - generic [ref=f36e73]: 
+                    - generic [ref=f36e74]: Help Center
+                - button " Guide" [ref=f36e129] [cursor=pointer]:
+                  - generic [ref=f36e130]: 
+                  - generic [ref=f36e131]: Guide
+                - button " Info" [ref=f36e77] [cursor=pointer]:
+                  - generic [ref=f36e78]: 
+                  - generic [ref=f36e79]: Info
+              - generic [ref=f36e82]: "Data Last Updated (PT): 06-30-2026 04:28 PM"
+          - generic [ref=f36e134]:
+            - img "Hulu Logo" [ref=f36e137]
+            - generic [ref=f36e138]:
+              - generic [ref=f36e139]:
+                - generic "Hulu" [ref=f36e140]
+                - generic [ref=f36e142]: 
+              - button "" [ref=f36e145] [cursor=pointer]:
+                - generic [ref=f36e146]: 
+          - generic [ref=f36e147]:
+            - generic [ref=f36e150]:
+              - generic [ref=f36e151]:
+                - text: "Date Range:"
+                - button "May. 31, 2026 - Jun. 29, 2026" [ref=f36e2109] [cursor=pointer]
+                - text:                   
+              - generic [ref=f36e153]:
+                - text: "Compared to:"
+                - button "May. 01, 2026 - May. 30, 2026" [ref=f36e2110] [cursor=pointer]:
+                  - generic [ref=f36e156]: May. 01, 2026 - May. 30, 2026
+                - text:                         
+              - generic [ref=f36e160]: "Mode: Active Posts"
+            - generic [ref=f36e163]:
+              - generic [ref=f36e164]: "View:"
+              - generic [ref=f36e165]: Public Data
+              - generic [ref=f36e171]: Authorized Data
+        - button "" [ref=f36e83] [cursor=pointer]:
+          - generic [ref=f36e84]: 
+      - generic [ref=f36e172]:
+        - list [ref=f36e174]:
+          - listitem:
+            - link "Insights":
+              - /url: "#explore/brand/insights?brand_id=5670"
+          - listitem [ref=f36e175]:
+            - link "Channels" [ref=f36e176] [cursor=pointer]:
+              - /url: "#explore/brand/channels?brand_id=5670"
+          - listitem [ref=f36e177]:
+            - link "Content" [ref=f36e178] [cursor=pointer]:
+              - /url: "#explore/brand/content?brand_id=5670"
+          - listitem [ref=f36e179]:
+            - link "Video" [ref=f36e180] [cursor=pointer]:
+              - /url: "#explore/brand/video?brand_id=5670"
+          - listitem [ref=f36e181]:
+            - link "Stories" [ref=f36e182] [cursor=pointer]:
+              - /url: "#explore/brand/stories?brand_id=5670&perspective=extended"
+          - listitem [ref=f36e183]:
+            - link "Audience" [ref=f36e184] [cursor=pointer]:
+              - /url: "#explore/brand/audience?brand_id=5670&perspective=extended"
+          - listitem [ref=f36e185]:
+            - link "Optimization" [ref=f36e186] [cursor=pointer]:
+              - /url: "#explore/brand/optimization?brand_id=5670"
+          - listitem [ref=f36e187]:
+            - link "Partnerships" [ref=f36e188] [cursor=pointer]:
+              - /url: "#explore/brand/partnerships?brand_id=5670"
+          - listitem [ref=f36e189]:
+            - link "Paid" [ref=f36e190] [cursor=pointer]:
+              - /url: "#explore/brand/paid?brand_id=5670&perspective=extended"
+          - listitem
+        - generic [ref=f36e191]:
+          - generic [ref=f36e201]:
+            - generic [ref=f36e203]:
+              - generic [ref=f36e205]: "Channels:"
+              - generic [ref=f36e206]:
+                - generic "Facebook" [ref=f36e208] [cursor=pointer]: 
+                - generic "Twitter" [ref=f36e210] [cursor=pointer]: 
+                - generic "Instagram" [ref=f36e212] [cursor=pointer]: 
+                - generic "TikTok" [ref=f36e214] [cursor=pointer]: 
+                - generic "YouTube" [ref=f36e217] [cursor=pointer]: 
+                - generic "LinkedIn" [ref=f36e219] [cursor=pointer]: 
+                - generic "Threads" [ref=f36e221] [cursor=pointer]: 
+                - generic "Pinterest" [ref=f36e223] [cursor=pointer]: 
+                - generic "Wikipedia" [ref=f36e225] [cursor=pointer]: 
+                - generic "Rotten Tomatoes" [ref=f36e227] [cursor=pointer]: r
+                - generic "IMDb" [ref=f36e229] [cursor=pointer]: 
+                - generic "Metacritic" [ref=f36e231] [cursor=pointer]: m
+                - button "Apply" [ref=f36e232]
+            - button "Data Visualization " [ref=f36e235] [cursor=pointer]:
+              - generic [ref=f36e236]: Data Visualization
+              - generic [ref=f36e237]: 
+          - generic [ref=f36e240]:
+            - generic [ref=f36e241]:
+              - img "Loading Placeholder" [ref=f36e2113]
+              - generic [ref=f36e2114]:
+                - generic [ref=f36e2115]:
+                  - heading "Follower Growth" [level=4] [ref=f36e2120]
+                  - generic [ref=f36e2124]:
+                    - generic [ref=f36e2126]: 
+                    - generic [ref=f36e2127]:
+                      - text: You'll need to authorize and connect your
+                      - text: account to view this data.
+                    - link "Go to Authorize" [ref=f36e2129] [cursor=pointer]:
+                      - /url: /#authorization
+                - generic [ref=f36e2131]:
+                  - generic [ref=f36e2132]:
+                    - generic [ref=f36e2135]:
+                      - generic [ref=f36e2136] [cursor=pointer]: Bar
+                      - generic [ref=f36e2138] [cursor=pointer]: c
+                    - generic [ref=f36e2139]: "|"
+                  - generic [ref=f36e2140]:
+                    - generic [ref=f36e2143]:
+                      - generic [ref=f36e2144] [cursor=pointer]: Export
+                      - generic [ref=f36e2146] [cursor=pointer]: c
+                    - generic [ref=f36e2147]: "|"
+                  - generic [ref=f36e2148]:
+                    - generic [ref=f36e2151]:
+                      - generic [ref=f36e2152] [cursor=pointer]: Save to Dashboard
+                      - generic [ref=f36e2154] [cursor=pointer]: c
+                    - text: "|"
+              - generic [ref=f36e2155]:
+                - generic [ref=f36e2156]:
+                  - heading "Fan Growth Rate" [level=4] [ref=f36e2161]
+                  - generic [ref=f36e2165]:
+                    - generic [ref=f36e2167]: 
+                    - generic [ref=f36e2168]:
+                      - text: You'll need to authorize and connect your
+                      - text: account to view this data.
+                    - link "Go to Authorize" [ref=f36e2170] [cursor=pointer]:
+                      - /url: /#authorization
+                - generic [ref=f36e2172]:
+                  - generic [ref=f36e2173]:
+                    - generic [ref=f36e2176]:
+                      - generic [ref=f36e2177] [cursor=pointer]: Bar
+                      - generic [ref=f36e2179] [cursor=pointer]: c
+                    - generic [ref=f36e2180]: "|"
+                  - generic [ref=f36e2181]:
+                    - generic [ref=f36e2184]:
+                      - generic [ref=f36e2185] [cursor=pointer]: Export
+                      - generic [ref=f36e2187] [cursor=pointer]: c
+                    - generic [ref=f36e2188]: "|"
+                  - generic [ref=f36e2189]:
+                    - generic [ref=f36e2192]:
+                      - generic [ref=f36e2193] [cursor=pointer]: Save to Dashboard
+                      - generic [ref=f36e2195] [cursor=pointer]: c
+                    - text: "|"
+            - generic [ref=f36e558]:
+              - generic [ref=f36e2196]:
+                - generic [ref=f36e2197]:
+                  - heading "New Posts" [level=4] [ref=f36e2202]
+                  - generic [ref=f36e2205]:
+                    - generic [ref=f36e2207]: 
+                    - generic [ref=f36e2208]: This tile failed to load. Please try again.
+                    - generic [ref=f36e2209] [cursor=pointer]: Reload
+                - generic [ref=f36e2211]:
+                  - generic [ref=f36e2212]:
+                    - generic [ref=f36e2215]:
+                      - generic [ref=f36e2216] [cursor=pointer]: Bar
+                      - generic [ref=f36e2218] [cursor=pointer]: c
+                    - generic [ref=f36e2219]: "|"
+                  - generic [ref=f36e2220]:
+                    - generic [ref=f36e2223]:
+                      - generic [ref=f36e2224] [cursor=pointer]: Export
+                      - generic [ref=f36e2226] [cursor=pointer]: c
+                    - generic [ref=f36e2227]: "|"
+                  - generic [ref=f36e2228]:
+                    - generic [ref=f36e2231]:
+                      - generic [ref=f36e2232] [cursor=pointer]: Save to Dashboard
+                      - generic [ref=f36e2234] [cursor=pointer]: c
+                    - text: "|"
+              - generic [ref=f36e2603]:
+                - generic [ref=f36e2604]:
+                  - heading "Engagements" [level=4] [ref=f36e2609]
+                  - generic [ref=f36e2613]:
+                    - generic [ref=f36e2615]: 
+                    - generic [ref=f36e2616]:
+                      - text: You'll need to authorize and connect your
+                      - text: account to view this data.
+                    - link "Go to Authorize" [ref=f36e2618] [cursor=pointer]:
+                      - /url: /#authorization
+                - generic [ref=f36e2620]:
+                  - generic [ref=f36e2621]:
+                    - generic [ref=f36e2624]:
+                      - generic [ref=f36e2625] [cursor=pointer]: Bar
+                      - generic [ref=f36e2627] [cursor=pointer]: c
+                    - generic [ref=f36e2628]: "|"
+                  - generic [ref=f36e2629]:
+                    - generic [ref=f36e2632]:
+                      - generic [ref=f36e2633] [cursor=pointer]: Export
+                      - generic [ref=f36e2635] [cursor=pointer]: c
+                    - generic [ref=f36e2636]: "|"
+                  - generic [ref=f36e2637]:
+                    - generic [ref=f36e2640]:
+                      - generic [ref=f36e2641] [cursor=pointer]: Save to Dashboard
+                      - generic [ref=f36e2643] [cursor=pointer]: c
+                    - text: "|"
+              - generic [ref=f36e2238]:
+                - generic [ref=f36e2239]:
+                  - 'heading "Content Engagement Rate: 1.55% (-9%)" [level=4] [ref=f36e2244]':
+                    - text: "Content Engagement Rate:"
+                    - generic [ref=f36e2245]:
+                      - text: 1.55%
+                      - generic [ref=f36e2246]: (-9%)
+                  - generic [ref=f36e2249]:
+                    - generic [ref=f36e2250]:
+                      - generic [ref=f36e2251]: "Legend:"
+                      - generic [ref=f36e2252]:
+                        - generic [ref=f36e2255]: Facebook, Twitter, Instagram, TikTok
+                        - generic [ref=f36e2257]: "- Compared To"
+                    - img [ref=f36e2260]:
+                      - generic [ref=f36e2261]:
+                        - generic [ref=f36e2264]:
+                          - generic [ref=f36e2267]: May. 31
+                          - generic [ref=f36e2270]: Jun. 02
+                          - generic [ref=f36e2273]: Jun. 04
+                          - generic [ref=f36e2276]: Jun. 06
+                          - generic [ref=f36e2279]: Jun. 08
+                          - generic [ref=f36e2282]: Jun. 10
+                          - generic [ref=f36e2285]: Jun. 12
+                          - generic [ref=f36e2288]: Jun. 14
+                          - generic [ref=f36e2291]: Jun. 16
+                          - generic [ref=f36e2294]: Jun. 18
+                          - generic [ref=f36e2297]: Jun. 20
+                          - generic [ref=f36e2300]: Jun. 22
+                          - generic [ref=f36e2303]: Jun. 24
+                          - generic [ref=f36e2306]: Jun. 26
+                          - generic [ref=f36e2309]: Jun. 28
+                        - generic [ref=f36e2310]:
+                          - generic [ref=f36e2313]: 0%
+                          - generic [ref=f36e2315]: 0.5%
+                          - generic [ref=f36e2317]: 1%
+                          - generic [ref=f36e2319]: 1.5%
+                          - generic [ref=f36e2321]: 2%
+                          - generic [ref=f36e2323]: 2.5%
+                          - generic [ref=f36e2325]: 3%
+                          - generic [ref=f36e2327]: 3.5%
+                - generic [ref=f36e2359]:
+                  - generic [ref=f36e2360]:
+                    - generic [ref=f36e2363]:
+                      - generic [ref=f36e2364] [cursor=pointer]: Bar
+                      - generic [ref=f36e2366] [cursor=pointer]: c
+                    - generic [ref=f36e2367]: "|"
+                  - generic [ref=f36e2368]:
+                    - generic [ref=f36e2371]:
+                      - generic [ref=f36e2372] [cursor=pointer]: Export
+                      - generic [ref=f36e2374] [cursor=pointer]: c
+                    - generic [ref=f36e2375]: "|"
+                  - generic [ref=f36e2376]:
+                    - generic [ref=f36e2379]:
+                      - generic [ref=f36e2380] [cursor=pointer]: Save to Dashboard
+                      - generic [ref=f36e2382] [cursor=pointer]: c
+                    - text: "|"
+            - generic [ref=f36e933]:
+              - img "Loading Placeholder" [ref=f36e2385]
+              - img "Loading Placeholder" [ref=f36e2388]
+            - generic [ref=f36e1208]:
+              - heading "Best Performing Content Per Channel (Lifetime)" [level=4] [ref=f36e1213]
+              - generic [ref=f36e3229]:
+                - generic [ref=f36e3230]:
+                  - generic [ref=f36e3231]: "Sort:"
+                  - generic [ref=f36e3235] [cursor=pointer]:
+                    - generic [ref=f36e3236]: 
+                    - generic "Engagements" [ref=f36e3239]
+                  - generic [ref=f36e3241] [cursor=pointer]: 
+                - generic [ref=f36e3242]:
+                  - generic [ref=f36e3243]: Post
+                  - generic [ref=f36e3248]: Channel
+              - generic [ref=f36e3249]:
+                - generic [ref=f36e3250]:
+                  - generic [ref=f36e3251]:
+                    - generic [ref=f36e3252]:
+                      - generic [ref=f36e3253] [cursor=pointer]: "1"
+                      - generic "hulu" [ref=f36e3255]:
+                        - link "hulu" [ref=f36e3256] [cursor=pointer]:
+                          - /url: https://www.tiktok.com/@hulu
+                      - generic [ref=f36e3257]: 
+                    - generic [ref=f36e3258]: Sat Jun. 06, 2026 04:33 PM PDT
+                    - 'generic "Every day is a learning experience in the villa. Now streaming: #LoveIslandUK" [ref=f36e3260]'
+                    - generic [ref=f36e3263]:
+                      - generic [ref=f36e3265]:
+                        - generic [ref=f36e3266]: 
+                        - link "video" [ref=f36e3268] [cursor=pointer]:
+                          - /url: https://www.tiktok.com/@hulu/video/7648429491336891662
+                      - generic [ref=f36e3269]:
+                        - generic [ref=f36e3270]: Original Post
+                        - generic "Paid post" [ref=f36e3271]:
+                          - text: "|"
+                          - generic [ref=f36e3272]: $
+                    - 'generic "Every day is a learning experience in the villa. Now streaming: #LoveIslandUK" [ref=f36e3274]'
+                    - generic [ref=f36e3275]:
+                      - generic [ref=f36e3277]:
+                        - generic [ref=f36e3279]: Engagements
+                        - generic [ref=f36e3281]: 705,534
+                      - generic [ref=f36e3283]:
+                        - generic [ref=f36e3285]: Reactions
+                        - generic [ref=f36e3287]: 514,700
+                      - generic [ref=f36e3289]:
+                        - generic [ref=f36e3291]: Comments
+                        - generic [ref=f36e3293]: 6,034
+                      - generic [ref=f36e3295]:
+                        - generic [ref=f36e3297]: Shares
+                        - generic [ref=f36e3299]: 184,800
+                      - generic [ref=f36e3301]:
+                        - generic [ref=f36e3303]: Impressions
+                        - generic [ref=f36e3305]: 7,400,000
+                      - generic [ref=f36e3307]:
+                        - generic [ref=f36e3309]: Video Views
+                        - generic [ref=f36e3311]: 7,400,000
+                  - button "Tag (1)" [ref=f36e3313] [cursor=pointer]
+                - generic [ref=f36e3314]:
+                  - generic [ref=f36e3315]:
+                    - generic [ref=f36e3316]:
+                      - generic [ref=f36e3317] [cursor=pointer]: "2"
+                      - generic "@hulu" [ref=f36e3319]:
+                        - link "@hulu" [ref=f36e3320] [cursor=pointer]:
+                          - /url: https://www.instagram.com/hulu
+                      - generic [ref=f36e3321]: 
+                    - generic [ref=f36e3322]: Sat Jun. 06, 2026 04:32 PM PDT
+                    - 'generic "Every day is a learning experience in the villa. Now streaming: #LoveIslandUK" [ref=f36e3324]'
+                    - generic [ref=f36e3327]:
+                      - generic [ref=f36e3329]:
+                        - generic [ref=f36e3330]: 
+                        - link "video" [ref=f36e3332] [cursor=pointer]:
+                          - /url: https://www.instagram.com/reel/DZQnU8XgF-C/
+                      - generic [ref=f36e3333]:
+                        - generic [ref=f36e3334]: Reel
+                        - generic "@getrealhulu" [ref=f36e3335] [cursor=pointer]:
+                          - text: "|"
+                          - generic [ref=f36e3336]:  
+                          - generic [ref=f36e3337]: (1)
+                    - 'generic "Every day is a learning experience in the villa. Now streaming: #LoveIslandUK" [ref=f36e3339]'
+                    - generic [ref=f36e3340]:
+                      - generic [ref=f36e3342]:
+                        - generic [ref=f36e3344]: Engagements
+                        - generic [ref=f36e3346]: 513,590
+                      - generic [ref=f36e3348]:
+                        - generic [ref=f36e3350]: Reactions
+                        - generic [ref=f36e3352]: 496,404
+                      - generic [ref=f36e3354]:
+                        - generic [ref=f36e3356]: Comments
+                        - generic [ref=f36e3358]: 17,186
+                      - generic [ref=f36e3360]:
+                        - generic [ref=f36e3362]: Impressions
+                        - generic [ref=f36e3364]: 13,604,645
+                      - generic [ref=f36e3366]:
+                        - generic [ref=f36e3368]: Video Views
+                        - generic [ref=f36e3370]: 13,604,645
+                  - button "Tag (1)" [ref=f36e3372] [cursor=pointer]
+                - generic [ref=f36e3373]:
+                  - generic [ref=f36e3374]:
+                    - generic [ref=f36e3375]:
+                      - generic [ref=f36e3376] [cursor=pointer]: "3"
+                      - generic "hulu" [ref=f36e3378]:
+                        - link "hulu" [ref=f36e3379] [cursor=pointer]:
+                          - /url: https://www.facebook.com/hulu
+                      - generic [ref=f36e3380]: 
+                    - generic [ref=f36e3381]: Wed Jun. 03, 2026 02:00 PM PDT
+                    - 'generic "You know the line. Now streaming: #AmericasNextTopModel #HuluGetsReal" [ref=f36e3383]'
+                    - generic [ref=f36e3386]:
+                      - generic [ref=f36e3388]:
+                        - generic [ref=f36e3389]: 
+                        - link "video" [ref=f36e3391] [cursor=pointer]:
+                          - /url: https://www.facebook.com/6500552187_1586337059519555
+                      - generic [ref=f36e3393]: Original Post
+                    - 'generic "You know the line. Now streaming: #AmericasNextTopModel #HuluGetsReal" [ref=f36e3395]'
+                    - generic [ref=f36e3396]:
+                      - generic [ref=f36e3398]:
+                        - generic [ref=f36e3400]: Engagements
+                        - generic [ref=f36e3402]: 102,741
+                      - generic [ref=f36e3404]:
+                        - generic [ref=f36e3406]: Reactions
+                        - generic [ref=f36e3408]: 96,747
+                      - generic [ref=f36e3410]:
+                        - generic [ref=f36e3412]: Comments
+                        - generic [ref=f36e3414]: 2,629
+                      - generic [ref=f36e3416]:
+                        - generic [ref=f36e3418]: Shares
+                        - generic [ref=f36e3420]: 3,365
+                      - generic [ref=f36e3422]:
+                        - generic [ref=f36e3424]: Impressions
+                        - generic [ref=f36e3426]: 7,486,952
+                      - generic [ref=f36e3428]:
+                        - generic [ref=f36e3430]: Video Views
+                        - generic [ref=f36e3432]: 3,269,716
+                  - button "Tag (2)" [ref=f36e3434] [cursor=pointer]
+                - generic [ref=f36e3435]:
+                  - generic [ref=f36e3436]:
+                    - generic [ref=f36e3437]:
+                      - generic [ref=f36e3438] [cursor=pointer]: "4"
+                      - generic "@hulu" [ref=f36e3440]:
+                        - link "@hulu" [ref=f36e3441] [cursor=pointer]:
+                          - /url: https://twitter.com/@hulu
+                      - generic [ref=f36e3442]: 
+                    - generic [ref=f36e3443]: Tue Jun. 16, 2026 04:30 PM PDT
+                    - generic "Gang's all here. https://t.co/CdD6mGfK8g" [ref=f36e3445]
+                    - generic [ref=f36e3448]:
+                      - generic [ref=f36e3450]:
+                        - generic [ref=f36e3451]: 
+                        - link "image" [ref=f36e3453] [cursor=pointer]:
+                          - /url: http://www.twitter.com/15033883/status/2067026963227963459
+                      - generic [ref=f36e3455]: X Thread
+                    - generic "Gang's all here. https://t.co/CdD6mGfK8g" [ref=f36e3457]
+                    - generic [ref=f36e3458]:
+                      - generic [ref=f36e3460]:
+                        - generic [ref=f36e3462]: Engagements
+                        - generic [ref=f36e3464]: 17,072
+                      - generic [ref=f36e3466]:
+                        - generic [ref=f36e3468]: Reactions
+                        - generic [ref=f36e3470]: 15,595
+                      - generic [ref=f36e3472]:
+                        - generic [ref=f36e3474]: Comments
+                        - generic [ref=f36e3476]: "176"
+                      - generic [ref=f36e3478]:
+                        - generic [ref=f36e3480]: Shares
+                        - generic [ref=f36e3482]: 1,302
+                      - generic [ref=f36e3484]:
+                        - generic [ref=f36e3486]: Impressions
+                        - generic [ref=f36e3488]: 1,345,988
+                      - generic [ref=f36e3490]:
+                        - generic [ref=f36e3492]: Views
+                        - generic [ref=f36e3494]: 1,337,682
+                  - button "Tag (1)" [ref=f36e3496] [cursor=pointer]
+              - generic [ref=f36e3498]:
+                - generic [ref=f36e3499]:
+                  - generic [ref=f36e3502]:
+                    - generic [ref=f36e3503] [cursor=pointer]: Export
+                    - generic [ref=f36e3505] [cursor=pointer]: c
+                  - generic [ref=f36e3506]: "|"
+                - generic [ref=f36e3507]:
+                  - generic [ref=f36e3510]:
+                    - generic [ref=f36e3511] [cursor=pointer]: Save to Dashboard
+                    - generic [ref=f36e3513] [cursor=pointer]: c
+                  - text: "|"
+            - generic [ref=f36e2644]:
+              - generic [ref=f36e2645]:
+                - heading "Trends" [level=4] [ref=f36e2650]
+                - generic [ref=f36e2652]:
+                  - generic [ref=f36e2654]:
+                    - generic [ref=f36e2656]:
+                      - generic [ref=f36e2657]: "Bar Chart:"
+                      - generic [ref=f36e2660] [cursor=pointer]:
+                        - generic [ref=f36e2661]: 
+                        - generic "New Posts" [ref=f36e2664]
+                    - generic [ref=f36e2666]:
+                      - generic [ref=f36e2667]: "Line Chart:"
+                      - generic [ref=f36e2670] [cursor=pointer]:
+                        - generic [ref=f36e2671]: 
+                        - generic "Engagement Rate" [ref=f36e2674]
+                  - generic [ref=f36e2675]:
+                    - generic [ref=f36e2676]:
+                      - generic [ref=f36e2677]:
+                        - generic [ref=f36e2678]: "Legend:"
+                        - generic [ref=f36e2679]:
+                          - generic [ref=f36e2682]: Facebook
+                          - generic [ref=f36e2685]: Twitter
+                          - generic [ref=f36e2688]: Instagram
+                          - generic [ref=f36e2691]: TikTok
+                          - generic [ref=f36e2693]: "-- ListenFirst"
+                      - img [ref=f36e2696]:
+                        - generic [ref=f36e2697]:
+                          - generic [ref=f36e2700]:
+                            - generic [ref=f36e2703]: May. 31
+                            - generic [ref=f36e2706]: Jun. 01
+                            - generic [ref=f36e2709]: Jun. 02
+                            - generic [ref=f36e2712]: Jun. 03
+                            - generic [ref=f36e2715]: Jun. 04
+                            - generic [ref=f36e2718]: Jun. 05
+                            - generic [ref=f36e2721]: Jun. 06
+                            - generic [ref=f36e2724]: Jun. 07
+                            - generic [ref=f36e2727]: Jun. 08
+                            - generic [ref=f36e2730]: Jun. 09
+                            - generic [ref=f36e2733]: Jun. 10
+                            - generic [ref=f36e2736]: Jun. 11
+                            - generic [ref=f36e2739]: Jun. 12
+                            - generic [ref=f36e2742]: Jun. 13
+                            - generic [ref=f36e2745]: Jun. 14
+                            - generic [ref=f36e2748]: Jun. 15
+                            - generic [ref=f36e2751]: Jun. 16
+                            - generic [ref=f36e2754]: Jun. 17
+                            - generic [ref=f36e2757]: Jun. 18
+                            - generic [ref=f36e2760]: Jun. 19
+                            - generic [ref=f36e2763]: Jun. 20
+                            - generic [ref=f36e2766]: Jun. 21
+                            - generic [ref=f36e2769]: Jun. 22
+                            - generic [ref=f36e2772]: Jun. 23
+                            - generic [ref=f36e2775]: Jun. 24
+                            - generic [ref=f36e2778]: Jun. 25
+                            - generic [ref=f36e2781]: Jun. 26
+                            - generic [ref=f36e2784]: Jun. 27
+                            - generic [ref=f36e2787]: Jun. 28
+                            - generic [ref=f36e2790]: Jun. 29
+                          - generic [ref=f36e2791]:
+                            - generic [ref=f36e2794]: "0"
+                            - generic [ref=f36e2796]: "10"
+                            - generic [ref=f36e2798]: "20"
+                            - generic [ref=f36e2800]: "30"
+                            - generic [ref=f36e2802]: "40"
+                            - generic [ref=f36e2804]: "50"
+                            - generic [ref=f36e2806]: "60"
+                            - generic [ref=f36e2808]: "70"
+                            - generic [ref=f36e2810]: "80"
+                          - generic [ref=f36e2931]: "6"
+                          - generic [ref=f36e2935]: "14"
+                          - generic [ref=f36e2939]: "15"
+                          - generic [ref=f36e2943]: "23"
+                          - generic [ref=f36e2947]: "35"
+                          - generic [ref=f36e2951]: "23"
+                          - generic [ref=f36e2955]: "27"
+                          - generic [ref=f36e2959]: "14"
+                          - generic [ref=f36e2963]: "48"
+                          - generic [ref=f36e2967]: "31"
+                          - generic [ref=f36e2971]: "16"
+                          - generic [ref=f36e2975]: "22"
+                          - generic [ref=f36e2979]: "37"
+                          - generic [ref=f36e2983]: "19"
+                          - generic [ref=f36e2987]: "23"
+                          - generic [ref=f36e2991]: "26"
+                          - generic [ref=f36e2995]: "27"
+                          - generic [ref=f36e2999]: "32"
+                          - generic [ref=f36e3003]: "30"
+                          - generic [ref=f36e3007]: "4"
+                          - generic [ref=f36e3011]: "21"
+                          - generic [ref=f36e3015]: "22"
+                          - generic [ref=f36e3019]: "8"
+                          - generic [ref=f36e3023]: "21"
+                          - generic [ref=f36e3027]: "19"
+                          - generic [ref=f36e3031]: "30"
+                          - generic [ref=f36e3035]: "20"
+                          - generic [ref=f36e3039]: "13"
+                          - generic [ref=f36e3043]: "8"
+                          - generic [ref=f36e3047]: "16"
+                          - generic [ref=f36e3052]: 1.07%
+                          - generic [ref=f36e3056]: 0.88%
+                          - generic [ref=f36e3060]: 0.75%
+                          - generic [ref=f36e3064]: 0.47%
+                          - generic [ref=f36e3068]: 0.76%
+                          - generic [ref=f36e3072]: 0.77%
+                          - generic [ref=f36e3076]: 0.71%
+                          - generic [ref=f36e3080]: 1.01%
+                          - generic [ref=f36e3084]: 1.67%
+                          - generic [ref=f36e3088]: 1.65%
+                          - generic [ref=f36e3092]: 1.57%
+                          - generic [ref=f36e3096]: 1.18%
+                          - generic [ref=f36e3100]: 1.21%
+                          - generic [ref=f36e3104]: 1.23%
+                          - generic [ref=f36e3108]: 1.22%
+                          - generic [ref=f36e3112]: 1.07%
+                          - generic [ref=f36e3116]: 1.51%
+                          - generic [ref=f36e3120]: 1.11%
+                          - generic [ref=f36e3124]: 0.94%
+                          - generic [ref=f36e3128]: 1.05%
+                          - generic [ref=f36e3132]: 0.94%
+                          - generic [ref=f36e3136]: 1.33%
+                          - generic [ref=f36e3140]: 0.96%
+                          - generic [ref=f36e3144]: 0.93%
+                          - generic [ref=f36e3148]: 0.85%
+                          - generic [ref=f36e3152]: 0.88%
+                          - generic [ref=f36e3156]: 1.21%
+                          - generic [ref=f36e3160]: 0.67%
+                          - generic [ref=f36e3164]: 0.47%
+                          - generic [ref=f36e3168]: 3.82%
+                    - table [ref=f36e3170]:
+                      - rowgroup [ref=f36e3171]:
+                        - row "Metric Total  Facebook  Twitter  Instagram  TikTok" [ref=f36e3172]:
+                          - columnheader "Metric" [ref=f36e3173]:
+                            - generic [ref=f36e3174]: Metric
+                          - columnheader "Total" [ref=f36e3175]:
+                            - generic [ref=f36e3176]: Total
+                          - columnheader " Facebook" [ref=f36e3177]:
+                            - generic "Facebook" [ref=f36e3179]:
+                              - generic [ref=f36e3180]: 
+                              - generic [ref=f36e3181]: Facebook
+                          - columnheader " Twitter" [ref=f36e3182]:
+                            - generic "Twitter" [ref=f36e3184]:
+                              - generic [ref=f36e3185]: 
+                              - generic [ref=f36e3186]: Twitter
+                          - columnheader " Instagram" [ref=f36e3187]:
+                            - generic "Instagram" [ref=f36e3189]:
+                              - generic [ref=f36e3190]: 
+                              - generic [ref=f36e3191]: Instagram
+                          - columnheader " TikTok" [ref=f36e3192]:
+                            - generic "TikTok" [ref=f36e3194]:
+                              - generic [ref=f36e3195]: 
+                              - generic [ref=f36e3196]: TikTok
+                      - rowgroup [ref=f36e3197]:
+                        - row "New Posts 650 157 154 160 179" [ref=f36e3198]:
+                          - cell "New Posts" [ref=f36e3199]
+                          - cell "650" [ref=f36e3200]
+                          - cell "157" [ref=f36e3201]
+                          - cell "154" [ref=f36e3202]
+                          - cell "160" [ref=f36e3203]
+                          - cell "179" [ref=f36e3204]
+                        - row "Engagement Rate 1.05% 0.21% 0.88% 4.61% –" [ref=f36e3205]:
+                          - cell "Engagement Rate" [ref=f36e3206]
+                          - cell "1.05%" [ref=f36e3207]
+                          - cell "0.21%" [ref=f36e3208]
+                          - cell "0.88%" [ref=f36e3209]
+                          - cell "4.61%" [ref=f36e3210]
+                          - cell "–" [ref=f36e3211]
+              - generic [ref=f36e3213]:
+                - generic [ref=f36e3214]:
+                  - generic [ref=f36e3217]:
+                    - generic [ref=f36e3218] [cursor=pointer]: Export
+                    - generic [ref=f36e3220] [cursor=pointer]: c
+                  - generic [ref=f36e3221]: "|"
+                - generic [ref=f36e3222]:
+                  - generic [ref=f36e3225]:
+                    - generic [ref=f36e3226] [cursor=pointer]: Save to Dashboard
+                    - generic [ref=f36e3228] [cursor=pointer]: c
+                  - text: "|"
+            - generic [ref=f36e2395]:
+              - generic [ref=f36e2396]:
+                - generic [ref=f36e2399]:
+                  - 'heading "Brand Reputation Index: 82.06 (+2%)" [level=4] [ref=f36e2401]':
+                    - text: "Brand Reputation Index:"
+                    - generic [ref=f36e2402]:
+                      - text: "82.06"
+                      - generic [ref=f36e2403]: (+2%)
+                  - generic [ref=f36e2404]:
+                    - generic [ref=f36e2405]: "Brand Set:"
+                    - generic [ref=f36e2410] [cursor=pointer]:
+                      - generic [ref=f36e2411]: 
+                      - generic "2023 Winter TCAs Hulu" [ref=f36e2414]
+                - generic [ref=f36e2417]:
+                  - generic [ref=f36e2418]:
+                    - generic [ref=f36e2419]: "Legend:"
+                    - generic [ref=f36e2420]:
+                      - generic [ref=f36e2423]: Brand Reputation Index
+                      - generic [ref=f36e2425]: "-- Compared To"
+                  - img [ref=f36e2428]:
+                    - generic [ref=f36e2429]:
+                      - generic [ref=f36e2432]:
+                        - generic [ref=f36e2435]: May. 31
+                        - generic [ref=f36e2438]: Jun. 01
+                        - generic [ref=f36e2441]: Jun. 02
+                        - generic [ref=f36e2444]: Jun. 03
+                        - generic [ref=f36e2447]: Jun. 04
+                        - generic [ref=f36e2450]: Jun. 05
+                        - generic [ref=f36e2453]: Jun. 06
+                        - generic [ref=f36e2456]: Jun. 07
+                        - generic [ref=f36e2459]: Jun. 08
+                        - generic [ref=f36e2462]: Jun. 09
+                        - generic [ref=f36e2465]: Jun. 10
+                        - generic [ref=f36e2468]: Jun. 11
+                        - generic [ref=f36e2471]: Jun. 12
+                        - generic [ref=f36e2474]: Jun. 13
+                        - generic [ref=f36e2477]: Jun. 14
+                        - generic [ref=f36e2480]: Jun. 15
+                        - generic [ref=f36e2483]: Jun. 16
+                        - generic [ref=f36e2486]: Jun. 17
+                        - generic [ref=f36e2489]: Jun. 18
+                        - generic [ref=f36e2492]: Jun. 19
+                        - generic [ref=f36e2495]: Jun. 20
+                        - generic [ref=f36e2498]: Jun. 21
+                        - generic [ref=f36e2501]: Jun. 22
+                        - generic [ref=f36e2504]: Jun. 23
+                        - generic [ref=f36e2507]: Jun. 24
+                        - generic [ref=f36e2510]: Jun. 25
+                        - generic [ref=f36e2513]: Jun. 26
+                        - generic [ref=f36e2516]: Jun. 27
+                        - generic [ref=f36e2519]: Jun. 28
+                        - generic [ref=f36e2522]: Jun. 29
+                      - generic [ref=f36e2523]:
+                        - generic [ref=f36e2526]: "78.5"
+                        - generic [ref=f36e2528]: "79"
+                        - generic [ref=f36e2530]: "79.5"
+                        - generic [ref=f36e2532]: "80"
+                        - generic [ref=f36e2534]: "80.5"
+                        - generic [ref=f36e2536]: "81"
+                        - generic [ref=f36e2538]: "81.5"
+                        - generic [ref=f36e2540]: "82"
+                        - generic [ref=f36e2542]: "82.5"
+                        - generic [ref=f36e2544]: "83"
+              - generic [ref=f36e2579]:
+                - generic [ref=f36e2580]:
+                  - generic [ref=f36e2583]:
+                    - generic [ref=f36e2584] [cursor=pointer]: Area
+                    - generic [ref=f36e2586] [cursor=pointer]: c
+                  - generic [ref=f36e2587]: "|"
+                - generic [ref=f36e2588]:
+                  - generic [ref=f36e2591]:
+                    - generic [ref=f36e2592] [cursor=pointer]: Export
+                    - generic [ref=f36e2594] [cursor=pointer]: c
+                  - generic [ref=f36e2595]: "|"
+                - generic [ref=f36e2596]:
+                  - generic [ref=f36e2599]:
+                    - generic [ref=f36e2600] [cursor=pointer]: Save to Dashboard
+                    - generic [ref=f36e2602] [cursor=pointer]: c
+                  - text: "|"
+    - generic [ref=f36e88] [cursor=pointer]: 
+    - contentinfo [ref=f36e89]:
+      - generic [ref=f36e90]:
+        - text: © 2012-2026 ListenFirst Media LLC | Made in NYC |
+        - link "Privacy Policy" [ref=f36e91] [cursor=pointer]:
+          - /url: http://listenfirstmedia.com/privacy-policy.html
+        - text: "|"
+        - link "Terms of Service" [ref=f36e92] [cursor=pointer]:
+          - /url: https://www.listenfirstmedia.com/terms-of-service-data-processing/
+        - text: "|"
+        - link "Platform Status" [ref=f36e93] [cursor=pointer]:
+          - /url: https://status.listenfirstmedia.com/
+  - iframe [ref=f36e94]:
+    - generic [ref=f46e2]:
+      - img [ref=f46e96]
+      - generic [ref=f46e103]:
+        - heading "Brand Content Filtering Issue" [level=1] [ref=f46e104]:
+          - paragraph [ref=f46e105]: Brand Content Filtering Issue
+        - generic [ref=f46e106]: Last updated 2 days ago
+        - link "View latest updates" [ref=f46e108] [cursor=pointer]:
+          - /url: https://status.listenfirstmedia.com?utm_source=embed
+      - button [ref=f46e110] [cursor=pointer]:
+        - img [ref=f46e111]
+  - iframe [ref=f36e95]:
+    - button "Help" [ref=f48e4] [cursor=pointer]:
+      - img [ref=f48e6]
+      - generic [ref=f48e13]: Help

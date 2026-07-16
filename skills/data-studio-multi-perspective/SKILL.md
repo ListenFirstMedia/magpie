@@ -80,6 +80,7 @@ Legend: ■ Michael Kors [P]   ■ MTV [P]   ■ MTV
 See `knowledge-base/bug-history.md`. No open bugs currently tied to this skill's flows; 3 historical defects (all closed) are catalogued there.
 
 ## Changelog
+- **v2** (2026-07-07, QA-86318 re-run, Playwright MCP): Reconfirmed end-to-end (Michael Kors + MTV×2, second toggled Authorized). Legend PASS: `Michael Kors [P]` · `MTV [P]` · `MTV`. Two automation notes: (1) re-adding the same brand immediately after a `fill('')` reset can race the typeahead's re-render — retry with a longer wait if the exact-text option isn't found on the first attempt; (2) metric-tree leaf checkboxes have no `<li>`/native-checkbox wrapper in the current build — verify selection via the **Page Level Metrics table** rows, not by hunting for a checkbox input near the label.
 - **v1** (2026-05-18): Initial draft from QA-86318. Verified dual-MTV-perspective added correctly, legend showed `MTV [P]` and `MTV`.
 
 ## 2026-06-11 batch-3 update (QA-86318 re-pass, Adam Orfei)

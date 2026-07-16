@@ -1,10 +1,10 @@
 ---
 name: brand-navigation-timestamp
 version: 1
-last_verified: 2026-06-08
-last_passed_run: 2026-06-08
+last_verified: 2026-07-16
+last_passed_run: 2026-07-16
 trust: untrusted
-pass_streak: 2
+pass_streak: 3
 preconditions: [account-context, brand-selected]
 postconditions: [timestamp-consistency-verified]
 inputs: [brand_id, account_id, brand_set_id]
@@ -17,7 +17,7 @@ related_pages: ["/#home", "/#explore/brand/insights", "/#explore/brand/audience"
 End-to-end skill for verifying the `Data Last Updated (PT): MM-DD-YYYY HH:MM AM/PM PT` timestamp renders with identical format and identical value across all Brand sub-tabs and Brand Sets sub-tabs, persists through F5 page-refresh, and is account-wide (not brand-specific).
 
 Used by:
-- **QA-134271** (Brand Navigation — Data Last Updated Timestamp) — PASS across 7 Brand surfaces + cross-brand check + F5 persistence.
+- **QA-134271** (Brand Navigation — Data Last Updated Timestamp) — PASS across 7 Brand surfaces + cross-brand check + F5 persistence. +1 from QA-134271 2026-07-16 re-run (Playwright MCP, `feature/playwright-mcp`): MTV → Michael Kors cross-brand check, `07-15-2026 04:27 PM` identical across Home + 6 Brand sub-tabs + F5 + brand switch, 10/10 assertions PASS. No Playwright MCP server crash despite Brand>Insights/Audience known-quirk risk. Confirmed the no-trailing-"PT"-suffix format matches established precedent (`runs/2026-07-08/QA-111132-report.md`), not a regression.
 - **QA-134296** (Brand Sets Rankings — Data Last Updated) — PASS across Brand Sets > Rankings + Brand Sets > Content + F5 + cross-brand-set; cross-app parity with Brand surfaces confirmed.
 
 ## Key UI structure
@@ -120,3 +120,4 @@ See `knowledge-base/bug-history.md`. No open bugs currently tied to this skill's
 ## Changelog
 
 - **v1** (2026-06-08): Initial draft from QA-134271 (Brand surfaces) + QA-134296 (Brand Sets / Rankings). Documents the `Data Last Updated (PT): MM-DD-YYYY HH:MM AM/PM PT` format, the across-7-Brand-tabs + 2-Brand-Sets-tabs identical-value check, F5 persistence, cross-brand and cross-brand-set stability, and the Listening surface exclusion per QA-134636 A2.
+- **2026-07-16** (QA-134271 re-run, Playwright MCP): reconfirmed on MTV → Michael Kors (Adam Orfei, account_id=54). Current UI renders the timestamp **without** a trailing " PT" suffix (e.g. `07-15-2026 04:27 PM`, not `... PM PT`) — this is the established format since ~2026-06-30 (see `runs/2026-07-08/QA-111132-report.md`), superseding the v1-era trailing-PT observation. Update the regex expectation accordingly: `\d{2}-\d{2}-\d{4} \d{2}:\d{2} (AM|PM)` after `(PT):`, trailing " PT" no longer expected.

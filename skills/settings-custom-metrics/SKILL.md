@@ -1,10 +1,10 @@
 ---
 name: settings-custom-metrics
-version: 4
-last_verified: 2026-07-10
-last_passed_run: 2026-07-10
+version: 3
+last_verified: 2026-07-14
+last_passed_run: 2026-07-14
 trust: untrusted
-pass_streak: 15
+pass_streak: 12
 preconditions: [account-context]
 postconditions: [custom-metric-row-present, info-mode-toggled-off]
 inputs: [metric_name, metric_description, formula_tokens]
@@ -60,7 +60,7 @@ Used by:
 
 ### Step 6 — Open formula dropdown and verify initial state
 - **Action:** Click `Configure your metric formula`.
-- **Assertion:** Dropdown shows three options in order: `Metrics`, `Constant`, `Operators`. **`Operators` is initially DISABLED (greyed)** — a formula cannot start with an operator. (Spec writes `Constants` plural; UI shows `Constant` singular — known-quirks documented.)
+- **Assertion:** Dropdown shows options in order: `Metrics`, `Constant`, `Operators`, `Parentheses` (4th item added since 2026-07-14 — see v3 changelog). **`Operators` is initially DISABLED (greyed)**, others enabled — a formula cannot start with an operator. (Spec writes `Constants` plural; UI shows `Constant` singular — known-quirks documented.)
 
 ### Step 7 — Hover Metrics to reveal channel sub-list
 - **Action:** Hover `Metrics`.
@@ -214,9 +214,27 @@ The Constant chip's input is `input.formula-constant-input` (type=number). App-l
 | TWC custom-metric column renders blank instead of calculated value | Calc engine regression | File bug |
 | Formula-popup doesn't reopen after first chip addition | Automation-only friction (React handler re-binding lag) | Wait 2-3s; refresh + restart if persistent |
 
+## v3 — Parentheses option + Actions-menu row-mapping caution (2026-07-14)
+
+### New "Parentheses" formula-builder option (QA-85176 reconfirm)
+
+The formula dropdown now shows **4** top-level options — `Metrics`, `Constant`, `Operators`, `Parentheses` — not 3. `Parentheses` follows the same alternation rules as `Metrics`/`Constant` (enabled at formula start and after an operator, greyed immediately after a metric/constant/close-paren). Not a spec violation — the spec only asserts presence of the original 3 + Operators' disabled state, which still holds. Treat a 4-item dropdown as expected going forward; a 3-item dropdown would now be a regression (Parentheses removed).
+
+### Actions-menu ellipsis button does NOT reliably map to its own row by DOM order (CAUTION)
+
+**Symptom:** Clicking the Actions `...` button located in the same row as the target metric (found via `browser_find`/snapshot ref) can open the **dropdown for a different row** — observed opening Edit/Delete for an unrelated pre-existing metric ("PC Test 1") when the snapshot ref for the ellipsis button was taken from a stale/re-rendered snapshot after scrolling. The dropdown's visual position also does not reliably indicate which row it's bound to (it can render anchored near an adjacent row).
+
+**Workaround (mandatory for Delete flows):** 
+1. Tag the exact row via `browser_evaluate`: find `tr` whose `textContent` includes the unique test-metric name, `setAttribute('data-qa-target-row','true')`.
+2. Click `tr[data-qa-target-row="true"] button` (not a snapshot ref).
+3. **Before clicking Ok on the Delete confirmation modal, always read the modal body text and verify it names the exact expected metric** (e.g. `document.body.textContent.match(/Are you absolutely sure.{0,120}/)`). If it names the wrong entity, click Cancel — do not proceed.
+
+This is a hard requirement, not a nice-to-have: a wrong-row Delete would destroy another user's data with no undo.
+
 ## Changelog
 
 - **v4** (2026-07-10): +Constant value validation from QA-135322 (Constants) — positive 1–1000 range, 0/negatives/1001 rejected with "Constant must be between 1 and 1000.", decimals OK; **A5e FAILED** (spec expects negatives accepted, UI rejects — discrepancy flagged, no auto-file). Added operator-leaf-icon selector detail + "lone operand → Save disabled". QA-135430 (Delete) re-confirmed PASS with cleanup.
 - **v3** (2026-07-03): +1 from QA-139187 (Parenthetical Expressions — A3 Save-with-parentheses + A5 BODMAS both PASS; A7/A8 max-limit not yet captured). Added the **Parentheses** formula-menu option (`(`/`)`), **account-gating** of the Custom Metrics feature (Adam Orfei yes, Hulu no — blank page otherwise), **BODMAS verification via TWC** (select custom + component metrics, compare per-row) with the **Authorized-toggle-drops-selections** gotcha (set Authorized before selecting metrics), and a note that the max-limit validation (A7/A8) remains uncaptured (Constant re-entry replaces trailing operand under automation).
+- **v3** (2026-07-14): QA-85176 reconfirm PASS (14/14). Documents new 4th "Parentheses" formula-dropdown option (additive, not a regression). Adds mandatory Actions-menu row-verification workaround for Delete flows after a near-miss where the ellipsis click opened the wrong row's dropdown (caught before confirming, via modal-text verification — no data lost).
 - **v2** (2026-06-08): Edit flow (QA-135429); × ÷ operators APPS-60358 implementation verified end-to-end via 4-icon FontAwesome enumeration (QA-137557 reaches Create; QA-137558 ↔ TWC verification); Save modal Constant-vs-Constants drift retained; Delete flow stays in this skill; APPS-60358 4-operator dropdown enumerated NOT REPRODUCED as a bug. +9 streak across batches: QA-85176, QA-134173, QA-134185, QA-135430, QA-75011, QA-85176 RECONFIRM, QA-135429, QA-137557, QA-137558.
 - **v1** (2026-05-29): initial skill — created from QA-85176, QA-134173, QA-134185 (PASS / PASS / PASS). Documents formula-builder strict-alternation, X-removal cycle, Info-mode tooltip toggle on both list and create pages, and the three known spec/UI copy drifts.

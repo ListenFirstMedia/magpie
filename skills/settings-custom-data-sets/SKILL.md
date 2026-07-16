@@ -1,10 +1,10 @@
 ---
 name: settings-custom-data-sets
-version: 3
-last_verified: 2026-06-27
-last_passed_run: 2026-06-27
+version: 5
+last_verified: 2026-07-15
+last_passed_run: 2026-07-15
 trust: stable
-pass_streak: 10
+pass_streak: 12
 preconditions: [account-context]
 postconditions: [custom-data-set-listed, brand-content-data-set-applied]
 inputs: [data_set_name, metrics_list]
@@ -126,9 +126,11 @@ The Actions ellipsis → **Edit** opens `/#custom-data-sets/edit?...&report_id=<
 
 ### Reorder a metric (keyboard-accessible DnD — preferred over synthetic mouse drag)
 Jira flags step-4 drag as "Not Recommended" for automation; use the product's own accessible DnD instead of a mouse drag:
-- Each row is `<tr aria-roledescription="You are currently at a draggable item at position N. Press space bar to lift.">` and exposes a Position `<input type=number min=1 max=7>` cell.
-- **Sequence:** focus the row → `Space` (lift) → `ArrowDown`/`ArrowUp` ×k → `Space` (drop).
-- **Verify** via the page's own `role=log` live region, e.g. `You have dropped the item. It has moved from position 1 to 3.` (Second reorder path: type the target rank into the Position spinbutton — available, not required.)
+- Each row is `<tr tabindex="0" aria-roledescription="You are currently at a draggable item at position N. Press space bar to lift.">` and exposes a Position `<input type=number min=1 max=7>` cell.
+- **Sequence:** focus the row → `Space` (lift) → move keys ×k → `Space` (drop).
+- **⚠️ Movement keys changed 2026-07-07:** the live region now prompts `j` to move down / `k` to move up — **not** `ArrowDown`/`ArrowUp` as documented in v3. `ArrowDown` is a no-op (live region doesn't update). **Always read the live-region text after lifting** to confirm the current binding before sending movement keys — don't hardcode either key set.
+- **Verify** via the page's own `role=log` live region, e.g. lift: `You have lifted item at position 1. Press j to move down, k to move up, space bar to drop and escape to cancel.`; move: `You have moved the lifted item down to position 2...`; drop: `You have dropped the item. It has moved from position 1 to 3.` (Second reorder path: type the target rank into the Position spinbutton — available, not required.)
+- **Playwright MCP gotcha:** `browser_snapshot`'s accessibility tree does **not** surface the `aria-roledescription` attribute on these rows (confirmed present in the live DOM via `browser_evaluate`, absent from the snapshot yaml). Clicking the inner metric-name text does **not** move focus to the parent `<tr>` — `Space` will silently no-op. Focus the row explicitly first, e.g. `browser_evaluate(() => document.querySelectorAll('table tbody tr[aria-roledescription]')[N].focus())`, then send `Space`/`j`/`k` via `browser_press_key`.
 
 ### Delete a metric within Edit
 - Click the row's Remove (trash) button. Header count decrements, e.g. `Selected Metrics (7)` → `Selected Metrics (6)`. (Distinct from deleting the whole CDS — that is the v2 Actions→Delete flow.)
@@ -159,6 +161,8 @@ QA-106221's spec depends on a CDS with a known initial order (Impressions at #7)
 
 ## Changelog
 
+- **v5** (2026-07-15): QA-104876 reconfirm on the QA-22296 Playwright MCP remaining-batch. **Create form no longer has a separate Description field** — just `Data Set Name` + Metrics search/expand tree (`Configure your metrics list` dropdown from v1 is gone too; metrics render directly under a searchable tree with per-metric checkboxes). The `Create` button can be occluded by the Zendesk help-widget launcher iframe — a normal `browser_click` on a not-actually-obstructed-looking button can time out with `<iframe id="launcher">... intercepts pointer events`; fall back to `element.click()` via `browser_evaluate` when this happens. Delete confirmation modal body text uses **double quotes** around the data set name (`Are you absolutely sure you want to delete your data set "name"?`), not the single quotes recorded in v2 — cosmetic, non-blocking. Full create→verify→delete→F5-verify cycle PASS.
+- **v4** (2026-07-07): QA-106221 reconfirm. **Keyboard-DnD movement keys changed from ArrowDown/ArrowUp to `j`/`k`** — always read the live-region prompt after lift rather than hardcoding a key set. Documented the Playwright-MCP-specific gotcha that `browser_snapshot` doesn't surface `aria-roledescription` on the draggable rows and that the row needs an explicit `.focus()` via `browser_evaluate` before `Space` will register (clicking the inner text span does not focus the parent `<tr>`). Also observed (not attributed — open anomaly, see `runs/2026-07-07/QA-106221-report.md`): two unrelated pre-existing CDS ("ABcd"/"AbCd") disappeared from the shared Adam Orfei account during this run; could not establish whether caused by this flow or a concurrent tester on the shared account.
 - **v3** (2026-06-27): Edit flow (QA-106221) — keyboard-accessible DnD reorder + live-region verification, in-Edit metric delete, search-and-add of a channel-scoped metric (label-collides-across-channels caveat), save-persistence with no success toast, and the QA-106218→QA-106221 precondition-recreate pattern. **Promoted untrusted → stable** (passes on separate days 2026-06-02, 2026-06-08, 2026-06-27).
 - **v2** (2026-06-08): Delete flow (QA-104876 mutating create+delete cycle). Documents the verbatim confirmation modal text, the F5-persistent deletion behavior, and the consistent confirmation-modal pattern shared across Settings entities (custom metrics / custom data sets / brand sets / users).
 - **v1** (2026-05-27): initial skill — QA-104870 (Basic View), QA-106218 (Create), QA-109062 (Brand>Content export). All PASS in original session; documented retroactively on 2026-05-29 as part of the cross-batch skill/KB sweep.

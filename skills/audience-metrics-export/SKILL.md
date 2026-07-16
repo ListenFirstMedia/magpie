@@ -1,10 +1,10 @@
 ---
 name: audience-metrics-export
-version: 2
-last_verified: 2026-06-08
-last_passed_run: 2026-06-08
+version: 3
+last_verified: 2026-07-07
+last_passed_run: 2026-07-07
 trust: untrusted
-pass_streak: 11
+pass_streak: 12
 preconditions: [user-logged-in, account-set, brand-set]
 postconditions: [metrics-file-downloaded]
 inputs: [brand_id, channel, date_from, date_to]
@@ -114,5 +114,10 @@ Brand>Insights with multi-channel default may hang the renderer (per `brand-chan
 | Brand>Insights tile hangs before PNG download | Multi-channel renderer freeze | Fresh tab + single channel filter |
 
 ## Changelog
+- **v3.1** (2026-07-08): +1 from QA-115716 (Hulu Brand>Insights Fan Growth Rate CSV) — tile Export dropdown (PNG/CSV/Google Sheets/Metrics) confirmed identical on the Insights surface; real Playwright `download` event fired and file verified on disk end-to-end (Rule 6 fully satisfied, no INCONCLUSIVE this time). New finding: exported CSV's `Channel` column is aggregated `Cross-Channel` even when the on-tile legend is per-channel — not a bug, just a granularity note.
+- **v3** (2026-07-07, Playwright MCP): QA-110071 re-run on this track.
+  - **Channel-ghost click target correction:** click the parent `.channel-ghost` div (e.g. `.threads.channel-ghost`), NOT the inner `<i class="channel-icon ...">` icon — a Playwright click on the icon is a silent no-op (no error, no state change). Verify via `el.parentElement.className` containing `enabled`/`disabled`, not just visual inspection.
+  - **Channel selection on Brand>Audience is exclusive-select, not additive** — clicking a second channel-ghost deselects the first rather than adding to the selection. This contradicts the v1 assumption; needs a follow-up check on Brand>Paid/Content to see if it's Audience-specific.
+  - **Metrics-export download-capture problem persists under Playwright.** `page.on('download')` never fires, no `a[download]` anchor appears in the DOM, and no file lands in `~/Downloads`. The underlying data call is `GET data-api.lfmdev.in/audience/metrics_export?brand_id=<id>&channel=<channel>&from_date=<>&to_date=<>` (200, `content-type: text/plain`, no `Content-Disposition`) — its response body IS readable via `browser_network_request` and is sufficient to verify column-header assertions (e.g. QA-110071 A2: `Display Name,Key`), but the filename assertion (A1) stays Rule-6 INCONCLUSIVE until a real-browser click is observed.
 - **v2** (2026-06-08): Explicitly covers Brand>Insights tiles (QA-114845: Total Followers Pie 49KB, Fan Growth Rate Bar 73KB). Filename pattern parity Brand>Audience ↔ Brand>Insights ↔ Brand>Paid documented. Brand>Insights renderer-freeze workaround folded in.
 - **v1** (2026-05-13): Initial draft from QA-110071. Steps captured; the download-capture problem documented as the primary friction point.

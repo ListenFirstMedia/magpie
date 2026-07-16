@@ -72,6 +72,10 @@ See `knowledge-base/bug-history.md` for the full per-ticket bug list. Highest-pr
 - LFMP-32016 (Major) — Story post data is not being displayed on the Brand > Content page     [from QA-19557]
 - APPS-58817 (Major) — Brand Content - Posts deleted from Native are still visible in LF app     [from QA-19557]
 
+## v1.1 — Cross-surface: Brand>Paid Group Table by (2026-07-08)
+
+The `[title="Table View"]` layout-selector pattern applies identically on Brand>Paid. Additionally documents the **Group Table by** dropdown (`[data-ui-name="group_table_by"]`), seen next to Sort on the Table View post/ad list: options `None / Delivery Type / Ads Account ID / Ads Account / Ad Type / Ad Set / Campaign / Campaign Objective`. Selecting a value collapses the row list into per-group summary rows (e.g. `Dark (145 Ads)`, `Promoted (99 Ads)` for Delivery Type); clicking a group-summary row toggles expand/collapse of its individual rows. Verified QA-121438 (Amazon Prime Video, Instagram, Delivery Type). Also reconfirms channel-ghost **exclusive-select** on Brand>Paid (matches Brand>Audience finding in `audience-metrics-export`).
+
 ## Changelog
 - **v1** (2026-05-13): Initial draft from QA-533 run. Verified for MTV brand under Viacom account. Full post text successfully retrieved via `title` attribute.
 

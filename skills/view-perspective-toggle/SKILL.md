@@ -120,6 +120,15 @@ If `toggle.disabled === true`, the brand has no Authorized data on this account.
 ### Quirk C — Toggle indicator visual is small
 On 1386px-wide screenshots the indicator can look ambiguous. Zoom in (`computer.zoom` action) if uncertain.
 
+### Quirk D — Toggle click can silently fall back to a DIFFERENT brand (escalated to bug candidate)
+
+**Status: reproduced 3 independent times** (QA-98351 MTV/Threads 2026-06-08 → brand_id fell back to 10765; QA-91412 FX/Facebook 2026-07-07 — noted but not detailed; **QA-136261 FX/Facebook 2026-07-14 — reproduced deterministically 2/2 retries**, full detail below). No longer treat this as automation flakiness — it is a real, repeatable product behavior.
+
+- **Behavior:** Clicking the toggle (`label[for="perspective"]`) can change `brand_id` in the URL to a *different* brand's ID, while the on-screen brand name/logo continues to show the SAME display text (e.g. "FX" → "FX", brand_id 4251 → 19746) — there is no visible cue that the brand changed. The click also resets the Channels row to a default multi-channel set and clears any active Filter pill.
+- **Reproduction (QA-136261, FX Networks account_id=204):** brand FX (4251), Facebook-only channel, Publish Type=Reel filter active, Authorized perspective → click toggle → brand_id becomes 19746, channels reset to default, filter cleared. Re-selected FX (4251) via typeahead (itself resets perspective→Authorized, channels→default) → clicked toggle again with NO filter/channel restriction active → brand_id fell back to 19746 again. Confirms the fallback does **not** depend on channel/filter state — it happens on the bare toggle click.
+- **Practical impact:** Because re-selecting the correct brand also resets perspective back to Authorized, there is currently **no UI path** to view certain brands' data under Public perspective without hitting this fallback — it blocks the Public-perspective half of any test case on an affected brand.
+- **Action:** Do not silently work around this anymore by "just re-select the brand" and move on — document as a BLOCKED assertion + bug finding in the test report each time it's hit, and note the brand_id pair (correct → fallback) for engineering. Recommend it be formally filed as a Jira bug (see `runs/2026-07-14/QA-136261-report.md`).
+
 ## Failure signatures
 
 | Signature | Interpretation | Action |
@@ -127,11 +136,14 @@ On 1386px-wide screenshots the indicator can look ambiguous. Zoom in (`computer.
 | Click does nothing, indicator doesn't move | Toggle is disabled (see Quirk A) | Inspect for `--disabled` class |
 | Click moves indicator but data doesn't refresh | Page caching | Hard reload + retry |
 | URL says one perspective but indicator is on opposite side | Quirk B | Click toggle to match the spec, then proceed |
+| `brand_id` in URL changes after toggle click, display name unchanged | Quirk D (brand-fallback) | Document as BLOCKED + bug finding; do not evaluate assertions against the fallback brand |
 
 ## Known bug history
 
-See `knowledge-base/bug-history.md`. No open bugs currently tied to this skill's flows; 0 historical defects (all closed) are catalogued there.
+See `knowledge-base/bug-history.md`. Quirk D is a bug candidate as of 2026-07-14 (3rd reproduction) — not yet filed to Jira.
 
 ## Changelog
 - **v2** (2026-07-03): +1 from QA-134594 (Brand > Video Public Data, PASS). Added the alternate selector `input.toggle-switch-checkbox#perspective` / `label.toggle-switch-label[for="perspective"]` (container `div.toggle-container[data-ui-name=perspective]`), documented the **brand-entity swap** on toggle (Hulu Authorized 5670/extended ↔ Public 11003/standard; brand_id changes are expected), and the **Video tile-rename** confirmation signal ("Public Page Video Views" ⇄ "Page Video Views").
+- **v3** (2026-07-14, QA-136261, FX Networks): Escalated the brand-fallback-on-toggle-click pattern (previously dismissed as an automation quirk) to a documented bug candidate (Quirk D) after a 3rd independent, deterministic (2/2 retry) reproduction. A1 (Authorized perspective, no en-dash) PASSED; A2 (Public perspective) BLOCKED — no UI path currently reaches "FX + Public perspective" without the brand silently switching to a different same-named brand (4251→19746).
+- **v2** (2026-07-07, QA-91412 Playwright re-run, FX Networks): Brand>Content uses a **different DOM** than the `.al-toggle__checkbox` documented above: `input#perspective.toggle-switch-checkbox` (hidden, click `label[for="perspective"]` instead), inside `.toggle-container[data-ui-name="perspective"]`. Same checked=Authorized / unchecked=Public convention held. Confirmed `perspective=extended` can render `checked=true` (Authorized) on load — reconfirms Quirk B; always verify+click, never trust the URL. All 1,001 metric cells (143 posts × 7 metrics) verified en-dash after toggling to Public — PASS.
 - **v1** (2026-05-20): Initial draft after a multi-session QA-91412 re-execution that revealed how easy it is to mis-read the URL `perspective` param vs the actual visual toggle state. Documents Rule 2 from `_shared/spec-adherence-rules.md`.

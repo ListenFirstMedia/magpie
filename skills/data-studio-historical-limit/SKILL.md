@@ -1,10 +1,10 @@
 ---
 name: data-studio-historical-limit
 version: 1
-last_verified: 2026-05-18
-last_passed_run: 2026-05-18
+last_verified: 2026-07-10
+last_passed_run: 2026-07-10
 trust: untrusted
-pass_streak: 1
+pass_streak: 3
 preconditions: [data-studio-page]
 postconditions: [date-range-respects-365-day-cap]
 inputs: []
@@ -60,3 +60,9 @@ See `knowledge-base/bug-history.md`. No open bugs currently tied to this skill's
 
 - Both clamp directions re-verified (start Jun 10 2025 ⇄ end Jun 9 2026; moving start to Jun 3 auto-pulled end to Jun 2 2026; moving end back to Jun 9 pushed start to Jun 10). Year-long MTV FB Total Fans report rendered (295904).
 - **Same duplicate-hidden-datepicker trap as TWC:** two `.from-calendar` instances; filter by `offsetParent` or your day-clicks silently apply to the hidden one and the report runs on the default 7D (looked exactly like a "custom range ignored" product bug — it wasn't).
+
+## 2026-07-10 QA-4204 mop-up re-pass (Playwright MCP)
+
+- Both clamp directions re-verified a 3rd time (start Apr 15 2025 ⇄ end Apr 15 2026; moving end to May 20 2026 pulled start to May 20 2025). Report 302117, MTV Authorized Facebook Total Fans, Sum 16,525,547,297.
+- **Promoted to pass_streak 3** (3 separate-day passes: 2026-05-18, 2026-06-11, 2026-07-10) — eligible for stable promotion on next human review per the untrusted→stable rule.
+- New Playwright-specific findings: (1) the real commit button is `getByRole('button', {name:'Ok', exact:true})` — a `.refresh-date-range` class selector resolves to the hidden compare-range widget's Ok button and times out; (2) rapid synchronous `.click()` calls on the prev-chevron in a tight loop silently drop most clicks — insert a ~150ms delay between clicks when paging back many months via `evaluate`.

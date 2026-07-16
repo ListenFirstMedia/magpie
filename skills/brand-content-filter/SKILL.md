@@ -96,6 +96,7 @@ Filter-type → URL key mapping (partial — extend as discovered):
 - The Filter dropdown defaults to `Or` operator — if testing AND-combination, set operator radio BEFORE checking values.
 - `Apply Filter` button is enabled only when at least one filter value is checked.
 - The pill toggle on `Include`/`Exclude` is a separate concept — set it after applying for "NOT" semantics.
+- **Clicking the pill's Include/Exclude toggle does NOT by itself re-trigger the backend query.** It flips the pill's visual state and stages `not:true`/`not:false` for the next apply, but you must click `Apply Filter` again afterward to actually refresh the post list/aggregates (confirmed QA-90697, 2026-07-14, Hulu Facebook Reel). Also beware: a generic `text=Include` locator can match the unrelated "Include Retweets" checkbox elsewhere on the page — scope the click to the pill's own `label[for="<field>_<field>_0"]` toggle switch.
 
 ## Known bug history
 

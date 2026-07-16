@@ -1,10 +1,10 @@
 ---
 name: text-input-wrap-tooltip
-version: 1
-last_verified: 2026-05-18
-last_passed_run: 2026-05-18
+version: 2
+last_verified: 2026-07-07
+last_passed_run: 2026-07-07
 trust: untrusted
-pass_streak: 1
+pass_streak: 3
 preconditions: [search-input-visible]
 postconditions: [wrap-or-tooltip-confirmed]
 inputs: [long_text]
@@ -93,3 +93,9 @@ See `knowledge-base/bug-history.md`. No open bugs currently tied to this skill's
 ## 2026-06-11 batch-3 update (QA-95226 re-pass, UCLA)
 
 - All four contexts re-verified: global search + Brand page brand-picker + Brand Sets set-picker render long names on 2 rows (item height 40px ≈ 2×20px lines); TWC builder typeahead ellipsizes (`text-overflow: ellipsis`) with full name in `title` attr (hover tooltip). Brand "Lowell Milken Center for Music of American Jewish Experience" (brand 290318) and set "UCLA School of the Arts and Architecture Roll-up" are the fixtures.
+
+## 2026-07-07 update (QA-95226 re-pass, UCLA, Playwright MCP) — v2
+
+- **TWC typeahead no longer ellipsizes — it now WRAPS**, matching the other 3 contexts. `.al-typeahead__option` computed style is `white-space: pre-wrap` (not `nowrap`), so `text-overflow: ellipsis` (still present in CSS) never activates — `scrollWidth === clientWidth`, height 40px (2 lines), full text visible without truncation. `title` attribute still present as a redundant tooltip. This **contradicts the 2026-06-11 note above** — treat that note as superseded; TWC behavior has changed (for the better — full name is visible either way). Flag for human confirmation this was an intentional consistency fix.
+- **Account-search input (`input[placeholder="Search Account"]`) requires real keystrokes.** `.fill()` sets the value but does not trigger the live "Results" section (React `onChange` not fired) — use `pressSequentially(text, {delay: 30-40})` instead. Distinct from the brand typeaheads, which mostly tolerate `.fill()`.
+- **Brand-Set-page switcher click target is narrower than the Brand-page one.** On Brand → Insights, clicking the bare brand-name text opens the typeahead. On Brand Sets → Content, clicking the bare brand-set-name text does nothing — must click the `.brand-selector-name-container` wrapper (name + chevron) instead, or the click can land on an adjacent favorite-heart icon and show an unrelated "Remove from favorites" tooltip.

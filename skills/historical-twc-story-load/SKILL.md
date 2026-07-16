@@ -1,10 +1,10 @@
 ---
 name: historical-twc-story-load
-version: 1
-last_verified: 2026-05-13
-last_passed_run: 2026-05-13
+version: 2
+last_verified: 2026-07-09
+last_passed_run: 2026-07-09
 trust: untrusted
-pass_streak: 1
+pass_streak: 2
 preconditions: [user-logged-in, account-has-access-to-story]
 postconditions: [story-fully-loaded]
 inputs: [story_id, account_id]
@@ -63,10 +63,13 @@ For tests like QA-329:
 
 - Some saved stories include View=Authorized Data on the brand, but the test may expect Public — read the toggle state explicitly rather than assuming.
 - The story URL pattern is shared between dev and stage (`app-reporting.lfmdev.in` vs `app-reporting.stage.lfmprod.in`) — the case may give multiple URLs; pick the env matching the run.
+- **(Playwright MCP, 2026-07-09) Cold direct-nav to the story URL can hang on "Loading..." indefinitely**, correlating with a transient `503` on `accounts.lfmdev.in/global_storage`. Fix: navigate to `app.lfmdev.in/#home` first, open Time Window Comparison via the Reporting top-nav menu (primes the `app-reporting.lfmdev.in` subapp session), then re-navigate to the story URL — resolved on the first retry.
+- **(Playwright MCP)** Absolute/Relative Dates selection is read via `button.al-view-switcher__option--selected` class (not `aria-pressed`, not a snapshot-visible attribute) — use `browser_evaluate` to check `className`.
 
 ## Known bug history
 
 See `knowledge-base/bug-history.md`. No open bugs currently tied to this skill's flows; 0 historical defects (all closed) are catalogued there.
 
 ## Changelog
+- **v2** (2026-07-09): Playwright MCP re-run, QA-329. Same story 119501 re-verified 4/4 PASS. Documented the cold-load hang + reporting-menu-priming fix (new — not seen in the original Chrome-MCP run) and the `--selected` class check for Absolute/Relative Dates.
 - **v1** (2026-05-13): Initial draft from QA-329 run. Verified 4 assertions for The Walking Dead story 119501 on Hulu / Jan 1-7, 2023 / FB+TW+IG+YT New Fans-Followers-Subscribers / Show Graphs+Tables.

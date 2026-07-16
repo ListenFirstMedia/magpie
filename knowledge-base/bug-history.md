@@ -635,7 +635,8 @@ _None._
 ## QA-131491 — Social Recap vs Brand > Content - IG Public Video View
 
 - **Skill:** `social-recap-report-run`, `brand-content-data-set-selector`
-- **My latest run (2026-06-08 QA-22296 batch-9 RECONFIRM):** PASS — Brand > Content MTV/Adam Orfei (brand_id=10765) / IG / Jan 1-7 2026 / Public — Post #1 Mon Jan 05 03:23 PM PST Reel: Engagements 44,227 / Reactions 43,971 / Comments 256 / Video Views 691,822 / Video Response Rate 6.39% — exact verbatim match with 2026-06-02 batch-9 run. No drift.
+- **My latest run (2026-07-15 QA-22296 remaining-batch RECONFIRM):** PASS — Brand > Content MTV/Adam Orfei (brand_id=10765) / IG / Jan 1-7 2026 / Public — Post #1 Mon Jan 05 03:23 PM PST Reel: Engagements 44,227 / Reactions 43,971 / Comments 256 / Video Views 691,822 / Video Response Rate 6.39% — exact verbatim match with Social Recap BPC card and with the 2026-06-02/2026-06-08 runs. No drift across 3 separate-day runs. Full report: `runs/2026-07-15/QA-131491-report.md`.
+- **Prior run (2026-06-08 QA-22296 batch-9 RECONFIRM):** PASS — same values, no drift.
 
 ### Open bugs (0)
 _None._
@@ -2055,6 +2056,32 @@ _None._
 
 ---
 
+## QA-106221 — Settings > Custom Data Sets - Edit functionality
+
+Skill: `settings-custom-data-sets`
+Full report: `runs/2026-07-07/QA-106221-report.md`. Latest run (2026-07-07): PASS 5/5. Keyboard-DnD reorder movement keys changed from ArrowDown/ArrowUp to `j`/`k` since the 2026-06-27 run — read the live-region prompt after lift rather than hardcoding a key set. Open anomaly (not filed as a bug): 2 unrelated pre-existing Custom Data Sets ("ABcd"/"AbCd") vanished from the shared Adam Orfei account mid-run; cause not established (could be a concurrent tester's cleanup on the shared account, or a genuine Edit/Save side effect — insufficient evidence to distinguish).
+
+### Open bugs (0)
+_None confirmed this run._
+
+### Closed bugs
+- No open Bug/Test-Failure links.
+
+---
+
+## QA-109059 — Settings > Custom Data Sets support on Brand > Content
+
+Full report: `runs/2026-07-07/QA-109059-report.md`. Latest run (2026-07-07): PARTIAL — A1/A3/A4 PASS, A2 FAIL (confirmed bug), A5-A8 BLOCKED (confirmed bug).
+
+### Open bugs (2)
+- **Custom Data Set dropdown sorted alphabetically, not by creation date (A2).** First observed as a "candidate" 2026-05-13 on Brand>Content Data Set dropdown (6 custom data sets, mixed creation dates). **Reproduced independently 2026-07-07** (different data sets, 7 weeks later) — order is exact case-sensitive ASCII alphabetical (uppercase-first), not creation-date ascending as the spec requires. Confidence upgraded from candidate to confirmed given 2 independent reproductions.
+- **`/content/analysis` returns 503 whenever a Custom Data Set is the active `table_data_set` on Brand>Content, blocking the whole table ("This table failed to load").** New 2026-07-07. Root-caused via network inspection: `/content` (post-level) succeeds with `data_set=DataSetContentCustom`, but `/content/analysis` (Sum/Avg row) 503s every time with the same param — reproduced 3× (initial load, Reload click, hard F5). Switching back to "Public"/`DataSetContentLfm` resolves immediately. Contradicts the 2026-06-27 QA-109062 run which used a custom data set successfully on Brand>Content export — likely a recent dev-env regression or an environment-specific flake. **Needs LFIQA confirmation on a second environment before treating as shippable-blocking.**
+
+### Closed bugs
+- No open Bug/Test-Failure links.
+
+---
+
 ## QA-4325 Summary
 
 - Total members: 56
@@ -2101,3 +2128,40 @@ Full report: `runs/2026-06-13/QA-22296-CUMULATIVE-REPORT.md`. 59/59 members exec
 **CARRY-FORWARD (not re-verifiable):** LFMP-30870 (QA-43915 Radaac, Cognito-blocked); LFMP-31857 (QA-923 Twitter text-link — signal present).
 
 **Cross-cutting dev-stability finding:** Brand>Insights / Brand>Video **renderer hang** froze the Chrome MCP CDP pipeline repeatedly on MTV — blocked QA-947, QA-18940, QA-89390, QA-96759 and prevented re-drive of QA-134176. Recommend perf ticket (cf. APPS-55565). New finding (re-confirmed): TWC Relative-Dates export emits relative labels in the Date column (TSV+CSV) instead of absolute dates (QA-199).
+
+---
+
+# 2026-07-14 — QA-136261 (QA-22296 remaining-batch): View-Perspective toggle brand-fallback escalated to bug candidate
+
+**Not yet filed to Jira** (no ticket ID assigned) — recommending formal filing. See `runs/2026-07-14/QA-136261-report.md` and `skills/view-perspective-toggle/SKILL.md` Quirk D for full detail.
+
+- **Behavior:** On Brand > Content, clicking the View: Public Data / Authorized Data toggle can change the URL's `brand_id` to a *different* brand (FX Networks account: 4251 → 19746), while the on-screen name/logo continues to show the same text ("FX"), giving no visible indication the brand changed. Also resets Channels to a default multi-channel set and clears any active Filter pill.
+- **3rd independent reproduction:** QA-98351 (2026-06-08, MTV/Threads, →10765) → QA-91412 (2026-07-07, FX/Facebook, noted) → **QA-136261 (2026-07-14, FX/Facebook, 2/2 deterministic retries)**.
+- **Impact:** Blocks verifying any Public-perspective assertion on an affected brand — re-selecting the correct brand to recover also resets perspective back to Authorized, so there is no UI path to combine "correct brand + Public perspective" once this triggers.
+- **Recommend:** file as a Jira bug against Brand > Content view-perspective toggle; reference QA-98351, QA-91412, QA-136261.
+
+---
+
+## QA-112583 — Follower Demographics vs Threads Audience Export parity
+
+- **My latest run (2026-07-15 QA-22296 remaining-batch, Playwright MCP):** BLOCKED — Max (brand_id=412264) has no Brand>Audience page at all (URL silently rewrites to Insights); Follower Demographics CSV export mechanic works but the Max/Threads/May-5-2025 data row is entirely blank. Two compounding test-data gaps, not a functional defect. No bug filed. See `known-quirks.md` 2026-07-15 entry and `runs/2026-07-15/QA-112583-report.md`.
+
+---
+
+# 2026-07-15 — QA-22296 remaining batch run cut short by Playwright MCP server crash
+
+Batch: `batches/qa-22296-remaining.txt` (26 cases). Session executed 6/26 before the Playwright MCP server crashed on Brand>Insights navigation (see `known-quirks.md` 2026-07-13/2026-07-15 entry).
+
+**Completed this session (reports in `runs/2026-07-15/`):**
+- QA-112583 — BLOCKED (Max brand has no Brand>Audience surface at all; Follower Demographics/Threads data also empty for the spec'd single day). New known-quirks entry added.
+- QA-113594 — PASS (Settings>Audit External User View, 3/3 checks).
+- QA-113723 — BLOCKED/DEFERRED (spec requires Thursday-only execution; run date was a Wednesday).
+- QA-114840 — PASS (Settings>Users export, External User, 5/5 assertions).
+- QA-116140 — PASS (Sentiment Export CTA modal, MTV, 4/4 assertions).
+- QA-116173 — PASS on 2/3 (Sentiment Export bell notification + auto-download confirmed on disk; email-inbox delivery INCONCLUSIVE — no mailbox access in this session).
+
+**Not run (20 remaining, session ended by crash):** QA-131491, QA-132387, QA-132392, QA-133403, QA-134176, QA-134271 (in progress when crash hit), QA-134296, QA-134436, QA-134445, QA-134446, QA-134447, QA-134448, QA-134449, QA-134600, QA-134636, QA-135429, QA-135837, QA-137557, QA-137558, QA-138033.
+
+**Root cause:** navigating to `#explore/brand/insights` for MTV (brand_id=4018) and calling one `browser_evaluate` immediately after triggered an MCP server disconnect — every `mcp__playwright__*` tool vanished from the tool registry for the rest of the session, with no in-session recovery path. Second confirmed occurrence of this crash class (first was Brand>Video, 2026-07-13).
+
+**Recommend:** resume from QA-134271 once the Playwright MCP server is restarted/reconnected; treat Brand>Insights/Video navigations as needing per-case process isolation going forward.

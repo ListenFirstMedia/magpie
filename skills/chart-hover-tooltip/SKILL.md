@@ -1,8 +1,8 @@
 ---
 name: chart-hover-tooltip
-version: 3
-last_verified: 2026-07-02
-last_passed_run: 2026-07-02
+version: 4
+last_verified: 2026-07-15
+last_passed_run: 2026-07-15
 trust: untrusted
 pass_streak: 3
 preconditions: [chart-rendered-with-data]
@@ -163,6 +163,43 @@ Verified `.chart-tooltip` for bars (Follower Growth / New Posts / Engagements = 
 
 ## Changelog
 - **v3** (2026-07-02): Added Brand > Stories big-number bar hover (`rect.bar` metric-key-with-dots) + Pie/donut hover with the `svg.donut` pointer-interception workaround (dispatch mouse events on the arc path at a ring coordinate). Tile graph-type selector `.tile-level-data-viz-buttton-container`. Verified QA-949 (Michael Kors IG). +1 streak.
+- **v4** (2026-07-15, QA-109749, NFL on CBS brand_id=55123, Threads channel, Apr 1-5 2025): Brand>Audience
+  geo/donut tiles.
+  - **Country choropleth hover:** `.datamaps-subunit.<ISO3>` (e.g. `.USA`) — this is the **datamaps**
+    library, not the same D3 setup as Brand>Insights. A country's DOM bbox center can be wrong for
+    non-compact shapes (USA's combined bbox with Alaska centers over Canada) — scan
+    `document.elementFromPoint` over a grid within the tile and pick a hit away from small outlying
+    parts, rather than trusting `getBoundingClientRect()` center. Tooltip: `.al-geo-map-tooltip__container`
+    → `<Country>Followers <N>%` (matches spec's `Legend: Country / Followers (N%)` format).
+  - **City bubble hover:** `circle.datamaps-bubble` (radius scales with follower share). Same tooltip
+    class as country. **Format finding:** tooltip renders `<City>, <State/Region>` (e.g. `Philadelphia,
+    Pennsylvania`; `Lagos, Lagos State`) — **not** `<City>, <Country>` as QA-109749's spec literally
+    describes. Reproduced on 2 unrelated cities (US + Nigeria), so it's a systematic product format
+    choice, not a data gap — noted as a spec-vs-actual format finding in the report, not filed as a
+    functional bug (the geographic info shown is arguably more precise, just doesn't match the spec's
+    exact wording).
+  - **Multiple tooltip container instances coexist in the DOM** — one per tile — with only the
+    currently-hovered one having `offsetParent !== null`. Always filter for `visible`/`offsetParent`
+    before reading `textContent`, or you'll read a stale value from a previously-hovered tile.
+  - **Gender-breakdown donut** (`Followers: Gender Breakdown`) uses fixed fill colors `#AA00FF` (Men),
+    `#007F77` (Women), `rgb(165,165,165)` (Unknown) — same donut-hole-miss issue as v3's pie/donut
+    finding; hovering `rect.y + 8` (top-of-arc offset) rather than the vertical center works reliably.
+    Tooltip: `Men: N% Women: N% Unknown: N%` (exact spec format match).
+- **v3** (2026-07-07, QA-96670 re-run, HBO Max brand_id=155614): Two new Playwright-only gotchas for
+  donut/pie big-number tiles:
+  - **Pie/donut hover needs scroll-stable, ring-offset coordinates.** `browser_hover`'s built-in
+    actionability check hit-tests the shape's bounding-box *center*, which for a ring (donut hole)
+    lands on empty space and reports "parent svg intercepts pointer events" — a false timeout, not a
+    real occlusion. Coordinate-based `page.mouse.move` also silently misses if the page's horizontal
+    scroll shifts between a `getBoundingClientRect()` read and the move (each separate tool call can
+    re-scroll). Fix: do the rect-read + `mouse.move` in **one** `browser_run_code_unsafe` script, and
+    target a point offset from the arc's own bbox toward the outer edge (`top + 5px`), not the
+    geometric center.
+  - **The chart-type dropdown has no static "Graph Type" label** — it displays the *current*
+    selection (`Bar`, `Area`, `Pie`, ...), so text-searching for "Graph Type" finds nothing. Locate it
+    via `data-ui-name="tile_data_visualization"` or by proximity to the tile's `<h4>` heading.
+  - Bar/area hover confirmed still trivial (`browser_hover` + read `.chart-tooltip__container` /
+    `.al-area-chart__tooltip` directly — no coordinate math needed for non-ring shapes).
 - **v2** (2026-06-22): Playwright MCP rewrite. Confirmed Insights charts are **D3 SVG, not Recharts**
   (`rect.bar.<channel>-<date>`, `.arc` donut). `browser_hover` triggers the tooltip natively (no
   synthetic events); tooltip is DOM-readable at `.al-bar-chart__tooltip` (no screenshot needed).
