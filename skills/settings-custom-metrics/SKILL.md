@@ -1,10 +1,10 @@
 ---
 name: settings-custom-metrics
-version: 3
-last_verified: 2026-07-03
-last_passed_run: 2026-07-03
+version: 4
+last_verified: 2026-07-10
+last_passed_run: 2026-07-10
 trust: untrusted
-pass_streak: 13
+pass_streak: 15
 preconditions: [account-context]
 postconditions: [custom-metric-row-present, info-mode-toggled-off]
 inputs: [metric_name, metric_description, formula_tokens]
@@ -194,6 +194,15 @@ To prove operator precedence (QA-139187 A5): create the metric, then in TWC (Aut
 ### Max-limit validation (A7/A8) — NOT YET CAPTURED
 QA-139187 A7/A8 expect, at an 11-part formula: "You've reached the max limit of metric selection in your Custom Metric. You can still close ')' to finish the formula." (Save disabled while `(` open) → closing `)` keeps a max-limit message and enables Save. **Not yet verified** — building 11 operands via the dropdown is very high-interaction, and under automation a re-entered **Constant replaces the trailing operand instead of appending** (state hard to track). Needs a focused run; document the exact max-count when captured.
 
+## v4 — Constant value validation (QA-135322)
+
+The Constant chip's input is `input.formula-constant-input` (type=number). App-level validation enforces a **positive range 1–1000**:
+- **1001 / 0 / negatives** → inline error **"Constant must be between 1 and 1000."**, chip invalid, **Save disabled**.
+- **Positive decimals** (e.g. `99.99`) accepted, no rounding; the error clears on a valid value.
+- Non-numeric chars (letters except `e`, special chars except `-` `.`) are stripped by the number input (`ab@5` → `5`).
+- **⚠ Spec discrepancy (QA-135322 A5e = FAILED):** the test case expects **negatives accepted** (e.g. `-500`, negative sign as first char), but the field **rejects all negatives** with the 1–1000 message. Either a product bug or an outdated spec — flag for QA triage, do NOT auto-file. Because negatives/0 can't be entered, any assertion about *saving* a metric with a negative/zero constant (e.g. A5c/A5e/13b) is unreachable on this build.
+- **Automation note:** the operator submenu leaves render as FontAwesome icons (`i.fa-regular.fa-plus/minus/times/divide`) with **empty text** — after hovering the `Operators ▶` `.menu-item` row (real hover), click the empty-text `.menu-item` carrying the `fa-plus` icon (text-based selectors miss them). A lone metric or lone constant leaves **Save disabled** — a saveable formula needs a full expression (operand + operator + operand).
+
 ## Additional Failure signatures (v2)
 
 | Signature | Interpretation | Action |
@@ -207,6 +216,7 @@ QA-139187 A7/A8 expect, at an 11-part formula: "You've reached the max limit of 
 
 ## Changelog
 
+- **v4** (2026-07-10): +Constant value validation from QA-135322 (Constants) — positive 1–1000 range, 0/negatives/1001 rejected with "Constant must be between 1 and 1000.", decimals OK; **A5e FAILED** (spec expects negatives accepted, UI rejects — discrepancy flagged, no auto-file). Added operator-leaf-icon selector detail + "lone operand → Save disabled". QA-135430 (Delete) re-confirmed PASS with cleanup.
 - **v3** (2026-07-03): +1 from QA-139187 (Parenthetical Expressions — A3 Save-with-parentheses + A5 BODMAS both PASS; A7/A8 max-limit not yet captured). Added the **Parentheses** formula-menu option (`(`/`)`), **account-gating** of the Custom Metrics feature (Adam Orfei yes, Hulu no — blank page otherwise), **BODMAS verification via TWC** (select custom + component metrics, compare per-row) with the **Authorized-toggle-drops-selections** gotcha (set Authorized before selecting metrics), and a note that the max-limit validation (A7/A8) remains uncaptured (Constant re-entry replaces trailing operand under automation).
 - **v2** (2026-06-08): Edit flow (QA-135429); × ÷ operators APPS-60358 implementation verified end-to-end via 4-icon FontAwesome enumeration (QA-137557 reaches Create; QA-137558 ↔ TWC verification); Save modal Constant-vs-Constants drift retained; Delete flow stays in this skill; APPS-60358 4-operator dropdown enumerated NOT REPRODUCED as a bug. +9 streak across batches: QA-85176, QA-134173, QA-134185, QA-135430, QA-75011, QA-85176 RECONFIRM, QA-135429, QA-137557, QA-137558.
 - **v1** (2026-05-29): initial skill — created from QA-85176, QA-134173, QA-134185 (PASS / PASS / PASS). Documents formula-builder strict-alternation, X-removal cycle, Info-mode tooltip toggle on both list and create pages, and the three known spec/UI copy drifts.

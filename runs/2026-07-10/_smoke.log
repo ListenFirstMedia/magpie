@@ -1,0 +1,8 @@
+>> QA-298 (--login-only) — Fri Jul 10 15:19:14 IST 2026  [timeout 900s]
+Login confirmed: URL is `app.lfmdev.in/#home` with title "Home - ListenFirst".
+
+LOGIN OK https://app.lfmdev.in/#home
+scripts/run-case.sh: line 123: 35875 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-10/QA-298-report.md

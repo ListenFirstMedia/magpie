@@ -1,0 +1,65 @@
+>> QA-107134 (full) — Sat Jul 11 22:39:13 IST 2026  [timeout 900s]
+**QA-107134 — Settings > Audit Deep Linking: PASS**
+
+- **A1/A2 PASS** — Applied an Activity=Brand Edited filter (51 rows, Jul 05–11 window), opened the captured URL in a fresh tab; account, date range, filter JSON, and all 51 rows loaded identically.
+- **A3 (probe) — APPS-54603 REPRODUCED (broader scope)** — Same-tab URL replace (June 2026 + Brand Set Created) updated the URL bar but the UI stayed stuck on Jul 05–11 + Brand Edited. Both filter **and** date range failed to apply (original doc says only filters fail). This is the case's intended probe target and doesn't interfere with A1/A2, so it doesn't fail the case. The 2026-06-13 "possible fix / new-tab" behavior did not recur.
+
+Report: `runs/2026-07-11/QA-107134-report.md`; evidence in `.playwright-out/QA-107134/`. Skill/registry maintenance deferred to harvest.sh per the run directive. Browser left open.
+scripts/run-case.sh: line 100: 70864 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-11/QA-107134-report.md
+>> QA-110083 (full) — Sat Jul 11 22:45:11 IST 2026  [timeout 900s]
+QA-110083 — **PASS (6/6)**. Report at `runs/2026-07-11/QA-110083-report.md`.
+
+Executed the full mutating flow on Adam Orfei (acct 54): created brand set `qa-110083-pw-2026-07-11-1718` (id 11671, 2 MTV brands) → verified the `Brand Set Created` audit row (name deep-link, Actor "LFQA Testing", timestamp match) → deleted it → verified the `Brand Set Deleted` audit row. All 6 assertions passed; cleanup complete, no orphan. No open bugs (bug-history: 0), none filed.
+
+Two reusable notes captured in the report for the harvest step: the create-wizard name input only commits on real keystrokes **+ blur** (React setter alone leaves Next disabled), and Add-Brands uses `td.al-table__check` + a middle "Move →" button.
+scripts/run-case.sh: line 100: 71513 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-11/QA-110083-report.md
+>> QA-111242 (full) — Sat Jul 11 22:55:08 IST 2026  [timeout 900s]
+QA-111242 — **PASS** (5/5 assertions). Report at `runs/2026-07-11/QA-111242-report.md`.
+
+- **A1/A5 (LFMP-31947 probe):** IG Read Comments modal displayed a full 15-row comment table for MTV; Twitter control likewise (5 rows). **LFMP-31947 NOT reproduced — 3rd consecutive non-repro** → recommend Jira closure.
+- **A2:** "N Sample Comments" messaging present (15 IG / 5 Twitter); the literal "2,000" is the sample cap, not hit here — documented spec-limit behavior, no defect.
+- **A3:** Sentiment Export Request popup + two bell notifications ("…now ready. Download file.") confirmed.
+- **A4:** Both CSVs verified on disk, matching their modals (IG: Instagram/sashka.park/Positive; Twitter: readable text + `Topic 1` column).
+
+Evidence: 4 screenshots under `.playwright-out/QA-111242/` + on-disk CSVs. No bugs filed. Skill/REGISTRY maintenance deferred to harvest.sh per run instructions.
+scripts/run-case.sh: line 100: 72148 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-11/QA-111242-report.md
+>> QA-111243 (full) — Sat Jul 11 23:07:02 IST 2026  [timeout 900s]
+**QA-111243 — PASS.** All 6 assertions passed.
+
+- **Brand pivot:** Hulu (spec's "e.g." example) has no Authorized access on the current account (Viacom/`lfiqa`), so its perspective toggle was `disabled` and Sentiment mode couldn't be enabled. Per the spec's own "e.g. Hulu / whatever has sentiment data" wording, ran on **MTV** (Authorized, IG) — same brand as the prior 2026-06-04 pass. Not a Rule-1 substitution of a pinned brand.
+- **A1** Read Comments modal opened for the Joy slice ("Joy Emotion: 31%", 369 sample comments). **A2** "Sentiment Export Request" popup with email-format message (`…email to lfiqa@listenfirstmedia.com`). **A3** new bell entry (11:18 pm, "…is now ready. Download file."). **A4** CSV auto-downloaded to disk (56,811 B). **A5** 13 columns present. **A6** modal 369 vs CSV **367** records → delta 2 (≤4 tolerance).
+- **Known bug:** APPS-55875 (Minor, Open) is the A6 probe itself — reproduced on MTV as the small modal-vs-export delta, within tolerance → non-blocking. Hulu-specific 323/319 figures remain deferred (no Authorized Hulu here).
+
+Report: `runs/2026-07-11/QA-111243-report.md`. Evidence + CSV under `.playwright-out/QA-111243/`. Skill/REGISTRY maintenance deferred to harvest.sh per instructions.
+scripts/run-case.sh: line 100: 72747 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-11/QA-111243-report.md
+>> QA-112579 (full) — Sat Jul 11 23:21:39 IST 2026  [timeout 900s]
+You've hit your session limit · resets 1:20am (Asia/Calcutta)
+>> QA-112579 (full) — Sun Jul 12 00:00:36 IST 2026  [timeout 900s]
+You've hit your session limit · resets 1:20am (Asia/Calcutta)
+>> QA-112579 (full) — Sun Jul 12 00:30:39 IST 2026  [timeout 900s]
+You've hit your session limit · resets 1:20am (Asia/Calcutta)
+>> QA-112579 (full) — Sun Jul 12 01:00:42 IST 2026  [timeout 900s]
+You've hit your session limit · resets 1:20am (Asia/Calcutta)
+>> QA-112579 (full) — Sun Jul 12 01:30:45 IST 2026  [timeout 900s]
+QA-112579 — **PASS** (6/6). Report at `runs/2026-07-12/QA-112579-report.md`.
+
+Michael Kors on Adam Orfei (switched from Viacom), Brand>Content:
+- A4 modal opens bottom-right above Help fab (bottom 610 vs fab top 630) · A5 header `cursor:grab` · A6 drag moved modal (810,186)→(270,364) matching cursor delta · A7 modal fixed through scroll 0→600→0 · A8 tag added to 23/23 posts, Done closes modal · A9 re-opens at exact default, drag state doesn't persist.
+
+Cleanup done — pre-existing tags on this brand meant "Delete All Tags" was unsafe, so I removed only the test tag via its per-chip ×; re-open confirmed it's gone. No open bugs, none reproduced, none filed. Two Playwright mechanics noted (JS-click for off-viewport Done after drag; native mouse for the drag). Skill/REGISTRY maintenance deferred to harvest.sh per instructions.
+scripts/run-case.sh: line 100: 75369 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-12/QA-112579-report.md

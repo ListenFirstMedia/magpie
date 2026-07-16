@@ -1,0 +1,49 @@
+>> QA-133403 (full) — Sun Jul 12 02:15:15 IST 2026  [timeout 900s]
+>> TIMEOUT after 900s — killing QA-133403 (process tree)
+>> QA-134176 (full) — Sun Jul 12 02:30:15 IST 2026  [timeout 900s]
+QA-134176 — **PASS (7/7)**. Report at `runs/2026-07-12/QA-134176-report.md`.
+
+- Sephora (brand_id=29) is unreachable on Adam Orfei (redirects to `#home`, documented edge case), so this brand-independent picker-contents test ran on the MTV substitute per prior-run precedent — no data-bearing assertion was affected (Rule 1 respected).
+- **A1** Interval default `Daily` ✓ · **A2** Make-a-Selection default `Auto` ✓ · **A3** intervals `Daily/Weekly/Monthly/Quarterly` ✓.
+- **A4–A7** Auto-Select contents match spec structure under the time-shift (latest complete Q2 2026 / June 2026; quarters back to Q2 2014 floor; months capped at 11). Monthly & Quarterly regression-guards hold (no day-ranges / Prior Year / MTD / YTD; Quarterly has no months).
+- Brand>Insights renderer hang did not reproduce under Playwright. No open/linked bugs; none filed. Skill/REGISTRY maintenance deferred to harvest.sh as instructed.
+scripts/run-case.sh: line 100: 79409 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-12/QA-134176-report.md
+>> QA-134182 (full) — Sun Jul 12 02:37:41 IST 2026  [timeout 900s]
+>> TIMEOUT after 900s — killing QA-134182 (process tree)
+>> QA-134184 (full) — Sun Jul 12 02:52:42 IST 2026  [timeout 900s]
+**QA-134184 — Brand > Insights - Interval selection - Quarterly → PASS (8/8)**
+
+Ran headless on Hulu (account 336 / brand 5670), reusing `brand-insights-interval-picker` + `switch-account`. All 8 assertions verified with DOM + screenshot evidence:
+
+- **A1** Interval order Daily/Weekly/Monthly/**Quarterly**
+- **A2** Quarterly renders month-grid quarter selector w/ year header; chart X-axis labels quarters
+- **A3** Auto-selected last complete quarter (Apr–Jun 2026; Q3 in-progress today, disabled)
+- **A4** Jan→Jun = Q1+Q2
+- **A5** Partial Feb→May resolves to full Jan→Jun
+- **A6** Oct→Dec 2025 = Q4 only
+- **A7** Sep→Dec **extends backward to Jul** = Q3+Q4 (the non-obvious APPS-58615 behavior)
+- **A8** Jul→Dec = Q3+Q4; applied `from=2025-07-01&to=2025-12-31`, chart axis `Q3 2025`/`Q4 2025`
+
+Known-bug screen clean (0 open/0 closed; case says "None open"). Insights renderer hang did not reproduce under Playwright. No bugs filed. Report at `runs/2026-07-12/QA-134184-report.md`, 9 screenshots under `.playwright-out/QA-134184/`. Skill/registry maintenance deferred to harvest.sh per instructions.
+scripts/run-case.sh: line 100: 80631 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-12/QA-134184-report.md
+>> QA-134188 (full) — Sun Jul 12 03:02:52 IST 2026  [timeout 900s]
+Done. **QA-134188 → PASS** (Google Sheets A14 skipped, out of scope).
+
+Summary:
+- MTV / Adam Orfei, Brand > Insights set to **Monthly interval + Last 3 Months** (Apr–Jun 2026).
+- All 9 tiles + BPC + Trends rendered, no blank/broken/error (A1/A2). X-axis = `Apr. 2026 / May. 2026 / Jun. 2026` (A3); Y-axes numeric, Fan Growth Rate the % exception (A4).
+- Follower Growth **CSV** downloaded synchronously; header + 3-months×4-channels (12 rows), correct month ranges, no out-of-range/dup/missing data (A5–A10, A12, A13).
+- CSV reconciled to page: sum = **−255,390** = tile Value; May per-channel tooltip exact match (A11).
+- Insights renderer hang did **not** reproduce under Playwright; no open bugs; nothing filed.
+
+Report: `runs/2026-07-12/QA-134188-report.md`.
+scripts/run-case.sh: line 100: 81429 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-12/QA-134188-report.md

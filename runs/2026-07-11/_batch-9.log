@@ -1,0 +1,53 @@
+>> QA-113595 (full) — Sun Jul 12 01:42:09 IST 2026  [timeout 900s]
+QA-113595 → **SKIPPED**. Report at `runs/2026-07-12/QA-113595-report.md`.
+
+Two independent blockers, no browser flow opened:
+- **Thursday-only precondition unmet** — today is Sunday 2026-07-12 (verified via `date`).
+- **Admin app second-auth barrier** — Steps 1–7 need `admin.lfmdev.in`, a separate Cognito sign-in surface (matches the batch-9 BLOCKED and 2026-07-09 SKIPPED history).
+
+All four assertions (A6/A8a/A8b/A8c) SKIPPED. No open linked bug; no bugs filed. Re-run on a Thursday with Admin access to complete.
+scripts/run-case.sh: line 100: 76028 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-12/QA-113595-report.md
+>> QA-113722 (full) — Sun Jul 12 01:43:17 IST 2026  [timeout 900s]
+QA-113722 → **SKIPPED**. Report at `runs/2026-07-12/QA-113722-report.md`.
+
+Reason: the spec precondition "Only execute on Thursday" is unmet — today is Sunday 2026-07-12 (`date` confirmed). No browser opened, no user created (mutating flow not entered, no cleanup needed). Independently, step 8 needs a real-password Cognito sign-in as the new user, which the case Notes forbid and which BLOCKED the prior 2026-06-04 attempt. No open linked bugs (bug-history: 0). Assertions A7/A9a–A9d all SKIPPED. No bugs filed — this is a precondition/scope gate, not a defect.
+scripts/run-case.sh: line 100: 76492 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-12/QA-113722-report.md
+>> QA-114845 (full) — Sun Jul 12 01:44:22 IST 2026  [timeout 900s]
+**QA-114845 — PASS (5/5).** Report written to `runs/2026-07-12/QA-114845-report.md`.
+
+Michael Kors (brand_id=3801), Brand > Insights, Last 30 Days (Jun 11 – Jul 10, 2026), Authorized:
+
+- **A3 PASS** — donut tooltip `.al-donut__tooltip`: `Facebook: 18,690,949 / Twitter: 2,893,932 / Instagram: 18,980,714 / TikTok: 2,100,000` ("Channel: value").
+- **A4a PASS** — `Michael Kors-Insights-Total Followers-Pie-2026-06-11-2026-07-10.png` (server download name; on-disk slugified, 32.6 KB).
+- **A4b PASS** — PNG matches the tile (42.7M donut, correct legend/footer).
+- **A5 PASS** — bar tooltip `.al-bar-chart__tooltip`: `Jun. 15, 2026` + `Fan Growth Rate: -0.01%`.
+- **A6 PASS** — `Michael Kors-Insights-Fan Growth Rate-Bar-2026-06-11-2026-07-10.png` (50.4 KB), renders correctly.
+
+Known bugs: 0 open (Rule 7 passed). The Chrome-MCP-era Insights renderer freeze did not reproduce under Playwright. No bugs filed. Skill/REGISTRY maintenance deferred to harvest.sh as instructed.
+scripts/run-case.sh: line 100: 76952 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-12/QA-114845-report.md
+>> QA-129608 (full) — Sun Jul 12 01:55:13 IST 2026  [timeout 900s]
+>> TIMEOUT after 900s — killing QA-129608 (process tree)
+>> QA-130076 (full) — Sun Jul 12 02:10:14 IST 2026  [timeout 900s]
+QA-130076 — **PASS (4/4)**.
+
+Viacom now carries 80 lost-authorization notifications in Settings > Notifications (was BLOCKED on 2026-07-01 for missing test data — that gap is now resolved). All assertions verified against the live table:
+
+- **A1** feed name — shown in quotes (e.g. `'TikTok Ads (Authorized)'`)
+- **A2** brand name — shown in quotes (e.g. `'FBI'`)
+- **A3** NOT COLLECTING — red `status-pill`, renders uppercase
+- **A4** format — verbatim: *"We lost data collection on the '<feed> (Authorized)' feed for the '<brand>' brand. Please click to troubleshoot."*
+
+Report: `runs/2026-07-12/QA-130076-report.md`. Evidence: `.playwright-out/QA-130076/notifications-lost-auth.png`. No bugs filed. Skill/REGISTRY/KB maintenance deferred to harvest.sh as instructed (the 2026-07-01 "revisit if" quirk condition is now met — noted in the report for harvest).
+scripts/run-case.sh: line 100: 78143 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-12/QA-130076-report.md

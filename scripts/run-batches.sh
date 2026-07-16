@@ -23,6 +23,8 @@ LIMIT_WAIT="${LIMIT_WAIT:-1800}"          # sleep between resume attempts, secon
 MAX_LIMIT_WAITS="${MAX_LIMIT_WAITS:-48}"  # safety cap: 48 x 30min ~= 24h of waiting before giving up
 DATE="$(date +%F)"
 RUN_DIR="runs/${DATE}"
+export RUN_DIR DATE   # pin the run dir and share it with run-case.sh so a midnight date rollover
+                      # can't split reports into runs/<next-day>/ and mis-score them as BLOCKED.
 RESULTS="${RUN_DIR}/results.tsv"
 SUMMARY="${RUN_DIR}/summary.json"
 mkdir -p "$RUN_DIR"

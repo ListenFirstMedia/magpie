@@ -1,0 +1,50 @@
+>> QA-134271 (full) — Sun Jul 12 03:11:25 IST 2026  [timeout 900s]
+**QA-134271 — PASS** (10/10 assertions).
+
+`Data Last Updated (PT): 07-11-2026 09:56 AM` was identical on Home + all 6 Brand sub-tabs (Insights/Audience/Content/Channels/Stories/Optimization), persisted through an F5 hard-refresh, and persisted across a brand switch (MTV→Hulu) — confirming the account-wide ETL freshness signal. Format conforms.
+
+Notes: 0 open bugs (bug-history + case screen clean). One non-blocking cosmetic observation — the trailing `PT` suffix seen on the 2026-06-04 run is gone; timezone is now carried only by the `(PT):` prefix. No bug filed. Report at `runs/2026-07-12/QA-134271-report.md`; skill/REGISTRY maintenance deferred to harvest.sh.
+scripts/run-case.sh: line 100: 82010 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-12/QA-134271-report.md
+>> QA-134272 (full) — Sun Jul 12 03:17:29 IST 2026  [timeout 900s]
+**QA-134272 — PASS (10/10).** Brand>Content Tag-filter on MTV/Adam Orfei, reusing `brand-content-filter` (v3, no drift).
+
+- Default: Include selected + Exclude not (A1); Or `fa-dot-circle`+disabled (A2); And `fa-circle`+disabled (A3).
+- 1 tag → Or/And stay disabled (A4); selected-row highlight + green Include Or-chip `rgb(0,207,11)` on Apply (A5).
+- 2nd tag → Or/And enabled (A6), Or still selected (A7).
+- Exclude flip → Include=false/Exclude=true (A8); both Include tags greyed `option-row disabled` (A9).
+- URL `filters` = `{"content_tags":[{"operator":"or","values":[" jbkaxlx","+tag"],"not":"false"}]}` (A10).
+
+Rule 7 screen: 0 open bugs → ran normally. `Posts(0)` is expected data-limitation, gates no assertion. Report: `runs/2026-07-12/QA-134272-report.md`; screenshots under `.playwright-out/QA-134272/`. Skill/REGISTRY maintenance deferred to harvest.sh per instructions.
+scripts/run-case.sh: line 100: 82525 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-12/QA-134272-report.md
+>> QA-134273 (full) — Sun Jul 12 03:25:12 IST 2026  [timeout 900s]
+>> TIMEOUT after 900s — killing QA-134273 (process tree)
+>> QA-134296 (full) — Sun Jul 12 03:40:13 IST 2026  [timeout 900s]
+**QA-134296 — PASS (6/6).**
+
+`Data Last Updated (PT): 07-11-2026 09:56 AM` was identical across Brand Sets > Rankings (1738), Brand Sets > Content (1738), after F5, after switching to a different brand set (1923 Talent / 11190), and on Brand > Content (Hull) + Home — confirming cross-surface consistency, F5-persistence, brand-set-switch persistence, format (`MM-DD-YYYY HH:MM AM/PM PT`), and cross-app parity. No open linked bugs (Rule-7 screen passed); no regression vs the prior 2026-06-04 PASS. Report: `runs/2026-07-12/QA-134296-report.md`.
+scripts/run-case.sh: line 100: 83879 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-12/QA-134296-report.md
+>> QA-134436 (full) — Sun Jul 12 03:45:13 IST 2026  [timeout 900s]
+QA-134436 complete — **PASS** (6/6 assertions).
+
+Verified layered Include+Exclude tag filtering on Brand Sets > Content (Adam Orfei, 1923 Talent, Jul 4–10) via the `brand-content-filter` skill:
+- **A1** Content Tag popup has Include/Exclude + Or/And + checkbox list
+- **A2** Include tag (jbkaxlx) greys to `option-row disabled` under Exclude
+- **A3** URL encodes `{or,[jbkaxlx],not:false}` + `{or,[+tag],not:true}`
+- **A4** Include∧¬Exclude correctly yields 0 posts (clean "no data" empty state, Sum/Avg `–`) — **not** the OR+None backend error; numeric parity data-limited (the one in-window post carries neither test tag)
+- **A5** operator disabled at single value, enabled at two values, AND serializes to URL
+- **A6** Clear All empties `filters` param + pills, Posts back to (1)
+
+OR+None backend-rejection quirk did not reproduce. No bugs filed. Report at `runs/2026-07-12/QA-134436-report.md`; screenshots under `.playwright-out/QA-134436/`. Browser left open. Skill/REGISTRY maintenance deferred to harvest.sh.
+scripts/run-case.sh: line 100: 84415 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-12/QA-134436-report.md

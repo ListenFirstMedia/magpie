@@ -1,0 +1,52 @@
+>> QA-51457 (full) — Sat Jul 11 18:00:48 IST 2026  [timeout 900s]
+>> TIMEOUT after 900s — killing QA-51457 (process tree)
+>> QA-52778 (full) — Sat Jul 11 18:15:49 IST 2026  [timeout 900s]
+QA-52778 complete — **PASS (7/7)**.
+
+**Fetch → Patch → Apply** round-trip on brand 236 (Family Guy), Include URL Managers checked on all three, driven via trusted Submit clicks.
+
+- **A1** unchecked-by-default ✓ | **A2/A4/A6** `url_managers` column present and populated (5-tenant manager strings) in Fetch(41c)/Patch(42c)/Apply(42c) xlsx ✓ | **A3/A5/A7** `youtube_channel_company` immediately after `youtube_channel_username` ✓
+- **BC-5** (empty url_managers false positive) did **not** reproduce — retracted quirk confirmed; the Playwright trusted-Submit honors the flag.
+- Apply mutation was an unedited self-roundtrip (effective no-op); no teardown needed; no 502.
+
+Report: `runs/2026-07-11/QA-52778-report.md`. Artifacts: `.playwright-out/QA-52778/{fetch,patch,apply}.xlsx`. Skill maintenance deferred to harvest.sh per instructions.
+scripts/run-case.sh: line 100: 57271 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-11/QA-52778-report.md
+>> QA-54202 (full) — Sat Jul 11 18:23:13 IST 2026  [timeout 900s]
+QA-54202 — **PASS (4/4)**.
+
+- A1: Title Category dropdown lists all 49 active categories — PASS
+- A2: filename `brands_20260711-1254.tsv` matches `brands_YYYYMMDD-HHMM.tsv` — PASS
+- A3: header exactly `brand_id, brand_name, created_at, updated_at, tc_title, tc_display` — PASS
+- A4: all 1,285 rows have tc_title=`AUTOMOTIVE` / tc_display=`Automotive` only — PASS
+
+Reused the `radaac-report` skill; trusted Submit worked under Playwright (no JS-resistance). No open linked bugs; LFMP-30870 is Ads-Account-IDs-only, no interference. Report at `runs/2026-07-11/QA-54202-report.md`. Skill/REGISTRY maintenance deferred to harvest.sh.
+scripts/run-case.sh: line 100: 57893 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-11/QA-54202-report.md
+>> QA-71006 (full) — Sat Jul 11 18:25:48 IST 2026  [timeout 900s]
+QA-71006 — **PASS**.
+
+**What ran:** Switched to Michael Kors (acct 328) → Brand>Content → brand Michael Kors (3801, Rule-1 exact match) → Table View → data set **Facebook Only: Reactions** → Export → Ok. Export delivered async; CSV auto-downloaded and verified on disk.
+
+**Assertions:**
+- **A4 PASS** — only "Facebook Only: Reactions" checked in the export pop-up; all other data sets unchecked.
+- **A8 PASS** — download-event filename `Michael Kors-Brand Content-2026-07-04-2026-07-10-posts.csv` matches the spec pattern (Rule 6, real save); first column preamble = "Data Set" with "Facebook Only: Reactions"; all 8 posts + every reaction sub-metric match the UI, Sum reconciles (3,799/3,570/3,085/470/5/7/1/2/0).
+- **A7 (email) N/E** — Gmail out of scope; the emailed artifact equals the in-app CSV already verified, so it doesn't block.
+
+**Known bugs:** none for QA-71006; BC-2 (CDN-hashed filename) did not reproduce. **No bugs filed.** Report at `runs/2026-07-11/QA-71006-report.md`.
+scripts/run-case.sh: line 100: 58455 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-11/QA-71006-report.md
+>> QA-72455 (full) — Sat Jul 11 18:36:27 IST 2026  [timeout 900s]
+QA-72455 → **SKIPPED (external-user precondition, deferred)**.
+
+The case requires login as a *different identity* — External account `testing@drylogics.com` with the "Analyst No Spend" role. Every assertion (Go-to-Authorize prompt, lock symbols, en-dash Spend, empty CSV columns) only exists for an unauthorized-spend user; account-switching the configured internal user cannot satisfy it, so per the SCOPE RULES it's a scope skip. No browser opened. bug-history:1458 already recorded the same identity gap; APPS-46074 is closed and non-interfering. Report at `runs/2026-07-11/QA-72455-report.md`.
+scripts/run-case.sh: line 100: 59057 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-11/QA-72455-report.md

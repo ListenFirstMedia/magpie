@@ -1,0 +1,52 @@
+>> QA-75011 (full) — Sat Jul 11 18:37:24 IST 2026  [timeout 900s]
+**QA-75011 — PASS (12/12).** Settings > Custom Metrics Basic View, Adam Orfei.
+
+- All 4 steps executed in order; account switched to Adam Orfei first (feature is account-gated).
+- A1: "Custom Metrics" sits directly after "Custom Data Sets" in the Settings dropdown.
+- A2: breadcrumb `Settings › Custom Metrics`, search bar above table with placeholder `Enter Custom Metric`, columns Metric/Description/Created Date/Creator/Formula/Actions, right-aligned Create button, Help (`fa-question-square`) + Info (`fa-info-circle`) icons.
+- A3: search filtered the table to the single `Cross-Channel Engagements` row.
+- A4: ellipsis menu = `Edit`, `Delete` in order.
+
+Linked bug APPS-49018 not reproduced; no open bugs; none filed. Report at `runs/2026-07-11/QA-75011-report.md`, screenshot under `.playwright-out/QA-75011/`. Browser left open per protocol. Skill/registry maintenance deferred to harvest.sh.
+scripts/run-case.sh: line 100: 59541 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-11/QA-75011-report.md
+>> QA-81494 (full) — Sat Jul 11 18:43:59 IST 2026  [timeout 900s]
+QA-81494 — **PASS (8/8)**.
+
+Built the Page-Level Data Studio graph on Adam Orfei (Food Network + Disney Channel, Days interval, Fan Growth Rate + Facebook Engagements + YouTube Engagements), exported the graph to PNG, and verified the file end-to-end on disk.
+
+- **PNG:** `Food Network-Data-Studio-Fan Growth Rate-Line-2026-07-04-2026-07-10.png` (server name; on-disk slugified to hyphens), 49,566 bytes, valid 1264×603 RGBA.
+- All 8 assertions pass: correct filename pattern, LISTENFIRST logo top-left, "Fan Growth Rate" header, legend (Food Network [P] + Disney Channel [P]), Reporting Data Studio footer + date range, X-axis dates, Y-axis rate values.
+- **Known bugs:** none open for QA-81494; none interfered. No bugs filed.
+
+Report: `runs/2026-07-11/QA-81494-report.md`. Browser left open. Skill/REGISTRY maintenance deferred to harvest.sh as instructed.
+scripts/run-case.sh: line 100: 60179 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-11/QA-81494-report.md
+>> QA-83928 (full) — Sat Jul 11 18:51:04 IST 2026  [timeout 900s]
+You've hit your session limit · resets 8:20pm (Asia/Calcutta)
+>> QA-83928 (full) — Sat Jul 11 19:26:05 IST 2026  [timeout 900s]
+You've hit your session limit · resets 8:20pm (Asia/Calcutta)
+>> QA-83928 (full) — Sat Jul 11 19:56:07 IST 2026  [timeout 900s]
+You've hit your session limit · resets 8:20pm (Asia/Calcutta)
+>> QA-83928 (full) — Sat Jul 11 20:26:09 IST 2026  [timeout 900s]
+QA-83928 — **PASS (4/4)**.
+
+Executed all 9 steps on Adam Orfei / Michael Kors (Brand > Paid, Facebook CSV):
+- **A1** notification 3-row content — verbatim spec match (`Select Channels & Data Sets Export` / `Jul 11, 2026 06:56 pm` / `Your Paid Export with Select Channels & Data Sets for Michael Kors from Jul. 04, 2026 to Jul. 10, 2026 is now ready. Download file.`) — PASS
+- **A2** "Download file" blue hyperlink (`rgb(0,128,255)`) — PASS
+- **A3** CSV downloaded, verified on disk (516KB, 825 lines; "Data Set" preamble = the 5 selected FB sets) — PASS
+- **A4** same notification present in Settings > Notifications table — PASS
+
+Known-bug check: 2026-06-04 Michael Kors Paid backend degradation did **not** reproduce (tiles + export queue healthy). No new bugs filed. Report at `runs/2026-07-11/QA-83928-report.md`; skill/REGISTRY maintenance deferred to harvest.sh.
+scripts/run-case.sh: line 100: 62196 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-11/QA-83928-report.md
+>> QA-84193 (full) — Sat Jul 11 20:35:50 IST 2026  [timeout 900s]
+>> TIMEOUT after 900s — killing QA-84193 (process tree)
+>> QA-84194 (full) — Sat Jul 11 20:50:51 IST 2026  [timeout 900s]
+>> TIMEOUT after 900s — killing QA-84194 (process tree)

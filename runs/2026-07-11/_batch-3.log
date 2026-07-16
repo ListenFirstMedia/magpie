@@ -1,0 +1,59 @@
+>> QA-19486 (full) — Sat Jul 11 17:20:14 IST 2026  [timeout 900s]
+QA-19486 complete — **PASS**.
+
+**Result:** Both single-brand (Hulu) and multi-brand (Hulu + HBO Max) Social Recap PDFs downloaded and verified on disk.
+- Single-brand: `Hulu-Weekly Social Recap(Jul 3, 2026 - Jul 9, 2026).pdf`, jsPDF 2 pages.
+- Multi-brand: same name (primary brand), 4 pages — Hulu pp.1–2, HBO Max pp.3–4, each a full per-brand block in add-order.
+- A1–A6 all PASS. Headers/footers clean (`Page 1`…`Page 4`, no "undefined"/template-leakage).
+
+**Known bugs:** LFMP-31798 (Major, Open) reproduced — donut YOY arrows render as `□` boxes on all donuts, both brands (in-app preview is fine; jsPDF render-side). LFMP-31918 (Major, Open) likely reproduced on 1 of 5 HBO Max BPC tiles (grey `...` placeholder on a Video post). APPS-55559/APPS-50810 not triggered. Neither interferes with the assertions, so verdict stands. No new bugs filed.
+
+Report: `runs/2026-07-11/QA-19486-report.md`. Skill/REGISTRY maintenance deferred to harvest.sh per instructions.
+scripts/run-case.sh: line 100: 52902 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-11/QA-19486-report.md
+>> QA-28405 (full) — Sat Jul 11 17:30:46 IST 2026  [timeout 900s]
+**QA-28405 — PASS (6/6).** Report: `runs/2026-07-11/QA-28405-report.md`.
+
+- Selected the **Video Views** data set on **Hulu** (brand 5670, acct 336) Brand > Content, Jul 3–9 2026 → **Posts (62)**, Video-Views metric columns.
+- Exported CSV (async, auto-downloaded): `Hulu-Brand Content-2026-07-03-2026-07-09-posts.csv`, 62 data rows. Row 1 labels the data set `Video Views`; headers include Video Views/Organic/Paid/Unclassified Views, Viewers, Watch Time.
+- CSV Σ vs UI Sum **exact** across all metrics (Video Views 12,713,359). Bell entry confirmed.
+- One notable (not a bug): the standalone `Video Views` data set only appears on the **Hulu** account; the initial URL redirect landed on Adam Orfei (Public-only), so I switched accounts per Rule 1/3 rather than substitute.
+- Skill/REGISTRY maintenance deferred to harvest.sh as instructed. No bugs filed.
+scripts/run-case.sh: line 100: 53578 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-11/QA-28405-report.md
+>> QA-43914 (full) — Sat Jul 11 17:42:11 IST 2026  [timeout 900s]
+Done. **QA-43914 — PASS (with documented deviation).**
+
+- Ran the Facebook User Accounts Radaac report end-to-end: Cognito login → report ID 6 → modal (desc "Export list of Facebook Accounts a user has access to") → Hulu + token 5084 → Submit → `/cache/20260711FacebookUserAccounts_fc63a8.tsv` downloaded and verified on disk.
+- In-scope assertions A1/A2/A5/A7 PASS; file is 228B header-only, 9-column, 8 tabs/0 commas — schema matches the prior 2026-06-04 run.
+- **A3/A4/A6 are spec drift, not bugs:** this report is TSV-only (no file-format dropdown), so the case's "choose csv" assumption can't apply. Matches the documented deviation in bug-history. No open bugs; none filed.
+- Report: `runs/2026-07-11/QA-43914-report.md`.
+scripts/run-case.sh: line 100: 54282 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-11/QA-43914-report.md
+>> QA-48160 (full) — Sat Jul 11 17:46:03 IST 2026  [timeout 900s]
+QA-48160 complete — **PASS (5/5)**.
+
+- **A1–A4**: Settings>Brands list loaded (Alex Test 1, brand_id=422865); Edit wizard exposed Basic Info; renamed to `Alex Test 1 qa-48160-rerun-2026-07-11-1218`, saved, verified on the row and re-opened modal; reverted to `Alex Test 1` and confirmed restored (name + 2 channels intact).
+- **A5** (optional, APPS-59449): invalid Instagram handle showed **no error while focused**, then `channel-tile__error` on blur — reproduced the documented gap exactly. Not filed (per spec). Test channel discarded via Cancel, no residue.
+
+Report: `runs/2026-07-11/QA-48160-report.md`; evidence in `.playwright-out/QA-48160/`. Skill/REGISTRY maintenance deferred to harvest.sh as instructed.
+scripts/run-case.sh: line 100: 54821 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-11/QA-48160-report.md
+>> QA-51442 (full) — Sat Jul 11 17:54:49 IST 2026  [timeout 900s]
+QA-51442 — **PASS** (6/6 assertions).
+
+Executed on Hulu (account 336, brand 5670, Authorized, IG), Jul 04–10 2026. Impressions tile rendered, per-tile Export → PNG downloaded synchronously as `Hulu-Stories-Impressions-Bar-2026-07-04-2026-07-10.png` (exact A4 filename match). The PNG (read on disk, Rule 6) contains the ListenFirst logo, **Hulu** header, **Impressions** title, Instagram legend, a populated bar chart (peak ~1.45M on Jul 07, reconciling to the 1.85M tile sum), and the date-range footer — no blank canvas.
+
+The historical Brand>Stories tile-render failure was confirmed a Chrome-MCP-only artifact and did **not** reproduce under Playwright; no open bugs. Report: `runs/2026-07-11/QA-51442-report.md`.
+scripts/run-case.sh: line 100: 55369 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-11/QA-51442-report.md

@@ -1,0 +1,25 @@
+>> QA-298 (full) — Fri Jul 10 15:20:23 IST 2026  [timeout 900s]
+API Error: The socket connection was closed unexpectedly. For more information, pass `verbose: true` in the second argument to fetch()
+>> QA-461 (full) — Fri Jul 10 15:33:33 IST 2026  [timeout 900s]
+QA-461 — **BLOCKED**. Report written to `runs/2026-07-10/QA-461-report.md`.
+
+**What happened:** Pre-flight login and steps 1–3 passed cleanly (Adam Orfei account confirmed, Brand Sets → Content → Adam's Brand Set, date range set to Jan 3–4 2025 via the two-calendar picker). The case blocked at step 4: the Brand Sets Content surface never renders its big-number tiles or posts table because the platform's content data API (`data-api.lfmdev.in/content`, `brand_set_id=1738`) returns **HTTP 500**. With no data, the Filter button stays disabled, the graphs can't be read, and no posts can be exported.
+
+**Why BLOCKED, not partial:** The 500 came from the app's own authenticated requests (Rule 6 — real outcome, not a proxy), reproduced 4× across two date windows plus one reload — a persistent backend error, not a transient render hang. My own in-page fetch reproductions returned 401 (missing bearer token) and were explicitly discounted.
+
+**Assertions A5/A7/A10/A13:** all NOT EVALUABLE.
+
+**Bugs:** none filed in Jira (markdown only). Flagged a **candidate backend defect** for eng confirmation, with the caveat that dev 500s can be environmental — recommended LFIQA re-verify on a real browser before filing.
+
+Evidence screenshots under `.playwright-out/QA-461/`.
+scripts/run-case.sh: line 123: 36982 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-10/QA-461-report.md
+>> QA-529 (full) — Fri Jul 10 15:42:34 IST 2026  [timeout 900s]
+>> QA-567 (full) — Fri Jul 10 15:53:35 IST 2026  [timeout 900s]
+QA-567 — **BLOCKED**, report written to `runs/2026-07-10/QA-567-report.md`.
+
+**Reason:** QA-567 ("Facebook Lifetime Private Data QA") is a **dev-vs-stage parity test** — its precondition requires "dev open in 1 browser and stage open in another," and all three assertions (A8 impressions, A10 video views, A11 post counts) are dev↔stage comparisons. This harness is dev-only: `config/.env`/`config/env.md` provide credentials for `app.lfmdev.in` exclusively, with no stage URL or stage credentials anywhere in the repo. With no stage environment to compare against, none of the assertions are evaluable, so I recognized the unmeetable precondition pre-flight and did not open the browser (per the SCOPE-RULES "don't spend the timeout exploring" guidance for structurally unsatisfiable preconditions).
+
+No browser flow, no substitution (Rule 1), no bugs filed — this is an environment gap, not a product defect. Also noted: the cached case file lacks an `## Open linked bugs` section, so Rule 7 screening couldn't be applied. Re-run picks it up automatically if a stage environment is ever wired in.

@@ -1,0 +1,59 @@
+>> QA-94978 (full) — Sat Jul 11 21:52:19 IST 2026  [timeout 900s]
+**QA-94978 — PASS (6/6).** UCLA · Brand>Audience>LinkedIn · Authorized (locked) · Jan 1–Dec 31 2025.
+
+- **A1** PNG exposed on every tile dropdown (PNG/CSV/GS/Metrics).
+- **A2/A3** All 6 tile PNGs downloaded to disk, valid `image/png`, filenames conform to `<Brand>-Audience-<tile>-<start>-<end>.png`.
+- **A4** All 6 visually verified (Job Function, Industry, Seniority, Staff Count Range = share tables; Country = choropleth, US dominant; Region = metro-level point markers).
+- **A5** APPS-58574 (Trivial) reproduced — 1+3 tile misalignment — but did not block any export.
+
+No open blocking bugs; none filed. Report: `runs/2026-07-11/QA-94978-report.md`; evidence under `.playwright-out/QA-94978/`. (Skill/registry maintenance deferred to harvest.sh per this run's instructions.)
+scripts/run-case.sh: line 100: 67677 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-11/QA-94978-report.md
+>> QA-95067 (full) — Sat Jul 11 22:00:28 IST 2026  [timeout 900s]
+Done. **QA-95067 → PASS** (5/5 assertions).
+
+- **A1/A2 Country:** map renders (98 colored subunits); US hover → `.al-geo-map-tooltip__container` "United States / Followers 66%" (matches breakdown 66%).
+- **A3/A4 Region:** map renders 155 metro bubbles; LA bubble hover → "Los Angeles Metropolitan Area / Followers 38%" (matches breakdown 38%).
+- **A5:** APPS-58574 reproduces (Job Function alone on row 1) — Trivial layout probe, doesn't interfere → verdict unaffected.
+
+Key result: this **upgrades the prior 2026-06-04 PARTIAL**. The old "Region no-tooltip" was a target-selection miss — the Region map's data is on `circle.datamaps-bubble` overlays, not the (intentionally white) country polygons. Flagged in the report for harvest to fold into `chart-hover-tooltip`. No bugs filed; no skill/REGISTRY maintenance (deferred to harvest.sh). Report at `runs/2026-07-11/QA-95067-report.md`.
+scripts/run-case.sh: line 100: 68355 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-11/QA-95067-report.md
+>> QA-99380 (full) — Sat Jul 11 22:07:07 IST 2026  [timeout 900s]
+Done. **QA-99380 — PASS (5/5).**
+
+- MTV (brand 4018) on Adam Orfei account, Brand > Content, Last 30 Days.
+- A1 modal opens in Line view (Line/Area/Bar/Pie) ✓ · A2 all in-range days with X/Y axis labels ✓ · A3 hover tooltip `Jul. 04, 2026 / Engagements: 112,007` ✓ · A4 metric switch (6→1 Video Views) + Line→Bar both repopulate ✓ · A5 non-TikTok (Facebook) post shows zero endash across 26 days ✓.
+- DATA-12209 (Open, TikTok May-16 endash) out of scope — window excludes May 16; TikTok endashes seen were only the trailing incomplete day + a zero-video-views rate day (expected, not the bug). Rule 7 screen passed (0 open bugs).
+- Report: `runs/2026-07-11/QA-99380-report.md`; evidence under `.playwright-out/QA-99380/`. Skill/REGISTRY bumps deferred to harvest.sh.
+scripts/run-case.sh: line 100: 68961 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-11/QA-99380-report.md
+>> QA-99416 (full) — Sat Jul 11 22:21:06 IST 2026  [timeout 900s]
+QA-99416 — **PASS (5/5)**.
+
+Brand Sets > Content DPA modal on Adam's Brand Set (7-day window to dodge the 76K-post hang). Verified the persistent data Table (A1/A2), date-columns = days in range (A3), metric switch Engagements→Video Views repopulated the table with a fresh 5-day range (A4), and no spurious endash (A5). Sum/Average reconciled exactly in both states (535,576 = Σ 4 days; 6,411,490 = Σ 5 days). DATA-12209 N/A — IG posts, July range, no TikTok/May-16 surface. No bugs filed. Report at `runs/2026-07-11/QA-99416-report.md`.
+scripts/run-case.sh: line 100: 69609 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-11/QA-99416-report.md
+>> QA-103246 (full) — Sat Jul 11 22:28:57 IST 2026  [timeout 900s]
+**QA-103246 — PASS.**
+
+MTV Brand>Content DPA modal, TikTok post (Fri May 15 2026 10:50 AM PDT), window May 15–20.
+
+- **A1–A4 (PNG export): PASS** — `MTV-Daily Content Analysis-Bar-2026-05-15-2026-05-20.png` verified on disk (847×573, LISTENFIRST logo + "MTV" header, `Date: May. 15, 2026-May. 20, 2026` footer, Bar chart matches modal with May 16 empty).
+- **A7 probe: PASS (in-app)** — all 6 metrics show endash `–` on May 16; **DATA-12209 reproduced** (it's the case's own probe, doesn't interfere). Sum/Avg math reconciles (endash=0, denom 6).
+- **A8: PASS** — close X dismissed modal, grid restored.
+- **A5/A6 + GS-context of A7: OUT OF SCOPE** (Google Sheets deferred — Google 2FA).
+
+No new bugs filed. Report: `runs/2026-07-11/QA-103246-report.md`. Skill/REGISTRY maintenance deferred to harvest.sh per this run's instructions.
+scripts/run-case.sh: line 100: 70248 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-11/QA-103246-report.md

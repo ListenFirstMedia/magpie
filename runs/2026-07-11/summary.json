@@ -1,0 +1,332 @@
+{
+  "date": "2026-07-11",
+  "total": 64,
+  "run": 64,
+  "passed": 30,
+  "failed": 0,
+  "blocked": 33,
+  "skipped": 1,
+  "unknown": 0,
+  "cases": [
+    {
+      "id": "QA-298",
+      "status": "PASS",
+      "report": "runs/2026-07-11/QA-298-report.md"
+    },
+    {
+      "id": "QA-461",
+      "status": "PASS",
+      "report": "runs/2026-07-11/QA-461-report.md"
+    },
+    {
+      "id": "QA-529",
+      "status": "BLOCKED",
+      "report": "runs/2026-07-11/QA-529-report.md"
+    },
+    {
+      "id": "QA-567",
+      "status": "BLOCKED",
+      "report": "runs/2026-07-11/QA-567-report.md"
+    },
+    {
+      "id": "QA-569",
+      "status": "BLOCKED",
+      "report": "runs/2026-07-11/QA-569-report.md"
+    },
+    {
+      "id": "QA-575",
+      "status": "BLOCKED",
+      "report": "runs/2026-07-11/QA-575-report.md"
+    },
+    {
+      "id": "QA-581",
+      "status": "PASS",
+      "report": "runs/2026-07-11/QA-581-report.md"
+    },
+    {
+      "id": "QA-2062",
+      "status": "PASS",
+      "report": "runs/2026-07-11/QA-2062-report.md"
+    },
+    {
+      "id": "QA-10387",
+      "status": "PASS",
+      "report": "runs/2026-07-11/QA-10387-report.md"
+    },
+    {
+      "id": "QA-13903",
+      "status": "BLOCKED",
+      "report": "runs/2026-07-11/QA-13903-report.md"
+    },
+    {
+      "id": "QA-19486",
+      "status": "PASS",
+      "report": "runs/2026-07-11/QA-19486-report.md"
+    },
+    {
+      "id": "QA-28405",
+      "status": "PASS",
+      "report": "runs/2026-07-11/QA-28405-report.md"
+    },
+    {
+      "id": "QA-43914",
+      "status": "PASS",
+      "report": "runs/2026-07-11/QA-43914-report.md"
+    },
+    {
+      "id": "QA-48160",
+      "status": "PASS",
+      "report": "runs/2026-07-11/QA-48160-report.md"
+    },
+    {
+      "id": "QA-51442",
+      "status": "PASS",
+      "report": "runs/2026-07-11/QA-51442-report.md"
+    },
+    {
+      "id": "QA-51457",
+      "status": "BLOCKED",
+      "report": "runs/2026-07-11/QA-51457-report.md"
+    },
+    {
+      "id": "QA-52778",
+      "status": "PASS",
+      "report": "runs/2026-07-11/QA-52778-report.md"
+    },
+    {
+      "id": "QA-54202",
+      "status": "PASS",
+      "report": "runs/2026-07-11/QA-54202-report.md"
+    },
+    {
+      "id": "QA-71006",
+      "status": "PASS",
+      "report": "runs/2026-07-11/QA-71006-report.md"
+    },
+    {
+      "id": "QA-72455",
+      "status": "SKIPPED",
+      "report": "runs/2026-07-11/QA-72455-report.md"
+    },
+    {
+      "id": "QA-75011",
+      "status": "PASS",
+      "report": "runs/2026-07-11/QA-75011-report.md"
+    },
+    {
+      "id": "QA-81494",
+      "status": "PASS",
+      "report": "runs/2026-07-11/QA-81494-report.md"
+    },
+    {
+      "id": "QA-83928",
+      "status": "PASS",
+      "report": "runs/2026-07-11/QA-83928-report.md"
+    },
+    {
+      "id": "QA-84193",
+      "status": "BLOCKED",
+      "report": "runs/2026-07-11/QA-84193-report.md"
+    },
+    {
+      "id": "QA-84194",
+      "status": "BLOCKED",
+      "report": "runs/2026-07-11/QA-84194-report.md"
+    },
+    {
+      "id": "QA-85176",
+      "status": "PASS",
+      "report": "runs/2026-07-11/QA-85176-report.md"
+    },
+    {
+      "id": "QA-88219",
+      "status": "PASS",
+      "report": "runs/2026-07-11/QA-88219-report.md"
+    },
+    {
+      "id": "QA-92735",
+      "status": "PASS",
+      "report": "runs/2026-07-11/QA-92735-report.md"
+    },
+    {
+      "id": "QA-92841",
+      "status": "PASS",
+      "report": "runs/2026-07-11/QA-92841-report.md"
+    },
+    {
+      "id": "QA-94977",
+      "status": "PASS",
+      "report": "runs/2026-07-11/QA-94977-report.md"
+    },
+    {
+      "id": "QA-94978",
+      "status": "PASS",
+      "report": "runs/2026-07-11/QA-94978-report.md"
+    },
+    {
+      "id": "QA-95067",
+      "status": "PASS",
+      "report": "runs/2026-07-11/QA-95067-report.md"
+    },
+    {
+      "id": "QA-99380",
+      "status": "PASS",
+      "report": "runs/2026-07-11/QA-99380-report.md"
+    },
+    {
+      "id": "QA-99416",
+      "status": "PASS",
+      "report": "runs/2026-07-11/QA-99416-report.md"
+    },
+    {
+      "id": "QA-103246",
+      "status": "PASS",
+      "report": "runs/2026-07-11/QA-103246-report.md"
+    },
+    {
+      "id": "QA-107134",
+      "status": "PASS",
+      "report": "runs/2026-07-11/QA-107134-report.md"
+    },
+    {
+      "id": "QA-110083",
+      "status": "PASS",
+      "report": "runs/2026-07-11/QA-110083-report.md"
+    },
+    {
+      "id": "QA-111242",
+      "status": "PASS",
+      "report": "runs/2026-07-11/QA-111242-report.md"
+    },
+    {
+      "id": "QA-111243",
+      "status": "PASS",
+      "report": "runs/2026-07-11/QA-111243-report.md"
+    },
+    {
+      "id": "QA-112579",
+      "status": "BLOCKED",
+      "report": "runs/2026-07-11/QA-112579-report.md"
+    },
+    {
+      "id": "QA-113595",
+      "status": "BLOCKED",
+      "report": "runs/2026-07-11/QA-113595-report.md"
+    },
+    {
+      "id": "QA-113722",
+      "status": "BLOCKED",
+      "report": "runs/2026-07-11/QA-113722-report.md"
+    },
+    {
+      "id": "QA-114845",
+      "status": "BLOCKED",
+      "report": "runs/2026-07-11/QA-114845-report.md"
+    },
+    {
+      "id": "QA-129608",
+      "status": "BLOCKED",
+      "report": "runs/2026-07-11/QA-129608-report.md"
+    },
+    {
+      "id": "QA-130076",
+      "status": "BLOCKED",
+      "report": "runs/2026-07-11/QA-130076-report.md"
+    },
+    {
+      "id": "QA-133403",
+      "status": "BLOCKED",
+      "report": "runs/2026-07-11/QA-133403-report.md"
+    },
+    {
+      "id": "QA-134176",
+      "status": "BLOCKED",
+      "report": "runs/2026-07-11/QA-134176-report.md"
+    },
+    {
+      "id": "QA-134182",
+      "status": "BLOCKED",
+      "report": "runs/2026-07-11/QA-134182-report.md"
+    },
+    {
+      "id": "QA-134184",
+      "status": "BLOCKED",
+      "report": "runs/2026-07-11/QA-134184-report.md"
+    },
+    {
+      "id": "QA-134188",
+      "status": "BLOCKED",
+      "report": "runs/2026-07-11/QA-134188-report.md"
+    },
+    {
+      "id": "QA-134271",
+      "status": "BLOCKED",
+      "report": "runs/2026-07-11/QA-134271-report.md"
+    },
+    {
+      "id": "QA-134272",
+      "status": "BLOCKED",
+      "report": "runs/2026-07-11/QA-134272-report.md"
+    },
+    {
+      "id": "QA-134273",
+      "status": "BLOCKED",
+      "report": "runs/2026-07-11/QA-134273-report.md"
+    },
+    {
+      "id": "QA-134296",
+      "status": "BLOCKED",
+      "report": "runs/2026-07-11/QA-134296-report.md"
+    },
+    {
+      "id": "QA-134436",
+      "status": "BLOCKED",
+      "report": "runs/2026-07-11/QA-134436-report.md"
+    },
+    {
+      "id": "QA-134443",
+      "status": "BLOCKED",
+      "report": "runs/2026-07-11/QA-134443-report.md"
+    },
+    {
+      "id": "QA-134507",
+      "status": "BLOCKED",
+      "report": "runs/2026-07-11/QA-134507-report.md"
+    },
+    {
+      "id": "QA-134517",
+      "status": "BLOCKED",
+      "report": "runs/2026-07-11/QA-134517-report.md"
+    },
+    {
+      "id": "QA-134586",
+      "status": "BLOCKED",
+      "report": "runs/2026-07-11/QA-134586-report.md"
+    },
+    {
+      "id": "QA-134639",
+      "status": "BLOCKED",
+      "report": "runs/2026-07-11/QA-134639-report.md"
+    },
+    {
+      "id": "QA-135322",
+      "status": "BLOCKED",
+      "report": "runs/2026-07-11/QA-135322-report.md"
+    },
+    {
+      "id": "QA-135430",
+      "status": "BLOCKED",
+      "report": "runs/2026-07-11/QA-135430-report.md"
+    },
+    {
+      "id": "QA-137047",
+      "status": "BLOCKED",
+      "report": "runs/2026-07-11/QA-137047-report.md"
+    },
+    {
+      "id": "QA-137874",
+      "status": "BLOCKED",
+      "report": "runs/2026-07-11/QA-137874-report.md"
+    }
+  ]
+}

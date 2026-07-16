@@ -1,0 +1,33 @@
+>> QA-135322 (full) — Sun Jul 12 10:43:35 IST 2026  [timeout 900s]
+API Error: The socket connection was closed unexpectedly. For more information, pass `verbose: true` in the second argument to fetch()
+>> QA-135430 (full) — Sun Jul 12 11:08:33 IST 2026  [timeout 900s]
+API Error: The socket connection was closed unexpectedly. For more information, pass `verbose: true` in the second argument to fetch()
+>> QA-137047 (full) — Sun Jul 12 13:25:33 IST 2026  [timeout 900s]
+Done. **QA-137047 — PASS.**
+
+- Built TWC report: Hulu, Public, Last 7 Days (Jul 4–10), Instagram Public Video Views. All four PVV options (FB/Twitter/IG/TikTok) present + selectable (A6); graph + table rendered, columns sortable (A8a–d).
+- TWC 7-day IG PVV **sum = 17,302,328**; Brand>Channels Instagram tile **Video Views = 17,302,328** — exact match (A15).
+- The 2026-07-10 TWC render-hang quirk **did not recur** in this fresh session; no open linked bugs; nothing filed.
+
+Report: `runs/2026-07-12/QA-137047-report.md`; evidence in `.playwright-out/QA-137047/`. Skill/registry maintenance deferred to harvest.sh per instructions.
+scripts/run-case.sh: line 100: 89391 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-12/QA-137047-report.md
+>> QA-137874 (full) — Sun Jul 12 15:29:03 IST 2026  [timeout 900s]
+QA-137874 executed and reported → `runs/2026-07-12/QA-137874-report.md`.
+
+**Verdict: FAIL** (A5b, attributed to open bug APPS-61562).
+
+- **A3, A4, A5a, A5d, A5e — PASS.** Full status-icon mapping verified with computed colors on HBO Max (acct 657):
+  - Collecting → `fa-check-circle` `rgb(0,135,128)` green (4 Twitter feeds)
+  - Not Collecting → `fa-exclamation-circle` `rgb(214,79,66)` red (2 Threads feeds)
+  - **To Do → `fa-plus-circle` `rgb(0,129,237)` blue** (Twitter Ads Authorized — first summary-row To-Do ever captured; was DEFERRED in the skill)
+- **A5b — FAIL.** All Collecting feeds show Last Collection Date **Jul 9, 2026** on run date 2026-07-12 (expected Jul 11/12) — reproduces known open bug **APPS-61562**, frozen 3 days back across the whole feed set. Run+noted, not blocked (interferes only with A5b).
+- **A5c — PARTIAL.** Native-source comparison out of scope headless; in-app cross-check impeded by the account-657 default-brand resolving to `brand_id=11003` (Hulu sub-brand artifact).
+
+No new bugs filed; browser left open. Skill/REGISTRY maintenance deferred to harvest.sh per instructions.
+scripts/run-case.sh: line 100: 90233 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-12/QA-137874-report.md

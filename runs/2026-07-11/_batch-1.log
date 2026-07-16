@@ -1,0 +1,38 @@
+>> QA-461 (full) — Sat Jul 11 15:44:53 IST 2026  [timeout 900s]
+QA-461 complete — **PASS** (A5/A7/A10/A13 all PASS).
+
+**Summary:** Ran on Brand Sets → Partnerships (Adam's Brand Set, brand_set_id=1738, Jan 3–4 2025, Public Data) since every assertion targets Sponsored Posts / Partnerships big-number graphs. Verified big-number vs graph parity via stacked-bar tooltips:
+- **A5** Sponsored Posts: big number 9 = graph (Jan 3: 6, Jan 4: 3)
+- **A7** Facebook Engagements: 2,206 + 444 = 2,650 = big number
+- **A10** Twitter Engagements: 344 + 211 = 555 = big number
+- **A13** Instagram Engagements: 33,155 + 308,655 = 341,810 = 342K big number
+
+Cross-channel totals reconcile (9 posts, 345K engagements). No open linked bugs; no closed bug reproduced. Notably, the 2026-07-10 Brand Sets **Content** data-api 500 did not recur on the Partnerships surface. Report at `runs/2026-07-11/QA-461-report.md`, screenshots under `.playwright-out/QA-461/`. Skill/registry maintenance deferred to harvest.sh per instructions.
+scripts/run-case.sh: line 100: 47550 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-11/QA-461-report.md
+>> QA-529 (full) — Sat Jul 11 15:57:56 IST 2026  [timeout 900s]
+>> TIMEOUT after 900s — killing QA-529 (process tree)
+>> QA-567 (full) — Sat Jul 11 16:12:56 IST 2026  [timeout 900s]
+**QA-567 → BLOCKED.** Report: `runs/2026-07-11/QA-567-report.md`.
+
+QA-567 is a dev-vs-stage parity test — precondition needs "dev open in one browser, stage in another," and all three assertions (A8/A10/A11) compare dev data against stage data. This Playwright MCP track has **no stage environment**: `.mcp.json` and `config/.env` only reach `app.lfmdev.in` (dev), and the sole "staging" reference is a git branch name, not a stage URL. With no stage to compare against, the parity assertions are Not Evaluable; I did not fake a dev-vs-dev comparison (Rule 1/3/5). Same wall the 2026-06-04 run hit (bug-history: "dev-only; stage not accessible"). No product bug — environment/harness limitation. Skill/REGISTRY maintenance deferred to harvest.sh.
+scripts/run-case.sh: line 100: 48637 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-11/QA-567-report.md
+>> QA-569 (full) — Sat Jul 11 16:15:01 IST 2026  [timeout 900s]
+QA-569 done. Verdict: **BLOCKED** — it's a dev↔stage parity test (both A10 and A13 compare dev against stage) and magpie only reaches dev; the stage half can't be verified, so per Rule 1/3/5 no substitution.
+
+Dev-side flow ran in full to exercise the skills and capture the dev half:
+- Hulu (336) / Hulu (5670) → Brand>Content, **Facebook only**, **In Window**, Authorized, **Jul 03–07** (end −2d).
+- **Impressions:** Posts (11) — Sum Impressions 4,740,293 (Organic 4,740,293 / Paid 0), Engagements 68,148.
+- **Video Views:** Posts (11) — Sum Video Views 2,662,141, Engagements 68,148.
+- Post counts match across both data sets on dev; tables rendered first-try (the prior IG "table failed to load" hiccup did not reproduce). No open linked bugs; none filed.
+
+Report: `runs/2026-07-11/QA-569-report.md`; screenshots under `.playwright-out/QA-569/`.
+scripts/run-case.sh: line 100: 49113 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-11/QA-569-report.md

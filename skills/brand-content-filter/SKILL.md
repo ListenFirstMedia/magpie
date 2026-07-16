@@ -1,10 +1,10 @@
 ---
 name: brand-content-filter
-version: 2
-last_verified: 2026-06-08
-last_passed_run: 2026-06-08
+version: 3
+last_verified: 2026-07-10
+last_passed_run: 2026-07-10
 trust: untrusted
-pass_streak: 22
+pass_streak: 27
 preconditions: [brand-content-loaded]
 postconditions: [filter-applied]
 inputs: [filter_type, filter_value, operator]
@@ -158,6 +158,21 @@ Both `Save Filter` and `Load Filter` buttons render alongside `Apply Filter` and
 
 CPR builder's Tag Filter lacks the Include/Exclude toggle exposed on Brand surfaces — structural divergence flagged. PASS-with-finding rather than a bug.
 
+### Data Studio surface (8th surface, QA-134517) — HAS full Include/Exclude (no CPR-style gap)
+
+Reporting > **Data Studio** (`/#explore/reporting/data_studio`, Post Level) exposes the **full** layered Include/Exclude + Or/And tag filter — it does **NOT** share the CPR divergence. Path: Post Level → add brand via "Search for a Brand" typeahead → filter section **"Filter: Select"** (`.tag-filter-dropdown` `.lfm-dropdown-select-box`) → **Tag** → sub-panel with Include/Exclude radios + Or/And + Select All/None + tag checkbox list.
+- **Distinct DOM from Brand surfaces:** DS tag rows use `.filter__option__row` / `.filter__option__label` (NOT `.option-row`); the mutual-exclusivity greyed state is `.filter__option__row--disabled` + `pointer-events:none` (Brand surfaces use `option-row disabled`).
+- Applied filter shows as pills "Tag: nikhil" (Include) + "Tag: 000" (Exclude); same `content_tags` JSON state.
+- A4 (report data reflects filter) is gated on the DS metric-tree (Select Metrics), which is automation-undrivable — verify the filter state via the pills, cross-ref the metric-tree blocker.
+
+### Tag-filter label differs by surface
+
+The filter-type label is **"Tag"** on Brand > Content / Optimization / Stories, but **"Content Tag"** on **Brand Sets > Content** (`/#explore/competitive/content`). Same sub-panel + `content_tags` encoding; only the dropdown label differs. On Data Studio it is **"Tag"**.
+
+### URL serializes only on Apply Filter
+
+The tag filter writes to the URL `filters` param **only after "Apply Filter" is committed** — in-panel edits (selecting tags, flipping Or/And via the inline `.edit-operator-button.or/.and`, switching Include/Exclude) do NOT update the URL until Apply. "Clear All" removes the `filters` param entirely.
+
 ## Additional Failure signatures (v2)
 
 | Signature | Interpretation | Action |
@@ -169,6 +184,7 @@ CPR builder's Tag Filter lacks the Include/Exclude toggle exposed on Brand surfa
 | CPR Tag Filter shows Include/Exclude toggle | Structural divergence resolved | Update skill + remove this note |
 
 ## Changelog
+- **v3** (2026-07-10): +8th surface **Data Studio** (QA-134517) — full Include/Exclude confirmed (no CPR-style gap), distinct DOM (`.filter__option__row(--disabled)` / `.filter__option__label` + `.tag-filter-dropdown`). Added the **"Tag" vs "Content Tag" label difference** (Brand Sets uses "Content Tag") and the **URL-serializes-only-on-Apply** rule (Clear All empties `filters`). Re-verified across QA-134272/134273/134436/134443/134517 (all PASS on the layered mechanic; per-case count parity is data-limited when the chosen test-tags have 0 in-window posts).
 - **v2** (2026-06-08): Layered tag filtering across 7 surfaces (Brand>Content + Brand>Stories + Brand>Paid + Brand>Partnerships + Brand>Optimization + Brand Sets>Content + Brand Sets>Partnerships). Documents the URL JSON encoding for layered Include+Exclude + OR/AND combinations, the "OR + None backend rejection" quirk on Brand>Content, the Save/Load Filter buttons, the CPR Tag Filter structural divergence, and the pill green-outline/red-fill CSS.
 - **v1** (2026-05-18): Initial draft from QA-91412 (Publish Type = Reel on FX Networks). URL-encoding pattern documented from observed URL params.
 

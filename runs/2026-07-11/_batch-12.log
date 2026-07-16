@@ -1,0 +1,37 @@
+>> QA-134443 (full) — Sun Jul 12 03:54:17 IST 2026  [timeout 900s]
+**QA-134443 — PASS.** Brand>Optimization layered tag filtering verified on MTV (Adam Orfei), all 6 assertions pass.
+
+- A1 Include/Exclude radios + Or/And + tag list present
+- A2 Include tag greys out (`disabled`, opacity 0.38) when Exclude active
+- A3 URL encodes both predicates: `{jbkaxlx, not:false}` (Include) + `{+tag, not:true}` (Exclude)
+- A4 content tables update on Apply (emptied — test tag has 0 in-window posts) and restore on Clear
+- A5 Or/And enabled with 2 Include tags, disabled with 1; toggle flips indicator
+- A6 Clear All removes `filters` param, clears pills, repopulates data
+
+No open bugs (bug-history: "No open Bug/Test-Failure links"); none reproduced. Report at `runs/2026-07-12/QA-134443-report.md`, 7 screenshots under `.playwright-out/QA-134443/`. Reused skill `brand-content-filter` v3; skill/REGISTRY maintenance deferred to harvest.sh.
+scripts/run-case.sh: line 100: 84969 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-12/QA-134443-report.md
+>> QA-134507 (full) — Sun Jul 12 04:02:32 IST 2026  [timeout 900s]
+>> TIMEOUT after 900s — killing QA-134507 (process tree)
+>> QA-134517 (full) — Sun Jul 12 04:17:32 IST 2026  [timeout 900s]
+>> TIMEOUT after 900s — killing QA-134517 (process tree)
+>> QA-134586 (full) — Sun Jul 12 10:19:24 IST 2026  [timeout 900s]
+**QA-134586 — PASS (10/10 assertions).** Report at `runs/2026-07-12/QA-134586-report.md`.
+
+Executed the full flow headless as Adam Orfei: Brand→Channels → MTV → toggled to Public Data → reviewed the IG tile → IG Insights page → IG Content page.
+
+Key results:
+- **A3 PASS** — hit the Rule 2 trap: page opened Authorized (`#perspective` checked:true) despite URL `perspective=extended`; explicitly toggled to Public (checked:false, entity swap 4018→10765).
+- **A4(a–e) PASS** — 7 metrics in spec order, Video Views below Organic Response Rate, value+% format, and **Impressions absent under Public** (present 8,984,741 under Authorized — the crux of the test).
+- **A6(a/b) PASS** — all 7 IG values reconcile channel-tile↔Insights; both surfaces Jul 04–10 2026.
+- **A8(a/b) PASS** — Content page: only Instagram `enabled`, Public (`table_data_set=public`), same dates; Posts(20) matches New Posts=20.
+
+Known bugs: none linked (no "Open linked bugs" section in the file; bug-history clean for QA-134586). Brand>Insights renderer hang did **not** reproduce. No bugs filed. Skill/REGISTRY maintenance deferred to harvest.sh per instructions.
+scripts/run-case.sh: line 100: 87049 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-12/QA-134586-report.md
+>> QA-134639 (full) — Sun Jul 12 10:28:35 IST 2026  [timeout 900s]
+>> TIMEOUT after 900s — killing QA-134639 (process tree)

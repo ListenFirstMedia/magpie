@@ -1,0 +1,64 @@
+>> QA-85176 (full) — Sat Jul 11 21:05:51 IST 2026  [timeout 900s]
+QA-85176 — **PASS (14/14)**.
+
+Ran the full Custom Metric create flow headless on Adam Orfei (switched from Viacom for account-gating). A1–A14 all passed: Save-disabled gating, dropdown/operator enablement, channel order, DCR-key sub-lists, search filtering, chip add/remove cycle, ListenFirst 10-metric scroll flyout, Success modal, and the saved list row. No open bugs (Rule 7 screen clean); the only deltas (`Constant`/`Constants` copy drift, extra Parentheses option, `× ÷` operators) are documented/accepted, so no bugs filed.
+
+Mutating cleanup done — created `QA-85176-TEST-2026-07-11-1538`, deleted it via the confirm modal, and verified the row is gone after reload. Report at `runs/2026-07-11/QA-85176-report.md`. Skill/REGISTRY maintenance deferred to harvest.sh as instructed.
+scripts/run-case.sh: line 100: 64418 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-11/QA-85176-report.md
+>> QA-88219 (full) — Sat Jul 11 21:15:07 IST 2026  [timeout 900s]
+QA-88219 — **PASS (5/5)**. Report at `runs/2026-07-11/QA-88219-report.md`.
+
+Summary:
+- Applied **Publish Type = Reel** filter on MTV Brand>Content (Adam Orfei, Authorized), saved the **Performance by Type** Content Insights tile to a new dashboard `qa-88219-rerun-2026-07-11-1552`.
+- Filter context preserved on the dashboard (chip "Publish Type: Reel", Filter(1), "MTV (Brand: Content)", "Authorized Data") and the tile numeric **121,430** matched the source Sum Engagements exactly (A4).
+- The dashboard tile first showed "This tile failed to load"; recovered after RELOAD + full-channel re-nav — noted as a transient render flake, not filed.
+- Cleanup done: dashboard deleted (confirm modal verbatim), count 34→33, no orphan (A5).
+- No open linked bugs; Rule 7 clear. Skill/REGISTRY maintenance deferred to harvest.sh per instructions.
+scripts/run-case.sh: line 100: 65203 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-11/QA-88219-report.md
+>> QA-92735 (full) — Sat Jul 11 21:29:39 IST 2026  [timeout 900s]
+Report written. Case complete.
+
+**QA-92735 — Brand > Audience LinkedIn Basic View → PASS**
+
+- UCLA (799) / brand 127756 / LinkedIn-only / Jan 1–Dec 31 2025 / Authorized (toggle locked).
+- A1 PASS (8 tiles render), A3 PASS (all counts populated, match prior run), A4 PASS (no overlap/truncation).
+- A2 probe: **APPS-58574 RE-REPRODUCED** — Job Function tile alone on row 1 (top=328, left=10), other three col-3 tiles on row 2 (top=728). Trivial cosmetic, doesn't interfere → verdict stays PASS per the KB "document drift, don't fail" note.
+- No new bugs filed. Report: `runs/2026-07-11/QA-92735-report.md`; evidence: `.playwright-out/QA-92735/01-linkedin-audience-full.png`. Skill/REGISTRY maintenance deferred to harvest.sh as instructed.
+scripts/run-case.sh: line 100: 65896 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-11/QA-92735-report.md
+>> QA-92841 (full) — Sat Jul 11 21:33:51 IST 2026  [timeout 900s]
+Done. QA-92841 executed end-to-end headless.
+
+**Verdict: PASS** — report at `runs/2026-07-11/QA-92841-report.md`.
+
+- **A2** PASS — DS breakdown tile saved to a new dashboard; MTV + Authorized view + Video Views metric preserved; CSV daily values exactly match the source report.
+- **A3** PASS — PNG filename schema correct (`MTV-Dashboard-Page-Video Views-Line-2026-07-04-2026-07-10.png`), image renders a valid chart. Note: the DS dashboard tile is a **graph tile** (no Table viz), so the PNG shows the chart, not a literal table — tile-type behavior, not a defect.
+- **A5** PASS — Authorized Video Views rendered consistently (numbers / en-dash, **no lock icons**) → **LFMP-31936 NOT reproduced**.
+- **A1** INCONCLUSIVE — after Go, only inline loading placeholders seen, no distinct data-fetching modal captured (sub-second timing); consistent with open LFMP-31814 but not conclusively reproduced. Doesn't fail the case.
+- **A4** SKIPPED — Google Sheets out of scope.
+
+Mutating cleanup done: test dashboard deleted (Dashboards 34→33, verified gone). Skill/REGISTRY maintenance deferred to harvest.sh per instructions.
+scripts/run-case.sh: line 100: 66405 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-11/QA-92841-report.md
+>> QA-94977 (full) — Sat Jul 11 21:47:54 IST 2026  [timeout 900s]
+QA-94977 — **PASS** (4/4 in-scope assertions).
+
+- **A1** UCLA / LinkedIn-only / Authorized-locked / 8 tiles loaded.
+- **A2** Per-tile Export menu = PNG, CSV, Google Sheets, Metrics (all spec options present).
+- **A3/A4** CSV `University of California, Los Angeles-Audience-Followers Job Function-2025-01-01-2025-12-31.csv` verified on disk: 28-col header + 1 data row (13.16% … 0.29%).
+- **A5 probe** APPS-58574 RE-REPRODUCED (Job Function alone on row 1, 1+3 topology) — cosmetic, non-interfering, so verdict stays PASS.
+- GS in menu but export flow out-of-scope (2FA); no new bugs. Report: `runs/2026-07-11/QA-94977-report.md`.
+scripts/run-case.sh: line 100: 67073 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-11/QA-94977-report.md

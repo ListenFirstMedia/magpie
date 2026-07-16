@@ -1,0 +1,65 @@
+>> QA-575 (full) — Sat Jul 11 16:23:13 IST 2026  [timeout 900s]
+QA-575 complete. Report at `runs/2026-07-11/QA-575-report.md`.
+
+**Verdict: BLOCKED** — cross-env (dev↔stage) comparison not performable; both assertions require stage, which is unreachable on this dev-only harness (same as QA-567/569/581).
+
+- Full dev-side flow executed: Hulu (5670/acct 336) → Brand>Content → **Instagram only** → end date −2 days (Jul 03–07) → **In Window** mode → **Authorized** perspective (verified via toggle probe + screenshot, Rule 2).
+- **Impressions** view: Posts (13), Sum Impressions 2,287,634 / Sum Engagements 131,912.
+- **Video Views** view: Posts (11), Sum Video Views 1,979,266 / Sum Engagements 110,056.
+- Dev-side note: IG Impressions (13) vs Video Views (11) counts differ — Video Views scopes to video-bearing posts, dropping 2 non-video IG posts. Expected data-set behavior, documented not filed (Rule 5).
+- Rule 7 open-bug screen passed (0 open). Prior "table failed to load + Reload" quirk did **not** reproduce this run. No bugs filed.
+
+Evidence screenshots under `.playwright-out/QA-575/`. Browser left open.
+scripts/run-case.sh: line 100: 49682 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-11/QA-575-report.md
+>> QA-581 (full) — Sat Jul 11 16:35:02 IST 2026  [timeout 900s]
+Done. QA-581 report written to `runs/2026-07-11/QA-581-report.md`.
+
+**Verdict: PASS** (dev-only; stage↔dev parity out of scope, deferred per QA-569 pattern).
+
+Key points:
+- **Precondition fix:** "Private Data" = Authorized. On Adam Orfei the Hulu Authorized toggle was `disabled`, so I switched account **Adam Orfei → Hulu** (LFQA menu) → brand 5670, `perspective=extended`, toggle enabled+checked.
+- Executed all dev steps in full: Twitter channel · end date moved Jul 09→07 · In Window · Impressions then Video Views.
+- **Impressions:** Posts (9), Sum 126,579 / Avg 14,064. **Video Views:** Posts (5), Sum 13,024 / Avg 2,605.
+- **Known bug:** the Twitter Video Views In-Window skeleton-hang (prior run's PARTIAL) **did not reproduce** — rendered in <5s.
+- A10/A13 are dev-vs-stage comparisons → stage inaccessible → NOT VERIFIED (out of scope); dev side verified clean.
+- Skill/REGISTRY maintenance deferred to harvest.sh per instructions. No bugs filed.
+scripts/run-case.sh: line 100: 50261 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-11/QA-581-report.md
+>> QA-2062 (full) — Sat Jul 11 16:46:55 IST 2026  [timeout 900s]
+Done. QA-2062 executed end-to-end headless.
+
+**Verdict: PASS** (A4 blank-tooltip = expected external behavior, flagged PARTIAL not FAIL).
+
+- Switched Adam Orfei → **Sephora** (acct 655), Brand>Content, brand_id=7159, **Pinterest**-only channel, **Pinterest Only: Basic** data set (auto-selected), **Table View**. Default week was Posts (0), so widened to Last 12 Months → Posts (66,364).
+- **A1 PASS** — Row 1/Row 2 tooltips show pin image + caption + "Published By Sephora" byline.
+- **A2 PASS** — X close control (`i.close-embed`) present.
+- **A3 PASS** — X removes tooltip, table restored (200 rows intact).
+- **A4 PARTIAL (expected)** — Row 3 blank tooltip (unavailable Pinterest CDN pin, `-undefined` embed id) — matches known-quirk/LFMP-31385, not a defect. One-at-a-time guarantee held (exactly one tooltip throughout).
+- Known bugs: **0 open** (bug-history authoritative). No bugs filed.
+
+Report: `runs/2026-07-11/QA-2062-report.md`; evidence in `.playwright-out/QA-2062/`. Skill/REGISTRY maintenance deferred to harvest.sh as instructed.
+scripts/run-case.sh: line 100: 50978 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-11/QA-2062-report.md
+>> QA-10387 (full) — Sat Jul 11 16:57:41 IST 2026  [timeout 900s]
+QA-10387 — **PASS** (4/4). Report at `runs/2026-07-11/QA-10387-report.md`.
+
+Key outcome: the prior spec-drift **BLOCKER no longer reproduces**. On the modern Brand Insights build every per-metric tile (Impressions, Video Views, …) carries its own `Export → PNG/CSV/Google Sheets/Metrics` control. The catch was account gating — Impressions is Authorized-only, and Hulu's Authorized entity (brand_id=5670) is unreachable under the default Adam Orfei account (toggle disabled; direct nav redirects to `#home`). Switching to the **Hulu account (336)** surfaced both tiles with an enabled Authorized view.
+
+- Impressions PNG: `Hulu-Insights-Impressions-Area-2026-07-03-2026-07-09.png` (51KB) — Area, FB/Tw/IG, 0–30M, Sum 93.7M.
+- Video Views PNG: `Hulu-Insights-Video Views-Area-2026-07-03-2026-07-09.png` (50KB) — Area, FB/Tw/IG/TikTok, 0–13M, Sum 63.2M.
+- Both render title/axes/legend/data + `Brand Insights / Date: Jul. 03, 2026-Jul. 09, 2026` footer. Renderer hang and LFMP-31903 not reproduced.
+
+Recommend clearing the QA-10387 block and refreshing the two "tile-export-absent" KB entries (deferred to harvest.sh per instructions).
+scripts/run-case.sh: line 100: 51551 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-11/QA-10387-report.md
+>> QA-13903 (full) — Sat Jul 11 17:05:14 IST 2026  [timeout 900s]
+>> TIMEOUT after 900s — killing QA-13903 (process tree)

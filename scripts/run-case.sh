@@ -6,6 +6,10 @@
 #
 # Prereqs: .mcp.json has the playwright server with --headless; config/.env holds
 #          LFM_EMAIL / LFM_PASSWORD; the case exists at testcases/english/<ID>.md.
+#
+# The full-case prompt is sourced from PROMPT.md (the single-source-of-truth execution guide)
+# plus a small UNATTENDED/HEADLESS override, so batch/single runs follow the SAME spec as an
+# interactive session. The --login-only smoke gate uses a lightweight preamble.
 set -euo pipefail
 
 cd "$(dirname "$0")/.."   # repo root
@@ -14,7 +18,8 @@ ID="${1:?usage: run-case.sh <QA-ID> [--login-only]}"
 MODE="${2:-full}"
 CASE_TIMEOUT="${CASE_TIMEOUT:-900}"   # hard cap per case (seconds); stuck case is killed + marked failed
 DATE="$(date +%F)"
-RUN_DIR="runs/${DATE}"
+RUN_DIR="${RUN_DIR:-runs/${DATE}}"   # honor an inherited RUN_DIR (run-batches.sh pins it) so a
+                                     # midnight rollover doesn't scatter reports across date dirs.
 CASE_FILE="testcases/english/${ID}.md"
 mkdir -p "$RUN_DIR"
 
@@ -23,74 +28,47 @@ if [[ "$MODE" != "--login-only" && ! -f "$CASE_FILE" ]]; then
   exit 1
 fi
 
-read -r -d '' COMMON <<'EOF' || true
+if [[ "$MODE" == "--login-only" ]]; then
+  # Lightweight connectivity/SSO smoke gate — not a test case, so it doesn't need the full guide.
+  read -r -d '' PROMPT <<'EOF' || true
 You are running the magpie regression-testing framework (feature/playwright-mcp branch)
 at ~/git/magpie, HEADLESS and UNATTENDED. No human can approve prompts or read chat.
+Read config/env.md for the programmatic login.
 
-Read first, in order:
-1. skills/_shared/spec-adherence-rules.md  (the 6 hard rules — non-negotiable)
-2. config/env.md                            (pre-flight + programmatic login)
-3. knowledge-base/known-quirks.md
-
-PRE-FLIGHT (always): browser_navigate to https://app.lfmdev.in; when redirected to the
-Cognito hosted UI, fill the "With existing account" form (Email + Password) from config/.env
-and click THAT form's Sign in button (not the Corporate/SSO one). Confirm app.lfmdev.in/#home
-renders (title "Home - ListenFirst"). If login fails (still on auth.lfmdev.in), abort.
-EOF
-
-if [[ "$MODE" == "--login-only" ]]; then
-  PROMPT="$COMMON
+PRE-FLIGHT: browser_navigate to https://app.lfmdev.in; when redirected to the Cognito hosted UI,
+fill the "With existing account" form (Email + Password) from config/.env and click THAT form's
+Sign in button (not the Corporate/SSO one). Confirm app.lfmdev.in/#home renders (title
+"Home - ListenFirst").
 
 TASK: Do ONLY the pre-flight login. Then report exactly one line to chat:
-'LOGIN OK <current-url>' on success, or 'LOGIN FAIL <reason>' on failure. Do nothing else."
+'LOGIN OK <current-url>' on success, or 'LOGIN FAIL <reason>' on failure. Do nothing else.
+EOF
 else
-  PROMPT="$COMMON
-4. The skill that covers this flow — scan skills/REGISTRY.md and read the matching SKILL.md.
+  # Extract the authoritative fenced prompt block from PROMPT.md (single source of truth).
+  GUIDE="$(awk '/^```/{ if (b) exit; else { b=1; next } } b' PROMPT.md)"
+  if [[ -z "$GUIDE" ]]; then
+    echo "ERROR: could not extract the prompt block from PROMPT.md" >&2
+    exit 1
+  fi
 
-TASK: Execute test case ${CASE_FILE} in full — every step, in order, applying all 6
-spec-adherence rules (exact brand from the typeahead Results; explicit toggle clicks; never
-fake a download/export verification). Reuse the matching skill; do not improvise brands/dates.
+  PROMPT="${GUIDE}
 
-STEP TIME BUDGET — 5 MINUTES MAX PER STEP (hard rule):
-Never wait on or retry a single step/render for more than ~5 minutes. Use BOUNDED waits
-(browser_wait_for with an explicit short timeout), never open-ended ones. If a page, chart,
-tile, or element has NOT finished rendering within ~5 minutes on one step:
-  1. STOP waiting. Take a screenshot to .playwright-out/${ID}/<step>-stuck.png.
-  2. ANALYZE it yourself (you are multimodal): read that screenshot PLUS the DOM
-     (browser_snapshot / browser_evaluate) and decide what is actually happening —
-     stuck spinner, partial render, error banner, unexpected state, or it already rendered
-     something you can use.
-  3. MAKE A CALL — do not hang:
-     - Transient hang → ONE reload + retry (still inside the 5-min budget).
-     - Already usable → proceed and read the value.
-     - Still stuck → the WHOLE CASE is BLOCKED. Write the report with verdict
-       'BLOCKED - render-hang at step N' (cite the screenshot) and STOP. Do not continue or
-       report a partial PASS — one stuck in-scope step makes the case result untrustworthy.
-  EXCEPTIONS (these do NOT block the whole case):
-     - A stuck/unavailable GOOGLE SHEETS step → just skip it (out of scope) and keep judging the
-       case on the in-scope assertions (PASS still possible).
-     - An external-user precondition → the whole case is SKIPPED (not BLOCKED) — see SCOPE RULES.
+═══ THIS RUN — UNATTENDED & HEADLESS (overrides the interactive EXECUTION MODE above) ═══
+You are launched via \`claude -p\`, HEADLESS, with NO human to watch the browser or answer
+questions. Override the interactive rule that says to STOP on a failure and ask the user:
+instead, when a step fails or blocks, MAKE THE CALL YOURSELF using the 5-MINUTE STEP BUDGET and
+the SCOPE RULES above, write the report with a clear verdict (PASS / FAIL / BLOCKED / SKIPPED),
+and finish. Never wait for input.
 
-SCOPE RULES (apply before and during execution):
-- EXTERNAL-USER / SECOND-IDENTITY cases: if the preconditions require authenticating as a
-  DIFFERENT user identity than config/.env (e.g. an 'External' role user, or signing in as a
-  second account) — which in-app account-switching CANNOT satisfy — do NOT attempt the flow.
-  Immediately write the report with verdict 'SKIPPED - external-user precondition (deferred)'
-  and stop. Do not spend the timeout exploring. (Account/brand SWITCHES of the SAME user are fine.)
-- GOOGLE SHEETS is OUT OF SCOPE (Google 2FA). Execute every OTHER step of the case normally;
-  SKIP only the Google Sheets steps/assertions (never open docs.google.com). Judge the case on
-  the IN-SCOPE (non-GS) assertions only: if those pass, the verdict is PASS — add a note
-  'GS steps skipped (out of scope)'. Do NOT mark the whole case BLOCKED merely because the GS
-  assertion was skipped. (CSV/TSV/XLS exports stay in scope and must be verified on disk.)
+The case is ALREADY INGESTED — do NOT re-fetch from Jira (the Atlassian MCP is absent in this
+headless run). Read the local file ${CASE_FILE} and execute it IN FULL, every step in order.
+Still do the linked/known-bug check from knowledge-base/bug-history.md (grep ${ID}) plus the
+case's own notes, and reuse the matching skill from skills/REGISTRY.md.
 
-ARTIFACTS: Save ALL screenshots and page snapshots under .playwright-out/${ID}/<name> —
-always pass that full relative path to browser_take_screenshot / browser_snapshot. NEVER pass a
-bare filename: a bare filename lands in the repo root and clutters it (see known-quirks.md).
-
-OUTPUT: Write ${RUN_DIR}/${ID}-report.md with: steps executed, an assertions table
-(ID | Step | Expected | Actual | Status), evidence (exact numbers/text, screenshot refs under
-.playwright-out/${ID}/), and a 'Bugs filed' section (markdown only — never create Jira tickets).
-Be terse in chat; verbose in the report file."
+Save ALL screenshots/snapshots under .playwright-out/${ID}/<name> (never a bare filename).
+Write the report to ${RUN_DIR}/${ID}-report.md (steps, assertions table
+ID | Step | Expected | Actual | Status, evidence, 'Known bugs checked', 'Bugs filed' markdown-only).
+Do NOT do skill/REGISTRY maintenance now — that is deferred to harvest.sh. Be terse in chat."
 fi
 
 echo ">> ${ID} (${MODE}) — $(date)  [timeout ${CASE_TIMEOUT}s]"

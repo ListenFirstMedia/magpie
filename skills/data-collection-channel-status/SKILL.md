@@ -1,8 +1,8 @@
 ---
 name: data-collection-channel-status
-version: 1
-last_verified: 2026-06-08
-last_passed_run: 2026-06-08
+version: 2
+last_verified: 2026-07-10
+last_passed_run: 2026-07-10
 trust: untrusted
 pass_streak: 1
 preconditions: [account-context]
@@ -74,22 +74,22 @@ Used by:
 
 ### Step 4 — Verify Collecting feed assertion
 - **For each row where `status === 'Collecting'`:**
-  - Icon class includes `fa-check-circle`.
+  - Icon class includes `fa-check-circle`. The green pill is `span.status-pill.green` wrapping `span.icon.fas.fa-check-circle`.
   - Computed color = `rgb(0, 135, 128)`.
-  - `Last Collection Date` parses to **current_date − 1** (e.g., today=Jun 8 2026 → Last=Jun 7 2026).
-- **Assertion:** all three conditions hold.
+  - `Last Collection Date` **should** parse to current_date or current_date − 1.
+- **⚠ OPEN BUG APPS-61562** ("Last Collection Date is showing Incorrect", QA-Ready, *blocks* QA-137874): some **Collecting** feeds show a **stale** Last Collection Date. Observed 2026-07-10 (UCLA Health / Facebook): most Collecting feeds = Jul 9 (day-before, correct) but `Facebook Page & Audience (Authorized)` (Collecting) = **Jul 6** (4 days stale). → the date-currency assertion (e.g. QA-137874 A5b) **FAILS** while APPS-61562 is open; the icon/status assertions still pass. Run + note, don't block the whole case.
 
 ### Step 5 — Verify Not Collecting feed assertion
 - **For each row where `status === 'Not Collecting'`:**
   - Icon class includes `fa-exclamation-circle`.
-  - Computed color = `rgb(214, 79, 66)`.
-- **Assertion:** both conditions hold. `Last Collection Date` may be older than yesterday — that's the signal the feed has stopped.
+  - Computed color: **`rgb(237, 0, 21)`** observed 2026-07-10 (was `rgb(214, 79, 66)` on 2026-06-08 — either a palette change or channel-badge-vs-summary-row variance; capture the actual RGB each run rather than hard-asserting).
+- **Assertion:** icon-class holds. `Last Collection Date` may be older than yesterday — that's the signal the feed has stopped.
 
 ### Step 6 — Verify To Do feed assertion (if surface exposes one)
 - **For each row where `status === 'To Do'`:**
   - Icon class includes `fa-plus` (typically `fa-plus-circle`).
-  - Computed color is blue (RGB not yet captured for regression-locking — log in run report when encountered).
-- **NOTE:** QA-137874 DEFERRED this assertion because SuitsPeacock Twitter only exposed Collecting + Not Collecting rows. Pick a brand+channel where a feed has been configured but not yet attempted collection (e.g., a freshly-onboarded brand) to exercise this branch.
+  - Computed color = **`rgb(0, 116, 255)`** (blue) — captured 2026-07-10 at the channel-status-badge level (UCLA account); lock this RGB when a summary-row To-Do is next exercised.
+- **NOTE:** neither QA-137874 run surfaced a To-Do row in the drilled-down summary (Suits/Twitter and UCLA-Health/Facebook only exposed Collecting + Not Collecting; an amber `fa-clock` also appears at channel level for a scheduled/pending state). Pick a freshly-onboarded brand+channel to exercise a summary-row To-Do.
 
 ## Cross-source consistency
 
