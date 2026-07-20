@@ -1,0 +1,23 @@
+>> QA-84194 (full) — Mon Jul 13 11:40:36 IST 2026  [timeout 1200s]
+QA-84194 **PASS**. Report: `runs/2026-07-13/QA-84194-report.md`.
+
+Twitter-Impressions parity verified on Hulu (brand_id 5670), Authorized, In-Window, May 27–Jun 02 2026:
+- **DS Post-Level** "Twitter Post Impressions" Sum = **700,804** (Σdaily reconciles).
+- **Brand > Content** Twitter Impressions Sum (In-Window) = **700,804** (21 posts).
+- A3 delta = **0.0%** ≤ 1.5% → PASS. A1/A2/A3 all PASS.
+
+Key notes: parity only holds when both surfaces use the same Select Mode — BC Lifetime (929,689) vs DS In-Window (700,804) gives a false 24.6% gap; aligning BC to In-Window makes them identical. Prior 2026-06-04 PARTIAL (Authorized toggle not completed) is now resolved — not a regression. One cosmetic observation: BC `.stat-mode-label` stayed "Mode: Lifetime" after switching to In-Window though data/radio were correct — flagged, not filed. No bugs filed; skill/REGISTRY maintenance deferred to harvest.sh.
+scripts/run-case.sh: line 101:  4759 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-13/QA-84194-report.md
+>> QA-135430 (full) — Mon Jul 13 11:56:42 IST 2026  [timeout 1200s]
+QA-135430 — **PASS** (5/5 assertions).
+
+Create → delete → cleanup all verified on Adam Orfei (switched from Amazon Prime Video). Test metric `QA-135430-rerun-1200` created (formula `Comments + Engagements`), deleted via row-actions ellipsis, confirmation modal quoted the metric name verbatim, row removed (72→71), and removal persisted after a hard reload. No `QA-135430-*` metrics remain — cleanup complete. Known-bug check: bug-history shows 0 open bugs; none reproduced. No bugs filed.
+
+Report: `runs/2026-07-13/QA-135430-report.md`. Skill/REGISTRY maintenance deferred to harvest.sh per instructions.
+scripts/run-case.sh: line 101:  5523 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-13/QA-135430-report.md

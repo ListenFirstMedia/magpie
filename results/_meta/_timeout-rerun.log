@@ -1,0 +1,166 @@
+>> QA-13903 (full) — Sun Jul 12 23:43:42 IST 2026  [timeout 1800s]
+QA-13903 complete — **PASS (7/7)**.
+
+Ran on UCLA / University of California, Los Angeles (brand_id=127756, account 799), LinkedIn-only, Table View, 1,415 posts. All embedded-post-tooltip assertions passed: displays on hover (A1), single-tooltip guarantee (A2/A4), closes on X + click-away (A3), click opens the matching LinkedIn post in a new tab (A5), thumbnail+text match (A6), all brand-owned posts (A7).
+
+**APPS-57985** (LinkedIn thumbnail issue, QA Ready) — **did NOT reproduce**; thumbnails rendered correctly in both an image post and a gallery post. Since it only touches A6 and A6 passed, verdict stands. No bugs filed.
+
+Report: `runs/2026-07-12/QA-13903-report.md`. Skill/REGISTRY maintenance deferred to harvest.sh as instructed.
+scripts/run-case.sh: line 100: 95350 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-12/QA-13903-report.md
+>> QA-51457 (full) — Sun Jul 12 23:52:45 IST 2026  [timeout 1800s]
+QA-51457 — **PASS** (5/5 in-scope assertions).
+
+- **A1** Brand>Insights loaded on Last-7-Days (2026-07-05→11) with no renderer hang under Playwright.
+- **A2** Standalone **Engagements** tile (not consolidated) exposes a tile-level **Export → PNG/CSV/Google Sheets/Metrics** menu.
+- **A3** Downloaded `Hulu-Insights-Engagements-Bar-2026-07-05-2026-07-11.png` — exact spec pattern.
+- **A4** PNG (40KB, 424×622) embeds logo, "Hulu", "Engagements" title, FB/Twitter/IG/TikTok legend + "Compared To", stacked-bar data, axes, and footer date range.
+- **A5** N/A (export present).
+
+This **supersedes the prior BLOCKED** verdict (2026-06-04 Chrome-MCP: "spec drift, no per-tile export" + renderer hang) — neither reproduced under Playwright. Report at `runs/2026-07-12/QA-51457-report.md`; evidence + PNG under `.playwright-out/QA-51457/`. No bugs filed; no cleanup needed (read-only).
+scripts/run-case.sh: line 101: 96055 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-12/QA-51457-report.md
+>> QA-529 (full) — Sun Jul 12 23:58:48 IST 2026  [timeout 1800s]
+QA-529 complete — **PASS (8/8)**.
+
+Executed all 12 steps in full on Michael Kors / SS22 New York Fashion Week Roll-Up, Facebook only, Oct 18 2024, Authorized view, Brand filter = Tory Burch OR Michael Kors, Impressions data set, Table View.
+
+- **A1–A5 (UI):** Brand column = only MK + Tory Burch; both MK posts fully populated; Tory Burch Reel shows en-dash for Engagements and lock icons for all private metrics (Impressions/Reach/etc) — the mixed-authorization signature.
+- **A6–A8 (CSV):** verified via credentialed CDN fetch (302198-…csv, 200, 1,743 B) — Tory Burch row all-blank cells, Brand column only the two filtered brands, and the Facebook Reel post included.
+
+No open linked bugs; none filed. One note: the React brand-typeahead was flaky in headless, so I reached the exact spec brand by verified brand_id (Rule 1 preserved — rendered label matched exactly, no substitution). Report at `runs/2026-07-12/QA-529-report.md`; evidence in `.playwright-out/QA-529/`.
+scripts/run-case.sh: line 101: 96568 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-12/QA-529-report.md
+>> QA-84193 (full) — Mon Jul 13 00:15:01 IST 2026  [timeout 1800s]
+**QA-84193 — PASS.** DS Post Level ↔ Brand > Content Engagements parity for MTV (Public, May 27–Jun 02 2026).
+
+Per-channel Engagements match **exactly** (0.00% delta, tolerance 1.5%):
+- Facebook 49,310 · Twitter 53,150 · Instagram 903,270 · TikTok 93,814
+- Sum (1,099,544) = BC aggregate Sum exactly.
+
+Key notes:
+- Had to switch account Michael Kors → **Adam Orfei** (MTV not searchable on MK; Adam Orfei is the spec precondition).
+- **Brand > Content is Lifetime-only** (no In-Window mode), so the valid parity is Lifetime↔Lifetime. Ran DS twice — In-Window (report 302199, non-comparable) then **Lifetime** (302202, the match). Flagged as a candidate known-quirk since the old QA-84193 note said "use In-Window."
+- Documented perspective-toggle brand swap (4018→10765) — expected, didn't affect assertions. No bugs filed.
+
+Report: `runs/2026-07-13/QA-84193-report.md`; evidence under `.playwright-out/QA-84193/`.
+scripts/run-case.sh: line 101: 97219 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-13/QA-84193-report.md
+>> QA-84194 (full) — Mon Jul 13 00:36:22 IST 2026  [timeout 1800s]
+The model's tool call could not be parsed (retry also failed).
+>> QA-129608 (full) — Mon Jul 13 00:42:02 IST 2026  [timeout 1800s]
+QA-129608 — **PASS**. Report written to `runs/2026-07-13/QA-129608-report.md`.
+
+**Summary:** Built the TWC report on Wasserman / FIA WEC (FIAWEC), Feb 9–15 2026, Aggregate interval, 5 channels × 4 metrics each (20 total). Report rendered clean (A8). Exported CSV (GS out of scope) matched the UI exactly on all 20 values (A9a/A9b), and the footprint formula `Engagements / (Followers × Posts) × 100` reproduced every channel's aggregate Response Rate to display precision — IG 1.06%, Twitter 0.08%, FB 0.19% (Total Fans), TikTok 0.27%, YouTube 0.13% (Total Subscribers) — confirming the abnormally-high-RR handling (A9c). No open/linked bugs; the TWC render fragility did not recur via the top-nav route.
+
+Notes: "select Related Nodes" (step 6) has no matching control in the current builder — treated as spec-drift; substantive per-channel metric selection performed instead. Skill/registry maintenance deferred to harvest.sh per run instructions.
+scripts/run-case.sh: line 101: 98010 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-13/QA-129608-report.md
+>> QA-133403 (full) — Mon Jul 13 00:58:35 IST 2026  [timeout 1800s]
+QA-133403 — **PASS (15/15 assertions + data-accuracy)**. Report at `runs/2026-07-13/QA-133403-report.md`.
+
+First run on the exact spec setup: switched to **Viacom**, brand set **2019 BET Awards Sponsors**, Mar 23–24 2026, Lifetime, Authorized Video Views (via Rank-by "Authorized Data" — View toggle disabled at brand-set level as documented).
+
+Key evidence:
+- **Video Views rank:** post count 88→39; channels FB/Twitter/IG/YouTube/TikTok; Sum 24,939,751 / Avg 639,481.
+- **+Reel filter:** Posts (3), Sum 6,749,419 / Avg 2,249,806 = 5,582,641+1,056,783+109,995 (Nickelodeon IG Reels, exact). CSV = 21 rows (3 populated, 18 unauthorized-brand blanks), no Sum/Avg rows.
+- **+McDonald's filter:** Posts (3), Sum 6,151,745 / Avg 2,050,582 = TikTok 3,400,000 + TikTok 2,400,000 + Twitter 351,745 (exact). Facebook & Instagram **locked** (unauthorized). CSV = 5 rows, no Sum/Avg rows.
+
+Known-bug check: bug-history QA-133403 shows 0 open bugs → ran normally; no defects reproduced, none filed. Skill/REGISTRY maintenance deferred to harvest.sh per instructions.
+scripts/run-case.sh: line 101: 98789 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-13/QA-133403-report.md
+>> QA-134182 (full) — Mon Jul 13 01:16:21 IST 2026  [timeout 1800s]
+QA-134182 complete. **Verdict: PASS** (15/15 assertions).
+
+Summary:
+- **Phase A (Daily):** A1–A5 PASS — end-side `»` suppressed at current month (`next disabled` + `visibility:hidden`); relative range capped at Last 12 Months; start next / end prev navigate one month.
+- **Phase B (Weekly):** A6–A9 PASS — Weekly window capped at Last 52 Weeks; same end-arrow suppression + per-month arrow nav.
+- **Phase C (Quarterly):** A10–A13 PASS — year-header/month-grid view; Jul–Dec 2026 disabled (current quarter incomplete); arrows navigate by **year**. A12/A13 flagged with a spec-wording note (spec says "month", picker unit is year — documented accepted design, not a bug).
+- **Phase D (Monthly):** A14–A15 PASS — set Sep 15 – Dec 15 2025 (day-level in Daily, then rolled up Monthly since the Monthly picker is month-granularity); Ok applied `2025-09-01 → 2025-12-31` and the chart X-axis showed **Sep/Oct/Nov/Dec 2025**, confirming APPS-58615 backward+forward partial-month extension.
+
+No open bugs (case screened clean); the Chrome-MCP Insights renderer hang did not reproduce under Playwright. No bugs filed. Report: `runs/2026-07-13/QA-134182-report.md`; evidence in `.playwright-out/QA-134182/`. Skill/REGISTRY maintenance deferred to harvest.sh per instructions.
+scripts/run-case.sh: line 101: 99450 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-13/QA-134182-report.md
+>> QA-134273 (full) — Mon Jul 13 01:33:20 IST 2026  [timeout 1800s]
+Done. Report at `runs/2026-07-13/QA-134273-report.md`.
+
+**QA-134273 — Brand>Content, all four AND/OR operator combos**
+
+**Verdict: PASS** (operator/NOT mechanic, A1 + A3) — **A2 Not Evaluable (test-data)**.
+
+- Ran all 4 combos via the UI on MTV (Adam Orfei), year window, capturing each URL `filters` JSON. All four `(operator × not)` permutations serialized exactly: `or+false`, `and+false`, `or+true`, `and+true`. **A1/A3 PASS.**
+- **A2** (distinct counts): every combo returned **Posts (0)** — the chosen tags, like the entire legacy QA tag corpus (many 2022-dated), match no posts inside the current retention window. Distinct non-zero datasets couldn't be shown. Test-data gap, not a defect → no bug filed. This mirrors the prior 2026-06-04 PARTIAL.
+- Known-bug check: 0 open bugs for QA-134273. The "OR + None/empty" backend-hang quirk was seen only when a Select-All probe pulled in the empty-string `None`; avoided in the real-tag combos.
+- Confirmed Rule 2 on this surface: a URL-injected `filters` param was ignored (app restored the cached pill) — had to drive the panel UI directly.
+
+Evidence + full assertions table in the report; browser left open per protocol.
+scripts/run-case.sh: line 101:   200 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-13/QA-134273-report.md
+>> QA-134507 (full) — Mon Jul 13 01:56:05 IST 2026  [timeout 1800s]
+QA-134507 complete — **PASS, 12/12 assertions**.
+
+Report: `runs/2026-07-13/QA-134507-report.md`. Screenshots under `.playwright-out/QA-134507/`.
+
+Summary of the run:
+- Viacom → Brand Sets → Rankings → LF // TV // Episodic → Instagram-only, on both **Public Video Views** and **Average Public Video Views** rank metrics.
+- All assertions passed: correct metric columns only, correct descending/ascending sort, and the aggregate math checks out — PVV aggregate Sum 2,244,364,710, Average 921,710 (= Sum ÷ 2,435 brands); Avg-PVV aggregate Average 514,484 (= Σ brand avgs ÷ 432), with the **Sum toggle correctly disabled** for the average metric (A8c).
+- **No open linked bugs**; only Rankings bug found (APPS-42920, TikTok-default) is closed and unrelated to Instagram — did not interfere.
+- Noted three non-blocking behaviors (rank-change resets channels to all; aggregate Average divisor = full brand count; average-type metrics lock the aggregate to Average) — flagged as known-quirk candidates for a future `brand-sets-rankings` skill. Skill/REGISTRY maintenance deferred to harvest.sh per instructions.
+scripts/run-case.sh: line 101:  1312 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-13/QA-134507-report.md
+>> QA-134517 (full) — Mon Jul 13 02:11:11 IST 2026  [timeout 1800s]
+**QA-134517 — PASS** (all 4 assertions).
+
+Data Studio's Tag Filter has the **full layered Include/Exclude** structure:
+- **A1** PASS — Include/Exclude radios + Or/And + 2,791-tag list.
+- **A2** PASS — Include-selected tag greys out (`--disabled`, `pointer-events:none`) when Exclude is active.
+- **A3** PASS — state encodes both; backend `fetch_job` payload: `content_tags:[{...values:["01nikhil01"],not:false},{...values:["000"],not:true}]`.
+- **A4** PASS — report ran (`report_id=302210`, HTTP 200), rendered Engagements/MTV Sum 3,466,682 with the layered filter applied.
+
+Key outcome: the **2026-06-04 FAIL is confirmed FIXED** — DS no longer shares the CPR (QA-134516) Include/Exclude divergence. No open bugs; none filed. The stale `known-quirks.md` line (DS-lacks-Include/Exclude) is now superseded and flagged in the report for trimming to CPR-only (deferred to harvest.sh, not touched now). Report at `runs/2026-07-13/QA-134517-report.md`; evidence under `.playwright-out/QA-134517/`.
+scripts/run-case.sh: line 101:  1458 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-13/QA-134517-report.md
+>> QA-134639 (full) — Mon Jul 13 02:23:24 IST 2026  [timeout 1800s]
+QA-134639 → **BLOCKED**. Report at `runs/2026-07-13/QA-134639-report.md`.
+
+Did not open the browser. `known-quirks.md` line 519 (2026-07-10, this exact case + Playwright harness) documents that navigating to MTV Brand>Insights hard-crashes the MCP server and drops all `browser_*` tools, with recovery requiring a manual `/mcp` reconnect + re-login — impossible in a headless run. All four assertions (A1–A4) depend on that surface, and Rule 1 bars a substitute (Tory Burch/Michael Kors also hang). Matches the case family's consistent verdict; recommend deferring to LFIQA real-browser verification. No skill/REGISTRY maintenance done (deferred to harvest.sh).
+scripts/run-case.sh: line 101:  2039 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-13/QA-134639-report.md
+>> QA-135322 (full) — Mon Jul 13 02:25:15 IST 2026  [timeout 1800s]
+Done. QA-135322 executed in full (all 13 steps) headless on Adam Orfei.
+
+**Verdict: FAIL** — 16/18 assertions PASS, A13b PARTIAL, **A5e FAIL**.
+
+- **A5e** (sole failure): the Constant field enforces a **positive 1–1000** range and rejects every negative (`-500`/`-1000` → "Constant must be between 1 and 1000." + Save disabled), while the spec requires negatives accepted. This is the **pre-documented spec-vs-UI discrepancy** (skill v4), reproduced again — stable behavior, not a new regression. Flagged for QA triage, not auto-filed.
+- Passing: Save-disabled-initial (2a), dropdown+Operators-disabled (4a), reject 1001/-1001/9999 (5a), empty/0 rejected (5b/5c), positive in-range decimal `99.99` exact (5d), alpha/special stripped (5f/5g), Save-disabled-on-invalid (5h), metric typeahead (6a), chip render (6b), X-removal cycle + dangling→disabled (10a/11a/11b), success popup (12a), list refresh (13a).
+- **A13b PARTIAL**: positive constant `5` displays correctly; negative/zero constants unreachable (blocked by A5e).
+
+Mutating test cleaned up: metric `QA-135322-PW-2026-07-13-022545` deleted and F5-verified gone. Report at `runs/2026-07-13/QA-135322-report.md`.
+scripts/run-case.sh: line 101:  2505 Terminated: 15          ( sleep "$CASE_TIMEOUT"; if kill -0 "$CLAUDE_PID" 2> /dev/null; then
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"; kill_tree "$CLAUDE_PID";
+fi )
+>> done (rc=0) — report: runs/2026-07-13/QA-135322-report.md
+>> QA-135430 (full) — Mon Jul 13 02:36:59 IST 2026  [timeout 1800s]
+You've hit your session limit · resets 4:40am (Asia/Calcutta)

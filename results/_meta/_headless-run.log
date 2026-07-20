@@ -1,0 +1,102 @@
+== batch run: 64 cases from batches/qa4325.txt, 13 batches of 5 ==
+>> smoke gate: login pre-flight
+>> smoke gate passed
+== batch 1/13 ==
+  -> [1/64] QA-298 — skip (already PASS)
+  -> [2/64] QA-461
+  -> [3/64] QA-529
+  -> [4/64] QA-567
+  -> [5/64] QA-569
+   checkpoint written: runs/2026-07-11/summary.json
+== batch 2/13 ==
+  -> [6/64] QA-575
+  -> [7/64] QA-581
+  -> [8/64] QA-2062
+  -> [9/64] QA-10387
+  -> [10/64] QA-13903
+   checkpoint written: runs/2026-07-11/summary.json
+== batch 3/13 ==
+  -> [11/64] QA-19486
+  -> [12/64] QA-28405
+  -> [13/64] QA-43914
+  -> [14/64] QA-48160
+  -> [15/64] QA-51442
+   checkpoint written: runs/2026-07-11/summary.json
+== batch 4/13 ==
+  -> [16/64] QA-51457
+  -> [17/64] QA-52778
+  -> [18/64] QA-54202
+  -> [19/64] QA-71006
+  -> [20/64] QA-72455
+   checkpoint written: runs/2026-07-11/summary.json
+== batch 5/13 ==
+  -> [21/64] QA-75011
+  -> [22/64] QA-81494
+  -> [23/64] QA-83928
+!! usage/rate limit at QA-83928 — waiting 1800s then resuming (attempt 1/48) Sat Jul 11 18:56:05 IST 2026
+!! usage/rate limit at QA-83928 — waiting 1800s then resuming (attempt 2/48) Sat Jul 11 19:26:07 IST 2026
+!! usage/rate limit at QA-83928 — waiting 1800s then resuming (attempt 3/48) Sat Jul 11 19:56:09 IST 2026
+  -> [24/64] QA-84193
+  -> [25/64] QA-84194
+   checkpoint written: runs/2026-07-11/summary.json
+== batch 6/13 ==
+  -> [26/64] QA-85176
+  -> [27/64] QA-88219
+  -> [28/64] QA-92735
+  -> [29/64] QA-92841
+  -> [30/64] QA-94977
+   checkpoint written: runs/2026-07-11/summary.json
+== batch 7/13 ==
+  -> [31/64] QA-94978
+  -> [32/64] QA-95067
+  -> [33/64] QA-99380
+  -> [34/64] QA-99416
+  -> [35/64] QA-103246
+   checkpoint written: runs/2026-07-11/summary.json
+== batch 8/13 ==
+  -> [36/64] QA-107134
+  -> [37/64] QA-110083
+  -> [38/64] QA-111242
+  -> [39/64] QA-111243
+  -> [40/64] QA-112579
+!! usage/rate limit at QA-112579 — waiting 1800s then resuming (attempt 1/48) Sat Jul 11 23:30:36 IST 2026
+!! usage/rate limit at QA-112579 — waiting 1800s then resuming (attempt 2/48) Sun Jul 12 00:00:39 IST 2026
+!! usage/rate limit at QA-112579 — waiting 1800s then resuming (attempt 3/48) Sun Jul 12 00:30:42 IST 2026
+!! usage/rate limit at QA-112579 — waiting 1800s then resuming (attempt 4/48) Sun Jul 12 01:00:45 IST 2026
+   checkpoint written: runs/2026-07-11/summary.json
+== batch 9/13 ==
+  -> [41/64] QA-113595
+  -> [42/64] QA-113722
+  -> [43/64] QA-114845
+  -> [44/64] QA-129608
+  -> [45/64] QA-130076
+   checkpoint written: runs/2026-07-11/summary.json
+== batch 10/13 ==
+  -> [46/64] QA-133403
+  -> [47/64] QA-134176
+  -> [48/64] QA-134182
+  -> [49/64] QA-134184
+  -> [50/64] QA-134188
+   checkpoint written: runs/2026-07-11/summary.json
+== batch 11/13 ==
+  -> [51/64] QA-134271
+  -> [52/64] QA-134272
+  -> [53/64] QA-134273
+  -> [54/64] QA-134296
+  -> [55/64] QA-134436
+   checkpoint written: runs/2026-07-11/summary.json
+== batch 12/13 ==
+  -> [56/64] QA-134443
+  -> [57/64] QA-134507
+  -> [58/64] QA-134517
+  -> [59/64] QA-134586
+  -> [60/64] QA-134639
+   checkpoint written: runs/2026-07-11/summary.json
+== batch 13/13 ==
+  -> [61/64] QA-135322
+  -> [62/64] QA-135430
+  -> [63/64] QA-137047
+  -> [64/64] QA-137874
+   checkpoint written: runs/2026-07-11/summary.json
+== done. summary: runs/2026-07-11/summary.json ==
+PASS 30 / FAIL 0 / BLOCKED 33 / SKIPPED 1 / UNKNOWN 0  (of 64 run)

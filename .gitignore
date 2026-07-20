@@ -40,9 +40,10 @@ config/.env
 # OS / editor lock files
 .~lock.*#
 
-# Safety net: stray browser artifacts dumped to the repo root via a bare filename
-# (Playwright MCP saves bare filenames to CWD). Real evidence belongs in .playwright-out/
-# or runs/<date>/. Root-level only — subdirectory pngs/ymls are unaffected.
-/*.png
+# Screenshots are test ARTIFACTS, not source — never commit them to git. Evidence is
+# archived per-build by CI (Jenkins archiveArtifacts of results/**/*.png) and lives on disk
+# beside its report under results/<date>/ or in the .playwright-out/ scratch dir.
+*.png
+# Stray root-level yml dumps from the Playwright MCP (bare filenames to CWD).
 /*.yml
 /*.yaml
