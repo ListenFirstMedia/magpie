@@ -32,13 +32,25 @@ if [[ -f "$SET" ]]; then BATCH_FILE="$SET"; else BATCH_FILE="batches/${SET}.txt"
 : "${CLAUDE_CODE_OAUTH_TOKEN:?CLAUDE_CODE_OAUTH_TOKEN must be bound by the pipeline}"
 unset ANTHROPIC_API_KEY || true   # if both are set, the API key wins — make sure it can't
 
-# --- App login: pull the same creds file the qa suite uses, map EMAIL/PASSWORD -> config/.env ---
+# --- App login: pull the same creds file the qa suite uses, map to config/.env ---
+# .lfmrc_qa is a structured (YAML-ish) config, NOT a shell env file — parse "key: value" lines.
 echo ">> fetching login creds from ${LFMRC_S3}"
-aws s3 cp "$LFMRC_S3" "$HOME/.lfmrc_qa" >/dev/null
-set -a; . "$HOME/.lfmrc_qa"; set +a          # auto-export EMAIL / PASSWORD (rc file is shell-sourceable)
-LFM_EMAIL="${LFM_EMAIL:-${EMAIL:-}}"
-LFM_PASSWORD="${LFM_PASSWORD:-${PASSWORD:-}}"
-[[ -n "$LFM_EMAIL" && -n "$LFM_PASSWORD" ]] || { echo "ERROR: EMAIL/PASSWORD not found in .lfmrc_qa" >&2; exit 1; }
+LFMRC="$HOME/.lfmrc_qa"
+aws s3 cp "$LFMRC_S3" "$LFMRC" >/dev/null
+
+echo ">> .lfmrc_qa structure (values redacted):"
+sed -E 's/(:)[[:space:]]*.+/\1 <redacted>/' "$LFMRC" || true
+
+yaml_val() {   # first "key: value" for any of the alternated keys (top-level or indented), unquoted
+  grep -iE "^[[:space:]]*(${1})[[:space:]]*:" "$LFMRC" | head -1 \
+    | sed -E 's/^[^:]*:[[:space:]]*//; s/^["'"'"']//; s/["'"'"']$//' | tr -d '\r'
+}
+LFM_EMAIL="$(yaml_val 'email|username|user|login')"
+LFM_PASSWORD="$(yaml_val 'password|passwd|pass')"
+if [[ -z "$LFM_EMAIL" || -z "$LFM_PASSWORD" ]]; then
+  echo "ERROR: could not find email/password keys in .lfmrc_qa (see redacted structure above)" >&2
+  exit 1
+fi
 mkdir -p config
 umask 077
 printf 'LFM_EMAIL=%s\nLFM_PASSWORD=%s\n' "$LFM_EMAIL" "$LFM_PASSWORD" > config/.env   # gitignored
