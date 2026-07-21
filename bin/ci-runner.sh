@@ -41,14 +41,19 @@ aws s3 cp "$LFMRC_S3" "$LFMRC" >/dev/null
 echo ">> .lfmrc_qa structure (values redacted):"
 sed -E 's/(:)[[:space:]]*.+/\1 <redacted>/' "$LFMRC" || true
 
-yaml_val() {   # first "key: value" for any of the alternated keys (top-level or indented), unquoted
-  grep -iE "^[[:space:]]*(${1})[[:space:]]*:" "$LFMRC" | head -1 \
-    | sed -E 's/^[^:]*:[[:space:]]*//; s/^["'"'"']//; s/["'"'"']$//' | tr -d '\r'
+lfm_cred() {   # value of credentials.lfm_qa.<key>  (key = username|password), quotes/CR stripped
+  awk -v key="$1" '
+    /^credentials:[[:space:]]*$/ { c=1; next }
+    c && /^[^[:space:]]/         { c=0 }
+    c && /^  lfm_qa:[[:space:]]*$/ { f=1; next }
+    f && /^  [^[:space:]]/       { f=0 }
+    f && $0 ~ ("^[[:space:]]+" key "[[:space:]]*:") { sub(/^[^:]*:[[:space:]]*/, ""); print; exit }
+  ' "$LFMRC" | sed -E 's/^["'"'"']//; s/["'"'"']$//' | tr -d '\r'
 }
-LFM_EMAIL="$(yaml_val 'email|username|user|login')"
-LFM_PASSWORD="$(yaml_val 'password|passwd|pass')"
+LFM_EMAIL="$(lfm_cred username)"
+LFM_PASSWORD="$(lfm_cred password)"
 if [[ -z "$LFM_EMAIL" || -z "$LFM_PASSWORD" ]]; then
-  echo "ERROR: could not find email/password keys in .lfmrc_qa (see redacted structure above)" >&2
+  echo "ERROR: could not read credentials.lfm_qa username/password from .lfmrc_qa (see structure above)" >&2
   exit 1
 fi
 mkdir -p config
@@ -56,9 +61,13 @@ umask 077
 printf 'LFM_EMAIL=%s\nLFM_PASSWORD=%s\n' "$LFM_EMAIL" "$LFM_PASSWORD" > config/.env   # gitignored
 echo ">> wrote config/.env for ${LFM_EMAIL}"
 
-# --- Browser for the Playwright MCP (.mcp.json uses --browser chrome --headless) ---
-echo ">> ensuring headless Chrome for Playwright MCP"
-npx --yes playwright install --with-deps chrome || npx --yes playwright install chrome
+# --- Browser for the Playwright MCP ---
+# CI uses Chromium (self-contained download, NO root). The committed .mcp.json stays on the
+# `chrome` channel for local headed runs; flip this ephemeral CI checkout to chromium.
+# (`chrome` channel and `--with-deps` need sudo, which the agent can't provide.)
+sed -i 's/"chrome"/"chromium"/' .mcp.json
+echo ">> ensuring headless Chromium for Playwright MCP"
+npx --yes playwright install chromium || echo ">> WARN: chromium install failed; relying on a browser already cached on the node"
 
 # --- claude CLI present? (install fallback, matching the qa runner) ---
 command -v claude >/dev/null 2>&1 || npm install -g @anthropic-ai/claude-code
