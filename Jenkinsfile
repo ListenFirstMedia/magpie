@@ -25,7 +25,7 @@ properties([
   parameters([
     choice(name: 'SET', choices: ['qa22298', 'qa4325', 'qa-22296-remaining', 'qa-4204'],
            description: 'Which batch set to run (file under batches/).'),
-    string(name: 'BRANCH', defaultValue: 'feature/playwright-mcp', description: 'magpie branch to test.'),
+    string(name: 'BRANCH', defaultValue: 'feature/jenkins-ci', description: 'magpie branch to test (must contain bin/ci-runner.sh).'),
     string(name: 'CASE_TIMEOUT', defaultValue: '1800', description: 'Per-case hard cap (seconds).'),
     string(name: 'BATCH_SIZE', defaultValue: '5', description: 'Cases per checkpoint.')
   ])
@@ -47,7 +47,7 @@ node('QAPipelineMaster') {
       nvm(version: '20.18.0') {
         withCredentials([string(credentialsId: CLAUDE_CRED, variable: 'CLAUDE_CODE_OAUTH_TOKEN')]) {
           withEnv(["SET=${params.SET}", "CASE_TIMEOUT=${params.CASE_TIMEOUT}", "BATCH_SIZE=${params.BATCH_SIZE}"]) {
-            sh 'bin/ci-runner.sh'
+            sh 'bash bin/ci-runner.sh'
           }
         }
       }
