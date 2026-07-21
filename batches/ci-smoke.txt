@@ -1,0 +1,6 @@
+# CI smoke set — cheapest way to prove the full pipeline end-to-end
+# (login gate -> execute -> report -> summary.json -> archive -> Slack) before a real nightly.
+# Both use the `data-studio-post-level-run` STABLE skill: deterministic, math-identity
+# assertions, least flaky. Run: bin/ci-runner.sh with SET=ci-smoke
+QA-84193
+QA-84194

@@ -23,8 +23,8 @@ properties([
   // Nightly. Adjust time/TZ as needed (Jenkins honors a leading TZ= line).
   pipelineTriggers([cron('TZ=America/New_York\nH 2 * * *')]),
   parameters([
-    choice(name: 'SET', choices: ['qa22298', 'qa4325', 'qa-22296-remaining', 'qa-4204'],
-           description: 'Which batch set to run (file under batches/).'),
+    choice(name: 'SET', choices: ['qa22298', 'qa4325', 'qa-22296-remaining', 'qa-4204', 'ci-smoke'],
+           description: 'Which batch set to run (file under batches/). ci-smoke = 2 deterministic cases to validate the pipeline cheaply.'),
     string(name: 'BRANCH', defaultValue: 'feature/jenkins-ci', description: 'magpie branch to test (must contain bin/ci-runner.sh).'),
     string(name: 'CASE_TIMEOUT', defaultValue: '1800', description: 'Per-case hard cap (seconds).'),
     string(name: 'BATCH_SIZE', defaultValue: '5', description: 'Cases per checkpoint.')
