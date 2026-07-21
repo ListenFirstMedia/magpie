@@ -18,6 +18,11 @@ def GIT_CRED      = '7056f520-1a30-4a75-a108-5ccbb1022604'   // reuse qa SSH cre
 def CLAUDE_CRED   = 'magpie-claude-oauth'                    // Secret text: `claude setup-token` OAuth token
 def SLACK_CHANNEL = 'qa-jenkins'
 def SLACK_TOKEN   = 'listenfirstmediaqa'
+def XRAY_CRED     = 'xray auth'                             // Username/pw: user=client_id, pw=client_secret (confirm ID)
+def JIRA_BASE     = 'https://listenfirstmedia.atlassian.net'
+// SET name -> its Xray Test Plan key, so each run's execution is linked under the plan.
+def PLAN_KEYS     = ['qa22298': 'QA-22298', 'qa4325': 'QA-4325',
+                     'qa-22296-remaining': 'QA-22296', 'qa-4204': 'QA-4204']
 
 properties([
   // Nightly. Adjust time/TZ as needed (Jenkins honors a leading TZ= line).
@@ -34,6 +39,8 @@ properties([
 node('QAPipelineMaster') {
   def runDir = null
   def counts = [total: '?', passed: '?', failed: '?', blocked: '?', skipped: '?']
+  def failedIds = []
+  def xrayKey = ''
 
   buildName "${env.BUILD_NUMBER} - ${params.SET}"
 
@@ -59,8 +66,29 @@ node('QAPipelineMaster') {
         def s = readJSON file: "${runDir}/summary.json"
         counts = [total: "${s.total}", passed: "${s.passed}", failed: "${s.failed}",
                   blocked: "${s.blocked}", skipped: "${s.skipped ?: 0}"]
+        failedIds = s.cases.findAll { it.status == 'FAIL' }.collect { it.id }
       }
-      echo "Run dir: ${runDir} | ${counts}"
+      echo "Run dir: ${runDir} | ${counts} | failed: ${failedIds}"
+    }
+
+    stage('Report to Xray') {
+      // Create a Test Execution for this run and import per-case PASS/FAIL. Non-blocking:
+      // a Xray hiccup must not fail the regression build.
+      if (!runDir || !fileExists("${runDir}/summary.json")) {
+        echo 'No summary.json — skipping Xray.'
+      } else {
+        try {
+          def planKey = PLAN_KEYS.get(params.SET, '')
+          withCredentials([usernamePassword(credentialsId: XRAY_CRED,
+                             usernameVariable: 'XRAY_CLIENT_ID', passwordVariable: 'XRAY_CLIENT_SECRET')]) {
+            xrayKey = sh(returnStdout: true, script:
+              "python3 bin/xray_report.py '${runDir}/summary.json' 'magpie ${params.SET} #${env.BUILD_NUMBER}' '${planKey}'").trim()
+          }
+          echo "Xray execution: ${xrayKey}"
+        } catch (Exception e) {
+          echo "Xray reporting failed (non-blocking): ${e.message}"
+        }
+      }
     }
 
     stage('Publish') {
@@ -76,12 +104,19 @@ node('QAPipelineMaster') {
   } finally {
     stage('Notify') {
       def status = currentBuild.result ?: 'SUCCESS'
+      def xrayLine = xrayKey ? "    Xray: <${JIRA_BASE}/browse/${xrayKey}|${xrayKey}>\n" : ""
+      // Failed count links to a Jira JQL listing exactly the failed cases (same trick as qa).
+      def failedDisp = "${counts.failed}"
+      if (failedIds) {
+        failedDisp = "<${JIRA_BASE}/issues/?jql=key%20in(${failedIds.join('%2C')})|${counts.failed}>"
+      }
       slackSend channel: SLACK_CHANNEL,
         tokenCredentialId: SLACK_TOKEN,
         message: "magpie regression — ${params.SET}\n" +
           "    Status: ${status}\n" +
+          xrayLine +
           "    Build: <${env.BUILD_URL}|#${env.BUILD_NUMBER}>\n" +
-          "    Total: ${counts.total}  |  PASS: ${counts.passed}  FAIL: ${counts.failed}  BLOCKED: ${counts.blocked}  SKIPPED: ${counts.skipped}"
+          "    Total: ${counts.total}  |  PASS: ${counts.passed}  FAIL: ${failedDisp}  BLOCKED: ${counts.blocked}  SKIPPED: ${counts.skipped}"
     }
     stage('Cleanup') {
       deleteDir()
