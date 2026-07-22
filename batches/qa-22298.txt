@@ -1,6 +1,5 @@
-# QA-22298 Daily Regression Test Set — 66 members (order = QA-ID asc)
-# Run: scripts/run-batches.sh batches/qa22298.txt
-# Open-bug status baked into each testcases/english/<ID>.md (as of 2026-07-03).
+# QA-22298 — full Test Set membership from Jira (Xray testSetTests), 66 tests.
+# Fetched 2026-07-22. Order = QA-ID asc.
 QA-198
 QA-281
 QA-457

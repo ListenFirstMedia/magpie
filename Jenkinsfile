@@ -20,15 +20,12 @@ def SLACK_CHANNEL = 'qa-jenkins'
 def SLACK_TOKEN   = 'listenfirstmediaqa'
 def XRAY_CRED     = 'xray auth'                             // Username/pw: user=client_id, pw=client_secret (confirm ID)
 def JIRA_BASE     = 'https://listenfirstmedia.atlassian.net'
-// SET name -> its Xray Test Plan key, so each run's execution is linked under the plan.
-def PLAN_KEYS     = ['qa22298': 'QA-22298', 'qa4325': 'QA-4325',
-                     'qa-22296-remaining': 'QA-22296', 'qa-4204': 'QA-4204']
 
 properties([
   // Nightly. Adjust time/TZ as needed (Jenkins honors a leading TZ= line).
   pipelineTriggers([cron('TZ=America/New_York\nH 2 * * *')]),
   parameters([
-    choice(name: 'SET', choices: ['qa22298', 'qa4325', 'qa-22296-remaining', 'qa-4204', 'ci-smoke'],
+    choice(name: 'SET', choices: ['qa-22298', 'qa-4325', 'qa-22296', 'qa-4204', 'ci-smoke'],
            description: 'Which batch set to run (file under batches/). ci-smoke = 2 deterministic cases to validate the pipeline cheaply.'),
     string(name: 'BRANCH', defaultValue: 'feature/jenkins-ci', description: 'magpie branch to test (must contain bin/ci-runner.sh).'),
     string(name: 'CASE_TIMEOUT', defaultValue: '1800', description: 'Per-case hard cap (seconds).'),
@@ -78,7 +75,9 @@ node('QAPipelineMaster') {
         echo 'No summary.json — skipping Xray.'
       } else {
         try {
-          def planKey = PLAN_KEYS.get(params.SET, '')
+          // Derive the Xray Test Plan key from the set name: qa-4325 -> QA-4325; ci-smoke -> none.
+          def digits = (params.SET =~ /\d+/)
+          def planKey = digits ? "QA-${digits[0]}" : ''
           withCredentials([usernamePassword(credentialsId: XRAY_CRED,
                              usernameVariable: 'XRAY_CLIENT_ID', passwordVariable: 'XRAY_CLIENT_SECRET')]) {
             xrayKey = sh(returnStdout: true, script:

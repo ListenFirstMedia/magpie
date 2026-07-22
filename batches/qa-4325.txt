@@ -1,3 +1,5 @@
+# QA-4325 — full Test Set membership from Jira (Xray testSetTests), 64 tests.
+# Fetched 2026-07-22. Order = QA-ID asc.
 QA-298
 QA-461
 QA-529
