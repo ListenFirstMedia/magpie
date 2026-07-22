@@ -35,6 +35,14 @@ properties([
   ])
 ])
 
+// @NonCPS so the transient regex Matcher never lives in CPS-serialized pipeline scope —
+// Matcher is not Serializable and otherwise crashes the build at a step boundary.
+@NonCPS
+String planKeyFromSet(String setName) {
+  def m = (setName =~ /(\d+)/)
+  return m ? "QA-${m[0][1]}" : ''
+}
+
 node('QAPipelineMaster') {
   def runDir = null
   def counts = [total: '?', passed: '?', failed: '?', blocked: '?', skipped: '?']
@@ -80,9 +88,8 @@ node('QAPipelineMaster') {
         echo 'No summary.json — skipping Xray.'
       } else {
         try {
-          // Derive the Xray Test Plan key from the set name: qa-4325 -> QA-4325; ci-smoke/ad-hoc -> none.
-          def planKey = ''
-          if (!adhoc) { def digits = (params.SET =~ /\d+/); if (digits) planKey = "QA-${digits[0]}" }
+          // qa-4325 -> QA-4325; ci-smoke/ad-hoc -> none. Regex is isolated in a @NonCPS helper.
+          def planKey = adhoc ? '' : planKeyFromSet(params.SET)
           withCredentials([usernamePassword(credentialsId: XRAY_CRED,
                              usernameVariable: 'XRAY_CLIENT_ID', passwordVariable: 'XRAY_CLIENT_SECRET')]) {
             xrayKey = sh(returnStdout: true, script:
@@ -95,17 +102,17 @@ node('QAPipelineMaster') {
       }
     }
 
-    stage('Publish') {
-      // Screenshots + markdown reports are the artifacts (PNGs are gitignored; archived here).
-      archiveArtifacts allowEmptyArchive: true, artifacts: 'results/**/*.md, results/**/*.png, results/**/summary.json'
-    }
-
     currentBuild.result = 'SUCCESS'
   } catch (Exception e) {
     currentBuild.result = 'FAILURE'
     echo "Pipeline failed: ${e.message}"
     throw e
   } finally {
+    // Archive in finally (before Cleanup) so reports are captured even when an earlier stage
+    // fails — otherwise deleteDir() wipes them and the build has no artifacts to inspect.
+    stage('Publish') {
+      archiveArtifacts allowEmptyArchive: true, artifacts: 'results/**/*.md, results/**/*.png, results/**/summary.json'
+    }
     stage('Notify') {
       def status = currentBuild.result ?: 'SUCCESS'
       def xrayLine = xrayKey ? "    Xray: <${JIRA_BASE}/browse/${xrayKey}|${xrayKey}>\n" : ""
