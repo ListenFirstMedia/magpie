@@ -38,9 +38,6 @@ echo ">> fetching login creds from ${LFMRC_S3}"
 LFMRC="$HOME/.lfmrc_qa"
 aws s3 cp "$LFMRC_S3" "$LFMRC" >/dev/null
 
-echo ">> .lfmrc_qa structure (values redacted):"
-sed -E 's/(:)[[:space:]]*.+/\1 <redacted>/' "$LFMRC" || true
-
 lfm_cred() {   # value of credentials.lfm_qa.<key>  (key = username|password), quotes/CR stripped
   awk -v key="$1" '
     /^credentials:[[:space:]]*$/ { c=1; next }
@@ -53,7 +50,7 @@ lfm_cred() {   # value of credentials.lfm_qa.<key>  (key = username|password), q
 LFM_EMAIL="$(lfm_cred username)"
 LFM_PASSWORD="$(lfm_cred password)"
 if [[ -z "$LFM_EMAIL" || -z "$LFM_PASSWORD" ]]; then
-  echo "ERROR: could not read credentials.lfm_qa username/password from .lfmrc_qa (see structure above)" >&2
+  echo "ERROR: could not read credentials.lfm_qa username/password from .lfmrc_qa" >&2
   exit 1
 fi
 mkdir -p config
