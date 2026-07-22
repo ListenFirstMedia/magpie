@@ -77,6 +77,8 @@ node('QAPipelineMaster') {
         counts = [total: "${s.total}", passed: "${s.passed}", failed: "${s.failed}",
                   blocked: "${s.blocked}", skipped: "${s.skipped ?: 0}"]
         failedIds = s.cases.findAll { it.status == 'FAIL' }.collect { it.id }
+        // Build the browsable HTML report from summary.json + the per-case reports.
+        sh "python3 bin/gen_report.py '${runDir}/summary.json' '${runDir}/report.html' '${label}' '${env.BUILD_URL}'"
       }
       echo "Run dir: ${runDir} | ${counts} | failed: ${failedIds}"
     }
@@ -111,7 +113,12 @@ node('QAPipelineMaster') {
     // Archive in finally (before Cleanup) so reports are captured even when an earlier stage
     // fails — otherwise deleteDir() wipes them and the build has no artifacts to inspect.
     stage('Publish') {
-      archiveArtifacts allowEmptyArchive: true, artifacts: 'results/**/*.md, results/**/*.png, results/**/summary.json'
+      archiveArtifacts allowEmptyArchive: true, artifacts: 'results/**/*.md, results/**/*.png, results/**/summary.json, results/**/report.html'
+      // Browsable per-build report (magpie's equivalent of the Playwright HTML report).
+      if (runDir && fileExists("${runDir}/report.html")) {
+        publishHTML([reportDir: runDir, reportFiles: 'report.html', reportName: "magpie Report - ${label}",
+                     reportTitles: 'magpie run', keepAll: true, allowMissing: true, alwaysLinkToLastBuild: true])
+      }
     }
     stage('Notify') {
       def status = currentBuild.result ?: 'SUCCESS'
