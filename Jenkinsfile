@@ -18,8 +18,9 @@ def GIT_CRED      = '7056f520-1a30-4a75-a108-5ccbb1022604'   // reuse qa SSH cre
 def CLAUDE_CRED   = 'magpie-claude-oauth'                    // Secret text: `claude setup-token` OAuth token
 def SLACK_CHANNEL = 'qa-jenkins'
 def SLACK_TOKEN   = 'listenfirstmediaqa'
-def XRAY_CRED     = 'xray test'                             // Username/pw: user=client_id, pw=client_secret
 def JIRA_BASE     = 'https://listenfirstmedia.atlassian.net'
+// XRAY_CLIENT_ID / XRAY_CLIENT_SECRET come from Jenkins Global properties (Manage Jenkins →
+// System), same as the qa jobs — inherited into every build env, so no credential binding.
 
 properties([
   // Nightly. Adjust time/TZ as needed (Jenkins honors a leading TZ= line).
@@ -92,11 +93,10 @@ node('QAPipelineMaster') {
         try {
           // qa-4325 -> QA-4325; ci-smoke/ad-hoc -> none. Regex is isolated in a @NonCPS helper.
           def planKey = adhoc ? '' : planKeyFromSet(params.SET)
-          withCredentials([usernamePassword(credentialsId: XRAY_CRED,
-                             usernameVariable: 'XRAY_CLIENT_ID', passwordVariable: 'XRAY_CLIENT_SECRET')]) {
-            xrayKey = sh(returnStdout: true, script:
-              "python3 bin/xray_report.py '${runDir}/summary.json' 'magpie ${label} #${env.BUILD_NUMBER}' '${planKey}'").trim()
-          }
+          // XRAY_CLIENT_ID / XRAY_CLIENT_SECRET are inherited from Jenkins Global properties
+          // (no credential binding — matches the qa pipeline).
+          xrayKey = sh(returnStdout: true, script:
+            "python3 bin/xray_report.py '${runDir}/summary.json' 'magpie ${label} #${env.BUILD_NUMBER}' '${planKey}'").trim()
           echo "Xray execution: ${xrayKey}"
         } catch (Exception e) {
           echo "Xray reporting failed (non-blocking): ${e.message}"
