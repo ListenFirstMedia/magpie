@@ -7,7 +7,9 @@
 # results/<date>/*.md + summary.json). Runs on a Linux node inside the LFM network.
 #
 # Inputs (env, set by the Jenkins job):
-#   SET               batch name under batches/ (e.g. qa4325) OR a path to a batch file
+#   SET               batch name under batches/ (e.g. qa-4325) OR a path to a batch file
+#   TEST_CASES        OPTIONAL comma/space-separated QA-IDs. When non-empty it OVERRIDES SET —
+#                     the runner builds an ad-hoc batch from exactly these cases (bare numbers ok).
 #   CASE_TIMEOUT      per-case hard cap in seconds (default 1800 — long cases need it)
 #   BATCH_SIZE        cases per checkpoint (default 5)
 #   CLAUDE_CODE_OAUTH_TOKEN   from `claude setup-token`, bound by the pipeline (subscription auth)
@@ -19,14 +21,29 @@ echo "shell: $SHELL ($0) | whoami: $(whoami) | node: $(node -v 2>/dev/null || ec
 
 cd "$(dirname "$0")/.."   # repo root
 
-SET="${SET:?SET is required (batch name under batches/, or a path to a batch file)}"
+SET="${SET:-}"
+TEST_CASES="${TEST_CASES:-}"
 export CASE_TIMEOUT="${CASE_TIMEOUT:-1800}"
 export BATCH_SIZE="${BATCH_SIZE:-5}"
 LFMRC_S3="${LFMRC_S3:-s3://conf.dev.lfm/qa/.lfmrc_qa}"
 
-# Resolve the batch file: accept either "qa4325" or "batches/qa4325.txt" or a full path.
-if [[ -f "$SET" ]]; then BATCH_FILE="$SET"; else BATCH_FILE="batches/${SET}.txt"; fi
-[[ -f "$BATCH_FILE" ]] || { echo "ERROR: batch file not found: $BATCH_FILE" >&2; exit 1; }
+# Choose what to run: explicit TEST_CASES (ad-hoc) OVERRIDES the SET batch.
+if [[ -n "${TEST_CASES//[[:space:]]/}" ]]; then
+  BATCH_FILE="$(mktemp -t magpie-adhoc.XXXXXX)"
+  echo "# ad-hoc run from TEST_CASES" > "$BATCH_FILE"
+  missing=""
+  for raw in ${TEST_CASES//,/ }; do
+    id="${raw//[[:space:]]/}"; [[ -z "$id" ]] && continue
+    [[ "$id" == QA-* ]] || id="QA-${id}"
+    if [[ -f "cases/${id}.md" ]]; then echo "$id" >> "$BATCH_FILE"; else missing="${missing} ${id}"; fi
+  done
+  [[ -n "$missing" ]] && { echo "ERROR: no local case file for:${missing}" >&2; exit 1; }
+  echo ">> ad-hoc: $(grep -vcE '^[[:space:]]*(#|$)' "$BATCH_FILE") case(s) from TEST_CASES (SET ignored)"
+else
+  [[ -n "$SET" ]] || { echo "ERROR: set SET or TEST_CASES" >&2; exit 1; }
+  if [[ -f "$SET" ]]; then BATCH_FILE="$SET"; else BATCH_FILE="batches/${SET}.txt"; fi
+  [[ -f "$BATCH_FILE" ]] || { echo "ERROR: batch file not found: $BATCH_FILE" >&2; exit 1; }
+fi
 
 # --- Claude auth: subscription OAuth token, never a metered API key ---
 : "${CLAUDE_CODE_OAUTH_TOKEN:?CLAUDE_CODE_OAUTH_TOKEN must be bound by the pipeline}"
@@ -69,8 +86,8 @@ npx --yes playwright install chromium || echo ">> WARN: chromium install failed;
 # --- claude CLI present? (install fallback, matching the qa runner) ---
 command -v claude >/dev/null 2>&1 || npm install -g @anthropic-ai/claude-code
 
-# --- run the set (sequential; run-batches.sh does the login smoke gate + checkpoints + resume) ---
-echo ">> running set '${SET}' from ${BATCH_FILE}  [CASE_TIMEOUT=${CASE_TIMEOUT}s BATCH_SIZE=${BATCH_SIZE}]"
+# --- run (sequential; run-batches.sh does the login smoke gate + checkpoints + resume) ---
+echo ">> running ${BATCH_FILE}  [CASE_TIMEOUT=${CASE_TIMEOUT}s BATCH_SIZE=${BATCH_SIZE}]"
 bin/run-batches.sh "$BATCH_FILE"
 
 # --- surface the run dir + summary for the pipeline to archive ---

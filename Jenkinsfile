@@ -27,6 +27,8 @@ properties([
   parameters([
     choice(name: 'SET', choices: ['qa-22298', 'qa-4325', 'qa-22296', 'qa-4204', 'ci-smoke'],
            description: 'Which batch set to run (file under batches/). ci-smoke = 2 deterministic cases to validate the pipeline cheaply.'),
+    string(name: 'TEST_CASES', defaultValue: '',
+           description: 'Optional: comma/space-separated QA-IDs (e.g. "QA-84193, QA-949" or "84193 949"). When set, runs ONLY these cases and ignores SET.'),
     string(name: 'BRANCH', defaultValue: 'feature/jenkins-ci', description: 'magpie branch to test (must contain bin/ci-runner.sh).'),
     string(name: 'CASE_TIMEOUT', defaultValue: '1800', description: 'Per-case hard cap (seconds).'),
     string(name: 'BATCH_SIZE', defaultValue: '5', description: 'Cases per checkpoint.')
@@ -38,8 +40,10 @@ node('QAPipelineMaster') {
   def counts = [total: '?', passed: '?', failed: '?', blocked: '?', skipped: '?']
   def failedIds = []
   def xrayKey = ''
+  def adhoc = (params.TEST_CASES ?: '').trim()      // non-empty => ad-hoc run, SET ignored
+  def label = adhoc ? 'ad-hoc' : params.SET
 
-  buildName "${env.BUILD_NUMBER} - ${params.SET}"
+  buildName "${env.BUILD_NUMBER} - ${label}"
 
   try {
     stage('Checkout') {
@@ -50,7 +54,8 @@ node('QAPipelineMaster') {
     stage('Run set') {
       nvm(version: '20.18.0') {
         withCredentials([string(credentialsId: CLAUDE_CRED, variable: 'CLAUDE_CODE_OAUTH_TOKEN')]) {
-          withEnv(["SET=${params.SET}", "CASE_TIMEOUT=${params.CASE_TIMEOUT}", "BATCH_SIZE=${params.BATCH_SIZE}"]) {
+          withEnv(["SET=${params.SET}", "TEST_CASES=${params.TEST_CASES}",
+                   "CASE_TIMEOUT=${params.CASE_TIMEOUT}", "BATCH_SIZE=${params.BATCH_SIZE}"]) {
             sh 'bash bin/ci-runner.sh'
           }
         }
@@ -75,13 +80,13 @@ node('QAPipelineMaster') {
         echo 'No summary.json — skipping Xray.'
       } else {
         try {
-          // Derive the Xray Test Plan key from the set name: qa-4325 -> QA-4325; ci-smoke -> none.
-          def digits = (params.SET =~ /\d+/)
-          def planKey = digits ? "QA-${digits[0]}" : ''
+          // Derive the Xray Test Plan key from the set name: qa-4325 -> QA-4325; ci-smoke/ad-hoc -> none.
+          def planKey = ''
+          if (!adhoc) { def digits = (params.SET =~ /\d+/); if (digits) planKey = "QA-${digits[0]}" }
           withCredentials([usernamePassword(credentialsId: XRAY_CRED,
                              usernameVariable: 'XRAY_CLIENT_ID', passwordVariable: 'XRAY_CLIENT_SECRET')]) {
             xrayKey = sh(returnStdout: true, script:
-              "python3 bin/xray_report.py '${runDir}/summary.json' 'magpie ${params.SET} #${env.BUILD_NUMBER}' '${planKey}'").trim()
+              "python3 bin/xray_report.py '${runDir}/summary.json' 'magpie ${label} #${env.BUILD_NUMBER}' '${planKey}'").trim()
           }
           echo "Xray execution: ${xrayKey}"
         } catch (Exception e) {
@@ -111,7 +116,7 @@ node('QAPipelineMaster') {
       }
       slackSend channel: SLACK_CHANNEL,
         tokenCredentialId: SLACK_TOKEN,
-        message: "magpie regression — ${params.SET}\n" +
+        message: "magpie regression — ${label}\n" +
           "    Status: ${status}\n" +
           xrayLine +
           "    Build: <${env.BUILD_URL}|#${env.BUILD_NUMBER}>\n" +
