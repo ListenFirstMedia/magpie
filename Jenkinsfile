@@ -18,7 +18,7 @@ def GIT_CRED      = '7056f520-1a30-4a75-a108-5ccbb1022604'   // reuse qa SSH cre
 def CLAUDE_CRED   = 'magpie-claude-oauth'                    // Secret text: `claude setup-token` OAuth token
 def SLACK_CHANNEL = 'qa-jenkins'
 def SLACK_TOKEN   = 'listenfirstmediaqa'
-def XRAY_CRED     = 'xray auth'                             // Username/pw: user=client_id, pw=client_secret (confirm ID)
+def XRAY_CRED     = 'xray test'                             // Username/pw: user=client_id, pw=client_secret
 def JIRA_BASE     = 'https://listenfirstmedia.atlassian.net'
 
 properties([
