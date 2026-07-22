@@ -57,7 +57,10 @@ def main():
 
     # 2) import/execution -> creates a new Test Execution, returns its key
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S%z")
-    info = {"summary": summary_text, "description": "Created by the magpie Jenkins pipeline.",
+    # `project` tells Xray which Jira project to create the Test Execution issue in. Without it
+    # (and without a testPlanKey to infer from) Xray returns "Create issue failed".
+    info = {"project": os.environ.get("XRAY_PROJECT", "QA"),
+            "summary": summary_text, "description": "Created by the magpie Jenkins pipeline.",
             "startDate": now, "finishDate": now}
     if plan_key:
         info["testPlanKey"] = plan_key
