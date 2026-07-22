@@ -48,14 +48,21 @@ rebuild_summary() {
   python3 - "$RESULTS" "$SUMMARY" "$DATE" "$TOTAL" <<'PY'
 import json, sys
 results_path, summary_path, date, total = sys.argv[1], sys.argv[2], sys.argv[3], int(sys.argv[4])
-cases=[]
+VALID = {"PASS", "FAIL", "BLOCKED", "SKIPPED", "UNKNOWN"}
+# De-dupe by case id (last verdict wins) and drop malformed rows, so a stray/duplicate
+# ledger line can't inflate the count or corrupt the Xray import downstream.
+by_id, order = {}, []
 for line in open(results_path):
-    line=line.rstrip("\n")
+    line = line.rstrip("\n")
     if not line: continue
-    parts=line.split("\t")
-    cases.append({"id":parts[0],"status":parts[1],"report":parts[2] if len(parts)>2 else ""})
-counts={}
-for c in cases: counts[c["status"]]=counts.get(c["status"],0)+1
+    parts = line.split("\t")
+    if len(parts) < 2 or parts[1] not in VALID: continue
+    cid = parts[0]
+    if cid not in by_id: order.append(cid)
+    by_id[cid] = {"id": cid, "status": parts[1], "report": parts[2] if len(parts) > 2 else ""}
+cases = [by_id[c] for c in order]
+counts = {}
+for c in cases: counts[c["status"]] = counts.get(c["status"], 0) + 1
 json.dump({"date":date,"total":total,"run":len(cases),
            "passed":counts.get("PASS",0),"failed":counts.get("FAIL",0),
            "blocked":counts.get("BLOCKED",0),"skipped":counts.get("SKIPPED",0),
