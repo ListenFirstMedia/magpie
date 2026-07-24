@@ -89,11 +89,23 @@ status_of() {  # parse a case report for its result; echo PASS/FAIL/BLOCKED/UNKN
   if grep -qiE 'smoke-failure|LOGIN FAIL|BLOCKED' "$report"; then echo "BLOCKED"; else echo "UNKNOWN"; fi
 }
 
-# --- smoke gate (once) ---
-echo ">> smoke gate: login pre-flight"
-bin/run-case.sh "${CASES[0]}" --login-only > "${RUN_DIR}/_smoke.log" 2>&1 || true
-if ! grep -q "LOGIN OK" "${RUN_DIR}/_smoke.log"; then
-  echo "!! smoke gate FAILED — app not reachable/bootstrapping. Aborting batch run."
+# --- smoke gate (with retries) ---
+# The login pre-flight can fail transiently: app still bootstrapping, a slow browser launch, or a
+# leftover orphan from a prior crashed build. Retry a few times with backoff before aborting the
+# whole run, so one blip doesn't waste the build. (ci-runner.sh sweeps orphans before we get here.)
+SMOKE_TRIES="${SMOKE_TRIES:-3}"
+SMOKE_WAIT="${SMOKE_WAIT:-30}"
+smoke_ok=0
+for ((attempt=1; attempt<=SMOKE_TRIES; attempt++)); do
+  echo ">> smoke gate: login pre-flight (attempt ${attempt}/${SMOKE_TRIES})"
+  # tee (overwrite) so the console shows the attempt and _smoke.log holds the latest result.
+  bin/run-case.sh "${CASES[0]}" --login-only 2>&1 | tee "${RUN_DIR}/_smoke.log" || true
+  if grep -q "LOGIN OK" "${RUN_DIR}/_smoke.log"; then smoke_ok=1; break; fi
+  echo "!! smoke gate attempt ${attempt} did not report LOGIN OK"
+  if [[ $attempt -lt $SMOKE_TRIES ]]; then echo ">> retrying in ${SMOKE_WAIT}s"; sleep "$SMOKE_WAIT"; fi
+done
+if [[ $smoke_ok -ne 1 ]]; then
+  echo "!! smoke gate FAILED after ${SMOKE_TRIES} attempts — login never reported LOGIN OK. Aborting. See ${RUN_DIR}/_smoke.log"
   exit 2
 fi
 echo ">> smoke gate passed"

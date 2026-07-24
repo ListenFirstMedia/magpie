@@ -86,6 +86,19 @@ npx --yes playwright install chromium || echo ">> WARN: chromium install failed;
 # --- claude CLI present? (install fallback, matching the qa runner) ---
 command -v claude >/dev/null 2>&1 || npm install -g @anthropic-ai/claude-code
 
+# --- pre-run orphan sweep ---
+# A build that was hard-killed (e.g. the JENKINS-48300 heartbeat kill) can leave its
+# Playwright-MCP server + headless chromium running on the node. Those orphans hold RAM/ports and
+# can make THIS build's login smoke gate fail to launch a browser. Reap them before we start.
+# Only true orphans are touched: MCP servers (a signature the qa `playwright test` suite doesn't
+# use) and chromium reparented to init (ppid==1) — a concurrent job's live browser has a live
+# parent (ppid!=1) and is left alone.
+echo ">> pre-run sweep: reaping orphaned Playwright-MCP / chromium from any prior crashed build"
+pkill -f '@playwright/mcp' 2>/dev/null && echo "   killed stray @playwright/mcp server(s)" || true
+ps -eo pid=,ppid=,args= 2>/dev/null \
+  | awk '$2==1 && /ms-playwright/ && /--headless/ {print $1}' \
+  | while read -r p; do kill -KILL "$p" 2>/dev/null && echo "   killed orphaned chromium pid $p" || true; done
+
 # --- run (sequential; run-batches.sh does the login smoke gate + checkpoints + resume) ---
 echo ">> running ${BATCH_FILE}  [CASE_TIMEOUT=${CASE_TIMEOUT}s BATCH_SIZE=${BATCH_SIZE}]"
 bin/run-batches.sh "$BATCH_FILE"
