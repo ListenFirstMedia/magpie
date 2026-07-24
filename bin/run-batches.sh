@@ -115,7 +115,7 @@ while [[ $idx -lt $TOTAL ]]; do
       # wait-and-resume the SAME case (ON_LIMIT=wait) or stop cleanly (ON_LIMIT=stop).
       waits=0
       while :; do
-        bin/run-case.sh "$id" >>"${RUN_DIR}/_batch-${batch}.log" 2>&1 || true
+        bin/run-case.sh "$id" 2>&1 | tee -a "${RUN_DIR}/_batch-${batch}.log" || true
         if tail -8 "${RUN_DIR}/_batch-${batch}.log" | grep -qiE 'session limit|hit your .*limit|usage limit|rate.?limit|overloaded|status 429'; then
           # No trustworthy result was produced — drop any partial/UNKNOWN report so the retry re-judges.
           [[ "$(status_of "$report")" == "UNKNOWN" ]] && rm -f "$report"

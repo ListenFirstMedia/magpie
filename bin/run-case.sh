@@ -73,32 +73,55 @@ fi
 
 echo ">> ${ID} (${MODE}) — $(date)  [timeout ${CASE_TIMEOUT}s]"
 
-# Recursively kill a process and ALL descendants (claude spawns node MCP + chrome children
-# that survive a kill of the parent PID alone — the bug behind 90-min "capped" cases).
-kill_tree() {
-  local pid=$1 child
-  for child in $(pgrep -P "$pid" 2>/dev/null); do kill_tree "$child"; done
-  kill -9 "$pid" 2>/dev/null
+# Reap the whole process GROUP led by $1 (the case's claude + node Playwright-MCP + headless
+# chromium). A process keeps its group even after being reparented to init when its parent
+# exits, so `kill -- -PGID` still reaches orphaned browsers that a parent-tree walk (pgrep -P)
+# can no longer find — that orphaned-chromium pileup is what starved the CI node. Scoped to
+# THIS case's group, so it never touches a sibling case sharing the node (unlike a global pkill).
+reap_group() {
+  kill -TERM -- "-$1" 2>/dev/null || true
+  sleep 2
+  kill -KILL -- "-$1" 2>/dev/null || true
 }
 
-# Run claude in the background and enforce a hard per-case timeout via a watchdog
-# (macOS has no `timeout` binary). On overrun, kill the whole process tree.
+# Run claude in its OWN process group so we can reap the entire case tree (node Playwright-MCP
+# + headless chromium) without touching a sibling case on the same node. `set -m` (job control)
+# puts each backgrounded job in a fresh process group whose PGID == the job PID; portable to
+# macOS + Linux (no `setsid` needed).
+set -m
 claude -p "$PROMPT" --dangerously-skip-permissions &
-CLAUDE_PID=$!
+CLAUDE_PID=$!          # == this case's process-group id (PGID)
+set +m
+
+# Watchdog: hard per-case timeout (macOS has no `timeout` binary). On overrun, reap the group.
 (
   sleep "$CASE_TIMEOUT"
   if kill -0 "$CLAUDE_PID" 2>/dev/null; then
-    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process tree)"
-    kill_tree "$CLAUDE_PID"
+    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process group)"
+    reap_group "$CLAUDE_PID"
   fi
 ) &
 WATCHDOG_PID=$!
+
+# Heartbeat: emit a line every 60s while the case runs. `claude -p` is otherwise silent until
+# it finishes, so a long case leaves the Jenkins durable-task wrapper with no fresh output and
+# it false-kills the step ("wrapper script does not seem to be touching the log file",
+# JENKINS-48300). This keeps output flowing. (run-batches.sh tees run-case stdout to the console.)
+(
+  t=0
+  while kill -0 "$CLAUDE_PID" 2>/dev/null; do
+    sleep 60; t=$((t+60))
+    echo ">> .. ${ID} still running (${t}s / ${CASE_TIMEOUT}s cap) — $(date +%H:%M:%S)"
+  done
+) &
+HEARTBEAT_PID=$!
+
 wait "$CLAUDE_PID" 2>/dev/null
 RC=$?
-kill "$WATCHDOG_PID" 2>/dev/null   # cancel watchdog if the case finished on its own
+kill "$WATCHDOG_PID" "$HEARTBEAT_PID" 2>/dev/null   # cancel helpers once the case finishes
 
-# Reap any browser the case left behind (safe while runs are sequential).
-pkill -f "ms-playwright-mcp" 2>/dev/null || true
-pkill -f "@playwright/mcp"   2>/dev/null || true
+# Reap the case's MCP server + any orphaned chromium, scoped to THIS case's process group
+# (never a machine-wide pkill — safe when sibling cases share the node under parallel runs).
+reap_group "$CLAUDE_PID"
 
 echo ">> done (rc=${RC}) — report: ${RUN_DIR}/${ID}-report.md"

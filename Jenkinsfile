@@ -16,7 +16,7 @@ library identifier: 'xenv-jenkins-lib@master',
 def MAGPIE_REPO   = 'git@github.com:ListenFirstMedia/magpie.git'
 def GIT_CRED      = '7056f520-1a30-4a75-a108-5ccbb1022604'   // reuse qa SSH cred (confirm org-wide access)
 def CLAUDE_CRED   = 'magpie-claude-oauth'                    // Secret text: `claude setup-token` OAuth token
-def SLACK_CHANNEL = 'qa-jenkins'
+def SLACK_CHANNEL = 'magpie-regression'
 def SLACK_TOKEN   = 'listenfirstmediaqa'
 def JIRA_BASE     = 'https://listenfirstmedia.atlassian.net'
 // XRAY_CLIENT_ID / XRAY_CLIENT_SECRET come from Jenkins Global properties (Manage Jenkins →
