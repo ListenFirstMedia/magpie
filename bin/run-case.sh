@@ -93,32 +93,35 @@ claude -p "$PROMPT" --dangerously-skip-permissions &
 CLAUDE_PID=$!          # == this case's process-group id (PGID)
 set +m
 
-# Watchdog: hard per-case timeout (macOS has no `timeout` binary). On overrun, reap the group.
+# Monitor: ONE helper that both (a) emits a heartbeat every ~60s so the Jenkins durable-task
+# wrapper keeps seeing output (`claude -p` is otherwise silent until it finishes → JENKINS-48300
+# false-kill), and (b) enforces the hard per-case timeout (macOS has no `timeout` binary).
+#
+# It polls in short 5s sleeps and self-exits the instant claude finishes. This is deliberate: a
+# single long `sleep "$CASE_TIMEOUT"` runs as a grandchild that `kill $PID` on the subshell does
+# NOT reap — the orphaned sleep would keep run-case.sh's stdout (the pipe to `tee` in
+# run-batches.sh) open until the FULL timeout elapsed, padding every case out to CASE_TIMEOUT
+# regardless of how fast it actually ran. Short sleeps cap that leak at ~5s.
 (
-  sleep "$CASE_TIMEOUT"
-  if kill -0 "$CLAUDE_PID" 2>/dev/null; then
-    echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process group)"
-    reap_group "$CLAUDE_PID"
-  fi
-) &
-WATCHDOG_PID=$!
-
-# Heartbeat: emit a line every 60s while the case runs. `claude -p` is otherwise silent until
-# it finishes, so a long case leaves the Jenkins durable-task wrapper with no fresh output and
-# it false-kills the step ("wrapper script does not seem to be touching the log file",
-# JENKINS-48300). This keeps output flowing. (run-batches.sh tees run-case stdout to the console.)
-(
-  t=0
+  waited=0; since_beat=0
   while kill -0 "$CLAUDE_PID" 2>/dev/null; do
-    sleep 60; t=$((t+60))
-    echo ">> .. ${ID} still running (${t}s / ${CASE_TIMEOUT}s cap) — $(date +%H:%M:%S)"
+    sleep 5; waited=$((waited+5)); since_beat=$((since_beat+5))
+    if [ "$since_beat" -ge 60 ]; then
+      since_beat=0
+      echo ">> .. ${ID} still running (${waited}s / ${CASE_TIMEOUT}s cap) — $(date +%H:%M:%S)"
+    fi
+    if [ "$waited" -ge "$CASE_TIMEOUT" ]; then
+      echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process group)"
+      reap_group "$CLAUDE_PID"
+      break
+    fi
   done
 ) &
-HEARTBEAT_PID=$!
+MONITOR_PID=$!
 
 wait "$CLAUDE_PID" 2>/dev/null
 RC=$?
-kill "$WATCHDOG_PID" "$HEARTBEAT_PID" 2>/dev/null   # cancel helpers once the case finishes
+kill "$MONITOR_PID" 2>/dev/null || true   # stop the monitor; its worst-case orphaned sleep is 5s
 
 # Reap the case's MCP server + any orphaned chromium, scoped to THIS case's process group
 # (never a machine-wide pkill — safe when sibling cases share the node under parallel runs).
