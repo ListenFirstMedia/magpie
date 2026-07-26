@@ -23,6 +23,12 @@ def JIRA_BASE     = 'https://listenfirstmedia.atlassian.net'
 // System), same as the qa jobs — inherited into every build env, so no credential binding.
 
 properties([
+  // Prune old builds so the controller doesn't fill up. Each build archives per-case PNGs/MD/JSON
+  // + a kept HTML report; unbounded, that filled the controller disk and killed running builds
+  // with `No space left on device` (the CPS VM can't serialize its state). Keep the last 15
+  // builds / 30 days of artifacts; keep build records a bit longer for history.
+  buildDiscarder(logRotator(numToKeepStr: '30', daysToKeepStr: '60',
+                            artifactNumToKeepStr: '15', artifactDaysToKeepStr: '30')),
   // Nightly. Adjust time/TZ as needed (Jenkins honors a leading TZ= line).
   pipelineTriggers([cron('TZ=America/New_York\nH 2 * * *')]),
   parameters([
@@ -117,7 +123,7 @@ node('QAPipelineMaster') {
       // Browsable per-build report (magpie's equivalent of the Playwright HTML report).
       if (runDir && fileExists("${runDir}/report.html")) {
         publishHTML([reportDir: runDir, reportFiles: 'report.html', reportName: "magpie Report - ${label}",
-                     reportTitles: 'magpie run', keepAll: true, allowMissing: true, alwaysLinkToLastBuild: true])
+                     reportTitles: 'magpie run', keepAll: false, allowMissing: true, alwaysLinkToLastBuild: true])
       }
     }
     stage('Notify') {
