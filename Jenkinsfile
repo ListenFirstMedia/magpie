@@ -42,14 +42,6 @@ properties([
   ])
 ])
 
-// @NonCPS so the transient regex Matcher never lives in CPS-serialized pipeline scope —
-// Matcher is not Serializable and otherwise crashes the build at a step boundary.
-@NonCPS
-String planKeyFromSet(String setName) {
-  def m = (setName =~ /(\d+)/)
-  return m ? "QA-${m[0][1]}" : ''
-}
-
 node('QAPipelineMaster') {
   def runDir = null
   def counts = [total: '?', passed: '?', failed: '?', blocked: '?', skipped: '?']
@@ -97,12 +89,16 @@ node('QAPipelineMaster') {
         echo 'No summary.json — skipping Xray.'
       } else {
         try {
-          // qa-4325 -> QA-4325; ci-smoke/ad-hoc -> none. Regex is isolated in a @NonCPS helper.
-          def planKey = adhoc ? '' : planKeyFromSet(params.SET)
+          // The SET names (qa-4325, qa-22298, …) are Xray *Test Sets*, not Test Plans. Xray's
+          // import/execution endpoint only accepts a Test Plan in `testPlanKey`, so passing a Test
+          // Set key there returns HTTP 400 and aborts the whole import — no execution is created.
+          // So we create a bare Test Execution (empty key): it always yields an execution key + Jira
+          // link, and the per-case testKey results attach to it. To roll the execution up under a
+          // set/plan later, associate it via Xray GraphQL after creation.
           // XRAY_CLIENT_ID / XRAY_CLIENT_SECRET are inherited from Jenkins Global properties
           // (no credential binding — matches the qa pipeline).
           xrayKey = sh(returnStdout: true, script:
-            "python3 bin/xray_report.py '${runDir}/summary.json' 'magpie ${label} #${env.BUILD_NUMBER}' '${planKey}'").trim()
+            "python3 bin/xray_report.py '${runDir}/summary.json' 'magpie ${label} #${env.BUILD_NUMBER}' ''").trim()
           echo "Xray execution: ${xrayKey}"
         } catch (Exception e) {
           echo "Xray reporting failed (non-blocking): ${e.message}"
