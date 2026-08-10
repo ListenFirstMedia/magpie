@@ -73,6 +73,10 @@ fi
 
 echo ">> ${ID} (${MODE}) — $(date)  [timeout ${CASE_TIMEOUT}s]"
 
+# The monitor subshell can't set variables in this shell, so it flags a timeout via this marker.
+TIMEOUT_FLAG="${RUN_DIR}/.${ID}.timeout"
+rm -f "$TIMEOUT_FLAG"
+
 # Reap the whole process GROUP led by $1 (the case's claude + node Playwright-MCP + headless
 # chromium). A process keeps its group even after being reparented to init when its parent
 # exits, so `kill -- -PGID` still reaches orphaned browsers that a parent-tree walk (pgrep -P)
@@ -112,19 +116,56 @@ set +m
     fi
     if [ "$waited" -ge "$CASE_TIMEOUT" ]; then
       echo ">> TIMEOUT after ${CASE_TIMEOUT}s — killing ${ID} (process group)"
+      : > "$TIMEOUT_FLAG"
       reap_group "$CLAUDE_PID"
       break
     fi
   done
 ) &
 MONITOR_PID=$!
+# Drop the monitor from the job table: we kill it below while it may still be mid-reap, and bash
+# would otherwise echo a "Terminated" job notice that dumps this whole subshell into the console log.
+disown "$MONITOR_PID" 2>/dev/null || true
 
-wait "$CLAUDE_PID" 2>/dev/null
-RC=$?
+# `|| RC=$?` is required, not stylistic: under `set -e` a bare failing `wait` (which is exactly what
+# happens when the monitor kills a timed-out case) exits run-case.sh on the spot, skipping the reap,
+# the TIMEOUT report and the final `>> done` line. That silent early exit is why timed-out cases used
+# to leave no report at all and get mis-scored as BLOCKED.
+RC=0
+wait "$CLAUDE_PID" 2>/dev/null || RC=$?
 kill "$MONITOR_PID" 2>/dev/null || true   # stop the monitor; its worst-case orphaned sleep is 5s
 
 # Reap the case's MCP server + any orphaned chromium, scoped to THIS case's process group
 # (never a machine-wide pkill — safe when sibling cases share the node under parallel runs).
 reap_group "$CLAUDE_PID"
 
-echo ">> done (rc=${RC}) — report: ${RUN_DIR}/${ID}-report.md"
+# A reaped case writes no report, and a missing report is otherwise scored BLOCKED — which reads as
+# an app/environment block when in fact the case never reached a verdict. Leave an explicit TIMEOUT
+# report so the summary, the HTML report and Xray all say "ran out of time", not "blocked".
+REPORT="${RUN_DIR}/${ID}-report.md"
+if [[ -f "$TIMEOUT_FLAG" && ! -f "$REPORT" ]]; then
+  cat > "$REPORT" <<EOF
+# ${ID} — TIMEOUT
+
+Verdict: TIMEOUT — killed at the ${CASE_TIMEOUT}s per-case cap ($(date)).
+
+The case was still executing when \`CASE_TIMEOUT\` elapsed, so its process group (claude +
+Playwright MCP + headless chromium) was reaped before it could write a report. **No assertion was
+evaluated** — this is not a product failure and not an environment block; the case simply ran out of
+wall clock. Re-run it with a larger \`CASE_TIMEOUT\` (the CI default is 1800s).
+
+| Field | Value |
+|-------|-------|
+| Case | ${ID} |
+| Cap | ${CASE_TIMEOUT}s |
+| Killed at | $(date) |
+| Console log | ${RUN_DIR}/_batch-*.log (grep ${ID}) |
+| Screenshots | .playwright-out/${ID}/ (partial, if any) |
+
+Known bugs checked: not reached.
+Bugs filed: none.
+EOF
+  rm -f "$TIMEOUT_FLAG"
+fi
+
+echo ">> done (rc=${RC}) — report: ${REPORT}"

@@ -20,8 +20,8 @@ from datetime import datetime, timezone
 def log(*a): print(*a, file=sys.stderr)
 
 # magpie verdict -> Xray Cloud status. Adjust here if your Xray uses custom statuses.
-STATUS_MAP = {"PASS": "PASSED", "FAIL": "FAILED", "BLOCKED": "ABORTED",
-              "SKIPPED": "TODO", "UNKNOWN": "TODO"}
+STATUS_MAP = {"PASS": "PASSED", "FAIL": "FAILED", "BLOCKED": "FAILED",
+              "TIMEOUT": "FAILED", "SKIPPED": "TODO", "UNKNOWN": "TODO"}
 
 def post(url, data, headers):
     req = urllib.request.Request(url, data=json.dumps(data).encode(), headers=headers, method="POST")

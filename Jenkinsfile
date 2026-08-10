@@ -44,7 +44,7 @@ properties([
 
 node('QAPipelineMaster') {
   def runDir = null
-  def counts = [total: '?', passed: '?', failed: '?', blocked: '?', skipped: '?']
+  def counts = [total: '?', passed: '?', failed: '?', blocked: '?', timeout: '?', skipped: '?']
   def failedIds = []
   def xrayKey = ''
   def adhoc = (params.TEST_CASES ?: '').trim()      // non-empty => ad-hoc run, SET ignored
@@ -74,7 +74,7 @@ node('QAPipelineMaster') {
       if (runDir && fileExists("${runDir}/summary.json")) {
         def s = readJSON file: "${runDir}/summary.json"
         counts = [total: "${s.total}", passed: "${s.passed}", failed: "${s.failed}",
-                  blocked: "${s.blocked}", skipped: "${s.skipped ?: 0}"]
+                  blocked: "${s.blocked}", timeout: "${s.timeout ?: 0}", skipped: "${s.skipped ?: 0}"]
         failedIds = s.cases.findAll { it.status == 'FAIL' }.collect { it.id }
         // Build the browsable HTML report from summary.json + the per-case reports.
         sh "python3 bin/gen_report.py '${runDir}/summary.json' '${runDir}/report.html' '${label}' '${env.BUILD_URL}'"
@@ -136,7 +136,7 @@ node('QAPipelineMaster') {
           "    Status: ${status}\n" +
           xrayLine +
           "    Build: <${env.BUILD_URL}|#${env.BUILD_NUMBER}>\n" +
-          "    Total: ${counts.total}  |  PASS: ${counts.passed}  FAIL: ${failedDisp}  BLOCKED: ${counts.blocked}  SKIPPED: ${counts.skipped}"
+          "    Total: ${counts.total}  |  PASS: ${counts.passed}  FAIL: ${failedDisp}  BLOCKED: ${counts.blocked}  TIMEOUT: ${counts.timeout}  SKIPPED: ${counts.skipped}"
     }
     stage('Cleanup') {
       deleteDir()

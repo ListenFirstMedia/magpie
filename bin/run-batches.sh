@@ -21,6 +21,26 @@ BATCH_SIZE="${BATCH_SIZE:-5}"
 ON_LIMIT="${ON_LIMIT:-wait}"
 LIMIT_WAIT="${LIMIT_WAIT:-1800}"          # sleep between resume attempts, seconds (default 30 min)
 MAX_LIMIT_WAITS="${MAX_LIMIT_WAITS:-48}"  # safety cap: 48 x 30min ~= 24h of waiting before giving up
+CASE_TIMEOUT="${CASE_TIMEOUT:-900}"       # per-case hard cap for the main pass (ci-runner sets 1800)
+
+# Retry sweep: after the main pass, re-run cases that reached NO verdict (TIMEOUT = killed at the
+# cap, UNKNOWN = crashed / wrote no parsable verdict). A case killed at the wall is usually just
+# slow, not broken — on the 2026-07-29 run that was 21 of 64 cases, all reported as BLOCKED.
+# Retrying at the END rather than in place keeps the first pass fast (a whole batch isn't held up
+# by one slow case) and gives the retry a quieter node.
+#
+# The sweep is HARD-BOUNDED so it can't blow up a nightly build: at most RETRY_MAX cases per round
+# at RETRY_CASE_TIMEOUT each (default 2 x 900s = 30 min of sweep, worst case). Cases beyond the cap
+# keep their TIMEOUT/UNKNOWN verdict and are logged by name — never silently dropped.
+#
+# NOTE: RETRY_CASE_TIMEOUT is a FIXED 900s, not a multiple of CASE_TIMEOUT. CI runs the main pass at
+# CASE_TIMEOUT=1800 (ci-runner.sh), so a swept case gets LESS wall clock than the attempt that
+# already timed out — the sweep is there to recover crashes and flaky-slow cases cheaply, not to
+# give genuinely long cases the time they need. Raise RETRY_CASE_TIMEOUT if you want the latter.
+RETRY_NO_VERDICT="${RETRY_NO_VERDICT:-1}"          # 0 disables the sweep entirely
+RETRY_ROUNDS="${RETRY_ROUNDS:-1}"                  # how many sweeps to attempt
+RETRY_MAX="${RETRY_MAX:-2}"                        # max cases retried per round (0 = unlimited)
+RETRY_CASE_TIMEOUT="${RETRY_CASE_TIMEOUT:-900}"    # per-case cap during a sweep
 DATE="$(date +%F)"
 RUN_DIR="results/${DATE}"
 export RUN_DIR DATE   # pin the run dir and share it with run-case.sh so a midnight date rollover
@@ -48,7 +68,7 @@ rebuild_summary() {
   python3 - "$RESULTS" "$SUMMARY" "$DATE" "$TOTAL" <<'PY'
 import json, sys
 results_path, summary_path, date, total = sys.argv[1], sys.argv[2], sys.argv[3], int(sys.argv[4])
-VALID = {"PASS", "FAIL", "BLOCKED", "SKIPPED", "UNKNOWN"}
+VALID = {"PASS", "FAIL", "BLOCKED", "SKIPPED", "TIMEOUT", "UNKNOWN"}
 # De-dupe by case id (last verdict wins) and drop malformed rows, so a stray/duplicate
 # ledger line can't inflate the count or corrupt the Xray import downstream.
 by_id, order = {}, []
@@ -66,27 +86,58 @@ for c in cases: counts[c["status"]] = counts.get(c["status"], 0) + 1
 json.dump({"date":date,"total":total,"run":len(cases),
            "passed":counts.get("PASS",0),"failed":counts.get("FAIL",0),
            "blocked":counts.get("BLOCKED",0),"skipped":counts.get("SKIPPED",0),
-           "unknown":counts.get("UNKNOWN",0),
+           "timeout":counts.get("TIMEOUT",0),"unknown":counts.get("UNKNOWN",0),
            "cases":cases}, open(summary_path,"w"), indent=2)
 PY
 }
 
-status_of() {  # parse a case report for its result; echo PASS/FAIL/BLOCKED/UNKNOWN
+status_of() {  # parse a case report for its result; echo PASS/FAIL/BLOCKED/SKIPPED/TIMEOUT/UNKNOWN
   local report="$1" line
-  [[ -f "$report" ]] || { echo "BLOCKED"; return; }
+  # No report at all means the case produced no verdict (crash, or killed before it could write).
+  # Score that UNKNOWN, never BLOCKED: BLOCKED is a real verdict ("stage unreachable", "no test
+  # data") and conflating the two hid 21 timeout kills as environment blocks in the 2026-07-29 run.
+  [[ -f "$report" ]] || { echo "UNKNOWN"; return; }
   line=$(grep -iE '(result|verdict|status):' "$report" | head -1)   # verdict wording varies: Result:/Verdict:/Status:
   # Take the status keyword AFTER the label, and use the LEFTMOST match — so
   # "BLOCKED - pre-flight login failure" resolves to BLOCKED, not FAIL (the word "failure").
   local rest first
   rest=${line#*:}
-  first=$(printf '%s' "$rest" | grep -oiE 'passed|pass|skipped|skip|blocked|block|failed|fail' | head -1 | tr 'A-Z' 'a-z')
+  first=$(printf '%s' "$rest" | grep -oiE 'passed|pass|skipped|skip|blocked|block|timed out|timeout|failed|fail' | head -1 | tr 'A-Z' 'a-z')
   case "$first" in
     pass*)  echo "PASS";    return;;
     skip*)  echo "SKIPPED"; return;;
     block*) echo "BLOCKED"; return;;
+    time*)  echo "TIMEOUT"; return;;
     fail*)  echo "FAIL";    return;;
   esac
   if grep -qiE 'smoke-failure|LOGIN FAIL|BLOCKED' "$report"; then echo "BLOCKED"; else echo "UNKNOWN"; fi
+}
+
+run_one() {  # run ONE case to completion, waiting out Claude usage/rate limits.
+             # $1 = case id, $2 = console log to tee into, $3 = per-case hard cap (seconds).
+             # The cap is passed as a command-prefix assignment so it is exported to run-case.sh
+             # even when CASE_TIMEOUT isn't exported in this shell (standalone, no ci-runner).
+  local id="$1" log="$2" cap="$3"
+  local report="${RUN_DIR}/${id}-report.md" waits=0
+  while :; do
+    CASE_TIMEOUT="$cap" bin/run-case.sh "$id" 2>&1 | tee -a "$log" || true
+    if tail -8 "$log" | grep -qiE 'session limit|hit your .*limit|usage limit|rate.?limit|overloaded|status 429'; then
+      # No trustworthy result was produced — drop any partial/UNKNOWN report so the retry re-judges.
+      [[ "$(status_of "$report")" == "UNKNOWN" ]] && rm -f "$report"
+      if [[ "$ON_LIMIT" == "wait" && $waits -lt $MAX_LIMIT_WAITS ]]; then
+        waits=$((waits+1))
+        echo "!! usage/rate limit at ${id} — waiting ${LIMIT_WAIT}s then resuming (attempt ${waits}/${MAX_LIMIT_WAITS}) $(date)"
+        rebuild_summary   # checkpoint before the long sleep
+        sleep "$LIMIT_WAIT"
+        continue          # retry the SAME case after the window (may reset) — loops until it clears or cap hit
+      fi
+      printf '%s\t%s\t%s\n' "$id" "$(status_of "$report")" "$report" >> "$RESULTS"
+      rebuild_summary
+      echo "!! usage/session limit at ${id}; ON_LIMIT=${ON_LIMIT} / max waits reached — stopping cleanly at $(date). Re-run to resume."
+      exit 3
+    fi
+    break   # case finished without a limit signal
+  done
 }
 
 # --- smoke gate (with retries) ---
@@ -119,32 +170,14 @@ while [[ $idx -lt $TOTAL ]]; do
     id="${CASES[$idx]}"
     report="${RUN_DIR}/${id}-report.md"
     pre="$(status_of "$report")"
-    if [[ "${RESUME:-1}" == "1" && -f "$report" && "$pre" != "UNKNOWN" ]]; then
+    # Resume skips a case only if it already reached a REAL verdict. UNKNOWN and TIMEOUT are
+    # retryable — otherwise the TIMEOUT stub report we now write would make a re-run (typically
+    # with a bigger CASE_TIMEOUT, which is the whole point) skip the very cases it means to retry.
+    if [[ "${RESUME:-1}" == "1" && -f "$report" && "$pre" != "UNKNOWN" && "$pre" != "TIMEOUT" ]]; then
       echo "  -> [$((idx+1))/${TOTAL}] ${id} — skip (already ${pre})"
     else
       echo "  -> [$((idx+1))/${TOTAL}] ${id}"
-      # Run the case; on a usage/session limit (or transient rate-limit/overload), either
-      # wait-and-resume the SAME case (ON_LIMIT=wait) or stop cleanly (ON_LIMIT=stop).
-      waits=0
-      while :; do
-        bin/run-case.sh "$id" 2>&1 | tee -a "${RUN_DIR}/_batch-${batch}.log" || true
-        if tail -8 "${RUN_DIR}/_batch-${batch}.log" | grep -qiE 'session limit|hit your .*limit|usage limit|rate.?limit|overloaded|status 429'; then
-          # No trustworthy result was produced — drop any partial/UNKNOWN report so the retry re-judges.
-          [[ "$(status_of "$report")" == "UNKNOWN" ]] && rm -f "$report"
-          if [[ "$ON_LIMIT" == "wait" && $waits -lt $MAX_LIMIT_WAITS ]]; then
-            waits=$((waits+1))
-            echo "!! usage/rate limit at ${id} — waiting ${LIMIT_WAIT}s then resuming (attempt ${waits}/${MAX_LIMIT_WAITS}) $(date)"
-            rebuild_summary   # checkpoint before the long sleep
-            sleep "$LIMIT_WAIT"
-            continue          # retry the SAME case after the window (may reset) — loops until it clears or cap hit
-          fi
-          printf '%s\t%s\t%s\n' "$id" "$(status_of "$report")" "$report" >> "$RESULTS"
-          rebuild_summary
-          echo "!! usage/session limit at ${id}; ON_LIMIT=${ON_LIMIT} / max waits reached — stopping cleanly at $(date). Re-run to resume."
-          exit 3
-        fi
-        break   # case finished without a limit signal
-      done
+      run_one "$id" "${RUN_DIR}/_batch-${batch}.log" "$CASE_TIMEOUT"
     fi
     printf '%s\t%s\t%s\n' "$id" "$(status_of "$report")" "$report" >> "$RESULTS"
   done
@@ -152,5 +185,46 @@ while [[ $idx -lt $TOTAL ]]; do
   echo "   checkpoint written: ${SUMMARY}"
 done
 
+# --- retry sweep: cases that reached no verdict (killed at the cap, or crashed) ---
+# The ledger is de-duped by case id with LAST verdict winning, so simply appending the retry's
+# verdict supersedes the TIMEOUT/UNKNOWN one — no bookkeeping needed.
+if [[ "$RETRY_NO_VERDICT" == "1" ]]; then
+  for ((round=1; round<=RETRY_ROUNDS; round++)); do
+    pending=()
+    for id in "${CASES[@]}"; do
+      st="$(status_of "${RUN_DIR}/${id}-report.md")"
+      [[ "$st" == "TIMEOUT" || "$st" == "UNKNOWN" ]] && pending+=("$id")
+    done
+    if [[ ${#pending[@]} -eq 0 ]]; then
+      echo "== retry sweep ${round}/${RETRY_ROUNDS}: no cases without a verdict — nothing to retry =="
+      break
+    fi
+    # Apply the cap, and name what it drops. A silent truncation here would read as "everything got
+    # a second chance" in the summary when most cases never did.
+    deferred=()
+    if [[ "$RETRY_MAX" != "0" && ${#pending[@]} -gt $RETRY_MAX ]]; then
+      deferred=("${pending[@]:$RETRY_MAX}")
+      pending=("${pending[@]:0:$RETRY_MAX}")
+    fi
+    echo "== retry sweep ${round}/${RETRY_ROUNDS}: retrying ${#pending[@]} case(s) at CASE_TIMEOUT=${RETRY_CASE_TIMEOUT}s =="
+    printf '   %s\n' "${pending[*]}"
+    if [[ ${#deferred[@]} -gt 0 ]]; then
+      echo "   !! RETRY_MAX=${RETRY_MAX} reached — ${#deferred[@]} case(s) NOT retried, keeping their no-verdict status:"
+      printf '      %s\n' "${deferred[*]}"
+    fi
+    for id in "${pending[@]}"; do
+      report="${RUN_DIR}/${id}-report.md"
+      echo "  -> retry [${round}] ${id} (was $(status_of "$report"))"
+      # Drop the stub so a second kill writes a fresh TIMEOUT report stamped with the retry's cap
+      # (and so a crashed retry doesn't silently inherit the previous attempt's report).
+      rm -f "$report"
+      run_one "$id" "${RUN_DIR}/_retry-${round}.log" "$RETRY_CASE_TIMEOUT"
+      printf '%s\t%s\t%s\n' "$id" "$(status_of "$report")" "$report" >> "$RESULTS"
+      rebuild_summary
+    done
+    echo "   checkpoint written after retry sweep ${round}: ${SUMMARY}"
+  done
+fi
+
 echo "== done. summary: ${SUMMARY} =="
-python3 -c "import json;s=json.load(open('${SUMMARY}'));print(f\"PASS {s['passed']} / FAIL {s['failed']} / BLOCKED {s['blocked']} / SKIPPED {s.get('skipped',0)} / UNKNOWN {s['unknown']}  (of {s['run']} run)\")"
+python3 -c "import json;s=json.load(open('${SUMMARY}'));print(f\"PASS {s['passed']} / FAIL {s['failed']} / BLOCKED {s['blocked']} / SKIPPED {s.get('skipped',0)} / TIMEOUT {s.get('timeout',0)} / UNKNOWN {s['unknown']}  (of {s['run']} run)\")"

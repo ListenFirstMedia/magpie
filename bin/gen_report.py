@@ -10,7 +10,12 @@ Usage: gen_report.py <summary.json> <out.html> [label] [build_url]
 import html, json, os, sys
 
 BADGE = {"PASS": "#1a7f37", "FAIL": "#cf222e", "BLOCKED": "#bc4c00",
-         "SKIPPED": "#6e7781", "UNKNOWN": "#6e7781"}
+         "TIMEOUT": "#9a6700", "SKIPPED": "#6e7781", "UNKNOWN": "#6e7781"}
+
+# Shown in place of the report body when a case produced no report file at all.
+NO_REPORT = ("(no report file — the case produced no verdict. It was killed at the CASE_TIMEOUT cap "
+             "or crashed before writing its report; see the run's _batch-*.log for its console "
+             "output. Re-run the case, raising CASE_TIMEOUT if it was a timeout.)")
 
 def esc(s): return html.escape(str(s or ""))
 
@@ -28,7 +33,7 @@ def main():
         color = BADGE.get(status, "#6e7781")
         jira = f"https://listenfirstmedia.atlassian.net/browse/{cid}"
         # title = first "# ..." line of the case report, if the report exists
-        title, body = "", "(report file not found)"
+        title, body = "", NO_REPORT
         rp = c.get("report", "")
         path = rp if os.path.isabs(rp) else os.path.join(os.getcwd(), rp)
         if rp and os.path.isfile(path):
@@ -43,6 +48,7 @@ def main():
 
     total = s.get("total", len(cases))
     p, f, b, k = (s.get("passed",0), s.get("failed",0), s.get("blocked",0), s.get("skipped",0))
+    t = s.get("timeout", 0)
     run = s.get("run", len(cases))
     rate = f"{(100*p/run):.0f}%" if run else "—"
     build_link = f'<a href="{esc(build_url)}">build</a>' if build_url else ""
@@ -69,6 +75,7 @@ def main():
  <div class="card" style="color:#1a7f37">PASS<b>{p}</b></div>
  <div class="card" style="color:#cf222e">FAIL<b>{f}</b></div>
  <div class="card" style="color:#bc4c00">BLOCKED<b>{b}</b></div>
+ <div class="card" style="color:#9a6700">TIMEOUT<b>{t}</b></div>
  <div class="card" style="color:#6e7781">SKIPPED<b>{k}</b></div>
 </div>
 <table><thead><tr><th>Case</th><th>Verdict</th><th>Title</th></tr></thead>
