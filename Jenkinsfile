@@ -38,7 +38,17 @@ properties([
            description: 'Optional: comma/space-separated QA-IDs (e.g. "QA-84193, QA-949" or "84193 949"). When set, runs ONLY these cases and ignores SET.'),
     string(name: 'BRANCH', defaultValue: 'feature/jenkins-ci', description: 'magpie branch to test (must contain bin/ci-runner.sh).'),
     string(name: 'CASE_TIMEOUT', defaultValue: '1800', description: 'Per-case hard cap (seconds).'),
-    string(name: 'BATCH_SIZE', defaultValue: '5', description: 'Cases per checkpoint.')
+    string(name: 'BATCH_SIZE', defaultValue: '5', description: 'Cases per checkpoint.'),
+    // Token economy: runs bill the shared Claude weekly usage limit. Default is opus (user call
+    // 2026-08-13: keep quality first; drop to sonnet — ~5x cheaper against the limit — if the
+    // weekly-limit squeeze persists). Model is pinned either way so the node default can't
+    // silently decide.
+    choice(name: 'CLAUDE_MODEL', choices: ['opus', 'sonnet', 'haiku'],
+           description: 'Model for the per-case claude sessions (pinned so the node default cannot silently pick a different model). sonnet is ~5x cheaper against the weekly limit if runs keep hitting it.'),
+    choice(name: 'CLAUDE_EFFORT', choices: ['medium', 'high', 'low'],
+           description: 'Reasoning effort per case. medium cuts thinking-token spend; high only for targeted reruns.'),
+    booleanParam(name: 'SYNC_SET', defaultValue: true,
+           description: 'Rebuild the case list from the LIVE Xray Test Set before running (new tests ingested, removed tests dropped, edited steps refreshed). Untick to run exactly the committed batches/<set>.txt snapshot.')
   ])
 ])
 
@@ -62,7 +72,9 @@ node('QAPipelineMaster') {
       nvm(version: '20.18.0') {
         withCredentials([string(credentialsId: CLAUDE_CRED, variable: 'CLAUDE_CODE_OAUTH_TOKEN')]) {
           withEnv(["SET=${params.SET}", "TEST_CASES=${params.TEST_CASES}",
-                   "CASE_TIMEOUT=${params.CASE_TIMEOUT}", "BATCH_SIZE=${params.BATCH_SIZE}"]) {
+                   "CASE_TIMEOUT=${params.CASE_TIMEOUT}", "BATCH_SIZE=${params.BATCH_SIZE}",
+                   "CLAUDE_MODEL=${params.CLAUDE_MODEL}", "CLAUDE_EFFORT=${params.CLAUDE_EFFORT}",
+                   "SYNC_SET=${params.SYNC_SET ? '1' : '0'}"]) {
             sh 'bash bin/ci-runner.sh'
           }
         }
@@ -134,12 +146,48 @@ node('QAPipelineMaster') {
         tokenCredentialId: SLACK_TOKEN,
         message: "magpie regression — ${label}\n" +
           "    Status: ${status}\n" +
+          "    Model: ${params.CLAUDE_MODEL}@${params.CLAUDE_EFFORT}\n" +
           xrayLine +
           "    Build: <${env.BUILD_URL}|#${env.BUILD_NUMBER}>\n" +
           "    Total: ${counts.total}  |  PASS: ${counts.passed}  FAIL: ${failedDisp}  BLOCKED: ${counts.blocked}  TIMEOUT: ${counts.timeout}  SKIPPED: ${counts.skipped}"
     }
     stage('Cleanup') {
+      // Storage report + cleanup, mirroring the qa testsets pipeline (STORAGE BEFORE/AFTER blocks).
+      // deleteDir() only wipes the workspace — the space that needed MANUAL cleanup lives in the
+      // agent's HOME and grows every run:
+      //   - ~/.claude/projects/<workspace-slug>/  — `claude -p` writes a full transcript (page
+      //     snapshots included) for EVERY case session (~200/night); nothing else deletes them
+      //   - ~/.cache/ms-playwright/               — old chromium builds pile up as
+      //     @playwright/mcp@latest bumps its playwright version (ci-runner re-installs the
+      //     current one when missing, so pruning stale builds is safe)
+      echo '========== STORAGE BEFORE CLEANUP =========='
+      sh '''
+        echo "Workspace Size:";               du -sh "$WORKSPACE"                 2>/dev/null || true
+        echo "  results/:";                   du -sh "$WORKSPACE/results"         2>/dev/null || true
+        echo "  .playwright-out/:";           du -sh "$WORKSPACE/.playwright-out" 2>/dev/null || true
+        echo "Claude transcripts (HOME):";    du -sh "$HOME/.claude/projects"     2>/dev/null || true
+        echo "Playwright browsers (HOME):";   du -sh "$HOME/.cache/ms-playwright" 2>/dev/null || true
+        echo "npm cache (HOME):";             du -sh "$HOME/.npm"                 2>/dev/null || true
+        echo "Disk Usage:";                   df -h "$WORKSPACE"                             || true
+      '''
+      sh '''
+        # This job's claude session transcripts (project slug = workspace path, non-alnum -> '-').
+        SLUG="$(printf %s "$WORKSPACE" | tr -c '[:alnum:]' '-')"
+        [ -n "$SLUG" ] && rm -rf "$HOME/.claude/projects/$SLUG" || true
+        # Stale claude scratch (shell snapshots, todo files) older than a week.
+        find "$HOME/.claude/shell-snapshots" "$HOME/.claude/todos" -type f -mtime +7 -delete 2>/dev/null || true
+        # Browser builds not (re)installed in 45 days — a pruned current build just re-downloads
+        # on the next run's `playwright install chromium`.
+        find "$HOME/.cache/ms-playwright" -mindepth 1 -maxdepth 1 -type d -mtime +45 -exec rm -rf {} + 2>/dev/null || true
+      '''
       deleteDir()
+      echo '========== STORAGE AFTER CLEANUP =========='
+      sh '''
+        echo "Workspace Size After Cleanup:"; du -sh "$WORKSPACE"                 2>/dev/null || true
+        echo "Claude transcripts (HOME):";    du -sh "$HOME/.claude/projects"     2>/dev/null || true
+        echo "Playwright browsers (HOME):";   du -sh "$HOME/.cache/ms-playwright" 2>/dev/null || true
+        echo "Disk Usage:";                   df -h "$WORKSPACE"                             || true
+      '''
     }
   }
 }

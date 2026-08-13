@@ -17,6 +17,12 @@ cd "$(dirname "$0")/.."   # repo root
 ID="${1:?usage: run-case.sh <QA-ID> [--login-only]}"
 MODE="${2:-full}"
 CASE_TIMEOUT="${CASE_TIMEOUT:-900}"   # hard cap per case (seconds); stuck case is killed + marked failed
+# Pin model + effort: unpinned `claude -p` inherits the node's default model — pin it so the run
+# is deterministic. Default opus (user call 2026-08-13: quality first; switch the default to
+# sonnet — ~5x cheaper against the weekly usage limit — if runs keep exhausting the limit).
+# Override per-build via the Jenkins CLAUDE_MODEL/CLAUDE_EFFORT params.
+CLAUDE_MODEL="${CLAUDE_MODEL:-opus}"
+CLAUDE_EFFORT="${CLAUDE_EFFORT:-medium}"
 DATE="$(date +%F)"
 RUN_DIR="${RUN_DIR:-results/${DATE}}"   # honor an inherited RUN_DIR (run-batches.sh pins it) so a
                                      # midnight rollover doesn't scatter reports across date dirs.
@@ -65,13 +71,27 @@ headless run). Read the local file ${CASE_FILE} and execute it IN FULL, every st
 Still do the linked/known-bug check from knowledge-base/bug-history.md (grep ${ID}) plus the
 case's own notes, and reuse the matching skill from skills/REGISTRY.md.
 
+TOKEN ECONOMY (this run bills a shared weekly usage limit — every case session pays for what it
+reads, so read narrowly; this overrides the guide's numbered reading list):
+- Read IN FULL only: ${CASE_FILE}, docs/env.md (login), skills/_shared/spec-adherence-rules.md,
+  and the ONE matching skills/<flow>/SKILL.md.
+- GREP — never fully read — the big indexes: skills/REGISTRY.md (find the matching skill row by
+  flow/page keywords, then open just that SKILL.md), knowledge-base/bug-history.md (grep ${ID} and
+  the surface under test), knowledge-base/known-quirks.md (grep the page/feature names the case
+  touches).
+- Read skills/_shared/playwright-porting.md only if the matching skill still contains un-ported
+  Chrome-MCP steps. Skip README.md, glossary.md and app-map.md unless you are genuinely lost.
+- Screenshots still save to disk but are NOT echoed back into your context (--image-responses
+  omit). When an assertion or a render-hang call truly needs visual inspection, Read the saved
+  PNG from .playwright-out/${ID}/ — sparingly, only the shots you must judge.
+
 Save ALL screenshots/snapshots under .playwright-out/${ID}/<name> (never a bare filename).
 Write the report to ${RUN_DIR}/${ID}-report.md (steps, assertions table
 ID | Step | Expected | Actual | Status, evidence, 'Known bugs checked', 'Bugs filed' markdown-only).
 Do NOT do skill/REGISTRY maintenance now — that is deferred to harvest.sh. Be terse in chat."
 fi
 
-echo ">> ${ID} (${MODE}) — $(date)  [timeout ${CASE_TIMEOUT}s]"
+echo ">> ${ID} (${MODE}) — $(date)  [timeout ${CASE_TIMEOUT}s | model ${CLAUDE_MODEL}@${CLAUDE_EFFORT}]"
 
 # The monitor subshell can't set variables in this shell, so it flags a timeout via this marker.
 TIMEOUT_FLAG="${RUN_DIR}/.${ID}.timeout"
@@ -93,7 +113,7 @@ reap_group() {
 # puts each backgrounded job in a fresh process group whose PGID == the job PID; portable to
 # macOS + Linux (no `setsid` needed).
 set -m
-claude -p "$PROMPT" --dangerously-skip-permissions &
+claude -p "$PROMPT" --model "$CLAUDE_MODEL" --effort "$CLAUDE_EFFORT" --dangerously-skip-permissions &
 CLAUDE_PID=$!          # == this case's process-group id (PGID)
 set +m
 

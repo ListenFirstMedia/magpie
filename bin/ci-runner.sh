@@ -25,6 +25,12 @@ SET="${SET:-}"
 TEST_CASES="${TEST_CASES:-}"
 export CASE_TIMEOUT="${CASE_TIMEOUT:-1800}"
 export BATCH_SIZE="${BATCH_SIZE:-5}"
+# Pin model + effort (run-case.sh passes these to every `claude -p`) so the node's default can't
+# silently decide. Default opus (user call 2026-08-13: quality first; flip to sonnet — ~5x
+# cheaper against the weekly usage limit — if runs keep hitting the limit). Per-build override
+# via the Jenkins params.
+export CLAUDE_MODEL="${CLAUDE_MODEL:-opus}"
+export CLAUDE_EFFORT="${CLAUDE_EFFORT:-medium}"
 LFMRC_S3="${LFMRC_S3:-s3://conf.dev.lfm/qa/.lfmrc_qa}"
 
 # Choose what to run: explicit TEST_CASES (ad-hoc) OVERRIDES the SET batch.
@@ -43,6 +49,27 @@ else
   [[ -n "$SET" ]] || { echo "ERROR: set SET or TEST_CASES" >&2; exit 1; }
   if [[ -f "$SET" ]]; then BATCH_FILE="$SET"; else BATCH_FILE="batches/${SET}.txt"; fi
   [[ -f "$BATCH_FILE" ]] || { echo "ERROR: batch file not found: $BATCH_FILE" >&2; exit 1; }
+
+  # --- live Test Set sync ---
+  # The committed batches/<set>.txt + cases/*.md are snapshots: tests added to the Xray Test Set
+  # after ingestion never ran, removed ones kept running, edited steps went stale. Rebuild the
+  # member list live and ingest/refresh case files (local sections preserved) via Xray GraphQL —
+  # same XRAY_CLIENT_ID/SECRET the reporting step already uses. Non-fatal: any failure falls back
+  # to the committed snapshot so a Jira/Xray hiccup can't kill the nightly.
+  if [[ "${SYNC_SET:-1}" == "1" && "$SET" =~ ^qa-[0-9]+$ ]]; then
+    if [[ -n "${XRAY_CLIENT_ID:-}" && -n "${XRAY_CLIENT_SECRET:-}" ]]; then
+      SET_KEY="$(echo "$SET" | tr '[:lower:]' '[:upper:]')"
+      SYNCED_BATCH="$(mktemp -t magpie-synced.XXXXXX)"
+      echo ">> syncing ${SET_KEY} from Xray (SYNC_SET=0 to skip)"
+      if python3 bin/sync_set.py "$SET_KEY" "$SYNCED_BATCH"; then
+        BATCH_FILE="$SYNCED_BATCH"
+      else
+        echo ">> WARN: Test Set sync failed — falling back to committed ${BATCH_FILE} (may be stale)"
+      fi
+    else
+      echo ">> WARN: XRAY_CLIENT_ID/SECRET not in env — running committed ${BATCH_FILE} (may be stale)"
+    fi
+  fi
 fi
 
 # --- Claude auth: subscription OAuth token, never a metered API key ---
@@ -75,11 +102,23 @@ umask 077
 printf 'LFM_EMAIL=%s\nLFM_PASSWORD=%s\n' "$LFM_EMAIL" "$LFM_PASSWORD" > config/.env   # gitignored
 echo ">> wrote config/.env for ${LFM_EMAIL}"
 
-# --- Browser for the Playwright MCP ---
-# CI uses Chromium (self-contained download, NO root). The committed .mcp.json stays on the
-# `chrome` channel for local headed runs; flip this ephemeral CI checkout to chromium.
-# (`chrome` channel and `--with-deps` need sudo, which the agent can't provide.)
-sed -i 's/"chrome"/"chromium"/' .mcp.json
+# --- MCP config for CI (ephemeral checkout; the committed .mcp.json stays headed/local) ---
+# 1. chrome -> chromium: self-contained download, NO root (`chrome` channel needs sudo).
+# 2. --image-responses omit: don't echo every screenshot back into the case's context — PNGs still
+#    save to .playwright-out/ and the case Reads one from disk only when a visual judgment is
+#    needed. Saves thousands of tokens per screenshot against the weekly usage limit.
+# 3. Drop the atlassian MCP server: cases never use it headless (already ingested), and if it ever
+#    connected its tool schemas would be loaded into EVERY case session's context.
+python3 - <<'PY'
+import json
+cfg = json.load(open('.mcp.json'))
+args = cfg['mcpServers']['playwright']['args']
+args[:] = ['chromium' if a == 'chrome' else a for a in args]
+if '--image-responses' not in args:
+    args += ['--image-responses', 'omit']
+cfg['mcpServers'].pop('atlassian', None)
+json.dump(cfg, open('.mcp.json', 'w'), indent=2)
+PY
 echo ">> ensuring headless Chromium for Playwright MCP"
 npx --yes playwright install chromium || echo ">> WARN: chromium install failed; relying on a browser already cached on the node"
 
@@ -100,7 +139,7 @@ ps -eo pid=,ppid=,args= 2>/dev/null \
   | while read -r p; do kill -KILL "$p" 2>/dev/null && echo "   killed orphaned chromium pid $p" || true; done
 
 # --- run (sequential; run-batches.sh does the login smoke gate + checkpoints + resume) ---
-echo ">> running ${BATCH_FILE}  [CASE_TIMEOUT=${CASE_TIMEOUT}s BATCH_SIZE=${BATCH_SIZE}]"
+echo ">> running ${BATCH_FILE}  [CASE_TIMEOUT=${CASE_TIMEOUT}s BATCH_SIZE=${BATCH_SIZE} model=${CLAUDE_MODEL}@${CLAUDE_EFFORT}]"
 bin/run-batches.sh "$BATCH_FILE"
 
 # --- surface the run dir + summary for the pipeline to archive ---
