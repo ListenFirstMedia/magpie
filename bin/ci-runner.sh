@@ -102,23 +102,12 @@ umask 077
 printf 'LFM_EMAIL=%s\nLFM_PASSWORD=%s\n' "$LFM_EMAIL" "$LFM_PASSWORD" > config/.env   # gitignored
 echo ">> wrote config/.env for ${LFM_EMAIL}"
 
-# --- MCP config for CI (ephemeral checkout; the committed .mcp.json stays headed/local) ---
-# 1. chrome -> chromium: self-contained download, NO root (`chrome` channel needs sudo).
-# 2. --image-responses omit: don't echo every screenshot back into the case's context — PNGs still
-#    save to .playwright-out/ and the case Reads one from disk only when a visual judgment is
-#    needed. Saves thousands of tokens per screenshot against the weekly usage limit.
-# 3. Drop the atlassian MCP server: cases never use it headless (already ingested), and if it ever
-#    connected its tool schemas would be loaded into EVERY case session's context.
-python3 - <<'PY'
-import json
-cfg = json.load(open('.mcp.json'))
-args = cfg['mcpServers']['playwright']['args']
-args[:] = ['chromium' if a == 'chrome' else a for a in args]
-if '--image-responses' not in args:
-    args += ['--image-responses', 'omit']
-cfg['mcpServers'].pop('atlassian', None)
-json.dump(cfg, open('.mcp.json', 'w'), indent=2)
-PY
+# --- MCP config for CI ---
+# run-case.sh now generates a STRICT playwright-only headless config per run and passes it with
+# --strict-mcp-config: the committed .mcp.json is never loaded, so atlassian tool schemas can't
+# land in a case's context and --image-responses omit is always on. The only CI-specific choice
+# left is the browser: chromium (self-contained download, NO root — `chrome` channel needs sudo).
+export PLAYWRIGHT_BROWSER=chromium
 echo ">> ensuring headless Chromium for Playwright MCP"
 npx --yes playwright install chromium || echo ">> WARN: chromium install failed; relying on a browser already cached on the node"
 
@@ -139,7 +128,7 @@ ps -eo pid=,ppid=,args= 2>/dev/null \
   | while read -r p; do kill -KILL "$p" 2>/dev/null && echo "   killed orphaned chromium pid $p" || true; done
 
 # --- run (sequential; run-batches.sh does the login smoke gate + checkpoints + resume) ---
-echo ">> running ${BATCH_FILE}  [CASE_TIMEOUT=${CASE_TIMEOUT}s BATCH_SIZE=${BATCH_SIZE} model=${CLAUDE_MODEL}@${CLAUDE_EFFORT}]"
+echo ">> running ${BATCH_FILE}  [CASE_TIMEOUT=${CASE_TIMEOUT}s BATCH_SIZE=${BATCH_SIZE} model=${CLAUDE_MODEL}@${CLAUDE_EFFORT} max_turns=${MAX_TURNS:-60}]"
 bin/run-batches.sh "$BATCH_FILE"
 
 # --- surface the run dir + summary for the pipeline to archive ---

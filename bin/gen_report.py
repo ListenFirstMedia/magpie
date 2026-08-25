@@ -27,7 +27,22 @@ def main():
     cases = s.get("cases", [])
     base = os.path.dirname(summary_path)
 
+    # Per-case usage ledger, written by run-case.sh from the `claude -p --output-format json`
+    # envelope. Duplicate ids are retries — last row wins, matching the results ledger.
+    usage = {}
+    upath = os.path.join(base, "usage.tsv")
+    if os.path.isfile(upath):
+        for ln in open(upath).read().splitlines()[1:]:
+            parts = ln.split("\t")
+            if parts and parts[0]:
+                usage[parts[0]] = parts
+
+    def unum(parts, i):
+        try: return float(parts[i])
+        except (ValueError, IndexError): return 0.0
+
     rows, blocks = [], []
+    cost_total = 0.0
     for c in cases:
         cid, status = c.get("id", "?"), c.get("status", "UNKNOWN")
         color = BADGE.get(status, "#6e7781")
@@ -42,7 +57,16 @@ def main():
                 if ln.startswith("# "):
                     title = ln[2:].strip(); break
         badge = f'<span style="background:{color};color:#fff;padding:2px 8px;border-radius:10px;font-size:12px">{esc(status)}</span>'
-        rows.append(f'<tr><td><a href="{jira}">{esc(cid)}</a></td><td>{badge}</td><td>{esc(title)}</td></tr>')
+        ucell = ccell = ""
+        u = usage.get(cid)
+        if u:
+            tok_in = unum(u, 2) + unum(u, 3) + unum(u, 4)   # input + cache-read + cache-write
+            cost = unum(u, 6)
+            cost_total += cost
+            ucell = f"{int(unum(u, 1))} turns · {int(tok_in):,} in / {int(unum(u, 5)):,} out"
+            ccell = f"${cost:.2f}"
+        rows.append(f'<tr><td><a href="{jira}">{esc(cid)}</a></td><td>{badge}</td><td>{esc(title)}</td>'
+                    f'<td>{ucell}</td><td>{ccell}</td></tr>')
         blocks.append(f'<details><summary>{esc(cid)} — {esc(status)} — {esc(title)}</summary>'
                       f'<pre>{esc(body)}</pre></details>')
 
@@ -52,6 +76,7 @@ def main():
     run = s.get("run", len(cases))
     rate = f"{(100*p/run):.0f}%" if run else "—"
     build_link = f'<a href="{esc(build_url)}">build</a>' if build_url else ""
+    cost_note = f" · est. cost ${cost_total:.2f}" if cost_total else ""
     doc = f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>magpie report — {esc(label)} {esc(s.get('date',''))}</title>
@@ -69,7 +94,7 @@ def main():
  pre{{white-space:pre-wrap;word-wrap:break-word;background:#f6f8fa;padding:12px;border-radius:6px;overflow:auto}}
 </style></head><body>
 <h1>magpie regression — {esc(label)}</h1>
-<div class="meta">{esc(s.get('date',''))} · {build_link} · pass rate {rate}</div>
+<div class="meta">{esc(s.get('date',''))} · {build_link} · pass rate {rate}{cost_note}</div>
 <div class="cards">
  <div class="card">Total<b>{total}</b></div>
  <div class="card" style="color:#1a7f37">PASS<b>{p}</b></div>
@@ -78,7 +103,7 @@ def main():
  <div class="card" style="color:#9a6700">TIMEOUT<b>{t}</b></div>
  <div class="card" style="color:#6e7781">SKIPPED<b>{k}</b></div>
 </div>
-<table><thead><tr><th>Case</th><th>Verdict</th><th>Title</th></tr></thead>
+<table><thead><tr><th>Case</th><th>Verdict</th><th>Title</th><th>Usage</th><th>Est. cost</th></tr></thead>
 <tbody>{''.join(rows)}</tbody></table>
 <h2>Reports</h2>
 {''.join(blocks)}

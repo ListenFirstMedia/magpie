@@ -4,8 +4,10 @@
 # Usage:   bin/run-case.sh QA-84193
 #          bin/run-case.sh QA-84193 --login-only   # just prove headless SSO, run no case
 #
-# Prereqs: .mcp.json has the playwright server with --headless; config/.env holds
-#          LFM_EMAIL / LFM_PASSWORD; the case exists at cases/<ID>.md.
+# Prereqs: config/.env holds LFM_EMAIL / LFM_PASSWORD; the case exists at cases/<ID>.md.
+#          MCP: a strict playwright-only headless config is generated per run and passed with
+#          --strict-mcp-config, so the committed .mcp.json (headed/local, may list atlassian)
+#          is never loaded into a case's context.
 #
 # The full-case prompt is sourced from docs/PROMPT.md (the single-source-of-truth execution guide)
 # plus a small UNATTENDED/HEADLESS override, so batch/single runs follow the SAME spec as an
@@ -23,11 +25,39 @@ CASE_TIMEOUT="${CASE_TIMEOUT:-900}"   # hard cap per case (seconds); stuck case 
 # Override per-build via the Jenkins CLAUDE_MODEL/CLAUDE_EFFORT params.
 CLAUDE_MODEL="${CLAUDE_MODEL:-opus}"
 CLAUDE_EFFORT="${CLAUDE_EFFORT:-medium}"
+# Hard TURN cap alongside the wall-clock cap: a case stuck in a retry loop burns tokens fast for
+# the full CASE_TIMEOUT before the monitor kills it — by turn count it dies much cheaper. A killed
+# case writes no report -> scored UNKNOWN -> picked up by run-batches' retry sweep, same as a
+# timeout. Calibrate from usage.tsv (passing cases' num_turns) before lowering.
+MAX_TURNS="${MAX_TURNS:-60}"
 DATE="$(date +%F)"
 RUN_DIR="${RUN_DIR:-results/${DATE}}"   # honor an inherited RUN_DIR (run-batches.sh pins it) so a
                                      # midnight rollover doesn't scatter reports across date dirs.
 CASE_FILE="cases/${ID}.md"
 mkdir -p "$RUN_DIR"
+
+# Strict MCP config: exactly ONE server (playwright, headless) loads into the case's context,
+# regardless of what the committed .mcp.json says — if atlassian ever connected, its ~80 tool
+# schemas would bill EVERY case session. --image-responses omit: screenshots still save to
+# .playwright-out/ but are not echoed back into context (a case Reads a PNG only when it must
+# judge one visually).
+PLAYWRIGHT_BROWSER="${PLAYWRIGHT_BROWSER:-chrome}"   # ci-runner exports chromium (no-root download)
+MCP_CONFIG="${RUN_DIR}/.mcp-headless.json"
+cat > "$MCP_CONFIG" <<EOF
+{
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": ["@playwright/mcp@latest",
+               "--browser", "${PLAYWRIGHT_BROWSER}",
+               "--isolated", "--headless", "--save-session",
+               "--output-dir", "./.playwright-out",
+               "--image-responses", "omit",
+               "--console-level", "error"]
+    }
+  }
+}
+EOF
 
 if [[ "$MODE" != "--login-only" && ! -f "$CASE_FILE" ]]; then
   echo "ERROR: case file not found: $CASE_FILE" >&2
@@ -57,6 +87,17 @@ else
     exit 1
   fi
 
+  # Pre-grep the big indexes SHELL-SIDE (free) and inject the hits into the prompt, instead of
+  # having the agent grep them itself — each agent grep is a whole turn that re-bills the entire
+  # conversation as input, and it risks the model "just reading" a 100KB+ index. Bounded so a
+  # chatty index can't bloat the prompt. -w not \b: portable across BSD/GNU grep, and the hyphen
+  # in QA-#### makes -w behave as a proper ID boundary.
+  SKILL_MATCHES="$(grep -iw "${ID}" skills/REGISTRY.md 2>/dev/null \
+                   | grep -oE '\([A-Za-z0-9_-]+/SKILL\.md\)' | tr -d '()' \
+                   | sort -u | sed 's|^|skills/|' | head -3 || true)"
+  BUG_MATCHES="$(grep -iw -A 8 -m 3 "${ID}" knowledge-base/bug-history.md 2>/dev/null | head -c 3500 || true)"
+  QUIRK_MATCHES="$(grep -iw -B 1 -A 8 -m 2 "${ID}" knowledge-base/known-quirks.md 2>/dev/null | head -c 2000 || true)"
+
   PROMPT="${GUIDE}
 
 ═══ THIS RUN — UNATTENDED & HEADLESS (overrides the interactive EXECUTION MODE above) ═══
@@ -68,17 +109,19 @@ and finish. Never wait for input.
 
 The case is ALREADY INGESTED — do NOT re-fetch from Jira (the Atlassian MCP is absent in this
 headless run). Read the local file ${CASE_FILE} and execute it IN FULL, every step in order.
-Still do the linked/known-bug check from knowledge-base/bug-history.md (grep ${ID}) plus the
-case's own notes, and reuse the matching skill from skills/REGISTRY.md.
+The linked/known-bug check and the skill lookup are ALREADY DONE — their grep results are in the
+PRE-FETCHED CONTEXT section below; combine them with the case's own notes.
 
 TOKEN ECONOMY (this run bills a shared weekly usage limit — every case session pays for what it
 reads, so read narrowly; this overrides the guide's numbered reading list):
 - Read IN FULL only: ${CASE_FILE}, docs/env.md (login), skills/_shared/spec-adherence-rules.md,
-  and the ONE matching skills/<flow>/SKILL.md.
-- GREP — never fully read — the big indexes: skills/REGISTRY.md (find the matching skill row by
-  flow/page keywords, then open just that SKILL.md), knowledge-base/bug-history.md (grep ${ID} and
-  the surface under test), knowledge-base/known-quirks.md (grep the page/feature names the case
-  touches).
+  and the ONE matching skills/<flow>/SKILL.md (pre-resolved below when found).
+- The big indexes were ALREADY GREPPED for ${ID} shell-side — see PRE-FETCHED CONTEXT. Do NOT
+  re-grep skills/REGISTRY.md, knowledge-base/bug-history.md or knowledge-base/known-quirks.md
+  for ${ID}, and NEVER read any of them in full. Only two narrow follow-up greps are allowed:
+  if no skill was pre-resolved, grep skills/REGISTRY.md ONCE by flow/page keyword and open just
+  that SKILL.md; and if an assertion result looks like accepted-product behavior, grep
+  knowledge-base/known-quirks.md ONCE by the page/feature name.
 - Read skills/_shared/playwright-porting.md only if the matching skill still contains un-ported
   Chrome-MCP steps. Skip README.md, glossary.md and app-map.md unless you are genuinely lost.
 - Screenshots still save to disk but are NOT echoed back into your context (--image-responses
@@ -88,7 +131,17 @@ reads, so read narrowly; this overrides the guide's numbered reading list):
 Save ALL screenshots/snapshots under .playwright-out/${ID}/<name> (never a bare filename).
 Write the report to ${RUN_DIR}/${ID}-report.md (steps, assertions table
 ID | Step | Expected | Actual | Status, evidence, 'Known bugs checked', 'Bugs filed' markdown-only).
-Do NOT do skill/REGISTRY maintenance now — that is deferred to harvest.sh. Be terse in chat."
+Do NOT do skill/REGISTRY maintenance now — that is deferred to harvest.sh. Be terse in chat.
+
+═══ PRE-FETCHED CONTEXT (grepped shell-side — do not repeat these greps) ═══
+Matching skill file(s) from skills/REGISTRY.md:
+${SKILL_MATCHES:-none found — grep skills/REGISTRY.md ONCE by flow/page keyword, then open only that SKILL.md}
+
+knowledge-base/bug-history.md matches for ${ID}:
+${BUG_MATCHES:-none}
+
+knowledge-base/known-quirks.md matches for ${ID}:
+${QUIRK_MATCHES:-none}"
 fi
 
 echo ">> ${ID} (${MODE}) — $(date)  [timeout ${CASE_TIMEOUT}s | model ${CLAUDE_MODEL}@${CLAUDE_EFFORT}]"
@@ -112,8 +165,22 @@ reap_group() {
 # + headless chromium) without touching a sibling case on the same node. `set -m` (job control)
 # puts each backgrounded job in a fresh process group whose PGID == the job PID; portable to
 # macOS + Linux (no `setsid` needed).
+USAGE_JSON="${RUN_DIR}/${ID}-usage.json"
 set -m
-claude -p "$PROMPT" --model "$CLAUDE_MODEL" --effort "$CLAUDE_EFFORT" --dangerously-skip-permissions &
+if [[ "$MODE" == "--login-only" ]]; then
+  # Plain text output — the smoke gate greps the tee'd console for 'LOGIN OK'. A login needs only
+  # a handful of turns; the tight cap kills a wedged Cognito redirect loop cheaply.
+  claude -p "$PROMPT" --model "$CLAUDE_MODEL" --effort "$CLAUDE_EFFORT" \
+    --mcp-config "$MCP_CONFIG" --strict-mcp-config --max-turns 15 \
+    --dangerously-skip-permissions &
+else
+  # JSON result envelope -> ${ID}-usage.json: exact turns/tokens/cost per case. The model's final
+  # text lands in the envelope's "result" field; it is echoed back to the console below so
+  # run-batches' usage-limit grep still sees it.
+  claude -p "$PROMPT" --model "$CLAUDE_MODEL" --effort "$CLAUDE_EFFORT" \
+    --mcp-config "$MCP_CONFIG" --strict-mcp-config --max-turns "$MAX_TURNS" \
+    --output-format json --dangerously-skip-permissions > "$USAGE_JSON" &
+fi
 CLAUDE_PID=$!          # == this case's process-group id (PGID)
 set +m
 
@@ -158,6 +225,41 @@ kill "$MONITOR_PID" 2>/dev/null || true   # stop the monitor; its worst-case orp
 # Reap the case's MCP server + any orphaned chromium, scoped to THIS case's process group
 # (never a machine-wide pkill — safe when sibling cases share the node under parallel runs).
 reap_group "$CLAUDE_PID"
+
+# Surface the JSON envelope: append a run-level usage ledger row (usage.tsv — gen_report.py adds
+# it as columns), log a one-line usage summary, and echo the model's final text so run-batches'
+# limit-signal grep (tail of the tee'd log) still works with --output-format json.
+if [[ "$MODE" != "--login-only" && -s "$USAGE_JSON" ]]; then
+  python3 - "$ID" "$USAGE_JSON" "$RUN_DIR" <<'PY' || echo ">> WARN: could not parse usage json for ${ID}"
+import json, os, sys
+cid, path, run_dir = sys.argv[1], sys.argv[2], sys.argv[3]
+try:
+    d = json.load(open(path))
+except Exception:
+    # Partial/empty file (case killed mid-write, or a non-JSON CLI error) — show the raw tail so
+    # any error text (incl. usage-limit messages) still reaches the console log for the grep.
+    sys.stdout.write(open(path, errors="ignore").read()[-2000:] + "\n")
+    sys.exit(0)
+u = d.get("usage") or {}
+res = (d.get("result") or "").strip()
+row = [cid, d.get("num_turns"), u.get("input_tokens"), u.get("cache_read_input_tokens"),
+       u.get("cache_creation_input_tokens"), u.get("output_tokens"),
+       round(d.get("total_cost_usd") or 0, 4), d.get("duration_ms"), d.get("subtype")]
+ledger = os.path.join(run_dir, "usage.tsv")
+new = not os.path.exists(ledger)
+with open(ledger, "a") as f:
+    if new:
+        f.write("id\tturns\tinput\tcache_read\tcache_creation\toutput\tcost_usd\tduration_ms\tsubtype\n")
+    f.write("\t".join("" if x is None else str(x) for x in row) + "\n")
+print(f">> usage: {d.get('num_turns')} turns | in {u.get('input_tokens', 0)} "
+      f"(+{u.get('cache_read_input_tokens', 0)} cache-read, +{u.get('cache_creation_input_tokens', 0)} cache-write) "
+      f"| out {u.get('output_tokens', 0)} | est ${(d.get('total_cost_usd') or 0):.2f}")
+if d.get("is_error") or d.get("subtype") not in (None, "success"):
+    print(f"!! claude ended with subtype={d.get('subtype')}: {res[:400]}")
+elif res:
+    print(res[:400])
+PY
+fi
 
 # A reaped case writes no report, and a missing report is otherwise scored BLOCKED — which reads as
 # an app/environment block when in fact the case never reached a verdict. Leave an explicit TIMEOUT
