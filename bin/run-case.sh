@@ -28,8 +28,11 @@ CLAUDE_EFFORT="${CLAUDE_EFFORT:-medium}"
 # Hard TURN cap alongside the wall-clock cap: a case stuck in a retry loop burns tokens fast for
 # the full CASE_TIMEOUT before the monitor kills it — by turn count it dies much cheaper. A killed
 # case writes no report -> scored UNKNOWN -> picked up by run-batches' retry sweep, same as a
-# timeout. Calibrate from usage.tsv (passing cases' num_turns) before lowering.
-MAX_TURNS="${MAX_TURNS:-60}"
+# timeout. 150 is a LOOP-BREAKER, not a budget: build #76 (2026-08-25) showed normal browser cases
+# complete in 26-64 turns, and its 60-cap killed 33/62 cases mid-flight AFTER they'd each already
+# spent $1.6-2.5 — a too-tight cap costs the tokens AND loses the verdict. CASE_TIMEOUT stays the
+# real cost bound; only lower this if usage.tsv shows loops that the wall clock isn't catching.
+MAX_TURNS="${MAX_TURNS:-150}"
 DATE="$(date +%F)"
 RUN_DIR="${RUN_DIR:-results/${DATE}}"   # honor an inherited RUN_DIR (run-batches.sh pins it) so a
                                      # midnight rollover doesn't scatter reports across date dirs.
