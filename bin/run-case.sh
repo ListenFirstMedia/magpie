@@ -20,10 +20,11 @@ ID="${1:?usage: run-case.sh <QA-ID> [--login-only]}"
 MODE="${2:-full}"
 CASE_TIMEOUT="${CASE_TIMEOUT:-900}"   # hard cap per case (seconds); stuck case is killed + marked failed
 # Pin model + effort: unpinned `claude -p` inherits the node's default model — pin it so the run
-# is deterministic. Default opus (user call 2026-08-13: quality first; switch the default to
-# sonnet — ~5x cheaper against the weekly usage limit — if runs keep exhausting the limit).
-# Override per-build via the Jenkins CLAUDE_MODEL/CLAUDE_EFFORT params.
-CLAUDE_MODEL="${CLAUDE_MODEL:-opus}"
+# is deterministic. Default sonnet (user call 2026-08-26: opus burned ~10% of the weekly Max-20x
+# limit per set; sonnet 5 is near-opus on this scaffolded workload at ~1.7x fewer limit-tokens —
+# the old "~5x cheaper" note predates Opus 5 pricing). Override per-build via the Jenkins
+# CLAUDE_MODEL/CLAUDE_EFFORT params — use opus for targeted quality reruns.
+CLAUDE_MODEL="${CLAUDE_MODEL:-sonnet}"
 CLAUDE_EFFORT="${CLAUDE_EFFORT:-medium}"
 # Hard TURN cap alongside the wall-clock cap: a case stuck in a retry loop burns tokens fast for
 # the full CASE_TIMEOUT before the monitor kills it — by turn count it dies much cheaper. A killed

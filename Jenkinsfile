@@ -39,12 +39,13 @@ properties([
     string(name: 'BRANCH', defaultValue: 'feature/jenkins-ci', description: 'magpie branch to test (must contain bin/ci-runner.sh).'),
     string(name: 'CASE_TIMEOUT', defaultValue: '1800', description: 'Per-case hard cap (seconds).'),
     string(name: 'BATCH_SIZE', defaultValue: '5', description: 'Cases per checkpoint.'),
-    // Token economy: runs bill the shared Claude weekly usage limit. Default is opus (user call
-    // 2026-08-13: keep quality first; drop to sonnet — ~5x cheaper against the limit — if the
-    // weekly-limit squeeze persists). Model is pinned either way so the node default can't
-    // silently decide.
-    choice(name: 'CLAUDE_MODEL', choices: ['opus', 'sonnet', 'haiku'],
-           description: 'Model for the per-case claude sessions (pinned so the node default cannot silently pick a different model). sonnet is ~5x cheaper against the weekly limit if runs keep hitting it.'),
+    // Token economy: runs bill the shared Claude weekly usage limit. Default is sonnet (user call
+    // 2026-08-26: an opus set burns ~10% of the weekly Max-20x limit — 3 sets/night at opus
+    // exhausts the week by Tuesday). Sonnet 5 is near-opus on scaffolded agentic work and
+    // ~1.7x cheaper per token (the old "~5x" ratio predates Opus 5 pricing). Pick opus here for
+    // targeted quality reruns. Model is pinned either way so the node default can't silently decide.
+    choice(name: 'CLAUDE_MODEL', choices: ['sonnet', 'opus', 'haiku'],
+           description: 'Model for the per-case claude sessions (pinned so the node default cannot silently pick a different model). Default sonnet (~1.7x cheaper vs opus against the weekly limit); pick opus for targeted quality reruns.'),
     choice(name: 'CLAUDE_EFFORT', choices: ['medium', 'high', 'low'],
            description: 'Reasoning effort per case. medium cuts thinking-token spend; high only for targeted reruns.'),
     booleanParam(name: 'SYNC_SET', defaultValue: true,

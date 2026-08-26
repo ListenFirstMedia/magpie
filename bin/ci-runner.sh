@@ -26,10 +26,11 @@ TEST_CASES="${TEST_CASES:-}"
 export CASE_TIMEOUT="${CASE_TIMEOUT:-1800}"
 export BATCH_SIZE="${BATCH_SIZE:-5}"
 # Pin model + effort (run-case.sh passes these to every `claude -p`) so the node's default can't
-# silently decide. Default opus (user call 2026-08-13: quality first; flip to sonnet — ~5x
-# cheaper against the weekly usage limit — if runs keep hitting the limit). Per-build override
-# via the Jenkins params.
-export CLAUDE_MODEL="${CLAUDE_MODEL:-opus}"
+# silently decide. Default sonnet (user call 2026-08-26: an opus set costs ~10% of the weekly
+# Max-20x limit — unsustainable at 3 sets/night; sonnet 5 is near-opus on this scaffolded
+# workload at ~1.7x fewer limit-tokens). Per-build override via the Jenkins params — pick opus
+# for targeted quality reruns.
+export CLAUDE_MODEL="${CLAUDE_MODEL:-sonnet}"
 export CLAUDE_EFFORT="${CLAUDE_EFFORT:-medium}"
 LFMRC_S3="${LFMRC_S3:-s3://conf.dev.lfm/qa/.lfmrc_qa}"
 
