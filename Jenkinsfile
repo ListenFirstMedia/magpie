@@ -30,8 +30,8 @@ properties([
   buildDiscarder(logRotator(numToKeepStr: '10', daysToKeepStr: '7',
                             artifactNumToKeepStr: '15', artifactDaysToKeepStr: '30')),
   // Nightly. Adjust time/TZ as needed (Jenkins honors a leading TZ= line).
- triggers { parameterizedCron(''' TZ=IST 30 12 * * 0-4 %SET=qa-22298 30 12 * * 0-4 %SET=qa-4325 30 15 * * 0-4 %SET=qa-22296 ''') },
-  parameters([
+pipelineTriggers([ parameterizedCron(''' TZ=IST 30 12 * * 0-4 %SET=qa-22298 30 12 * * 0-4 %SET=qa-4325 30 15 * * 0-4 %SET=qa-22296 ''') ]),
+parameters([
     choice(name: 'SET', choices: ['qa-22298', 'qa-4325', 'qa-22296', 'qa-4204', 'ci-smoke'],
            description: 'Which batch set to run (file under batches/). ci-smoke = 2 deterministic cases to validate the pipeline cheaply.'),
     string(name: 'TEST_CASES', defaultValue: '',
