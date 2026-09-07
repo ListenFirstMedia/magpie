@@ -35,7 +35,7 @@ properties([
   TZ=IST 
   30 12 * * 0-4 %SET=qa-22298 
   30 12 * * 0-4 %SET=qa-4325 
-  20 04 * * 0-4 %SET=qa-22296 
+  27 16 * * 0-4 %SET=qa-22296 
   ''') ]),
   parameters([
     choice(name: 'SET', choices: ['qa-22298', 'qa-4325', 'qa-22296', 'qa-4204', 'ci-smoke'],
