@@ -27,10 +27,16 @@ properties([
   // + a kept HTML report; unbounded, that filled the controller disk and killed running builds
   // with `No space left on device` (the CPS VM can't serialize its state). Keep the last 15
   // builds / 30 days of artifacts; keep build records a bit longer for history.
-  buildDiscarder(logRotator(numToKeepStr: '30', daysToKeepStr: '60',
+  buildDiscarder(logRotator(numToKeepStr: '10', daysToKeepStr: '7',
                             artifactNumToKeepStr: '15', artifactDaysToKeepStr: '30')),
   // Nightly. Adjust time/TZ as needed (Jenkins honors a leading TZ= line).
-  pipelineTriggers([cron('TZ=America/New_York\nH 2 * * *')]),
+  triggers {
+      parameterizedCron('''
+          30 12 * * 0-4 %SET=qa-22298
+          30 12 * * 0-4 %SET=qa-4325
+          30 12 * * 0-4 %SET=qa-22296
+      ''')
+  },
   parameters([
     choice(name: 'SET', choices: ['qa-22298', 'qa-4325', 'qa-22296', 'qa-4204', 'ci-smoke'],
            description: 'Which batch set to run (file under batches/). ci-smoke = 2 deterministic cases to validate the pipeline cheaply.'),
