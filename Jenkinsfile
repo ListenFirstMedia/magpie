@@ -34,7 +34,7 @@ properties([
       parameterizedCron('''
           30 12 * * 0-4 %SET=qa-22298
           30 12 * * 0-4 %SET=qa-4325
-          05 04 * * 0-4 %SET=qa-22296
+          08 04 * * 0-4 %SET=qa-22296
       ''')
   },
   parameters([
