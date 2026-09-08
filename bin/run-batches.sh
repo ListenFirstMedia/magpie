@@ -37,10 +37,18 @@ CASE_TIMEOUT="${CASE_TIMEOUT:-900}"       # per-case hard cap for the main pass 
 # CASE_TIMEOUT=1800 (ci-runner.sh), so a swept case gets LESS wall clock than the attempt that
 # already timed out — the sweep is there to recover crashes and flaky-slow cases cheaply, not to
 # give genuinely long cases the time they need. Raise RETRY_CASE_TIMEOUT if you want the latter.
+#
+# 2026-09-08 (after build #102, the first sonnet-default run): the sweep used to inherit the SAME
+# turn cap the case had just exhausted, so a turn-capped case was certain to exhaust it again —
+# paying the full case cost a second time for nothing. Sonnet needs ~2-3x opus's turns for the same
+# verification (12 of 64 cases hit the 150-turn cap on #102; a turn-killed case writes no report and
+# scores UNKNOWN), so the sweep now gets +100 turns. Wall clock and case count are UNCHANGED: the
+# sweep is still bounded at RETRY_MAX x RETRY_CASE_TIMEOUT.
 RETRY_NO_VERDICT="${RETRY_NO_VERDICT:-1}"          # 0 disables the sweep entirely
 RETRY_ROUNDS="${RETRY_ROUNDS:-1}"                  # how many sweeps to attempt
 RETRY_MAX="${RETRY_MAX:-2}"                        # max cases retried per round (0 = unlimited)
 RETRY_CASE_TIMEOUT="${RETRY_CASE_TIMEOUT:-900}"    # per-case cap during a sweep
+RETRY_MAX_TURNS="${RETRY_MAX_TURNS:-0}"            # turn cap during a sweep (0 = +100 over the main pass)
 DATE="$(date +%F)"
 RUN_DIR="results/${DATE}"
 export RUN_DIR DATE   # pin the run dir and share it with run-case.sh so a midnight date rollover
@@ -189,6 +197,11 @@ done
 # The ledger is de-duped by case id with LAST verdict winning, so simply appending the retry's
 # verdict supersedes the TIMEOUT/UNKNOWN one — no bookkeeping needed.
 if [[ "$RETRY_NO_VERDICT" == "1" ]]; then
+  # Give the sweep more turns than the attempt that just ran out of them. Exported (not passed
+  # per-case) because the sweep is the last thing this script does, so nothing else sees it — and
+  # a turn cap costs nothing unless a case actually uses it.
+  [[ "$RETRY_MAX_TURNS" == "0" ]] && RETRY_MAX_TURNS=$(( ${MAX_TURNS:-150} + 100 ))
+  export MAX_TURNS="$RETRY_MAX_TURNS"
   for ((round=1; round<=RETRY_ROUNDS; round++)); do
     pending=()
     for id in "${CASES[@]}"; do
@@ -206,7 +219,7 @@ if [[ "$RETRY_NO_VERDICT" == "1" ]]; then
       deferred=("${pending[@]:$RETRY_MAX}")
       pending=("${pending[@]:0:$RETRY_MAX}")
     fi
-    echo "== retry sweep ${round}/${RETRY_ROUNDS}: retrying ${#pending[@]} case(s) at CASE_TIMEOUT=${RETRY_CASE_TIMEOUT}s =="
+    echo "== retry sweep ${round}/${RETRY_ROUNDS}: retrying ${#pending[@]} case(s) at CASE_TIMEOUT=${RETRY_CASE_TIMEOUT}s MAX_TURNS=${RETRY_MAX_TURNS} =="
     printf '   %s\n' "${pending[*]}"
     if [[ ${#deferred[@]} -gt 0 ]]; then
       echo "   !! RETRY_MAX=${RETRY_MAX} reached — ${#deferred[@]} case(s) NOT retried, keeping their no-verdict status:"
