@@ -34,8 +34,8 @@ properties([
     parameterizedCron(''' 
   TZ=IST 
   30 12 * * 0-4 %SET=qa-22298 
-  30 12 * * 0-4 %SET=qa-4325 
-  30 12 * * 0-4 %SET=qa-22296 
+  35 12 * * 0-4 %SET=qa-4325 
+  45 12 * * 0-4 %SET=qa-22296 
   ''') ]),
   parameters([
     choice(name: 'SET', choices: ['qa-22298', 'qa-4325', 'qa-22296', 'qa-4204', 'ci-smoke'],
