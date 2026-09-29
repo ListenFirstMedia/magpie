@@ -30,7 +30,7 @@ export BATCH_SIZE="${BATCH_SIZE:-5}"
 # Max-20x limit — unsustainable at 3 sets/night; sonnet 5 is near-opus on this scaffolded
 # workload at ~1.7x fewer limit-tokens). Per-build override via the Jenkins params — pick opus
 # for targeted quality reruns.
-export CLAUDE_MODEL="${CLAUDE_MODEL:-sonnet}"
+export CLAUDE_MODEL="${CLAUDE_MODEL:-claude-sonnet-5-5}"
 export CLAUDE_EFFORT="${CLAUDE_EFFORT:-medium}"
 LFMRC_S3="${LFMRC_S3:-s3://conf.dev.lfm/qa/.lfmrc_qa}"
 

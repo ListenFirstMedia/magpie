@@ -24,7 +24,7 @@ CASE_TIMEOUT="${CASE_TIMEOUT:-900}"   # hard cap per case (seconds); stuck case 
 # limit per set; sonnet 5 is near-opus on this scaffolded workload at ~1.7x fewer limit-tokens —
 # the old "~5x cheaper" note predates Opus 5 pricing). Override per-build via the Jenkins
 # CLAUDE_MODEL/CLAUDE_EFFORT params — use opus for targeted quality reruns.
-CLAUDE_MODEL="${CLAUDE_MODEL:-sonnet}"
+CLAUDE_MODEL="${CLAUDE_MODEL:-claude-sonnet-5-5}"
 CLAUDE_EFFORT="${CLAUDE_EFFORT:-medium}"
 # Hard TURN cap alongside the wall-clock cap: a case stuck in a retry loop burns tokens fast for
 # the full CASE_TIMEOUT before the monitor kills it — by turn count it dies much cheaper. A killed
@@ -230,9 +230,9 @@ kill "$MONITOR_PID" 2>/dev/null || true   # stop the monitor; its worst-case orp
 # (never a machine-wide pkill — safe when sibling cases share the node under parallel runs).
 reap_group "$CLAUDE_PID"
 
-# Surface the JSON envelope: append a run-level usage ledger row (usage.tsv — gen_report.py adds
-# it as columns), log a one-line usage summary, and echo the model's final text so run-batches'
-# limit-signal grep (tail of the tee'd log) still works with --output-format json.
+# Surface the JSON envelope: append a run-level usage ledger row (usage.tsv), log a one-line
+# usage summary, and echo the model's final text so run-batches' limit-signal grep (tail of the
+# tee'd log) still works with --output-format json.
 if [[ "$MODE" != "--login-only" && -s "$USAGE_JSON" ]]; then
   python3 - "$ID" "$USAGE_JSON" "$RUN_DIR" <<'PY' || echo ">> WARN: could not parse usage json for ${ID}"
 import json, os, sys

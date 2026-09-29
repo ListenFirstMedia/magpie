@@ -50,7 +50,7 @@ properties([
     // exhausts the week by Tuesday). Sonnet 5 is near-opus on scaffolded agentic work and
     // ~1.7x cheaper per token (the old "~5x" ratio predates Opus 5 pricing). Pick opus here for
     // targeted quality reruns. Model is pinned either way so the node default can't silently decide.
-    choice(name: 'CLAUDE_MODEL', choices: ['sonnet', 'opus', 'haiku'],
+    choice(name: 'CLAUDE_MODEL', choices: ['claude-sonnet-5-5', 'opus', 'haiku'],
            description: 'Model for the per-case claude sessions (pinned so the node default cannot silently pick a different model). Default sonnet (~1.7x cheaper vs opus against the weekly limit); pick opus for targeted quality reruns.'),
     choice(name: 'CLAUDE_EFFORT', choices: ['medium', 'high', 'low'],
            description: 'Reasoning effort per case. medium cuts thinking-token spend; high only for targeted reruns.'),
@@ -96,8 +96,6 @@ node('QAPipelineMaster') {
                   blocked: "${s.blocked}", timeout: "${s.timeout ?: 0}", skipped: "${s.skipped ?: 0}",
                   unknown: "${s.unknown ?: 0}"]
         failedIds = s.cases.findAll { it.status == 'FAIL' }.collect { it.id }
-        // Build the browsable HTML report from summary.json + the per-case reports.
-        sh "python3 bin/gen_report.py '${runDir}/summary.json' '${runDir}/report.html' '${label}' '${env.BUILD_URL}'"
       }
       echo "Run dir: ${runDir} | ${counts} | failed: ${failedIds}"
     }
@@ -135,12 +133,7 @@ node('QAPipelineMaster') {
     // Archive in finally (before Cleanup) so reports are captured even when an earlier stage
     // fails — otherwise deleteDir() wipes them and the build has no artifacts to inspect.
     stage('Publish') {
-      archiveArtifacts allowEmptyArchive: true, artifacts: 'results/**/*.md, results/**/*.png, results/**/summary.json, results/**/report.html'
-      // Browsable per-build report (magpie's equivalent of the Playwright HTML report).
-      if (runDir && fileExists("${runDir}/report.html")) {
-        publishHTML([reportDir: runDir, reportFiles: 'report.html', reportName: "magpie Report - ${label}",
-                     reportTitles: 'magpie run', keepAll: false, allowMissing: true, alwaysLinkToLastBuild: true])
-      }
+      archiveArtifacts allowEmptyArchive: true, artifacts: 'results/**/*.md, results/**/*.png, results/**/summary.json'
     }
     stage('Notify') {
       def status = currentBuild.result ?: 'SUCCESS'
