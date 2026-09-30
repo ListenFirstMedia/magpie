@@ -22,6 +22,7 @@ def JIRA_BASE     = 'https://listenfirstmedia.atlassian.net'
 // XRAY_CLIENT_ID / XRAY_CLIENT_SECRET come from Jenkins Global properties (Manage Jenkins →
 // System), same as the qa jobs — inherited into every build env, so no credential binding.
 
+
 properties([
   // Prune old builds so the controller doesn't fill up. Each build archives per-case PNGs/MD/JSON
   // + a kept HTML report; unbounded, that filled the controller disk and killed running builds
