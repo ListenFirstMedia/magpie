@@ -42,7 +42,7 @@ properties([
            description: 'Which batch set to run (file under batches/). ci-smoke = 2 deterministic cases to validate the pipeline cheaply.'),
     string(name: 'TEST_CASES', defaultValue: '',
            description: 'Optional: comma/space-separated QA-IDs (e.g. "QA-84193, QA-949" or "84193 949"). When set, runs ONLY these cases and ignores SET.'),
-    string(name: 'BRANCH', defaultValue: 'feature/jenkins-ci', description: 'magpie branch to test (must contain bin/ci-runner.sh).'),
+    string(name: 'BRANCH', defaultValue: 'fix/premission-error', description: 'magpie branch to test (must contain bin/ci-runner.sh).'),
     string(name: 'CASE_TIMEOUT', defaultValue: '1800', description: 'Per-case hard cap (seconds).'),
     string(name: 'BATCH_SIZE', defaultValue: '5', description: 'Cases per checkpoint.'),
     // Token economy: runs bill the shared Claude weekly usage limit. Default is sonnet (user call
