@@ -22,8 +22,10 @@ def JIRA_BASE     = 'https://listenfirstmedia.atlassian.net'
 // XRAY_CLIENT_ID / XRAY_CLIENT_SECRET come from Jenkins Global properties (Manage Jenkins →
 // System), same as the qa jobs — inherited into every build env, so no credential binding.
 
-
 properties([
+  // Never overlap two builds of this job on QAPipelineMaster: they share ~/.cache/ms-playwright,
+  // and ci-runner's pre-run `pkill @playwright/mcp` kills a running sibling build's browser.
+  disableConcurrentBuilds(),
   // Prune old builds so the controller doesn't fill up. Each build archives per-case PNGs/MD/JSON
   // + a kept HTML report; unbounded, that filled the controller disk and killed running builds
   // with `No space left on device` (the CPS VM can't serialize its state). Keep the last 15

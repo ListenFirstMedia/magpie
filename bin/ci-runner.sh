@@ -109,8 +109,58 @@ echo ">> wrote config/.env for ${LFM_EMAIL}"
 # land in a case's context and --image-responses omit is always on. The only CI-specific choice
 # left is the browser: chromium (self-contained download, NO root — `chrome` channel needs sudo).
 export PLAYWRIGHT_BROWSER=chromium
+
+# --- Pinned Playwright / Playwright-MCP ---
+# QAPipelineMaster is Ubuntu 20.04. Playwright 1.63+ refuses to install browsers there, and
+# `@latest` let the install step and the MCP drift onto different browser revisions (the install
+# GC'd chromium-1247 that the MCP still needed). Pin both to the 1.62 line, never GC, and fail
+# HARD if no usable browser ends up on disk — no more silent fallback into a failing smoke gate.
+export PLAYWRIGHT_SKIP_BROWSER_GC="${PLAYWRIGHT_SKIP_BROWSER_GC:-1}"
+PW_VERSION="${PW_VERSION:-1.62}"
+PW_MCP_VERSION="${PW_MCP_VERSION:-}"
+
+# Newest @playwright/mcp release whose playwright / playwright-core dependency is on $1.x
+resolve_mcp_version() {
+  local want="$1" v deps
+  for v in $(npm view @playwright/mcp versions --json 2>/dev/null \
+      | python3 -c 'import json,sys; v=json.load(sys.stdin); v=v if isinstance(v,list) else [v]; print("\n".join(reversed(v[-60:])))'); do
+    deps="$(npm view "@playwright/mcp@$v" dependencies --json 2>/dev/null || true)"
+    if printf '%s' "$deps" | grep -Eq "\"playwright(-core)?\": *\"[~^]?${want//./\\.}\."; then
+      echo "$v"
+      return 0
+    fi
+  done
+  return 1
+}
+
+if [[ -z "$PW_MCP_VERSION" ]]; then
+  echo ">> resolving newest @playwright/mcp built on playwright ${PW_VERSION}.x"
+  if ! PW_MCP_VERSION="$(resolve_mcp_version "$PW_VERSION")"; then
+    echo "ERROR: no @playwright/mcp release found on playwright ${PW_VERSION}.x — export PW_MCP_VERSION=<version> to override" >&2
+    exit 3
+  fi
+fi
+export PW_VERSION PW_MCP_VERSION
+echo ">> pinned playwright@${PW_VERSION} / @playwright/mcp@${PW_MCP_VERSION}"
+
 echo ">> ensuring headless Chromium for Playwright MCP"
-npx --yes playwright install chromium || echo ">> WARN: chromium install failed; relying on a browser already cached on the node"
+# Prefer the MCP's own installer: it installs exactly the revision the MCP will look for.
+if ! npx --yes "@playwright/mcp@${PW_MCP_VERSION}" install-browser chrome-for-testing; then
+  echo ">> MCP installer failed; trying playwright@${PW_VERSION} CLI"
+  if ! npx --yes "playwright@${PW_VERSION}" install chromium; then
+    echo "ERROR: chromium install failed for playwright@${PW_VERSION} — not starting the smoke gate" >&2
+    ls -la "$HOME/.cache/ms-playwright" 2>/dev/null || true
+    exit 3
+  fi
+fi
+
+if ! ls -1 "$HOME"/.cache/ms-playwright/chromium-*/chrome-linux*/chrome >/dev/null 2>&1; then
+  echo "ERROR: no chromium executable in ~/.cache/ms-playwright after install — not starting the smoke gate" >&2
+  ls -la "$HOME/.cache/ms-playwright" 2>/dev/null || true
+  exit 3
+fi
+echo ">> browser cache:"
+ls -1 "$HOME/.cache/ms-playwright" | sed 's/^/     /'
 
 # --- claude CLI present? (install fallback, matching the qa runner) ---
 command -v claude >/dev/null 2>&1 || npm install -g @anthropic-ai/claude-code

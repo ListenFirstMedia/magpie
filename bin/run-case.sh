@@ -45,14 +45,17 @@ mkdir -p "$RUN_DIR"
 # schemas would bill EVERY case session. --image-responses omit: screenshots still save to
 # .playwright-out/ but are not echoed back into context (a case Reads a PNG only when it must
 # judge one visually).
+# PW_MCP_VERSION is exported by ci-runner.sh (pinned to the 1.62 line for Ubuntu 20.04); it must
+# match the MCP that installed the browser. Falls back to @latest for local/interactive use.
 PLAYWRIGHT_BROWSER="${PLAYWRIGHT_BROWSER:-chrome}"   # ci-runner exports chromium (no-root download)
+PW_MCP_VERSION="${PW_MCP_VERSION:-latest}"
 MCP_CONFIG="${RUN_DIR}/.mcp-headless.json"
 cat > "$MCP_CONFIG" <<EOF
 {
   "mcpServers": {
     "playwright": {
       "command": "npx",
-      "args": ["@playwright/mcp@latest",
+      "args": ["@playwright/mcp@${PW_MCP_VERSION}",
                "--browser", "${PLAYWRIGHT_BROWSER}",
                "--isolated", "--headless", "--save-session",
                "--output-dir", "./.playwright-out",
