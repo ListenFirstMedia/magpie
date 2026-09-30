@@ -82,8 +82,8 @@ node('QAPipelineMaster') {
                    "CASE_TIMEOUT=${params.CASE_TIMEOUT}", "BATCH_SIZE=${params.BATCH_SIZE}",
                    "CLAUDE_MODEL=${params.CLAUDE_MODEL}", "CLAUDE_EFFORT=${params.CLAUDE_EFFORT}",
                    "SYNC_SET=${params.SYNC_SET ? '1' : '0'}"]) {
-            // sh 'bash bin/ci-runner.sh'
-            sh 'bash bin/check-perms.sh'
+            sh 'bash bin/ci-runner.sh'
+            // sh 'bash bin/check-perms.sh'
           }
         }
       }
