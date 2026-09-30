@@ -15,6 +15,7 @@
 set -euo pipefail
 
 cd "$(dirname "$0")/.."   # repo root
+MAGPIE_ROOT="$(pwd)"
 
 ID="${1:?usage: run-case.sh <QA-ID> [--login-only]}"
 MODE="${2:-full}"
@@ -45,14 +46,19 @@ mkdir -p "$RUN_DIR"
 # schemas would bill EVERY case session. --image-responses omit: screenshots still save to
 # .playwright-out/ but are not echoed back into context (a case Reads a PNG only when it must
 # judge one visually).
+#
+# The MCP version is PINNED via PW_MCP_VERSION (exported by ci-runner.sh). It must be the same
+# @playwright/mcp that ci-runner used to install the browser, or the MCP looks for a browser
+# revision that isn't on disk. Falls back to @latest only for local/interactive use.
 PLAYWRIGHT_BROWSER="${PLAYWRIGHT_BROWSER:-chrome}"   # ci-runner exports chromium (no-root download)
+PW_MCP_VERSION="${PW_MCP_VERSION:-latest}"
 MCP_CONFIG="${RUN_DIR}/.mcp-headless.json"
 cat > "$MCP_CONFIG" <<EOF
 {
   "mcpServers": {
     "playwright": {
       "command": "npx",
-      "args": ["@playwright/mcp@latest",
+      "args": ["--yes", "@playwright/mcp@${PW_MCP_VERSION}",
                "--browser", "${PLAYWRIGHT_BROWSER}",
                "--isolated", "--headless", "--save-session",
                "--output-dir", "./.playwright-out",
@@ -70,10 +76,12 @@ fi
 
 if [[ "$MODE" == "--login-only" ]]; then
   # Lightweight connectivity/SSO smoke gate — not a test case, so it doesn't need the full guide.
-  read -r -d '' PROMPT <<'EOF' || true
-You are running the magpie regression-testing framework (feature/playwright-mcp branch)
-at ~/git/magpie, HEADLESS and UNATTENDED. No human can approve prompts or read chat.
-Read docs/env.md for the programmatic login.
+  # Unquoted heredoc on purpose: ${MAGPIE_ROOT} must expand to the real checkout path (on Jenkins
+  # that's the job workspace, NOT ~/git/magpie). Keep literal $ and backticks out of this text.
+  read -r -d '' PROMPT <<EOF || true
+You are running the magpie regression-testing framework. The repo root is ${MAGPIE_ROOT}
+(your current working directory), HEADLESS and UNATTENDED. No human can approve prompts or read chat.
+All paths below are relative to that repo root. Read docs/env.md for the programmatic login.
 
 PRE-FLIGHT: browser_navigate to https://app.lfmdev.in; when redirected to the Cognito hosted UI,
 fill the "With existing account" form (Email + Password) from config/.env and click THAT form's
@@ -105,6 +113,10 @@ else
   PROMPT="${GUIDE}
 
 ═══ THIS RUN — UNATTENDED & HEADLESS (overrides the interactive EXECUTION MODE above) ═══
+The magpie repo root for this run is ${MAGPIE_ROOT} (your current working directory). Every
+repo path mentioned anywhere in this prompt — including any ~/git/magpie path in the guide
+above — refers to that directory. Credentials are in config/.env there.
+
 You are launched via \`claude -p\`, HEADLESS, with NO human to watch the browser or answer
 questions. Override the interactive rule that says to STOP on a failure and ask the user:
 instead, when a step fails or blocks, MAKE THE CALL YOURSELF using the 5-MINUTE STEP BUDGET and
@@ -148,7 +160,7 @@ knowledge-base/known-quirks.md matches for ${ID}:
 ${QUIRK_MATCHES:-none}"
 fi
 
-echo ">> ${ID} (${MODE}) — $(date)  [timeout ${CASE_TIMEOUT}s | model ${CLAUDE_MODEL}@${CLAUDE_EFFORT}]"
+echo ">> ${ID} (${MODE}) — $(date)  [timeout ${CASE_TIMEOUT}s | model ${CLAUDE_MODEL}@${CLAUDE_EFFORT} | mcp @playwright/mcp@${PW_MCP_VERSION}]"
 
 # The monitor subshell can't set variables in this shell, so it flags a timeout via this marker.
 TIMEOUT_FLAG="${RUN_DIR}/.${ID}.timeout"
