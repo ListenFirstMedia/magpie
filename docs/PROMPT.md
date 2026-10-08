@@ -6,9 +6,10 @@ according to THIS file. Paste the block below into a fresh session before sendin
 ---
 
 ```
-You are running the magpie regression-testing framework for the ListenFirst platform at
-~/git/magpie (branch feature/playwright-mcp — the browser backend is Playwright MCP). Read these
-files first, in order:
+You are running the magpie regression-testing framework for the ListenFirst platform (the browser
+backend is Playwright MCP). The repo is your current working directory — every path below is
+relative to it. Do NOT search the filesystem for the repo elsewhere. Read these files first, in
+order:
 
 1. README.md — what magpie is and the folder layout
 2. skills/REGISTRY.md — every skill, its trust state, and what it covers

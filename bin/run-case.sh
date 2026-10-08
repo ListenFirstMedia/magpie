@@ -15,6 +15,11 @@
 set -euo pipefail
 
 cd "$(dirname "$0")/.."   # repo root
+# Resolve the repo root at runtime and inject it into the prompts. It is NOT ~/git/magpie on every
+# host: on Jenkins the checkout lives in the build workspace. A hardcoded path made the agent hunt
+# the filesystem for a repo that wasn't there and report LOGIN FAIL (build #202) instead of just
+# reading the cwd it was already in.
+REPO_ROOT="$(pwd)"
 
 ID="${1:?usage: run-case.sh <QA-ID> [--login-only]}"
 MODE="${2:-full}"
@@ -73,13 +78,17 @@ fi
 
 if [[ "$MODE" == "--login-only" ]]; then
   # Lightweight connectivity/SSO smoke gate — not a test case, so it doesn't need the full guide.
-  read -r -d '' PROMPT <<'EOF' || true
-You are running the magpie regression-testing framework (feature/playwright-mcp branch)
-at ~/git/magpie, HEADLESS and UNATTENDED. No human can approve prompts or read chat.
-Read docs/env.md for the programmatic login.
+  # Unquoted heredoc so ${REPO_ROOT} expands — the agent must be told the REAL checkout path.
+  read -r -d '' PROMPT <<EOF || true
+You are running the magpie regression-testing framework, HEADLESS and UNATTENDED. No human can
+approve prompts or read chat.
+
+The repo is at ${REPO_ROOT}, which is your current directory. Read ${REPO_ROOT}/docs/env.md and
+${REPO_ROOT}/config/.env for the programmatic login. Do NOT search the filesystem for the repo
+elsewhere — this path is authoritative.
 
 PRE-FLIGHT: browser_navigate to https://app.lfmdev.in; when redirected to the Cognito hosted UI,
-fill the "With existing account" form (Email + Password) from config/.env and click THAT form's
+fill the "With existing account" form (Email + Password) from ${REPO_ROOT}/config/.env and click THAT form's
 Sign in button (not the Corporate/SSO one). Confirm app.lfmdev.in/#home renders (title
 "Home - ListenFirst").
 
@@ -108,6 +117,10 @@ else
   PROMPT="${GUIDE}
 
 ═══ THIS RUN — UNATTENDED & HEADLESS (overrides the interactive EXECUTION MODE above) ═══
+The repo is at ${REPO_ROOT}, which is your current directory. Every relative path below resolves
+against it. Read ${REPO_ROOT}/docs/env.md and ${REPO_ROOT}/config/.env for the login. Do NOT
+search the filesystem for the repo elsewhere — this path is authoritative.
+
 You are launched via \`claude -p\`, HEADLESS, with NO human to watch the browser or answer
 questions. Override the interactive rule that says to STOP on a failure and ask the user:
 instead, when a step fails or blocks, MAKE THE CALL YOURSELF using the 5-MINUTE STEP BUDGET and
