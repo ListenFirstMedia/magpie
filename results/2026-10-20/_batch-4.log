@@ -1,0 +1,99 @@
+>> QA-29126 (full) — Tue Oct 20 16:10:17 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29126 still running (60s / 1500s cap) — 16:11:17
+>> .. QA-29126 still running (120s / 1500s cap) — 16:12:17
+>> .. QA-29126 still running (180s / 1500s cap) — 16:13:17
+>> usage: 31 turns | in 48 (+1260974 cache-read, +48654 cache-write) | out 9257 | est $1.35
+QA-29126 is a PASS: both assertions held on all 7 TikTok posts and on the Sum row. I used Tuesday's account UCLA and brand University of California, Los Angeles, with the Video Views data set, TikTok only, and the app's default Oct 12–18, 2026 date range.
+
+- **Views sum:** Organic + Unclassified + Paid Views equals Video Views on every post, and the Sum row reconciles at 11,513. Organic and Paid V
+>> done (rc=0) — report: results/2026-10-20/QA-29126-report.md
+>> QA-29128 (full) — Tue Oct 20 16:14:08 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> usage: 5 turns | in 6 (+100124 cache-read, +19769 cache-write) | out 2479 | est $0.31
+QA-29128 is **FAILED (blocked by open bug)**. I didn't open the browser or run any steps, so no assertions were checked.
+
+The case lists an open linked bug, APPS-60871, about en-dash values on Twitter and Instagram metrics. Those are the channels this case checks, so a live run couldn't give a trustworthy result. Rule 7 also says not to run a case with an open linked bug.
+
+The report is at `result
+>> done (rc=0) — report: results/2026-10-20/QA-29128-report.md
+>> QA-29129 (full) — Tue Oct 20 16:14:38 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29129 still running (60s / 1500s cap) — 16:15:38
+>> .. QA-29129 still running (120s / 1500s cap) — 16:16:38
+>> .. QA-29129 still running (180s / 1500s cap) — 16:17:38
+>> usage: 39 turns | in 66 (+2128411 cache-read, +63803 cache-write) | out 12906 | est $2.03
+QA-29129 **PASS** (4/4 assertions) on UCLA, brand "University of California, Los Angeles", Impressions data set, LinkedIn only, Last 30 Days (Sep 19 – Oct 18, 2026), 133 posts.
+
+- **Impressions:** Organic + Paid = Impressions on 133/133 posts. Paid Impressions is "–" on all of them, so Organic equals Impressions.
+- **Engagement Rate:** Engagements / Impressions matches the displayed rate on 133/13
+>> done (rc=0) — report: results/2026-10-20/QA-29129-report.md
+>> QA-30670 (full) — Tue Oct 20 16:46:18 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-30670 still running (60s / 1500s cap) — 16:47:18
+>> .. QA-30670 still running (120s / 1500s cap) — 16:48:19
+>> .. QA-30670 still running (180s / 1500s cap) — 16:49:19
+>> .. QA-30670 still running (240s / 1500s cap) — 16:50:19
+>> .. QA-30670 still running (300s / 1500s cap) — 16:51:19
+>> .. QA-30670 still running (360s / 1500s cap) — 16:52:19
+>> .. QA-30670 still running (420s / 1500s cap) — 16:53:19
+>> usage: 79 turns | in 130 (+5645264 cache-read, +97480 cache-write) | out 17807 | est $4.24
+**QA-30670: PASS.** The Brand Insights Public Video Views tile for MTV (Viacom, Public data, Oct 12–18, 2026) is 9,849,582. The TWC report's four channel values sum to exactly 9,849,582, so there is no difference.
+
+| Channel | Public Video Views |
+|---|---|
+| Facebook | 754,803 |
+| Twitter | 26,191 |
+| Instagram | 3,454,564 |
+| TikTok | 5,614,024 |
+
+- **Date window:** the case gives no dates, so I
+>> done (rc=0) — report: results/2026-10-20/QA-30670-report.md
+>> QA-100887 (full) — Tue Oct 20 16:53:30 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-100887 still running (60s / 1500s cap) — 16:54:31
+>> .. QA-100887 still running (120s / 1500s cap) — 16:55:31
+>> .. QA-100887 still running (180s / 1500s cap) — 16:56:31
+>> .. QA-100887 still running (240s / 1500s cap) — 16:57:31
+>> .. QA-100887 still running (300s / 1500s cap) — 16:58:31
+>> .. QA-100887 still running (360s / 1500s cap) — 16:59:31
+>> usage: 95 turns | in 154 (+6066444 cache-read, +84772 cache-write) | out 18078 | est $4.33
+QA-100887 is a PASS: Brand Insights and Time Window Comparison (TWC) match on all five Threads metrics for UCLA, Dec 6–12, 2024, Authorized data.
+
+| Metric | Brand Insights | TWC |
+|---|---|---|
+| Follower Growth / New Followers | 13 | 13 |
+| New Posts / Posts | 9 | 9 |
+| Engagements | 369 | 369 |
+| Engagement Rate | 2.52% | 2.52% |
+| Views | 14.6K | 14,635 |
+
+Insights shows Views only as 14.6K, s
+>> done (rc=0) — report: results/2026-10-20/QA-100887-report.md
+>> QA-79963 (full) — Tue Oct 20 17:00:17 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-79963 still running (60s / 1500s cap) — 17:01:17
+>> .. QA-79963 still running (120s / 1500s cap) — 17:02:17
+>> .. QA-79963 still running (180s / 1500s cap) — 17:03:17
+>> .. QA-79963 still running (240s / 1500s cap) — 17:04:17
+>> .. QA-79963 still running (300s / 1500s cap) — 17:05:17
+>> .. QA-79963 still running (360s / 1500s cap) — 17:06:18
+>> .. QA-79963 still running (420s / 1500s cap) — 17:07:18
+>> .. QA-79963 still running (480s / 1500s cap) — 17:08:18
+>> .. QA-79963 still running (540s / 1500s cap) — 17:09:18
+>> .. QA-79963 still running (600s / 1500s cap) — 17:10:18
+>> .. QA-79963 still running (660s / 1500s cap) — 17:11:19
+>> usage: 94 turns | in 176 (+8004589 cache-read, +117404 cache-write) | out 27902 | est $5.87
+QA-79963 is a PASS: Brand > Content Video post counts for MTV on Viacom match the Time Window Comparison (TWC) report on every channel.
+
+| Metric | Content | TWC |
+|---|---|---|
+| Facebook (Reel excluded) | 5 | 5 |
+| Twitter | 9 | 9 |
+| Instagram | 7 | 7 |
+| TikTok | 12 | 12 |
+| YouTube | channel not available for MTV | 0 |
+| All channels | 33 | 33 |
+
+- **Setup:** Both sides used Oct 12–18, 2026 w
+>> done (rc=0) — report: results/2026-10-20/QA-79963-report.md

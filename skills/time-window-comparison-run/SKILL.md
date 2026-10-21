@@ -284,3 +284,12 @@ This pattern is confirmed required for:
 - **v5** (2026-06-11): hidden-duplicate-datepicker guard, real-click summary expansion, Off-link channel clear, Cross-Channel tree map, Change Settings reuse pattern, Aggregate interval, GS-hang reconfirmation.
 - **v6** (2026-07-02): Relative/Weekly + per-brand Key-Date flow, the required "Choose the Ending Day of Weekly Intervals" modal, and Show Change/Share export columns (QA-281 interactive headed). LFMP-31961 (chart clips negative net-followers; table/export correct) reconfirmed open.
 - **v6.1** (2026-07-02): Aggregate + Relative (Start N Days Before Event) lock-vs-en-dash semantics — lock glyph/`i.far.fa-lock` for unauthorized, "No Data"(graph)/`–`(table) for no-data; "Use Authorized Data (Where Available)" only flips authorized brands (QA-1053, Hulu+Full Frontal+Snowfall). +3 streak (QA-1053, plus QA-198/QA-949-adjacent reuse this session).
+
+## v7 — headless Playwright specifics (QA-30666, 2026-10-19, Amazon Prime Video)
+- **Brand typeahead:** real keystrokes did NOT open the option list on TWC this run (the Social Recap builder's identical input does). Use the React value-setter + `new InputEvent('input', {inputType:'insertText'})`; options are `.al-typeahead__option` inside `.al-typeahead-options`.
+- **Perspective toggle:** `input#0-perspective-toggle` is hidden (`.al-toggle__checkbox`); click `label[for="0-perspective-toggle"]` with `{force:true}`; checked=true = Authorized.
+- **Interval:** visible `.lfm-dropdown-select-box` "Days" → `.lfm-dropdown-option` "Aggregate".
+- **Absolute dates:** click day cells in the visible `.from-calendar` / `.to-calendar` (`td.day:not(.old):not(.new)`); the cells get `range-start` / `range-end` classes.
+- **Metric picker:** the third `input.controlled-text-input` (no placeholder) is **Filter Metrics**; typing "Video Views" renders the matching leaves across all channel groups. Leaf labels are channel-less (`Page Video Views` under Facebook › Video, `Public Video Views` under Twitter/TikTok › Video, `Video Views` under Instagram › Video) — resolve by walking the ancestor `<details><summary>` chain. Click the label at its bounding-box centre (`page.mouse.click`); `aria-checked` flips on the sibling `i[role=checkbox]`.
+- **Options:** `Show Metrics Graphs` / `Show Metrics Tables` / `Set Brands as Rows` / `Show Change` / `Show Share` are `.controlled-check-box__label`s; a trusted click toggles them.
+- **Aggregate story:** one `table` per metric with a single `Brand | Value` row; values are full integers with commas.

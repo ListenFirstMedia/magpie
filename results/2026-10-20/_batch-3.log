@@ -1,0 +1,80 @@
+>> QA-29122 (full) — Tue Oct 20 16:00:25 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29122 still running (60s / 1500s cap) — 16:01:25
+>> .. QA-29122 still running (120s / 1500s cap) — 16:02:25
+>> .. QA-29122 still running (180s / 1500s cap) — 16:03:25
+>> usage: 33 turns | in 48 (+1411407 cache-read, +53441 cache-write) | out 9670 | est $1.48
+QA-29122 is a PASS for the UCLA / University of California, Los Angeles row. The Viacom/MTV and Wasserman/Gatorade rows were not run.
+
+- **Twitter only (32 posts):** Reactions + Comments + Shares equals Engagements on all 32 posts. The column totals also match the Sum row (464 + 25 + 83 = 572).
+- **Instagram only (13 posts):** the identity holds on all 13 posts. Shares shows "–" on every Instagram
+>> done (rc=0) — report: results/2026-10-20/QA-29122-report.md
+>> QA-29123 (full) — Tue Oct 20 16:04:06 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29123 still running (60s / 1500s cap) — 16:05:06
+>> .. QA-29123 still running (120s / 1500s cap) — 16:06:06
+>> .. QA-29123 still running (180s / 1500s cap) — 16:07:06
+>> usage: 32 turns | in 48 (+1434986 cache-read, +52106 cache-write) | out 8136 | est $1.44
+QA-29123 passed on the UCLA / University of California, Los Angeles row, the first of the three Tuesday accounts. Viacom/MTV and Wasserman/Gatorade were not run. I followed the same one-row-per-weekday approach as QA-29122.
+
+With TikTok as the only channel (Posts (11)), Reactions + Comments + Shares equals Engagements for all 11 posts. The Sum row also matches: 932 + 19 + 12 = 963. Three gallery p
+>> done (rc=0) — report: results/2026-10-20/QA-29123-report.md
+>> QA-29125 (full) — Tue Oct 20 16:07:27 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29125 still running (60s / 1500s cap) — 16:08:27
+>> .. QA-29125 still running (120s / 1500s cap) — 16:09:27
+>> usage: 28 turns | in 48 (+1439501 cache-read, +54270 cache-write) | out 9345 | est $1.50
+QA-29125 is a **PASS**. I ran only the first Tuesday row (UCLA / University of California, Los Angeles). Viacom/MTV and Wasserman/Gatorade were not run, following the QA-29122 and QA-29123 precedent. The case's Notes conflict with its own table (they say "Tue UCLA/Sony Pictures", but Sony Pictures is a Thursday account), so the case file needs cleanup.
+
+- **Twitter only (7 posts):** Organic + Uncl
+>> done (rc=0) — report: results/2026-10-20/QA-29125-report.md
+>> QA-19468 (full) — Tue Oct 20 16:18:43 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-19468 still running (60s / 1500s cap) — 16:19:43
+>> .. QA-19468 still running (120s / 1500s cap) — 16:20:43
+>> .. QA-19468 still running (180s / 1500s cap) — 16:21:43
+>> .. QA-19468 still running (240s / 1500s cap) — 16:22:44
+>> usage: 32 turns | in 54 (+1540459 cache-read, +54221 cache-write) | out 10949 | est $1.59
+QA-19468 **PASS**. On the Impressions data set with LinkedIn only (Jan 25, 2025, UCLA), the Table View shows no lock symbol. The Sum row shows N/A for Reach, Engagement Rate, Organic Reach and Paid Reach.
+
+One thing to know: typing "UCLA" in the brand dropdown returns only sub-brands, with no brand named exactly "UCLA". I used `University of California, Los Angeles`, the UCLA account's own brand, 
+>> done (rc=0) — report: results/2026-10-20/QA-19468-report.md
+>> QA-21874 (full) — Tue Oct 20 16:23:14 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-21874 still running (60s / 1500s cap) — 16:24:14
+>> .. QA-21874 still running (120s / 1500s cap) — 16:25:14
+>> .. QA-21874 still running (180s / 1500s cap) — 16:26:14
+>> .. QA-21874 still running (240s / 1500s cap) — 16:27:14
+>> .. QA-21874 still running (300s / 1500s cap) — 16:28:14
+>> .. QA-21874 still running (360s / 1500s cap) — 16:29:15
+>> .. QA-21874 still running (420s / 1500s cap) — 16:30:15
+>> .. QA-21874 still running (480s / 1500s cap) — 16:31:15
+>> .. QA-21874 still running (540s / 1500s cap) — 16:32:15
+>> .. QA-21874 still running (600s / 1500s cap) — 16:33:15
+>> .. QA-21874 still running (660s / 1500s cap) — 16:34:15
+>> .. QA-21874 still running (720s / 1500s cap) — 16:35:16
+>> .. QA-21874 still running (780s / 1500s cap) — 16:36:16
+>> .. QA-21874 still running (840s / 1500s cap) — 16:37:16
+>> usage: 84 turns | in 142 (+5723864 cache-read, +105072 cache-write) | out 27124 | est $4.59
+QA-21874 is a PASS on 4 of 5 channels. The Facebook leg could not be evaluated, so the PASS carries that caveat. The report is at `results/2026-10-20/QA-21874-report.md`.
+
+I ran the UCLA account and the "University of California, Los Angeles" brand, for the Oct 12–18 default week. Each leg compares the first post's engagements divided by Total Followers × 100 against its Response Rate.
+
+| Channel 
+>> done (rc=0) — report: results/2026-10-20/QA-21874-report.md
+>> QA-23894 (full) — Tue Oct 20 16:37:36 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-23894 still running (60s / 1500s cap) — 16:38:36
+>> .. QA-23894 still running (120s / 1500s cap) — 16:39:36
+>> .. QA-23894 still running (180s / 1500s cap) — 16:40:36
+>> .. QA-23894 still running (240s / 1500s cap) — 16:41:37
+>> .. QA-23894 still running (300s / 1500s cap) — 16:42:37
+>> .. QA-23894 still running (360s / 1500s cap) — 16:43:37
+>> .. QA-23894 still running (420s / 1500s cap) — 16:44:37
+>> .. QA-23894 still running (480s / 1500s cap) — 16:45:37
+>> usage: 73 turns | in 134 (+5385225 cache-read, +96984 cache-write) | out 18275 | est $4.12
+**QA-23894: PASS.** The five LinkedIn Best Performing Content posts on Brand Insights match the first five rows on Brand Content exactly, and the post counts match too. This was UCLA, Last 30 Days (Sep 19 – Oct 18, 2026), LinkedIn only.
+
+- **Counts and metrics:** Insights shows 133 new posts and Content shows `Posts (133)`. Engagements, Reactions, Shares and Comments match for all five posts.
+- **
+>> done (rc=0) — report: results/2026-10-20/QA-23894-report.md

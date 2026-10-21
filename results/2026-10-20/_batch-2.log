@@ -1,0 +1,67 @@
+>> QA-29111 (full) — Tue Oct 20 15:52:11 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> usage: 6 turns | in 8 (+141533 cache-read, +18937 cache-write) | out 1971 | est $0.31
+QA-29111 is FAILED (blocked by open bug), and I didn't open the browser.
+
+The case file lists APPS-61116 (Open): on the Twitter channel, Reactions + Comments + Shares doesn't equal Engagements. That is exactly what assertion 5 checks, so a run couldn't give a trustworthy result. I followed Rule 7.
+
+Assertion 7 (Instagram) is marked NOT RUN. It may be runnable once the bug closes, because the bug i
+>> done (rc=0) — report: results/2026-10-20/QA-29111-report.md
+>> QA-29115 (full) — Tue Oct 20 15:52:38 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29115 still running (60s / 1500s cap) — 15:53:38
+>> .. QA-29115 still running (120s / 1500s cap) — 15:54:38
+>> .. QA-29115 still running (180s / 1500s cap) — 15:55:38
+>> .. QA-29115 still running (240s / 1500s cap) — 15:56:38
+>> usage: 49 turns | in 80 (+2494600 cache-read, +61996 cache-write) | out 13408 | est $2.20
+QA-29115 passed: Reactions + Comments + Shares equals Engagements on every post I could view, and on the Sum row for all 1,013 LinkedIn posts. The rows I scraped came from UCLA, brand University of California, Los Angeles, Jan 01 – Oct 01, 2025, LinkedIn only.
+
+- **Rendered posts:** the Table View shows only 200 rows per sort direction. I scraped ranks 1–200 and, after re-sorting ascending, ranks 
+>> done (rc=0) — report: results/2026-10-20/QA-29115-report.md
+>> QA-29116 (full) — Tue Oct 20 15:57:09 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29116 still running (60s / 1500s cap) — 15:58:09
+>> .. QA-29116 still running (120s / 1500s cap) — 15:59:09
+>> .. QA-29116 still running (180s / 1500s cap) — 16:00:09
+>> usage: 30 turns | in 54 (+1770406 cache-read, +60433 cache-write) | out 9397 | est $1.72
+QA-29116 is **PASS**. Reactions + Comments + Shares equals Engagements on all 193 TikTok posts and on the aggregate Sum row (1,541,763 + 13,159 + 36,256 = 1,591,178).
+
+- **Setup:** I ran it as Tuesday's row on the UCLA account (account_id 799), brand "University of California, Los Angeles", TikTok only, Jan 1 – Oct 1 2025.
+- **Date range:** the ticket doesn't state one, so I reused QA-29115's rang
+>> done (rc=0) — report: results/2026-10-20/QA-29116-report.md
+>> QA-79142 (full) — Tue Oct 20 16:04:56 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-79142 still running (60s / 1500s cap) — 16:05:56
+>> .. QA-79142 still running (120s / 1500s cap) — 16:06:57
+>> .. QA-79142 still running (180s / 1500s cap) — 16:07:57
+>> .. QA-79142 still running (240s / 1500s cap) — 16:08:57
+>> usage: 49 turns | in 86 (+2710758 cache-read, +65061 cache-write) | out 13925 | est $2.35
+**QA-79142: PASS** (3/3 assertions). Report is at `results/2026-10-20/QA-79142-report.md`.
+
+For Tuesday I used the UCLA account and the brand University of California, Los Angeles. I used the Description table for this because the case Notes line maps Tuesday differently.
+
+In Brand Content I set the Public data set and the Video content-type filter, then checked each channel on its own. The Sum ro
+>> done (rc=0) — report: results/2026-10-20/QA-79142-report.md
+>> QA-100873 (full) — Tue Oct 20 16:09:22 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-100873 still running (60s / 1500s cap) — 16:10:22
+>> .. QA-100873 still running (120s / 1500s cap) — 16:11:22
+>> .. QA-100873 still running (180s / 1500s cap) — 16:12:22
+>> .. QA-100873 still running (240s / 1500s cap) — 16:13:22
+>> .. QA-100873 still running (300s / 1500s cap) — 16:14:23
+>> usage: 38 turns | in 62 (+1968614 cache-read, +71208 cache-write) | out 10594 | est $1.96
+QA-100873 is a PASS. Reactions + Comments + Shares equals Engagements on all 13 Threads posts for HBO Max, Jan 1–15 2026. The Sum row matches too: 12,268 + 394 + 1,646 = 14,308.
+
+The "Max" account in Search Account resolved to the only match, HBO Max (account_id 657). I did no skill or REGISTRY maintenance, as instructed. The report is at `results/2026-10-20/QA-100873-report.md`, with screenshots 
+>> done (rc=0) — report: results/2026-10-20/QA-100873-report.md
+>> QA-100877 (full) — Tue Oct 20 16:15:23 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-100877 still running (60s / 1500s cap) — 16:16:23
+>> .. QA-100877 still running (120s / 1500s cap) — 16:17:23
+>> .. QA-100877 still running (180s / 1500s cap) — 16:18:23
+>> usage: 36 turns | in 52 (+1547262 cache-read, +52107 cache-write) | out 9005 | est $1.52
+**QA-100877: BLOCKED.** The spec brand "Max" doesn't exist on the HBO Max account, so I stopped at step 3.
+
+- **What ran:** I logged in, switched to the HBO Max account (the breadcrumb confirmed it), went to Brand → Content and opened the brand dropdown.
+- **Why blocked:** Typing "Max" returns no result named exactly "Max". I retried after a page reload with slower typing and got the same list. Ru
+>> done (rc=0) — report: results/2026-10-20/QA-100877-report.md

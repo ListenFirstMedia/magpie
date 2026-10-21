@@ -1,0 +1,90 @@
+>> QA-20318 (full) — Tue Oct 20 15:38:28 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> QA-31513 (full) — Tue Oct 20 15:39:02 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-20318 still running (60s / 1500s cap) — 15:39:28
+>> .. QA-31513 still running (60s / 1500s cap) — 15:40:02
+>> .. QA-20318 still running (120s / 1500s cap) — 15:40:28
+>> .. QA-31513 still running (120s / 1500s cap) — 15:41:02
+>> .. QA-20318 still running (180s / 1500s cap) — 15:41:28
+>> .. QA-31513 still running (180s / 1500s cap) — 15:42:02
+>> .. QA-20318 still running (240s / 1500s cap) — 15:42:28
+>> .. QA-31513 still running (240s / 1500s cap) — 15:43:03
+>> .. QA-20318 still running (300s / 1500s cap) — 15:43:28
+>> .. QA-31513 still running (300s / 1500s cap) — 15:44:03
+>> .. QA-20318 still running (360s / 1500s cap) — 15:44:28
+>> .. QA-31513 still running (360s / 1500s cap) — 15:45:03
+>> .. QA-20318 still running (420s / 1500s cap) — 15:45:29
+>> .. QA-31513 still running (420s / 1500s cap) — 15:46:03
+>> usage: 93 turns | in 140 (+5253878 cache-read, +99067 cache-write) | out 18922 | est $4.09
+QA-31513 is **PASS**: all three assertions held on Amazon Prime Video, Facebook only, 1–10 Jan 2025, filtered to Reel posts.
+
+| Assertion | Expected | Actual |
+|---|---|---|
+| A5: Reel posts have Impressions data | Every Reel post has a value | All 4 Reel posts do (746,373 / 257,737 / 509,388 / 32,802). They sum to 1,546,300, matching the Sum row. |
+| A6: Engagements ÷ Impressions × 100 equals the
+>> done (rc=0) — report: results/2026-10-20/QA-31513-report.md
+>> QA-33169 (full) — Tue Oct 20 15:46:08 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-20318 still running (480s / 1500s cap) — 15:46:29
+>> .. QA-33169 still running (60s / 1500s cap) — 15:47:08
+>> .. QA-20318 still running (540s / 1500s cap) — 15:47:29
+>> .. QA-33169 still running (120s / 1500s cap) — 15:48:08
+>> .. QA-20318 still running (600s / 1500s cap) — 15:48:29
+>> .. QA-33169 still running (180s / 1500s cap) — 15:49:08
+>> .. QA-20318 still running (660s / 1500s cap) — 15:49:29
+>> .. QA-33169 still running (240s / 1500s cap) — 15:50:08
+>> .. QA-20318 still running (720s / 1500s cap) — 15:50:29
+>> .. QA-33169 still running (300s / 1500s cap) — 15:51:09
+>> usage: 60 turns | in 100 (+3722076 cache-read, +86181 cache-write) | out 22840 | est $3.29
+**QA-20318: PASS**, with one Tuesday row not evaluable. I ran all three Tuesday rows (UCLA, Viacom, Wasserman), Facebook only, 2023 range.
+
+| Account | Brand | Result |
+|---|---|---|
+| UCLA | University of California, Los Angeles | **PASS**. Reactions + Comments + Shares equals Engagements on all 200 rendered posts, and on the aggregate Sum row (179,620). |
+| Viacom | MTV | **PASS**. Same check on
+>> done (rc=0) — report: results/2026-10-20/QA-20318-report.md
+>> QA-21108 (full) — Tue Oct 20 15:51:11 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> usage: 48 turns | in 82 (+2506855 cache-read, +64731 cache-write) | out 16109 | est $2.30
+QA-33169 is **PASS**: all 5 assertions held. Report is at `results/2026-10-20/QA-33169-report.md`.
+
+For each channel (Facebook, Twitter, Instagram, TikTok, LinkedIn), Sum Engagements ÷ Sum Video Views matched the Average-row Video Response Rate (Facebook 200.80%, Twitter 8.00%, Instagram 1.37%, TikTok 6.56%, LinkedIn 6.29%).
+
+- **Account/brand:** I ran the first Tuesday row, UCLA with brand Univer
+>> done (rc=0) — report: results/2026-10-20/QA-33169-report.md
+>> QA-35301 (full) — Tue Oct 20 15:51:14 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> usage: 7 turns | in 8 (+143661 cache-read, +20997 cache-write) | out 2362 | est $0.34
+QA-21108 is marked FAILED (blocked by open bug APPS-60871), and I didn't open the browser.
+
+APPS-60871 shows "–" instead of values for multiple metrics on the Twitter, Instagram and YouTube datasets. Those are the metrics this case reads and compares day over day, so the assertions can't be judged while it's open.
+
+The case also needs a baseline screenshot attached to the ticket, and none exists i
+>> done (rc=0) — report: results/2026-10-20/QA-21108-report.md
+>> QA-21109 (full) — Tue Oct 20 15:51:41 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> usage: 8 turns | in 10 (+211060 cache-read, +33597 cache-write) | out 2847 | est $0.51
+QA-21109 is **FAILED (blocked by open bug APPS-60871)**. I did not run the case or open the browser.
+
+- **Why blocked:** APPS-60871 is open. It shows an en-dash in place of real values on YouTube datasets. This case reads per-post metrics from two YouTube datasets ("Subscribers and Playlists" and "Cards") and checks them for big day-over-day changes, so a dash would be indistinguishable from genui
+>> done (rc=0) — report: results/2026-10-20/QA-21109-report.md
+>> .. QA-35301 still running (60s / 1500s cap) — 15:52:15
+>> .. QA-35301 still running (120s / 1500s cap) — 15:53:15
+>> .. QA-35301 still running (180s / 1500s cap) — 15:54:15
+>> .. QA-35301 still running (240s / 1500s cap) — 15:55:15
+>> .. QA-35301 still running (300s / 1500s cap) — 15:56:15
+>> .. QA-35301 still running (360s / 1500s cap) — 15:57:15
+>> .. QA-35301 still running (420s / 1500s cap) — 15:58:15
+>> .. QA-35301 still running (480s / 1500s cap) — 15:59:15
+>> .. QA-35301 still running (540s / 1500s cap) — 16:00:16
+>> .. QA-35301 still running (600s / 1500s cap) — 16:01:16
+>> .. QA-35301 still running (660s / 1500s cap) — 16:02:16
+>> .. QA-35301 still running (720s / 1500s cap) — 16:03:16
+>> .. QA-35301 still running (780s / 1500s cap) — 16:04:16
+>> usage: 68 turns | in 118 (+4657363 cache-read, +93385 cache-write) | out 22610 | est $3.83
+**QA-35301 is BLOCKED (test-data gap), not a PASS.** The assertion could not be evaluated because there are no Facebook Reels rows to inspect. The report is at `results/2026-10-20/QA-35301-report.md`.
+
+- **Setup:** I switched to the Viacom account and selected MTV from the brand typeahead.
+- **Data set:** "Facebook Only: Reels Insights" no longer exists in the dropdown, which matches the case note
+>> done (rc=0) — report: results/2026-10-20/QA-35301-report.md

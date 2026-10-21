@@ -1,0 +1,70 @@
+>> QA-29234 (full) — Tue Oct 20 16:18:28 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29234 still running (60s / 1500s cap) — 16:19:28
+>> .. QA-29234 still running (120s / 1500s cap) — 16:20:28
+>> .. QA-29234 still running (180s / 1500s cap) — 16:21:28
+>> .. QA-29234 still running (240s / 1500s cap) — 16:22:29
+>> usage: 31 turns | in 48 (+1359105 cache-read, +51734 cache-write) | out 10669 | est $1.46
+**QA-29234: PASS.** I ran it as Tuesday's account and brand, UCLA and University of California, Los Angeles. The date range was Jan 01–Jan 10, 2023, on the Video Views data set.
+
+- **Twitter (6 posts):** Organic + Paid Views equals Video Views on every post. Engagements ÷ Video Views matches the Video Response Rate on every post.
+- **Instagram (2 posts):** the same two checks hold on both posts.
+-
+>> done (rc=0) — report: results/2026-10-20/QA-29234-report.md
+>> QA-29235 (full) — Tue Oct 20 16:22:44 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29235 still running (60s / 1500s cap) — 16:23:44
+>> .. QA-29235 still running (120s / 1500s cap) — 16:24:44
+>> .. QA-29235 still running (180s / 1500s cap) — 16:25:44
+>> usage: 30 turns | in 48 (+1385737 cache-read, +55550 cache-write) | out 11961 | est $1.55
+QA-29235 **PASS**. Both assertions held on all 175 TikTok posts.
+
+- **Setup:** Account UCLA, brand "University of California, Los Angeles" (the Tuesday row of the Description table). Data set Video Views, range Jan 01 – Dec 31 2024, TikTok only.
+- **A5:** Organic + Unclassified + Paid Views equal Video Views on every post. Organic Views is "–" everywhere, so the views split entirely between Paid a
+>> done (rc=0) — report: results/2026-10-20/QA-29235-report.md
+>> QA-29237 (full) — Tue Oct 20 16:26:44 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29237 still running (60s / 1500s cap) — 16:27:44
+>> .. QA-29237 still running (120s / 1500s cap) — 16:28:44
+>> .. QA-29237 still running (180s / 1500s cap) — 16:29:45
+>> usage: 33 turns | in 50 (+1414167 cache-read, +57073 cache-write) | out 11757 | est $1.57
+QA-29237 is a **PASS**, with one caveat on assertion A6. I ran it as Tuesday's pair: account UCLA, brand "University of California, Los Angeles", Impressions data set, Jan 01–Dec 31 2023, TikTok only, which gave 134 posts.
+
+- **A5, Impressions displays a value:** pass. All 134 posts show a number, and the Sum row shows 30,870,131, which matches the per-post total.
+- **A5, en-dash on Organic and Pa
+>> done (rc=0) — report: results/2026-10-20/QA-29237-report.md
+>> QA-24279 (full) — Tue Oct 20 17:11:29 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-24279 still running (60s / 1500s cap) — 17:12:29
+>> .. QA-24279 still running (120s / 1500s cap) — 17:13:29
+>> .. QA-24279 still running (180s / 1500s cap) — 17:14:29
+>> usage: 27 turns | in 46 (+1219224 cache-read, +48382 cache-write) | out 11683 | est $1.39
+QA-24279 is a PASS on UCLA / "University of California, Los Angeles", with Video Views checked on all five channels (Facebook, Twitter, Instagram, TikTok, LinkedIn).
+
+The case's common formula holds on both the Sum and Average aggregate rows for every channel. The exceptions are TikTok and LinkedIn, where Organic and Paid Views are "–" and the whole Video Views value is in Unclassified Views. The 
+>> done (rc=0) — report: results/2026-10-20/QA-24279-report.md
+>> QA-31572 (full) — Tue Oct 20 17:14:55 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-31572 still running (60s / 1500s cap) — 17:15:55
+>> .. QA-31572 still running (120s / 1500s cap) — 17:16:55
+>> .. QA-31572 still running (180s / 1500s cap) — 17:17:55
+>> .. QA-31572 still running (240s / 1500s cap) — 17:18:55
+>> .. QA-31572 still running (300s / 1500s cap) — 17:19:56
+>> .. QA-31572 still running (360s / 1500s cap) — 17:20:56
+>> .. QA-31572 still running (420s / 1500s cap) — 17:21:56
+>> .. QA-31572 still running (480s / 1500s cap) — 17:22:56
+>> .. QA-31572 still running (540s / 1500s cap) — 17:23:56
+>> .. QA-31572 still running (600s / 1500s cap) — 17:24:57
+>> usage: 90 turns | in 130 (+4862589 cache-read, +85879 cache-write) | out 19891 | est $3.79
+QA-31572 **PASS**. The Brand Insights Impressions number is 188,000,285, and the three Time Window Comparison channel values add up to exactly that, with a difference of 0.
+
+- **Insights side:** Amazon Prime Video (Authorized), Facebook, Twitter and Instagram only, Oct 12–18, 2026.
+- **Time Window Comparison side:** I added the same brand on Authorized and ran it with Absolute Dates, Aggregate and
+>> done (rc=0) — report: results/2026-10-20/QA-31572-report.md
+>> QA-38198 (full) — Tue Oct 20 17:25:37 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> usage: 7 turns | in 10 (+186316 cache-read, +21034 cache-write) | out 2903 | est $0.38
+QA-38198 is **FAILED (blocked by open bug)**, and I did not run the browser flow.
+
+The case lists APPS-58195 as open (Code Review): Social Recap shows negative Facebook and Twitter Video Views and Engagements. Those are the metrics assertions 9 and 11 sum, so a table-versus-tooltip mismatch couldn't be told apart from a real defect. Rule 7 and the open-bug auto-fail rule both call for blocking in 
+>> done (rc=0) — report: results/2026-10-20/QA-38198-report.md

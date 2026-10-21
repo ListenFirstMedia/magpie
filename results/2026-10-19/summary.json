@@ -1,0 +1,208 @@
+{
+  "date": "2026-10-19",
+  "total": 46,
+  "run": 39,
+  "passed": 29,
+  "failed": 8,
+  "blocked": 2,
+  "skipped": 0,
+  "timeout": 0,
+  "unknown": 0,
+  "cases": [
+    {
+      "id": "QA-144817",
+      "status": "PASS",
+      "report": "results/2026-10-19/QA-144817-report.md"
+    },
+    {
+      "id": "QA-19696",
+      "status": "PASS",
+      "report": "results/2026-10-19/QA-19696-report.md"
+    },
+    {
+      "id": "QA-19697",
+      "status": "PASS",
+      "report": "results/2026-10-19/QA-19697-report.md"
+    },
+    {
+      "id": "QA-19698",
+      "status": "PASS",
+      "report": "results/2026-10-19/QA-19698-report.md"
+    },
+    {
+      "id": "QA-19700",
+      "status": "PASS",
+      "report": "results/2026-10-19/QA-19700-report.md"
+    },
+    {
+      "id": "QA-19701",
+      "status": "PASS",
+      "report": "results/2026-10-19/QA-19701-report.md"
+    },
+    {
+      "id": "QA-19702",
+      "status": "PASS",
+      "report": "results/2026-10-19/QA-19702-report.md"
+    },
+    {
+      "id": "QA-19705",
+      "status": "FAIL",
+      "report": "results/2026-10-19/QA-19705-report.md"
+    },
+    {
+      "id": "QA-19706",
+      "status": "PASS",
+      "report": "results/2026-10-19/QA-19706-report.md"
+    },
+    {
+      "id": "QA-19707",
+      "status": "PASS",
+      "report": "results/2026-10-19/QA-19707-report.md"
+    },
+    {
+      "id": "QA-19710",
+      "status": "BLOCKED",
+      "report": "results/2026-10-19/QA-19710-report.md"
+    },
+    {
+      "id": "QA-20319",
+      "status": "PASS",
+      "report": "results/2026-10-19/QA-20319-report.md"
+    },
+    {
+      "id": "QA-20321",
+      "status": "FAIL",
+      "report": "results/2026-10-19/QA-20321-report.md"
+    },
+    {
+      "id": "QA-20324",
+      "status": "FAIL",
+      "report": "results/2026-10-19/QA-20324-report.md"
+    },
+    {
+      "id": "QA-20325",
+      "status": "PASS",
+      "report": "results/2026-10-19/QA-20325-report.md"
+    },
+    {
+      "id": "QA-20327",
+      "status": "PASS",
+      "report": "results/2026-10-19/QA-20327-report.md"
+    },
+    {
+      "id": "QA-20328",
+      "status": "PASS",
+      "report": "results/2026-10-19/QA-20328-report.md"
+    },
+    {
+      "id": "QA-20329",
+      "status": "PASS",
+      "report": "results/2026-10-19/QA-20329-report.md"
+    },
+    {
+      "id": "QA-20330",
+      "status": "PASS",
+      "report": "results/2026-10-19/QA-20330-report.md"
+    },
+    {
+      "id": "QA-20334",
+      "status": "PASS",
+      "report": "results/2026-10-19/QA-20334-report.md"
+    },
+    {
+      "id": "QA-20526",
+      "status": "FAIL",
+      "report": "results/2026-10-19/QA-20526-report.md"
+    },
+    {
+      "id": "QA-20527",
+      "status": "PASS",
+      "report": "results/2026-10-19/QA-20527-report.md"
+    },
+    {
+      "id": "QA-22105",
+      "status": "BLOCKED",
+      "report": "results/2026-10-19/QA-22105-report.md"
+    },
+    {
+      "id": "QA-22106",
+      "status": "PASS",
+      "report": "results/2026-10-19/QA-22106-report.md"
+    },
+    {
+      "id": "QA-22107",
+      "status": "PASS",
+      "report": "results/2026-10-19/QA-22107-report.md"
+    },
+    {
+      "id": "QA-22108",
+      "status": "PASS",
+      "report": "results/2026-10-19/QA-22108-report.md"
+    },
+    {
+      "id": "QA-23667",
+      "status": "PASS",
+      "report": "results/2026-10-19/QA-23667-report.md"
+    },
+    {
+      "id": "QA-23892",
+      "status": "FAIL",
+      "report": "results/2026-10-19/QA-23892-report.md"
+    },
+    {
+      "id": "QA-24276",
+      "status": "PASS",
+      "report": "results/2026-10-19/QA-24276-report.md"
+    },
+    {
+      "id": "QA-24277",
+      "status": "PASS",
+      "report": "results/2026-10-19/QA-24277-report.md"
+    },
+    {
+      "id": "QA-24278",
+      "status": "PASS",
+      "report": "results/2026-10-19/QA-24278-report.md"
+    },
+    {
+      "id": "QA-24281",
+      "status": "FAIL",
+      "report": "results/2026-10-19/QA-24281-report.md"
+    },
+    {
+      "id": "QA-24894",
+      "status": "PASS",
+      "report": "results/2026-10-19/QA-24894-report.md"
+    },
+    {
+      "id": "QA-26352",
+      "status": "FAIL",
+      "report": "results/2026-10-19/QA-26352-report.md"
+    },
+    {
+      "id": "QA-29124",
+      "status": "PASS",
+      "report": "results/2026-10-19/QA-29124-report.md"
+    },
+    {
+      "id": "QA-29127",
+      "status": "PASS",
+      "report": "results/2026-10-19/QA-29127-report.md"
+    },
+    {
+      "id": "QA-29236",
+      "status": "PASS",
+      "report": "results/2026-10-19/QA-29236-report.md"
+    },
+    {
+      "id": "QA-30666",
+      "status": "PASS",
+      "report": "results/2026-10-19/QA-30666-report.md"
+    },
+    {
+      "id": "QA-30710",
+      "status": "FAIL",
+      "report": "results/2026-10-19/QA-30710-report.md"
+    }
+  ]
+}

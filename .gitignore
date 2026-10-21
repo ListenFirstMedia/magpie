@@ -36,6 +36,7 @@ config/storageState.json
 # Login credentials for automated Cognito email/password sign-in
 .env
 config/.env
+config/.env.*
 
 # OS / editor lock files
 .~lock.*#
