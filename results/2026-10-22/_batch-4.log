@@ -1,0 +1,43 @@
+>> QA-38198 (full) — Thu Oct 22 13:02:26 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-38198 still running (60s / 1500s cap) — 13:03:26
+>> .. QA-38198 still running (120s / 1500s cap) — 13:04:26
+>> .. QA-38198 still running (180s / 1500s cap) — 13:05:26
+>> .. QA-38198 still running (240s / 1500s cap) — 13:06:26
+>> .. QA-38198 still running (300s / 1500s cap) — 13:07:27
+>> usage: 50 turns | in 86 (+2930468 cache-read, +74381 cache-write) | out 17308 | est $2.64
+**QA-38198: PASS (4/4).** In the Sephora Social Recap "Social Activity - Year to Date" section, each metric's channel sum matches its donut total exactly.
+
+| Metric | Channel sum | Donut shows |
+|---|---|---|
+| Impressions | 8,045,619,067 | 8B |
+| Video Views | 2,290,569,053 | 2B |
+| Engagements | 20,398,610 | 20M |
+| New Followers (positives only) | 880,789 | 881K |
+
+- **Tooltip not read:** the d
+>> done (rc=0) — report: results/2026-10-22/QA-38198-report.md
+>> QA-68228 (full) — Thu Oct 22 13:07:37 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-68228 still running (60s / 1500s cap) — 13:08:37
+>> .. QA-68228 still running (120s / 1500s cap) — 13:09:37
+>> .. QA-68228 still running (180s / 1500s cap) — 13:10:37
+>> usage: 23 turns | in 40 (+1127531 cache-read, +55389 cache-write) | out 10586 | est $1.38
+QA-68228 is **PASS**: all 29 Hulu Instagram stories (Oct 14–20, 2026) have an Engaged User Rate equal to Engagements ÷ Reach × 100. The biggest gap between my computed value and the displayed one was 0.005 pp, which is just the two-decimal rounding.
+
+I did the Brand → Stories → Hulu → Rates steps in the browser and matched the Insights and Rates tables on Date and Engagements. No open linked bugs 
+>> done (rc=0) — report: results/2026-10-22/QA-68228-report.md
+>> QA-81509 (full) — Thu Oct 22 13:10:59 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-81509 still running (60s / 1500s cap) — 13:11:59
+>> .. QA-81509 still running (120s / 1500s cap) — 13:13:00
+>> .. QA-81509 still running (180s / 1500s cap) — 13:14:00
+>> .. QA-81509 still running (240s / 1500s cap) — 13:15:00
+>> .. QA-81509 still running (300s / 1500s cap) — 13:16:00
+>> usage: 46 turns | in 78 (+2240756 cache-read, +59650 cache-write) | out 12565 | est $2.03
+QA-81509 is **BLOCKED**: x.com returns HTTP 403 in the headless browser, so I couldn't read the native counts and assertion 8 is unevaluated.
+
+I ran steps 1–7 on the Robinhood account, and the report loaded with 545 posts. Step 7 opened the native X post in a new tab, and that tab got the 403, including after one reload. The same wall blocked QA-22105. No product bug is involved.
+
+The LFM values f
+>> done (rc=0) — report: results/2026-10-22/QA-81509-report.md

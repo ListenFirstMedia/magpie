@@ -1,0 +1,44 @@
+>> QA-20984 (full) — Thu Oct 22 12:06:09 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-20984 still running (60s / 1500s cap) — 12:07:09
+>> .. QA-20984 still running (120s / 1500s cap) — 12:08:09
+>> .. QA-20984 still running (180s / 1500s cap) — 12:09:09
+>> .. QA-20984 still running (240s / 1500s cap) — 12:10:09
+>> .. QA-20984 still running (300s / 1500s cap) — 12:11:09
+>> .. QA-20984 still running (360s / 1500s cap) — 12:12:10
+>> .. QA-20984 still running (420s / 1500s cap) — 12:13:10
+>> .. QA-20984 still running (480s / 1500s cap) — 12:14:10
+>> usage: 75 turns | in 136 (+5134396 cache-read, +90956 cache-write) | out 19578 | est $3.97
+QA-20984 is **PASS**. All five assertions match, and the report is written to `results/2026-10-22/QA-20984-report.md`.
+
+- **Table counts:** the post table header (Ads (21)), the 21 table rows and the Active Ads tile (21) agree.
+- **Big numbers vs aggregate row:**
+  - Spend: $201,543.83.
+  - Clicks: 145,516.
+  - 100% Completed Views: 459,968.
+  - Reach: 43,807,251.
+  - Paid Impressions: 43,827,219.
+>> done (rc=0) — report: results/2026-10-22/QA-20984-report.md
+>> QA-21912 (full) — Thu Oct 22 12:14:25 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-21912 still running (60s / 1500s cap) — 12:15:25
+>> .. QA-21912 still running (120s / 1500s cap) — 12:16:25
+>> .. QA-21912 still running (180s / 1500s cap) — 12:17:26
+>> .. QA-21912 still running (240s / 1500s cap) — 12:18:26
+>> .. QA-21912 still running (300s / 1500s cap) — 12:19:26
+>> .. QA-21912 still running (360s / 1500s cap) — 12:20:26
+>> usage: 51 turns | in 84 (+2925727 cache-read, +69763 cache-write) | out 14270 | est $2.52
+QA-21912 is **BLOCKED**: I couldn't read the native Facebook post, so the LFM-vs-Native comparison (A6) wasn't evaluated.
+
+- **LFM side:** On FX Networks (the typeahead brand is "FX Networks Composite", brand_id 62693), Facebook only, Posts (54), the first post is American Horror Story. Its values are Reactions 46,521, Comments 572 and Shares 2,454.
+- **Native side:** Clicking the image opened Fac
+>> done (rc=0) — report: results/2026-10-22/QA-21912-report.md
+>> QA-21913 (full) — Thu Oct 22 12:20:52 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> usage: 7 turns | in 8 (+144227 cache-read, +20630 cache-write) | out 1897 | est $0.33
+QA-21913 is **FAILED (blocked by open bug)**. I did not run the browser flow.
+
+LFMP-32113 (open) says native data is lower than LFM on past dates. That is the comparison assertion 6 makes, so a run could not give a trustworthy result. Rule 7 also says to skip the browser flow when a linked bug is open. The case will be picked up again once LFMP-32113 closes and the case cache is refreshed.
+
+The re
+>> done (rc=0) — report: results/2026-10-22/QA-21913-report.md

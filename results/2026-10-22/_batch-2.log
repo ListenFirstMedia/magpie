@@ -1,0 +1,35 @@
+>> QA-21915 (full) — Thu Oct 22 12:21:13 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-21915 still running (60s / 1500s cap) — 12:22:13
+>> .. QA-21915 still running (120s / 1500s cap) — 12:23:13
+>> .. QA-21915 still running (180s / 1500s cap) — 12:24:13
+>> .. QA-21915 still running (240s / 1500s cap) — 12:25:13
+>> .. QA-21915 still running (300s / 1500s cap) — 12:26:13
+>> usage: 41 turns | in 74 (+2113733 cache-read, +53698 cache-write) | out 12734 | est $1.91
+QA-21915 is **BLOCKED** on test data. Neither Thursday brand exists on dev. Steps 3–6 and assertion 6 (LFM Reactions vs native Instagram Likes) were not run.
+
+- **Spotify pair:** the dev typeahead has no "Spotify News". Searching "Spotify" lists 77 brands, none containing "News".
+- **Robinhood pair:** there is no exact "Robinhood", only "Robinhood App", "Robinhood Crypto", the roll-ups and similar
+>> done (rc=0) — report: results/2026-10-22/QA-21915-report.md
+>> QA-21916 (full) — Thu Oct 22 12:27:04 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-21916 still running (60s / 1500s cap) — 12:28:04
+>> .. QA-21916 still running (120s / 1500s cap) — 12:29:04
+>> .. QA-21916 still running (180s / 1500s cap) — 12:30:04
+>> .. QA-21916 still running (240s / 1500s cap) — 12:31:04
+>> .. QA-21916 still running (300s / 1500s cap) — 12:32:04
+>> .. QA-21916 still running (360s / 1500s cap) — 12:33:04
+>> .. QA-21916 still running (420s / 1500s cap) — 12:34:05
+>> usage: 35 turns | in 62 (+1738121 cache-read, +52537 cache-write) | out 12309 | est $1.70
+QA-21916 is BLOCKED because neither of the Thursday brands exists on dev under the exact name. The YouTube-only and native-post steps were never reached, so the Likes/Comments assertion wasn't evaluated.
+
+- **Spotify account:** the brand picker has no "Spotify News". I checked the full list of 71 Spotify brands and none contains "news".
+- **Robinhood account:** the picker has no brand named exactl
+>> done (rc=0) — report: results/2026-10-22/QA-21916-report.md
+>> QA-22104 (full) — Thu Oct 22 12:34:10 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> usage: 6 turns | in 8 (+139249 cache-read, +18885 cache-write) | out 2051 | est $0.31
+QA-22104 is marked FAILED (blocked by open bug), and I did not run it or open the browser. The case file lists LFMP-32119 as open, and that bug describes the same LFM-vs-Native variation the only assertion checks. Rule 7 in `skills/_shared/spec-adherence-rules.md` says to fail a case with an open linked bug without running it, so I followed that over the "execute in full" instruction.
+
+Re-run it o
+>> done (rc=0) — report: results/2026-10-22/QA-22104-report.md

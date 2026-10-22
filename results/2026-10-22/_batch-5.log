@@ -1,0 +1,35 @@
+>> QA-90072 (full) — Thu Oct 22 13:16:47 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-90072 still running (60s / 1500s cap) — 13:17:47
+>> .. QA-90072 still running (120s / 1500s cap) — 13:18:48
+>> .. QA-90072 still running (180s / 1500s cap) — 13:19:48
+>> .. QA-90072 still running (240s / 1500s cap) — 13:20:48
+>> .. QA-90072 still running (300s / 1500s cap) — 13:21:48
+>> .. QA-90072 still running (360s / 1500s cap) — 13:22:48
+>> .. QA-90072 still running (420s / 1500s cap) — 13:23:48
+>> usage: 40 turns | in 64 (+1911585 cache-read, +61328 cache-write) | out 14734 | est $1.94
+QA-90072 is **FAIL (data variance)**, and the call is borderline. The report is at `results/2026-10-22/QA-90072-report.md`.
+
+- **Reels first post:** LFM shows Reactions 373,304, Comments 2,485 and Shares 58,110.
+- **Native Instagram page:** the visible counter shows 430.8K likes and "2K" comments, so LFM likes are 13.3% lower. The page's meta description says 220K likes and 2,006 comments, which w
+>> done (rc=0) — report: results/2026-10-22/QA-90072-report.md
+>> QA-100878 (full) — Thu Oct 22 13:24:44 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-100878 still running (60s / 1500s cap) — 13:25:44
+>> .. QA-100878 still running (120s / 1500s cap) — 13:26:44
+>> .. QA-100878 still running (180s / 1500s cap) — 13:27:44
+>> .. QA-100878 still running (240s / 1500s cap) — 13:28:44
+>> .. QA-100878 still running (300s / 1500s cap) — 13:29:44
+>> .. QA-100878 still running (360s / 1500s cap) — 13:30:44
+>> usage: 43 turns | in 68 (+2003293 cache-read, +59876 cache-write) | out 12559 | est $1.91
+QA-100878 is a PASS. I ran every step on HBO Max with Jun 01–07, 2025 and the Threads Only: Insights data set. All six metrics (Engagements, Likes, Replies, Quotes, Reposts, Views) show in the summary header and the Table View, with 21 posts. The data set also shows a Shares metric, which doesn't affect the result.
+
+- **Account switch:** the login landed on the SPOTIFY account, so I switched to HB
+>> done (rc=0) — report: results/2026-10-22/QA-100878-report.md
+>> QA-100879 (full) — Thu Oct 22 13:31:15 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> usage: 6 turns | in 8 (+138025 cache-read, +18326 cache-write) | out 1942 | est $0.30
+QA-100879 is marked **FAILED (blocked by open bug LFMP-32113)**, and I didn't open the browser.
+
+The case file lists LFMP-32113 as open: "Brand Content > LFM vs Native - Past Date - native data is lower than LFM". It is on the same surface and covers the same thing the assertion checks, so it interferes. I couldn't re-check the bug's status in Jira in this headless run, so I relied on the status b
+>> done (rc=0) — report: results/2026-10-22/QA-100879-report.md

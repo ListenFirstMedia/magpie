@@ -1,0 +1,53 @@
+>> QA-24279 (full) — Thu Oct 22 12:34:41 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-24279 still running (60s / 1500s cap) — 12:35:41
+>> .. QA-24279 still running (120s / 1500s cap) — 12:36:41
+>> .. QA-24279 still running (180s / 1500s cap) — 12:37:42
+>> .. QA-24279 still running (240s / 1500s cap) — 12:38:42
+>> .. QA-24279 still running (300s / 1500s cap) — 12:39:42
+>> .. QA-24279 still running (360s / 1500s cap) — 12:40:42
+>> .. QA-24279 still running (420s / 1500s cap) — 12:41:42
+>> .. QA-24279 still running (480s / 1500s cap) — 12:42:43
+>> .. QA-24279 still running (540s / 1500s cap) — 12:45:09
+>> .. QA-24279 still running (600s / 1500s cap) — 12:46:09
+>> .. QA-24279 still running (660s / 1500s cap) — 12:47:10
+>> usage: 58 turns | in 106 (+3759000 cache-read, +74785 cache-write) | out 20837 | est $3.15
+QA-24279 is **BLOCKED**: neither Thursday brand exists on dev, so no step past the brand lookup ran and no assertion was evaluated.
+
+- **Spotify account:** "Spotify News" returns nothing in the brand picker or the global brand search. Among 72 "Spotify" results there is no "News" brand.
+- **Robinhood account:** there is no exact "Robinhood" brand, only variants such as "Robinhood App". Rule 1 forb
+>> done (rc=0) — report: results/2026-10-22/QA-24279-report.md
+>> QA-31572 (full) — Thu Oct 22 12:47:47 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-31572 still running (60s / 1500s cap) — 12:48:47
+>> .. QA-31572 still running (120s / 1500s cap) — 12:49:47
+>> .. QA-31572 still running (180s / 1500s cap) — 12:50:47
+>> .. QA-31572 still running (240s / 1500s cap) — 12:51:47
+>> .. QA-31572 still running (300s / 1500s cap) — 12:52:48
+>> .. QA-31572 still running (360s / 1500s cap) — 12:53:48
+>> .. QA-31572 still running (420s / 1500s cap) — 12:54:48
+>> usage: 116 turns | in 146 (+5762334 cache-read, +101394 cache-write) | out 18140 | est $4.35
+QA-31572 passes. The Brand Insights Impressions big number is 193,540,575. The three Time Window Comparison values (the app has no "Classic Reporting" menu item) sum to the same figure, with a difference of 0.
+
+- **Insights:** Amazon Prime Video, Facebook, Twitter and Instagram only, Authorized data, Oct 14–20, 2026.
+- **Time Window Comparison:** Facebook Page Impressions 102,038,295, Twitter Orga
+>> done (rc=0) — report: results/2026-10-22/QA-31572-report.md
+>> QA-32751 (full) — Thu Oct 22 12:55:23 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-32751 still running (60s / 1500s cap) — 12:56:23
+>> .. QA-32751 still running (120s / 1500s cap) — 12:57:23
+>> .. QA-32751 still running (180s / 1500s cap) — 12:58:23
+>> .. QA-32751 still running (240s / 1500s cap) — 12:59:24
+>> .. QA-32751 still running (300s / 1500s cap) — 13:00:24
+>> .. QA-32751 still running (360s / 1500s cap) — 13:01:24
+>> usage: 91 turns | in 150 (+5224181 cache-read, +76954 cache-write) | out 18665 | est $3.85
+QA-32751 is a **PASS**: all five Instagram Paid big numbers on Michael Kors match the TWC report exactly for Oct 14–20, 2026.
+
+| Metric | Paid page | TWC report |
+|---|---|---|
+| Paid Impressions / Ad Impressions | 68,791,348 | 68,791,348 |
+| Spend / Ad Spend | $604,057.25 | $604,057.25 |
+| Clicks / Ad Clicks | 905,250 | 905,250 |
+| Paid Actions | 2,515,442 | 2,515,442 |
+| 95% Completed Video View
+>> done (rc=0) — report: results/2026-10-22/QA-32751-report.md

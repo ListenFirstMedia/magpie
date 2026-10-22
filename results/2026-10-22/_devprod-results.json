@@ -1,0 +1,1425 @@
+{
+ "_note": "Dev-vs-Prod comparisons run 2026-10-22 (Thursday rotation). The Thursday brand 'Spotify News' does not exist on the Spotify account on dev or prod (typeahead lists 67 Spotify brands, none named Spotify News), so the 21 Spotify-rotation cases ran on Amazon Prime Video per the case descriptions' note 'Also use Amazon Prime Video on alternative days'. Default week Oct 14-20 2026 unless stated. Helper library: skills/_shared/playwright-helpers/devprod-helpers.js.",
+ "QA-20533": {
+  "verdict": "PASS",
+  "opts": {
+   "ds": "Public",
+   "channels": [
+    "twitter"
+   ]
+  },
+  "summary": {
+   "devPosts": 73,
+   "prodPosts": 73,
+   "matched": 73,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "colsCompared": [
+    "Engagements",
+    "Reactions",
+    "Comments",
+    "Shares",
+    "Response Rate",
+    "Video Views",
+    "Video Response Rate"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": []
+  },
+  "dev": {
+   "n": 73,
+   "ds": {
+    "ok": true
+   },
+   "ch": {
+    "enabled": [
+     "twitter"
+    ],
+    "posts": "73"
+   }
+  },
+  "prod": {
+   "n": 73,
+   "ds": {
+    "ok": true
+   },
+   "ch": {
+    "enabled": [
+     "twitter"
+    ],
+    "posts": "73"
+   }
+  },
+  "meta": {
+   "account": "Amazon Prime Video",
+   "brand": "Amazon Prime Video",
+   "note": "Thursday rotation brand 'Spotify News' not present on the Spotify account (dev and prod); ran on the spec's alternative account Amazon Prime Video."
+  }
+ },
+ "QA-20535": {
+  "verdict": "PASS",
+  "opts": {
+   "ds": "Public",
+   "channels": [
+    "youtube"
+   ]
+  },
+  "summary": {
+   "devPosts": 51,
+   "prodPosts": 51,
+   "matched": 51,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "colsCompared": [
+    "Video Views",
+    "Likes",
+    "Comments"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": []
+  },
+  "dev": {
+   "n": 51,
+   "ch": {
+    "enabled": [
+     "youtube"
+    ],
+    "posts": "51"
+   }
+  },
+  "prod": {
+   "n": 51,
+   "ch": {
+    "enabled": [
+     "youtube"
+    ],
+    "posts": "51"
+   }
+  },
+  "meta": {
+   "account": "Amazon Prime Video",
+   "brand": "Amazon Prime Video",
+   "note": "Spotify News not present; Amazon Prime Video alternative."
+  }
+ },
+ "QA-20269": {
+  "verdict": "PASS",
+  "opts": {
+   "ds": "Video Views",
+   "channels": [
+    "facebook"
+   ]
+  },
+  "summary": {
+   "devPosts": 42,
+   "prodPosts": 42,
+   "matched": 42,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "colsCompared": [
+    "Engagements",
+    "Video Response Rate",
+    "Video Views",
+    "Organic Views",
+    "Paid Views",
+    "Unclassified Views",
+    "Viewers",
+    "Video Duration",
+    "Watch Time (Minutes)",
+    "Video Views (with Cross-Posts)"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": []
+  },
+  "dev": {
+   "n": 42,
+   "ds": {
+    "ok": true
+   },
+   "ch": {
+    "enabled": [
+     "facebook"
+    ],
+    "posts": "42"
+   }
+  },
+  "prod": {
+   "n": 42,
+   "ds": {
+    "ok": true
+   },
+   "ch": {
+    "enabled": [
+     "facebook"
+    ],
+    "posts": "42"
+   }
+  },
+  "meta": {
+   "account": "Amazon Prime Video",
+   "brand": "Amazon Prime Video",
+   "note": "Spotify News not present; Amazon Prime Video alternative. Facebook rows joined on Date + Text."
+  }
+ },
+ "QA-21017": {
+  "verdict": "PASS",
+  "opts": {
+   "ds": "Video Views",
+   "channels": [
+    "twitter"
+   ]
+  },
+  "summary": {
+   "devPosts": 23,
+   "prodPosts": 23,
+   "matched": 23,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "colsCompared": [
+    "Engagements",
+    "Video Response Rate",
+    "Video Views",
+    "Organic Views",
+    "Paid Views",
+    "Unclassified Views",
+    "Viewers",
+    "Video Duration",
+    "Watch Time (Minutes)",
+    "Video Views (with Cross-Posts)"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": []
+  },
+  "dev": {
+   "n": 23,
+   "ch": {
+    "enabled": [
+     "twitter"
+    ],
+    "posts": "23"
+   }
+  },
+  "prod": {
+   "n": 23,
+   "ch": {
+    "enabled": [
+     "twitter"
+    ],
+    "posts": "23"
+   }
+  },
+  "meta": {
+   "account": "Amazon Prime Video",
+   "brand": "Amazon Prime Video",
+   "note": "Spotify News not present; Amazon Prime Video alternative. LFMP-31931 (Twitter video views) linked: dev and prod agree on every value."
+  }
+ },
+ "QA-21018": {
+  "verdict": "PASS",
+  "opts": {
+   "ds": "Video Views",
+   "channels": [
+    "instagram"
+   ]
+  },
+  "summary": {
+   "devPosts": 42,
+   "prodPosts": 42,
+   "matched": 42,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "colsCompared": [
+    "Engagements",
+    "Video Response Rate",
+    "Video Views",
+    "Organic Views",
+    "Paid Views",
+    "Unclassified Views",
+    "Viewers",
+    "Video Duration",
+    "Watch Time (Minutes)",
+    "Video Views (with Cross-Posts)"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": []
+  },
+  "dev": {
+   "n": 42,
+   "ch": {
+    "enabled": [
+     "instagram"
+    ],
+    "posts": "42"
+   }
+  },
+  "prod": {
+   "n": 42,
+   "ch": {
+    "enabled": [
+     "instagram"
+    ],
+    "posts": "42"
+   }
+  },
+  "meta": {
+   "account": "Amazon Prime Video",
+   "brand": "Amazon Prime Video",
+   "note": "Spotify News not present; Amazon Prime Video alternative."
+  }
+ },
+ "QA-21020": {
+  "verdict": "PASS",
+  "opts": {
+   "ds": "Video Views",
+   "channels": [
+    "tiktok"
+   ]
+  },
+  "summary": {
+   "devPosts": 41,
+   "prodPosts": 41,
+   "matched": 41,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "colsCompared": [
+    "Engagements",
+    "Video Response Rate",
+    "Video Views",
+    "Organic Views",
+    "Paid Views",
+    "Unclassified Views",
+    "Viewers",
+    "Video Duration",
+    "Watch Time (Minutes)",
+    "Video Views (with Cross-Posts)"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": []
+  },
+  "dev": {
+   "n": 41,
+   "ch": {
+    "enabled": [
+     "tiktok"
+    ],
+    "posts": "41"
+   }
+  },
+  "prod": {
+   "n": 41,
+   "ch": {
+    "enabled": [
+     "tiktok"
+    ],
+    "posts": "41"
+   }
+  },
+  "meta": {
+   "account": "Amazon Prime Video",
+   "brand": "Amazon Prime Video",
+   "note": "Spotify News not present; Amazon Prime Video alternative."
+  }
+ },
+ "QA-20271": {
+  "verdict": "PASS",
+  "opts": {
+   "ds": "Impressions",
+   "channels": [
+    "instagram"
+   ]
+  },
+  "summary": {
+   "devPosts": 76,
+   "prodPosts": 76,
+   "matched": 76,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "colsCompared": [
+    "Engagements",
+    "Engagement Rate",
+    "Impressions",
+    "Organic Impressions",
+    "Paid Impressions",
+    "Reach",
+    "Organic Reach",
+    "Paid Reach",
+    "Engaged User Rate"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": []
+  },
+  "dev": {
+   "n": 76,
+   "ds": {
+    "ok": true
+   },
+   "ch": {
+    "enabled": [
+     "instagram"
+    ],
+    "posts": "76"
+   }
+  },
+  "prod": {
+   "n": 76,
+   "ds": {
+    "ok": true
+   },
+   "ch": {
+    "enabled": [
+     "instagram"
+    ],
+    "posts": "76"
+   }
+  },
+  "meta": {
+   "account": "Amazon Prime Video",
+   "brand": "Amazon Prime Video",
+   "note": "Spotify News not present; Amazon Prime Video alternative."
+  }
+ },
+ "QA-21015": {
+  "verdict": "PASS",
+  "opts": {
+   "ds": "Impressions",
+   "channels": [
+    "facebook"
+   ]
+  },
+  "summary": {
+   "devPosts": 77,
+   "prodPosts": 77,
+   "matched": 77,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "colsCompared": [
+    "Engagements",
+    "Engagement Rate",
+    "Impressions",
+    "Organic Impressions",
+    "Paid Impressions",
+    "Reach",
+    "Organic Reach",
+    "Paid Reach",
+    "Engaged User Rate"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": []
+  },
+  "dev": {
+   "n": 77,
+   "ch": {
+    "enabled": [
+     "facebook"
+    ],
+    "posts": "77"
+   }
+  },
+  "prod": {
+   "n": 77,
+   "ch": {
+    "enabled": [
+     "facebook"
+    ],
+    "posts": "77"
+   }
+  },
+  "meta": {
+   "account": "Amazon Prime Video",
+   "brand": "Amazon Prime Video",
+   "note": "Spotify News not present; Amazon Prime Video alternative. Facebook rows joined on Date + Text."
+  }
+ },
+ "QA-21016": {
+  "verdict": "PASS",
+  "opts": {
+   "ds": "Impressions",
+   "channels": [
+    "twitter"
+   ]
+  },
+  "summary": {
+   "devPosts": 73,
+   "prodPosts": 73,
+   "matched": 73,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "colsCompared": [
+    "Engagements",
+    "Engagement Rate",
+    "Impressions",
+    "Organic Impressions",
+    "Paid Impressions",
+    "Reach",
+    "Organic Reach",
+    "Paid Reach",
+    "Engaged User Rate"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": []
+  },
+  "dev": {
+   "n": 73,
+   "ch": {
+    "enabled": [
+     "twitter"
+    ],
+    "posts": "73"
+   }
+  },
+  "prod": {
+   "n": 73,
+   "ch": {
+    "enabled": [
+     "twitter"
+    ],
+    "posts": "73"
+   }
+  },
+  "meta": {
+   "account": "Amazon Prime Video",
+   "brand": "Amazon Prime Video",
+   "note": "Spotify News not present; Amazon Prime Video alternative."
+  }
+ },
+ "QA-20272": {
+  "verdict": "PASS",
+  "opts": {
+   "ds": "Engagements Breakdown",
+   "channels": [
+    "twitter"
+   ]
+  },
+  "summary": {
+   "devPosts": 73,
+   "prodPosts": 73,
+   "matched": 73,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "colsCompared": [
+    "Engagements",
+    "Organic Engagements",
+    "Paid Engagements",
+    "Reactions",
+    "Organic Reactions",
+    "Paid Reactions",
+    "Comments",
+    "Organic Comments",
+    "Paid Comments",
+    "Shares",
+    "Organic Shares",
+    "Paid Shares"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": []
+  },
+  "dev": {
+   "n": 73,
+   "ds": {
+    "ok": true
+   },
+   "ch": {
+    "enabled": [
+     "twitter"
+    ],
+    "posts": "73"
+   }
+  },
+  "prod": {
+   "n": 73,
+   "ds": {
+    "ok": true
+   },
+   "ch": {
+    "enabled": [
+     "twitter"
+    ],
+    "posts": "73"
+   }
+  },
+  "meta": {
+   "account": "Amazon Prime Video",
+   "brand": "Amazon Prime Video",
+   "note": "Spotify News not present; Amazon Prime Video alternative. APPS-62582 linked (Twitter Reactions): dev and prod agree on every value."
+  }
+ },
+ "QA-21014": {
+  "verdict": "PASS",
+  "opts": {
+   "ds": "Engagements Breakdown",
+   "channels": [
+    "instagram"
+   ]
+  },
+  "summary": {
+   "devPosts": 76,
+   "prodPosts": 76,
+   "matched": 76,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "colsCompared": [
+    "Engagements",
+    "Organic Engagements",
+    "Paid Engagements",
+    "Reactions",
+    "Organic Reactions",
+    "Paid Reactions",
+    "Comments",
+    "Organic Comments",
+    "Paid Comments",
+    "Shares",
+    "Organic Shares",
+    "Paid Shares"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": []
+  },
+  "dev": {
+   "n": 76,
+   "ch": {
+    "enabled": [
+     "instagram"
+    ],
+    "posts": "76"
+   }
+  },
+  "prod": {
+   "n": 76,
+   "ch": {
+    "enabled": [
+     "instagram"
+    ],
+    "posts": "76"
+   }
+  },
+  "meta": {
+   "account": "Amazon Prime Video",
+   "brand": "Amazon Prime Video",
+   "note": "Spotify News not present; Amazon Prime Video alternative."
+  }
+ },
+ "QA-20273": {
+  "verdict": "PASS",
+  "opts": {
+   "ds": "Facebook Only: Completed Video Views",
+   "channels": [
+    "facebook"
+   ]
+  },
+  "summary": {
+   "devPosts": 42,
+   "prodPosts": 42,
+   "matched": 42,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "colsCompared": [
+    "Engagements",
+    "Video Duration",
+    "Avg Time Watched (Minutes)",
+    "Avg Viewthru",
+    "Completed Views",
+    "Organic Completed Views",
+    "Paid Completed Views"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": []
+  },
+  "dev": {
+   "n": 42,
+   "ds": {
+    "ok": true
+   },
+   "ch": {
+    "enabled": [
+     "facebook"
+    ],
+    "posts": "42"
+   }
+  },
+  "prod": {
+   "n": 42,
+   "ds": {
+    "ok": true
+   },
+   "ch": {
+    "enabled": [
+     "facebook"
+    ],
+    "posts": "42"
+   }
+  },
+  "meta": {
+   "account": "Amazon Prime Video",
+   "brand": "Amazon Prime Video",
+   "note": "Spotify News not present; Amazon Prime Video alternative. Facebook rows joined on Date + Text."
+  }
+ },
+ "QA-20274": {
+  "verdict": "PASS",
+  "opts": {
+   "ds": "Facebook Only: Reactions",
+   "channels": [
+    "facebook"
+   ]
+  },
+  "summary": {
+   "devPosts": 77,
+   "prodPosts": 77,
+   "matched": 77,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "colsCompared": [
+    "Engagements",
+    "Reactions",
+    "Likes",
+    "Loves",
+    "Hahas",
+    "Wows",
+    "Sads",
+    "Angries",
+    "Others"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": []
+  },
+  "dev": {
+   "n": 77,
+   "ds": {
+    "ok": true
+   },
+   "ch": {
+    "enabled": [
+     "facebook"
+    ],
+    "posts": "77"
+   }
+  },
+  "prod": {
+   "n": 77,
+   "ds": {
+    "ok": true
+   },
+   "ch": {
+    "enabled": [
+     "facebook"
+    ],
+    "posts": "77"
+   }
+  },
+  "meta": {
+   "account": "Amazon Prime Video",
+   "brand": "Amazon Prime Video",
+   "note": "Spotify News not present; Amazon Prime Video alternative. Facebook rows joined on Date + Text."
+  }
+ },
+ "QA-20275": {
+  "verdict": "PASS",
+  "opts": {
+   "ds": "Twitter Only: Engagements & Follows",
+   "channels": [
+    "twitter"
+   ]
+  },
+  "summary": {
+   "devPosts": 73,
+   "prodPosts": 73,
+   "matched": 73,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "colsCompared": [
+    "Engagements",
+    "Likes",
+    "Replies",
+    "Retweets",
+    "Quotes",
+    "Bookmarks",
+    "Views",
+    "User Follows",
+    "Organic User Follows",
+    "Paid User Follows"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": []
+  },
+  "dev": {
+   "n": 73,
+   "ds": {
+    "ok": true
+   },
+   "ch": {
+    "enabled": [
+     "twitter"
+    ],
+    "posts": "73"
+   }
+  },
+  "prod": {
+   "n": 73,
+   "ds": {
+    "ok": true
+   },
+   "ch": {
+    "enabled": [
+     "twitter"
+    ],
+    "posts": "73"
+   }
+  },
+  "meta": {
+   "account": "Amazon Prime Video",
+   "brand": "Amazon Prime Video",
+   "note": "Spotify News not present; Amazon Prime Video alternative. APPS-60871 linked (en-dash): the User Follows columns are identical on both environments."
+  }
+ },
+ "QA-20278": {
+  "verdict": "PASS",
+  "opts": {
+   "ds": "YouTube Only: Cards",
+   "channels": [
+    "youtube"
+   ]
+  },
+  "summary": {
+   "devPosts": 51,
+   "prodPosts": 51,
+   "matched": 51,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "colsCompared": [
+    "Video Views",
+    "Video Duration",
+    "Card Impressions",
+    "Card Clicks",
+    "Card CTR",
+    "Teaser Impressions",
+    "Teaser Clicks",
+    "Teaser CTR"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": []
+  },
+  "dev": {
+   "n": 51,
+   "ds": {
+    "ok": true
+   },
+   "ch": {
+    "enabled": [
+     "youtube"
+    ],
+    "posts": "51"
+   }
+  },
+  "prod": {
+   "n": 51,
+   "ds": {
+    "ok": true
+   },
+   "ch": {
+    "enabled": [
+     "youtube"
+    ],
+    "posts": "51"
+   }
+  },
+  "meta": {
+   "account": "Amazon Prime Video",
+   "brand": "Amazon Prime Video",
+   "note": "Spotify News not present; Amazon Prime Video alternative."
+  }
+ },
+ "QA-20280": {
+  "verdict": "PASS",
+  "opts": {
+   "ds": "YouTube Only: Subscribers & Playlists",
+   "channels": [
+    "youtube"
+   ]
+  },
+  "summary": {
+   "devPosts": 51,
+   "prodPosts": 51,
+   "matched": 51,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "colsCompared": [
+    "Video Views",
+    "Video Duration",
+    "Subscribers Gained",
+    "Subscribers Lost",
+    "Playlist Adds",
+    "Playlist Removes"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": []
+  },
+  "dev": {
+   "n": 51,
+   "ds": {
+    "ok": true
+   },
+   "ch": {
+    "enabled": [
+     "youtube"
+    ],
+    "posts": "51"
+   }
+  },
+  "prod": {
+   "n": 51,
+   "ds": {
+    "ok": true
+   },
+   "ch": {
+    "enabled": [
+     "youtube"
+    ],
+    "posts": "51"
+   }
+  },
+  "meta": {
+   "account": "Amazon Prime Video",
+   "brand": "Amazon Prime Video",
+   "note": "Spotify News not present; Amazon Prime Video alternative."
+  }
+ },
+ "QA-21027": {
+  "verdict": "PASS",
+  "opts": {
+   "ds": "Public",
+   "channels": [
+    "twitter"
+   ]
+  },
+  "summary": {
+   "devPosts": 73,
+   "prodPosts": 73,
+   "matched": 73,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "colsCompared": [
+    "Engagements",
+    "Reactions",
+    "Comments",
+    "Shares"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": []
+  },
+  "dev": {
+   "n": 73,
+   "ch": {
+    "enabled": [
+     "twitter"
+    ],
+    "posts": "73"
+   }
+  },
+  "prod": {
+   "n": 73,
+   "ch": {
+    "enabled": [
+     "twitter"
+    ],
+    "posts": "73"
+   }
+  },
+  "meta": {
+   "account": "Amazon Prime Video",
+   "brand": "Amazon Prime Video",
+   "headline": "spec names a 'Reactions' data set that does not exist; the Twitter Public comparison the dev half of the spec describes ran on Amazon Prime Video (Spotify News not present): 73/73 tweets identical",
+   "note": "SPEC GAP: no 'Reactions' data set on Brand > Content. This case's description has no 'alternative account' note; Amazon Prime Video was used for consistency with the other 21 Spotify-rotation cases."
+  }
+ },
+ "QA-21019": {
+  "verdict": "PASS",
+  "opts": {
+   "ds": "YouTube Only: Insights",
+   "channels": [
+    "youtube"
+   ]
+  },
+  "summary": {
+   "devPosts": 10,
+   "prodPosts": 10,
+   "matched": 10,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "colsCompared": [
+    "Video Views",
+    "Organic Views",
+    "Paid Views",
+    "Unclassified Views",
+    "Video Duration",
+    "YouTube Watch Time (Minutes)",
+    "Organic Watch Time (Minutes)",
+    "Paid Watch Time (Minutes)",
+    "Avg View Duration (Minutes)",
+    "Shares",
+    "Dislikes"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": []
+  },
+  "dev": {
+   "n": 10,
+   "ds": {
+    "ok": true
+   },
+   "ch": {
+    "enabled": [
+     "youtube"
+    ],
+    "posts": "10"
+   }
+  },
+  "prod": {
+   "n": 10,
+   "ds": {
+    "ok": true
+   },
+   "ch": {
+    "enabled": [
+     "youtube"
+    ],
+    "posts": "10"
+   }
+  },
+  "meta": {
+   "account": "Disney Ad Sales",
+   "brand": "Disney Channel",
+   "note": "Thursday rotation: Disney Ad Sales / Disney Channel. YouTube is greyed under the generic Video Views set; YouTube Only: Insights used on both sides (as on 2026-10-20)."
+  }
+ },
+ "QA-20276": {
+  "verdict": "PASS",
+  "opts": {
+   "ds": "Instagram Only: Insights",
+   "channels": [
+    "instagram"
+   ]
+  },
+  "summary": {
+   "devPosts": 43,
+   "prodPosts": 43,
+   "matched": 43,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "colsCompared": [
+    "Engagements",
+    "Saves",
+    "Organic Saves",
+    "Paid Saves",
+    "Shares",
+    "Views",
+    "Private Likes",
+    "Effectiveness"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": []
+  },
+  "dev": {
+   "n": 43,
+   "ds": {
+    "ok": true
+   },
+   "ch": {
+    "enabled": [
+     "instagram"
+    ],
+    "posts": "43"
+   }
+  },
+  "prod": {
+   "n": 43,
+   "ds": {
+    "ok": true
+   },
+   "ch": {
+    "enabled": [
+     "instagram"
+    ],
+    "posts": "43"
+   }
+  },
+  "meta": {
+   "account": "FX Networks",
+   "brand": "FX Networks Composite",
+   "note": "Thursday rotation brand 'FX Networks' does not exist on the FX Networks account; the only FX brand there is 'FX Networks Composite' (brand_id 62693), used on both environments. Dev default brand was the composite, prod default was 'It's Always Sunny in Philadelphia' \u2014 the brand picker aligned both. The page needs ~3 minutes to load on dev."
+  }
+ },
+ "QA-70721": {
+  "verdict": "PASS",
+  "opts": {
+   "ds": "Instagram Only: Action Types",
+   "channels": [
+    "instagram"
+   ]
+  },
+  "summary": {
+   "devPosts": 43,
+   "prodPosts": 43,
+   "matched": 43,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "colsCompared": [
+    "Engagements",
+    "Bio Link Clicks",
+    "Calls",
+    "Directions",
+    "Emails",
+    "Texts",
+    "Other Actions",
+    "Profile Visits",
+    "Follows"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": []
+  },
+  "dev": {
+   "n": 43,
+   "ds": {
+    "ok": true
+   },
+   "ch": {
+    "enabled": [
+     "instagram"
+    ],
+    "posts": "43"
+   }
+  },
+  "prod": {
+   "n": 43,
+   "ds": {
+    "ok": true
+   },
+   "ch": {
+    "enabled": [
+     "instagram"
+    ],
+    "posts": "43"
+   }
+  },
+  "meta": {
+   "account": "FX Networks",
+   "brand": "FX Networks Composite",
+   "note": "Spec brand 'FX Networks' not present; 'FX Networks Composite' used on both environments (see QA-20276)."
+  }
+ },
+ "QA-20279": {
+  "verdict": "PASS",
+  "opts": {
+   "ds": "Pinterest Only: Basic",
+   "channels": [
+    "pinterest"
+   ]
+  },
+  "summary": {
+   "devPosts": 49,
+   "prodPosts": 49,
+   "matched": 49,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "colsCompared": [
+    "Engagements",
+    "Pin Saves",
+    "Comments"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": []
+  },
+  "dev": {
+   "n": 49,
+   "ds": {
+    "ok": true
+   },
+   "ch": {
+    "enabled": [
+     "pinterest"
+    ],
+    "posts": "49"
+   }
+  },
+  "prod": {
+   "n": 49,
+   "ds": {
+    "ok": true
+   },
+   "ch": {
+    "enabled": [
+     "pinterest"
+    ],
+    "posts": "49"
+   }
+  },
+  "meta": {
+   "account": "Ralph Lauren",
+   "brand": "Ralph Lauren",
+   "note": "Thursday rotation: Ralph Lauren. Brand picker used (account default is 'Andrew Domink')."
+  }
+ },
+ "QA-100881": {
+  "verdict": "PASS",
+  "opts": {
+   "ds": "Public",
+   "channels": [
+    "threads"
+   ]
+  },
+  "summary": {
+   "devPosts": 21,
+   "prodPosts": 21,
+   "matched": 21,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "colsCompared": [
+    "Engagements",
+    "Reactions",
+    "Comments",
+    "Shares",
+    "Response Rate",
+    "Video Views",
+    "Video Response Rate"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": []
+  },
+  "dev": {
+   "n": 21,
+   "ds": {
+    "ok": true
+   },
+   "ch": {
+    "enabled": [
+     "threads"
+    ],
+    "posts": "21"
+   }
+  },
+  "prod": {
+   "n": 21,
+   "ds": {
+    "ok": true
+   },
+   "ch": {
+    "enabled": [
+     "threads"
+    ],
+    "posts": "21"
+   }
+  },
+  "meta": {
+   "account": "HBO Max",
+   "brand": "HBO Max",
+   "dates": "Jun 01, 2025 \u2013 Jun 07, 2025",
+   "note": "Default week has no Threads posts for HBO Max; Jun 01\u201307 2025 window used on both (as on 2026-10-20)."
+  }
+ },
+ "QA-100880": {
+  "verdict": "PASS",
+  "opts": {
+   "ds": "Impressions",
+   "channels": [
+    "threads"
+   ]
+  },
+  "summary": {
+   "devPosts": 21,
+   "prodPosts": 21,
+   "matched": 21,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "colsCompared": [
+    "Engagements",
+    "Engagement Rate",
+    "Impressions",
+    "Organic Impressions",
+    "Paid Impressions",
+    "Reach",
+    "Organic Reach",
+    "Paid Reach",
+    "Engaged User Rate"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": []
+  },
+  "dev": {
+   "n": 21,
+   "ds": {
+    "ok": true
+   },
+   "ch": {
+    "enabled": [
+     "threads"
+    ],
+    "posts": "21"
+   }
+  },
+  "prod": {
+   "n": 21,
+   "ds": {
+    "ok": true
+   },
+   "ch": {
+    "enabled": [
+     "threads"
+    ],
+    "posts": "21"
+   }
+  },
+  "meta": {
+   "account": "HBO Max",
+   "brand": "HBO Max",
+   "dates": "Jun 01, 2025 \u2013 Jun 07, 2025",
+   "note": "Same Jun 2025 window as QA-100881."
+  }
+ },
+ "QA-100886": {
+  "verdict": "PASS",
+  "opts": {
+   "ds": "Threads Only: Insights",
+   "channels": [
+    "threads"
+   ]
+  },
+  "summary": {
+   "devPosts": 21,
+   "prodPosts": 21,
+   "matched": 21,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "colsCompared": [
+    "Engagements",
+    "Likes",
+    "Replies",
+    "Quotes",
+    "Reposts",
+    "Shares",
+    "Views"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": []
+  },
+  "dev": {
+   "n": 21,
+   "ds": {
+    "ok": true
+   },
+   "ch": {
+    "enabled": [
+     "threads"
+    ],
+    "posts": "21"
+   }
+  },
+  "prod": {
+   "n": 21,
+   "ds": {
+    "ok": true
+   },
+   "ch": {
+    "enabled": [
+     "threads"
+    ],
+    "posts": "21"
+   }
+  },
+  "meta": {
+   "account": "HBO Max",
+   "brand": "HBO Max",
+   "dates": "Jun 01, 2025 \u2013 Jun 07, 2025",
+   "note": "Same Jun 2025 window as QA-100881."
+  }
+ },
+ "QA-20277": {
+  "verdict": "PASS",
+  "opts": {
+   "ds": "YouTube Only: Insights + YouTube Only: Premium",
+   "channels": [
+    "youtube"
+   ]
+  },
+  "summary": {
+   "devPosts": 51,
+   "prodPosts": 51,
+   "matched": 51,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "colsCompared": [
+    "Video Views",
+    "Organic Views",
+    "Paid Views",
+    "Unclassified Views",
+    "Video Duration",
+    "YouTube Watch Time (Minutes)",
+    "Organic Watch Time (Minutes)",
+    "Paid Watch Time (Minutes)",
+    "Avg View Duration (Minutes)",
+    "Shares",
+    "Dislikes",
+    "Premium Views",
+    "Organic Premium Views",
+    "Paid Premium Views",
+    "Premium Watch Time (Minutes)",
+    "Organic Premium Watch Time (Minutes)",
+    "Paid Premium Watch Time (Minutes)"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": []
+  },
+  "dev": {
+   "n": 51,
+   "ds": {
+    "ok": true
+   },
+   "ch": {
+    "enabled": [
+     "youtube"
+    ],
+    "posts": "51"
+   }
+  },
+  "prod": {
+   "n": 51,
+   "ds": {
+    "ok": true
+   },
+   "ch": {
+    "enabled": [
+     "youtube"
+    ],
+    "posts": "51"
+   }
+  },
+  "meta": {
+   "account": "Amazon Prime Video",
+   "brand": "Amazon Prime Video",
+   "note": "Thursday rotation names account Viacom / brand Viacom: the Viacom brand (brand_id 6725) has 0 YouTube posts in the week on BOTH environments (consistent, nothing to compare), so the case ran on the alternative account Amazon Prime Video (51 videos). Both data sets compared (Insights 11 columns, Premium 6 columns), 51/51 identical on each."
+  }
+ }
+}
