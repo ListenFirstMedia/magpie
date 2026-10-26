@@ -1,0 +1,60 @@
+>> QA-19705 (full) — Fri Oct 23 12:06:58 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> usage: 6 turns | in 8 (+138109 cache-read, +17731 cache-write) | out 1643 | est $0.29
+QA-19705 is FAILED (blocked by open bug LFMP-32088). I didn't open the browser or run any steps.
+
+The case lists LFMP-32088 as open, and `results/open-bugs-2026-10-23.json` shows it still open today. Its title covers the same dataset and metric the case asserts (Twitter Only: Engagements & Follows, User Follows), so Rule 7's open-bug auto-fail applies.
+
+The report is at `results/2026-10-23/QA-1970
+>> done (rc=0) — report: results/2026-10-23/QA-19705-report.md
+>> QA-19706 (full) — Fri Oct 23 12:07:20 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-19706 still running (60s / 1500s cap) — 12:08:20
+>> .. QA-19706 still running (120s / 1500s cap) — 12:09:20
+>> .. QA-19706 still running (180s / 1500s cap) — 12:10:21
+>> .. QA-19706 still running (240s / 1500s cap) — 12:11:21
+>> .. QA-19706 still running (300s / 1500s cap) — 12:12:21
+>> .. QA-19706 still running (360s / 1500s cap) — 12:13:21
+>> .. QA-19706 still running (420s / 1500s cap) — 12:14:21
+>> QA-24277 (full) — Fri Oct 23 12:15:09 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-19706 still running (480s / 1500s cap) — 12:15:21
+>> usage: 48 turns | in 86 (+2985207 cache-read, +72002 cache-write) | out 14752 | est $2.58
+QA-19706 is **PASS**. Paid Saves + Organic Saves equals Saves on every post and on the Sum row for both Friday pairs. The report is at `results/2026-10-23/QA-19706-report.md`.
+
+- **Hulu (Hulu account):** 45 posts plus the Sum row, 46 of 46 rows match, no failures.
+- **Ralph Lauren (Ralph Lauren account):** 8 posts plus the Sum row, 9 of 9 rows match, no failures.
+- **Caveat:** Paid Saves shows "–"
+>> done (rc=0) — report: results/2026-10-23/QA-19706-report.md
+>> QA-19707 (full) — Fri Oct 23 12:15:28 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> usage: 6 turns | in 8 (+139215 cache-read, +18617 cache-write) | out 1785 | est $0.30
+QA-19707 is marked **FAILED (blocked by open bug)** and I did not open the browser. Its linked bug APPS-60871 (Endash displayed for multiple metrics) is still Open as of 2026-10-23, so Rule 7 says not to run it.
+
+The report is at `results/2026-10-23/QA-19707-report.md`. All three assertions are recorded as not evaluated. The case will be picked up again once APPS-60871 closes and the cache is refr
+>> done (rc=0) — report: results/2026-10-23/QA-19707-report.md
+>> .. QA-24277 still running (60s / 1500s cap) — 12:16:09
+>> .. QA-24277 still running (120s / 1500s cap) — 12:17:09
+>> .. QA-24277 still running (180s / 1500s cap) — 12:18:09
+>> .. QA-24277 still running (240s / 1500s cap) — 12:19:09
+>> .. QA-24277 still running (300s / 1500s cap) — 12:20:09
+>> usage: 49 turns | in 80 (+2893726 cache-read, +73831 cache-write) | out 14498 | est $2.55
+QA-24277 is FAIL: the Sum-row check for assertion 4 is off by 1. Assertions 5 and 6 pass. I ran it on Hulu, the Friday brand, with the Engagements Breakdown data set, on the default Oct 15–21 range.
+
+- **Assertion 4 (Sum row):** Organic Engagements (838,210) plus Paid Engagements (1,148) is 839,358, but Engagements shows 839,359. The Average row passes (9,861 + 14 = 9,875).
+- **Cause:** One Twitte
+>> done (rc=0) — report: results/2026-10-23/QA-24277-report.md
+>> QA-24278 (full) — Fri Oct 23 12:20:56 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> usage: 6 turns | in 8 (+140047 cache-read, +19398 cache-write) | out 2436 | est $0.32
+QA-24278 is marked **FAILED (blocked by open bug)** and I did not run it. The case file lists APPS-62822 (QA Ready, Facebook Posts Authorized data not collected) as open. Rule 7 says an open linked bug fails the case without running it.
+
+The report is at `results/2026-10-23/QA-24278-report.md`. It lists all 14 assertions as not executed. To re-run, wait until APPS-62822 closes and the case file's 
+>> done (rc=0) — report: results/2026-10-23/QA-24278-report.md
+>> QA-24281 (full) — Fri Oct 23 12:21:18 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> usage: 6 turns | in 8 (+139596 cache-read, +19106 cache-write) | out 2217 | est $0.32
+QA-24281: **FAILED (blocked by open bug)**. I did not run the case, so no steps or assertions were executed.
+
+Per spec-adherence Rule 7, any open linked bug fails the case before the browser is opened. APPS-60871 ("Endash (–) Displayed for Multiple Metrics") is still open in today's `results/open-bugs-2026-10-23.json`. The report marks all eight assertions NOT RUN, attributes the verdict to that b
+>> done (rc=0) — report: results/2026-10-23/QA-24281-report.md

@@ -1,0 +1,83 @@
+>> QA-29127 (full) — Fri Oct 23 12:31:11 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29127 still running (60s / 1500s cap) — 12:32:11
+>> .. QA-29127 still running (120s / 1500s cap) — 12:33:11
+>> .. QA-29127 still running (180s / 1500s cap) — 12:34:11
+>> .. QA-29127 still running (240s / 1500s cap) — 12:35:11
+>> .. QA-29127 still running (300s / 1500s cap) — 12:36:12
+>> usage: 59 turns | in 108 (+3224363 cache-read, +64173 cache-write) | out 14086 | est $2.61
+QA-29127 is a PASS: all 8 LinkedIn video posts satisfy both assertions. The report is at `results/2026-10-23/QA-29127-report.md`.
+
+- **A4 (views sum):** Organic + Paid + Unclassified Views equals Video Views on every post. LinkedIn shows "–" for Organic and Paid, which I counted as 0, so Unclassified equals Video Views on each row.
+- **A5 (response rate):** Engagements ÷ Video Views matches the di
+>> done (rc=0) — report: results/2026-10-23/QA-29127-report.md
+>> QA-29236 (full) — Fri Oct 23 12:36:33 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29236 still running (60s / 1500s cap) — 12:37:33
+>> QA-20324 (full) — Fri Oct 23 12:38:21 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29236 still running (120s / 1500s cap) — 12:38:33
+>> .. QA-20324 still running (60s / 1500s cap) — 12:39:21
+>> .. QA-29236 still running (180s / 1500s cap) — 12:39:33
+>> .. QA-20324 still running (120s / 1500s cap) — 12:40:21
+>> .. QA-29236 still running (240s / 1500s cap) — 12:40:33
+>> usage: 55 turns | in 100 (+2913234 cache-read, +61872 cache-write) | out 14656 | est $2.44
+QA-29236 is a PASS with a spec-wording note. The report is at `results/2026-10-23/QA-29236-report.md`.
+
+- **Setup:** Account was UCLA. The typeahead has no brand named exactly "UCLA", so I used "University of California, Los Angeles", as earlier UCLA cases did. With Video Views, Oct 01, 2022 – Sep 30, 2023 and LinkedIn only, the grid showed 72 posts.
+- **A6 (Engagements / Video Views = Video Respo
+>> done (rc=0) — report: results/2026-10-23/QA-29236-report.md
+>> QA-30666 (full) — Fri Oct 23 12:40:43 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-20324 still running (180s / 1500s cap) — 12:41:22
+>> .. QA-30666 still running (60s / 1500s cap) — 12:41:43
+>> .. QA-20324 still running (240s / 1500s cap) — 12:42:22
+>> .. QA-30666 still running (120s / 1500s cap) — 12:42:43
+>> .. QA-20324 still running (300s / 1500s cap) — 12:43:22
+>> .. QA-30666 still running (180s / 1500s cap) — 12:43:43
+>> .. QA-20324 still running (360s / 1500s cap) — 12:44:22
+>> usage: 43 turns | in 72 (+2301782 cache-read, +73377 cache-write) | out 17972 | est $2.33
+**QA-20324: FAIL.** The report is at `results/2026-10-23/QA-20324-report.md`.
+
+- **Twitter, step 5:** 2 of the top 200 posts break "Organic + Paid = Engagements". Both are dated Jun 30, 2023, ranks 69 (Engagements 743) and 152 (Engagements 239), and have "–" in both Organic and Paid. The Sum row is also off: 182,118 + 112,936 = 295,054 against Engagements of 296,252.
+- **Twitter, steps 6 and 7:** 
+>> done (rc=0) — report: results/2026-10-23/QA-20324-report.md
+>> QA-20325 (full) — Fri Oct 23 12:44:32 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-30666 still running (240s / 1500s cap) — 12:44:43
+>> .. QA-20325 still running (60s / 1500s cap) — 12:45:33
+>> .. QA-30666 still running (300s / 1500s cap) — 12:45:44
+>> .. QA-20325 still running (120s / 1500s cap) — 12:46:33
+>> .. QA-30666 still running (360s / 1500s cap) — 12:46:44
+>> .. QA-20325 still running (180s / 1500s cap) — 12:47:33
+>> .. QA-30666 still running (420s / 1500s cap) — 12:47:44
+>> .. QA-20325 still running (240s / 1500s cap) — 12:48:33
+>> .. QA-30666 still running (480s / 1500s cap) — 12:48:44
+>> .. QA-20325 still running (300s / 1500s cap) — 12:49:33
+>> .. QA-30666 still running (540s / 1500s cap) — 12:49:44
+>> usage: 67 turns | in 100 (+3378808 cache-read, +68608 cache-write) | out 12088 | est $2.68
+QA-20325 is **PASS**. The report is at `results/2026-10-23/QA-20325-report.md`.
+
+- **Run:** Friday rotation, Hulu account and Hulu brand, Jan 01 – Dec 31 2024, Facebook Only: Completed Video Views, Table View.
+- **Per post:** Organic Completed Views + Paid Completed Views equals Completed Views on 198 of 200 rendered posts, with 0 failures. The other 2 (ranks 91 and 154) show "–" on all three colu
+>> done (rc=0) — report: results/2026-10-23/QA-20325-report.md
+>> QA-20327 (full) — Fri Oct 23 12:50:23 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-30666 still running (600s / 1500s cap) — 12:50:44
+>> .. QA-20327 still running (60s / 1500s cap) — 12:51:23
+>> .. QA-30666 still running (660s / 1500s cap) — 12:51:44
+>> .. QA-20327 still running (120s / 1500s cap) — 12:52:23
+>> .. QA-30666 still running (720s / 1500s cap) — 12:52:44
+>> .. QA-20327 still running (180s / 1500s cap) — 12:53:24
+>> .. QA-30666 still running (780s / 1500s cap) — 12:53:44
+>> .. QA-20327 still running (240s / 1500s cap) — 12:54:24
+>> usage: 102 turns | in 182 (+8915509 cache-read, +135189 cache-write) | out 39724 | est $6.80
+**QA-30666: PASS.** The Insights Video Views tile (45,789,221) equals the sum of the four TWC report values (45,789,221). The report is at `results/2026-10-23/QA-30666-report.md`.
+
+- **Account and brand:** I tested Wasserman / Gatorade (Authorized). Under the Amazon Prime Video account, Gatorade is Public-only. There the Authorized toggles are disabled and the spec's Facebook and Instagram video-v
+>> done (rc=0) — report: results/2026-10-23/QA-30666-report.md
+>> usage: 38 turns | in 68 (+2041914 cache-read, +57468 cache-write) | out 11850 | est $1.89
+QA-20327 is **PASS**. On the Friday row (Hulu account and brand, Jan 1–Dec 31 2024, Facebook Only: Reactions), Reactions equals Likes + Loves + Hahas + Wows + Sads + Angries + Others on all 200 rendered posts and on the Sum row (12,660,516). Table View shows only the top 200 of 1,082 posts, so the other 882 were not checked. No bugs were found or filed.
+
+The report is at `results/2026-10-23/QA-203
+>> done (rc=0) — report: results/2026-10-23/QA-20327-report.md

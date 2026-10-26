@@ -1,0 +1,97 @@
+>> QA-19700 (full) — Fri Oct 23 11:34:52 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-19700 still running (60s / 1500s cap) — 11:35:53
+>> .. QA-19700 still running (120s / 1500s cap) — 11:36:53
+>> .. QA-19700 still running (180s / 1500s cap) — 11:37:53
+>> .. QA-19700 still running (240s / 1500s cap) — 11:38:53
+>> .. QA-19700 still running (300s / 1500s cap) — 11:39:53
+>> usage: 47 turns | in 82 (+2415946 cache-read, +57018 cache-write) | out 11139 | est $2.06
+QA-19700 passed on Hulu / Hulu (Friday's rotation entry), Facebook only, Video Views data set.
+
+- **Organic Views + Paid Views = Video Views:** holds on all 40 posts that have data. The one other post has no view metrics ("–") and was skipped, as the case notes say.
+- **Engagements / Video Views = Video Response Rate:** holds on the same 40 posts, within ±0.01 pp of the displayed rate.
+- **Known b
+>> done (rc=0) — report: results/2026-10-23/QA-19700-report.md
+>> QA-19701 (full) — Fri Oct 23 11:40:23 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-19701 still running (60s / 1500s cap) — 11:41:23
+>> .. QA-19701 still running (120s / 1500s cap) — 11:42:23
+>> .. QA-19701 still running (180s / 1500s cap) — 11:43:24
+>> .. QA-19701 still running (240s / 1500s cap) — 11:44:24
+>> .. QA-19701 still running (300s / 1500s cap) — 11:45:24
+>> .. QA-19701 still running (360s / 1500s cap) — 11:46:24
+>> .. QA-19701 still running (420s / 1500s cap) — 11:47:24
+>> .. QA-19701 still running (480s / 1500s cap) — 11:48:24
+>> .. QA-19701 still running (540s / 1500s cap) — 11:49:24
+>> .. QA-19701 still running (600s / 1500s cap) — 11:50:24
+>> .. QA-19701 still running (660s / 1500s cap) — 11:51:25
+>> .. QA-19701 still running (720s / 1500s cap) — 11:52:25
+>> usage: 68 turns | in 118 (+3990993 cache-read, +74253 cache-write) | out 17577 | est $3.18
+QA-19701 is **PASS**. Today is Friday, so the case's rotation row applied: Hulu / Hulu and Ralph Lauren / Ralph Lauren.
+
+- **Hulu:** all 44 posts satisfy Reactions = Likes + Loves + Hahas + Wows + Sads + Angries + Others. The Sum row matches too (32,164).
+- **Ralph Lauren:** all 7 posts satisfy the identity, and the Sum row matches (9,319).
+- **Amazon Prime Video:** I did not run it. The case says
+>> done (rc=0) — report: results/2026-10-23/QA-19701-report.md
+>> QA-19702 (full) — Fri Oct 23 11:52:46 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-19702 still running (60s / 1500s cap) — 11:53:46
+>> .. QA-19702 still running (120s / 1500s cap) — 11:54:47
+>> .. QA-19702 still running (180s / 1500s cap) — 11:55:47
+>> .. QA-19702 still running (240s / 1500s cap) — 11:56:47
+>> .. QA-19702 still running (300s / 1500s cap) — 11:57:47
+>> QA-23667 (full) — Fri Oct 23 11:58:45 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-19702 still running (360s / 1500s cap) — 11:58:47
+>> .. QA-23667 still running (60s / 1500s cap) — 11:59:45
+>> .. QA-19702 still running (420s / 1500s cap) — 11:59:47
+>> .. QA-23667 still running (120s / 1500s cap) — 12:00:45
+>> .. QA-19702 still running (480s / 1500s cap) — 12:00:47
+>> .. QA-23667 still running (180s / 1500s cap) — 12:01:45
+>> .. QA-19702 still running (540s / 1500s cap) — 12:01:48
+>> .. QA-23667 still running (240s / 1500s cap) — 12:02:45
+>> .. QA-19702 still running (600s / 1500s cap) — 12:02:48
+>> .. QA-23667 still running (300s / 1500s cap) — 12:03:45
+>> .. QA-19702 still running (660s / 1500s cap) — 12:03:48
+>> .. QA-23667 still running (360s / 1500s cap) — 12:04:45
+>> .. QA-19702 still running (720s / 1500s cap) — 12:04:48
+>> .. QA-23667 still running (420s / 1500s cap) — 12:05:46
+>> .. QA-19702 still running (780s / 1500s cap) — 12:05:48
+>> .. QA-23667 still running (480s / 1500s cap) — 12:06:46
+>> .. QA-19702 still running (840s / 1500s cap) — 12:06:48
+>> usage: 50 turns | in 80 (+2928698 cache-read, +82514 cache-write) | out 18005 | est $2.74
+**QA-19702: PASS.** The report is at `results/2026-10-23/QA-19702-report.md`.
+
+- **Friday rotation:** I ran both legs, Ralph Lauren and Hulu, on Facebook Only: Completed Video Views.
+- **Ralph Lauren:** 3 of 3 posts with data satisfy Completed Views = Organic + Paid, and the Sum row matches (15,343).
+- **Hulu:** 40 of 40 posts with data satisfy the identity, and the Sum row matches (425,254).
+- **
+>> done (rc=0) — report: results/2026-10-23/QA-19702-report.md
+>> .. QA-23667 still running (540s / 1500s cap) — 12:07:46
+>> .. QA-23667 still running (600s / 1500s cap) — 12:08:46
+>> usage: 55 turns | in 94 (+3177454 cache-read, +74109 cache-write) | out 20881 | est $2.85
+QA-23667 passed 7/7 on the Friday rotation (Hulu account, Hulu brand, TikTok only). The report is at `results/2026-10-23/QA-23667-report.md`.
+
+- **Date range:** The ticket's table has no date column, so I used Jan 1 – Dec 31, 2025, the same window as the 2026-10-19 run. That window has paid TikTok posts.
+- **Impressions view:** Paid and Organic Impressions are "–" on all 200 rows, and Total Impres
+>> done (rc=0) — report: results/2026-10-23/QA-23667-report.md
+>> QA-23892 (full) — Fri Oct 23 12:08:58 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> usage: 7 turns | in 10 (+180447 cache-read, +19819 cache-write) | out 2409 | est $0.35
+QA-23892 is FAILED (blocked by open bug). I didn't run it, so no browser steps were executed and there are no screenshots.
+
+Its two linked bugs, LFMP-31958 and LFMP-32113, are both still Open in today's open-bug snapshot (`results/open-bugs-2026-10-23.json`). LFMP-31958 covers the same Brand Insights BPC vs Brand Content Twitter mismatch the case tests, so a result couldn't be trusted. Rule 7 requ
+>> done (rc=0) — report: results/2026-10-23/QA-23892-report.md
+>> QA-24276 (full) — Fri Oct 23 12:09:23 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-24276 still running (60s / 1500s cap) — 12:10:23
+>> .. QA-24276 still running (120s / 1500s cap) — 12:11:23
+>> .. QA-24276 still running (180s / 1500s cap) — 12:12:23
+>> .. QA-24276 still running (240s / 1500s cap) — 12:13:23
+>> .. QA-24276 still running (300s / 1500s cap) — 12:14:23
+>> usage: 49 turns | in 68 (+2232118 cache-read, +64298 cache-write) | out 12553 | est $2.07
+QA-24276 ran on the Friday row (Hulu account, Hulu brand). Verdict is **BLOCKED**, because the LinkedIn assertion (A8) couldn't be evaluated. The report is at `results/2026-10-23/QA-24276-report.md`.
+
+- **A4, Facebook:** PASS. Sum is 32,164 + 488 + 1,256 = 33,908 and Average is 731 + 11 + 29 = 771, each equal to Engagements.
+- **A6, TikTok:** PASS. Sum is 276,296 + 1,146 + 14,393 = 291,835 and Ave
+>> done (rc=0) — report: results/2026-10-23/QA-24276-report.md

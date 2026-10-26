@@ -1,0 +1,47 @@
+{
+ "QA-24894": [
+  "LFMP-32081 [Open] Reporting > Social Recap - Negative Engagements"
+ ],
+ "QA-24281": [
+  "APPS-60871 [Open] Data Rendering Issue: Endash (\u2013) Displayed for Multiple Metrics Across"
+ ],
+ "QA-24278": [
+  "APPS-62822 [QA Ready] Summary: Data Collection: Facebook Posts (Authorized) data is not coll"
+ ],
+ "QA-23892": [
+  "LFMP-31958 [Open] Twitter Reactions Mismatched between Brand > Insights BPC and Brand co",
+  "LFMP-31958 [Open] Twitter Reactions Mismatched between Brand > Insights BPC and Brand co",
+  "LFMP-32113 [Open] Brand Content > LFM vs Native - Past Date - native data is lower than "
+ ],
+ "QA-22108": [
+  "LFMP-32113 [Open] Brand Content > LFM vs Native - Past Date - native data is lower than "
+ ],
+ "QA-22106": [
+  "LFMP-32113 [Open] Brand Content > LFM vs Native - Past Date - native data is lower than "
+ ],
+ "QA-22105": [
+  "LFMP-32113 [Open] Brand Content > LFM vs Native - Past Date - native data is lower than "
+ ],
+ "QA-20526": [
+  "APPS-62446 [Open] Brand Content > Paid Posts > En dash displayed for the Paid Saves metr"
+ ],
+ "QA-20330": [
+  "APPS-60871 [Open] Data Rendering Issue: Endash (\u2013) Displayed for Multiple Metrics Across"
+ ],
+ "QA-20328": [
+  "LFMP-32088 [Open] Brand > Content > Twitter Only: Engagements & Follows , User follows  "
+ ],
+ "QA-19707": [
+  "APPS-60871 [Open] Data Rendering Issue: Endash (\u2013) Displayed for Multiple Metrics Across"
+ ],
+ "QA-19705": [
+  "LFMP-32088 [Open] Brand > Content > Twitter Only: Engagements & Follows , User follows  "
+ ],
+ "QA-19698": [
+  "APPS-62822 [QA Ready] Summary: Data Collection: Facebook Posts (Authorized) data is not coll"
+ ],
+ "QA-19697": [
+  "APPS-58817 [Open] Brand Content - Posts deleted from Native are still visible in LF app ",
+  "APPS-58817 [Open] Brand Content - Posts deleted from Native are still visible in LF app "
+ ]
+}

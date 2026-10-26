@@ -1,0 +1,74 @@
+>> QA-19696 (full) — Fri Oct 23 11:30:09 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> QA-20334 (full) — Fri Oct 23 11:30:54 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-19696 still running (60s / 1500s cap) — 11:31:09
+>> .. QA-20334 still running (60s / 1500s cap) — 11:31:54
+>> .. QA-19696 still running (120s / 1500s cap) — 11:32:09
+>> .. QA-20334 still running (120s / 1500s cap) — 11:32:54
+>> .. QA-19696 still running (180s / 1500s cap) — 11:33:09
+>> .. QA-20334 still running (180s / 1500s cap) — 11:33:55
+>> usage: 33 turns | in 54 (+1563272 cache-read, +48377 cache-write) | out 8273 | est $1.47
+QA-19696 **PASSED**. On Friday's rotation (Hulu account, Hulu brand), Facebook-only, Public data set, Reactions + Comments + Shares equals Engagements on all 44 posts. The Sum row also matches: 32,164 + 488 + 1,256 = 33,908.
+
+The case had no open linked bugs. The Facebook data-collection banner showed on the page but didn't affect any of the three metrics. I did not touch skill or registry files, 
+>> done (rc=0) — report: results/2026-10-23/QA-19696-report.md
+>> QA-19697 (full) — Fri Oct 23 11:34:05 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> usage: 7 turns | in 8 (+139380 cache-read, +18527 cache-write) | out 1988 | est $0.30
+QA-19697 is marked **FAILED (blocked by open bug)** because the linked bug APPS-58817 is still open. I didn't run any steps or open the browser, so no assertions were checked.
+
+APPS-58817 is "Posts deleted from Native are still visible in LF app". It is listed as open in the case file and in `results/open-bugs-2026-10-23.json`. Per Rule 7 and the open-bug auto-fail policy, an open linked bug fails
+>> done (rc=0) — report: results/2026-10-23/QA-19697-report.md
+>> QA-19698 (full) — Fri Oct 23 11:34:31 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> usage: 6 turns | in 8 (+139107 cache-read, +18838 cache-write) | out 1885 | est $0.31
+QA-19698 is `FAILED (blocked by open bug)`. The case file lists APPS-62822 (QA Ready, Facebook Posts (Authorized) data is not collected). That bug could leave the per-post Facebook impressions this case sums and divides empty or incomplete, so a PASS would be unreliable. Spec-adherence Rule 7 says not to run the case, so I never opened the browser, and the report has no screenshots. The report is 
+>> done (rc=0) — report: results/2026-10-23/QA-19698-report.md
+>> .. QA-20334 still running (240s / 1500s cap) — 11:34:55
+>> .. QA-20334 still running (300s / 1500s cap) — 11:35:55
+>> .. QA-20334 still running (360s / 1500s cap) — 11:36:55
+>> .. QA-20334 still running (420s / 1500s cap) — 11:37:55
+>> .. QA-20334 still running (480s / 1500s cap) — 11:38:55
+>> usage: 65 turns | in 100 (+3544977 cache-read, +72328 cache-write) | out 12118 | est $2.80
+QA-20334 is **PASS**. Report: `results/2026-10-23/QA-20334-report.md`.
+
+For Sephora, Pinterest Only: Basic, Jun 11 2024 – Jun 10 2025, all 200 rendered posts satisfy Engagements = Pin Saves + Comments. Pin Saves is "–" on every post, so Engagements equals Comments on each row. The aggregate Sum row also holds: 670 = – + 670. No open linked bugs.
+
+I did not touch skills or the registry, per the hea
+>> done (rc=0) — report: results/2026-10-23/QA-20334-report.md
+>> QA-20526 (full) — Fri Oct 23 11:39:50 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> usage: 7 turns | in 10 (+180265 cache-read, +19508 cache-write) | out 2251 | est $0.34
+QA-20526 is marked FAILED (blocked by open bug APPS-62446). I didn't open the browser, so no steps ran.
+
+The case file and `results/open-bugs-2026-10-23.json` both show APPS-62446 still open. It is the en-dash on Paid Saves, which is exactly what assertion 11 checks. Rule 7 says to auto-fail any case with an open linked bug.
+
+The report has all six assertions (steps 6–11) as BLOCKED. It's at `resu
+>> done (rc=0) — report: results/2026-10-23/QA-20526-report.md
+>> QA-20527 (full) — Fri Oct 23 11:40:16 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-20527 still running (60s / 1500s cap) — 11:41:16
+>> .. QA-20527 still running (120s / 1500s cap) — 11:42:16
+>> .. QA-20527 still running (180s / 1500s cap) — 11:43:16
+>> .. QA-20527 still running (240s / 1500s cap) — 11:44:16
+>> .. QA-20527 still running (300s / 1500s cap) — 11:45:16
+>> .. QA-20527 still running (360s / 1500s cap) — 11:46:17
+>> .. QA-20527 still running (420s / 1500s cap) — 11:47:17
+>> .. QA-20527 still running (480s / 1500s cap) — 11:48:17
+>> .. QA-20527 still running (540s / 1500s cap) — 11:49:17
+>> .. QA-20527 still running (600s / 1500s cap) — 11:50:17
+>> .. QA-20527 still running (660s / 1500s cap) — 11:51:17
+>> .. QA-20527 still running (720s / 1500s cap) — 11:52:17
+>> .. QA-20527 still running (780s / 1500s cap) — 11:53:18
+>> .. QA-20527 still running (840s / 1500s cap) — 11:54:18
+>> .. QA-20527 still running (900s / 1500s cap) — 11:55:18
+>> .. QA-20527 still running (960s / 1500s cap) — 11:56:18
+>> .. QA-20527 still running (1020s / 1500s cap) — 11:57:18
+>> .. QA-20527 still running (1080s / 1500s cap) — 11:58:18
+>> usage: 67 turns | in 110 (+3761809 cache-read, +77798 cache-write) | out 16749 | est $3.08
+QA-20527 is **PASS (6/6)** on app.lfmdev.in, HBO Max account and brand. On every organic post, each paid column showed the expected "–" (or "0" for Paid Completed Views) across all six datasets.
+
+- **Counts:** Engagements Breakdown 65 posts, Impressions 65, Video Views 57, Facebook completed views 25, Twitter 24, Instagram 41.
+- **Facebook dataset label:** the spec says "Facebook only: Completed &
+>> done (rc=0) — report: results/2026-10-23/QA-20527-report.md

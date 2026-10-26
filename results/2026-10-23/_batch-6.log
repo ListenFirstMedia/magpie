@@ -1,0 +1,65 @@
+>> QA-30710 (full) — Fri Oct 23 12:54:25 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> QA-20328 (full) — Fri Oct 23 12:55:04 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-30710 still running (60s / 1500s cap) — 12:55:25
+>> usage: 6 turns | in 8 (+138126 cache-read, +17761 cache-write) | out 1705 | est $0.29
+QA-20328 is **FAILED (blocked by open bug)**. I didn't run it: the linked bug LFMP-32088 is still open, and this run's open-bug-screening rule says not to run a case that has one. The 2026-10-23 open-bugs snapshot confirms LFMP-32088 is open. It covers Twitter Only: Engagements & Follows, User follows, which is the case's only assertion. I didn't open the browser or touch Jira.
+
+The report is at `
+>> done (rc=0) — report: results/2026-10-23/QA-20328-report.md
+>> QA-20329 (full) — Fri Oct 23 12:55:34 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-30710 still running (120s / 1500s cap) — 12:56:25
+>> .. QA-20329 still running (60s / 1500s cap) — 12:56:34
+>> .. QA-30710 still running (180s / 1500s cap) — 12:57:25
+>> .. QA-20329 still running (120s / 1500s cap) — 12:57:34
+>> .. QA-30710 still running (240s / 1500s cap) — 12:58:25
+>> .. QA-20329 still running (180s / 1500s cap) — 12:58:34
+>> .. QA-30710 still running (300s / 1500s cap) — 12:59:25
+>> .. QA-20329 still running (240s / 1500s cap) — 12:59:34
+>> .. QA-30710 still running (360s / 1500s cap) — 13:00:25
+>> .. QA-20329 still running (300s / 1500s cap) — 13:00:35
+>> usage: 43 turns | in 66 (+2238193 cache-read, +75937 cache-write) | out 13146 | est $2.21
+QA-20329 is **PASS**. The report is at `results/2026-10-23/QA-20329-report.md`.
+
+- **Setup:** Friday's rotation was Hulu / Hulu on dev, so I used that account and brand. Range was Jan 01 – Dec 31, 2024, with the Instagram Only: Insights data set in Table View.
+- **Per post:** none of the 200 rendered posts, out of 1,117, failed Saves = Organic Saves + Paid Saves. Ten posts have numeric values for 
+>> done (rc=0) — report: results/2026-10-23/QA-20329-report.md
+>> QA-20330 (full) — Fri Oct 23 13:01:20 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-30710 still running (420s / 1500s cap) — 13:01:26
+>> usage: 6 turns | in 8 (+139336 cache-read, +18740 cache-write) | out 1920 | est $0.31
+QA-20330 is **FAILED (blocked by open bug)**. I did not open the browser or run any steps.
+
+The case lists APPS-60871 as an open linked bug, and today's open-bugs snapshot (`results/open-bugs-2026-10-23.json`) still shows it open. The open-bug policy fails the case on that alone.
+
+The report is at `results/2026-10-23/QA-20330-report.md`. It re-runs once APPS-60871 closes and the case file is refre
+>> done (rc=0) — report: results/2026-10-23/QA-20330-report.md
+>> .. QA-30710 still running (480s / 1500s cap) — 13:02:26
+>> .. QA-30710 still running (540s / 1500s cap) — 13:03:26
+>> .. QA-30710 still running (600s / 1500s cap) — 13:04:26
+>> .. QA-30710 still running (660s / 1500s cap) — 13:05:26
+>> .. QA-30710 still running (720s / 1500s cap) — 13:06:26
+>> usage: 88 turns | in 154 (+6234005 cache-read, +99940 cache-write) | out 24701 | est $4.73
+**QA-30710 is BLOCKED at step 12.** The Time Window Comparison (TWC) report never renders, so I couldn't compare the two values.
+
+- **Insights side:** Response Rate is **0.41%**. That is for HBO Max, Public data, Facebook/Twitter/Instagram/TikTok, Oct 15–21 2026.
+- **TWC side:** I built the report to spec and clicked Run Report. The app creates a story, then fails to load it and drops back to an e
+>> done (rc=0) — report: results/2026-10-23/QA-30710-report.md
+>> QA-144817 (full) — Fri Oct 23 13:06:51 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-144817 still running (60s / 1500s cap) — 13:07:52
+>> .. QA-144817 still running (120s / 1500s cap) — 13:08:52
+>> .. QA-144817 still running (180s / 1500s cap) — 13:09:52
+>> .. QA-144817 still running (240s / 1500s cap) — 13:10:52
+>> .. QA-144817 still running (300s / 1500s cap) — 13:11:52
+>> .. QA-144817 still running (360s / 1500s cap) — 13:12:52
+>> usage: 78 turns | in 134 (+4869077 cache-read, +84673 cache-write) | out 18617 | est $3.75
+**QA-144817: PASS.** The report is at `results/2026-10-23/QA-144817-report.md`.
+
+- **Status parity:** every feed status and date matches between the UI and the "Data Collection - All" CSV on both channels.
+  - Instagram: 5 of 5 feeds, all Collecting.
+  - Twitter: 5 feeds plus the ad-account child. Ad account `2jdhb9` is Not Collecting; the other feeds are Collecting.
+- **Feed count:** Instagram is
+>> done (rc=0) — report: results/2026-10-23/QA-144817-report.md

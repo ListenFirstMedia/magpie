@@ -1,0 +1,75 @@
+>> QA-19710 (full) — Fri Oct 23 12:15:53 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-19710 still running (60s / 1500s cap) — 12:16:53
+>> .. QA-19710 still running (120s / 1500s cap) — 12:17:53
+>> .. QA-19710 still running (180s / 1500s cap) — 12:18:53
+>> .. QA-19710 still running (240s / 1500s cap) — 12:19:53
+>> .. QA-19710 still running (300s / 1500s cap) — 12:20:54
+>> QA-24894 (full) — Fri Oct 23 12:21:43 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-19710 still running (360s / 1500s cap) — 12:21:54
+>> usage: 7 turns | in 10 (+179790 cache-read, +18863 cache-write) | out 2498 | est $0.34
+QA-24894 verdict: **FAILED (blocked by open bug)**. I did not run the case, because LFMP-32081 ("Reporting > Social Recap - Negative Engagements") is still Open. That is the same Social Recap surface the case tests, and Rule 7 says to fail a case with an open linked bug without opening the browser. I checked the bug's status in today's `results/open-bugs-2026-10-23.json`.
+
+Report: `results/2026-10
+>> done (rc=0) — report: results/2026-10-23/QA-24894-report.md
+>> QA-26352 (full) — Fri Oct 23 12:22:09 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-19710 still running (420s / 1500s cap) — 12:22:54
+>> .. QA-26352 still running (60s / 1500s cap) — 12:23:09
+>> .. QA-19710 still running (480s / 1500s cap) — 12:23:54
+>> .. QA-26352 still running (120s / 1500s cap) — 12:24:09
+>> .. QA-19710 still running (540s / 1500s cap) — 12:24:54
+>> .. QA-26352 still running (180s / 1500s cap) — 12:25:10
+>> usage: 54 turns | in 96 (+3147540 cache-read, +64269 cache-write) | out 11726 | est $2.51
+QA-19710: **PASS, with a caveat.** The Ralph Lauren account has 65 Pinterest pins this week, and Pin Saves + Comments = Engagements on all 65 and on the Sum row.
+
+- **Weak pass:** every pin has Engagements 0, Comments 0, and Pin Saves "–", which I counted as 0. So the identity only holds as 0 = 0 + 0.
+- **Sephora leg:** Pinterest Only: Basic shows Posts (0) for Oct 15–21, so nothing to check. This
+>> done (rc=0) — report: results/2026-10-23/QA-19710-report.md
+>> QA-20319 (full) — Fri Oct 23 12:25:19 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-26352 still running (240s / 1500s cap) — 12:26:10
+>> .. QA-20319 still running (60s / 1500s cap) — 12:26:19
+>> usage: 59 turns | in 74 (+2411609 cache-read, +66885 cache-write) | out 9502 | est $2.11
+QA-26352 is a **PASS**. The Content Engagement Rate (1.17%) matches (Engagements ÷ Impressions) × 100, which is 1.1657%.
+
+- **Inputs:** On Hulu (account 336, brand 5670), Oct 15–21, with Facebook, Twitter and Instagram only, I read Engagements 1,505,907 and Impressions 129,186,302 from the hover tooltips.
+- **Setup:** The session landed on UCLA, so I switched to Hulu first. The default view had Ti
+>> done (rc=0) — report: results/2026-10-23/QA-26352-report.md
+>> QA-29124 (full) — Fri Oct 23 12:26:45 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-20319 still running (120s / 1500s cap) — 12:27:20
+>> .. QA-29124 still running (60s / 1500s cap) — 12:27:45
+>> .. QA-20319 still running (180s / 1500s cap) — 12:28:20
+>> .. QA-29124 still running (120s / 1500s cap) — 12:28:45
+>> .. QA-20319 still running (240s / 1500s cap) — 12:29:20
+>> .. QA-29124 still running (180s / 1500s cap) — 12:29:45
+>> usage: 40 turns | in 62 (+1961633 cache-read, +67115 cache-write) | out 16825 | est $2.07
+QA-20319 is a PASS, and the report is written to `results/2026-10-23/QA-20319-report.md`. I ran both Friday rows: Hulu / Hulu and Ralph Lauren / Ralph Lauren. Each ran on the Video Views data set, Jan 01 – Dec 31, 2024, Facebook only. The case file lists no open linked bugs, and no bugs were filed.
+
+| Leg | Posts evaluated | Sum of views = Video Views | Engagements / Video Views = Video Response R
+>> done (rc=0) — report: results/2026-10-23/QA-20319-report.md
+>> QA-20321 (full) — Fri Oct 23 12:30:10 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29124 still running (240s / 1500s cap) — 12:30:45
+>> .. QA-20321 still running (60s / 1500s cap) — 12:31:10
+>> usage: 44 turns | in 70 (+2315561 cache-read, +64056 cache-write) | out 11503 | est $2.09
+**QA-29124: PASS.** All 31 LinkedIn posts on UCLA's Brand Content Table View (Oct 15–21, 2026) have Reactions + Comments + Shares equal to Engagements. The Sum row also matches (2,696 + 60 + 89 = 2,845).
+
+- **Brand name:** the dev typeahead has no brand named exactly "UCLA". I used "University of California, Los Angeles", the UCLA account's own brand, as earlier runs of this case did. If the spec 
+>> done (rc=0) — report: results/2026-10-23/QA-29124-report.md
+>> .. QA-20321 still running (120s / 1500s cap) — 12:32:10
+>> .. QA-20321 still running (180s / 1500s cap) — 12:33:11
+>> .. QA-20321 still running (240s / 1500s cap) — 12:34:11
+>> .. QA-20321 still running (300s / 1500s cap) — 12:35:11
+>> .. QA-20321 still running (360s / 1500s cap) — 12:36:11
+>> .. QA-20321 still running (420s / 1500s cap) — 12:37:11
+>> .. QA-20321 still running (480s / 1500s cap) — 12:38:11
+>> usage: 29 turns | in 50 (+1696352 cache-read, +76921 cache-write) | out 19585 | est $2.11
+QA-20321 is **FAIL**: Hulu Facebook has unsplit posts, and the Sum row doesn't add up. The report is at `results/2026-10-23/QA-20321-report.md`.
+
+- **Hulu Facebook (the failure):**
+  - **Posts:** Ranks 110 and 185 show Impressions of 1,082,472 and 1,266,337, but Organic and Paid Impressions are both "–".
+  - **Sum row:** 837,911,733 + 135,146,120 = 973,057,853, which is 3,963,931 short of the 977,
+>> done (rc=0) — report: results/2026-10-23/QA-20321-report.md
