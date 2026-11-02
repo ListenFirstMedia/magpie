@@ -1,0 +1,129 @@
+>> QA-29278 (full) — Thu Oct 29 13:24:16 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29278 still running (60s / 1800s cap) — 13:25:16
+>> .. QA-29278 still running (120s / 1800s cap) — 13:26:16
+>> .. QA-29278 still running (180s / 1800s cap) — 13:27:17
+>> .. QA-29278 still running (240s / 1800s cap) — 13:28:17
+>> .. QA-29278 still running (300s / 1800s cap) — 13:29:17
+>> .. QA-29278 still running (360s / 1800s cap) — 13:30:17
+>> .. QA-29278 still running (420s / 1800s cap) — 13:31:17
+>> .. QA-29278 still running (480s / 1800s cap) — 13:32:17
+>> .. QA-29278 still running (540s / 1800s cap) — 13:33:17
+>> .. QA-29278 still running (600s / 1800s cap) — 13:34:17
+>> .. QA-29278 still running (660s / 1800s cap) — 13:35:17
+>> .. QA-29278 still running (720s / 1800s cap) — 13:36:18
+>> .. QA-29278 still running (780s / 1800s cap) — 13:37:18
+>> .. QA-29278 still running (840s / 1800s cap) — 13:38:18
+>> .. QA-29278 still running (900s / 1800s cap) — 13:39:18
+>> .. QA-29278 still running (960s / 1800s cap) — 13:40:18
+>> .. QA-29278 still running (1020s / 1800s cap) — 13:41:18
+>> .. QA-29278 still running (1080s / 1800s cap) — 13:42:18
+>> .. QA-29278 still running (1140s / 1800s cap) — 13:43:18
+>> .. QA-29278 still running (1200s / 1800s cap) — 13:44:19
+>> .. QA-29278 still running (1260s / 1800s cap) — 13:45:19
+>> .. QA-29278 still running (1320s / 1800s cap) — 13:46:19
+>> usage: 33 turns | in 58 (+1882715 cache-read, +69875 cache-write) | out 14723 | est $2.01
+QA-29278 is **BLOCKED**: I couldn't evaluate either assertion, so there is no partial PASS. I didn't open the browser flow for the third Thursday pair (Ralph Lauren) because dev was failing.
+
+- **Spotify / Spotify News:** the brand isn't in the dev brand typeahead under the Spotify account. A short query, "Spotify Ne", returns only 8 results and none is Spotify News. I didn't substitute a brand, p
+>> done (rc=0) — report: results/2026-10-29/QA-29278-report.md
+>> QA-31513 (full) — Thu Oct 29 13:46:49 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-31513 still running (60s / 1800s cap) — 13:47:49
+>> .. QA-31513 still running (120s / 1800s cap) — 13:48:49
+>> .. QA-31513 still running (180s / 1800s cap) — 13:49:49
+>> .. QA-31513 still running (240s / 1800s cap) — 13:50:49
+>> .. QA-31513 still running (300s / 1800s cap) — 13:51:49
+>> .. QA-31513 still running (360s / 1800s cap) — 13:52:50
+>> .. QA-31513 still running (420s / 1800s cap) — 13:53:50
+>> .. QA-31513 still running (480s / 1800s cap) — 13:54:50
+>> .. QA-31513 still running (540s / 1800s cap) — 13:55:50
+>> .. QA-31513 still running (600s / 1800s cap) — 13:56:50
+>> .. QA-31513 still running (660s / 1800s cap) — 13:57:50
+>> .. QA-31513 still running (720s / 1800s cap) — 13:58:50
+>> .. QA-31513 still running (780s / 1800s cap) — 13:59:50
+>> .. QA-31513 still running (840s / 1800s cap) — 14:00:51
+>> .. QA-31513 still running (900s / 1800s cap) — 14:01:51
+>> .. QA-31513 still running (960s / 1800s cap) — 14:02:51
+>> .. QA-31513 still running (1020s / 1800s cap) — 14:03:51
+>> .. QA-31513 still running (1080s / 1800s cap) — 14:04:51
+>> .. QA-31513 still running (1140s / 1800s cap) — 14:05:51
+>> .. QA-31513 still running (1200s / 1800s cap) — 14:06:51
+>> .. QA-31513 still running (1260s / 1800s cap) — 14:07:51
+>> usage: 33 turns | in 58 (+1767030 cache-read, +65081 cache-write) | out 11497 | est $1.82
+QA-31513 is a PASS on dev (Amazon Prime Video, Facebook only, Jan 1–10 2025, Reel filter, 4 posts). Skill and REGISTRY maintenance is deferred to `harvest.sh`, as instructed.
+
+- **A5:** all 4 Reel posts have Impressions data (aggregate sum 1,546,300).
+- **A6:** 16,499 / 1,546,300 × 100 = 1.067%, and the aggregate Engagement Rate shows 1.07%. The cell reads N/A in Sum mode, so I took the value from
+>> done (rc=0) — report: results/2026-10-29/QA-31513-report.md
+>> QA-35301 (full) — Thu Oct 29 14:08:31 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> usage: 8 turns | in 10 (+179640 cache-read, +19632 cache-write) | out 2425 | est $0.35
+QA-35301 is FAILED (blocked by open bug APPS-60871), so I didn't open the browser.
+
+The case file lists APPS-60871 as open, and today's `results/open-bugs-2026-10-29.json` still shows it open. It's an en-dash rendering bug, and the case's only check is that Reel Engagements and Reel Follows show no en-dash. Rule 7 says an open linked bug means auto-fail without running the steps.
+
+The report is at
+>> done (rc=0) — report: results/2026-10-29/QA-35301-report.md
+>> QA-29237 (full) — Thu Oct 29 14:15:59 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29237 still running (60s / 1800s cap) — 14:16:59
+>> .. QA-29237 still running (120s / 1800s cap) — 14:17:59
+>> .. QA-29237 still running (180s / 1800s cap) — 14:18:59
+>> .. QA-29237 still running (240s / 1800s cap) — 14:19:59
+>> .. QA-29237 still running (300s / 1800s cap) — 14:20:59
+>> .. QA-29237 still running (360s / 1800s cap) — 14:22:00
+>> .. QA-29237 still running (420s / 1800s cap) — 14:23:00
+>> .. QA-29237 still running (480s / 1800s cap) — 14:24:00
+>> .. QA-29237 still running (540s / 1800s cap) — 14:25:00
+>> .. QA-29237 still running (600s / 1800s cap) — 14:26:00
+>> .. QA-29237 still running (660s / 1800s cap) — 14:27:00
+>> .. QA-29237 still running (720s / 1800s cap) — 14:28:01
+>> .. QA-29237 still running (780s / 1800s cap) — 14:29:01
+>> .. QA-29237 still running (840s / 1800s cap) — 14:30:01
+>> .. QA-29237 still running (900s / 1800s cap) — 14:31:01
+>> .. QA-29237 still running (960s / 1800s cap) — 14:32:01
+>> .. QA-29237 still running (1020s / 1800s cap) — 14:33:01
+>> .. QA-29237 still running (1080s / 1800s cap) — 14:34:01
+>> .. QA-29237 still running (1140s / 1800s cap) — 14:35:02
+>> usage: 30 turns | in 54 (+1903414 cache-read, +84467 cache-write) | out 16606 | est $2.21
+QA-29237 (Thursday rotation) is PASS for two of its three legs, and the Spotify leg is BLOCKED. The report is at `results/2026-10-29/QA-29237-report.md`.
+
+- **Spotify / Spotify News:** BLOCKED because the brand doesn't exist on dev. I confirmed it with three typeahead queries and used no substitute.
+- **Sony Pictures Television:** PASS. Impressions are shown on all 200 rendered TikTok posts (of 20
+>> done (rc=0) — report: results/2026-10-29/QA-29237-report.md
+>> QA-30670 (full) — Thu Oct 29 14:35:54 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-30670 still running (60s / 1800s cap) — 14:36:54
+>> .. QA-30670 still running (120s / 1800s cap) — 14:37:54
+>> .. QA-30670 still running (180s / 1800s cap) — 14:38:54
+>> .. QA-30670 still running (240s / 1800s cap) — 14:39:54
+>> .. QA-30670 still running (300s / 1800s cap) — 14:40:54
+>> .. QA-30670 still running (360s / 1800s cap) — 14:41:55
+>> .. QA-30670 still running (420s / 1800s cap) — 14:42:55
+>> usage: 59 turns | in 104 (+3325934 cache-read, +66459 cache-write) | out 17214 | est $2.76
+QA-30670 is a **PASS**. The Brand Insights Public Video Views tile for MTV on Viacom reads 6,271,313. The TWC Aggregate sum is 399,612 (Facebook) + 17,554 (Twitter) + 2,716,902 (Instagram) + 3,137,245 (TikTok) = 6,271,313, a difference of 0. Both sides use Oct 21–27, 2026 in Public data.
+
+The Reporting menu has no "Classic Reporting" item, so I used Time Window Comparison, as the earlier runs did.
+>> done (rc=0) — report: results/2026-10-29/QA-30670-report.md
+>> QA-33169 (full) — Thu Oct 29 14:43:35 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-33169 still running (60s / 1800s cap) — 14:44:35
+>> .. QA-33169 still running (120s / 1800s cap) — 14:45:35
+>> .. QA-33169 still running (180s / 1800s cap) — 14:46:35
+>> .. QA-33169 still running (240s / 1800s cap) — 14:47:35
+>> .. QA-33169 still running (300s / 1800s cap) — 14:48:35
+>> .. QA-33169 still running (360s / 1800s cap) — 14:49:36
+>> .. QA-33169 still running (420s / 1800s cap) — 14:50:36
+>> .. QA-33169 still running (480s / 1800s cap) — 14:51:36
+>> .. QA-33169 still running (540s / 1800s cap) — 14:52:36
+>> .. QA-33169 still running (600s / 1800s cap) — 14:53:36
+>> .. QA-33169 still running (660s / 1800s cap) — 14:54:36
+>> .. QA-33169 still running (720s / 1800s cap) — 14:55:36
+>> .. QA-33169 still running (780s / 1800s cap) — 14:56:36
+>> usage: 60 turns | in 106 (+4061805 cache-read, +111494 cache-write) | out 32151 | est $3.95
+QA-33169 is **BLOCKED** because of two test-data gaps. Four of the five assertions pass, but they were only evaluable on the fallback brand.
+
+- **Spotify / Spotify News:** "Spotify News" doesn't exist on the Spotify account. Typing "Spotify" in the brand picker lists about 120 brands, and the alphabetical list goes straight from "Spotify Live" to "Spotify Platform". I did not substitute a brand.
+-
+>> done (rc=0) — report: results/2026-10-29/QA-33169-report.md

@@ -1,0 +1,86 @@
+>> QA-31513 (full) — Mon Oct 26 12:31:02 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> QA-20318 (full) — Mon Oct 26 12:31:08 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-31513 still running (60s / 1500s cap) — 12:32:02
+>> .. QA-20318 still running (60s / 1500s cap) — 12:32:08
+>> .. QA-31513 still running (120s / 1500s cap) — 12:33:02
+>> .. QA-20318 still running (120s / 1500s cap) — 12:33:08
+>> .. QA-31513 still running (180s / 1500s cap) — 12:34:03
+>> .. QA-20318 still running (180s / 1500s cap) — 12:34:08
+>> .. QA-31513 still running (240s / 1500s cap) — 12:35:03
+>> .. QA-20318 still running (240s / 1500s cap) — 12:35:08
+>> .. QA-31513 still running (300s / 1500s cap) — 12:36:03
+>> .. QA-20318 still running (300s / 1500s cap) — 12:36:08
+>> .. QA-31513 still running (360s / 1500s cap) — 12:37:03
+>> .. QA-20318 still running (360s / 1500s cap) — 12:37:08
+>> .. QA-31513 still running (420s / 1500s cap) — 12:38:03
+>> .. QA-20318 still running (420s / 1500s cap) — 12:38:09
+>> .. QA-31513 still running (480s / 1500s cap) — 12:39:03
+>> .. QA-20318 still running (480s / 1500s cap) — 12:39:09
+>> .. QA-31513 still running (540s / 1500s cap) — 12:40:03
+>> .. QA-20318 still running (540s / 1500s cap) — 12:40:09
+>> usage: 72 turns | in 134 (+4365404 cache-read, +75891 cache-write) | out 17810 | est $3.39
+QA-31513 is a **PASS**, and the report is at `results/2026-10-26/QA-31513-report.md`. I ran it on Amazon Prime Video (brand_id 25864), Facebook only, Jan 1 to Jan 10, 2025, Impressions set, Publish Type: Reel.
+
+- **A5:** All 4 Reel posts have Impressions values, 1,546,300 in total.
+- **A6:** 16,499 Engagements ÷ 1,546,300 Impressions × 100 is 1.067%, which matches the aggregate Engagement Rate of 
+>> done (rc=0) — report: results/2026-10-26/QA-31513-report.md
+>> QA-33169 (full) — Mon Oct 26 12:40:19 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-20318 still running (600s / 1500s cap) — 12:41:09
+>> .. QA-33169 still running (60s / 1500s cap) — 12:41:19
+>> .. QA-20318 still running (660s / 1500s cap) — 12:42:09
+>> .. QA-33169 still running (120s / 1500s cap) — 12:42:19
+>> .. QA-20318 still running (720s / 1500s cap) — 12:43:09
+>> .. QA-33169 still running (180s / 1500s cap) — 12:43:19
+>> .. QA-20318 still running (780s / 1500s cap) — 12:44:09
+>> .. QA-33169 still running (240s / 1500s cap) — 12:44:19
+>> .. QA-20318 still running (840s / 1500s cap) — 12:45:10
+>> .. QA-33169 still running (300s / 1500s cap) — 12:45:19
+>> .. QA-20318 still running (900s / 1500s cap) — 12:46:10
+>> .. QA-33169 still running (360s / 1500s cap) — 12:46:20
+>> .. QA-20318 still running (960s / 1500s cap) — 12:47:10
+>> .. QA-33169 still running (420s / 1500s cap) — 12:47:20
+>> .. QA-20318 still running (1020s / 1500s cap) — 12:48:10
+>> .. QA-33169 still running (480s / 1500s cap) — 12:48:20
+>> .. QA-20318 still running (1080s / 1500s cap) — 12:49:10
+>> .. QA-33169 still running (540s / 1500s cap) — 12:49:20
+>> .. QA-20318 still running (1140s / 1500s cap) — 12:50:10
+>> .. QA-33169 still running (600s / 1500s cap) — 12:50:20
+>> .. QA-20318 still running (1200s / 1500s cap) — 12:51:10
+>> .. QA-33169 still running (660s / 1500s cap) — 12:51:20
+>> usage: 32 turns | in 52 (+1740374 cache-read, +67543 cache-write) | out 13733 | est $1.89
+QA-33169 is BLOCKED: four of the five assertions pass, and the LinkedIn one can't be evaluated. I ran Monday's first row, HBO Max account and brand, on the Video Views data set. The report is at `results/2026-10-26/QA-33169-report.md`.
+
+| Assertion | Channel | Engagements ÷ Video Views | Average-row rate | Result |
+| --- | --- | --- | --- | --- |
+| A4 | Facebook | 7.148% | 7.15% | PASS |
+| A6 | Tw
+>> done (rc=0) — report: results/2026-10-26/QA-33169-report.md
+>> QA-35301 (full) — Mon Oct 26 12:52:00 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-20318 still running (1260s / 1500s cap) — 12:52:11
+>> usage: 5 turns | in 6 (+97165 cache-read, +16974 cache-write) | out 1685 | est $0.26
+QA-35301 is marked FAILED (blocked by open bug), and I did not run the case or open the browser. The case file lists APPS-60871 (Open), an Endash rendering defect across data-set metrics. That is the same kind of failure the case's one assertion checks (Reel Engagements and Reel Follows should not show an Endash). Rule 7 and the open-bug auto-fail policy say not to run a case with an open linked b
+>> done (rc=0) — report: results/2026-10-26/QA-35301-report.md
+>> .. QA-20318 still running (1320s / 1500s cap) — 12:53:11
+>> .. QA-20318 still running (1380s / 1500s cap) — 12:54:11
+>> .. QA-20318 still running (1440s / 1500s cap) — 12:55:11
+>> .. QA-20318 still running (1500s / 1500s cap) — 12:56:11
+>> TIMEOUT after 1500s — killing QA-20318 (process group)
+>> done (rc=143) — report: results/2026-10-26/QA-20318-report.md
+>> QA-21108 (full) — Mon Oct 26 12:56:14 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> usage: 7 turns | in 10 (+184041 cache-read, +20440 cache-write) | out 2261 | est $0.35
+QA-21108 is marked FAILED (blocked by open bug) and I didn't run it in the browser. Its case file lists open bug APPS-60871 (Endash shown for metrics in the Twitter, Instagram and YouTube datasets), and spec-adherence Rule 7 says to fail such cases without running them.
+
+All six assertions (5, 8, 11, 14, 17, 20) are recorded as FAILED for that reason. The open-bug list in the case file dates from 
+>> done (rc=0) — report: results/2026-10-26/QA-21108-report.md
+>> QA-21109 (full) — Mon Oct 26 12:56:35 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> usage: 6 turns | in 8 (+140444 cache-read, +20288 cache-write) | out 1887 | est $0.32
+QA-21109 is FAILED (blocked by open bug) and I didn't run it. The case file and today's open-bug refresh both list APPS-60871 (Open), an en-dash rendering bug that includes YouTube datasets. Rule 7 says not to run a case with an open linked bug, so I never opened the browser.
+
+The report is at `results/2026-10-26/QA-21109-report.md`, and no bugs were filed.
+>> done (rc=0) — report: results/2026-10-26/QA-21109-report.md

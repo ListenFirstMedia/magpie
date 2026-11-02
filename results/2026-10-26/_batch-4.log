@@ -1,0 +1,105 @@
+>> QA-30670 (full) — Mon Oct 26 14:22:01 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-30670 still running (60s / 1500s cap) — 14:23:01
+>> .. QA-30670 still running (120s / 1500s cap) — 14:24:01
+>> .. QA-30670 still running (180s / 1500s cap) — 14:25:01
+>> .. QA-30670 still running (240s / 1500s cap) — 14:26:02
+>> .. QA-30670 still running (300s / 1500s cap) — 14:27:02
+>> .. QA-30670 still running (360s / 1500s cap) — 14:28:02
+>> .. QA-30670 still running (420s / 1500s cap) — 14:29:02
+>> .. QA-30670 still running (480s / 1500s cap) — 14:30:02
+>> .. QA-30670 still running (540s / 1500s cap) — 14:31:02
+>> .. QA-30670 still running (600s / 1500s cap) — 14:32:02
+>> usage: 72 turns | in 134 (+4624039 cache-read, +79086 cache-write) | out 21456 | est $3.64
+QA-30670 is a PASS: the Brand Insights Public Video Views tile matches the sum of the four TWC channel values exactly.
+
+- **Insights tile:** MTV, Public Data view, Facebook/Twitter/Instagram/TikTok, window Oct 18–24, 2026. The tile reads 10,243,170.
+- **TWC sum:** Facebook 1,308,592 + Twitter 18,147 + Instagram 5,185,833 + TikTok 3,730,598 = 10,243,170. The difference is 0.
+
+Things to know, none o
+>> done (rc=0) — report: results/2026-10-26/QA-30670-report.md
+>> QA-100887 (full) — Mon Oct 26 14:32:23 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> QA-29126 (full) — Mon Oct 26 14:32:36 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-100887 still running (60s / 1500s cap) — 14:33:23
+>> .. QA-29126 still running (60s / 1500s cap) — 14:33:37
+>> .. QA-100887 still running (120s / 1500s cap) — 14:34:23
+>> .. QA-29126 still running (120s / 1500s cap) — 14:34:37
+>> .. QA-100887 still running (180s / 1500s cap) — 14:35:24
+>> .. QA-29126 still running (180s / 1500s cap) — 14:35:37
+>> .. QA-100887 still running (240s / 1500s cap) — 14:36:24
+>> .. QA-29126 still running (240s / 1500s cap) — 14:36:37
+>> .. QA-100887 still running (300s / 1500s cap) — 14:37:24
+>> .. QA-29126 still running (300s / 1500s cap) — 14:37:37
+>> usage: 66 turns | in 112 (+3739696 cache-read, +71276 cache-write) | out 17452 | est $3.02
+QA-100887 PASSED: all five Brand Insights values match the Time Window Comparison (TWC) values for UCLA, Threads only, Dec 06–12, 2024, on Authorized data.
+
+| Metric | Insights | TWC |
+|---|---|---|
+| Follower Growth / New Followers | 13 | 13 |
+| New Posts | 9 | 9 |
+| Engagements | 369 | 369 |
+| Engagement Rate | 2.52% | 2.52% |
+| Views | 14,635 | 14,635 |
+
+The case lists no open linked bugs, and 
+>> done (rc=0) — report: results/2026-10-26/QA-100887-report.md
+>> QA-79963 (full) — Mon Oct 26 14:38:14 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29126 still running (360s / 1500s cap) — 14:38:37
+>> .. QA-79963 still running (60s / 1500s cap) — 14:39:14
+>> .. QA-29126 still running (420s / 1500s cap) — 14:39:37
+>> .. QA-79963 still running (120s / 1500s cap) — 14:40:14
+>> .. QA-29126 still running (480s / 1500s cap) — 14:40:38
+>> .. QA-79963 still running (180s / 1500s cap) — 14:41:14
+>> .. QA-29126 still running (540s / 1500s cap) — 14:41:38
+>> .. QA-79963 still running (240s / 1500s cap) — 14:42:15
+>> .. QA-29126 still running (600s / 1500s cap) — 14:42:38
+>> .. QA-79963 still running (300s / 1500s cap) — 14:43:15
+>> .. QA-29126 still running (660s / 1500s cap) — 14:43:38
+>> .. QA-79963 still running (360s / 1500s cap) — 14:44:15
+>> .. QA-29126 still running (720s / 1500s cap) — 14:44:39
+>> .. QA-79963 still running (420s / 1500s cap) — 14:45:15
+>> usage: 21 turns | in 32 (+938276 cache-read, +60459 cache-write) | out 11494 | est $1.36
+QA-29126 is **PASS**. The report is at `results/2026-10-26/QA-29126-report.md`.
+
+I ran all three Monday pairs from the Description table on the Video Views data set with TikTok only:
+
+| Pair | Posts with Video Views data | Sum (Organic + Unclassified + Paid = Video Views) | Engagements ÷ Video Views = Video Response Rate |
+|---|---|---|---|
+| HBO Max | 59 of 126 | holds on all, 0 failures | holds 
+>> done (rc=0) — report: results/2026-10-26/QA-29126-report.md
+>> QA-29128 (full) — Mon Oct 26 14:45:29 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> usage: 5 turns | in 6 (+99224 cache-read, +18973 cache-write) | out 2120 | est $0.29
+QA-29128 is marked **FAILED (blocked by open bug)** under Rule 7. The case file lists APPS-60871 as Open, and known-quirks already records this case as FAILED for it. I did not open the browser, so I don't know whether the bug reproduces on Monday's accounts.
+
+The report is at `results/2026-10-26/QA-29128-report.md`. It lists all eight assertions as blocked, with no bugs filed. The case needs a re
+>> done (rc=0) — report: results/2026-10-26/QA-29128-report.md
+>> QA-29129 (full) — Mon Oct 26 14:45:54 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-79963 still running (480s / 1500s cap) — 14:46:15
+>> .. QA-29129 still running (60s / 1500s cap) — 14:46:54
+>> .. QA-79963 still running (540s / 1500s cap) — 14:47:15
+>> .. QA-29129 still running (120s / 1500s cap) — 14:47:54
+>> .. QA-79963 still running (600s / 1500s cap) — 14:48:15
+>> .. QA-29129 still running (180s / 1500s cap) — 14:48:54
+>> usage: 45 turns | in 78 (+3603911 cache-read, +112675 cache-write) | out 20447 | est $3.44
+**QA-79963: PASS.** Brand > Content Video post counts match the Time Window Comparison (TWC) report on all five channels. The account was Viacom, the brand MTV, with Authorized data for Oct 18–24, 2026.
+
+| Channel | Brand > Content | TWC |
+|---|---|---|
+| Facebook (Reel excluded) | 11 | 11 |
+| Twitter | 7 | 7 |
+| Instagram | 11 | 11 |
+| TikTok | 15 | 15 |
+| YouTube | 2 | 2 |
+| All channels | 46 (s
+>> done (rc=0) — report: results/2026-10-26/QA-79963-report.md
+>> usage: 28 turns | in 48 (+1479839 cache-read, +62806 cache-write) | out 10732 | est $1.64
+QA-29129 is a PASS: all four assertions held across all 132 LinkedIn posts for UCLA / University of California, Los Angeles, Impressions data set, Last 30 Days (Sep 25 – Oct 24, 2026).
+
+- **Impressions:** Organic + Paid equals Impressions on every post. Paid Impressions is "–" throughout, treated as 0.
+- **Reach:** every post shows "–" for Reach, Organic Reach and Paid Reach, so the sum check hold
+>> done (rc=0) — report: results/2026-10-26/QA-29129-report.md

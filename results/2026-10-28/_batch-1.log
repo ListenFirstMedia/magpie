@@ -1,0 +1,122 @@
+>> QA-19468 (full) — Wed Oct 28 11:53:38 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> QA-20318 (full) — Wed Oct 28 11:53:47 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-19468 still running (60s / 1800s cap) — 11:54:38
+>> .. QA-20318 still running (60s / 1800s cap) — 11:54:47
+>> .. QA-19468 still running (120s / 1800s cap) — 11:55:38
+>> .. QA-20318 still running (120s / 1800s cap) — 11:55:47
+>> .. QA-19468 still running (180s / 1800s cap) — 11:56:38
+>> .. QA-20318 still running (180s / 1800s cap) — 11:56:47
+>> .. QA-19468 still running (240s / 1800s cap) — 11:57:38
+>> .. QA-20318 still running (240s / 1800s cap) — 11:57:48
+>> usage: 38 turns | in 72 (+1952050 cache-read, +52728 cache-write) | out 10738 | est $1.77
+QA-19468 is **PASS**, and the report is at `results/2026-10-28/QA-19468-report.md`.
+
+- **Lock symbol:** none appears in the Table View, confirmed in the DOM and the screenshot.
+- **Sum row:** Reach, Engagement Rate, Organic Reach and Paid Reach all show N/A.
+- **Brand:** the dev brand search has no brand named exactly "UCLA", so I used the UCLA account's own brand, "University of California, Los A
+>> done (rc=0) — report: results/2026-10-28/QA-19468-report.md
+>> QA-21108 (full) — Wed Oct 28 11:58:15 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> usage: 6 turns | in 8 (+142477 cache-read, +20710 cache-write) | out 2405 | est $0.34
+QA-21108 is marked FAILED (blocked by open bug APPS-60871). I didn't open the browser or run any steps, as the open-bug rule (Rule 7) requires. The bug status comes from the case file's 2026-10-20 snapshot, since this headless run has no Jira access.
+
+The report is at `results/2026-10-28/QA-21108-report.md`. It covers all six assertions, each marked FAILED because of the bug, which affects the Twi
+>> done (rc=0) — report: results/2026-10-28/QA-21108-report.md
+>> QA-21874 (full) — Wed Oct 28 11:58:40 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-20318 still running (300s / 1800s cap) — 11:58:48
+>> .. QA-21874 still running (60s / 1800s cap) — 11:59:40
+>> .. QA-20318 still running (360s / 1800s cap) — 11:59:48
+>> .. QA-21874 still running (120s / 1800s cap) — 12:00:41
+>> .. QA-20318 still running (420s / 1800s cap) — 12:00:48
+>> .. QA-21874 still running (180s / 1800s cap) — 12:01:41
+>> .. QA-20318 still running (480s / 1800s cap) — 12:01:48
+>> .. QA-21874 still running (240s / 1800s cap) — 12:02:41
+>> .. QA-20318 still running (540s / 1800s cap) — 12:02:48
+>> .. QA-21874 still running (300s / 1800s cap) — 12:03:41
+>> .. QA-20318 still running (600s / 1800s cap) — 12:03:48
+>> .. QA-21874 still running (360s / 1800s cap) — 12:04:41
+>> .. QA-20318 still running (660s / 1800s cap) — 12:04:48
+>> .. QA-21874 still running (420s / 1800s cap) — 12:05:41
+>> .. QA-20318 still running (720s / 1800s cap) — 12:05:49
+>> .. QA-21874 still running (480s / 1800s cap) — 12:06:41
+>> .. QA-20318 still running (780s / 1800s cap) — 12:06:49
+>> .. QA-21874 still running (540s / 1800s cap) — 12:07:41
+>> .. QA-20318 still running (840s / 1800s cap) — 12:07:49
+>> .. QA-21874 still running (600s / 1800s cap) — 12:08:42
+>> .. QA-20318 still running (900s / 1800s cap) — 12:08:49
+>> usage: 33 turns | in 58 (+2360001 cache-read, +92663 cache-write) | out 19106 | est $2.58
+**QA-20318 is BLOCKED (test-data drift) for Wednesday, and the report is at `results/2026-10-28/QA-20318-report.md`.**
+
+- **Date range:** the picker disables everything before Oct 26, 2023, so Jan 01 – Dec 31, 2023 can't be set. This matches the known retention-window quirk in `known-quirks.md`, so no bug was filed.
+- **NBCU EnterPrises account:** it doesn't appear in the account search for this u
+>> done (rc=0) — report: results/2026-10-28/QA-20318-report.md
+>> QA-21109 (full) — Wed Oct 28 12:09:29 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-21874 still running (660s / 1800s cap) — 12:09:42
+>> usage: 5 turns | in 6 (+97776 cache-read, +17803 cache-write) | out 1925 | est $0.28
+QA-21109 is marked **FAILED (blocked by open bug)** and was not run. The case file lists APPS-60871 as open, so Rule 7 requires an auto-fail without opening the browser.
+
+The open-bug status is from the 2026-10-20 cache, and I couldn't re-check Jira in this headless run. If APPS-60871 has since closed, refresh the case file's open-bugs section and re-run.
+
+Report: `results/2026-10-28/QA-21109-repo
+>> done (rc=0) — report: results/2026-10-28/QA-21109-report.md
+>> QA-23894 (full) — Wed Oct 28 12:09:49 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-21874 still running (720s / 1800s cap) — 12:10:42
+>> .. QA-23894 still running (60s / 1800s cap) — 12:10:49
+>> .. QA-21874 still running (780s / 1800s cap) — 12:11:42
+>> .. QA-23894 still running (120s / 1800s cap) — 12:11:49
+>> .. QA-21874 still running (840s / 1800s cap) — 12:12:42
+>> .. QA-23894 still running (180s / 1800s cap) — 12:12:50
+>> .. QA-21874 still running (900s / 1800s cap) — 12:13:42
+>> .. QA-23894 still running (240s / 1800s cap) — 12:13:50
+>> usage: 28 turns | in 50 (+1523686 cache-read, +61858 cache-write) | out 11644 | est $1.67
+QA-21874 is a **PASS** on Wednesday's first row (Apple Services / Apple Music). Four of five channels matched, and LinkedIn couldn't be tested.
+
+Engagements / Total Followers × 100 matched the first post's Response Rate on each channel that has data:
+
+| Channel | Calculated | UI Response Rate |
+|---|---|---|
+| Facebook | 0.2422% | 0.24% |
+| Instagram | 9.7694% | 9.77% |
+| Twitter | 0.2748% | 0.27%
+>> done (rc=0) — report: results/2026-10-28/QA-21874-report.md
+>> .. QA-23894 still running (300s / 1800s cap) — 12:14:50
+>> .. QA-23894 still running (360s / 1800s cap) — 12:15:50
+>> .. QA-23894 still running (420s / 1800s cap) — 12:16:50
+>> .. QA-23894 still running (480s / 1800s cap) — 12:17:50
+>> usage: 69 turns | in 122 (+4564693 cache-read, +87837 cache-write) | out 20819 | est $3.68
+QA-23894 is **PASS**. The report is at `results/2026-10-28/QA-23894-report.md`.
+
+- **Setup:** UCLA account (id 799), brand University of California, Los Angeles (127756), Last 30 Days (Sep 27 – Oct 26, 2026), LinkedIn only on both Insights and Content. No brand is named exactly "UCLA" in the typeahead, so I used the account's primary brand, as earlier runs did.
+- **Result:** All 5 Best Performing 
+>> done (rc=0) — report: results/2026-10-28/QA-23894-report.md
+>> QA-29122 (full) — Wed Oct 28 15:53:16 IST 2026  [timeout 2400s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29122 still running (60s / 2400s cap) — 15:54:16
+>> .. QA-29122 still running (120s / 2400s cap) — 15:55:17
+>> .. QA-29122 still running (180s / 2400s cap) — 15:56:17
+>> .. QA-29122 still running (240s / 2400s cap) — 15:57:17
+>> .. QA-29122 still running (300s / 2400s cap) — 15:58:17
+>> .. QA-29122 still running (360s / 2400s cap) — 15:59:17
+>> usage: 24 turns | in 38 (+1058704 cache-read, +59620 cache-write) | out 10548 | est $1.39
+QA-29122 is **BLOCKED**: the Apple Music leg passed, but the NBCU EnterPrises leg couldn't run because that account isn't in the `lfiqa` account list.
+
+- **Apple Services / Apple Music (Engagements Breakdown, default week Oct 20–26):**
+  - Twitter: 8 of 8 posts satisfy Reactions + Comments + Shares = Engagements, and the Sum row reconciles (80,014).
+  - Instagram: 23 of 23 posts satisfy it, and th
+>> done (rc=0) — report: results/2026-10-28/QA-29122-report.md
+>> QA-29123 (full) — Wed Oct 28 15:59:37 IST 2026  [timeout 2400s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29123 still running (60s / 2400s cap) — 16:00:37
+>> .. QA-29123 still running (120s / 2400s cap) — 16:01:37
+>> .. QA-29123 still running (180s / 2400s cap) — 16:02:38
+>> usage: 21 turns | in 28 (+795173 cache-read, +65264 cache-write) | out 8142 | est $1.25
+QA-29123 is **BLOCKED**, not a full PASS. The report is at `results/2026-10-28/QA-29123-report.md`.
+
+- **Apple Services / Apple Music (PASS):** 22 of 22 TikTok posts have Reactions + Comments + Shares equal to Engagements. The Sum row also reconciles: 201,429 + 4,215 + 23,644 = 229,288.
+- **NBCU EnterPrises (BLOCKED):** The account isn't in the `lfiqa` account list. Searches for "NBCU EnterPrises"
+>> done (rc=0) — report: results/2026-10-28/QA-29123-report.md

@@ -1,0 +1,96 @@
+>> QA-19468 (full) — Thu Oct 29 12:13:22 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> QA-20318 (full) — Thu Oct 29 12:13:36 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-19468 still running (60s / 1800s cap) — 12:14:22
+>> .. QA-20318 still running (60s / 1800s cap) — 12:14:36
+>> .. QA-19468 still running (120s / 1800s cap) — 12:15:22
+>> .. QA-20318 still running (120s / 1800s cap) — 12:15:37
+>> .. QA-19468 still running (180s / 1800s cap) — 12:16:22
+>> .. QA-20318 still running (180s / 1800s cap) — 12:16:37
+>> .. QA-19468 still running (240s / 1800s cap) — 12:17:22
+>> .. QA-20318 still running (240s / 1800s cap) — 12:17:37
+>> .. QA-19468 still running (300s / 1800s cap) — 12:18:22
+>> usage: 29 turns | in 46 (+1415717 cache-read, +67987 cache-write) | out 11675 | est $1.68
+QA-19468 is a **PASS**, and the report is at `results/2026-10-29/QA-19468-report.md`.
+
+- **Lock symbol:** none appears. The DOM check and both Table View screenshots found only a clock status badge outside the table.
+- **Sum row:** Reach, Engagement Rate, Organic Reach and Paid Reach all show N/A, the same as the 10-20 and 10-26 to 10-28 runs.
+- **Brand:** typing "UCLA" in the dev brand dropdown r
+>> done (rc=0) — report: results/2026-10-29/QA-19468-report.md
+>> QA-21108 (full) — Thu Oct 29 12:18:32 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-20318 still running (300s / 1800s cap) — 12:18:37
+>> usage: 6 turns | in 8 (+141233 cache-read, +18952 cache-write) | out 1791 | est $0.30
+QA-21108 is FAILED (blocked by open bug). I didn't run it or open the browser.
+
+The case file lists APPS-60871 as open, and the standing rule is that any open linked bug fails the case. That bug shows "–" for metrics in the same Twitter, Instagram and YouTube datasets this case compares. I didn't re-check Jira, so the bug status is as of the 2026-10-20 cache.
+
+The report is at `results/2026-10-29/
+>> done (rc=0) — report: results/2026-10-29/QA-21108-report.md
+>> QA-21874 (full) — Thu Oct 29 12:18:53 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-20318 still running (360s / 1800s cap) — 12:19:37
+>> .. QA-21874 still running (60s / 1800s cap) — 12:19:53
+>> .. QA-20318 still running (420s / 1800s cap) — 12:20:37
+>> .. QA-21874 still running (120s / 1800s cap) — 12:20:53
+>> .. QA-20318 still running (480s / 1800s cap) — 12:21:37
+>> .. QA-21874 still running (180s / 1800s cap) — 12:21:53
+>> .. QA-20318 still running (540s / 1800s cap) — 12:22:38
+>> .. QA-21874 still running (240s / 1800s cap) — 12:22:53
+>> .. QA-20318 still running (600s / 1800s cap) — 12:23:38
+>> .. QA-21874 still running (300s / 1800s cap) — 12:23:53
+>> .. QA-20318 still running (660s / 1800s cap) — 12:24:38
+>> .. QA-21874 still running (360s / 1800s cap) — 12:24:53
+>> usage: 23 turns | in 34 (+1100555 cache-read, +75708 cache-write) | out 13234 | est $1.64
+QA-20318 (Thursday run) finished with a verdict of **BLOCKED (partial)**: two of the three legs passed and one couldn't be run. The report is at `results/2026-10-29/QA-20318-report.md`.
+
+- **Spotify → Spotify News:** BLOCKED. The brand doesn't exist in the dev typeahead. I tried "Spotify News", "Spotify N" and "Spotify" (124 results, none named Spotify News). I didn't substitute another brand, per
+>> done (rc=0) — report: results/2026-10-29/QA-20318-report.md
+>> QA-21109 (full) — Thu Oct 29 12:25:03 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> usage: 7 turns | in 10 (+180433 cache-read, +19109 cache-write) | out 1881 | est $0.33
+QA-21109 is marked FAILED (blocked by open bug). I didn't run the case or open the browser.
+
+The case file lists APPS-60871 as open (Endash "–" shown for multiple metrics across datasets, including YouTube). Rule 7 and the 2026-10-22 policy say any open linked bug fails the case without running it. I didn't re-check the bug's status in Jira, since the Atlassian MCP isn't available in this headless
+>> done (rc=0) — report: results/2026-10-29/QA-21109-report.md
+>> QA-23894 (full) — Thu Oct 29 12:25:25 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-21874 still running (420s / 1800s cap) — 12:25:53
+>> .. QA-23894 still running (60s / 1800s cap) — 12:26:26
+>> .. QA-21874 still running (480s / 1800s cap) — 12:26:54
+>> .. QA-23894 still running (120s / 1800s cap) — 12:27:26
+>> .. QA-21874 still running (540s / 1800s cap) — 12:27:54
+>> .. QA-23894 still running (180s / 1800s cap) — 12:28:26
+>> .. QA-21874 still running (600s / 1800s cap) — 12:28:54
+>> .. QA-23894 still running (240s / 1800s cap) — 12:29:26
+>> .. QA-21874 still running (660s / 1800s cap) — 12:29:54
+>> .. QA-23894 still running (300s / 1800s cap) — 12:30:26
+>> .. QA-21874 still running (720s / 1800s cap) — 12:30:54
+>> .. QA-23894 still running (360s / 1800s cap) — 12:31:26
+>> .. QA-21874 still running (780s / 1800s cap) — 12:31:54
+>> .. QA-23894 still running (420s / 1800s cap) — 12:32:26
+>> .. QA-21874 still running (840s / 1800s cap) — 12:32:54
+>> .. QA-23894 still running (480s / 1800s cap) — 12:33:26
+>> .. QA-21874 still running (900s / 1800s cap) — 12:33:54
+>> usage: 65 turns | in 114 (+4030396 cache-read, +78649 cache-write) | out 19374 | est $3.29
+QA-23894 is a **PASS**. The report is at `results/2026-10-29/QA-23894-report.md`.
+
+All 5 Best Performing Content posts on Brand Insights (University of California, Los Angeles, LinkedIn only, Last 30 Days, Sep 28 – Oct 27) match Brand Content rows 1–5. Engagements, reactions, comments, shares, date, type and rank are identical. Insights shows 129 new posts and Content shows 129.
+
+- **Video Views:*
+>> done (rc=0) — report: results/2026-10-29/QA-23894-report.md
+>> .. QA-21874 still running (960s / 1800s cap) — 12:34:55
+>> .. QA-21874 still running (1020s / 1800s cap) — 12:35:55
+>> .. QA-21874 still running (1080s / 1800s cap) — 12:36:55
+>> .. QA-21874 still running (1140s / 1800s cap) — 12:37:55
+>> .. QA-21874 still running (1200s / 1800s cap) — 12:38:55
+>> .. QA-21874 still running (1260s / 1800s cap) — 12:39:55
+>> .. QA-21874 still running (1320s / 1800s cap) — 12:40:55
+>> .. QA-21874 still running (1380s / 1800s cap) — 12:41:55
+>> .. QA-21874 still running (1440s / 1800s cap) — 12:42:56
+>> usage: 35 turns | in 56 (+1888939 cache-read, +73175 cache-write) | out 16826 | est $2.10
+QA-21874 is **FAIL**, and the report is at `results/2026-10-29/QA-21874-report.md`.
+
+- **Instagram fails by 0.01 pp.** The first post's Response Rate is 7.31%, but 21,370 engagements / 292,651 Total Followers gives 7.30%. The gap fits follower drift: the rate likely uses an earlier follower snapshot than the Insights value. That is the same pattern behind the 10-26 HBO Max fail. No known bug appli
+>> done (rc=0) — report: results/2026-10-29/QA-21874-report.md

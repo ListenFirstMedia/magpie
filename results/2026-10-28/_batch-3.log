@@ -1,0 +1,114 @@
+>> QA-29126 (full) — Wed Oct 28 12:34:37 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29126 still running (60s / 1800s cap) — 12:35:37
+>> .. QA-29126 still running (120s / 1800s cap) — 12:36:37
+>> .. QA-29126 still running (180s / 1800s cap) — 12:37:37
+>> .. QA-29126 still running (240s / 1800s cap) — 12:38:37
+>> .. QA-29126 still running (300s / 1800s cap) — 12:39:37
+>> usage: 24 turns | in 40 (+1292988 cache-read, +65658 cache-write) | out 11283 | est $1.59
+QA-29126 passed on both assertions. I ran it on dev as the Wednesday row: Apple Services account, Apple Music brand, Video Views data set, TikTok only.
+
+- **A4 (Organic + Unclassified + Paid = Video Views):** this holds on all 17 posts with a Video Views number and on the Sum row (1,851,970). Three posts show "–" for Video Views, so I skipped them.
+- **A5 (Engagements / Video Views = Video Respons
+>> done (rc=0) — report: results/2026-10-28/QA-29126-report.md
+>> QA-29129 (full) — Wed Oct 28 12:39:43 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29129 still running (60s / 1800s cap) — 12:40:43
+>> .. QA-29129 still running (120s / 1800s cap) — 12:41:43
+>> .. QA-29129 still running (180s / 1800s cap) — 12:42:43
+>> .. QA-29129 still running (240s / 1800s cap) — 12:43:43
+>> .. QA-29129 still running (300s / 1800s cap) — 12:44:43
+>> .. QA-29129 still running (360s / 1800s cap) — 12:45:43
+>> usage: 30 turns | in 54 (+1548337 cache-read, +60784 cache-write) | out 11041 | est $1.66
+QA-29129 is a PASS: all four assertions held on UCLA, LinkedIn only, Impressions data set, Last 30 Days (Sep 27 – Oct 26), 129 posts. The one caveat is the reach assertion (A5), which is only trivially satisfied.
+
+- **A4 (Organic + Paid Impressions = Impressions):** holds on 129/129 posts. Paid Impressions is "–" on every post, so Organic equals Impressions.
+- **A5 (Organic + Paid Reach = Reach):*
+>> done (rc=0) — report: results/2026-10-28/QA-29129-report.md
+>> QA-29235 (full) — Wed Oct 28 12:45:50 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29235 still running (60s / 1800s cap) — 12:46:50
+>> .. QA-29235 still running (120s / 1800s cap) — 12:47:50
+>> .. QA-29235 still running (180s / 1800s cap) — 12:48:50
+>> .. QA-29235 still running (240s / 1800s cap) — 12:49:50
+>> .. QA-29235 still running (300s / 1800s cap) — 12:50:50
+>> usage: 22 turns | in 34 (+843262 cache-read, +53736 cache-write) | out 9208 | est $1.19
+**QA-29235: PASS.** The report is at `results/2026-10-28/QA-29235-report.md`.
+
+- **Run configuration:** Wednesday row, Apple Services / Apple Music, on dev (`app.lfmdev.in`). Video Views data set, Jan 01–Dec 31, 2024, TikTok only. I scraped Table View, which showed 159 posts.
+- **Views sum:** Organic + Paid + Unclassified Views equals Video Views on all 159 posts and on the Sum row (245,275,309).
+
+>> done (rc=0) — report: results/2026-10-28/QA-29235-report.md
+>> QA-29125 (full) — Wed Oct 28 12:56:27 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29125 still running (60s / 1800s cap) — 12:57:27
+>> .. QA-29125 still running (120s / 1800s cap) — 12:58:27
+>> .. QA-29125 still running (180s / 1800s cap) — 12:59:27
+>> .. QA-29125 still running (240s / 1800s cap) — 13:00:27
+>> .. QA-29125 still running (300s / 1800s cap) — 13:01:27
+>> .. QA-29125 still running (360s / 1800s cap) — 13:02:28
+>> .. QA-29125 still running (420s / 1800s cap) — 13:03:28
+>> .. QA-29125 still running (480s / 1800s cap) — 13:04:28
+>> .. QA-29125 still running (540s / 1800s cap) — 13:05:28
+>> .. QA-29125 still running (600s / 1800s cap) — 13:06:28
+>> .. QA-29125 still running (660s / 1800s cap) — 13:07:28
+>> .. QA-29125 still running (720s / 1800s cap) — 13:08:28
+>> .. QA-29125 still running (780s / 1800s cap) — 13:09:28
+>> .. QA-29125 still running (840s / 1800s cap) — 13:10:28
+>> usage: 28 turns | in 48 (+1423966 cache-read, +62053 cache-write) | out 11932 | est $1.63
+QA-29125 is a PASS (4/4). On Twitter-only (3 posts) and Instagram-only (15 posts), Organic + Unclassified + Paid Views equals Video Views on every post and on the Sum row. Engagements / Video Views matches the displayed Video Response Rate on every post.
+
+- **Setup:** I ran Wednesday's first pair, Apple Services / Apple Music, with the Video Views data set and the app's default Oct 20–26 date rang
+>> done (rc=0) — report: results/2026-10-28/QA-29125-report.md
+>> QA-29128 (full) — Wed Oct 28 13:11:19 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> usage: 7 turns | in 10 (+184647 cache-read, +21749 cache-write) | out 3139 | est $0.39
+QA-29128 is marked **FAILED (blocked by open bug)** because APPS-60871 is open. I didn't open the browser, per Rule 7 and the open-bug auto-fail policy.
+
+The report is at `results/2026-10-28/QA-29128-report.md`. None of the 11 steps ran, and all 8 assertions are listed as BLOCKED. No bugs were filed.
+
+I judged APPS-60871 as interfering. It shows an en-dash in place of real values on the Twitter an
+>> done (rc=0) — report: results/2026-10-28/QA-29128-report.md
+>> QA-29234 (full) — Wed Oct 28 13:11:50 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29234 still running (60s / 1800s cap) — 13:12:50
+>> .. QA-29234 still running (120s / 1800s cap) — 13:13:50
+>> .. QA-29234 still running (180s / 1800s cap) — 13:14:50
+>> .. QA-29234 still running (240s / 1800s cap) — 13:15:51
+>> .. QA-29234 still running (300s / 1800s cap) — 13:16:51
+>> .. QA-29234 still running (360s / 1800s cap) — 13:17:51
+>> usage: 29 turns | in 48 (+1792047 cache-read, +81878 cache-write) | out 10475 | est $1.98
+QA-29234 is **BLOCKED (test-data)**, so none of the four assertions could be evaluated. I wrote the report to `results/2026-10-28/QA-29234-report.md`.
+
+- **Date range:** For Wednesday's Apple Services / Apple Music, the date picker says "Historical data is available back to Oct. 26, 2023". Jan–Sep 2023 are disabled, so the spec's Jan 01–10, 2023 range can't be selected.
+- **Second account:** The o
+>> done (rc=0) — report: results/2026-10-28/QA-29234-report.md
+>> QA-33169 (full) — Wed Oct 28 16:22:12 IST 2026  [timeout 2400s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-33169 still running (60s / 2400s cap) — 16:23:12
+>> .. QA-33169 still running (120s / 2400s cap) — 16:24:12
+>> .. QA-33169 still running (180s / 2400s cap) — 16:25:12
+>> .. QA-33169 still running (240s / 2400s cap) — 16:26:12
+>> usage: 19 turns | in 28 (+714398 cache-read, +53984 cache-write) | out 9531 | est $1.14
+QA-33169 on Apple Services / Apple Music is **BLOCKED**: four of the five assertions pass, and the LinkedIn leg has no data to check.
+
+- **Passed (A4, A6, A8, A10):** Facebook, Twitter, Instagram and TikTok each satisfy Engagements ÷ Video Views = the Average row's Video Response Rate (5.03%, 1.06%, 4.47%, 12.38%). The first formula held every time, so the fallback formula wasn't needed.
+- **Block
+>> done (rc=0) — report: results/2026-10-28/QA-33169-report.md
+>> QA-79142 (full) — Wed Oct 28 16:27:08 IST 2026  [timeout 2400s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-79142 still running (60s / 2400s cap) — 16:28:08
+>> .. QA-79142 still running (120s / 2400s cap) — 16:29:08
+>> .. QA-79142 still running (180s / 2400s cap) — 16:30:08
+>> .. QA-79142 still running (240s / 2400s cap) — 16:31:08
+>> .. QA-79142 still running (300s / 2400s cap) — 16:32:08
+>> .. QA-79142 still running (360s / 2400s cap) — 16:33:08
+>> .. QA-79142 still running (420s / 2400s cap) — 16:34:09
+>> usage: 29 turns | in 52 (+1639255 cache-read, +67880 cache-write) | out 13520 | est $1.84
+**QA-79142: PASS (3/3 assertions).** Account Apple Services, brand Apple Music, Public data set, Content Type Video, Oct 20–26, Table View. Each channel's Sum Engagements divided by Sum Video Views matched the Average row's Video Response Rate.
+
+| Channel | Engagements / Video Views | Ratio | Average row |
+|---|---|---|---|
+| Facebook | 26,305 / 527,449 | 4.99% | 4.99% |
+| Twitter | 61,478 / 5,774
+>> done (rc=0) — report: results/2026-10-28/QA-79142-report.md

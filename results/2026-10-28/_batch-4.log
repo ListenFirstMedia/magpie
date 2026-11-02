@@ -1,0 +1,98 @@
+>> QA-29278 (full) — Wed Oct 28 12:51:36 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29278 still running (60s / 1800s cap) — 12:52:36
+>> .. QA-29278 still running (120s / 1800s cap) — 12:53:36
+>> .. QA-29278 still running (180s / 1800s cap) — 12:54:36
+>> usage: 32 turns | in 54 (+1452947 cache-read, +55116 cache-write) | out 13054 | est $1.60
+QA-29278 on Apple Services / Apple Music (TikTok only, Impressions data set, Oct 20–26) is a **FAIL**: A1 fails and A2 passes.
+
+- **A1 (Total Impressions shows a value on every post):** 19 of 22 posts show a number. The posts ranked 18, 19 and 20 show "–". All three are the same Apple Music TikTok video, posted Oct 25 at 10:37 PM PDT. A fourth post with the same text and timestamp shows 3, so the 
+>> done (rc=0) — report: results/2026-10-28/QA-29278-report.md
+>> QA-31513 (full) — Wed Oct 28 12:55:23 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-31513 still running (60s / 1800s cap) — 12:56:23
+>> .. QA-31513 still running (120s / 1800s cap) — 12:57:23
+>> .. QA-31513 still running (180s / 1800s cap) — 12:58:23
+>> .. QA-31513 still running (240s / 1800s cap) — 12:59:24
+>> .. QA-31513 still running (300s / 1800s cap) — 13:00:24
+>> .. QA-31513 still running (360s / 1800s cap) — 13:01:24
+>> usage: 40 turns | in 70 (+2214106 cache-read, +62940 cache-write) | out 12595 | est $2.05
+QA-31513 passes: all three assertions hold. The report is at `results/2026-10-28/QA-31513-report.md`, and I filed no bugs.
+
+I ran it on Facebook only for Jan 1–10, 2025, with the Reel filter, after switching to the Amazon Prime Video account. Amazon Prime Video was already the default brand once I opened Brand > Content, so I didn't add it through the typeahead.
+
+- **Reels have Impressions:** all 
+>> done (rc=0) — report: results/2026-10-28/QA-31513-report.md
+>> QA-35301 (full) — Wed Oct 28 13:02:10 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> usage: 6 turns | in 8 (+138865 cache-read, +19011 cache-write) | out 2161 | est $0.31
+QA-35301 is marked **FAILED (blocked by open bug)** under APPS-60871, and I didn't open the browser.
+
+The case file lists APPS-60871 (Open), an en-dash data-rendering bug. The case's only assertion is that Reel Engagements and Reel Follows show no en-dash, which is that bug's symptom. Rule 7 requires an auto-fail for any open linked bug.
+
+The bug title names Twitter, Instagram and YouTube rather t
+>> done (rc=0) — report: results/2026-10-28/QA-35301-report.md
+>> QA-29237 (full) — Wed Oct 28 13:18:42 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29237 still running (60s / 1800s cap) — 13:19:42
+>> .. QA-29237 still running (120s / 1800s cap) — 13:20:42
+>> .. QA-29237 still running (180s / 1800s cap) — 13:21:42
+>> .. QA-29237 still running (240s / 1800s cap) — 13:22:42
+>> .. QA-29237 still running (300s / 1800s cap) — 13:23:42
+>> .. QA-29237 still running (360s / 1800s cap) — 13:24:43
+>> .. QA-29237 still running (420s / 1800s cap) — 13:25:43
+>> usage: 27 turns | in 52 (+1520364 cache-read, +62853 cache-write) | out 12024 | est $1.69
+QA-29237 is **BLOCKED (test-data)**: none of the Wednesday legs could be run, so I evaluated no assertions and gave no partial PASS. The report is at `results/2026-10-28/QA-29237-report.md`.
+
+- **Apple Services / Apple Music:** the date picker says "Historical data is available back to Oct. 26, 2023". Only Oct–Dec are selectable for 2023, so Jan. 01, 2023 can't be picked.
+- **NBCU Enterprises / CN
+>> done (rc=0) — report: results/2026-10-28/QA-29237-report.md
+>> QA-30670 (full) — Wed Oct 28 13:25:49 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-30670 still running (60s / 1800s cap) — 13:26:49
+>> .. QA-30670 still running (120s / 1800s cap) — 13:27:49
+>> .. QA-30670 still running (180s / 1800s cap) — 13:28:50
+>> .. QA-30670 still running (240s / 1800s cap) — 13:29:50
+>> .. QA-30670 still running (300s / 1800s cap) — 13:30:50
+>> .. QA-30670 still running (360s / 1800s cap) — 13:31:50
+>> .. QA-30670 still running (420s / 1800s cap) — 13:32:50
+>> .. QA-30670 still running (480s / 1800s cap) — 13:33:50
+>> .. QA-30670 still running (540s / 1800s cap) — 13:34:50
+>> usage: 99 turns | in 190 (+8548117 cache-read, +109328 cache-write) | out 20658 | est $5.88
+QA-30670 is a PASS. The Brand Insights Public Video Views tile for MTV (Viacom, Oct 20–26, 2026) shows 9,705,829. The TWC report's four channel values sum to the same number (1,232,335 + 15,742 + 5,178,535 + 3,279,217).
+
+- **Menu mismatch:** The Reporting menu has no "Classic Reporting" item, so I used Time Window Comparison, as the earlier runs did.
+- **Stray click:** I accidentally clicked the f
+>> done (rc=0) — report: results/2026-10-28/QA-30670-report.md
+>> QA-33169 (full) — Wed Oct 28 13:35:46 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-33169 still running (60s / 1800s cap) — 13:36:46
+>> .. QA-33169 still running (120s / 1800s cap) — 13:37:46
+>> .. QA-33169 still running (180s / 1800s cap) — 13:38:46
+>> .. QA-33169 still running (240s / 1800s cap) — 13:39:46
+>> .. QA-33169 still running (300s / 1800s cap) — 13:40:46
+>> .. QA-33169 still running (360s / 1800s cap) — 13:41:46
+>> .. QA-33169 still running (420s / 1800s cap) — 13:42:47
+>> .. QA-33169 still running (480s / 1800s cap) — 13:43:47
+>> .. QA-33169 still running (540s / 1800s cap) — 13:44:47
+>> .. QA-33169 still running (600s / 1800s cap) — 13:45:47
+>> usage: 26 turns | in 40 (+1102996 cache-read, +54225 cache-write) | out 7971 | est $1.29
+QA-33169 is BLOCKED (render-hang at step 2), so none of the 5 assertions were evaluated.
+
+Apple Services / Apple Music (the Wednesday row) opened on the correct account and brand. The Brand > Content grid never rendered: it stayed on skeleton loaders through about 4 minutes, then a reload and about 4 more minutes. There was no error tile or Reload link to click, and no failed request showed up in 
+>> done (rc=0) — report: results/2026-10-28/QA-33169-report.md
+>> QA-100877 (full) — Wed Oct 28 16:34:29 IST 2026  [timeout 2400s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-100877 still running (60s / 2400s cap) — 16:35:29
+>> .. QA-100877 still running (120s / 2400s cap) — 16:36:29
+>> .. QA-100877 still running (180s / 2400s cap) — 16:37:29
+>> .. QA-100877 still running (240s / 2400s cap) — 16:38:29
+>> .. QA-100877 still running (300s / 2400s cap) — 16:39:29
+>> .. QA-100877 still running (360s / 2400s cap) — 16:40:29
+>> .. QA-100877 still running (420s / 2400s cap) — 16:41:30
+>> usage: 24 turns | in 38 (+1194485 cache-read, +68496 cache-write) | out 11471 | est $1.57
+QA-100877 is **FAIL** on A6, the same result as the 10-20, 10-26 and 10-27 runs, with no change and no regression. The report is at `results/2026-10-28/QA-100877-report.md`.
+
+- **A6 (Organic + Paid Impressions = Impressions):** fails on all 13 Threads posts. Organic and Paid Impressions show "–" while Impressions is populated (Sum row 419,745).
+- **A7 (Organic + Paid Reach = Reach):** not evaluabl
+>> done (rc=0) — report: results/2026-10-28/QA-100877-report.md

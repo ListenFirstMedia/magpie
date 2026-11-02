@@ -1,0 +1,73 @@
+>> QA-29126 (full) — Fri Oct 30 11:50:41 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29126 still running (60s / 1800s cap) — 11:51:41
+>> .. QA-29126 still running (120s / 1800s cap) — 11:52:41
+>> .. QA-29126 still running (180s / 1800s cap) — 11:53:41
+>> usage: 23 turns | in 40 (+1197017 cache-read, +77536 cache-write) | out 11530 | est $1.66
+QA-29126 **PASSES** on the Friday row (Hulu account, Hulu brand, TikTok only, Video Views data set, default week Oct 22–28).
+
+- **A4:** Organic + Unclassified + Paid Views equals Video Views on all 48 TikTok posts. The Sum row also reconciles: 0 + 6,649,565 + 7,868,486 = 14,518,051.
+- **A5:** Engagements ÷ Video Views matches the shown Video Response Rate on all 48 posts. The largest gap is 0.0047
+>> done (rc=0) — report: results/2026-10-30/QA-29126-report.md
+>> QA-29129 (full) — Fri Oct 30 11:53:46 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29129 still running (60s / 1800s cap) — 11:54:46
+>> .. QA-29129 still running (120s / 1800s cap) — 11:55:46
+>> .. QA-29129 still running (180s / 1800s cap) — 11:56:47
+>> .. QA-29129 still running (240s / 1800s cap) — 11:57:47
+>> QA-29125 (full) — Fri Oct 30 11:58:11 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> usage: 28 turns | in 42 (+1356328 cache-read, +72868 cache-write) | out 10991 | est $1.68
+QA-29129 **PASSED**: all four assertions hold on all 129 LinkedIn posts for UCLA (University of California, Los Angeles), Impressions data set, Last 30 Days (Sep 29 – Oct 28).
+
+- **Impressions:** Organic + Paid equals Impressions on every post.
+- **Engagement Rate:** Engagements / Impressions matches the displayed rate on every post.
+- **Engaged User Rate:** shows "–" on every post.
+- **Reach:** R
+>> done (rc=0) — report: results/2026-10-30/QA-29129-report.md
+>> QA-29235 (full) — Fri Oct 30 11:58:48 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29125 still running (60s / 1800s cap) — 11:59:11
+>> .. QA-29235 still running (60s / 1800s cap) — 11:59:48
+>> .. QA-29125 still running (120s / 1800s cap) — 12:00:12
+>> .. QA-29235 still running (120s / 1800s cap) — 12:00:48
+>> usage: 24 turns | in 34 (+1032287 cache-read, +64157 cache-write) | out 9874 | est $1.40
+QA-29125 is a PASS for Friday (Hulu account, Hulu brand, Video Views data set, default week Oct 22–28). The report is at `results/2026-10-30/QA-29125-report.md`.
+
+- **Twitter (A4/A5):** 27 of 27 posts with Video Views satisfy both identities, and the Sum row adds up (262,849).
+- **Instagram (A7/A8):** 41 of 41 posts satisfy both identities, including the three posts with a paid split. The Sum row 
+>> done (rc=0) — report: results/2026-10-30/QA-29125-report.md
+>> QA-29128 (full) — Fri Oct 30 12:00:52 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> usage: 7 turns | in 10 (+183604 cache-read, +19770 cache-write) | out 2094 | est $0.34
+QA-29128 is marked FAILED (blocked by open bug) and I didn't open the browser. The case file lists APPS-60871 as open, and spec Rule 7 and the 2026-10-22 policy say any open linked bug fails the case. The bug status comes from the case file as of 2026-10-20, because this headless run has no Jira access.
+
+The report is at `results/2026-10-30/QA-29128-report.md`. No bugs were filed.
+>> done (rc=0) — report: results/2026-10-30/QA-29128-report.md
+>> QA-29234 (full) — Fri Oct 30 12:01:17 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29235 still running (180s / 1800s cap) — 12:01:48
+>> .. QA-29234 still running (60s / 1800s cap) — 12:02:17
+>> .. QA-29235 still running (240s / 1800s cap) — 12:02:48
+>> .. QA-29234 still running (120s / 1800s cap) — 12:03:17
+>> .. QA-29235 still running (300s / 1800s cap) — 12:03:48
+>> .. QA-29234 still running (180s / 1800s cap) — 12:04:17
+>> .. QA-29235 still running (360s / 1800s cap) — 12:04:49
+>> usage: 25 turns | in 42 (+1191239 cache-read, +62984 cache-write) | out 11983 | est $1.53
+QA-29234 passes on Hulu / Hulu, the only brand the Friday row names. The report is at `results/2026-10-30/QA-29234-report.md`.
+
+I ran Video Views for Jan 01–10 2023, first with Twitter only, then with Instagram only. I scraped Table View for both and checked each post's numbers.
+
+- **Twitter:** 17 of 18 posts have a Video Views total, and all 17 satisfy Organic + Paid = Video Views and Engagements
+>> done (rc=0) — report: results/2026-10-30/QA-29234-report.md
+>> .. QA-29235 still running (420s / 1800s cap) — 12:05:49
+>> .. QA-29235 still running (480s / 1800s cap) — 12:06:49
+>> .. QA-29235 still running (540s / 1800s cap) — 12:07:49
+>> .. QA-29235 still running (600s / 1800s cap) — 12:08:49
+>> .. QA-29235 still running (660s / 1800s cap) — 12:09:49
+>> .. QA-29235 still running (720s / 1800s cap) — 12:10:49
+>> usage: 31 turns | in 56 (+1746182 cache-read, +65225 cache-write) | out 13206 | est $1.86
+QA-29235 is PASS for the Hulu account with the Hulu brand (TikTok, Video Views, Jan 01 – Dec 31, 2024). Both assertions held on all 200 rendered posts. The table showed 1,019 posts, so the other 819 weren't checked one by one. The Sum row over all 1,019 also satisfies Organic + Paid + Unclassified = Video Views.
+
+The Friday row also lists Robinhood and PlayOn! Sports but names no brand for either.
+>> done (rc=0) — report: results/2026-10-30/QA-29235-report.md

@@ -1,0 +1,105 @@
+>> QA-29278 (full) — Tue Oct 27 13:13:07 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29278 still running (60s / 1800s cap) — 13:14:07
+>> .. QA-29278 still running (120s / 1800s cap) — 13:15:08
+>> .. QA-29278 still running (180s / 1800s cap) — 13:16:08
+>> usage: 23 turns | in 34 (+804319 cache-read, +40962 cache-write) | out 6892 | est $0.98
+QA-29278 is a **PASS** on UCLA / University of California, Los Angeles (Tuesday row), with TikTok only and Impressions as the data set. The report is `results/2026-10-27/QA-29278-report.md`.
+
+- **Total Impressions:** all 9 posts show a value, and they add up to 18,419, which matches the Sum row.
+- **Organic and Paid Impressions:** "–" on every post.
+
+I only ran the first Tuesday pair. Viacom/MTV a
+>> done (rc=0) — report: results/2026-10-27/QA-29278-report.md
+>> QA-31513 (full) — Tue Oct 27 13:16:23 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-31513 still running (60s / 1800s cap) — 13:17:23
+>> .. QA-31513 still running (120s / 1800s cap) — 13:18:23
+>> .. QA-31513 still running (180s / 1800s cap) — 13:19:23
+>> .. QA-31513 still running (240s / 1800s cap) — 13:20:24
+>> .. QA-31513 still running (300s / 1800s cap) — 13:21:24
+>> .. QA-31513 still running (360s / 1800s cap) — 13:22:24
+>> .. QA-31513 still running (420s / 1800s cap) — 13:23:24
+>> .. QA-31513 still running (480s / 1800s cap) — 13:24:24
+>> .. QA-31513 still running (540s / 1800s cap) — 13:25:24
+>> .. QA-31513 still running (600s / 1800s cap) — 13:26:25
+>> .. QA-31513 still running (660s / 1800s cap) — 13:27:25
+>> .. QA-31513 still running (720s / 1800s cap) — 13:28:25
+>> .. QA-31513 still running (780s / 1800s cap) — 13:29:25
+>> .. QA-31513 still running (840s / 1800s cap) — 13:30:25
+>> usage: 42 turns | in 74 (+2345476 cache-read, +69396 cache-write) | out 13902 | est $2.21
+QA-31513 is **PASS**, and the report is at `results/2026-10-27/QA-31513-report.md`.
+
+- **A5:** All 4 Reel posts have Impressions data, and the Sum row is 1,546,300.
+- **A6:** 16,499 / 1,546,300 × 100 = 1.067%, which matches the displayed 1.07% Engagement Rate (read from the Average row).
+- **A9:** Impressions Sum (1,546,300) equals Plays Sum (1,546,300), and the 4 per-post values match as well.
+
+T
+>> done (rc=0) — report: results/2026-10-27/QA-31513-report.md
+>> QA-35301 (full) — Tue Oct 27 13:30:40 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> usage: 6 turns | in 8 (+138646 cache-read, +18750 cache-write) | out 1884 | est $0.30
+QA-35301 is **FAILED (blocked by open bug) — APPS-60871**. I didn't open the browser. The case file lists APPS-60871 as open, and Rule 7 says any open linked bug means the case is not run.
+
+The bug title names Twitter, Instagram and YouTube, not Facebook, so I haven't confirmed it affects Facebook Reels. The verdict follows the open-bug policy, not a reproduction. The report says this.
+
+Report: `r
+>> done (rc=0) — report: results/2026-10-27/QA-35301-report.md
+>> QA-29237 (full) — Tue Oct 27 15:25:12 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29237 still running (60s / 1800s cap) — 15:26:12
+>> .. QA-29237 still running (120s / 1800s cap) — 15:27:12
+>> .. QA-29237 still running (180s / 1800s cap) — 15:28:12
+>> .. QA-29237 still running (240s / 1800s cap) — 15:29:12
+>> .. QA-29237 still running (300s / 1800s cap) — 15:30:12
+>> .. QA-29237 still running (360s / 1800s cap) — 15:31:13
+>> .. QA-29237 still running (420s / 1800s cap) — 15:32:13
+>> .. QA-29237 still running (480s / 1800s cap) — 15:33:13
+>> .. QA-29237 still running (540s / 1800s cap) — 15:34:13
+>> .. QA-29237 still running (600s / 1800s cap) — 15:35:13
+>> .. QA-29237 still running (660s / 1800s cap) — 15:36:13
+>> .. QA-29237 still running (720s / 1800s cap) — 15:37:13
+>> .. QA-29237 still running (780s / 1800s cap) — 15:38:14
+>> usage: 36 turns | in 62 (+2117402 cache-read, +74821 cache-write) | out 17532 | est $2.25
+QA-29237 is a **PASS** on the two Tuesday legs I could run, and the third leg is **BLOCKED (test-data)**. The report is at `results/2026-10-27/QA-29237-report.md`.
+
+- **UCLA, University of California, Los Angeles:** PASS. All 134 TikTok posts for Jan 1 – Dec 31, 2023 were checked. Impressions show a value, Organic and Paid Impressions are all "–", and Engagement Rate matches Engagement / Impressio
+>> done (rc=0) — report: results/2026-10-27/QA-29237-report.md
+>> QA-30670 (full) — Tue Oct 27 15:38:59 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-30670 still running (60s / 1800s cap) — 15:39:59
+>> .. QA-30670 still running (120s / 1800s cap) — 15:40:59
+>> .. QA-30670 still running (180s / 1800s cap) — 15:41:59
+>> .. QA-30670 still running (240s / 1800s cap) — 15:42:59
+>> .. QA-30670 still running (300s / 1800s cap) — 15:44:00
+>> usage: 96 turns | in 140 (+4861618 cache-read, +79359 cache-write) | out 18694 | est $3.69
+QA-30670 is a PASS. The Brand Insights cross-channel Public Video Views tile for MTV (Public Data) reads 9,890,173. The TWC channel values sum to the same number, so the difference is 0.
+
+| Channel | TWC Public Video Views |
+|---|---|
+| Facebook | 1,286,803 |
+| Twitter | 14,964 |
+| Instagram | 5,048,277 |
+| TikTok | 3,540,129 |
+
+Both sides used Oct 19–25, 2026 on the Viacom account. The case's "Op
+>> done (rc=0) — report: results/2026-10-27/QA-30670-report.md
+>> QA-33169 (full) — Tue Oct 27 15:44:55 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-33169 still running (60s / 1800s cap) — 15:45:55
+>> .. QA-33169 still running (120s / 1800s cap) — 15:46:55
+>> .. QA-33169 still running (180s / 1800s cap) — 15:47:55
+>> .. QA-33169 still running (240s / 1800s cap) — 15:48:55
+>> .. QA-33169 still running (300s / 1800s cap) — 15:49:56
+>> .. QA-33169 still running (360s / 1800s cap) — 15:50:56
+>> .. QA-33169 still running (420s / 1800s cap) — 15:51:56
+>> usage: 28 turns | in 46 (+1484150 cache-read, +64830 cache-write) | out 14516 | est $1.75
+QA-33169 passes on all 5 assertions. For each channel, Engagements divided by Video Views (from the Sum row) matched the Average row's Video Response Rate to 2 decimals.
+
+| Channel | Sum row (Eng / VV) | Ratio | Average row VRR |
+| --- | --- | --- | --- |
+| Facebook | 2,326 / 28,909 | 8.05% | 8.05% |
+| Twitter | 463 / 6,068 | 7.63% | 7.63% |
+| Instagram | 12,057 / 682,494 | 1.77% | 1.77% |
+| TikTo
+>> done (rc=0) — report: results/2026-10-27/QA-33169-report.md

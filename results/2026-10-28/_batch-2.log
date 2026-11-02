@@ -1,0 +1,135 @@
+>> QA-24283 (full) — Wed Oct 28 12:14:33 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-24283 still running (60s / 1800s cap) — 12:15:34
+>> .. QA-24283 still running (120s / 1800s cap) — 12:16:34
+>> .. QA-24283 still running (180s / 1800s cap) — 12:17:34
+>> QA-29111 (full) — Wed Oct 28 12:18:07 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-24283 still running (240s / 1800s cap) — 12:18:34
+>> usage: 6 turns | in 8 (+102784 cache-read, +22062 cache-write) | out 2398 | est $0.33
+QA-29111 is marked **FAILED (blocked by open bug)** and was not executed. The case file lists APPS-61116 as open, so under Rule 7 I skipped the browser flow. That bug is the Twitter Reactions + Comments + Shares ≠ Engagements mismatch, which is what assertion 5 checks.
+
+The open-bug status is as cached from Jira on 2026-10-20, and this headless run can't refresh it.
+
+The case's Notes say Wednesday
+>> done (rc=0) — report: results/2026-10-28/QA-29111-report.md
+>> QA-29116 (full) — Wed Oct 28 12:18:37 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-24283 still running (300s / 1800s cap) — 12:19:34
+>> .. QA-29116 still running (60s / 1800s cap) — 12:19:38
+>> .. QA-24283 still running (360s / 1800s cap) — 12:20:34
+>> .. QA-29116 still running (120s / 1800s cap) — 12:20:38
+>> .. QA-24283 still running (420s / 1800s cap) — 12:21:35
+>> .. QA-29116 still running (180s / 1800s cap) — 12:21:38
+>> .. QA-24283 still running (480s / 1800s cap) — 12:22:35
+>> .. QA-29116 still running (240s / 1800s cap) — 12:22:38
+>> .. QA-24283 still running (540s / 1800s cap) — 12:23:35
+>> .. QA-29116 still running (300s / 1800s cap) — 12:23:38
+>> usage: 23 turns | in 34 (+1054246 cache-read, +58643 cache-write) | out 7283 | est $1.30
+QA-24283 is **PASS (with data flag)**, and the report is in `results/2026-10-28/QA-24283-report.md`.
+
+- **Assertion:** On Sephora with Pinterest Only: Basic, Engagements sum (670) equals Pin Saves ("–", counted as 0) plus Comments (670). The Average row is consistent, and the check holds on all 200 rendered rows.
+- **Date range:** The case gives no date range, and the default week has 0 Pinterest 
+>> done (rc=0) — report: results/2026-10-28/QA-24283-report.md
+>> QA-29115 (full) — Wed Oct 28 12:24:05 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29116 still running (360s / 1800s cap) — 12:24:38
+>> .. QA-29115 still running (60s / 1800s cap) — 12:25:05
+>> .. QA-29116 still running (420s / 1800s cap) — 12:25:38
+>> .. QA-29115 still running (120s / 1800s cap) — 12:26:06
+>> .. QA-29116 still running (480s / 1800s cap) — 12:26:39
+>> .. QA-29115 still running (180s / 1800s cap) — 12:27:06
+>> .. QA-29116 still running (540s / 1800s cap) — 12:27:39
+>> .. QA-29115 still running (240s / 1800s cap) — 12:28:06
+>> .. QA-29116 still running (600s / 1800s cap) — 12:28:39
+>> usage: 28 turns | in 50 (+1504932 cache-read, +57962 cache-write) | out 9674 | est $1.57
+QA-29116 PASSED for Wednesday (Apple Services / Apple Music, TikTok only, Jan 01 – Oct 01, 2025). Reactions + Comments + Shares equals Engagements on all 179 posts, and on the Sum row (4,881,118 + 70,747 + 244,608 = 5,196,473).
+
+- **Date range:** the ticket's description has no date range, so I used the one from sibling case QA-29115, same as the earlier runs. Worth confirming with the case owner.
+>> done (rc=0) — report: results/2026-10-28/QA-29116-report.md
+>> QA-29123 (full) — Wed Oct 28 12:29:00 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29115 still running (300s / 1800s cap) — 12:29:06
+>> .. QA-29123 still running (60s / 1800s cap) — 12:30:00
+>> .. QA-29115 still running (360s / 1800s cap) — 12:30:06
+>> .. QA-29123 still running (120s / 1800s cap) — 12:31:00
+>> .. QA-29115 still running (420s / 1800s cap) — 12:31:06
+>> .. QA-29123 still running (180s / 1800s cap) — 12:32:00
+>> .. QA-29115 still running (480s / 1800s cap) — 12:32:06
+>> .. QA-29123 still running (240s / 1800s cap) — 12:33:00
+>> .. QA-29115 still running (540s / 1800s cap) — 12:33:06
+>> .. QA-29123 still running (300s / 1800s cap) — 12:34:01
+>> .. QA-29115 still running (600s / 1800s cap) — 12:34:07
+>> usage: 30 turns | in 50 (+1855153 cache-read, +78171 cache-write) | out 12264 | est $2.02
+QA-29123 is **BLOCKED**: only the Apple Services / Apple Music leg could be run, and it passed.
+
+- **Apple Services / Apple Music (TikTok only):** 22 of 22 posts satisfy Reactions + Comments + Shares = Engagements. The Sum row also reconciles: 201,429 + 4,215 + 23,644 = 229,288.
+- **NBCU EnterPrises / CNBC and NBC News:** not run. The account "NBCU EnterPrises" is not findable on dev for the `lfiq
+>> done (rc=0) — report: results/2026-10-28/QA-29123-report.md
+>> .. QA-29115 still running (660s / 1800s cap) — 12:35:07
+>> .. QA-29115 still running (720s / 1800s cap) — 12:36:07
+>> .. QA-29115 still running (780s / 1800s cap) — 12:37:07
+>> .. QA-29115 still running (840s / 1800s cap) — 12:38:07
+>> usage: 23 turns | in 38 (+1110549 cache-read, +57807 cache-write) | out 10043 | est $1.38
+QA-29115 is PASS. Reactions + Comments + Shares equals Engagements on every post I could check.
+
+- **What I checked:** The UCLA LinkedIn grid for Jan 01 – Oct 01, 2025 shows 1,013 posts, but Table View renders only 200 at a time. I checked the top 200 by Engagements (200/200 matched) and, after sorting ascending, the bottom 200 (200/200 matched).
+- **Totals row:** The Sum row, which covers all 1,0
+>> done (rc=0) — report: results/2026-10-28/QA-29115-report.md
+>> QA-29122 (full) — Wed Oct 28 12:39:02 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29122 still running (60s / 1800s cap) — 12:40:02
+>> .. QA-29122 still running (120s / 1800s cap) — 12:41:03
+>> .. QA-29122 still running (180s / 1800s cap) — 12:42:03
+>> .. QA-29122 still running (240s / 1800s cap) — 12:43:03
+>> .. QA-29122 still running (300s / 1800s cap) — 12:44:03
+>> .. QA-29122 still running (360s / 1800s cap) — 12:45:03
+>> .. QA-29122 still running (420s / 1800s cap) — 12:46:03
+>> .. QA-29122 still running (480s / 1800s cap) — 12:47:03
+>> .. QA-29122 still running (540s / 1800s cap) — 12:48:03
+>> .. QA-29122 still running (600s / 1800s cap) — 12:49:03
+>> .. QA-29122 still running (660s / 1800s cap) — 12:50:04
+>> .. QA-29122 still running (720s / 1800s cap) — 12:51:04
+>> .. QA-29122 still running (780s / 1800s cap) — 12:52:04
+>> .. QA-29122 still running (840s / 1800s cap) — 12:53:04
+>> .. QA-29122 still running (900s / 1800s cap) — 12:54:04
+>> .. QA-29122 still running (960s / 1800s cap) — 12:55:04
+>> .. QA-29122 still running (1020s / 1800s cap) — 12:56:04
+>> usage: 33 turns | in 58 (+2280339 cache-read, +88484 cache-write) | out 11955 | est $2.32
+QA-29122 is **BLOCKED**: only the Apple Music leg could run. The NBCU account can't be found on dev, so the CNBC and NBC News legs didn't run. The report is at `results/2026-10-28/QA-29122-report.md`.
+
+- **Apple Services / Apple Music (passed):** Reactions + Comments + Shares = Engagements on every post and on the Sum row. Twitter had 8 of 8 posts matching and Instagram 23 of 23. Instagram Shares 
+>> done (rc=0) — report: results/2026-10-28/QA-29122-report.md
+>> QA-29234 (full) — Wed Oct 28 16:03:18 IST 2026  [timeout 2400s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29234 still running (60s / 2400s cap) — 16:04:18
+>> .. QA-29234 still running (120s / 2400s cap) — 16:05:18
+>> .. QA-29234 still running (180s / 2400s cap) — 16:06:19
+>> .. QA-29234 still running (240s / 2400s cap) — 16:07:19
+>> .. QA-29234 still running (300s / 2400s cap) — 16:08:19
+>> .. QA-29234 still running (360s / 2400s cap) — 16:09:19
+>> .. QA-29234 still running (420s / 2400s cap) — 16:10:19
+>> .. QA-29234 still running (480s / 2400s cap) — 16:11:19
+>> .. QA-29234 still running (540s / 2400s cap) — 16:12:19
+>> .. QA-29234 still running (600s / 2400s cap) — 16:13:20
+>> usage: 26 turns | in 42 (+1240121 cache-read, +64954 cache-write) | out 12090 | est $1.57
+QA-29234 is **BLOCKED**. I couldn't run it on the Wednesday spec configuration because of two things that already existed in the data, not a product bug.
+
+- **Date range:** Jan 01–10, 2023 can't be set on Apple Music. The date picker disables Jan–Sep 2023 and Oct 1–25, 2023, so the earliest selectable day is Oct 26, 2023.
+- **Account:** the "NBCU EnterPrises" account (CNBC and NBC News legs) isn't
+>> done (rc=0) — report: results/2026-10-28/QA-29234-report.md
+>> QA-29237 (full) — Wed Oct 28 16:14:11 IST 2026  [timeout 2400s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29237 still running (60s / 2400s cap) — 16:15:11
+>> .. QA-29237 still running (120s / 2400s cap) — 16:16:11
+>> .. QA-29237 still running (180s / 2400s cap) — 16:17:11
+>> .. QA-29237 still running (240s / 2400s cap) — 16:18:11
+>> .. QA-29237 still running (300s / 2400s cap) — 16:19:11
+>> .. QA-29237 still running (360s / 2400s cap) — 16:20:12
+>> .. QA-29237 still running (420s / 2400s cap) — 16:21:12
+>> usage: 25 turns | in 42 (+1490298 cache-read, +77471 cache-write) | out 13427 | est $1.86
+QA-29237 is **BLOCKED**, and the report is at `results/2026-10-28/QA-29237-report.md`. The spec configuration can't be set on Wednesday's accounts.
+
+- **Date range:** the Apple Music date picker disables Jan–Sep 2023, and the earliest selectable day is Oct 26, 2023. Jan 01 – Dec 31, 2023 can't be set.
+- **Account:** "NBCU EnterPrises" isn't findable by five name variants (a control search for Hulu
+>> done (rc=0) — report: results/2026-10-28/QA-29237-report.md

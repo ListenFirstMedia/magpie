@@ -1,0 +1,38 @@
+>> QA-21874 (full) — Mon Oct 26 15:31:42 IST 2026  [timeout 900s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-21874 still running (60s / 900s cap) — 15:32:42
+>> .. QA-21874 still running (120s / 900s cap) — 15:33:42
+>> .. QA-21874 still running (180s / 900s cap) — 15:34:42
+>> .. QA-21874 still running (240s / 900s cap) — 15:35:43
+>> .. QA-21874 still running (300s / 900s cap) — 15:36:43
+>> .. QA-21874 still running (360s / 900s cap) — 15:37:43
+>> .. QA-21874 still running (420s / 900s cap) — 15:38:43
+>> .. QA-21874 still running (480s / 900s cap) — 15:39:43
+>> .. QA-21874 still running (540s / 900s cap) — 15:40:43
+>> .. QA-21874 still running (600s / 900s cap) — 15:41:43
+>> .. QA-21874 still running (660s / 900s cap) — 15:42:44
+>> .. QA-21874 still running (720s / 900s cap) — 15:43:44
+>> .. QA-21874 still running (780s / 900s cap) — 15:44:44
+>> .. QA-21874 still running (840s / 900s cap) — 15:45:44
+>> .. QA-21874 still running (900s / 900s cap) — 15:46:44
+>> TIMEOUT after 900s — killing QA-21874 (process group)
+>> done (rc=143) — report: results/2026-10-26/QA-21874-report.md
+>> QA-20318 (full) — Mon Oct 26 15:48:15 IST 2026  [timeout 900s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-20318 still running (60s / 900s cap) — 15:49:15
+>> .. QA-20318 still running (120s / 900s cap) — 15:50:15
+>> .. QA-20318 still running (180s / 900s cap) — 15:51:15
+>> .. QA-20318 still running (240s / 900s cap) — 15:52:15
+>> .. QA-20318 still running (300s / 900s cap) — 15:53:16
+>> .. QA-20318 still running (360s / 900s cap) — 15:54:16
+>> .. QA-20318 still running (420s / 900s cap) — 15:55:16
+>> .. QA-20318 still running (480s / 900s cap) — 15:56:16
+>> .. QA-20318 still running (540s / 900s cap) — 15:57:16
+>> .. QA-20318 still running (600s / 900s cap) — 15:58:16
+>> .. QA-20318 still running (660s / 900s cap) — 15:59:16
+>> .. QA-20318 still running (720s / 900s cap) — 16:00:16
+>> .. QA-20318 still running (780s / 900s cap) — 16:01:17
+>> .. QA-20318 still running (840s / 900s cap) — 16:02:17
+>> .. QA-20318 still running (900s / 900s cap) — 16:03:17
+>> TIMEOUT after 900s — killing QA-20318 (process group)
+>> done (rc=143) — report: results/2026-10-26/QA-20318-report.md

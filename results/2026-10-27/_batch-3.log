@@ -1,0 +1,81 @@
+>> QA-29126 (full) — Tue Oct 27 12:57:38 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29126 still running (60s / 1800s cap) — 12:58:38
+>> .. QA-29126 still running (120s / 1800s cap) — 12:59:38
+>> .. QA-29126 still running (180s / 1800s cap) — 13:00:38
+>> usage: 19 turns | in 32 (+771357 cache-read, +50135 cache-write) | out 7398 | est $1.07
+QA-29126 passed 2/2 for Tuesday's UCLA run, and the report is at `results/2026-10-27/QA-29126-report.md`.
+
+- **Setup:** Account UCLA, brand "University of California, Los Angeles", Video Views data set, TikTok only. The date range was the app default (Oct 19–25), since the case names none.
+- **Organic + Unclassified + Paid Views = Video Views:** Holds on all 7 posts and the Sum row (15,709).
+- **E
+>> done (rc=0) — report: results/2026-10-27/QA-29126-report.md
+>> QA-29129 (full) — Tue Oct 27 13:00:45 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29129 still running (60s / 1800s cap) — 13:01:45
+>> .. QA-29129 still running (120s / 1800s cap) — 13:02:45
+>> .. QA-29129 still running (180s / 1800s cap) — 13:03:45
+>> .. QA-29129 still running (240s / 1800s cap) — 13:04:46
+>> .. QA-29129 still running (300s / 1800s cap) — 13:05:46
+>> .. QA-29129 still running (360s / 1800s cap) — 13:06:46
+>> usage: 37 turns | in 60 (+2126436 cache-read, +79204 cache-write) | out 13288 | est $2.19
+QA-29129 is a PASS on all four assertions (Brand Content, UCLA account, LinkedIn only, Impressions data set, Last 30 Days = Sep 26 – Oct 25, 2026, 127 posts). The report is at `results/2026-10-27/QA-29129-report.md`.
+
+- **Impressions:** Organic Impressions + Paid Impressions = Impressions on all 127 posts. Paid Impressions is "–" everywhere, so Organic equals Impressions.
+- **Reach:** Reach, Organ
+>> done (rc=0) — report: results/2026-10-27/QA-29129-report.md
+>> QA-29235 (full) — Tue Oct 27 13:06:56 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29235 still running (60s / 1800s cap) — 13:07:56
+>> .. QA-29235 still running (120s / 1800s cap) — 13:08:56
+>> .. QA-29235 still running (180s / 1800s cap) — 13:09:57
+>> .. QA-29235 still running (240s / 1800s cap) — 13:10:57
+>> .. QA-29235 still running (300s / 1800s cap) — 13:11:57
+>> .. QA-29235 still running (360s / 1800s cap) — 13:12:57
+>> usage: 75 turns | in 124 (+3945711 cache-read, +62889 cache-write) | out 17525 | est $3.15
+QA-29235 is a **PASS**: all five assertions held on the Tuesday row (UCLA / University of California, Los Angeles). The report is at `results/2026-10-27/QA-29235-report.md`.
+
+- **Views identity:** Organic + Paid + Unclassified = Video Views on all 175 TikTok posts for 2024-01-01 to 2024-12-31. The Sum row matches as well (0 + 20,506,954 + 7,954,137 = 28,461,091).
+- **Response rate:** Engagements /
+>> done (rc=0) — report: results/2026-10-27/QA-29235-report.md
+>> QA-29125 (full) — Tue Oct 27 13:18:44 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29125 still running (60s / 1800s cap) — 13:19:44
+>> .. QA-29125 still running (120s / 1800s cap) — 13:20:45
+>> .. QA-29125 still running (180s / 1800s cap) — 13:21:45
+>> .. QA-29125 still running (240s / 1800s cap) — 13:22:45
+>> .. QA-29125 still running (300s / 1800s cap) — 13:23:45
+>> .. QA-29125 still running (360s / 1800s cap) — 13:24:45
+>> .. QA-29125 still running (420s / 1800s cap) — 13:25:45
+>> .. QA-29125 still running (480s / 1800s cap) — 13:26:46
+>> .. QA-29125 still running (540s / 1800s cap) — 13:27:46
+>> .. QA-29125 still running (600s / 1800s cap) — 13:28:46
+>> .. QA-29125 still running (660s / 1800s cap) — 13:29:46
+>> .. QA-29125 still running (720s / 1800s cap) — 13:30:46
+>> .. QA-29125 still running (780s / 1800s cap) — 13:31:46
+>> .. QA-29125 still running (840s / 1800s cap) — 14:47:18
+>> .. QA-29125 still running (900s / 1800s cap) — 15:17:26
+>> usage: 25 turns | in 46 (+1193413 cache-read, +51631 cache-write) | out 11774 | est $1.47
+QA-29125 is **PASS** for the Tuesday rows (UCLA, MTV, Gatorade), except the Gatorade Twitter checks, which are N/A.
+
+- **Results:** The video-view sum check and the engagement-rate check held on every post for UCLA (Twitter 8, Instagram 8), MTV (Twitter 6, Instagram 11) and Gatorade Instagram (5). Paid Views was "–" on every post and treated as 0. Gatorade Twitter shows `Posts (0)` for the default
+>> done (rc=0) — report: results/2026-10-27/QA-29125-report.md
+>> QA-29128 (full) — Tue Oct 27 15:17:41 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> usage: 7 turns | in 10 (+184635 cache-read, +21176 cache-write) | out 2565 | est $0.37
+QA-29128 is FAILED (blocked by open bug APPS-60871). The case file lists that bug as open, so under Rule 7 I didn't open the browser or run any steps. The report is at `results/2026-10-27/QA-29128-report.md`. I did not re-check the bug's status, since the headless run has no Jira access, so it relies on the case file's 2026-10-20 snapshot.
+>> done (rc=0) — report: results/2026-10-27/QA-29128-report.md
+>> QA-29234 (full) — Tue Oct 27 15:18:21 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29234 still running (60s / 1800s cap) — 15:19:21
+>> .. QA-29234 still running (120s / 1800s cap) — 15:20:21
+>> .. QA-29234 still running (180s / 1800s cap) — 15:21:21
+>> .. QA-29234 still running (240s / 1800s cap) — 15:22:21
+>> .. QA-29234 still running (300s / 1800s cap) — 15:23:22
+>> .. QA-29234 still running (360s / 1800s cap) — 15:24:22
+>> usage: 28 turns | in 44 (+1282462 cache-read, +60017 cache-write) | out 9574 | est $1.48
+QA-29234 passed on all four assertions (A5, A6, A8, A9). I ran Tuesday's row, UCLA / University of California, Los Angeles, on dev with the Video Views data set and Jan 01–Jan 10, 2023.
+
+- **Twitter only:** 6 posts plus the Sum row. Organic Views + Paid Views = Video Views on every row. Engagements / Video Views matched the displayed Video Response Rate on all 6 posts.
+- **Instagram only:** 2 post
+>> done (rc=0) — report: results/2026-10-27/QA-29234-report.md

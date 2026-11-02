@@ -15,12 +15,16 @@ async (page) => {
 
   m.login = async (p, host) => {
     const c = ctx._creds; if (!c) throw new Error('ctx._creds {email,password} not set');
-    await p.goto(host); await p.waitForTimeout(4000);
-    if (/auth\./.test(p.url())) {
+    // 'commit' + long timeout: under batch load dev's load event can take > 30 s (2026-10-26)
+    await p.goto(host, { waitUntil: 'commit', timeout: 90000 }).catch(() => null); await p.waitForTimeout(8000);
+    // the app may still be redirecting to auth.* when we look (2026-10-28): wait until either the auth page or the app shell shows
+    { const t0 = Date.now(); while (Date.now() - t0 < 60000 && !/auth\./.test(p.url()) && !(await p.evaluate(() => !!document.querySelector('.navigation-controls-user')).catch(() => false))) await p.waitForTimeout(3000); }
+    for (let attempt = 0; attempt < 3 && /auth\./.test(p.url()); attempt++) {
       await p.locator('input[type=email], input[name=username]').last().fill(c.email);
       const pw = p.locator('input[type=password]').last(); await pw.fill(c.password); await pw.press('Enter');
-      await p.waitForURL(u => !/auth\./.test(String(u)), { timeout: 60000 }).catch(() => null);
-      await p.waitForTimeout(8000);
+      await p.waitForURL(u => !/auth\./.test(String(u)), { timeout: 90000 }).catch(() => null);
+      await p.waitForTimeout(10000);
+      if (/auth\./.test(p.url())) await p.waitForTimeout(15000); // Cognito PreAuthentication timeouts under load → retry
     }
     return { url: p.url().slice(0, 100), title: await p.title() };
   };
@@ -115,7 +119,8 @@ async (page) => {
     if (!(await ta.count())) ta = p.locator('.brand-selector input').filter({ visible: true }).first();
     await ta.click(); await ta.fill(''); await ta.pressSequentially(typed, { delay: 50 });
     let texts = [];
-    for (let i = 0; i < 6; i++) { await p.waitForTimeout(2500); texts = await p.locator('.lfm-ta-option').filter({ visible: true }).allInnerTexts(); if (texts.length) break; if (i === 2) { await ta.press('Backspace'); await ta.pressSequentially(typed.slice(-1), { delay: 50 }); } }
+    // typeahead can take > 15 s under load (2026-10-27): poll up to ~40 s, nudging the query twice
+    for (let i = 0; i < 12; i++) { await p.waitForTimeout(3000); texts = await p.locator('.lfm-ta-option').filter({ visible: true }).allInnerTexts(); if (texts.length) break; if (i === 3 || i === 7) { await ta.press('Backspace'); await ta.pressSequentially(typed.slice(-1), { delay: 50 }); } }
     const idx = texts.findIndex(t => t.trim().toUpperCase() === name.toUpperCase());
     if (idx < 0) { await p.keyboard.press('Escape'); await p.mouse.click(5, 300); return { ok: false, texts: texts.slice(0, 12) }; }
     const bb = await p.locator('.lfm-ta-option').filter({ visible: true }).nth(idx).boundingBox();

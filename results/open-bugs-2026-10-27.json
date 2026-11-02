@@ -1,0 +1,23 @@
+{
+ "QA-60304": [
+  "LFMP-32125 [Open] Brand and Brand Set> Content \u2013 Twitter One Post Video Views Data Is Not Display."
+ ],
+ "QA-35301": [
+  "APPS-60871 [Open] Data Rendering Issue: Endash (\u2013) Displayed for Multiple Metrics Across Datasets "
+ ],
+ "QA-29128": [
+  "APPS-60871 [Open] Data Rendering Issue: Endash (\u2013) Displayed for Multiple Metrics Across Datasets "
+ ],
+ "QA-29111": [
+  "APPS-61116 [Open] Brand > Content - Twitter channel - Sum of Reactions + Comments + Shares does no"
+ ],
+ "QA-21109": [
+  "APPS-60871 [Open] Data Rendering Issue: Endash (\u2013) Displayed for Multiple Metrics Across Datasets "
+ ],
+ "QA-21108": [
+  "APPS-60871 [Open] Data Rendering Issue: Endash (\u2013) Displayed for Multiple Metrics Across Datasets "
+ ],
+ "QA-11008": [
+  "LFMP-32557 [Open] Brand > Content - Same Brand Benchmark Owned Average and Benchmark average is no"
+ ]
+}

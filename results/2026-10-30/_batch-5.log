@@ -1,0 +1,81 @@
+>> QA-79963 (full) — Fri Oct 30 12:20:48 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-79963 still running (60s / 1800s cap) — 12:21:48
+>> .. QA-79963 still running (120s / 1800s cap) — 12:22:48
+>> .. QA-79963 still running (180s / 1800s cap) — 12:23:48
+>> QA-79142 (full) — Fri Oct 30 12:24:13 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-79963 still running (240s / 1800s cap) — 12:24:48
+>> .. QA-79142 still running (60s / 1800s cap) — 12:25:13
+>> .. QA-79963 still running (300s / 1800s cap) — 12:25:48
+>> .. QA-79142 still running (120s / 1800s cap) — 12:26:13
+>> .. QA-79963 still running (360s / 1800s cap) — 12:26:49
+>> .. QA-79142 still running (180s / 1800s cap) — 12:27:13
+>> .. QA-79963 still running (420s / 1800s cap) — 12:27:49
+>> .. QA-79142 still running (240s / 1800s cap) — 12:28:13
+>> .. QA-79963 still running (480s / 1800s cap) — 12:28:49
+>> usage: 27 turns | in 42 (+1242900 cache-read, +60812 cache-write) | out 10962 | est $1.50
+QA-79142 passes for Friday (Hulu): on Facebook, Twitter and TikTok, Engagements divided by Video Views matches the Average Video Response Rate (Facebook 3.31%, Twitter 0.94%, TikTok 1.92%). TikTok loaded in about 31 s with no hang, and no known bug applied. The report is at `results/2026-10-30/QA-79142-report.md`.
+
+Two notes in the report:
+- **Case Notes line is stale:** it says "Fri Hulu/Ralph La
+>> done (rc=0) — report: results/2026-10-30/QA-79142-report.md
+>> QA-100873 (full) — Fri Oct 30 12:28:53 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> usage: 70 turns | in 124 (+5202606 cache-read, +100336 cache-write) | out 23805 | est $4.20
+QA-79963 is a **PASS**. Brand > Content post counts match the Time Window Comparison (TWC) values on every channel, for MTV under Viacom with Authorized data, Oct 22–28 2026.
+
+| Channel | Content count | TWC value |
+|---|---|---|
+| Facebook (Reel excluded) | 9 | 9 |
+| Twitter | 6 | 6 |
+| Instagram | 8 | 8 |
+| TikTok | 12 | 12 |
+| YouTube | 1 | 1 |
+| Cross-channel Video Posts | 9+6+8+12+1 = 36 | 36
+>> done (rc=0) — report: results/2026-10-30/QA-79963-report.md
+>> QA-100877 (full) — Fri Oct 30 12:29:21 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-100873 still running (60s / 1800s cap) — 12:29:54
+>> .. QA-100877 still running (60s / 1800s cap) — 12:30:21
+>> .. QA-100873 still running (120s / 1800s cap) — 12:30:54
+>> .. QA-100877 still running (120s / 1800s cap) — 12:31:21
+>> .. QA-100873 still running (180s / 1800s cap) — 12:31:54
+>> .. QA-100877 still running (180s / 1800s cap) — 12:32:21
+>> .. QA-100873 still running (240s / 1800s cap) — 12:32:54
+>> .. QA-100877 still running (240s / 1800s cap) — 12:33:21
+>> .. QA-100873 still running (300s / 1800s cap) — 12:33:54
+>> usage: 22 turns | in 32 (+884296 cache-read, +53950 cache-write) | out 8827 | est $1.20
+QA-100873 is **PASS**. All 13 Threads posts for HBO Max (Jan 1–15, 2026) have Reactions + Comments + Shares equal to Engagements. The Sum row also balances: 12,218 + 393 + 1,643 = 14,254.
+
+- **Setup:** I used the exact `HBO Max` brand row and set the date range and Threads-only channel through the UI. The case file lists no open bugs, so it ran normally. Nothing hung or failed to load.
+- **Data dr
+>> done (rc=0) — report: results/2026-10-30/QA-100873-report.md
+>> QA-100887 (full) — Fri Oct 30 12:34:14 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-100877 still running (300s / 1800s cap) — 12:34:22
+>> .. QA-100887 still running (60s / 1800s cap) — 12:35:14
+>> .. QA-100877 still running (360s / 1800s cap) — 12:35:22
+>> .. QA-100887 still running (120s / 1800s cap) — 12:36:15
+>> usage: 26 turns | in 46 (+1658373 cache-read, +80054 cache-write) | out 12320 | est $1.94
+QA-100877 is **FAIL**, with the same result as the 2026-10-20 and 10-26 to 10-29 runs. The report is at `results/2026-10-30/QA-100877-report.md`.
+
+- **A6 (FAIL):** Organic Impressions and Paid Impressions show "–" on all 13 Threads posts while Impressions is populated (Sum 420,161), so Organic + Paid = Impressions cannot hold.
+- **A7 (not evaluable):** Reach, Organic Reach and Paid Reach are "–" o
+>> done (rc=0) — report: results/2026-10-30/QA-100877-report.md
+>> .. QA-100887 still running (180s / 1800s cap) — 12:37:15
+>> .. QA-100887 still running (240s / 1800s cap) — 12:38:15
+>> .. QA-100887 still running (300s / 1800s cap) — 12:39:15
+>> usage: 54 turns | in 100 (+3159415 cache-read, +66974 cache-write) | out 17772 | est $2.69
+QA-100887 **PASS**: all five Threads metrics match between Brand Insights and the Time Window Comparison (TWC) report.
+
+| Metric | Insights | TWC |
+|---|---|---|
+| Follower Growth / Threads New Followers | 13 | 13 |
+| New Posts / Threads Posts | 9 | 9 |
+| Engagements | 369 | 369 |
+| Engagement Rate | 2.52% | 2.52% |
+| Views | 14,635 | 14,635 |
+
+The case had no open linked bugs. I ran every step in
+>> done (rc=0) — report: results/2026-10-30/QA-100887-report.md

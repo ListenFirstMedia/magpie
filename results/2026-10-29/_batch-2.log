@@ -1,0 +1,98 @@
+>> QA-29111 (full) — Thu Oct 29 12:34:27 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> usage: 8 turns | in 10 (+187022 cache-read, +21020 cache-write) | out 2096 | est $0.36
+QA-29111 is marked FAILED (blocked by open bug) without running it. The case file lists APPS-61116 as open, and it describes the Twitter Reactions + Comments + Shares ≠ Engagements mismatch that assertion 5 checks. Under the open-bug auto-fail rule, I didn't open the browser. Both assertions, A5 and A7, are recorded as failed on that bug. I didn't re-check APPS-61116's current status in Jira, so i
+>> done (rc=0) — report: results/2026-10-29/QA-29111-report.md
+>> QA-29116 (full) — Thu Oct 29 12:34:48 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29116 still running (60s / 1800s cap) — 12:35:48
+>> .. QA-29116 still running (120s / 1800s cap) — 12:36:49
+>> .. QA-29116 still running (180s / 1800s cap) — 12:37:49
+>> .. QA-29116 still running (240s / 1800s cap) — 12:38:49
+>> .. QA-29116 still running (300s / 1800s cap) — 12:39:49
+>> .. QA-29116 still running (360s / 1800s cap) — 12:40:49
+>> .. QA-29116 still running (420s / 1800s cap) — 12:41:49
+>> .. QA-29116 still running (480s / 1800s cap) — 12:42:49
+>> QA-24283 (full) — Thu Oct 29 12:43:16 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29116 still running (540s / 1800s cap) — 12:43:49
+>> .. QA-24283 still running (60s / 1800s cap) — 12:44:16
+>> .. QA-29116 still running (600s / 1800s cap) — 12:44:49
+>> .. QA-24283 still running (120s / 1800s cap) — 12:45:16
+>> .. QA-29116 still running (660s / 1800s cap) — 12:45:50
+>> .. QA-24283 still running (180s / 1800s cap) — 12:46:16
+>> .. QA-29116 still running (720s / 1800s cap) — 12:46:50
+>> .. QA-24283 still running (240s / 1800s cap) — 12:47:16
+>> .. QA-29116 still running (780s / 1800s cap) — 12:47:50
+>> .. QA-24283 still running (300s / 1800s cap) — 12:48:16
+>> .. QA-29116 still running (840s / 1800s cap) — 12:48:50
+>> usage: 49 turns | in 86 (+3427295 cache-read, +92056 cache-write) | out 21317 | est $3.17
+**QA-29116 is BLOCKED (partial): 2 of 3 Thursday legs PASS, and the Spotify News leg could not be run.** The report is at `results/2026-10-29/QA-29116-report.md`.
+
+- **Spotify / Spotify News:** BLOCKED. The brand is not in the dev typeahead: "Spotify News" returned 0 matches, and the 126 "Spotify" results include none named that. Sibling cases found the same today and on 2026-10-22. I did not subs
+>> done (rc=0) — report: results/2026-10-29/QA-29116-report.md
+>> QA-29123 (full) — Thu Oct 29 12:49:01 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-24283 still running (360s / 1800s cap) — 12:49:16
+>> .. QA-29123 still running (60s / 1800s cap) — 12:50:01
+>> .. QA-24283 still running (420s / 1800s cap) — 12:50:17
+>> .. QA-29123 still running (120s / 1800s cap) — 12:51:01
+>> .. QA-24283 still running (480s / 1800s cap) — 12:51:17
+>> usage: 24 turns | in 40 (+1217299 cache-read, +59790 cache-write) | out 7438 | est $1.39
+QA-24283 is **PASS (with a data flag)**; the report is at `results/2026-10-29/QA-24283-report.md`.
+
+- **Sum row:** Engagements is 670 and Comments is 670. Pin Saves shows "–", which I counted as 0, so the sum matches.
+- **Average row:** Engagements and Comments are both 0 (670 / 62,031 ≈ 0.011), and Pin Saves is "–".
+- **Per post:** all 200 rendered rows satisfy Engagements = Pin Saves + Comments,
+>> done (rc=0) — report: results/2026-10-29/QA-24283-report.md
+>> QA-29115 (full) — Thu Oct 29 12:51:38 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29123 still running (180s / 1800s cap) — 12:52:01
+>> .. QA-29115 still running (60s / 1800s cap) — 12:52:39
+>> .. QA-29123 still running (240s / 1800s cap) — 12:53:01
+>> .. QA-29115 still running (120s / 1800s cap) — 12:53:39
+>> .. QA-29123 still running (300s / 1800s cap) — 12:54:01
+>> .. QA-29115 still running (180s / 1800s cap) — 12:54:39
+>> .. QA-29123 still running (360s / 1800s cap) — 12:55:01
+>> .. QA-29115 still running (240s / 1800s cap) — 12:55:39
+>> .. QA-29123 still running (420s / 1800s cap) — 12:56:01
+>> usage: 24 turns | in 38 (+1318472 cache-read, +85344 cache-write) | out 11848 | est $1.81
+QA-29123 is BLOCKED (partial): 2 of the 3 Thursday legs pass, and the Spotify leg can't run. I didn't substitute another brand (Rule 1).
+
+- **Spotify / Spotify News:** BLOCKED. The brand search returned 0 results for "Spotify News". The 36 results for "Spotify N" and 124 for "Spotify" include nothing named Spotify News.
+- **Sony Pictures / Sony Pictures Television:** PASS. All 10 TikTok posts sati
+>> done (rc=0) — report: results/2026-10-29/QA-29123-report.md
+>> .. QA-29115 still running (300s / 1800s cap) — 12:56:39
+>> .. QA-29115 still running (360s / 1800s cap) — 12:57:39
+>> usage: 51 turns | in 94 (+3066148 cache-read, +69518 cache-write) | out 15610 | est $2.62
+QA-29115 is a **PASS**: Reactions + Comments + Shares equals Engagements on every LinkedIn post I could check.
+
+- **Posts checked:** 400 of the 1,013 LinkedIn posts for Jan 01 – Oct 01, 2025 (the top 200 and bottom 200 by Engagements), with no mismatches. Table View shows at most 200 posts per sort direction, so the other 613 aren't visible.
+- **Sum row:** 133,014 + 4,270 + 7,147 = 144,431, which 
+>> done (rc=0) — report: results/2026-10-29/QA-29115-report.md
+>> QA-29122 (full) — Thu Oct 29 12:58:34 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29122 still running (60s / 1800s cap) — 12:59:34
+>> .. QA-29122 still running (120s / 1800s cap) — 13:00:35
+>> .. QA-29122 still running (180s / 1800s cap) — 13:01:35
+>> .. QA-29122 still running (240s / 1800s cap) — 13:02:35
+>> .. QA-29122 still running (300s / 1800s cap) — 13:03:35
+>> .. QA-29122 still running (360s / 1800s cap) — 13:04:35
+>> .. QA-29122 still running (420s / 1800s cap) — 13:05:35
+>> .. QA-29122 still running (480s / 1800s cap) — 13:06:35
+>> .. QA-29122 still running (540s / 1800s cap) — 13:07:36
+>> .. QA-29122 still running (600s / 1800s cap) — 13:08:36
+>> .. QA-29122 still running (660s / 1800s cap) — 13:09:36
+>> .. QA-29122 still running (720s / 1800s cap) — 13:10:36
+>> .. QA-29122 still running (780s / 1800s cap) — 13:11:36
+>> .. QA-29122 still running (840s / 1800s cap) — 13:12:36
+>> .. QA-29122 still running (900s / 1800s cap) — 13:13:36
+>> .. QA-29122 still running (960s / 1800s cap) — 13:14:37
+>> .. QA-29122 still running (1020s / 1800s cap) — 13:15:37
+>> .. QA-29122 still running (1080s / 1800s cap) — 13:16:37
+>> usage: 32 turns | in 56 (+2433271 cache-read, +95367 cache-write) | out 14138 | est $2.52
+QA-29122 is **BLOCKED**: the Thursday Spotify leg can't run because the spec brand "Spotify News" doesn't exist on dev. The report is at `results/2026-10-29/QA-29122-report.md`, and no bugs were filed.
+
+- **Spotify (Spotify News):** BLOCKED. The typeahead returns nothing for "Spotify News", and the full Spotify result list has no such entry. I didn't substitute another brand, per Rule 1.
+- **Sony 
+>> done (rc=0) — report: results/2026-10-29/QA-29122-report.md

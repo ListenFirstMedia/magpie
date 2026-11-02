@@ -1,0 +1,81 @@
+>> QA-19468 (full) — Fri Oct 30 11:18:33 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> QA-20318 (full) — Fri Oct 30 11:19:03 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-19468 still running (60s / 1800s cap) — 11:19:33
+>> .. QA-20318 still running (60s / 1800s cap) — 11:20:03
+>> .. QA-19468 still running (120s / 1800s cap) — 11:20:33
+>> .. QA-20318 still running (120s / 1800s cap) — 11:21:04
+>> .. QA-19468 still running (180s / 1800s cap) — 11:21:34
+>> .. QA-20318 still running (180s / 1800s cap) — 11:22:04
+>> .. QA-19468 still running (240s / 1800s cap) — 11:22:34
+>> .. QA-20318 still running (240s / 1800s cap) — 11:23:04
+>> .. QA-19468 still running (300s / 1800s cap) — 11:23:34
+>> .. QA-20318 still running (300s / 1800s cap) — 11:24:04
+>> .. QA-19468 still running (360s / 1800s cap) — 11:24:34
+>> usage: 32 turns | in 54 (+1630586 cache-read, +59431 cache-write) | out 10206 | est $1.67
+QA-19468 is **PASS**; the report is at `results/2026-10-30/QA-19468-report.md`.
+
+- **Steps:** I switched to the UCLA account, then ran Brand > Content for Jan. 25, 2025 with the Impressions data set, LinkedIn only, in Table View.
+- **Assertions:** No lock icon is shown. Reach, Engagement Rate, Organic Reach and Paid Reach all show N/A in the Sum row.
+- **Spec gap:** The UCLA account has no brand n
+>> done (rc=0) — report: results/2026-10-30/QA-19468-report.md
+>> QA-21108 (full) — Fri Oct 30 11:24:49 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-20318 still running (360s / 1800s cap) — 11:25:04
+>> usage: 22 turns | in 34 (+1081147 cache-read, +68243 cache-write) | out 9898 | est $1.47
+QA-20318 passes for the one brand the spec names for Friday, Hulu. The Robinhood and PlayOn! Sports legs were not run, because the spec gives no brand for them.
+
+On the Hulu account and brand (5670), Facebook only, Jan 1 – Dec 31 2023, all 200 posts in Table View satisfy Reactions + Comments + Shares = Engagements. The Sum row also holds: 3,782,516 + 177,461 + 454,871 = 4,414,848. Table View shows
+>> done (rc=0) — report: results/2026-10-30/QA-20318-report.md
+>> QA-21109 (full) — Fri Oct 30 11:25:10 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+>> usage: 8 turns | in 10 (+185305 cache-read, +21149 cache-write) | out 2239 | est $0.36
+QA-21108 is FAILED (blocked by open bug). I did not run the case or open the browser.
+
+The case file lists APPS-60871 (Open), and today's open-bugs cache (`results/open-bugs-2026-10-30.json`) still shows it open. Rule 7 and the 2026-10-22 policy treat any open linked bug as a failure. The bug is the dash-instead-of-value rendering issue on the same Twitter, Instagram and YouTube datasets this case
+>> done (rc=0) — report: results/2026-10-30/QA-21108-report.md
+>> QA-21874 (full) — Fri Oct 30 11:25:10 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> usage: 6 turns | in 8 (+138870 cache-read, +18079 cache-write) | out 1670 | est $0.29
+QA-21109 is **FAILED (blocked by open bug)** under Rule 7. I didn't open the browser or run any steps.
+
+The case lists APPS-60871 (en-dash shown for multiple metrics, including YouTube) as open. Today's `results/open-bugs-2026-10-30.json` confirms it's still open. The report is at `results/2026-10-30/QA-21109-report.md`.
+
+I didn't delete the attached Jira screenshot that the Friday note calls for.
+>> done (rc=0) — report: results/2026-10-30/QA-21109-report.md
+>> QA-23894 (full) — Fri Oct 30 11:25:30 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-21874 still running (60s / 1800s cap) — 11:26:10
+>> .. QA-23894 still running (60s / 1800s cap) — 11:26:30
+>> .. QA-21874 still running (120s / 1800s cap) — 11:27:10
+>> .. QA-23894 still running (120s / 1800s cap) — 11:27:30
+>> .. QA-21874 still running (180s / 1800s cap) — 11:28:11
+>> .. QA-23894 still running (180s / 1800s cap) — 11:28:30
+>> .. QA-21874 still running (240s / 1800s cap) — 11:29:11
+>> .. QA-23894 still running (240s / 1800s cap) — 11:29:30
+>> .. QA-21874 still running (300s / 1800s cap) — 11:30:11
+>> .. QA-23894 still running (300s / 1800s cap) — 11:30:30
+>> usage: 83 turns | in 124 (+4500196 cache-read, +81838 cache-write) | out 15186 | est $3.45
+QA-23894 is a **PASS**; the report is at `results/2026-10-30/QA-23894-report.md`.
+
+- **Result:** all five Best Performing Content posts on Brand Insights (UCLA, LinkedIn only, Last 30 Days = Sep 29 – Oct 28) match the Brand Content rows on rank, date, type, text, Engagements, Reactions, Comments and Shares.
+- **Video Views note:** on Content's default Public data set the two video posts show "–" f
+>> done (rc=0) — report: results/2026-10-30/QA-23894-report.md
+>> .. QA-21874 still running (360s / 1800s cap) — 11:31:11
+>> .. QA-21874 still running (420s / 1800s cap) — 11:32:11
+>> .. QA-21874 still running (480s / 1800s cap) — 11:33:11
+>> .. QA-21874 still running (540s / 1800s cap) — 11:34:11
+>> usage: 53 turns | in 94 (+3671117 cache-read, +93766 cache-write) | out 23880 | est $3.37
+**QA-21874 (Friday, Hulu / Hulu): FAIL.** Report: `results/2026-10-30/QA-21874-report.md`.
+
+| Channel | First post Response Rate | Engagements / Total Followers × 100 | Result |
+|---|---|---|---|
+| Facebook | 1.18% | 1.1755% | PASS |
+| Instagram | 2.43% | 2.42% | **FAIL (0.01 pp)** |
+| Twitter | 0.02% | 0.0176% | PASS |
+| TikTok | 1.72% | 1.7199% | PASS |
+| LinkedIn | – | – | N/A |
+
+- **Why it fai
+>> done (rc=0) — report: results/2026-10-30/QA-21874-report.md

@@ -1,0 +1,62 @@
+>> QA-100878 (full) — Mon Oct 26 15:17:40 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-100878 still running (60s / 1500s cap) — 15:18:40
+>> .. QA-100878 still running (120s / 1500s cap) — 15:19:40
+>> QA-29278 (full) — Mon Oct 26 15:19:49 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-100878 still running (180s / 1500s cap) — 15:20:40
+>> .. QA-29278 still running (60s / 1500s cap) — 15:20:49
+>> .. QA-100878 still running (240s / 1500s cap) — 15:21:40
+>> .. QA-29278 still running (120s / 1500s cap) — 15:21:49
+>> .. QA-100878 still running (300s / 1500s cap) — 15:22:40
+>> .. QA-29278 still running (180s / 1500s cap) — 15:22:50
+>> .. QA-100878 still running (360s / 1500s cap) — 15:23:41
+>> .. QA-29278 still running (240s / 1500s cap) — 15:23:50
+>> .. QA-100878 still running (420s / 1500s cap) — 15:24:41
+>> .. QA-29278 still running (300s / 1500s cap) — 15:24:50
+>> .. QA-100878 still running (480s / 1500s cap) — 15:25:41
+>> .. QA-29278 still running (360s / 1500s cap) — 15:25:50
+>> .. QA-100878 still running (540s / 1500s cap) — 15:26:41
+>> .. QA-29278 still running (420s / 1500s cap) — 15:26:50
+>> .. QA-100878 still running (600s / 1500s cap) — 15:27:41
+>> .. QA-29278 still running (480s / 1500s cap) — 15:27:50
+>> .. QA-100878 still running (660s / 1500s cap) — 15:28:41
+>> .. QA-29278 still running (540s / 1500s cap) — 15:28:50
+>> .. QA-100878 still running (720s / 1500s cap) — 15:29:41
+>> .. QA-29278 still running (600s / 1500s cap) — 15:29:51
+>> .. QA-100878 still running (780s / 1500s cap) — 15:30:41
+>> .. QA-29278 still running (660s / 1500s cap) — 15:30:51
+>> usage: 40 turns | in 68 (+2198474 cache-read, +66020 cache-write) | out 14217 | est $2.12
+QA-100878 is a **PASS**. With the Threads Only: Insights data set on HBO Max (Jun 01–07, 2025), all six required metrics display: Engagements, Likes, Replies, Quotes, Reposts and Views.
+
+- **Extra metric:** the data set also shows a seventh metric, Shares, which the case doesn't list. I treated it as additive, not a failure, and noted it in the report.
+- **Slow start:** dev took about 3 minutes to
+>> done (rc=0) — report: results/2026-10-26/QA-100878-report.md
+>> usage: 35 turns | in 62 (+2063722 cache-read, +70222 cache-write) | out 13156 | est $2.06
+QA-29278 is **FAIL** on A1; A2 passes. I ran the Monday HBO Max / HBO Max pair, TikTok only, Impressions data set, Oct. 18–24, 2026.
+
+- **A1 (Total Impressions shows a value on every post): FAIL.** 67 of 126 TikTok posts show "–". The other 59 show numbers that sum to 46,411,992, matching the aggregate row. All 67 have Engagements 0 and Reach "–". Rank 76 also has 0 engagements but shows Impressio
+>> done (rc=0) — report: results/2026-10-26/QA-29278-report.md
+>> QA-24283 (full) — Mon Oct 26 15:31:46 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-24283 still running (60s / 1500s cap) — 15:32:46
+>> .. QA-24283 still running (120s / 1500s cap) — 15:33:46
+>> .. QA-24283 still running (180s / 1500s cap) — 15:34:46
+>> .. QA-24283 still running (240s / 1500s cap) — 15:35:47
+>> .. QA-24283 still running (300s / 1500s cap) — 15:36:47
+>> .. QA-24283 still running (360s / 1500s cap) — 15:37:47
+>> .. QA-24283 still running (420s / 1500s cap) — 15:38:47
+>> .. QA-24283 still running (480s / 1500s cap) — 15:39:47
+>> .. QA-24283 still running (540s / 1500s cap) — 15:40:47
+>> .. QA-24283 still running (600s / 1500s cap) — 15:41:47
+>> .. QA-24283 still running (660s / 1500s cap) — 15:42:48
+>> .. QA-24283 still running (720s / 1500s cap) — 15:43:48
+>> .. QA-24283 still running (780s / 1500s cap) — 15:44:48
+>> .. QA-24283 still running (840s / 1500s cap) — 15:45:48
+>> .. QA-24283 still running (900s / 1500s cap) — 15:46:48
+>> .. QA-24283 still running (960s / 1500s cap) — 15:47:49
+>> usage: 36 turns | in 60 (+2151226 cache-read, +71879 cache-write) | out 11379 | est $2.08
+QA-24283 is a PASS, with a data flag. The Sum row has Pin Saves "–" (treated as 0), Comments 670 and Engagements 670, so the sum identity holds. The Average row reads 0 / – / 0, which is consistent, and all 200 rendered rows match per post.
+
+- **Date range:** the default week (Oct 18–24, 2026) has no Pinterest posts for Sephora, so I evaluated Jun 11, 2024 – Jun 10, 2025 (62,031 posts), the same r
+>> done (rc=0) — report: results/2026-10-26/QA-24283-report.md

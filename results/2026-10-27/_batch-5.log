@@ -1,0 +1,99 @@
+>> QA-79963 (full) — Tue Oct 27 13:31:11 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-79963 still running (60s / 1800s cap) — 13:38:35
+>> .. QA-79963 still running (120s / 1800s cap) — 14:48:13
+>> .. QA-79963 still running (180s / 1800s cap) — 15:17:51
+>> .. QA-79963 still running (240s / 1800s cap) — 15:18:51
+>> .. QA-79963 still running (300s / 1800s cap) — 15:19:51
+>> .. QA-79963 still running (360s / 1800s cap) — 15:20:51
+>> .. QA-79963 still running (420s / 1800s cap) — 15:21:51
+>> .. QA-79963 still running (480s / 1800s cap) — 15:22:51
+>> .. QA-79963 still running (540s / 1800s cap) — 15:23:52
+>> .. QA-79963 still running (600s / 1800s cap) — 15:24:52
+>> .. QA-79963 still running (660s / 1800s cap) — 15:25:52
+>> .. QA-79963 still running (720s / 1800s cap) — 15:26:52
+>> .. QA-79963 still running (780s / 1800s cap) — 15:27:52
+>> .. QA-79963 still running (840s / 1800s cap) — 15:28:52
+>> usage: 52 turns | in 92 (+3463765 cache-read, +125768 cache-write) | out 21246 | est $3.52
+**QA-79963: PASS.** Report is at `results/2026-10-27/QA-79963-report.md`. Brand > Content post counts match the Time Window Comparison (TWC) values on every channel for MTV, Oct 19–25 2026, Authorized data.
+
+| Channel | Brand > Content (Video) | TWC |
+|---|---|---|
+| Facebook (Reel excluded) | 11 | 11 |
+| Twitter | 6 | 6 |
+| Instagram | 11 | 11 |
+| TikTok | 15 | 15 |
+| YouTube | 2 | 2 |
+| All chan
+>> done (rc=0) — report: results/2026-10-27/QA-79963-report.md
+>> QA-100877 (full) — Tue Oct 27 15:29:52 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-100877 still running (60s / 1800s cap) — 15:30:52
+>> .. QA-100877 still running (120s / 1800s cap) — 15:31:53
+>> .. QA-100877 still running (180s / 1800s cap) — 15:32:53
+>> .. QA-100877 still running (240s / 1800s cap) — 15:33:53
+>> .. QA-100877 still running (300s / 1800s cap) — 15:34:53
+>> .. QA-100877 still running (360s / 1800s cap) — 15:35:53
+>> .. QA-100877 still running (420s / 1800s cap) — 15:36:54
+>> .. QA-100877 still running (480s / 1800s cap) — 15:37:54
+>> .. QA-100877 still running (540s / 1800s cap) — 15:38:54
+>> .. QA-100877 still running (600s / 1800s cap) — 15:39:54
+>> .. QA-100877 still running (660s / 1800s cap) — 15:40:54
+>> .. QA-100877 still running (720s / 1800s cap) — 15:41:54
+>> .. QA-100877 still running (780s / 1800s cap) — 15:42:55
+>> usage: 28 turns | in 46 (+1509815 cache-read, +74423 cache-write) | out 12190 | est $1.80
+**QA-100877: FAIL.** Report is at `results/2026-10-27/QA-100877-report.md`. It matches the 2026-10-20 and 2026-10-26 runs, so nothing changed.
+
+- **A6 fails (0/13 posts):** Organic Impressions and Paid Impressions show "–" on all 13 Threads posts and on the Sum row, while Impressions is populated (Sum 419,745). The sum can't equal Impressions.
+- **A7 not evaluable:** Reach, Organic Reach and Paid 
+>> done (rc=0) — report: results/2026-10-27/QA-100877-report.md
+>> QA-79142 (full) — Tue Oct 27 15:52:47 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-79142 still running (60s / 1800s cap) — 15:53:47
+>> .. QA-79142 still running (120s / 1800s cap) — 15:54:48
+>> .. QA-79142 still running (180s / 1800s cap) — 15:55:48
+>> .. QA-79142 still running (240s / 1800s cap) — 15:56:48
+>> .. QA-79142 still running (300s / 1800s cap) — 15:57:48
+>> usage: 22 turns | in 34 (+1242510 cache-read, +74747 cache-write) | out 7731 | est $1.56
+QA-79142 passed 3/3. The report is at `results/2026-10-27/QA-79142-report.md`.
+
+I ran the Tuesday row on UCLA, brand "University of California, Los Angeles", with the Public data set and the Video content type filter. For each channel, the sum of Engagements divided by the sum of Video Views matched the Average row's Video Response Rate once rounded to two decimals:
+
+| Channel | Sum Eng / Sum VV |
+>> done (rc=0) — report: results/2026-10-27/QA-79142-report.md
+>> QA-100873 (full) — Tue Oct 27 15:57:59 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-100873 still running (60s / 1800s cap) — 15:59:00
+>> .. QA-100873 still running (120s / 1800s cap) — 16:00:00
+>> .. QA-100873 still running (180s / 1800s cap) — 16:01:00
+>> .. QA-100873 still running (240s / 1800s cap) — 16:02:00
+>> .. QA-100873 still running (300s / 1800s cap) — 16:03:00
+>> .. QA-100873 still running (360s / 1800s cap) — 16:04:00
+>> usage: 23 turns | in 38 (+1084601 cache-read, +58271 cache-write) | out 7947 | est $1.32
+QA-100873 is **PASS**. For all 13 Threads posts and the Sum row, Reactions + Comments + Shares equals Engagements. The Sum row is 12,268 + 394 + 1,646 = 14,308.
+
+- **Setup:** I ran it on HBO Max, brand "HBO Max" (brand_id 155614), Jan 1–15, 2026, Threads only, in Table View.
+- **"Max" brand:** The case says "logged in as Max". I read that as the HBO Max account and brand, the same as the earlier r
+>> done (rc=0) — report: results/2026-10-27/QA-100873-report.md
+>> QA-100887 (full) — Tue Oct 27 16:04:40 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-100887 still running (60s / 1800s cap) — 16:05:41
+>> .. QA-100887 still running (120s / 1800s cap) — 16:06:41
+>> .. QA-100887 still running (180s / 1800s cap) — 16:07:41
+>> .. QA-100887 still running (240s / 1800s cap) — 16:08:41
+>> .. QA-100887 still running (300s / 1800s cap) — 16:09:41
+>> .. QA-100887 still running (360s / 1800s cap) — 16:10:41
+>> .. QA-100887 still running (420s / 1800s cap) — 16:11:42
+>> usage: 69 turns | in 122 (+4205593 cache-read, +74888 cache-write) | out 17461 | est $3.29
+QA-100887 is a PASS. All five Threads values match between Brand Insights and Time Window Comparison for Dec 6–12, 2024, on Authorized data for UCLA:
+
+| Metric | Insights | TWC |
+|---|---|---|
+| Follower Growth / New Followers | 13 | 13 |
+| New Posts / Posts | 9 | 9 |
+| Engagements | 369 | 369 |
+| Engagement Rate | 2.52% | 2.52% |
+| Views | 14,635 | 14,635 |
+
+The case had no open linked bugs, and 
+>> done (rc=0) — report: results/2026-10-27/QA-100887-report.md

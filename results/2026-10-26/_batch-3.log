@@ -1,0 +1,130 @@
+>> QA-19468 (full) — Mon Oct 26 13:12:21 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-19468 still running (60s / 1500s cap) — 13:13:21
+>> .. QA-19468 still running (120s / 1500s cap) — 13:14:21
+>> .. QA-19468 still running (180s / 1500s cap) — 13:15:22
+>> .. QA-19468 still running (240s / 1500s cap) — 13:16:22
+>> .. QA-19468 still running (300s / 1500s cap) — 13:17:22
+>> .. QA-19468 still running (360s / 1500s cap) — 13:18:22
+>> .. QA-19468 still running (420s / 1500s cap) — 13:19:22
+>> .. QA-19468 still running (480s / 1500s cap) — 13:20:23
+>> usage: 30 turns | in 46 (+1580287 cache-read, +70228 cache-write) | out 9449 | est $1.73
+QA-19468 passes. The report is at `results/2026-10-26/QA-19468-report.md`.
+
+- **Lock symbol:** none appears in the Table View. A DOM query found only a clock badge outside the table, and the screenshot shows no lock.
+- **N/A on the Sum row:** Reach, Engagement Rate, Organic Reach and Paid Reach all show N/A.
+- **Brand:** the brand typeahead has no result named exactly "UCLA", only sub-brands. I us
+>> done (rc=0) — report: results/2026-10-26/QA-19468-report.md
+>> QA-21874 (full) — Mon Oct 26 13:21:13 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-21874 still running (60s / 1500s cap) — 13:22:13
+>> .. QA-21874 still running (120s / 1500s cap) — 13:23:13
+>> .. QA-21874 still running (180s / 1500s cap) — 13:24:13
+>> QA-29122 (full) — Mon Oct 26 13:24:43 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-21874 still running (240s / 1500s cap) — 13:25:13
+>> .. QA-29122 still running (60s / 1500s cap) — 13:25:43
+>> .. QA-21874 still running (300s / 1500s cap) — 13:26:14
+>> .. QA-29122 still running (120s / 1500s cap) — 13:26:44
+>> .. QA-21874 still running (360s / 1500s cap) — 13:27:14
+>> .. QA-29122 still running (180s / 1500s cap) — 13:27:44
+>> .. QA-21874 still running (420s / 1500s cap) — 13:28:14
+>> .. QA-29122 still running (240s / 1500s cap) — 13:28:44
+>> .. QA-21874 still running (480s / 1500s cap) — 13:29:14
+>> .. QA-29122 still running (300s / 1500s cap) — 13:29:44
+>> .. QA-21874 still running (540s / 1500s cap) — 13:30:14
+>> .. QA-29122 still running (360s / 1500s cap) — 13:30:44
+>> .. QA-21874 still running (600s / 1500s cap) — 13:31:14
+>> .. QA-29122 still running (420s / 1500s cap) — 13:31:44
+>> .. QA-21874 still running (660s / 1500s cap) — 13:32:14
+>> .. QA-29122 still running (480s / 1500s cap) — 13:32:44
+>> .. QA-21874 still running (720s / 1500s cap) — 13:33:15
+>> .. QA-29122 still running (540s / 1500s cap) — 13:33:45
+>> .. QA-21874 still running (780s / 1500s cap) — 13:53:22
+>> .. QA-29122 still running (600s / 1500s cap) — 14:01:40
+>> .. QA-21874 still running (840s / 1500s cap) — 14:02:10
+>> .. QA-29122 still running (660s / 1500s cap) — 14:02:40
+>> .. QA-21874 still running (900s / 1500s cap) — 14:03:10
+>> .. QA-29122 still running (720s / 1500s cap) — 14:03:40
+>> .. QA-21874 still running (960s / 1500s cap) — 14:04:10
+>> .. QA-29122 still running (780s / 1500s cap) — 14:04:41
+>> .. QA-21874 still running (1020s / 1500s cap) — 14:05:10
+>> .. QA-29122 still running (840s / 1500s cap) — 14:05:41
+>> .. QA-21874 still running (1080s / 1500s cap) — 14:06:10
+>> .. QA-29122 still running (900s / 1500s cap) — 14:06:41
+>> .. QA-21874 still running (1140s / 1500s cap) — 14:07:10
+>> .. QA-29122 still running (960s / 1500s cap) — 14:07:41
+>> .. QA-21874 still running (1200s / 1500s cap) — 14:08:10
+>> .. QA-29122 still running (1020s / 1500s cap) — 14:08:41
+>> .. QA-21874 still running (1260s / 1500s cap) — 14:09:11
+>> usage: 32 turns | in 56 (+1915670 cache-read, +71057 cache-write) | out 13946 | est $2.02
+QA-29122 is a PASS. I ran all three Monday pairs from the Description table, and all six channel legs passed. Every post satisfies Reactions + Comments + Shares = Engagements, and the column totals match the Sum row in each case.
+
+| Pair | Twitter | Instagram |
+|---|---|---|
+| HBO Max / HBO Max | 14/14 posts | 40/40 posts |
+| Amazon Prime Video / Amazon Prime Video | 71/71 posts | 68/68 posts |
+| 
+>> done (rc=0) — report: results/2026-10-26/QA-29122-report.md
+>> QA-29123 (full) — Mon Oct 26 14:09:36 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-21874 still running (1320s / 1500s cap) — 14:10:11
+>> .. QA-29123 still running (60s / 1500s cap) — 14:10:37
+>> .. QA-21874 still running (1380s / 1500s cap) — 14:11:11
+>> .. QA-29123 still running (120s / 1500s cap) — 14:11:37
+>> .. QA-21874 still running (1440s / 1500s cap) — 14:12:11
+>> .. QA-29123 still running (180s / 1500s cap) — 14:12:37
+>> .. QA-21874 still running (1500s / 1500s cap) — 14:13:11
+>> TIMEOUT after 1500s — killing QA-21874 (process group)
+>> done (rc=143) — report: results/2026-10-26/QA-21874-report.md
+>> QA-23894 (full) — Mon Oct 26 14:13:14 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29123 still running (240s / 1500s cap) — 14:13:37
+>> .. QA-23894 still running (60s / 1500s cap) — 14:14:14
+>> .. QA-29123 still running (300s / 1500s cap) — 14:14:37
+>> .. QA-23894 still running (120s / 1500s cap) — 14:15:15
+>> .. QA-29123 still running (360s / 1500s cap) — 14:15:37
+>> .. QA-23894 still running (180s / 1500s cap) — 14:16:15
+>> .. QA-29123 still running (420s / 1500s cap) — 14:16:37
+>> .. QA-23894 still running (240s / 1500s cap) — 14:17:15
+>> .. QA-29123 still running (480s / 1500s cap) — 14:17:38
+>> .. QA-23894 still running (300s / 1500s cap) — 14:18:15
+>> .. QA-29123 still running (540s / 1500s cap) — 14:18:38
+>> .. QA-23894 still running (360s / 1500s cap) — 14:19:15
+>> .. QA-29123 still running (600s / 1500s cap) — 14:19:38
+>> .. QA-23894 still running (420s / 1500s cap) — 14:20:15
+>> .. QA-29123 still running (660s / 1500s cap) — 14:20:38
+>> .. QA-23894 still running (480s / 1500s cap) — 14:21:16
+>> .. QA-29123 still running (720s / 1500s cap) — 14:21:38
+>> usage: 36 turns | in 64 (+2390678 cache-read, +80371 cache-write) | out 14616 | est $2.36
+QA-23894 is a PASS. The report is at `results/2026-10-26/QA-23894-report.md`.
+
+- **Setup:** The case has no open linked bugs, so I ran it in full. The typeahead has no brand named exactly "UCLA", so I used the UCLA account's brand, University of California, Los Angeles (brand_id 127756). Earlier UCLA cases used the same brand. Date range was Last 30 Days (Sep 25 – Oct 24, 2026) with LinkedIn only 
+>> done (rc=0) — report: results/2026-10-26/QA-23894-report.md
+>> .. QA-29123 still running (780s / 1500s cap) — 14:22:39
+>> .. QA-29123 still running (840s / 1500s cap) — 14:23:39
+>> usage: 25 turns | in 44 (+1742273 cache-read, +83313 cache-write) | out 11949 | est $2.00
+QA-29123 passes. All three Monday account/brand pairs satisfy Reactions + Comments + Shares = Engagements on TikTok-only Table View, with no failing posts.
+
+| Pair | Posts | Sum-row check |
+|---|---|---|
+| HBO Max / HBO Max | 126 | 924,714 + 7,979 + 128,257 = 1,060,950 |
+| Amazon Prime Video / Amazon Prime Video | 37 | 857,888 + 9,707 + 49,778 = 917,373 |
+| Condé Nast / Vogue - US | 85 | 7,272,821
+>> done (rc=0) — report: results/2026-10-26/QA-29123-report.md
+>> QA-29125 (full) — Mon Oct 26 14:24:20 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29125 still running (60s / 1500s cap) — 14:25:20
+>> .. QA-29125 still running (120s / 1500s cap) — 14:26:20
+>> .. QA-29125 still running (180s / 1500s cap) — 14:27:21
+>> .. QA-29125 still running (240s / 1500s cap) — 14:28:21
+>> .. QA-29125 still running (300s / 1500s cap) — 14:29:21
+>> .. QA-29125 still running (360s / 1500s cap) — 14:30:21
+>> .. QA-29125 still running (420s / 1500s cap) — 14:31:21
+>> .. QA-29125 still running (480s / 1500s cap) — 14:32:21
+>> usage: 22 turns | in 32 (+880555 cache-read, +55792 cache-write) | out 9286 | est $1.23
+QA-29125 is **PASS** for the first Monday pair (HBO Max, on dev). I ran only that pair and did not run Amazon Prime Video or Conde Nast/Vogue-US. The earlier run of this case also covered only the first row for its weekday.
+
+- **Twitter only:** all 10 posts satisfy Organic + Unclassified + Paid = Video Views, and Engagements / Video Views matches the shown Video Response Rate.
+- **Instagram only:*
+>> done (rc=0) — report: results/2026-10-26/QA-29125-report.md

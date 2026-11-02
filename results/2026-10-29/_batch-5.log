@@ -1,0 +1,108 @@
+>> QA-79963 (full) — Thu Oct 29 14:09:07 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-79963 still running (60s / 1800s cap) — 14:10:07
+>> .. QA-79963 still running (120s / 1800s cap) — 14:11:07
+>> .. QA-79963 still running (180s / 1800s cap) — 14:12:07
+>> .. QA-79963 still running (240s / 1800s cap) — 14:13:07
+>> .. QA-79963 still running (300s / 1800s cap) — 14:14:07
+>> .. QA-79963 still running (360s / 1800s cap) — 14:15:07
+>> .. QA-79963 still running (420s / 1800s cap) — 14:16:07
+>> .. QA-79963 still running (480s / 1800s cap) — 14:17:08
+>> .. QA-79963 still running (540s / 1800s cap) — 14:18:08
+>> .. QA-79963 still running (600s / 1800s cap) — 14:19:08
+>> .. QA-79963 still running (660s / 1800s cap) — 14:20:08
+>> .. QA-79963 still running (720s / 1800s cap) — 14:21:08
+>> .. QA-79963 still running (780s / 1800s cap) — 14:22:08
+>> .. QA-79963 still running (840s / 1800s cap) — 14:23:08
+>> .. QA-79963 still running (900s / 1800s cap) — 14:24:08
+>> .. QA-79963 still running (960s / 1800s cap) — 14:25:09
+>> .. QA-79963 still running (1020s / 1800s cap) — 14:26:09
+>> .. QA-79963 still running (1080s / 1800s cap) — 14:27:09
+>> .. QA-79963 still running (1140s / 1800s cap) — 14:28:09
+>> .. QA-79963 still running (1200s / 1800s cap) — 14:29:09
+>> .. QA-79963 still running (1260s / 1800s cap) — 14:30:09
+>> .. QA-79963 still running (1320s / 1800s cap) — 14:31:10
+>> .. QA-79963 still running (1380s / 1800s cap) — 14:32:10
+>> .. QA-79963 still running (1440s / 1800s cap) — 14:33:10
+>> .. QA-79963 still running (1500s / 1800s cap) — 14:34:10
+>> .. QA-79963 still running (1560s / 1800s cap) — 14:35:10
+>> .. QA-79963 still running (1620s / 1800s cap) — 14:36:10
+>> usage: 64 turns | in 114 (+5543627 cache-read, +121118 cache-write) | out 28635 | est $4.70
+**QA-79963: PASS.** All five channel counts on Brand > Content (MTV, Viacom, Authorized, Oct 21–27 2026) match the Time Window Comparison report (story 161988).
+
+| Channel | Content count | TWC value |
+|---|---|---|
+| Facebook (Reel excluded) | 7 | 7 |
+| Twitter | 7 | 7 |
+| Instagram | 7 | 7 |
+| TikTok | 12 | 12 |
+| YouTube | 2 | 2 |
+
+The cross-channel Video Posts in TWC is 35, which equals 7 + 7 
+>> done (rc=0) — report: results/2026-10-29/QA-79963-report.md
+>> QA-100877 (full) — Thu Oct 29 14:36:40 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-100877 still running (60s / 1800s cap) — 14:37:41
+>> .. QA-100877 still running (120s / 1800s cap) — 14:38:41
+>> .. QA-100877 still running (180s / 1800s cap) — 14:39:41
+>> .. QA-100877 still running (240s / 1800s cap) — 14:40:41
+>> .. QA-100877 still running (300s / 1800s cap) — 14:41:41
+>> .. QA-100877 still running (360s / 1800s cap) — 14:42:42
+>> .. QA-100877 still running (420s / 1800s cap) — 14:43:42
+>> usage: 26 turns | in 38 (+1117497 cache-read, +61408 cache-write) | out 11046 | est $1.45
+QA-100877 is **FAIL** on 2026-10-29, the same result as the 10-20, 10-26, 10-27 and 10-28 runs. Report: `results/2026-10-29/QA-100877-report.md`.
+
+- **A6 fails:** Organic and Paid Impressions show "–" on all 13 Threads posts while Impressions is populated, so Organic + Paid = Impressions doesn't hold.
+- **A7 not evaluable:** Reach, Organic Reach and Paid Reach are "–" on every post.
+- **A8 passes:
+>> done (rc=0) — report: results/2026-10-29/QA-100877-report.md
+>> QA-79142 (full) — Thu Oct 29 14:56:57 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-79142 still running (60s / 1800s cap) — 14:57:57
+>> .. QA-79142 still running (120s / 1800s cap) — 14:58:57
+>> .. QA-79142 still running (180s / 1800s cap) — 14:59:57
+>> .. QA-79142 still running (240s / 1800s cap) — 15:00:57
+>> .. QA-79142 still running (300s / 1800s cap) — 15:01:57
+>> .. QA-79142 still running (360s / 1800s cap) — 15:02:58
+>> usage: 24 turns | in 38 (+1110368 cache-read, +60384 cache-write) | out 11457 | est $1.45
+QA-79142 is **BLOCKED**: the Thursday brand "Spotify News" doesn't exist on dev, so none of the three assertions could be evaluated.
+
+- **Where it stopped:** I logged in, switched to the Spotify account (the only Spotify account), and opened Brand > Content. The brand search found no "Spotify News".
+- **Search evidence:** Searching "Spotify" lists 66 brands, none of them "Spotify News". Typing the
+>> done (rc=0) — report: results/2026-10-29/QA-79142-report.md
+>> QA-100873 (full) — Thu Oct 29 15:03:38 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-100873 still running (60s / 1800s cap) — 15:04:38
+>> .. QA-100873 still running (120s / 1800s cap) — 15:05:38
+>> .. QA-100873 still running (180s / 1800s cap) — 15:06:38
+>> .. QA-100873 still running (240s / 1800s cap) — 15:07:38
+>> .. QA-100873 still running (300s / 1800s cap) — 15:08:38
+>> .. QA-100873 still running (360s / 1800s cap) — 15:09:38
+>> usage: 22 turns | in 36 (+1319204 cache-read, +85492 cache-write) | out 8386 | est $1.72
+QA-100873 is **PASS**. On HBO Max, Threads only, Jan 1–15 2026, all 13 posts satisfy Reactions + Comments + Shares = Engagements. The Sum row also adds up: 12,268 + 394 + 1,646 = 14,308. The values are identical to yesterday's run.
+
+The report is at `results/2026-10-29/QA-100873-report.md`, with screenshots under `.playwright-out/QA-100873/r3-*.png`. No bugs were filed.
+
+**Credential exposure:** t
+>> done (rc=0) — report: results/2026-10-29/QA-100873-report.md
+>> QA-100887 (full) — Thu Oct 29 15:10:19 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-100887 still running (60s / 1800s cap) — 15:11:19
+>> .. QA-100887 still running (120s / 1800s cap) — 15:12:19
+>> .. QA-100887 still running (180s / 1800s cap) — 15:13:19
+>> .. QA-100887 still running (240s / 1800s cap) — 15:14:19
+>> .. QA-100887 still running (300s / 1800s cap) — 15:15:19
+>> .. QA-100887 still running (360s / 1800s cap) — 15:16:19
+>> usage: 65 turns | in 118 (+3858656 cache-read, +70447 cache-write) | out 18597 | est $3.10
+QA-100887 is a PASS. All five Threads metrics in Time Window Comparison match Brand Insights exactly for UCLA, Dec 06–12, 2024, on Authorized data.
+
+| Metric | Insights | TWC |
+|---|---|---|
+| Follower Growth / New Followers | 13 | 13 |
+| New Posts / Posts | 9 | 9 |
+| Engagements | 369 | 369 |
+| Engagement Rate | 2.52% | 2.52% |
+| Views | 14,635 | 14,635 |
+
+- **Account mix-up:** My first account s
+>> done (rc=0) — report: results/2026-10-29/QA-100887-report.md

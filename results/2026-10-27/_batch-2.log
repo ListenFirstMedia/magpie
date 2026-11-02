@@ -1,0 +1,91 @@
+>> QA-29111 (full) — Tue Oct 27 12:45:31 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> usage: 5 turns | in 6 (+99576 cache-read, +18864 cache-write) | out 2024 | est $0.29
+QA-29111 is FAILED (blocked by open bug). The case file lists APPS-61116 as Open, which covers the same Twitter Reactions + Comments + Shares ≠ Engagements mismatch this case asserts. Under the open-bug auto-fail rule (Rule 7) I didn't open the browser or run any steps.
+
+The report is at `results/2026-10-27/QA-29111-report.md`. It says to re-run the case once APPS-61116 closes and the case file is
+>> done (rc=0) — report: results/2026-10-27/QA-29111-report.md
+>> QA-29116 (full) — Tue Oct 27 12:45:51 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29116 still running (60s / 1800s cap) — 12:46:51
+>> QA-24283 (full) — Tue Oct 27 12:47:43 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29116 still running (120s / 1800s cap) — 12:47:51
+>> .. QA-24283 still running (60s / 1800s cap) — 12:48:43
+>> .. QA-29116 still running (180s / 1800s cap) — 12:48:51
+>> .. QA-24283 still running (120s / 1800s cap) — 12:49:43
+>> .. QA-29116 still running (240s / 1800s cap) — 12:49:51
+>> usage: 23 turns | in 38 (+1231974 cache-read, +66651 cache-write) | out 8723 | est $1.50
+QA-29116 is PASS: Reactions + Comments + Shares equals Engagements on all 193 TikTok posts and on the Sum row.
+
+- **Setup:** Tuesday's row of the description table gave account UCLA and brand "University of California, Los Angeles", which was already selected. Channel was TikTok only.
+- **Sum row:** 1,541,891 + 13,159 + 36,263 = 1,591,313, matching Engagements.
+- **Date range:** The ticket's descr
+>> done (rc=0) — report: results/2026-10-27/QA-29116-report.md
+>> QA-29123 (full) — Tue Oct 27 12:50:31 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-24283 still running (180s / 1800s cap) — 12:50:43
+>> .. QA-29123 still running (60s / 1800s cap) — 12:51:32
+>> .. QA-24283 still running (240s / 1800s cap) — 12:51:43
+>> .. QA-29123 still running (120s / 1800s cap) — 12:52:32
+>> .. QA-24283 still running (300s / 1800s cap) — 12:52:44
+>> .. QA-29123 still running (180s / 1800s cap) — 12:53:32
+>> .. QA-24283 still running (360s / 1800s cap) — 12:53:44
+>> .. QA-29123 still running (240s / 1800s cap) — 12:54:32
+>> .. QA-24283 still running (420s / 1800s cap) — 12:54:44
+>> .. QA-29123 still running (300s / 1800s cap) — 12:55:32
+>> .. QA-24283 still running (480s / 1800s cap) — 12:55:44
+>> .. QA-29123 still running (360s / 1800s cap) — 12:56:32
+>> .. QA-24283 still running (540s / 1800s cap) — 12:56:44
+>> .. QA-29123 still running (420s / 1800s cap) — 12:57:32
+>> usage: 27 turns | in 46 (+1444580 cache-read, +62485 cache-write) | out 9545 | est $1.59
+QA-29123 is **PASS**. I ran all three Tuesday account and brand pairs from the Description table, each on TikTok only with the default Public data set. The report is at `results/2026-10-27/QA-29123-report.md`.
+
+| Account / brand | Posts checked | Failing posts | Sum row |
+|---|---|---|---|
+| UCLA / University of California, Los Angeles | 9 | 0 | 1,413 + 28 + 45 = 1,486 = Engagements |
+| Viacom / M
+>> done (rc=0) — report: results/2026-10-27/QA-29123-report.md
+>> .. QA-24283 still running (600s / 1800s cap) — 12:57:44
+>> usage: 26 turns | in 42 (+1382561 cache-read, +63971 cache-write) | out 8932 | est $1.55
+QA-24283 is **PASS (with a data flag)**, and the report is at `results/2026-10-27/QA-24283-report.md`.
+
+- **Sum row:** Engagements is 670, Pin Saves shows "–" (counted as 0) and Comments is 670, so Pin Saves + Comments equals Engagements.
+- **Average row:** Engagements 0, Pin Saves "–" and Comments 0, which is also consistent.
+- **Per-post check:** Engagements equals Pin Saves + Comments on all 20
+>> done (rc=0) — report: results/2026-10-27/QA-24283-report.md
+>> QA-29115 (full) — Tue Oct 27 12:58:46 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29115 still running (60s / 1800s cap) — 12:59:46
+>> .. QA-29115 still running (120s / 1800s cap) — 13:00:46
+>> .. QA-29115 still running (180s / 1800s cap) — 13:01:46
+>> .. QA-29115 still running (240s / 1800s cap) — 13:02:46
+>> .. QA-29115 still running (300s / 1800s cap) — 13:03:46
+>> .. QA-29115 still running (360s / 1800s cap) — 13:04:47
+>> .. QA-29115 still running (420s / 1800s cap) — 13:05:47
+>> .. QA-29115 still running (480s / 1800s cap) — 13:06:47
+>> .. QA-29115 still running (540s / 1800s cap) — 13:07:47
+>> .. QA-29115 still running (600s / 1800s cap) — 13:08:47
+>> .. QA-29115 still running (660s / 1800s cap) — 13:09:47
+>> .. QA-29115 still running (720s / 1800s cap) — 13:10:48
+>> usage: 26 turns | in 48 (+1413763 cache-read, +59164 cache-write) | out 10776 | est $1.57
+QA-29115 is PASS. Reactions + Comments + Shares equals Engagements on every post I could check.
+
+The grid shows 1,013 LinkedIn posts for UCLA, Jan 01 – Oct 01, 2025, but Table View renders only 200 at a time and has no pagination. I checked the top 200 by Engagements and, after sorting ascending, the bottom 200. All 400 matched exactly. The Sum row, which covers all 1,013 posts, also matches: 133,
+>> done (rc=0) — report: results/2026-10-27/QA-29115-report.md
+>> QA-29122 (full) — Tue Oct 27 13:10:58 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29122 still running (60s / 1800s cap) — 13:11:58
+>> .. QA-29122 still running (120s / 1800s cap) — 13:12:58
+>> .. QA-29122 still running (180s / 1800s cap) — 13:13:58
+>> .. QA-29122 still running (240s / 1800s cap) — 13:14:58
+>> .. QA-29122 still running (300s / 1800s cap) — 13:15:59
+>> .. QA-29122 still running (360s / 1800s cap) — 13:16:59
+>> .. QA-29122 still running (420s / 1800s cap) — 13:17:59
+>> usage: 26 turns | in 34 (+1029396 cache-read, +59284 cache-write) | out 9915 | est $1.36
+QA-29122 is a PASS. The report is at `results/2026-10-27/QA-29122-report.md`.
+
+I ran all three Tuesday pairs from the Description table (UCLA, MTV, Gatorade), each on Twitter-only and then Instagram-only, using the Engagements Breakdown data set. In every leg with posts, Reactions + Comments + Shares equals Engagements on each post and on the Sum row. That covers 114 posts with no failures.
+
+- **G
+>> done (rc=0) — report: results/2026-10-27/QA-29122-report.md

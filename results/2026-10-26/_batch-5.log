@@ -1,0 +1,106 @@
+>> QA-24279 (full) — Mon Oct 26 14:49:11 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> QA-29234 (full) — Mon Oct 26 14:49:51 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-24279 still running (60s / 1500s cap) — 14:50:11
+>> .. QA-29234 still running (60s / 1500s cap) — 14:50:52
+>> .. QA-24279 still running (120s / 1500s cap) — 14:51:11
+>> .. QA-29234 still running (120s / 1500s cap) — 14:51:52
+>> .. QA-24279 still running (180s / 1500s cap) — 14:52:11
+>> .. QA-29234 still running (180s / 1500s cap) — 14:52:52
+>> .. QA-24279 still running (240s / 1500s cap) — 14:53:11
+>> .. QA-29234 still running (240s / 1500s cap) — 14:53:52
+>> .. QA-24279 still running (300s / 1500s cap) — 14:54:11
+>> .. QA-29234 still running (300s / 1500s cap) — 14:54:52
+>> .. QA-24279 still running (360s / 1500s cap) — 14:55:12
+>> .. QA-29234 still running (360s / 1500s cap) — 14:55:52
+>> .. QA-24279 still running (420s / 1500s cap) — 14:56:12
+>> .. QA-29234 still running (420s / 1500s cap) — 14:56:53
+>> .. QA-24279 still running (480s / 1500s cap) — 14:57:12
+>> usage: 33 turns | in 58 (+1669020 cache-read, +62811 cache-write) | out 17026 | est $1.89
+QA-24279 is a **PASS** on HBO Max (account 657, brand 155614) for the default week Oct 18–24, but the LinkedIn leg (steps 11–12) could not be evaluated. HBO Max has 0 LinkedIn posts that week, so there is no table or aggregate row to check.
+
+Organic + Paid + Unclassified = Video Views held on both the Sum and Average aggregate rows, and on every post that has a Video Views value:
+
+| Channel | Post
+>> done (rc=0) — report: results/2026-10-26/QA-24279-report.md
+>> QA-31572 (full) — Mon Oct 26 14:57:37 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29234 still running (480s / 1500s cap) — 14:57:53
+>> usage: 24 turns | in 40 (+1277883 cache-read, +65812 cache-write) | out 10750 | est $1.57
+**QA-29234 passed.** All four assertions held on HBO Max with the Video Views data set and Jan 01–10, 2023. The report is at `results/2026-10-26/QA-29234-report.md`.
+
+- **Twitter:** 15 of 20 posts have video views. Organic Views + Paid Views = Video Views, and Engagements / Video Views matches Video Response Rate, on all 15. The other 5 show "–" for Video Views and were skipped.
+- **Instagram:** 4
+>> done (rc=0) — report: results/2026-10-26/QA-29234-report.md
+>> QA-29235 (full) — Mon Oct 26 14:58:20 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-31572 still running (60s / 1500s cap) — 14:58:37
+>> .. QA-29235 still running (60s / 1500s cap) — 14:59:20
+>> .. QA-31572 still running (120s / 1500s cap) — 14:59:37
+>> .. QA-29235 still running (120s / 1500s cap) — 15:00:20
+>> .. QA-31572 still running (180s / 1500s cap) — 15:00:37
+>> .. QA-29235 still running (180s / 1500s cap) — 15:01:20
+>> .. QA-31572 still running (240s / 1500s cap) — 15:01:37
+>> .. QA-29235 still running (240s / 1500s cap) — 15:02:20
+>> .. QA-31572 still running (300s / 1500s cap) — 15:02:38
+>> .. QA-29235 still running (300s / 1500s cap) — 15:03:20
+>> .. QA-31572 still running (360s / 1500s cap) — 15:03:38
+>> .. QA-29235 still running (360s / 1500s cap) — 15:04:20
+>> .. QA-31572 still running (420s / 1500s cap) — 15:04:38
+>> .. QA-29235 still running (420s / 1500s cap) — 15:05:21
+>> .. QA-31572 still running (480s / 1500s cap) — 15:05:38
+>> .. QA-29235 still running (480s / 1500s cap) — 15:06:21
+>> .. QA-31572 still running (540s / 1500s cap) — 15:06:38
+>> .. QA-29235 still running (540s / 1500s cap) — 15:07:21
+>> .. QA-31572 still running (600s / 1500s cap) — 15:07:38
+>> .. QA-29235 still running (600s / 1500s cap) — 15:08:21
+>> .. QA-31572 still running (660s / 1500s cap) — 15:08:38
+>> .. QA-29235 still running (660s / 1500s cap) — 15:09:21
+>> usage: 29 turns | in 48 (+1505158 cache-read, +64041 cache-write) | out 12648 | est $1.71
+QA-29235 is **PASS**. I ran it on the HBO Max account and the "HBO Max" brand, which is Monday's first pair in the Description table.
+
+- **Setup:** Video Views data set, Jan 01–Dec 31 2024, TikTok only. TikTok is the only enabled channel (0 failures, 0 skipped).
+- **Organic + Unclassified + Paid = Video Views:** held on all 200 rendered posts and on the Sum row (0 + 0 + 1,361,465,573 = 1,361,465,5
+>> done (rc=0) — report: results/2026-10-26/QA-29235-report.md
+>> QA-29237 (full) — Mon Oct 26 15:09:32 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-31572 still running (720s / 1500s cap) — 15:09:39
+>> usage: 56 turns | in 100 (+3393046 cache-read, +72667 cache-write) | out 19302 | est $2.91
+QA-31572 is **BLOCKED** at step 10 (Run Report), so the assertion could not be evaluated.
+
+- **What worked:** Steps 1–9 ran as written on Amazon Prime Video with the Authorized view. Insights Impressions for Facebook, Twitter and Instagram over Oct 18–24 is **231,198,156**.
+- **What failed:** Run Report produced stories 161745 and 161746. In both, the story request to `domain-api.lfmdev.in/stories
+>> done (rc=0) — report: results/2026-10-26/QA-31572-report.md
+>> QA-38198 (full) — Mon Oct 26 15:10:19 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29237 still running (60s / 1500s cap) — 15:10:33
+>> .. QA-38198 still running (60s / 1500s cap) — 15:11:19
+>> .. QA-29237 still running (120s / 1500s cap) — 15:11:33
+>> .. QA-38198 still running (120s / 1500s cap) — 15:12:19
+>> .. QA-29237 still running (180s / 1500s cap) — 15:12:33
+>> .. QA-38198 still running (180s / 1500s cap) — 15:13:19
+>> .. QA-29237 still running (240s / 1500s cap) — 15:13:33
+>> .. QA-38198 still running (240s / 1500s cap) — 15:14:19
+>> .. QA-29237 still running (300s / 1500s cap) — 15:14:33
+>> .. QA-38198 still running (300s / 1500s cap) — 15:15:19
+>> .. QA-29237 still running (360s / 1500s cap) — 15:15:33
+>> .. QA-38198 still running (360s / 1500s cap) — 15:16:20
+>> .. QA-29237 still running (420s / 1500s cap) — 15:16:34
+>> .. QA-38198 still running (420s / 1500s cap) — 15:17:20
+>> .. QA-29237 still running (480s / 1500s cap) — 15:17:34
+>> usage: 42 turns | in 76 (+2449925 cache-read, +66941 cache-write) | out 15180 | est $2.27
+**QA-38198: FAILED, because of the open linked bug APPS-58195.** I ran the case in full, and all four data checks match.
+
+- **Bug status:** APPS-58195 was open (Code Review) in the 2026-10-20 case cache. I couldn't re-check Jira in this headless run. Under the open-bug policy (confirmed 2026-10-22) any open linked bug means FAILED. If it has since closed, this case should be PASS.
+- **Bug did not 
+>> done (rc=0) — report: results/2026-10-26/QA-38198-report.md
+>> .. QA-29237 still running (540s / 1500s cap) — 15:18:34
+>> .. QA-29237 still running (600s / 1500s cap) — 15:19:34
+>> usage: 25 turns | in 40 (+1166616 cache-read, +56505 cache-write) | out 9224 | est $1.38
+QA-29237 is PASS. The report is at `results/2026-10-26/QA-29237-report.md`.
+
+- **Setup:** Monday means account HBO Max with brand HBO Max (exact spec name), on the Impressions data set with TikTok only, Jan 01 – Dec 31, 2023.
+- **A5 (Impressions):** All 200 rendered posts show a numeric Impressions value. Organic and Paid Impressions show "–" on all 200, so both parts pass.
+- **A6 (Reach):** This 
+>> done (rc=0) — report: results/2026-10-26/QA-29237-report.md

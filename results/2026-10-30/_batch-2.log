@@ -1,0 +1,90 @@
+>> QA-29111 (full) — Fri Oct 30 11:31:02 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> usage: 8 turns | in 12 (+194565 cache-read, +24004 cache-write) | out 2655 | est $0.40
+QA-29111 got the verdict **FAILED (blocked by open bug) — APPS-61116**. The report is at `results/2026-10-30/QA-29111-report.md`.
+
+I did not run the browser flow. The case file lists APPS-61116 as Open, and Rule 7 says to fail any case with an open linked bug without running it. That bug is the same Twitter check (Reactions + Comments + Shares vs Engagements) that the case asserts.
+
+The bug status
+>> done (rc=0) — report: results/2026-10-30/QA-29111-report.md
+>> QA-29116 (full) — Fri Oct 30 11:31:28 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29116 still running (60s / 1800s cap) — 11:32:28
+>> .. QA-29116 still running (120s / 1800s cap) — 11:33:28
+>> .. QA-29116 still running (180s / 1800s cap) — 11:34:28
+>> QA-24283 (full) — Fri Oct 30 11:34:51 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29116 still running (240s / 1800s cap) — 11:35:28
+>> .. QA-24283 still running (60s / 1800s cap) — 11:35:52
+>> .. QA-29116 still running (300s / 1800s cap) — 11:36:28
+>> .. QA-24283 still running (120s / 1800s cap) — 11:36:52
+>> .. QA-29116 still running (360s / 1800s cap) — 11:37:29
+>> .. QA-24283 still running (180s / 1800s cap) — 11:37:52
+>> .. QA-29116 still running (420s / 1800s cap) — 11:38:29
+>> .. QA-24283 still running (240s / 1800s cap) — 11:38:52
+>> .. QA-29116 still running (480s / 1800s cap) — 11:39:29
+>> .. QA-24283 still running (300s / 1800s cap) — 11:39:52
+>> .. QA-29116 still running (540s / 1800s cap) — 11:40:29
+>> .. QA-24283 still running (360s / 1800s cap) — 11:40:52
+>> .. QA-29116 still running (600s / 1800s cap) — 11:41:29
+>> .. QA-24283 still running (420s / 1800s cap) — 11:41:53
+>> .. QA-29116 still running (660s / 1800s cap) — 11:42:29
+>> .. QA-24283 still running (480s / 1800s cap) — 11:42:53
+>> usage: 22 turns | in 38 (+1117762 cache-read, +57120 cache-write) | out 7082 | est $1.31
+QA-24283 is **PASS (with a data flag)**. The report is at `results/2026-10-30/QA-24283-report.md`.
+
+- **Sum row:** Engagements 670 = Pin Saves "–" (treated as 0) + Comments 670.
+- **Average row:** consistent (0, "–", 0). The per-post mean is about 0.01, so it rounds to 0.
+- **Per-post check:** Engagements = Pin Saves + Comments on 200 of 200 rendered rows.
+- **Date range:** Sephora has no Pinteres
+>> done (rc=0) — report: results/2026-10-30/QA-24283-report.md
+>> QA-29115 (full) — Fri Oct 30 11:43:14 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29116 still running (720s / 1800s cap) — 11:43:29
+>> .. QA-29115 still running (60s / 1800s cap) — 11:44:14
+>> .. QA-29116 still running (780s / 1800s cap) — 11:44:30
+>> .. QA-29115 still running (120s / 1800s cap) — 11:45:14
+>> .. QA-29116 still running (840s / 1800s cap) — 11:45:30
+>> .. QA-29115 still running (180s / 1800s cap) — 11:46:15
+>> .. QA-29116 still running (900s / 1800s cap) — 11:46:30
+>> .. QA-29115 still running (240s / 1800s cap) — 11:47:15
+>> .. QA-29116 still running (960s / 1800s cap) — 11:47:30
+>> .. QA-29115 still running (300s / 1800s cap) — 11:48:15
+>> usage: 30 turns | in 52 (+1961525 cache-read, +83501 cache-write) | out 13837 | est $2.16
+QA-29116 passes. Reactions + Comments + Shares equals Engagements on all 1,066 Hulu TikTok posts and on the Sum row (36,207,949 + 245,728 + 1,832,255 = 38,285,932).
+
+The ticket gives no date range, so I used Jan. 01 – Oct. 01, 2025, as the earlier runs and QA-29115 do. The Friday row of the description names accounts Hulu, Robinhood and PlayOn! Sports but only the brand Hulu, so I ran Hulu only.
+
+
+>> done (rc=0) — report: results/2026-10-30/QA-29116-report.md
+>> QA-29123 (full) — Fri Oct 30 11:48:30 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29115 still running (360s / 1800s cap) — 11:49:15
+>> .. QA-29123 still running (60s / 1800s cap) — 11:49:30
+>> .. QA-29115 still running (420s / 1800s cap) — 11:50:15
+>> .. QA-29123 still running (120s / 1800s cap) — 11:50:30
+>> usage: 20 turns | in 28 (+1067310 cache-read, +85618 cache-write) | out 7388 | est $1.57
+QA-29123 passes for Friday: 48 of 48 Hulu TikTok posts satisfy Reactions + Comments + Shares = Engagements. The Sum row also matches (265,386 + 1,586 + 12,351 = 279,323).
+
+The Description table's Friday row names only one brand, so Hulu was the only leg I could run. The Robinhood and PlayOn! Sports accounts have no brand listed, and I didn't invent any. The case Notes line says Fri is Hulu/Ralph L
+>> done (rc=0) — report: results/2026-10-30/QA-29123-report.md
+>> .. QA-29115 still running (480s / 1800s cap) — 11:51:15
+>> .. QA-29115 still running (540s / 1800s cap) — 11:52:15
+>> .. QA-29115 still running (600s / 1800s cap) — 11:53:16
+>> .. QA-29115 still running (660s / 1800s cap) — 11:54:16
+>> usage: 73 turns | in 130 (+4643206 cache-read, +87576 cache-write) | out 21320 | est $3.73
+QA-29115 is a **PASS**. On the UCLA account with LinkedIn only and Jan 01 – Oct 01, 2025, all 1,013 posts satisfy Reactions + Comments + Shares = Engagements. The Sum row matches too: 133,014 + 4,270 + 7,147 = 144,431.
+
+- **Brand substitution (Rule 1):** the typeahead has no brand named exactly "UCLA". I used the UCLA account's primary brand, "University of California, Los Angeles" (127756), picke
+>> done (rc=0) — report: results/2026-10-30/QA-29115-report.md
+>> QA-29122 (full) — Fri Oct 30 11:54:56 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29122 still running (60s / 1800s cap) — 11:55:56
+>> .. QA-29122 still running (120s / 1800s cap) — 11:56:56
+>> .. QA-29122 still running (180s / 1800s cap) — 11:57:56
+>> usage: 21 turns | in 34 (+914208 cache-read, +55358 cache-write) | out 8008 | est $1.21
+QA-29122 is **PASS**. I ran the Friday row on the Hulu account with the Hulu brand, on dev with the default Oct 22–28 range and the Engagements Breakdown data set.
+
+- **Twitter only (A4):** all 46 posts have Reactions + Comments + Shares equal to Engagements. The Sum row also reconciles: 3,067 + 157 + 513 = 3,737.
+- **Instagram only (A6):** all 59 posts match. Shares show "–" on every post, which 
+>> done (rc=0) — report: results/2026-10-30/QA-29122-report.md

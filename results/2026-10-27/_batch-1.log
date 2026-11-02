@@ -1,0 +1,87 @@
+>> QA-19468 (full) — Tue Oct 27 12:25:18 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> QA-20318 (full) — Tue Oct 27 12:25:37 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-19468 still running (60s / 1800s cap) — 12:26:18
+>> .. QA-20318 still running (60s / 1800s cap) — 12:26:37
+>> .. QA-19468 still running (120s / 1800s cap) — 12:27:18
+>> .. QA-20318 still running (120s / 1800s cap) — 12:27:37
+>> .. QA-19468 still running (180s / 1800s cap) — 12:28:18
+>> .. QA-20318 still running (180s / 1800s cap) — 12:28:37
+>> .. QA-19468 still running (240s / 1800s cap) — 12:29:18
+>> .. QA-20318 still running (240s / 1800s cap) — 12:29:38
+>> .. QA-19468 still running (300s / 1800s cap) — 12:30:19
+>> .. QA-20318 still running (300s / 1800s cap) — 12:30:38
+>> usage: 30 turns | in 54 (+1623553 cache-read, +61343 cache-write) | out 9483 | est $1.66
+QA-19468 **PASS**: the report is at `results/2026-10-27/QA-19468-report.md`.
+
+- **No lock symbol:** none appears in Table View. I checked the screenshots, including the right-hand columns after scrolling, and a scan of the page found no lock elements.
+- **N/A on the Sum row:** Reach, Engagement Rate, Organic Reach and Paid Reach all show N/A, with the aggregate toggle on Sum.
+- **Brand name:** no 
+>> done (rc=0) — report: results/2026-10-27/QA-19468-report.md
+>> QA-21108 (full) — Tue Oct 27 12:31:04 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> usage: 7 turns | in 10 (+185085 cache-read, +21188 cache-write) | out 2420 | est $0.36
+QA-21108 is **FAILED (blocked by open bug)**. I did not open the browser, so no steps ran and no assertions were evaluated.
+
+The case file lists APPS-60871 (Open), the Endash (–) rendering bug across the Twitter, Instagram and YouTube datasets. Rule 7 and the 2026-10-22 open-bug directive say to fail such a case without running it. All six assertions (5, 8, 11, 14, 17, 20) are marked FAILED agains
+>> done (rc=0) — report: results/2026-10-27/QA-21108-report.md
+>> QA-21874 (full) — Tue Oct 27 12:31:30 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-20318 still running (360s / 1800s cap) — 12:31:38
+>> .. QA-21874 still running (60s / 1800s cap) — 12:32:30
+>> .. QA-20318 still running (420s / 1800s cap) — 12:32:38
+>> .. QA-21874 still running (120s / 1800s cap) — 12:33:30
+>> .. QA-20318 still running (480s / 1800s cap) — 12:33:38
+>> .. QA-21874 still running (180s / 1800s cap) — 12:34:31
+>> .. QA-20318 still running (540s / 1800s cap) — 12:34:38
+>> .. QA-21874 still running (240s / 1800s cap) — 12:35:31
+>> .. QA-20318 still running (600s / 1800s cap) — 12:35:39
+>> .. QA-21874 still running (300s / 1800s cap) — 12:36:31
+>> .. QA-20318 still running (660s / 1800s cap) — 12:36:39
+>> .. QA-21874 still running (360s / 1800s cap) — 12:37:31
+>> usage: 30 turns | in 50 (+1424866 cache-read, +58875 cache-write) | out 12113 | est $1.60
+QA-20318 is a PASS overall, but only two of the three Tuesday legs could be evaluated. I ran all three Tuesday legs (UCLA, Viacom, Wasserman), the same set as the 2026-10-20 run.
+
+- **UCLA, University of California, Los Angeles:** 200 of 200 rendered Facebook posts satisfy Reactions + Comments + Shares = Engagements. The Sum row also matches (179,620).
+- **Viacom, MTV:** 200 of 200 posts match, an
+>> done (rc=0) — report: results/2026-10-27/QA-20318-report.md
+>> QA-21109 (full) — Tue Oct 27 12:37:39 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> usage: 5 turns | in 6 (+97684 cache-read, +17631 cache-write) | out 1842 | est $0.27
+**QA-21109: FAILED (blocked by open bug APPS-60871).** I did not run the case. The case file lists that bug as open, and the open-bug rule (Rule 7 in `spec-adherence-rules.md`) says not to run a case with an open linked bug, so no browser was opened.
+
+The bug's status comes from the case file as of 2026-10-20. There is no Jira access in this headless run, so I couldn't refresh it. The bug covers "
+>> done (rc=0) — report: results/2026-10-27/QA-21109-report.md
+>> QA-23894 (full) — Tue Oct 27 12:37:59 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-21874 still running (420s / 1800s cap) — 12:38:31
+>> .. QA-23894 still running (60s / 1800s cap) — 12:38:59
+>> .. QA-21874 still running (480s / 1800s cap) — 12:39:31
+>> .. QA-23894 still running (120s / 1800s cap) — 12:39:59
+>> .. QA-21874 still running (540s / 1800s cap) — 12:40:31
+>> .. QA-23894 still running (180s / 1800s cap) — 12:40:59
+>> .. QA-21874 still running (600s / 1800s cap) — 12:41:32
+>> .. QA-23894 still running (240s / 1800s cap) — 12:41:59
+>> .. QA-21874 still running (660s / 1800s cap) — 12:42:32
+>> .. QA-23894 still running (300s / 1800s cap) — 12:43:00
+>> .. QA-21874 still running (720s / 1800s cap) — 12:43:32
+>> .. QA-23894 still running (360s / 1800s cap) — 12:44:00
+>> .. QA-21874 still running (780s / 1800s cap) — 12:44:32
+>> .. QA-23894 still running (420s / 1800s cap) — 12:45:00
+>> usage: 73 turns | in 132 (+5164999 cache-read, +87713 cache-write) | out 19656 | est $3.95
+QA-23894 is a PASS. The report is at `results/2026-10-27/QA-23894-report.md`.
+
+- **Match:** All 5 Best Performing Content posts on Brand Insights (LinkedIn only, Last 30 Days, Sep 26 – Oct 25) match Brand Content on rank, date, type, Engagements, Reactions, Shares and Comments. New Posts is 127 on Insights and Posts is 127 on Content.
+- **Video Views note:** Post #4 shows Video Views 11,084 on Ins
+>> done (rc=0) — report: results/2026-10-27/QA-23894-report.md
+>> .. QA-21874 still running (840s / 1800s cap) — 12:45:32
+>> .. QA-21874 still running (900s / 1800s cap) — 12:46:32
+>> .. QA-21874 still running (960s / 1800s cap) — 12:47:33
+>> usage: 34 turns | in 50 (+1683261 cache-read, +67795 cache-write) | out 12821 | est $1.84
+QA-21874 is a **PASS** for the Tuesday UCLA row: all five channels match the spec to two decimals. I ran only the first Tuesday row (UCLA / University of California, Los Angeles), the same scoping as the 2026-10-20 run. The Viacom/MTV and Wasserman/Gatorade rows were not run.
+
+| Channel | Engagements / Total Followers × 100 | First post's Response Rate |
+|---|---|---|
+| Facebook | 1,485 / 557,017 
+>> done (rc=0) — report: results/2026-10-27/QA-21874-report.md

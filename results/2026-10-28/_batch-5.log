@@ -1,0 +1,128 @@
+>> QA-79963 (full) — Wed Oct 28 13:02:31 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-79963 still running (60s / 1800s cap) — 13:03:31
+>> .. QA-79963 still running (120s / 1800s cap) — 13:04:31
+>> .. QA-79963 still running (180s / 1800s cap) — 13:05:32
+>> .. QA-79963 still running (240s / 1800s cap) — 13:06:32
+>> .. QA-79963 still running (300s / 1800s cap) — 13:07:32
+>> .. QA-79963 still running (360s / 1800s cap) — 13:08:32
+>> .. QA-79963 still running (420s / 1800s cap) — 13:09:32
+>> .. QA-79963 still running (480s / 1800s cap) — 13:10:32
+>> .. QA-79963 still running (540s / 1800s cap) — 13:11:32
+>> .. QA-79963 still running (600s / 1800s cap) — 13:12:32
+>> .. QA-79963 still running (660s / 1800s cap) — 13:13:33
+>> .. QA-79963 still running (720s / 1800s cap) — 13:14:33
+>> .. QA-79963 still running (780s / 1800s cap) — 13:15:33
+>> .. QA-79963 still running (840s / 1800s cap) — 13:16:33
+>> .. QA-79963 still running (900s / 1800s cap) — 13:17:33
+>> .. QA-79963 still running (960s / 1800s cap) — 13:18:33
+>> .. QA-79963 still running (1020s / 1800s cap) — 13:19:33
+>> .. QA-79963 still running (1080s / 1800s cap) — 13:20:33
+>> .. QA-79963 still running (1140s / 1800s cap) — 13:21:34
+>> .. QA-79963 still running (1200s / 1800s cap) — 13:22:34
+>> .. QA-79963 still running (1260s / 1800s cap) — 13:23:34
+>> .. QA-79963 still running (1320s / 1800s cap) — 13:24:34
+>> usage: 99 turns | in 178 (+8699453 cache-read, +123153 cache-write) | out 32833 | est $6.40
+**QA-79963: PASS.** Brand > Content Video post counts match the TWC report on every channel, with the Facebook Reel-exclude from the spec note applied. Account was Viacom and brand MTV, Authorized data, Oct 20–26, 2026.
+
+| Channel | Content | TWC |
+|---|---|---|
+| Facebook | 7 | 7 |
+| Twitter | 7 | 7 |
+| Instagram | 7 | 7 |
+| TikTok | 12 | 12 |
+| YouTube | 2 | 2 |
+| Cross-channel Video Posts | 7+7
+>> done (rc=0) — report: results/2026-10-28/QA-79963-report.md
+>> QA-100877 (full) — Wed Oct 28 13:25:36 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-100877 still running (60s / 1800s cap) — 13:26:36
+>> .. QA-100877 still running (120s / 1800s cap) — 13:27:36
+>> .. QA-100877 still running (180s / 1800s cap) — 13:28:36
+>> .. QA-100877 still running (240s / 1800s cap) — 13:29:36
+>> .. QA-100877 still running (300s / 1800s cap) — 13:30:36
+>> .. QA-100877 still running (360s / 1800s cap) — 13:31:37
+>> .. QA-100877 still running (420s / 1800s cap) — 13:32:37
+>> .. QA-100877 still running (480s / 1800s cap) — 13:33:37
+>> .. QA-100877 still running (540s / 1800s cap) — 13:34:37
+>> .. QA-100877 still running (600s / 1800s cap) — 13:35:37
+>> .. QA-100877 still running (660s / 1800s cap) — 13:36:37
+>> .. QA-100877 still running (720s / 1800s cap) — 13:37:37
+>> .. QA-100877 still running (780s / 1800s cap) — 13:38:38
+>> .. QA-100877 still running (840s / 1800s cap) — 13:39:38
+>> usage: 74 turns | in 130 (+4782916 cache-read, +91707 cache-write) | out 20002 | est $3.81
+QA-100877 is **BLOCKED** at step 6. The case ran fine through steps 1–5, then the posts never loaded, so none of the four assertions (A6, A7, A8a, A8b) could be checked.
+
+- **Steps 1–5:** HBO Max account, Brand > Content, Jan 1–15 2026, Impressions data set, Threads only. The header showed `Posts (13)`.
+- **What failed:** Table View and Grid View both showed "This table failed to load". It didn't 
+>> done (rc=0) — report: results/2026-10-28/QA-100877-report.md
+>> QA-79142 (full) — Wed Oct 28 13:46:14 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-79142 still running (60s / 1800s cap) — 13:47:14
+>> .. QA-79142 still running (120s / 1800s cap) — 13:48:14
+>> .. QA-79142 still running (180s / 1800s cap) — 13:49:14
+>> .. QA-79142 still running (240s / 1800s cap) — 13:50:15
+>> .. QA-79142 still running (300s / 1800s cap) — 13:51:15
+>> .. QA-79142 still running (360s / 1800s cap) — 13:52:15
+>> .. QA-79142 still running (420s / 1800s cap) — 13:53:15
+>> .. QA-79142 still running (480s / 1800s cap) — 13:54:15
+>> usage: 67 turns | in 100 (+3345288 cache-read, +83179 cache-write) | out 16821 | est $2.93
+QA-79142 is **BLOCKED (render-hang at step 2)**, so none of the three assertions were evaluated.
+
+- **Setup:** Wednesday row, Apple Services account, Apple Music brand. I switched to Apple Services and picked the exact "Apple Music" result in the brand selector.
+- **Cause:** The Brand Content grid never rendered, only skeleton placeholders, for about 5 minutes including one reload and retry. The A
+>> done (rc=0) — report: results/2026-10-28/QA-79142-report.md
+>> QA-100873 (full) — Wed Oct 28 13:54:50 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-100873 still running (60s / 1800s cap) — 13:55:51
+>> .. QA-100873 still running (120s / 1800s cap) — 13:56:51
+>> .. QA-100873 still running (180s / 1800s cap) — 13:57:51
+>> .. QA-100873 still running (240s / 1800s cap) — 13:58:51
+>> .. QA-100873 still running (300s / 1800s cap) — 13:59:51
+>> .. QA-100873 still running (360s / 1800s cap) — 14:00:52
+>> .. QA-100873 still running (420s / 1800s cap) — 14:01:52
+>> .. QA-100873 still running (480s / 1800s cap) — 14:02:52
+>> .. QA-100873 still running (540s / 1800s cap) — 14:03:52
+>> .. QA-100873 still running (600s / 1800s cap) — 14:04:52
+>> .. QA-100873 still running (660s / 1800s cap) — 14:05:52
+>> .. QA-100873 still running (720s / 1800s cap) — 14:06:52
+>> .. QA-100873 still running (780s / 1800s cap) — 14:07:53
+>> .. QA-100873 still running (840s / 1800s cap) — 14:08:53
+>> .. QA-100873 still running (900s / 1800s cap) — 14:09:53
+>> .. QA-100873 still running (960s / 1800s cap) — 14:10:53
+>> .. QA-100873 still running (1020s / 1800s cap) — 14:11:53
+>> .. QA-100873 still running (1080s / 1800s cap) — 14:12:53
+>> .. QA-100873 still running (1140s / 1800s cap) — 14:13:53
+>> .. QA-100873 still running (1200s / 1800s cap) — 14:14:53
+>> usage: 27 turns | in 40 (+1372183 cache-read, +70981 cache-write) | out 8990 | est $1.62
+QA-100873 is **BLOCKED**: the HBO Max Threads Posts list never rendered on dev, so I couldn't check Reactions + Comments + Shares = Engagements.
+
+- **What worked:** login, account switch to HBO Max, exact brand `HBO Max` (brand_id 155614), dates Jan 1–15 2026, and Threads-only all applied correctly.
+- **What failed:** the Posts section stayed on loading skeletons for about 8 minutes. The console s
+>> done (rc=0) — report: results/2026-10-28/QA-100873-report.md
+>> QA-100887 (full) — Wed Oct 28 14:15:44 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-100887 still running (60s / 1800s cap) — 14:16:44
+>> .. QA-100887 still running (120s / 1800s cap) — 14:17:44
+>> .. QA-100887 still running (180s / 1800s cap) — 14:18:44
+>> .. QA-100887 still running (240s / 1800s cap) — 14:19:44
+>> .. QA-100887 still running (300s / 1800s cap) — 14:20:44
+>> .. QA-100887 still running (360s / 1800s cap) — 14:21:45
+>> .. QA-100887 still running (420s / 1800s cap) — 14:22:45
+>> .. QA-100887 still running (480s / 1800s cap) — 14:23:45
+>> .. QA-100887 still running (540s / 1800s cap) — 14:24:45
+>> .. QA-100887 still running (600s / 1800s cap) — 14:25:45
+>> .. QA-100887 still running (660s / 1800s cap) — 14:26:45
+>> usage: 74 turns | in 138 (+5712967 cache-read, +103505 cache-write) | out 26526 | est $4.56
+**QA-100887: PASS.** Brand Insights and Time Window Comparison (TWC) matched on all five Threads metrics for UCLA, Dec 6–12 2024, Authorized view:
+
+| Metric | Insights | TWC |
+|---|---|---|
+| Follower Growth / New Followers | 13 | 13 |
+| New Posts / Posts | 9 | 9 |
+| Engagements | 369 | 369 |
+| Engagement Rate | 2.52% | 2.52% |
+| Views | 14.6K tile (14,635 exact) | 14,635 |
+
+The case had no open l
+>> done (rc=0) — report: results/2026-10-28/QA-100887-report.md

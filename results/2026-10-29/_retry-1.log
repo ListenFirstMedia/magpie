@@ -1,0 +1,16 @@
+>> QA-29125 (full) — Thu Oct 29 15:16:50 IST 2026  [timeout 900s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29125 still running (60s / 900s cap) — 15:17:50
+>> .. QA-29125 still running (120s / 900s cap) — 15:18:50
+>> .. QA-29125 still running (180s / 900s cap) — 15:19:50
+>> .. QA-29125 still running (240s / 900s cap) — 15:20:50
+>> .. QA-29125 still running (300s / 900s cap) — 15:21:50
+>> .. QA-29125 still running (360s / 900s cap) — 15:22:50
+>> .. QA-29125 still running (420s / 900s cap) — 15:23:50
+>> .. QA-29125 still running (480s / 900s cap) — 15:24:51
+>> usage: 28 turns | in 48 (+1509446 cache-read, +71639 cache-write) | out 14669 | est $1.84
+QA-29125 is BLOCKED: the Twitter leg passes on Ralph Lauren, but the Instagram leg could not be evaluated on any Thursday brand.
+
+- **Spotify / Spotify News:** "Spotify News" isn't on dev, and I did not substitute another brand. Typing "Spotify" returns 68 options and none is "Spotify News". This blocks that row.
+- **Sony Pictures Television:** Twitter has 0 posts. Instagram has 7 posts, but Video
+>> done (rc=0) — report: results/2026-10-29/QA-29125-report.md

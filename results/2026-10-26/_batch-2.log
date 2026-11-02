@@ -1,0 +1,93 @@
+>> QA-79142 (full) — Mon Oct 26 12:52:21 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-79142 still running (60s / 1500s cap) — 12:53:21
+>> .. QA-79142 still running (120s / 1500s cap) — 12:54:21
+>> .. QA-79142 still running (180s / 1500s cap) — 12:55:21
+>> .. QA-79142 still running (240s / 1500s cap) — 12:56:21
+>> QA-29111 (full) — Mon Oct 26 12:57:02 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-79142 still running (300s / 1500s cap) — 12:57:21
+>> usage: 8 turns | in 10 (+185193 cache-read, +20780 cache-write) | out 2317 | est $0.36
+QA-29111 is FAILED (blocked by open bug) and I did not run it. The case lists APPS-61116 as open, and today's `results/open-bugs-2026-10-26.json` still shows it open. Under Rule 7 I wrote the report without opening the browser or logging in.
+
+The report is at `results/2026-10-26/QA-29111-report.md`. Both assertions are marked blocked. Assertion 7 is on Instagram, which APPS-61116 doesn't name. It 
+>> done (rc=0) — report: results/2026-10-26/QA-29111-report.md
+>> QA-29115 (full) — Mon Oct 26 12:57:34 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-79142 still running (360s / 1500s cap) — 12:58:22
+>> .. QA-29115 still running (60s / 1500s cap) — 12:58:34
+>> .. QA-79142 still running (420s / 1500s cap) — 12:59:22
+>> .. QA-29115 still running (120s / 1500s cap) — 12:59:34
+>> usage: 29 turns | in 44 (+1397619 cache-read, +64377 cache-write) | out 9800 | est $1.59
+QA-79142 passed 3/3. The report is at `results/2026-10-26/QA-79142-report.md`.
+
+I ran it for Monday on account HBO Max and brand HBO Max, with the Public data set, Content Type Video, and the default week of Oct 18–24. In each case Sum Engagements divided by Sum Video Views matched the Average Video Response Rate, so I didn't need the second formula.
+
+| Channel | Sum Engagements ÷ Sum Video Views 
+>> done (rc=0) — report: results/2026-10-26/QA-79142-report.md
+>> QA-100873 (full) — Mon Oct 26 13:00:02 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29115 still running (180s / 1500s cap) — 13:00:34
+>> .. QA-100873 still running (60s / 1500s cap) — 13:01:02
+>> .. QA-29115 still running (240s / 1500s cap) — 13:01:34
+>> .. QA-100873 still running (120s / 1500s cap) — 13:02:02
+>> .. QA-29115 still running (300s / 1500s cap) — 13:02:35
+>> .. QA-100873 still running (180s / 1500s cap) — 13:03:03
+>> .. QA-29115 still running (360s / 1500s cap) — 13:03:35
+>> .. QA-100873 still running (240s / 1500s cap) — 13:04:03
+>> .. QA-29115 still running (420s / 1500s cap) — 13:04:35
+>> .. QA-100873 still running (300s / 1500s cap) — 13:05:03
+>> usage: 31 turns | in 54 (+1718108 cache-read, +61640 cache-write) | out 11384 | est $1.76
+QA-100873 is **PASS**. For HBO Max Threads over Jan 1–15 2026, Reactions + Comments + Shares equals Engagements on all 13 posts and on the Sum row.
+
+- **Sum row:** 12,268 + 394 + 1,646 = 14,308.
+- **Setup:** I switched the account from the post-login default (Adam Orfei) to HBO Max, picked the exact `HBO Max` brand, and enabled only Threads.
+- **Table reload:** The Posts table failed to load once 
+>> done (rc=0) — report: results/2026-10-26/QA-100873-report.md
+>> QA-100877 (full) — Mon Oct 26 13:05:35 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+>> .. QA-29115 still running (480s / 1500s cap) — 13:05:35
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-100877 still running (60s / 1500s cap) — 13:06:35
+>> .. QA-29115 still running (540s / 1500s cap) — 13:06:35
+>> .. QA-100877 still running (120s / 1500s cap) — 13:07:35
+>> .. QA-29115 still running (600s / 1500s cap) — 13:07:35
+>> .. QA-100877 still running (180s / 1500s cap) — 13:08:35
+>> .. QA-29115 still running (660s / 1500s cap) — 13:08:35
+>> .. QA-100877 still running (240s / 1500s cap) — 13:09:35
+>> .. QA-29115 still running (720s / 1500s cap) — 13:09:36
+>> .. QA-100877 still running (300s / 1500s cap) — 13:10:35
+>> .. QA-29115 still running (780s / 1500s cap) — 13:10:36
+>> usage: 33 turns | in 52 (+1663130 cache-read, +63758 cache-write) | out 11747 | est $1.76
+QA-29115 is a **PASS**. The report is at `results/2026-10-26/QA-29115-report.md`.
+
+- **Check:** Reactions + Comments + Shares equals Engagements on 400 individually scraped LinkedIn posts (the top 200 and bottom 200), with 0 mismatches. The Sum row for all 1,013 posts balances too: 133,014 + 4,270 + 7,147 = 144,431.
+- **Coverage gap:** The grid shows only 200 rows per sort order, so the 613 posts 
+>> done (rc=0) — report: results/2026-10-26/QA-29115-report.md
+>> QA-29116 (full) — Mon Oct 26 13:11:06 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-100877 still running (360s / 1500s cap) — 13:11:36
+>> .. QA-29116 still running (60s / 1500s cap) — 13:12:06
+>> usage: 24 turns | in 32 (+1179263 cache-read, +82201 cache-write) | out 10201 | est $1.67
+QA-100877 is **FAIL**. The report is at `results/2026-10-26/QA-100877-report.md`.
+
+- **A6 (Organic + Paid Impressions = Impressions): FAIL.** Organic and Paid Impressions show "–" on all 13 Threads posts and on the Sum row, while Impressions is populated (Sum 419,745). The sum can't equal Impressions.
+- **A7 (Organic + Paid Reach = Reach): not evaluable.** Reach, Organic Reach and Paid Reach are a
+>> done (rc=0) — report: results/2026-10-26/QA-100877-report.md
+>> .. QA-29116 still running (120s / 1500s cap) — 13:13:06
+>> .. QA-29116 still running (180s / 1500s cap) — 13:14:06
+>> .. QA-29116 still running (240s / 1500s cap) — 13:15:07
+>> .. QA-29116 still running (300s / 1500s cap) — 13:16:07
+>> .. QA-29116 still running (360s / 1500s cap) — 13:17:07
+>> .. QA-29116 still running (420s / 1500s cap) — 13:18:07
+>> .. QA-29116 still running (480s / 1500s cap) — 13:19:07
+>> .. QA-29116 still running (540s / 1500s cap) — 13:20:07
+>> .. QA-29116 still running (600s / 1500s cap) — 13:21:08
+>> .. QA-29116 still running (660s / 1500s cap) — 13:22:08
+>> .. QA-29116 still running (720s / 1500s cap) — 13:23:08
+>> .. QA-29116 still running (780s / 1500s cap) — 13:24:08
+>> usage: 36 turns | in 54 (+2039510 cache-read, +75604 cache-write) | out 11239 | est $2.06
+**QA-29116 passed.** Reactions + Comments + Shares equals Engagements for every post I checked and for the aggregate Sum row.
+
+- **Run setup:** HBO Max account, HBO Max brand, TikTok only, Jan 01 – Oct 01, 2025. The case has no open linked bugs, so it ran.
+- **Per-post check:** 1,389 TikTok posts fall in the range, but the table shows only 200 at a time. I checked the top 200 and bottom 200 by Eng
+>> done (rc=0) — report: results/2026-10-26/QA-29116-report.md

@@ -1,0 +1,33 @@
+{
+ "_note": "Dev-vs-Prod comparisons run 2026-10-29 (Thursday rotation: Spotify/Spotify News (brand absent), Sony Pictures/Sony Pictures Television, Ralph Lauren/Ralph Lauren). Default week Oct 21-27 2026.",
+ "QA-20534": {
+  "verdict": "PASS",
+  "opts": {
+   "ds": "Public",
+   "channels": [
+    "instagram"
+   ]
+  },
+  "summary": {
+   "devPosts": 8,
+   "prodPosts": 8,
+   "matched": 8,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": []
+  },
+  "dev": {
+   "n": 8
+  },
+  "prod": {
+   "n": 8
+  },
+  "meta": {
+   "account": "Sony Pictures",
+   "brand": "Sony Pictures Television",
+   "note": "Row 1 brand Spotify News does not exist on the Spotify account (dev/prod); ran on row 2."
+  }
+ }
+}

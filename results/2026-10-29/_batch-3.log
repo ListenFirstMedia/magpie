@@ -1,0 +1,130 @@
+>> QA-29126 (full) — Thu Oct 29 12:56:17 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29126 still running (60s / 1800s cap) — 12:57:17
+>> .. QA-29126 still running (120s / 1800s cap) — 12:58:17
+>> .. QA-29126 still running (180s / 1800s cap) — 12:59:17
+>> .. QA-29126 still running (240s / 1800s cap) — 13:00:17
+>> .. QA-29126 still running (300s / 1800s cap) — 13:01:18
+>> .. QA-29126 still running (360s / 1800s cap) — 13:02:18
+>> .. QA-29126 still running (420s / 1800s cap) — 13:03:18
+>> .. QA-29126 still running (480s / 1800s cap) — 13:04:18
+>> .. QA-29126 still running (540s / 1800s cap) — 13:05:18
+>> usage: 24 turns | in 42 (+1253466 cache-read, +72106 cache-write) | out 15197 | est $1.73
+QA-29126 is BLOCKED (partial). I ran all three Thursday legs; two of them passed.
+
+- **Spotify / Spotify News:** BLOCKED. "Spotify News" isn't in the brand typeahead on the Spotify account (account_id=1030). Per Rule 1 I did not substitute another brand. The sibling case QA-29116 hit the same gap earlier today.
+- **Sony Pictures / Sony Pictures Television:** PASS on 10 TikTok posts, and the Sum ro
+>> done (rc=0) — report: results/2026-10-29/QA-29126-report.md
+>> QA-29129 (full) — Thu Oct 29 13:05:48 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29129 still running (60s / 1800s cap) — 13:06:49
+>> .. QA-29129 still running (120s / 1800s cap) — 13:07:49
+>> .. QA-29129 still running (180s / 1800s cap) — 13:08:49
+>> usage: 35 turns | in 60 (+1810467 cache-read, +63399 cache-write) | out 13105 | est $1.87
+QA-29129 is a **PASS**, with one caveat: the Reach assertion (A5) is only trivially met. The report is at `results/2026-10-29/QA-29129-report.md`.
+
+I ran it on the UCLA account (default brand, University of California, Los Angeles) with the Impressions data set, LinkedIn only, Last 30 Days (Sep 28 – Oct 27). All 129 posts were scraped from the Table View.
+
+- **Impressions:** Organic + Paid = Impre
+>> done (rc=0) — report: results/2026-10-29/QA-29129-report.md
+>> QA-29235 (full) — Thu Oct 29 13:09:09 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29235 still running (60s / 1800s cap) — 13:10:09
+>> .. QA-29235 still running (120s / 1800s cap) — 13:11:09
+>> .. QA-29235 still running (180s / 1800s cap) — 13:12:10
+>> .. QA-29235 still running (240s / 1800s cap) — 13:13:10
+>> .. QA-29235 still running (300s / 1800s cap) — 13:14:10
+>> .. QA-29235 still running (360s / 1800s cap) — 13:15:10
+>> .. QA-29235 still running (420s / 1800s cap) — 13:16:10
+>> .. QA-29235 still running (480s / 1800s cap) — 13:17:10
+>> QA-29125 (full) — Thu Oct 29 13:17:12 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29235 still running (540s / 1800s cap) — 13:18:10
+>> .. QA-29125 still running (60s / 1800s cap) — 13:18:12
+>> .. QA-29235 still running (600s / 1800s cap) — 13:19:10
+>> .. QA-29125 still running (120s / 1800s cap) — 13:19:12
+>> .. QA-29235 still running (660s / 1800s cap) — 13:20:11
+>> .. QA-29125 still running (180s / 1800s cap) — 13:20:12
+>> .. QA-29235 still running (720s / 1800s cap) — 13:21:11
+>> .. QA-29125 still running (240s / 1800s cap) — 13:21:13
+>> .. QA-29235 still running (780s / 1800s cap) — 13:22:11
+>> .. QA-29125 still running (300s / 1800s cap) — 13:22:13
+>> .. QA-29235 still running (840s / 1800s cap) — 13:23:11
+>> .. QA-29125 still running (360s / 1800s cap) — 13:23:13
+>> .. QA-29235 still running (900s / 1800s cap) — 13:24:11
+>> .. QA-29125 still running (420s / 1800s cap) — 13:24:13
+>> usage: 32 turns | in 54 (+1994809 cache-read, +85472 cache-write) | out 17295 | est $2.28
+QA-29235 is BLOCKED: the brand "Spotify News" isn't selectable on dev. The other two Thursday pairs in the case table both passed. The report is at `results/2026-10-29/QA-29235-report.md`.
+
+- **Spotify → Spotify News: BLOCKED.** The brand typeahead on the Spotify account returns no result for "Spotify News", and neighbouring queries return only regional Spotify brands. I used no substitute brand, 
+>> done (rc=0) — report: results/2026-10-29/QA-29235-report.md
+>> .. QA-29125 still running (480s / 1800s cap) — 13:25:13
+>> .. QA-29125 still running (540s / 1800s cap) — 13:26:13
+>> .. QA-29125 still running (600s / 1800s cap) — 13:27:13
+>> .. QA-29125 still running (660s / 1800s cap) — 13:28:13
+>> .. QA-29125 still running (720s / 1800s cap) — 13:29:14
+>> .. QA-29125 still running (780s / 1800s cap) — 13:30:14
+>> .. QA-29125 still running (840s / 1800s cap) — 13:31:14
+>> .. QA-29125 still running (900s / 1800s cap) — 13:32:14
+>> .. QA-29125 still running (960s / 1800s cap) — 13:33:14
+>> .. QA-29125 still running (1020s / 1800s cap) — 13:34:14
+>> .. QA-29125 still running (1080s / 1800s cap) — 13:35:14
+>> .. QA-29125 still running (1140s / 1800s cap) — 13:36:14
+>> .. QA-29125 still running (1200s / 1800s cap) — 13:37:14
+>> .. QA-29125 still running (1260s / 1800s cap) — 13:38:15
+>> .. QA-29125 still running (1320s / 1800s cap) — 13:39:15
+>> .. QA-29125 still running (1380s / 1800s cap) — 13:40:15
+>> .. QA-29125 still running (1440s / 1800s cap) — 13:41:15
+>> .. QA-29125 still running (1500s / 1800s cap) — 13:42:15
+>> .. QA-29125 still running (1560s / 1800s cap) — 13:43:15
+>> .. QA-29125 still running (1620s / 1800s cap) — 13:44:15
+>> .. QA-29125 still running (1680s / 1800s cap) — 13:45:16
+>> .. QA-29125 still running (1740s / 1800s cap) — 13:46:16
+>> .. QA-29125 still running (1800s / 1800s cap) — 13:47:16
+>> TIMEOUT after 1800s — killing QA-29125 (process group)
+>> done (rc=143) — report: results/2026-10-29/QA-29125-report.md
+>> QA-29128 (full) — Thu Oct 29 13:47:19 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> usage: 7 turns | in 10 (+185378 cache-read, +22639 cache-write) | out 3229 | est $0.40
+QA-29128 is **FAILED (blocked by open bug APPS-60871)**. I didn't open the browser.
+
+The case file lists APPS-60871 as open. Rule 7 and the 2026-10-22 policy fail any case with an open linked bug. The bug shows en-dashes in place of real values on the Twitter and Instagram datasets, which are exactly the cells this case checks.
+
+All 11 steps are marked not executed and all 8 assertions BLOCKED. No
+>> done (rc=0) — report: results/2026-10-29/QA-29128-report.md
+>> QA-29234 (full) — Thu Oct 29 13:47:50 IST 2026  [timeout 1800s | model claude-sonnet-5-5@high]
+[claude-code:unrecognized_model] {"model":"claude-sonnet-5-5","query_source":"sdk"}
+>> .. QA-29234 still running (60s / 1800s cap) — 13:48:50
+>> .. QA-29234 still running (120s / 1800s cap) — 13:49:51
+>> .. QA-29234 still running (180s / 1800s cap) — 13:50:51
+>> .. QA-29234 still running (240s / 1800s cap) — 13:51:51
+>> .. QA-29234 still running (300s / 1800s cap) — 13:52:51
+>> .. QA-29234 still running (360s / 1800s cap) — 13:53:51
+>> .. QA-29234 still running (420s / 1800s cap) — 13:54:51
+>> .. QA-29234 still running (480s / 1800s cap) — 13:55:51
+>> .. QA-29234 still running (540s / 1800s cap) — 13:56:51
+>> .. QA-29234 still running (600s / 1800s cap) — 13:57:51
+>> .. QA-29234 still running (660s / 1800s cap) — 13:58:52
+>> .. QA-29234 still running (720s / 1800s cap) — 13:59:52
+>> .. QA-29234 still running (780s / 1800s cap) — 14:00:52
+>> .. QA-29234 still running (840s / 1800s cap) — 14:01:52
+>> .. QA-29234 still running (900s / 1800s cap) — 14:02:52
+>> .. QA-29234 still running (960s / 1800s cap) — 14:03:52
+>> .. QA-29234 still running (1020s / 1800s cap) — 14:04:52
+>> .. QA-29234 still running (1080s / 1800s cap) — 14:05:52
+>> .. QA-29234 still running (1140s / 1800s cap) — 14:06:53
+>> .. QA-29234 still running (1200s / 1800s cap) — 14:07:53
+>> .. QA-29234 still running (1260s / 1800s cap) — 14:08:53
+>> .. QA-29234 still running (1320s / 1800s cap) — 14:09:53
+>> .. QA-29234 still running (1380s / 1800s cap) — 14:10:53
+>> .. QA-29234 still running (1440s / 1800s cap) — 14:11:53
+>> .. QA-29234 still running (1500s / 1800s cap) — 14:12:53
+>> .. QA-29234 still running (1560s / 1800s cap) — 14:13:53
+>> .. QA-29234 still running (1620s / 1800s cap) — 14:14:54
+>> .. QA-29234 still running (1680s / 1800s cap) — 14:15:54
+>> usage: 46 turns | in 68 (+2910003 cache-read, +96095 cache-write) | out 21992 | est $2.97
+QA-29234 is **BLOCKED**, and I've written the report to `results/2026-10-29/QA-29234-report.md`. Today is Thursday, so I ran the Spotify, Sony Pictures and Ralph Lauren legs on dev.
+
+- **Spotify (Spotify News):** BLOCKED. The brand "Spotify News" isn't findable on dev; the only Spotify account is 1030. I didn't substitute another brand.
+- **Sony Pictures (Sony Pictures Television):** ran on the ex
+>> done (rc=0) — report: results/2026-10-29/QA-29234-report.md
