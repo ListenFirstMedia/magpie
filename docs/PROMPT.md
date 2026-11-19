@@ -68,6 +68,24 @@ reload+retry; usable → proceed; still stuck → the WHOLE CASE is BLOCKED (ver
   — mark the whole case SKIPPED ('external-user precondition, deferred') and move on. (Account/brand
   SWITCHES of the same user are fine — that's the switch-account skill.)
 
+═══ DATA TEST SETS — STRICTLY READ-ONLY (applies ONLY to the Data Testing sets) ═══
+Scope: the Daily Data Testing sets QA-27628, QA-26183 and QA-21686 (cases labeled DataTest /
+ingested from those Test Sets). It does NOT apply to the regression sets.
+- We are there ONLY to VERIFY DATA. NEVER create, save, rename, edit or delete anything on dev or
+  prod: no brands, brand sets, tags, dashboards, custom data sets, custom metrics, saved reports,
+  key dates, favourites, schedules, users — nothing that persists after the session.
+- Allowed: logging in, switching account, SELECTING an existing brand / brand set / data set /
+  channel / date range / filter, switching views, running a report on screen WITHOUT saving it,
+  reading values, opening native post pages, and downloading an export to verify it on disk.
+- "Add a Brand" in a step means pick an EXISTING brand in the picker — never Settings > Add Brand.
+- If a step can only be done by creating something (the brand, brand set, tag, dashboard or data
+  set it names does not exist): do NOT create it. Use an existing equivalent the case allows
+  (weekday rotation row, "also Amazon Prime Video"); otherwise mark that step/case BLOCKED
+  ('needs <entity> — not created, Data Test read-only rule') and move on.
+- Rule 6 "MUTATING tests" (timestamped ids + cleanup) never applies here — there is nothing to
+  clean up because nothing is created. Every data-test report's Cleanup section reads
+  'None (read-only)'.
+
 ═══ OUTPUT ═══
 - One report per case: results/<YYYY-MM-DD>/QA-<id>-report.md with steps executed, an assertions table
   (ID | Step | Expected | Actual | Status), evidence (exact numbers/text, screenshot refs under

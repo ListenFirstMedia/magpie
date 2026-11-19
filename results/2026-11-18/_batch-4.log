@@ -1,0 +1,25 @@
+>> QA-38198 (full) — Wed Nov 18 13:23:26 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+>> usage: 10 turns | in 14 (+192652 cache-read, +34783 cache-write) | out 3568 | est $0.19
+QA-38198 is FAILED (blocked by open bug APPS-58195). I did not open the browser or run the 13 steps. I wrote the report to `results/2026-11-18/QA-38198-report.md`.
+
+Rule 7 in `skills/_shared/spec-adherence-rules.md` says a case with an open linked bug must not be run. APPS-58195 is in Code Review, listed in both the case file and `results/open-bugs-2026-11-18.json`. That conflicts with this run's 
+>> done (rc=0) — report: results/2026-11-18/QA-38198-report.md
+>> QA-68228 (full) — Wed Nov 18 13:24:01 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+>> .. QA-68228 still running (60s / 1500s cap) — 13:25:01
+>> .. QA-68228 still running (120s / 1500s cap) — 13:26:01
+>> .. QA-68228 still running (180s / 1500s cap) — 13:27:01
+>> usage: 25 turns | in 46 (+1275611 cache-read, +69911 cache-write) | out 12894 | est $0.54
+**QA-68228: PASS.** The report is at `results/2026-11-18/QA-68228-report.md`.
+
+- **Result:** all 50 Hulu Instagram stories for Nov 10–16, 2026 satisfy Engaged User Rate = Engagements ÷ Reach × 100. The largest difference from the displayed value is 0.0050 percentage points, which is just the 2-decimal rounding. I joined the Insights and Rates tables by Rank, and Date and Engagements matched on all
+>> done (rc=0) — report: results/2026-11-18/QA-68228-report.md
+>> QA-81509 (full) — Wed Nov 18 13:27:11 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+>> .. QA-81509 still running (60s / 1500s cap) — 13:28:12
+>> .. QA-81509 still running (120s / 1500s cap) — 13:29:12
+>> .. QA-81509 still running (180s / 1500s cap) — 13:30:12
+>> usage: 40 turns | in 66 (+1969175 cache-read, +66638 cache-write) | out 11686 | est $0.58
+**QA-81509 verdict: BLOCKED.** The native X post page returned HTTP 403 in headless Chrome (popup and one retry), so assertion 8 could not be fully evaluated. The report is at `results/2026-11-18/QA-81509-report.md`.
+
+- **Steps 1–7:** all ran as written, as Robinhood (account 805). The first post was rank 1 `@funtokio` in Posts (538).
+- **LFM values for that post:** Engagements 127, Likes 65, Repl
+>> done (rc=0) — report: results/2026-11-18/QA-81509-report.md

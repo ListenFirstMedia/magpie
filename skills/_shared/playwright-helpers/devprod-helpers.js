@@ -2,7 +2,8 @@
 // Load with browser_run_code_unsafe { filename: "skills/_shared/playwright-helpers/devprod-helpers.js" }.
 // Installs `page.context()._m` (helpers) and opens/logs in the prod tab (index 0) and dev tab (index 1).
 // Credentials: read by the CALLER into ctx._creds = {email, password} before loading, or passed via
-// ctx._creds; this file never contains a password.
+// ctx._creds; this file never contains a password. Prod uses a separate user: also set
+// ctx._credsProd = {email, password} from config/.env.prod (dev stays on ctx._creds from config/.env).
 async (page) => {
   const ctx = page.context();
   const m = ctx._m || {};
@@ -14,12 +15,20 @@ async (page) => {
   m.toNum = (v) => { if (v == null) return null; v = String(v).trim(); if (!v || v === '–' || v === '-' || v === 'N/A' || v === '—') return null; const mm = v.replace(/,/g, '').match(/-?[\d.]+/); if (!mm) return null; let n = parseFloat(mm[0]); if (/K$/i.test(v)) n *= 1e3; if (/M$/i.test(v)) n *= 1e6; if (/B$/i.test(v)) n *= 1e9; return n; };
 
   m.login = async (p, host) => {
-    const c = ctx._creds; if (!c) throw new Error('ctx._creds {email,password} not set');
+    // prod has its own QA user since 2026-11-17 (config/.env.prod): ctx._credsProd, falling back to ctx._creds
+    const c = (/listenfirstmedia\.com/.test(host) && ctx._credsProd) || ctx._creds; if (!c) throw new Error('ctx._creds {email,password} not set');
     // 'commit' + long timeout: under batch load dev's load event can take > 30 s (2026-10-26)
     await p.goto(host, { waitUntil: 'commit', timeout: 90000 }).catch(() => null); await p.waitForTimeout(8000);
     // the app may still be redirecting to auth.* when we look (2026-10-28): wait until either the auth page or the app shell shows
     { const t0 = Date.now(); while (Date.now() - t0 < 60000 && !/auth\./.test(p.url()) && !(await p.evaluate(() => !!document.querySelector('.navigation-controls-user')).catch(() => false))) await p.waitForTimeout(3000); }
     for (let attempt = 0; attempt < 3 && /auth\./.test(p.url()); attempt++) {
+      // "You're still signed in" / forced "Change password" pages have no email field (2026-11-17):
+      // a stale Cognito session — drop this host's cookies and start the sign-in again.
+      if (!(await p.locator('input[type=email], input[name=username]').filter({ visible: true }).count())) {
+        if (/Change password/i.test(await p.title()) && attempt > 0) throw new Error('Cognito forces a password change for ' + c.email + ' — the user must set it and update the env file');
+        await ctx.clearCookies({ domain: new RegExp(new URL(host).hostname.split('.').slice(-2).join('\\.') + '$') });
+        await p.goto(host, { waitUntil: 'commit', timeout: 90000 }).catch(() => null); await p.waitForTimeout(8000);
+      }
       await p.locator('input[type=email], input[name=username]').last().fill(c.email);
       const pw = p.locator('input[type=password]').last(); await pw.fill(c.password); await pw.press('Enter');
       await p.waitForURL(u => !/auth\./.test(String(u)), { timeout: 90000 }).catch(() => null);
@@ -165,7 +174,12 @@ async (page) => {
       out[name] = o; scr[name] = s;
     }
     const d = scr.dev, q = scr.prod;
-    if (!d || !q) { out.verdict = 'BLOCKED'; out.why = 'table missing'; return out; }
+    if (!d || !q) {
+      // 0 posts on both environments renders no table at all → no data, not a scrape failure (2026-11-18)
+      const zero = (o) => o && String((o.ch || o.ds || {}).posts) === '0';
+      if (zero(out.dev) && zero(out.prod)) { out.verdict = 'BLOCKED-NODATA'; out.summary = { devPosts: 0, prodPosts: 0, matched: 0, onlyDev: 0, onlyProd: 0, colsCompared: [], mismatchCols: {}, aggDiff: [] }; return out; }
+      out.verdict = 'BLOCKED'; out.why = 'table missing'; return out;
+    }
     const skip = new Set(['Rank', 'Actions', 'Text', '_link', '_links']);
     const cols = d.H.filter(h => q.H.includes(h) && !skip.has(h));
     const qmap = new Map(q.posts.map(r => [m.keyOf(r), r]));

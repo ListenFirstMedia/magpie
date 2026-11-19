@@ -1,0 +1,5263 @@
+{
+ "QA-20533": {
+  "opts": {
+   "ds": "Public",
+   "channels": [
+    "twitter"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 2,
+    "idx": 0,
+    "posts": "55"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "twitter"
+    ],
+    "posts": "4"
+   },
+   "table": true,
+   "n": 4,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Reactions",
+    "Comments",
+    "Shares",
+    "Response Rate",
+    "Video Views",
+    "Video Response Rate",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "4,256",
+     "Reactions": "3,125",
+     "Comments": "56",
+     "Shares": "3,356",
+     "Response Rate": "N/A",
+     "Video Views": "45,756",
+     "Video Response Rate": "N/A",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 2,
+    "idx": 0,
+    "posts": "55"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "twitter"
+    ],
+    "posts": "4"
+   },
+   "table": true,
+   "n": 4,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Reactions",
+    "Comments",
+    "Shares",
+    "Response Rate",
+    "Video Views",
+    "Video Response Rate",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "4,256",
+     "Reactions": "3,125",
+     "Comments": "56",
+     "Shares": "3,356",
+     "Response Rate": "N/A",
+     "Video Views": "45,756",
+     "Video Response Rate": "N/A",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 4,
+   "prodPosts": 4,
+   "matched": 4,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Engagements",
+    "Reactions",
+    "Comments",
+    "Shares",
+    "Response Rate",
+    "Video Views",
+    "Video Response Rate"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Engagements": "4,256",
+    "Reactions": "3,125",
+    "Comments": "56",
+    "Shares": "3,356",
+    "Response Rate": "N/A",
+    "Video Views": "45,756",
+    "Video Response Rate": "N/A"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "Apple Services",
+   "brand": "Apple Music",
+   "week": "Nov. 10, 2026 - Nov. 16, 2026",
+   "weekProd": "Nov. 10, 2026 - Nov. 16, 2026",
+   "note": "Wednesday row: Apple Services / Apple Music."
+  }
+ },
+ "QA-21027": {
+  "opts": {
+   "ds": "Public",
+   "channels": [
+    "twitter"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 2,
+    "idx": 0,
+    "posts": "4"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "twitter"
+    ],
+    "posts": "4"
+   },
+   "table": true,
+   "n": 4,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Reactions",
+    "Comments",
+    "Shares",
+    "Response Rate",
+    "Video Views",
+    "Video Response Rate",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "4,256",
+     "Reactions": "3,125",
+     "Comments": "56",
+     "Shares": "3,356",
+     "Response Rate": "N/A",
+     "Video Views": "45,756",
+     "Video Response Rate": "N/A",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 2,
+    "idx": 0,
+    "posts": "4"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "twitter"
+    ],
+    "posts": "4"
+   },
+   "table": true,
+   "n": 4,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Reactions",
+    "Comments",
+    "Shares",
+    "Response Rate",
+    "Video Views",
+    "Video Response Rate",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "4,256",
+     "Reactions": "3,125",
+     "Comments": "56",
+     "Shares": "3,356",
+     "Response Rate": "N/A",
+     "Video Views": "45,756",
+     "Video Response Rate": "N/A",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 4,
+   "prodPosts": 4,
+   "matched": 4,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Engagements",
+    "Reactions",
+    "Comments",
+    "Shares",
+    "Response Rate",
+    "Video Views",
+    "Video Response Rate"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Engagements": "4,256",
+    "Reactions": "3,125",
+    "Comments": "56",
+    "Shares": "3,356",
+    "Response Rate": "N/A",
+    "Video Views": "45,756",
+    "Video Response Rate": "N/A"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "Apple Services",
+   "brand": "Apple Music",
+   "week": "Nov. 10, 2026 - Nov. 16, 2026",
+   "weekProd": "Nov. 10, 2026 - Nov. 16, 2026",
+   "note": "The spec names a 'Reactions' data set that does not exist in the data set dropdown; the Twitter Public comparison the dev half of the spec describes (Engagements, Reactions, Comments, Shares) was run. Wednesday row: Apple Services / Apple Music."
+  }
+ },
+ "QA-20535": {
+  "opts": {
+   "ds": "Public",
+   "channels": [
+    "youtube"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 2,
+    "idx": 0,
+    "posts": "4"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "youtube"
+    ],
+    "posts": "2"
+   },
+   "table": true,
+   "n": 2,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Video Views",
+    "Likes",
+    "Comments",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Video Views": "28,506",
+     "Likes": "536",
+     "Comments": "76",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 2,
+    "idx": 0,
+    "posts": "4"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "youtube"
+    ],
+    "posts": "2"
+   },
+   "table": true,
+   "n": 2,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Video Views",
+    "Likes",
+    "Comments",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Video Views": "28,506",
+     "Likes": "536",
+     "Comments": "76",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 2,
+   "prodPosts": 2,
+   "matched": 2,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Video Views",
+    "Likes",
+    "Comments"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Video Views": "28,506",
+    "Likes": "536",
+    "Comments": "76"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "Apple Services",
+   "brand": "Apple Music",
+   "week": "Nov. 10, 2026 - Nov. 16, 2026",
+   "weekProd": "Nov. 10, 2026 - Nov. 16, 2026",
+   "note": "Wednesday row: Apple Services / Apple Music."
+  }
+ },
+ "QA-20269": {
+  "opts": {
+   "ds": "Video Views",
+   "channels": [
+    "facebook"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 2,
+    "idx": 0,
+    "posts": "46"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "facebook"
+    ],
+    "posts": "3"
+   },
+   "table": true,
+   "n": 3,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Video Response Rate",
+    "Video Views",
+    "Organic Views",
+    "Paid Views",
+    "Unclassified Views",
+    "Viewers",
+    "Video Duration",
+    "Watch Time (Minutes)",
+    "Video Views (with Cross-Posts)",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "1,872",
+     "Video Response Rate": "N/A",
+     "Video Views": "23,505",
+     "Organic Views": "23,505",
+     "Paid Views": "0",
+     "Unclassified Views": "0",
+     "Viewers": "58,213",
+     "Video Duration": "1m51s",
+     "Watch Time (Minutes)": "\u2013",
+     "Video Views (with Cross-Posts)": "23,505",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 2,
+    "idx": 0,
+    "posts": "46"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "facebook"
+    ],
+    "posts": "3"
+   },
+   "table": true,
+   "n": 3,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Video Response Rate",
+    "Video Views",
+    "Organic Views",
+    "Paid Views",
+    "Unclassified Views",
+    "Viewers",
+    "Video Duration",
+    "Watch Time (Minutes)",
+    "Video Views (with Cross-Posts)",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "1,872",
+     "Video Response Rate": "N/A",
+     "Video Views": "23,505",
+     "Organic Views": "23,505",
+     "Paid Views": "0",
+     "Unclassified Views": "0",
+     "Viewers": "58,213",
+     "Video Duration": "1m51s",
+     "Watch Time (Minutes)": "\u2013",
+     "Video Views (with Cross-Posts)": "23,505",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 3,
+   "prodPosts": 3,
+   "matched": 3,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Engagements",
+    "Video Response Rate",
+    "Video Views",
+    "Organic Views",
+    "Paid Views",
+    "Unclassified Views",
+    "Viewers",
+    "Video Duration",
+    "Watch Time (Minutes)",
+    "Video Views (with Cross-Posts)"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Engagements": "1,872",
+    "Video Response Rate": "N/A",
+    "Video Views": "23,505",
+    "Organic Views": "23,505",
+    "Paid Views": "0",
+    "Unclassified Views": "0",
+    "Viewers": "58,213",
+    "Video Duration": "1m51s",
+    "Watch Time (Minutes)": "\u2013",
+    "Video Views (with Cross-Posts)": "23,505"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "Apple Services",
+   "brand": "Apple Music",
+   "week": "Nov. 10, 2026 - Nov. 16, 2026",
+   "weekProd": "Nov. 10, 2026 - Nov. 16, 2026",
+   "note": "Wednesday row: Apple Services / Apple Music."
+  }
+ },
+ "QA-21017": {
+  "opts": {
+   "ds": "Video Views",
+   "channels": [
+    "twitter"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 2,
+    "idx": 0,
+    "posts": "3"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "twitter"
+    ],
+    "posts": "3"
+   },
+   "table": true,
+   "n": 3,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Video Response Rate",
+    "Video Views",
+    "Organic Views",
+    "Paid Views",
+    "Unclassified Views",
+    "Viewers",
+    "Video Duration",
+    "Watch Time (Minutes)",
+    "Video Views (with Cross-Posts)",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "4,082",
+     "Video Response Rate": "N/A",
+     "Video Views": "45,756",
+     "Organic Views": "45,756",
+     "Paid Views": "\u2013",
+     "Unclassified Views": "0",
+     "Viewers": "\u2013",
+     "Video Duration": "\u2013",
+     "Watch Time (Minutes)": "\u2013",
+     "Video Views (with Cross-Posts)": "45,756",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 2,
+    "idx": 0,
+    "posts": "3"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "twitter"
+    ],
+    "posts": "3"
+   },
+   "table": true,
+   "n": 3,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Video Response Rate",
+    "Video Views",
+    "Organic Views",
+    "Paid Views",
+    "Unclassified Views",
+    "Viewers",
+    "Video Duration",
+    "Watch Time (Minutes)",
+    "Video Views (with Cross-Posts)",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "4,082",
+     "Video Response Rate": "N/A",
+     "Video Views": "45,756",
+     "Organic Views": "45,756",
+     "Paid Views": "\u2013",
+     "Unclassified Views": "0",
+     "Viewers": "\u2013",
+     "Video Duration": "\u2013",
+     "Watch Time (Minutes)": "\u2013",
+     "Video Views (with Cross-Posts)": "45,756",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 3,
+   "prodPosts": 3,
+   "matched": 3,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Engagements",
+    "Video Response Rate",
+    "Video Views",
+    "Organic Views",
+    "Paid Views",
+    "Unclassified Views",
+    "Viewers",
+    "Video Duration",
+    "Watch Time (Minutes)",
+    "Video Views (with Cross-Posts)"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Engagements": "4,082",
+    "Video Response Rate": "N/A",
+    "Video Views": "45,756",
+    "Organic Views": "45,756",
+    "Paid Views": "\u2013",
+    "Unclassified Views": "0",
+    "Viewers": "\u2013",
+    "Video Duration": "\u2013",
+    "Watch Time (Minutes)": "\u2013",
+    "Video Views (with Cross-Posts)": "45,756"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "Apple Services",
+   "brand": "Apple Music",
+   "week": "Nov. 10, 2026 - Nov. 16, 2026",
+   "weekProd": "Nov. 10, 2026 - Nov. 16, 2026",
+   "note": "Wednesday row: Apple Services / Apple Music."
+  }
+ },
+ "QA-21018": {
+  "opts": {
+   "ds": "Video Views",
+   "channels": [
+    "instagram"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 2,
+    "idx": 0,
+    "posts": "3"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "instagram"
+    ],
+    "posts": "19"
+   },
+   "table": true,
+   "n": 19,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Video Response Rate",
+    "Video Views",
+    "Organic Views",
+    "Paid Views",
+    "Unclassified Views",
+    "Viewers",
+    "Video Duration",
+    "Watch Time (Minutes)",
+    "Video Views (with Cross-Posts)",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "713,715",
+     "Video Response Rate": "N/A",
+     "Video Views": "8,870,011",
+     "Organic Views": "8,870,011",
+     "Paid Views": "\u2013",
+     "Unclassified Views": "0",
+     "Viewers": "\u2013",
+     "Video Duration": "\u2013",
+     "Watch Time (Minutes)": "822,247.97",
+     "Video Views (with Cross-Posts)": "8,870,011",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 2,
+    "idx": 0,
+    "posts": "3"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "instagram"
+    ],
+    "posts": "19"
+   },
+   "table": true,
+   "n": 19,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Video Response Rate",
+    "Video Views",
+    "Organic Views",
+    "Paid Views",
+    "Unclassified Views",
+    "Viewers",
+    "Video Duration",
+    "Watch Time (Minutes)",
+    "Video Views (with Cross-Posts)",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "713,715",
+     "Video Response Rate": "N/A",
+     "Video Views": "8,870,011",
+     "Organic Views": "8,870,011",
+     "Paid Views": "\u2013",
+     "Unclassified Views": "0",
+     "Viewers": "\u2013",
+     "Video Duration": "\u2013",
+     "Watch Time (Minutes)": "822,247.97",
+     "Video Views (with Cross-Posts)": "8,870,011",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 19,
+   "prodPosts": 19,
+   "matched": 19,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Engagements",
+    "Video Response Rate",
+    "Video Views",
+    "Organic Views",
+    "Paid Views",
+    "Unclassified Views",
+    "Viewers",
+    "Video Duration",
+    "Watch Time (Minutes)",
+    "Video Views (with Cross-Posts)"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Engagements": "713,715",
+    "Video Response Rate": "N/A",
+    "Video Views": "8,870,011",
+    "Organic Views": "8,870,011",
+    "Paid Views": "\u2013",
+    "Unclassified Views": "0",
+    "Viewers": "\u2013",
+    "Video Duration": "\u2013",
+    "Watch Time (Minutes)": "822,247.97",
+    "Video Views (with Cross-Posts)": "8,870,011"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "Apple Services",
+   "brand": "Apple Music",
+   "week": "Nov. 10, 2026 - Nov. 16, 2026",
+   "weekProd": "Nov. 10, 2026 - Nov. 16, 2026",
+   "note": "Wednesday row: Apple Services / Apple Music."
+  }
+ },
+ "QA-21020": {
+  "opts": {
+   "ds": "Video Views",
+   "channels": [
+    "tiktok"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 2,
+    "idx": 0,
+    "posts": "19"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "tiktok"
+    ],
+    "posts": "21"
+   },
+   "table": true,
+   "n": 21,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Video Response Rate",
+    "Video Views",
+    "Organic Views",
+    "Paid Views",
+    "Unclassified Views",
+    "Viewers",
+    "Video Duration",
+    "Watch Time (Minutes)",
+    "Video Views (with Cross-Posts)",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "23,286",
+     "Video Response Rate": "N/A",
+     "Video Views": "118,910",
+     "Organic Views": "\u2013",
+     "Paid Views": "\u2013",
+     "Unclassified Views": "118,910",
+     "Viewers": "\u2013",
+     "Video Duration": "13m18s",
+     "Watch Time (Minutes)": "\u2013",
+     "Video Views (with Cross-Posts)": "118,910",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 2,
+    "idx": 0,
+    "posts": "19"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "tiktok"
+    ],
+    "posts": "21"
+   },
+   "table": true,
+   "n": 21,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Video Response Rate",
+    "Video Views",
+    "Organic Views",
+    "Paid Views",
+    "Unclassified Views",
+    "Viewers",
+    "Video Duration",
+    "Watch Time (Minutes)",
+    "Video Views (with Cross-Posts)",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "23,286",
+     "Video Response Rate": "N/A",
+     "Video Views": "118,910",
+     "Organic Views": "\u2013",
+     "Paid Views": "\u2013",
+     "Unclassified Views": "118,910",
+     "Viewers": "\u2013",
+     "Video Duration": "13m18s",
+     "Watch Time (Minutes)": "\u2013",
+     "Video Views (with Cross-Posts)": "118,910",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 21,
+   "prodPosts": 21,
+   "matched": 21,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Engagements",
+    "Video Response Rate",
+    "Video Views",
+    "Organic Views",
+    "Paid Views",
+    "Unclassified Views",
+    "Viewers",
+    "Video Duration",
+    "Watch Time (Minutes)",
+    "Video Views (with Cross-Posts)"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Engagements": "23,286",
+    "Video Response Rate": "N/A",
+    "Video Views": "118,910",
+    "Organic Views": "\u2013",
+    "Paid Views": "\u2013",
+    "Unclassified Views": "118,910",
+    "Viewers": "\u2013",
+    "Video Duration": "13m18s",
+    "Watch Time (Minutes)": "\u2013",
+    "Video Views (with Cross-Posts)": "118,910"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "Apple Services",
+   "brand": "Apple Music",
+   "week": "Nov. 10, 2026 - Nov. 16, 2026",
+   "weekProd": "Nov. 10, 2026 - Nov. 16, 2026",
+   "note": "Wednesday row: Apple Services / Apple Music."
+  }
+ },
+ "QA-20271": {
+  "opts": {
+   "ds": "Impressions",
+   "channels": [
+    "instagram"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "25"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "instagram"
+    ],
+    "posts": "23"
+   },
+   "table": true,
+   "n": 23,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Engagement Rate",
+    "Impressions",
+    "Organic Impressions",
+    "Paid Impressions",
+    "Reach",
+    "Organic Reach",
+    "Paid Reach",
+    "Engaged User Rate",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "752,048",
+     "Engagement Rate": "N/A",
+     "Impressions": "10,002,758",
+     "Organic Impressions": "10,002,758",
+     "Paid Impressions": "\u2013",
+     "Reach": "N/A",
+     "Organic Reach": "N/A",
+     "Paid Reach": "N/A",
+     "Engaged User Rate": "N/A",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "25"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "instagram"
+    ],
+    "posts": "23"
+   },
+   "table": true,
+   "n": 23,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Engagement Rate",
+    "Impressions",
+    "Organic Impressions",
+    "Paid Impressions",
+    "Reach",
+    "Organic Reach",
+    "Paid Reach",
+    "Engaged User Rate",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "752,048",
+     "Engagement Rate": "N/A",
+     "Impressions": "10,002,758",
+     "Organic Impressions": "10,002,758",
+     "Paid Impressions": "\u2013",
+     "Reach": "N/A",
+     "Organic Reach": "N/A",
+     "Paid Reach": "N/A",
+     "Engaged User Rate": "N/A",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 23,
+   "prodPosts": 23,
+   "matched": 23,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Engagements",
+    "Engagement Rate",
+    "Impressions",
+    "Organic Impressions",
+    "Paid Impressions",
+    "Reach",
+    "Organic Reach",
+    "Paid Reach",
+    "Engaged User Rate"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Engagements": "752,048",
+    "Engagement Rate": "N/A",
+    "Impressions": "10,002,758",
+    "Organic Impressions": "10,002,758",
+    "Paid Impressions": "\u2013",
+    "Reach": "N/A",
+    "Organic Reach": "N/A",
+    "Paid Reach": "N/A",
+    "Engaged User Rate": "N/A"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "Apple Services",
+   "brand": "Apple Music",
+   "week": "Nov. 10, 2026 - Nov. 16, 2026",
+   "weekProd": "Nov. 10, 2026 - Nov. 16, 2026",
+   "note": "Wednesday row: Apple Services / Apple Music."
+  }
+ },
+ "QA-21015": {
+  "opts": {
+   "ds": "Impressions",
+   "channels": [
+    "facebook"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 2,
+    "idx": 0,
+    "posts": "23"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "facebook"
+    ],
+    "posts": "3"
+   },
+   "table": true,
+   "n": 3,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Engagement Rate",
+    "Impressions",
+    "Organic Impressions",
+    "Paid Impressions",
+    "Reach",
+    "Organic Reach",
+    "Paid Reach",
+    "Engaged User Rate",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "1,872",
+     "Engagement Rate": "N/A",
+     "Impressions": "74,722",
+     "Organic Impressions": "74,722",
+     "Paid Impressions": "0",
+     "Reach": "N/A",
+     "Organic Reach": "N/A",
+     "Paid Reach": "N/A",
+     "Engaged User Rate": "N/A",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 2,
+    "idx": 0,
+    "posts": "23"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "facebook"
+    ],
+    "posts": "3"
+   },
+   "table": true,
+   "n": 3,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Engagement Rate",
+    "Impressions",
+    "Organic Impressions",
+    "Paid Impressions",
+    "Reach",
+    "Organic Reach",
+    "Paid Reach",
+    "Engaged User Rate",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "1,872",
+     "Engagement Rate": "N/A",
+     "Impressions": "74,722",
+     "Organic Impressions": "74,722",
+     "Paid Impressions": "0",
+     "Reach": "N/A",
+     "Organic Reach": "N/A",
+     "Paid Reach": "N/A",
+     "Engaged User Rate": "N/A",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 3,
+   "prodPosts": 3,
+   "matched": 3,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Engagements",
+    "Engagement Rate",
+    "Impressions",
+    "Organic Impressions",
+    "Paid Impressions",
+    "Reach",
+    "Organic Reach",
+    "Paid Reach",
+    "Engaged User Rate"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Engagements": "1,872",
+    "Engagement Rate": "N/A",
+    "Impressions": "74,722",
+    "Organic Impressions": "74,722",
+    "Paid Impressions": "0",
+    "Reach": "N/A",
+    "Organic Reach": "N/A",
+    "Paid Reach": "N/A",
+    "Engaged User Rate": "N/A"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "Apple Services",
+   "brand": "Apple Music",
+   "week": "Nov. 10, 2026 - Nov. 16, 2026",
+   "weekProd": "Nov. 10, 2026 - Nov. 16, 2026",
+   "note": "Wednesday row: Apple Services / Apple Music."
+  }
+ },
+ "QA-21016": {
+  "opts": {
+   "ds": "Impressions",
+   "channels": [
+    "twitter"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 2,
+    "idx": 0,
+    "posts": "3"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "twitter"
+    ],
+    "posts": "4"
+   },
+   "table": true,
+   "n": 4,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Engagement Rate",
+    "Impressions",
+    "Organic Impressions",
+    "Paid Impressions",
+    "Reach",
+    "Organic Reach",
+    "Paid Reach",
+    "Engaged User Rate",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "4,256",
+     "Engagement Rate": "N/A",
+     "Impressions": "157,299",
+     "Organic Impressions": "157,299",
+     "Paid Impressions": "\u2013",
+     "Reach": "N/A",
+     "Organic Reach": "N/A",
+     "Paid Reach": "N/A",
+     "Engaged User Rate": "N/A",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 2,
+    "idx": 0,
+    "posts": "3"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "twitter"
+    ],
+    "posts": "4"
+   },
+   "table": true,
+   "n": 4,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Engagement Rate",
+    "Impressions",
+    "Organic Impressions",
+    "Paid Impressions",
+    "Reach",
+    "Organic Reach",
+    "Paid Reach",
+    "Engaged User Rate",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "4,256",
+     "Engagement Rate": "N/A",
+     "Impressions": "157,299",
+     "Organic Impressions": "157,299",
+     "Paid Impressions": "\u2013",
+     "Reach": "N/A",
+     "Organic Reach": "N/A",
+     "Paid Reach": "N/A",
+     "Engaged User Rate": "N/A",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 4,
+   "prodPosts": 4,
+   "matched": 4,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Engagements",
+    "Engagement Rate",
+    "Impressions",
+    "Organic Impressions",
+    "Paid Impressions",
+    "Reach",
+    "Organic Reach",
+    "Paid Reach",
+    "Engaged User Rate"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Engagements": "4,256",
+    "Engagement Rate": "N/A",
+    "Impressions": "157,299",
+    "Organic Impressions": "157,299",
+    "Paid Impressions": "\u2013",
+    "Reach": "N/A",
+    "Organic Reach": "N/A",
+    "Paid Reach": "N/A",
+    "Engaged User Rate": "N/A"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "Apple Services",
+   "brand": "Apple Music",
+   "week": "Nov. 10, 2026 - Nov. 16, 2026",
+   "weekProd": "Nov. 10, 2026 - Nov. 16, 2026",
+   "note": "Wednesday row: Apple Services / Apple Music."
+  }
+ },
+ "QA-20272": {
+  "opts": {
+   "ds": "Engagements Breakdown",
+   "channels": [
+    "twitter"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "4"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "twitter"
+    ],
+    "posts": "4"
+   },
+   "table": true,
+   "n": 4,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Organic Engagements",
+    "Paid Engagements",
+    "Reactions",
+    "Organic Reactions",
+    "Paid Reactions",
+    "Comments",
+    "Organic Comments",
+    "Paid Comments",
+    "Shares",
+    "Organic Shares",
+    "Paid Shares",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "4,256",
+     "Organic Engagements": "4,256",
+     "Paid Engagements": "\u2013",
+     "Reactions": "3,125",
+     "Organic Reactions": "3,125",
+     "Paid Reactions": "\u2013",
+     "Comments": "56",
+     "Organic Comments": "56",
+     "Paid Comments": "\u2013",
+     "Shares": "1,075",
+     "Organic Shares": "1,075",
+     "Paid Shares": "\u2013",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "4"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "twitter"
+    ],
+    "posts": "4"
+   },
+   "table": true,
+   "n": 4,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Organic Engagements",
+    "Paid Engagements",
+    "Reactions",
+    "Organic Reactions",
+    "Paid Reactions",
+    "Comments",
+    "Organic Comments",
+    "Paid Comments",
+    "Shares",
+    "Organic Shares",
+    "Paid Shares",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "4,256",
+     "Organic Engagements": "4,256",
+     "Paid Engagements": "\u2013",
+     "Reactions": "3,125",
+     "Organic Reactions": "3,125",
+     "Paid Reactions": "\u2013",
+     "Comments": "56",
+     "Organic Comments": "56",
+     "Paid Comments": "\u2013",
+     "Shares": "1,075",
+     "Organic Shares": "1,075",
+     "Paid Shares": "\u2013",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 4,
+   "prodPosts": 4,
+   "matched": 4,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Engagements",
+    "Organic Engagements",
+    "Paid Engagements",
+    "Reactions",
+    "Organic Reactions",
+    "Paid Reactions",
+    "Comments",
+    "Organic Comments",
+    "Paid Comments",
+    "Shares",
+    "Organic Shares",
+    "Paid Shares"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Engagements": "4,256",
+    "Organic Engagements": "4,256",
+    "Paid Engagements": "\u2013",
+    "Reactions": "3,125",
+    "Organic Reactions": "3,125",
+    "Paid Reactions": "\u2013",
+    "Comments": "56",
+    "Organic Comments": "56",
+    "Paid Comments": "\u2013",
+    "Shares": "1,075",
+    "Organic Shares": "1,075",
+    "Paid Shares": "\u2013"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "Apple Services",
+   "brand": "Apple Music",
+   "week": "Nov. 10, 2026 - Nov. 16, 2026",
+   "weekProd": "Nov. 10, 2026 - Nov. 16, 2026",
+   "note": "Wednesday row: Apple Services / Apple Music."
+  }
+ },
+ "QA-21014": {
+  "opts": {
+   "ds": "Engagements Breakdown",
+   "channels": [
+    "instagram"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 2,
+    "idx": 0,
+    "posts": "4"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "instagram"
+    ],
+    "posts": "23"
+   },
+   "table": true,
+   "n": 23,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Organic Engagements",
+    "Paid Engagements",
+    "Reactions",
+    "Organic Reactions",
+    "Paid Reactions",
+    "Comments",
+    "Organic Comments",
+    "Paid Comments",
+    "Shares",
+    "Organic Shares",
+    "Paid Shares",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "752,048",
+     "Organic Engagements": "752,048",
+     "Paid Engagements": "\u2013",
+     "Reactions": "747,539",
+     "Organic Reactions": "747,539",
+     "Paid Reactions": "\u2013",
+     "Comments": "4,509",
+     "Organic Comments": "4,509",
+     "Paid Comments": "\u2013",
+     "Shares": "\u2013",
+     "Organic Shares": "\u2013",
+     "Paid Shares": "\u2013",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 2,
+    "idx": 0,
+    "posts": "4"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "instagram"
+    ],
+    "posts": "23"
+   },
+   "table": true,
+   "n": 23,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Organic Engagements",
+    "Paid Engagements",
+    "Reactions",
+    "Organic Reactions",
+    "Paid Reactions",
+    "Comments",
+    "Organic Comments",
+    "Paid Comments",
+    "Shares",
+    "Organic Shares",
+    "Paid Shares",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "752,048",
+     "Organic Engagements": "752,048",
+     "Paid Engagements": "\u2013",
+     "Reactions": "747,539",
+     "Organic Reactions": "747,539",
+     "Paid Reactions": "\u2013",
+     "Comments": "4,509",
+     "Organic Comments": "4,509",
+     "Paid Comments": "\u2013",
+     "Shares": "\u2013",
+     "Organic Shares": "\u2013",
+     "Paid Shares": "\u2013",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 23,
+   "prodPosts": 23,
+   "matched": 23,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Engagements",
+    "Organic Engagements",
+    "Paid Engagements",
+    "Reactions",
+    "Organic Reactions",
+    "Paid Reactions",
+    "Comments",
+    "Organic Comments",
+    "Paid Comments",
+    "Shares",
+    "Organic Shares",
+    "Paid Shares"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Engagements": "752,048",
+    "Organic Engagements": "752,048",
+    "Paid Engagements": "\u2013",
+    "Reactions": "747,539",
+    "Organic Reactions": "747,539",
+    "Paid Reactions": "\u2013",
+    "Comments": "4,509",
+    "Organic Comments": "4,509",
+    "Paid Comments": "\u2013",
+    "Shares": "\u2013",
+    "Organic Shares": "\u2013",
+    "Paid Shares": "\u2013"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "Apple Services",
+   "brand": "Apple Music",
+   "week": "Nov. 10, 2026 - Nov. 16, 2026",
+   "weekProd": "Nov. 10, 2026 - Nov. 16, 2026",
+   "note": "Wednesday row: Apple Services / Apple Music."
+  }
+ },
+ "QA-20273": {
+  "opts": {
+   "ds": "Facebook Only: Completed Video Views",
+   "channels": [
+    "facebook"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "3"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "facebook"
+    ],
+    "posts": "3"
+   },
+   "table": true,
+   "n": 3,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Video Duration",
+    "Avg Time Watched (Minutes)",
+    "Avg Viewthru",
+    "Completed Views",
+    "Organic Completed Views",
+    "Paid Completed Views",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "1,872",
+     "Video Duration": "1m51s",
+     "Avg Time Watched (Minutes)": "N/A",
+     "Avg Viewthru": "N/A",
+     "Completed Views": "6,074",
+     "Organic Completed Views": "6,074",
+     "Paid Completed Views": "0",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "3"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "facebook"
+    ],
+    "posts": "3"
+   },
+   "table": true,
+   "n": 3,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Video Duration",
+    "Avg Time Watched (Minutes)",
+    "Avg Viewthru",
+    "Completed Views",
+    "Organic Completed Views",
+    "Paid Completed Views",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "1,872",
+     "Video Duration": "1m51s",
+     "Avg Time Watched (Minutes)": "N/A",
+     "Avg Viewthru": "N/A",
+     "Completed Views": "6,074",
+     "Organic Completed Views": "6,074",
+     "Paid Completed Views": "0",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 3,
+   "prodPosts": 3,
+   "matched": 3,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Engagements",
+    "Video Duration",
+    "Avg Time Watched (Minutes)",
+    "Avg Viewthru",
+    "Completed Views",
+    "Organic Completed Views",
+    "Paid Completed Views"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Engagements": "1,872",
+    "Video Duration": "1m51s",
+    "Avg Time Watched (Minutes)": "N/A",
+    "Avg Viewthru": "N/A",
+    "Completed Views": "6,074",
+    "Organic Completed Views": "6,074",
+    "Paid Completed Views": "0"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "Apple Services",
+   "brand": "Apple Music",
+   "week": "Nov. 10, 2026 - Nov. 16, 2026",
+   "weekProd": "Nov. 10, 2026 - Nov. 16, 2026",
+   "note": "Wednesday row: Apple Services / Apple Music."
+  }
+ },
+ "QA-20274": {
+  "opts": {
+   "ds": "Facebook Only: Reactions",
+   "channels": [
+    "facebook"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "3"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "facebook"
+    ],
+    "posts": "3"
+   },
+   "table": true,
+   "n": 3,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Reactions",
+    "Likes",
+    "Loves",
+    "Hahas",
+    "Wows",
+    "Sads",
+    "Angries",
+    "Others",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "1,872",
+     "Reactions": "1,637",
+     "Likes": "1,253",
+     "Loves": "375",
+     "Hahas": "3",
+     "Wows": "6",
+     "Sads": "0",
+     "Angries": "0",
+     "Others": "0",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "3"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "facebook"
+    ],
+    "posts": "3"
+   },
+   "table": true,
+   "n": 3,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Reactions",
+    "Likes",
+    "Loves",
+    "Hahas",
+    "Wows",
+    "Sads",
+    "Angries",
+    "Others",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "1,872",
+     "Reactions": "1,637",
+     "Likes": "1,253",
+     "Loves": "375",
+     "Hahas": "3",
+     "Wows": "6",
+     "Sads": "0",
+     "Angries": "0",
+     "Others": "0",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 3,
+   "prodPosts": 3,
+   "matched": 3,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Engagements",
+    "Reactions",
+    "Likes",
+    "Loves",
+    "Hahas",
+    "Wows",
+    "Sads",
+    "Angries",
+    "Others"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Engagements": "1,872",
+    "Reactions": "1,637",
+    "Likes": "1,253",
+    "Loves": "375",
+    "Hahas": "3",
+    "Wows": "6",
+    "Sads": "0",
+    "Angries": "0",
+    "Others": "0"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "Apple Services",
+   "brand": "Apple Music",
+   "week": "Nov. 10, 2026 - Nov. 16, 2026",
+   "weekProd": "Nov. 10, 2026 - Nov. 16, 2026",
+   "note": "Wednesday row: Apple Services / Apple Music."
+  }
+ },
+ "QA-20275": {
+  "opts": {
+   "ds": "Twitter Only: Engagements & Follows",
+   "channels": [
+    "twitter"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "4"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "twitter"
+    ],
+    "posts": "4"
+   },
+   "table": true,
+   "n": 4,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Likes",
+    "Replies",
+    "Retweets",
+    "Quotes",
+    "Bookmarks",
+    "Views",
+    "User Follows",
+    "Organic User Follows",
+    "Paid User Follows",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "4,256",
+     "Likes": "9,823",
+     "Replies": "71",
+     "Retweets": "3,320",
+     "Quotes": "36",
+     "Bookmarks": "852",
+     "Views": "250,694",
+     "User Follows": "\u2013",
+     "Organic User Follows": "\u2013",
+     "Paid User Follows": "\u2013",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "4"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "twitter"
+    ],
+    "posts": "4"
+   },
+   "table": true,
+   "n": 4,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Likes",
+    "Replies",
+    "Retweets",
+    "Quotes",
+    "Bookmarks",
+    "Views",
+    "User Follows",
+    "Organic User Follows",
+    "Paid User Follows",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "4,256",
+     "Likes": "9,823",
+     "Replies": "71",
+     "Retweets": "3,320",
+     "Quotes": "36",
+     "Bookmarks": "852",
+     "Views": "250,694",
+     "User Follows": "\u2013",
+     "Organic User Follows": "\u2013",
+     "Paid User Follows": "\u2013",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 4,
+   "prodPosts": 4,
+   "matched": 4,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Engagements",
+    "Likes",
+    "Replies",
+    "Retweets",
+    "Quotes",
+    "Bookmarks",
+    "Views",
+    "User Follows",
+    "Organic User Follows",
+    "Paid User Follows"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Engagements": "4,256",
+    "Likes": "9,823",
+    "Replies": "71",
+    "Retweets": "3,320",
+    "Quotes": "36",
+    "Bookmarks": "852",
+    "Views": "250,694",
+    "User Follows": "\u2013",
+    "Organic User Follows": "\u2013",
+    "Paid User Follows": "\u2013"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "Apple Services",
+   "brand": "Apple Music",
+   "week": "Nov. 10, 2026 - Nov. 16, 2026",
+   "weekProd": "Nov. 10, 2026 - Nov. 16, 2026",
+   "note": "Wednesday row: Apple Services / Apple Music."
+  }
+ },
+ "QA-70721": {
+  "opts": {
+   "ds": "Instagram Only: Action Types",
+   "channels": [
+    "instagram"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "23"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "instagram"
+    ],
+    "posts": "23"
+   },
+   "table": true,
+   "n": 23,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Actions",
+    "Bio Link Clicks",
+    "Calls",
+    "Directions",
+    "Emails",
+    "Texts",
+    "Other Actions",
+    "Profile Visits",
+    "Follows",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "752,048",
+     "Actions": "",
+     "Bio Link Clicks": "9",
+     "Calls": "\u2013",
+     "Directions": "\u2013",
+     "Emails": "\u2013",
+     "Texts": "\u2013",
+     "Other Actions": "\u2013",
+     "Profile Visits": "3,142",
+     "Follows": "284",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "23"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "instagram"
+    ],
+    "posts": "23"
+   },
+   "table": true,
+   "n": 23,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Actions",
+    "Bio Link Clicks",
+    "Calls",
+    "Directions",
+    "Emails",
+    "Texts",
+    "Other Actions",
+    "Profile Visits",
+    "Follows",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "752,048",
+     "Actions": "",
+     "Bio Link Clicks": "9",
+     "Calls": "\u2013",
+     "Directions": "\u2013",
+     "Emails": "\u2013",
+     "Texts": "\u2013",
+     "Other Actions": "\u2013",
+     "Profile Visits": "3,142",
+     "Follows": "284",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 23,
+   "prodPosts": 23,
+   "matched": 23,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Engagements",
+    "Bio Link Clicks",
+    "Calls",
+    "Directions",
+    "Emails",
+    "Texts",
+    "Other Actions",
+    "Profile Visits",
+    "Follows"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Engagements": "752,048",
+    "Bio Link Clicks": "9",
+    "Calls": "\u2013",
+    "Directions": "\u2013",
+    "Emails": "\u2013",
+    "Texts": "\u2013",
+    "Other Actions": "\u2013",
+    "Profile Visits": "3,142",
+    "Follows": "284"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "Apple Services",
+   "brand": "Apple Music",
+   "week": "Nov. 10, 2026 - Nov. 16, 2026",
+   "weekProd": "Nov. 10, 2026 - Nov. 16, 2026",
+   "note": "Wednesday row: Apple Services / Apple Music."
+  }
+ },
+ "QA-20278": {
+  "opts": {
+   "ds": "YouTube Only: Cards",
+   "channels": [
+    "youtube"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "2"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "youtube"
+    ],
+    "posts": "2"
+   },
+   "table": true,
+   "n": 2,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Video Views",
+    "Video Duration",
+    "Card Impressions",
+    "Card Clicks",
+    "Card CTR",
+    "Teaser Impressions",
+    "Teaser Clicks",
+    "Teaser CTR",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Video Views": "28,506",
+     "Video Duration": "59m56s",
+     "Card Impressions": "0",
+     "Card Clicks": "0",
+     "Card CTR": "N/A",
+     "Teaser Impressions": "0",
+     "Teaser Clicks": "0",
+     "Teaser CTR": "N/A",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "2"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "youtube"
+    ],
+    "posts": "2"
+   },
+   "table": true,
+   "n": 2,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Video Views",
+    "Video Duration",
+    "Card Impressions",
+    "Card Clicks",
+    "Card CTR",
+    "Teaser Impressions",
+    "Teaser Clicks",
+    "Teaser CTR",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Video Views": "28,506",
+     "Video Duration": "59m56s",
+     "Card Impressions": "0",
+     "Card Clicks": "0",
+     "Card CTR": "N/A",
+     "Teaser Impressions": "0",
+     "Teaser Clicks": "0",
+     "Teaser CTR": "N/A",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 2,
+   "prodPosts": 2,
+   "matched": 2,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Video Views",
+    "Video Duration",
+    "Card Impressions",
+    "Card Clicks",
+    "Card CTR",
+    "Teaser Impressions",
+    "Teaser Clicks",
+    "Teaser CTR"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Video Views": "28,506",
+    "Video Duration": "59m56s",
+    "Card Impressions": "0",
+    "Card Clicks": "0",
+    "Card CTR": "N/A",
+    "Teaser Impressions": "0",
+    "Teaser Clicks": "0",
+    "Teaser CTR": "N/A"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "Apple Services",
+   "brand": "Apple Music",
+   "week": "Nov. 10, 2026 - Nov. 16, 2026",
+   "weekProd": "Nov. 10, 2026 - Nov. 16, 2026",
+   "note": "Wednesday row: Apple Services / Apple Music."
+  }
+ },
+ "QA-20280": {
+  "opts": {
+   "ds": "YouTube Only: Subscribers & Playlists",
+   "channels": [
+    "youtube"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "2"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "youtube"
+    ],
+    "posts": "2"
+   },
+   "table": true,
+   "n": 2,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Video Views",
+    "Video Duration",
+    "Subscribers Gained",
+    "Subscribers Lost",
+    "Playlist Adds",
+    "Playlist Removes",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Video Views": "28,506",
+     "Video Duration": "59m56s",
+     "Subscribers Gained": "13",
+     "Subscribers Lost": "5",
+     "Playlist Adds": "365",
+     "Playlist Removes": "102",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "2"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "youtube"
+    ],
+    "posts": "2"
+   },
+   "table": true,
+   "n": 2,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Video Views",
+    "Video Duration",
+    "Subscribers Gained",
+    "Subscribers Lost",
+    "Playlist Adds",
+    "Playlist Removes",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Video Views": "28,506",
+     "Video Duration": "59m56s",
+     "Subscribers Gained": "13",
+     "Subscribers Lost": "5",
+     "Playlist Adds": "365",
+     "Playlist Removes": "102",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 2,
+   "prodPosts": 2,
+   "matched": 2,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Video Views",
+    "Video Duration",
+    "Subscribers Gained",
+    "Subscribers Lost",
+    "Playlist Adds",
+    "Playlist Removes"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Video Views": "28,506",
+    "Video Duration": "59m56s",
+    "Subscribers Gained": "13",
+    "Subscribers Lost": "5",
+    "Playlist Adds": "365",
+    "Playlist Removes": "102"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "Apple Services",
+   "brand": "Apple Music",
+   "week": "Nov. 10, 2026 - Nov. 16, 2026",
+   "weekProd": "Nov. 10, 2026 - Nov. 16, 2026",
+   "note": "Wednesday row: Apple Services / Apple Music."
+  }
+ },
+ "QA-21019": {
+  "opts": {
+   "ds": "YouTube Only: Insights",
+   "channels": [
+    "youtube"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "2"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "youtube"
+    ],
+    "posts": "2"
+   },
+   "table": true,
+   "n": 2,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Video Views",
+    "Organic Views",
+    "Paid Views",
+    "Unclassified Views",
+    "Video Duration",
+    "YouTube Watch Time (Minutes)",
+    "Organic Watch Time (Minutes)",
+    "Paid Watch Time (Minutes)",
+    "Avg View Duration (Minutes)",
+    "Shares",
+    "Dislikes",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Video Views": "28,506",
+     "Organic Views": "21,424",
+     "Paid Views": "\u2013",
+     "Unclassified Views": "7,082",
+     "Video Duration": "59m56s",
+     "YouTube Watch Time (Minutes)": "122,018.99",
+     "Organic Watch Time (Minutes)": "122,018.99",
+     "Paid Watch Time (Minutes)": "\u2013",
+     "Avg View Duration (Minutes)": "N/A",
+     "Shares": "41",
+     "Dislikes": "9",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "2"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "youtube"
+    ],
+    "posts": "2"
+   },
+   "table": true,
+   "n": 2,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Video Views",
+    "Organic Views",
+    "Paid Views",
+    "Unclassified Views",
+    "Video Duration",
+    "YouTube Watch Time (Minutes)",
+    "Organic Watch Time (Minutes)",
+    "Paid Watch Time (Minutes)",
+    "Avg View Duration (Minutes)",
+    "Shares",
+    "Dislikes",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Video Views": "28,506",
+     "Organic Views": "21,424",
+     "Paid Views": "\u2013",
+     "Unclassified Views": "7,082",
+     "Video Duration": "59m56s",
+     "YouTube Watch Time (Minutes)": "122,018.99",
+     "Organic Watch Time (Minutes)": "122,018.99",
+     "Paid Watch Time (Minutes)": "\u2013",
+     "Avg View Duration (Minutes)": "N/A",
+     "Shares": "41",
+     "Dislikes": "9",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 2,
+   "prodPosts": 2,
+   "matched": 2,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Video Views",
+    "Organic Views",
+    "Paid Views",
+    "Unclassified Views",
+    "Video Duration",
+    "YouTube Watch Time (Minutes)",
+    "Organic Watch Time (Minutes)",
+    "Paid Watch Time (Minutes)",
+    "Avg View Duration (Minutes)",
+    "Shares",
+    "Dislikes"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Video Views": "28,506",
+    "Organic Views": "21,424",
+    "Paid Views": "\u2013",
+    "Unclassified Views": "7,082",
+    "Video Duration": "59m56s",
+    "YouTube Watch Time (Minutes)": "122,018.99",
+    "Organic Watch Time (Minutes)": "122,018.99",
+    "Paid Watch Time (Minutes)": "\u2013",
+    "Avg View Duration (Minutes)": "N/A",
+    "Shares": "41",
+    "Dislikes": "9"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "Apple Services",
+   "brand": "Apple Music",
+   "week": "Nov. 10, 2026 - Nov. 16, 2026",
+   "weekProd": "Nov. 10, 2026 - Nov. 16, 2026",
+   "note": "YouTube is greyed out under the generic Video Views data set, so the YouTube video-view metrics were compared under 'YouTube Only: Insights', as in earlier runs. Wednesday row: Apple Services / Apple Music."
+  }
+ },
+ "QA-20277": {
+  "opts": {
+   "ds": "YouTube Only: Insights",
+   "channels": [
+    "youtube"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 2,
+    "idx": 0,
+    "posts": "2"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "youtube"
+    ],
+    "posts": "2"
+   },
+   "table": true,
+   "n": 2,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Video Views",
+    "Organic Views",
+    "Paid Views",
+    "Unclassified Views",
+    "Video Duration",
+    "YouTube Watch Time (Minutes)",
+    "Organic Watch Time (Minutes)",
+    "Paid Watch Time (Minutes)",
+    "Avg View Duration (Minutes)",
+    "Shares",
+    "Dislikes",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Video Views": "28,506",
+     "Organic Views": "21,424",
+     "Paid Views": "\u2013",
+     "Unclassified Views": "7,082",
+     "Video Duration": "59m56s",
+     "YouTube Watch Time (Minutes)": "122,018.99",
+     "Organic Watch Time (Minutes)": "122,018.99",
+     "Paid Watch Time (Minutes)": "\u2013",
+     "Avg View Duration (Minutes)": "N/A",
+     "Shares": "41",
+     "Dislikes": "9",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 2,
+    "idx": 0,
+    "posts": "2"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "youtube"
+    ],
+    "posts": "2"
+   },
+   "table": true,
+   "n": 2,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Video Views",
+    "Organic Views",
+    "Paid Views",
+    "Unclassified Views",
+    "Video Duration",
+    "YouTube Watch Time (Minutes)",
+    "Organic Watch Time (Minutes)",
+    "Paid Watch Time (Minutes)",
+    "Avg View Duration (Minutes)",
+    "Shares",
+    "Dislikes",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Video Views": "28,506",
+     "Organic Views": "21,424",
+     "Paid Views": "\u2013",
+     "Unclassified Views": "7,082",
+     "Video Duration": "59m56s",
+     "YouTube Watch Time (Minutes)": "122,018.99",
+     "Organic Watch Time (Minutes)": "122,018.99",
+     "Paid Watch Time (Minutes)": "\u2013",
+     "Avg View Duration (Minutes)": "N/A",
+     "Shares": "41",
+     "Dislikes": "9",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 2,
+   "prodPosts": 2,
+   "matched": 2,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Video Views",
+    "Organic Views",
+    "Paid Views",
+    "Unclassified Views",
+    "Video Duration",
+    "YouTube Watch Time (Minutes)",
+    "Organic Watch Time (Minutes)",
+    "Paid Watch Time (Minutes)",
+    "Avg View Duration (Minutes)",
+    "Shares",
+    "Dislikes"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Video Views": "28,506",
+    "Organic Views": "21,424",
+    "Paid Views": "\u2013",
+    "Unclassified Views": "7,082",
+    "Video Duration": "59m56s",
+    "YouTube Watch Time (Minutes)": "122,018.99",
+    "Organic Watch Time (Minutes)": "122,018.99",
+    "Paid Watch Time (Minutes)": "\u2013",
+    "Avg View Duration (Minutes)": "N/A",
+    "Shares": "41",
+    "Dislikes": "9"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "Apple Services",
+   "brand": "Apple Music",
+   "week": "Nov. 10, 2026 - Nov. 16, 2026",
+   "weekProd": "Nov. 10, 2026 - Nov. 16, 2026",
+   "note": "Wednesday row: Apple Services / Apple Music."
+  }
+ },
+ "_QA-20277-premium": {
+  "opts": {
+   "ds": "YouTube Only: Premium",
+   "channels": [
+    "youtube"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "2"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "youtube"
+    ],
+    "posts": "2"
+   },
+   "table": true,
+   "n": 2,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Premium Views",
+    "Organic Premium Views",
+    "Paid Premium Views",
+    "Video Duration",
+    "Premium Watch Time (Minutes)",
+    "Organic Premium Watch Time (Minutes)",
+    "Paid Premium Watch Time (Minutes)",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Premium Views": "2,686",
+     "Organic Premium Views": "2,686",
+     "Paid Premium Views": "\u2013",
+     "Video Duration": "59m56s",
+     "Premium Watch Time (Minutes)": "25,900.59",
+     "Organic Premium Watch Time (Minutes)": "25,900.59",
+     "Paid Premium Watch Time (Minutes)": "\u2013",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "2"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "youtube"
+    ],
+    "posts": "2"
+   },
+   "table": true,
+   "n": 2,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Premium Views",
+    "Organic Premium Views",
+    "Paid Premium Views",
+    "Video Duration",
+    "Premium Watch Time (Minutes)",
+    "Organic Premium Watch Time (Minutes)",
+    "Paid Premium Watch Time (Minutes)",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Premium Views": "2,686",
+     "Organic Premium Views": "2,686",
+     "Paid Premium Views": "\u2013",
+     "Video Duration": "59m56s",
+     "Premium Watch Time (Minutes)": "25,900.59",
+     "Organic Premium Watch Time (Minutes)": "25,900.59",
+     "Paid Premium Watch Time (Minutes)": "\u2013",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 2,
+   "prodPosts": 2,
+   "matched": 2,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Premium Views",
+    "Organic Premium Views",
+    "Paid Premium Views",
+    "Video Duration",
+    "Premium Watch Time (Minutes)",
+    "Organic Premium Watch Time (Minutes)",
+    "Paid Premium Watch Time (Minutes)"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Premium Views": "2,686",
+    "Organic Premium Views": "2,686",
+    "Paid Premium Views": "\u2013",
+    "Video Duration": "59m56s",
+    "Premium Watch Time (Minutes)": "25,900.59",
+    "Organic Premium Watch Time (Minutes)": "25,900.59",
+    "Paid Premium Watch Time (Minutes)": "\u2013"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "Apple Services",
+   "brand": "Apple Music",
+   "week": "Nov. 10, 2026 - Nov. 16, 2026",
+   "weekProd": "Nov. 10, 2026 - Nov. 16, 2026"
+  }
+ },
+ "QA-20276": {
+  "opts": {
+   "ds": "Instagram Only: Insights",
+   "channels": [
+    "instagram"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "39"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "instagram"
+    ],
+    "posts": "39"
+   },
+   "table": true,
+   "n": 39,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Saves",
+    "Organic Saves",
+    "Paid Saves",
+    "Shares",
+    "Views",
+    "Private Likes",
+    "Effectiveness",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "707,473",
+     "Saves": "17,844",
+     "Organic Saves": "17,844",
+     "Paid Saves": "\u2013",
+     "Shares": "17,719",
+     "Views": "18,816,348",
+     "Private Likes": "703,787",
+     "Effectiveness": "N/A",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "39"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "instagram"
+    ],
+    "posts": "39"
+   },
+   "table": true,
+   "n": 39,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Saves",
+    "Organic Saves",
+    "Paid Saves",
+    "Shares",
+    "Views",
+    "Private Likes",
+    "Effectiveness",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "707,473",
+     "Saves": "17,844",
+     "Organic Saves": "17,844",
+     "Paid Saves": "\u2013",
+     "Shares": "17,719",
+     "Views": "18,816,348",
+     "Private Likes": "703,787",
+     "Effectiveness": "N/A",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 39,
+   "prodPosts": 39,
+   "matched": 39,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Engagements",
+    "Saves",
+    "Organic Saves",
+    "Paid Saves",
+    "Shares",
+    "Views",
+    "Private Likes",
+    "Effectiveness"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Engagements": "707,473",
+    "Saves": "17,844",
+    "Organic Saves": "17,844",
+    "Paid Saves": "\u2013",
+    "Shares": "17,719",
+    "Views": "18,816,348",
+    "Private Likes": "703,787",
+    "Effectiveness": "N/A"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "Viacom",
+   "brand": "MTV",
+   "week": "Nov. 10, 2026 - Nov. 16, 2026",
+   "weekProd": "Nov. 10, 2026 - Nov. 16, 2026",
+   "note": "Wednesday row: Viacom / MTV."
+  }
+ },
+ "QA-100881": {
+  "opts": {
+   "ds": "Public",
+   "channels": [
+    "threads"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 2,
+    "idx": 0,
+    "posts": "3"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "threads"
+    ],
+    "posts": "3"
+   },
+   "table": true,
+   "n": 3,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Reactions",
+    "Comments",
+    "Shares",
+    "Response Rate",
+    "Video Views",
+    "Video Response Rate",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "120",
+     "Reactions": "105",
+     "Comments": "4",
+     "Shares": "11",
+     "Response Rate": "N/A",
+     "Video Views": "\u2013",
+     "Video Response Rate": "N/A",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 2,
+    "idx": 0,
+    "posts": "109"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "threads"
+    ],
+    "posts": "3"
+   },
+   "table": true,
+   "n": 3,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Reactions",
+    "Comments",
+    "Shares",
+    "Response Rate",
+    "Video Views",
+    "Video Response Rate",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "120",
+     "Reactions": "105",
+     "Comments": "4",
+     "Shares": "11",
+     "Response Rate": "N/A",
+     "Video Views": "\u2013",
+     "Video Response Rate": "N/A",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 3,
+   "prodPosts": 3,
+   "matched": 3,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Engagements",
+    "Reactions",
+    "Comments",
+    "Shares",
+    "Response Rate",
+    "Video Views",
+    "Video Response Rate"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Engagements": "120",
+    "Reactions": "105",
+    "Comments": "4",
+    "Shares": "11",
+    "Response Rate": "N/A",
+    "Video Views": "\u2013",
+    "Video Response Rate": "N/A"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "HBO Max",
+   "brand": "HBO Max",
+   "week": "Nov. 10, 2026 - Nov. 16, 2026",
+   "weekProd": "Nov. 10, 2026 - Nov. 16, 2026",
+   "note": "Precondition \"logged in as Max\": account HBO Max, brand HBO Max."
+  }
+ },
+ "QA-100880": {
+  "opts": {
+   "ds": "Impressions",
+   "channels": [
+    "threads"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "3"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "threads"
+    ],
+    "posts": "3"
+   },
+   "table": true,
+   "n": 3,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Engagement Rate",
+    "Impressions",
+    "Organic Impressions",
+    "Paid Impressions",
+    "Reach",
+    "Organic Reach",
+    "Paid Reach",
+    "Engaged User Rate",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "120",
+     "Engagement Rate": "N/A",
+     "Impressions": "7,633",
+     "Organic Impressions": "\u2013",
+     "Paid Impressions": "\u2013",
+     "Reach": "N/A",
+     "Organic Reach": "N/A",
+     "Paid Reach": "N/A",
+     "Engaged User Rate": "N/A",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "3"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "threads"
+    ],
+    "posts": "3"
+   },
+   "table": true,
+   "n": 3,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Engagement Rate",
+    "Impressions",
+    "Organic Impressions",
+    "Paid Impressions",
+    "Reach",
+    "Organic Reach",
+    "Paid Reach",
+    "Engaged User Rate",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "120",
+     "Engagement Rate": "N/A",
+     "Impressions": "7,633",
+     "Organic Impressions": "\u2013",
+     "Paid Impressions": "\u2013",
+     "Reach": "N/A",
+     "Organic Reach": "N/A",
+     "Paid Reach": "N/A",
+     "Engaged User Rate": "N/A",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 3,
+   "prodPosts": 3,
+   "matched": 3,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Engagements",
+    "Engagement Rate",
+    "Impressions",
+    "Organic Impressions",
+    "Paid Impressions",
+    "Reach",
+    "Organic Reach",
+    "Paid Reach",
+    "Engaged User Rate"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Engagements": "120",
+    "Engagement Rate": "N/A",
+    "Impressions": "7,633",
+    "Organic Impressions": "\u2013",
+    "Paid Impressions": "\u2013",
+    "Reach": "N/A",
+    "Organic Reach": "N/A",
+    "Paid Reach": "N/A",
+    "Engaged User Rate": "N/A"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "HBO Max",
+   "brand": "HBO Max",
+   "week": "Nov. 10, 2026 - Nov. 16, 2026",
+   "weekProd": "Nov. 10, 2026 - Nov. 16, 2026",
+   "note": "Precondition \"logged in as Max\": account HBO Max, brand HBO Max."
+  }
+ },
+ "QA-100886": {
+  "opts": {
+   "ds": "Threads Only: Insights",
+   "channels": [
+    "threads"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "3"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "threads"
+    ],
+    "posts": "3"
+   },
+   "table": true,
+   "n": 3,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Likes",
+    "Replies",
+    "Quotes",
+    "Reposts",
+    "Shares",
+    "Views",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "120",
+     "Likes": "105",
+     "Replies": "4",
+     "Quotes": "2",
+     "Reposts": "6",
+     "Shares": "3",
+     "Views": "7,633",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "3"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "threads"
+    ],
+    "posts": "3"
+   },
+   "table": true,
+   "n": 3,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Likes",
+    "Replies",
+    "Quotes",
+    "Reposts",
+    "Shares",
+    "Views",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "120",
+     "Likes": "105",
+     "Replies": "4",
+     "Quotes": "2",
+     "Reposts": "6",
+     "Shares": "3",
+     "Views": "7,633",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 3,
+   "prodPosts": 3,
+   "matched": 3,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Engagements",
+    "Likes",
+    "Replies",
+    "Quotes",
+    "Reposts",
+    "Shares",
+    "Views"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Engagements": "120",
+    "Likes": "105",
+    "Replies": "4",
+    "Quotes": "2",
+    "Reposts": "6",
+    "Shares": "3",
+    "Views": "7,633"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "HBO Max",
+   "brand": "HBO Max",
+   "week": "Nov. 10, 2026 - Nov. 16, 2026",
+   "weekProd": "Nov. 10, 2026 - Nov. 16, 2026",
+   "note": "Precondition \"logged in as Max\": account HBO Max, brand HBO Max."
+  }
+ },
+ "QA-20279": {
+  "opts": {
+   "ds": "Pinterest Only: Basic",
+   "channels": [
+    "pinterest"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "0"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "pinterest"
+    ],
+    "posts": "0"
+   },
+   "table": false,
+   "n": null,
+   "H": null,
+   "agg": null
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "0"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "pinterest"
+    ],
+    "posts": "0"
+   },
+   "table": false,
+   "n": null,
+   "H": null,
+   "agg": null
+  },
+  "verdict": "BLOCKED-NODATA",
+  "why": "table missing",
+  "meta": {
+   "account": "Sephora",
+   "brand": "Sephora",
+   "week": "Nov. 10, 2026 - Nov. 16, 2026",
+   "weekProd": "Nov. 10, 2026 - Nov. 16, 2026",
+   "note": "Wednesday row: Sephora / Sephora (the only Wednesday row; the case has no alternative-account note). Sephora has 0 Pinterest posts in the default week on both dev and prod, so there is nothing to compare. Nothing was created or substituted (Data Test read-only rule)."
+  },
+  "summary": {
+   "devPosts": 0,
+   "prodPosts": 0,
+   "matched": 0,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "colsCompared": [],
+   "mismatchCols": {},
+   "aggDiff": []
+  }
+ }
+}

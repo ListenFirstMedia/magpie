@@ -1,0 +1,35 @@
+{
+ "sw": {
+  "ok": true,
+  "acct": "AMAZON PRIME VIDEO",
+  "url": "https://app.lfmdev.in/#home"
+ },
+ "brand": "Amazon Prime Video",
+ "week": "Nov. 09, 2026 - Nov. 15, 2026",
+ "id": "brand_id=25864",
+ "native": {
+  "channel": "youtube",
+  "posts": "48",
+  "cards": 48,
+  "first": {
+   "text": "1 | Amazon Prime Video | MON NOV. 09, 2026 09:03 AM PST | Blade Runner 2099 - Final Trailer | Prime Video | Video | Original Post | Blade Runner 2099 - Final Trailer | Prime Video | Video Views | 6,271,064 | Likes | 5,733 | Comments | 835",
+   "kv": {
+    "Video Views": "6,271,064",
+    "Likes": "5,733",
+    "Comments": "835"
+   },
+   "links": [
+    "https://www.youtube.com/channel/UCQJWtTnAHhEG5w4uN0udnUQ",
+    "http://www.youtube.com/watch?v=1d4x_eSdqNc"
+   ]
+  },
+  "native": {
+   "url": "https://www.youtube.com/watch?v=1d4x_eSdqNc",
+   "title": "Blade Runner 2099 - Final Trailer | Prime Video - YouTube",
+   "meta": "Whatever you can build, you can destroy. Blade Runner 2099, a new limited series, premieres November 25 only on Prime Video.» SUBSCRIBE: http://bit.ly/PrimeV...",
+   "like": "like this video along with 6,321 other people",
+   "txt": "IN | Skip navigation | Sign in | 0:00 / 2:32 | Blade Runner 2099 - Final Trailer | Prime Video | Prime Video | 9.96m subscribers | Subscribe | 6.3k | 8.4m views  7 days ago  #BladeRunner #PrimeVideo #Trailer | Whatever you can build, you can destroy. Blade Runner 2099, a new limited series, premieres November 25 only on Prime Video. | » SUBSCRIBE: http://bit.ly/PrimeVideoSubscribe … | more | Comments |   |   |   |   | 2:43 | Unaccus",
+   "commentsCount": "958 Comments"
+  }
+ }
+}

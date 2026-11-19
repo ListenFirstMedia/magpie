@@ -1,0 +1,5349 @@
+{
+ "QA-20533": {
+  "opts": {
+   "ds": "Public",
+   "channels": [
+    "twitter"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 2,
+    "idx": 0,
+    "posts": "145"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "twitter"
+    ],
+    "posts": "33"
+   },
+   "table": true,
+   "n": 33,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Reactions",
+    "Comments",
+    "Shares",
+    "Response Rate",
+    "Video Views",
+    "Video Response Rate",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "589",
+     "Reactions": "498",
+     "Comments": "13",
+     "Shares": "71",
+     "Response Rate": "N/A",
+     "Video Views": "2,901",
+     "Video Response Rate": "N/A",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 2,
+    "idx": 0,
+    "posts": "145"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "twitter"
+    ],
+    "posts": "33"
+   },
+   "table": true,
+   "n": 33,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Reactions",
+    "Comments",
+    "Shares",
+    "Response Rate",
+    "Video Views",
+    "Video Response Rate",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "589",
+     "Reactions": "498",
+     "Comments": "13",
+     "Shares": "71",
+     "Response Rate": "N/A",
+     "Video Views": "2,901",
+     "Video Response Rate": "N/A",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 33,
+   "prodPosts": 33,
+   "matched": 33,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Engagements",
+    "Reactions",
+    "Comments",
+    "Shares",
+    "Response Rate",
+    "Video Views",
+    "Video Response Rate"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Engagements": "589",
+    "Reactions": "498",
+    "Comments": "13",
+    "Shares": "71",
+    "Response Rate": "N/A",
+    "Video Views": "2,901",
+    "Video Response Rate": "N/A"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "UCLA",
+   "brand": "University of California, Los Angeles",
+   "week": "Nov. 09, 2026 - Nov. 15, 2026",
+   "weekProd": "Nov. 09, 2026 - Nov. 15, 2026"
+  }
+ },
+ "QA-21027": {
+  "opts": {
+   "ds": "Public",
+   "channels": [
+    "twitter"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 2,
+    "idx": 0,
+    "posts": "33"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "twitter"
+    ],
+    "posts": "33"
+   },
+   "table": true,
+   "n": 33,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Reactions",
+    "Comments",
+    "Shares",
+    "Response Rate",
+    "Video Views",
+    "Video Response Rate",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "589",
+     "Reactions": "498",
+     "Comments": "13",
+     "Shares": "71",
+     "Response Rate": "N/A",
+     "Video Views": "2,901",
+     "Video Response Rate": "N/A",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 2,
+    "idx": 0,
+    "posts": "33"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "twitter"
+    ],
+    "posts": "33"
+   },
+   "table": true,
+   "n": 33,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Reactions",
+    "Comments",
+    "Shares",
+    "Response Rate",
+    "Video Views",
+    "Video Response Rate",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "589",
+     "Reactions": "498",
+     "Comments": "13",
+     "Shares": "71",
+     "Response Rate": "N/A",
+     "Video Views": "2,901",
+     "Video Response Rate": "N/A",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 33,
+   "prodPosts": 33,
+   "matched": 33,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Engagements",
+    "Reactions",
+    "Comments",
+    "Shares",
+    "Response Rate",
+    "Video Views",
+    "Video Response Rate"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Engagements": "589",
+    "Reactions": "498",
+    "Comments": "13",
+    "Shares": "71",
+    "Response Rate": "N/A",
+    "Video Views": "2,901",
+    "Video Response Rate": "N/A"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "UCLA",
+   "brand": "University of California, Los Angeles",
+   "week": "Nov. 09, 2026 - Nov. 15, 2026",
+   "weekProd": "Nov. 09, 2026 - Nov. 15, 2026",
+   "note": "The spec names a 'Reactions' data set that does not exist in the data set dropdown; the Twitter Public comparison the dev half of the spec describes (Engagements, Reactions, Comments, Shares) was run."
+  }
+ },
+ "QA-20535": {
+  "opts": {
+   "ds": "Public",
+   "channels": [
+    "youtube"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 2,
+    "idx": 0,
+    "posts": "228"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "youtube"
+    ],
+    "posts": "48"
+   },
+   "table": true,
+   "n": 48,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Video Views",
+    "Likes",
+    "Comments",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Video Views": "10,382,245",
+     "Likes": "128,717",
+     "Comments": "3,828",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 2,
+    "idx": 0,
+    "posts": "228"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "youtube"
+    ],
+    "posts": "48"
+   },
+   "table": true,
+   "n": 48,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Video Views",
+    "Likes",
+    "Comments",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Video Views": "10,382,245",
+     "Likes": "128,717",
+     "Comments": "3,828",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 48,
+   "prodPosts": 48,
+   "matched": 48,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Video Views",
+    "Likes",
+    "Comments"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Video Views": "10,382,245",
+    "Likes": "128,717",
+    "Comments": "3,828"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "Amazon Prime Video",
+   "brand": "Amazon Prime Video",
+   "week": "Nov. 09, 2026 - Nov. 15, 2026",
+   "weekProd": "Nov. 09, 2026 - Nov. 15, 2026",
+   "note": "Both Tuesday rows (UCLA / University of California, Los Angeles and Wasserman / Gatorade) have 0 YouTube posts in the default week on dev and prod; ran on Amazon Prime Video per the case note 'Also use Amazon Prime Video on alternative days'."
+  }
+ },
+ "QA-20269": {
+  "opts": {
+   "ds": "Video Views",
+   "channels": [
+    "facebook"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 2,
+    "idx": 0,
+    "posts": "34"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "facebook"
+    ],
+    "posts": "7"
+   },
+   "table": true,
+   "n": 7,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Video Response Rate",
+    "Video Views",
+    "Organic Views",
+    "Paid Views",
+    "Unclassified Views",
+    "Viewers",
+    "Video Duration",
+    "Watch Time (Minutes)",
+    "Video Views (with Cross-Posts)",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "1,006",
+     "Video Response Rate": "N/A",
+     "Video Views": "12,163",
+     "Organic Views": "12,163",
+     "Paid Views": "0",
+     "Unclassified Views": "0",
+     "Viewers": "29,404",
+     "Video Duration": "5m38s",
+     "Watch Time (Minutes)": "–",
+     "Video Views (with Cross-Posts)": "12,163",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 2,
+    "idx": 0,
+    "posts": "34"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "facebook"
+    ],
+    "posts": "7"
+   },
+   "table": true,
+   "n": 7,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Video Response Rate",
+    "Video Views",
+    "Organic Views",
+    "Paid Views",
+    "Unclassified Views",
+    "Viewers",
+    "Video Duration",
+    "Watch Time (Minutes)",
+    "Video Views (with Cross-Posts)",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "1,006",
+     "Video Response Rate": "N/A",
+     "Video Views": "12,163",
+     "Organic Views": "12,163",
+     "Paid Views": "0",
+     "Unclassified Views": "0",
+     "Viewers": "29,404",
+     "Video Duration": "5m38s",
+     "Watch Time (Minutes)": "–",
+     "Video Views (with Cross-Posts)": "12,163",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 7,
+   "prodPosts": 7,
+   "matched": 7,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Engagements",
+    "Video Response Rate",
+    "Video Views",
+    "Organic Views",
+    "Paid Views",
+    "Unclassified Views",
+    "Viewers",
+    "Video Duration",
+    "Watch Time (Minutes)",
+    "Video Views (with Cross-Posts)"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Engagements": "1,006",
+    "Video Response Rate": "N/A",
+    "Video Views": "12,163",
+    "Organic Views": "12,163",
+    "Paid Views": "0",
+    "Unclassified Views": "0",
+    "Viewers": "29,404",
+    "Video Duration": "5m38s",
+    "Watch Time (Minutes)": "–",
+    "Video Views (with Cross-Posts)": "12,163"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "UCLA",
+   "brand": "University of California, Los Angeles",
+   "week": "Nov. 09, 2026 - Nov. 15, 2026",
+   "weekProd": "Nov. 09, 2026 - Nov. 15, 2026"
+  }
+ },
+ "QA-21017": {
+  "opts": {
+   "ds": "Video Views",
+   "channels": [
+    "twitter"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 2,
+    "idx": 0,
+    "posts": "7"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "twitter"
+    ],
+    "posts": "7"
+   },
+   "table": true,
+   "n": 7,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Video Response Rate",
+    "Video Views",
+    "Organic Views",
+    "Paid Views",
+    "Unclassified Views",
+    "Viewers",
+    "Video Duration",
+    "Watch Time (Minutes)",
+    "Video Views (with Cross-Posts)",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "185",
+     "Video Response Rate": "N/A",
+     "Video Views": "2,901",
+     "Organic Views": "2,901",
+     "Paid Views": "–",
+     "Unclassified Views": "0",
+     "Viewers": "–",
+     "Video Duration": "–",
+     "Watch Time (Minutes)": "–",
+     "Video Views (with Cross-Posts)": "2,901",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 2,
+    "idx": 0,
+    "posts": "7"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "twitter"
+    ],
+    "posts": "7"
+   },
+   "table": true,
+   "n": 7,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Video Response Rate",
+    "Video Views",
+    "Organic Views",
+    "Paid Views",
+    "Unclassified Views",
+    "Viewers",
+    "Video Duration",
+    "Watch Time (Minutes)",
+    "Video Views (with Cross-Posts)",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "185",
+     "Video Response Rate": "N/A",
+     "Video Views": "2,901",
+     "Organic Views": "2,901",
+     "Paid Views": "–",
+     "Unclassified Views": "0",
+     "Viewers": "–",
+     "Video Duration": "–",
+     "Watch Time (Minutes)": "–",
+     "Video Views (with Cross-Posts)": "2,901",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 7,
+   "prodPosts": 7,
+   "matched": 7,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Engagements",
+    "Video Response Rate",
+    "Video Views",
+    "Organic Views",
+    "Paid Views",
+    "Unclassified Views",
+    "Viewers",
+    "Video Duration",
+    "Watch Time (Minutes)",
+    "Video Views (with Cross-Posts)"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Engagements": "185",
+    "Video Response Rate": "N/A",
+    "Video Views": "2,901",
+    "Organic Views": "2,901",
+    "Paid Views": "–",
+    "Unclassified Views": "0",
+    "Viewers": "–",
+    "Video Duration": "–",
+    "Watch Time (Minutes)": "–",
+    "Video Views (with Cross-Posts)": "2,901"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "UCLA",
+   "brand": "University of California, Los Angeles",
+   "week": "Nov. 09, 2026 - Nov. 15, 2026",
+   "weekProd": "Nov. 09, 2026 - Nov. 15, 2026"
+  }
+ },
+ "QA-21018": {
+  "opts": {
+   "ds": "Video Views",
+   "channels": [
+    "instagram"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 2,
+    "idx": 0,
+    "posts": "7"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "instagram"
+    ],
+    "posts": "7"
+   },
+   "table": true,
+   "n": 7,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Video Response Rate",
+    "Video Views",
+    "Organic Views",
+    "Paid Views",
+    "Unclassified Views",
+    "Viewers",
+    "Video Duration",
+    "Watch Time (Minutes)",
+    "Video Views (with Cross-Posts)",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "6,208",
+     "Video Response Rate": "N/A",
+     "Video Views": "448,112",
+     "Organic Views": "448,112",
+     "Paid Views": "–",
+     "Unclassified Views": "0",
+     "Viewers": "–",
+     "Video Duration": "–",
+     "Watch Time (Minutes)": "30,084.06",
+     "Video Views (with Cross-Posts)": "448,112",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 2,
+    "idx": 0,
+    "posts": "7"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "instagram"
+    ],
+    "posts": "7"
+   },
+   "table": true,
+   "n": 7,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Video Response Rate",
+    "Video Views",
+    "Organic Views",
+    "Paid Views",
+    "Unclassified Views",
+    "Viewers",
+    "Video Duration",
+    "Watch Time (Minutes)",
+    "Video Views (with Cross-Posts)",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "6,208",
+     "Video Response Rate": "N/A",
+     "Video Views": "448,112",
+     "Organic Views": "448,112",
+     "Paid Views": "–",
+     "Unclassified Views": "0",
+     "Viewers": "–",
+     "Video Duration": "–",
+     "Watch Time (Minutes)": "30,084.06",
+     "Video Views (with Cross-Posts)": "448,112",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 7,
+   "prodPosts": 7,
+   "matched": 7,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Engagements",
+    "Video Response Rate",
+    "Video Views",
+    "Organic Views",
+    "Paid Views",
+    "Unclassified Views",
+    "Viewers",
+    "Video Duration",
+    "Watch Time (Minutes)",
+    "Video Views (with Cross-Posts)"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Engagements": "6,208",
+    "Video Response Rate": "N/A",
+    "Video Views": "448,112",
+    "Organic Views": "448,112",
+    "Paid Views": "–",
+    "Unclassified Views": "0",
+    "Viewers": "–",
+    "Video Duration": "–",
+    "Watch Time (Minutes)": "30,084.06",
+    "Video Views (with Cross-Posts)": "448,112"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "UCLA",
+   "brand": "University of California, Los Angeles",
+   "week": "Nov. 09, 2026 - Nov. 15, 2026",
+   "weekProd": "Nov. 09, 2026 - Nov. 15, 2026"
+  }
+ },
+ "QA-21020": {
+  "opts": {
+   "ds": "Video Views",
+   "channels": [
+    "tiktok"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 2,
+    "idx": 0,
+    "posts": "7"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "tiktok"
+    ],
+    "posts": "6"
+   },
+   "table": true,
+   "n": 6,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Video Response Rate",
+    "Video Views",
+    "Organic Views",
+    "Paid Views",
+    "Unclassified Views",
+    "Viewers",
+    "Video Duration",
+    "Watch Time (Minutes)",
+    "Video Views (with Cross-Posts)",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "818",
+     "Video Response Rate": "N/A",
+     "Video Views": "9,970",
+     "Organic Views": "–",
+     "Paid Views": "–",
+     "Unclassified Views": "9,970",
+     "Viewers": "–",
+     "Video Duration": "5m24s",
+     "Watch Time (Minutes)": "–",
+     "Video Views (with Cross-Posts)": "9,970",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 2,
+    "idx": 0,
+    "posts": "7"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "tiktok"
+    ],
+    "posts": "6"
+   },
+   "table": true,
+   "n": 6,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Video Response Rate",
+    "Video Views",
+    "Organic Views",
+    "Paid Views",
+    "Unclassified Views",
+    "Viewers",
+    "Video Duration",
+    "Watch Time (Minutes)",
+    "Video Views (with Cross-Posts)",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "818",
+     "Video Response Rate": "N/A",
+     "Video Views": "9,970",
+     "Organic Views": "–",
+     "Paid Views": "–",
+     "Unclassified Views": "9,970",
+     "Viewers": "–",
+     "Video Duration": "5m24s",
+     "Watch Time (Minutes)": "–",
+     "Video Views (with Cross-Posts)": "9,970",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 6,
+   "prodPosts": 6,
+   "matched": 6,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Engagements",
+    "Video Response Rate",
+    "Video Views",
+    "Organic Views",
+    "Paid Views",
+    "Unclassified Views",
+    "Viewers",
+    "Video Duration",
+    "Watch Time (Minutes)",
+    "Video Views (with Cross-Posts)"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Engagements": "818",
+    "Video Response Rate": "N/A",
+    "Video Views": "9,970",
+    "Organic Views": "–",
+    "Paid Views": "–",
+    "Unclassified Views": "9,970",
+    "Viewers": "–",
+    "Video Duration": "5m24s",
+    "Watch Time (Minutes)": "–",
+    "Video Views (with Cross-Posts)": "9,970"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "UCLA",
+   "brand": "University of California, Los Angeles",
+   "week": "Nov. 09, 2026 - Nov. 15, 2026",
+   "weekProd": "Nov. 09, 2026 - Nov. 15, 2026"
+  }
+ },
+ "QA-20271": {
+  "opts": {
+   "ds": "Impressions",
+   "channels": [
+    "instagram"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "6"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "instagram"
+    ],
+    "posts": "9"
+   },
+   "table": true,
+   "n": 9,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Engagement Rate",
+    "Impressions",
+    "Organic Impressions",
+    "Paid Impressions",
+    "Reach",
+    "Organic Reach",
+    "Paid Reach",
+    "Engaged User Rate",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "12,756",
+     "Engagement Rate": "N/A",
+     "Impressions": "874,258",
+     "Organic Impressions": "874,258",
+     "Paid Impressions": "–",
+     "Reach": "N/A",
+     "Organic Reach": "N/A",
+     "Paid Reach": "N/A",
+     "Engaged User Rate": "N/A",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "6"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "instagram"
+    ],
+    "posts": "9"
+   },
+   "table": true,
+   "n": 9,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Engagement Rate",
+    "Impressions",
+    "Organic Impressions",
+    "Paid Impressions",
+    "Reach",
+    "Organic Reach",
+    "Paid Reach",
+    "Engaged User Rate",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "12,756",
+     "Engagement Rate": "N/A",
+     "Impressions": "874,258",
+     "Organic Impressions": "874,258",
+     "Paid Impressions": "–",
+     "Reach": "N/A",
+     "Organic Reach": "N/A",
+     "Paid Reach": "N/A",
+     "Engaged User Rate": "N/A",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 9,
+   "prodPosts": 9,
+   "matched": 9,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Engagements",
+    "Engagement Rate",
+    "Impressions",
+    "Organic Impressions",
+    "Paid Impressions",
+    "Reach",
+    "Organic Reach",
+    "Paid Reach",
+    "Engaged User Rate"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Engagements": "12,756",
+    "Engagement Rate": "N/A",
+    "Impressions": "874,258",
+    "Organic Impressions": "874,258",
+    "Paid Impressions": "–",
+    "Reach": "N/A",
+    "Organic Reach": "N/A",
+    "Paid Reach": "N/A",
+    "Engaged User Rate": "N/A"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "UCLA",
+   "brand": "University of California, Los Angeles",
+   "week": "Nov. 09, 2026 - Nov. 15, 2026",
+   "weekProd": "Nov. 09, 2026 - Nov. 15, 2026"
+  }
+ },
+ "QA-21015": {
+  "opts": {
+   "ds": "Impressions",
+   "channels": [
+    "facebook"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 2,
+    "idx": 0,
+    "posts": "9"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "facebook"
+    ],
+    "posts": "33"
+   },
+   "table": true,
+   "n": 33,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Engagement Rate",
+    "Impressions",
+    "Organic Impressions",
+    "Paid Impressions",
+    "Reach",
+    "Organic Reach",
+    "Paid Reach",
+    "Engaged User Rate",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "3,276",
+     "Engagement Rate": "N/A",
+     "Impressions": "236,375",
+     "Organic Impressions": "236,375",
+     "Paid Impressions": "0",
+     "Reach": "N/A",
+     "Organic Reach": "N/A",
+     "Paid Reach": "N/A",
+     "Engaged User Rate": "N/A",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 2,
+    "idx": 0,
+    "posts": "9"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "facebook"
+    ],
+    "posts": "33"
+   },
+   "table": true,
+   "n": 33,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Engagement Rate",
+    "Impressions",
+    "Organic Impressions",
+    "Paid Impressions",
+    "Reach",
+    "Organic Reach",
+    "Paid Reach",
+    "Engaged User Rate",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "3,276",
+     "Engagement Rate": "N/A",
+     "Impressions": "236,375",
+     "Organic Impressions": "236,375",
+     "Paid Impressions": "0",
+     "Reach": "N/A",
+     "Organic Reach": "N/A",
+     "Paid Reach": "N/A",
+     "Engaged User Rate": "N/A",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 33,
+   "prodPosts": 33,
+   "matched": 33,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Engagements",
+    "Engagement Rate",
+    "Impressions",
+    "Organic Impressions",
+    "Paid Impressions",
+    "Reach",
+    "Organic Reach",
+    "Paid Reach",
+    "Engaged User Rate"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Engagements": "3,276",
+    "Engagement Rate": "N/A",
+    "Impressions": "236,375",
+    "Organic Impressions": "236,375",
+    "Paid Impressions": "0",
+    "Reach": "N/A",
+    "Organic Reach": "N/A",
+    "Paid Reach": "N/A",
+    "Engaged User Rate": "N/A"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "UCLA",
+   "brand": "University of California, Los Angeles",
+   "week": "Nov. 09, 2026 - Nov. 15, 2026",
+   "weekProd": "Nov. 09, 2026 - Nov. 15, 2026"
+  }
+ },
+ "QA-21016": {
+  "opts": {
+   "ds": "Impressions",
+   "channels": [
+    "twitter"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 2,
+    "idx": 0,
+    "posts": "33"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "twitter"
+    ],
+    "posts": "33"
+   },
+   "table": true,
+   "n": 33,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Engagement Rate",
+    "Impressions",
+    "Organic Impressions",
+    "Paid Impressions",
+    "Reach",
+    "Organic Reach",
+    "Paid Reach",
+    "Engaged User Rate",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "589",
+     "Engagement Rate": "N/A",
+     "Impressions": "68,038",
+     "Organic Impressions": "68,038",
+     "Paid Impressions": "–",
+     "Reach": "N/A",
+     "Organic Reach": "N/A",
+     "Paid Reach": "N/A",
+     "Engaged User Rate": "N/A",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 2,
+    "idx": 0,
+    "posts": "33"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "twitter"
+    ],
+    "posts": "33"
+   },
+   "table": true,
+   "n": 33,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Engagement Rate",
+    "Impressions",
+    "Organic Impressions",
+    "Paid Impressions",
+    "Reach",
+    "Organic Reach",
+    "Paid Reach",
+    "Engaged User Rate",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "589",
+     "Engagement Rate": "N/A",
+     "Impressions": "68,038",
+     "Organic Impressions": "68,038",
+     "Paid Impressions": "–",
+     "Reach": "N/A",
+     "Organic Reach": "N/A",
+     "Paid Reach": "N/A",
+     "Engaged User Rate": "N/A",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 33,
+   "prodPosts": 33,
+   "matched": 33,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Engagements",
+    "Engagement Rate",
+    "Impressions",
+    "Organic Impressions",
+    "Paid Impressions",
+    "Reach",
+    "Organic Reach",
+    "Paid Reach",
+    "Engaged User Rate"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Engagements": "589",
+    "Engagement Rate": "N/A",
+    "Impressions": "68,038",
+    "Organic Impressions": "68,038",
+    "Paid Impressions": "–",
+    "Reach": "N/A",
+    "Organic Reach": "N/A",
+    "Paid Reach": "N/A",
+    "Engaged User Rate": "N/A"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "UCLA",
+   "brand": "University of California, Los Angeles",
+   "week": "Nov. 09, 2026 - Nov. 15, 2026",
+   "weekProd": "Nov. 09, 2026 - Nov. 15, 2026"
+  }
+ },
+ "QA-20272": {
+  "opts": {
+   "ds": "Engagements Breakdown",
+   "channels": [
+    "twitter"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "33"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "twitter"
+    ],
+    "posts": "33"
+   },
+   "table": true,
+   "n": 33,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Organic Engagements",
+    "Paid Engagements",
+    "Reactions",
+    "Organic Reactions",
+    "Paid Reactions",
+    "Comments",
+    "Organic Comments",
+    "Paid Comments",
+    "Shares",
+    "Organic Shares",
+    "Paid Shares",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "589",
+     "Organic Engagements": "589",
+     "Paid Engagements": "–",
+     "Reactions": "498",
+     "Organic Reactions": "498",
+     "Paid Reactions": "–",
+     "Comments": "13",
+     "Organic Comments": "13",
+     "Paid Comments": "–",
+     "Shares": "78",
+     "Organic Shares": "78",
+     "Paid Shares": "–",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "33"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "twitter"
+    ],
+    "posts": "33"
+   },
+   "table": true,
+   "n": 33,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Organic Engagements",
+    "Paid Engagements",
+    "Reactions",
+    "Organic Reactions",
+    "Paid Reactions",
+    "Comments",
+    "Organic Comments",
+    "Paid Comments",
+    "Shares",
+    "Organic Shares",
+    "Paid Shares",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "589",
+     "Organic Engagements": "589",
+     "Paid Engagements": "–",
+     "Reactions": "498",
+     "Organic Reactions": "498",
+     "Paid Reactions": "–",
+     "Comments": "13",
+     "Organic Comments": "13",
+     "Paid Comments": "–",
+     "Shares": "78",
+     "Organic Shares": "78",
+     "Paid Shares": "–",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 33,
+   "prodPosts": 33,
+   "matched": 33,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Engagements",
+    "Organic Engagements",
+    "Paid Engagements",
+    "Reactions",
+    "Organic Reactions",
+    "Paid Reactions",
+    "Comments",
+    "Organic Comments",
+    "Paid Comments",
+    "Shares",
+    "Organic Shares",
+    "Paid Shares"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Engagements": "589",
+    "Organic Engagements": "589",
+    "Paid Engagements": "–",
+    "Reactions": "498",
+    "Organic Reactions": "498",
+    "Paid Reactions": "–",
+    "Comments": "13",
+    "Organic Comments": "13",
+    "Paid Comments": "–",
+    "Shares": "78",
+    "Organic Shares": "78",
+    "Paid Shares": "–"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "UCLA",
+   "brand": "University of California, Los Angeles",
+   "week": "Nov. 09, 2026 - Nov. 15, 2026",
+   "weekProd": "Nov. 09, 2026 - Nov. 15, 2026"
+  }
+ },
+ "QA-21014": {
+  "opts": {
+   "ds": "Engagements Breakdown",
+   "channels": [
+    "instagram"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 2,
+    "idx": 0,
+    "posts": "33"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "instagram"
+    ],
+    "posts": "9"
+   },
+   "table": true,
+   "n": 9,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Organic Engagements",
+    "Paid Engagements",
+    "Reactions",
+    "Organic Reactions",
+    "Paid Reactions",
+    "Comments",
+    "Organic Comments",
+    "Paid Comments",
+    "Shares",
+    "Organic Shares",
+    "Paid Shares",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "12,756",
+     "Organic Engagements": "12,756",
+     "Paid Engagements": "–",
+     "Reactions": "12,614",
+     "Organic Reactions": "12,614",
+     "Paid Reactions": "–",
+     "Comments": "142",
+     "Organic Comments": "142",
+     "Paid Comments": "–",
+     "Shares": "–",
+     "Organic Shares": "–",
+     "Paid Shares": "–",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 2,
+    "idx": 0,
+    "posts": "33"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "instagram"
+    ],
+    "posts": "9"
+   },
+   "table": true,
+   "n": 9,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Organic Engagements",
+    "Paid Engagements",
+    "Reactions",
+    "Organic Reactions",
+    "Paid Reactions",
+    "Comments",
+    "Organic Comments",
+    "Paid Comments",
+    "Shares",
+    "Organic Shares",
+    "Paid Shares",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "12,756",
+     "Organic Engagements": "12,756",
+     "Paid Engagements": "–",
+     "Reactions": "12,614",
+     "Organic Reactions": "12,614",
+     "Paid Reactions": "–",
+     "Comments": "142",
+     "Organic Comments": "142",
+     "Paid Comments": "–",
+     "Shares": "–",
+     "Organic Shares": "–",
+     "Paid Shares": "–",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 9,
+   "prodPosts": 9,
+   "matched": 9,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Engagements",
+    "Organic Engagements",
+    "Paid Engagements",
+    "Reactions",
+    "Organic Reactions",
+    "Paid Reactions",
+    "Comments",
+    "Organic Comments",
+    "Paid Comments",
+    "Shares",
+    "Organic Shares",
+    "Paid Shares"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Engagements": "12,756",
+    "Organic Engagements": "12,756",
+    "Paid Engagements": "–",
+    "Reactions": "12,614",
+    "Organic Reactions": "12,614",
+    "Paid Reactions": "–",
+    "Comments": "142",
+    "Organic Comments": "142",
+    "Paid Comments": "–",
+    "Shares": "–",
+    "Organic Shares": "–",
+    "Paid Shares": "–"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "UCLA",
+   "brand": "University of California, Los Angeles",
+   "week": "Nov. 09, 2026 - Nov. 15, 2026",
+   "weekProd": "Nov. 09, 2026 - Nov. 15, 2026"
+  }
+ },
+ "QA-20273": {
+  "opts": {
+   "ds": "Facebook Only: Completed Video Views",
+   "channels": [
+    "facebook"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "7"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "facebook"
+    ],
+    "posts": "7"
+   },
+   "table": true,
+   "n": 7,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Video Duration",
+    "Avg Time Watched (Minutes)",
+    "Avg Viewthru",
+    "Completed Views",
+    "Organic Completed Views",
+    "Paid Completed Views",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "1,006",
+     "Video Duration": "5m38s",
+     "Avg Time Watched (Minutes)": "N/A",
+     "Avg Viewthru": "N/A",
+     "Completed Views": "2,716",
+     "Organic Completed Views": "2,716",
+     "Paid Completed Views": "0",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "7"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "facebook"
+    ],
+    "posts": "7"
+   },
+   "table": true,
+   "n": 7,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Video Duration",
+    "Avg Time Watched (Minutes)",
+    "Avg Viewthru",
+    "Completed Views",
+    "Organic Completed Views",
+    "Paid Completed Views",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "1,006",
+     "Video Duration": "5m38s",
+     "Avg Time Watched (Minutes)": "N/A",
+     "Avg Viewthru": "N/A",
+     "Completed Views": "2,716",
+     "Organic Completed Views": "2,716",
+     "Paid Completed Views": "0",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 7,
+   "prodPosts": 7,
+   "matched": 7,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Engagements",
+    "Video Duration",
+    "Avg Time Watched (Minutes)",
+    "Avg Viewthru",
+    "Completed Views",
+    "Organic Completed Views",
+    "Paid Completed Views"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Engagements": "1,006",
+    "Video Duration": "5m38s",
+    "Avg Time Watched (Minutes)": "N/A",
+    "Avg Viewthru": "N/A",
+    "Completed Views": "2,716",
+    "Organic Completed Views": "2,716",
+    "Paid Completed Views": "0"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "UCLA",
+   "brand": "University of California, Los Angeles",
+   "week": "Nov. 09, 2026 - Nov. 15, 2026",
+   "weekProd": "Nov. 09, 2026 - Nov. 15, 2026"
+  }
+ },
+ "QA-20274": {
+  "opts": {
+   "ds": "Facebook Only: Reactions",
+   "channels": [
+    "facebook"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "33"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "facebook"
+    ],
+    "posts": "33"
+   },
+   "table": true,
+   "n": 33,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Reactions",
+    "Likes",
+    "Loves",
+    "Hahas",
+    "Wows",
+    "Sads",
+    "Angries",
+    "Others",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "3,276",
+     "Reactions": "2,938",
+     "Likes": "2,491",
+     "Loves": "432",
+     "Hahas": "3",
+     "Wows": "11",
+     "Sads": "1",
+     "Angries": "0",
+     "Others": "0",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "33"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "facebook"
+    ],
+    "posts": "33"
+   },
+   "table": true,
+   "n": 33,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Reactions",
+    "Likes",
+    "Loves",
+    "Hahas",
+    "Wows",
+    "Sads",
+    "Angries",
+    "Others",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "3,276",
+     "Reactions": "2,938",
+     "Likes": "2,491",
+     "Loves": "432",
+     "Hahas": "3",
+     "Wows": "11",
+     "Sads": "1",
+     "Angries": "0",
+     "Others": "0",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 33,
+   "prodPosts": 33,
+   "matched": 33,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Engagements",
+    "Reactions",
+    "Likes",
+    "Loves",
+    "Hahas",
+    "Wows",
+    "Sads",
+    "Angries",
+    "Others"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Engagements": "3,276",
+    "Reactions": "2,938",
+    "Likes": "2,491",
+    "Loves": "432",
+    "Hahas": "3",
+    "Wows": "11",
+    "Sads": "1",
+    "Angries": "0",
+    "Others": "0"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "UCLA",
+   "brand": "University of California, Los Angeles",
+   "week": "Nov. 09, 2026 - Nov. 15, 2026",
+   "weekProd": "Nov. 09, 2026 - Nov. 15, 2026"
+  }
+ },
+ "QA-20275": {
+  "opts": {
+   "ds": "Twitter Only: Engagements & Follows",
+   "channels": [
+    "twitter"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "33"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "twitter"
+    ],
+    "posts": "33"
+   },
+   "table": true,
+   "n": 33,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Likes",
+    "Replies",
+    "Retweets",
+    "Quotes",
+    "Bookmarks",
+    "Views",
+    "User Follows",
+    "Organic User Follows",
+    "Paid User Follows",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "589",
+     "Likes": "499",
+     "Replies": "11",
+     "Retweets": "70",
+     "Quotes": "1",
+     "Bookmarks": "35",
+     "Views": "67,317",
+     "User Follows": "–",
+     "Organic User Follows": "–",
+     "Paid User Follows": "–",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "33"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "twitter"
+    ],
+    "posts": "33"
+   },
+   "table": true,
+   "n": 33,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Likes",
+    "Replies",
+    "Retweets",
+    "Quotes",
+    "Bookmarks",
+    "Views",
+    "User Follows",
+    "Organic User Follows",
+    "Paid User Follows",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "589",
+     "Likes": "499",
+     "Replies": "11",
+     "Retweets": "70",
+     "Quotes": "1",
+     "Bookmarks": "35",
+     "Views": "67,317",
+     "User Follows": "–",
+     "Organic User Follows": "–",
+     "Paid User Follows": "–",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 33,
+   "prodPosts": 33,
+   "matched": 33,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Engagements",
+    "Likes",
+    "Replies",
+    "Retweets",
+    "Quotes",
+    "Bookmarks",
+    "Views",
+    "User Follows",
+    "Organic User Follows",
+    "Paid User Follows"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Engagements": "589",
+    "Likes": "499",
+    "Replies": "11",
+    "Retweets": "70",
+    "Quotes": "1",
+    "Bookmarks": "35",
+    "Views": "67,317",
+    "User Follows": "–",
+    "Organic User Follows": "–",
+    "Paid User Follows": "–"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "UCLA",
+   "brand": "University of California, Los Angeles",
+   "week": "Nov. 09, 2026 - Nov. 15, 2026",
+   "weekProd": "Nov. 09, 2026 - Nov. 15, 2026"
+  }
+ },
+ "QA-70721": {
+  "opts": {
+   "ds": "Instagram Only: Action Types",
+   "channels": [
+    "instagram"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "9"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "instagram"
+    ],
+    "posts": "9"
+   },
+   "table": true,
+   "n": 9,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Actions",
+    "Bio Link Clicks",
+    "Calls",
+    "Directions",
+    "Emails",
+    "Texts",
+    "Other Actions",
+    "Profile Visits",
+    "Follows",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "12,756",
+     "Actions": "",
+     "Bio Link Clicks": "9",
+     "Calls": "–",
+     "Directions": "–",
+     "Emails": "–",
+     "Texts": "–",
+     "Other Actions": "–",
+     "Profile Visits": "889",
+     "Follows": "6",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "9"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "instagram"
+    ],
+    "posts": "9"
+   },
+   "table": true,
+   "n": 9,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Actions",
+    "Bio Link Clicks",
+    "Calls",
+    "Directions",
+    "Emails",
+    "Texts",
+    "Other Actions",
+    "Profile Visits",
+    "Follows",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "12,756",
+     "Actions": "",
+     "Bio Link Clicks": "9",
+     "Calls": "–",
+     "Directions": "–",
+     "Emails": "–",
+     "Texts": "–",
+     "Other Actions": "–",
+     "Profile Visits": "889",
+     "Follows": "6",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 9,
+   "prodPosts": 9,
+   "matched": 9,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Engagements",
+    "Bio Link Clicks",
+    "Calls",
+    "Directions",
+    "Emails",
+    "Texts",
+    "Other Actions",
+    "Profile Visits",
+    "Follows"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Engagements": "12,756",
+    "Bio Link Clicks": "9",
+    "Calls": "–",
+    "Directions": "–",
+    "Emails": "–",
+    "Texts": "–",
+    "Other Actions": "–",
+    "Profile Visits": "889",
+    "Follows": "6"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "UCLA",
+   "brand": "University of California, Los Angeles",
+   "week": "Nov. 09, 2026 - Nov. 15, 2026",
+   "weekProd": "Nov. 09, 2026 - Nov. 15, 2026"
+  }
+ },
+ "QA-20278": {
+  "opts": {
+   "ds": "YouTube Only: Cards",
+   "channels": [
+    "youtube"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "48"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "youtube"
+    ],
+    "posts": "48"
+   },
+   "table": true,
+   "n": 48,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Video Views",
+    "Video Duration",
+    "Card Impressions",
+    "Card Clicks",
+    "Card CTR",
+    "Teaser Impressions",
+    "Teaser Clicks",
+    "Teaser CTR",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Video Views": "10,382,245",
+     "Video Duration": "1h51m46s",
+     "Card Impressions": "–",
+     "Card Clicks": "–",
+     "Card CTR": "N/A",
+     "Teaser Impressions": "–",
+     "Teaser Clicks": "–",
+     "Teaser CTR": "N/A",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "48"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "youtube"
+    ],
+    "posts": "48"
+   },
+   "table": true,
+   "n": 48,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Video Views",
+    "Video Duration",
+    "Card Impressions",
+    "Card Clicks",
+    "Card CTR",
+    "Teaser Impressions",
+    "Teaser Clicks",
+    "Teaser CTR",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Video Views": "10,382,245",
+     "Video Duration": "1h51m46s",
+     "Card Impressions": "–",
+     "Card Clicks": "–",
+     "Card CTR": "N/A",
+     "Teaser Impressions": "–",
+     "Teaser Clicks": "–",
+     "Teaser CTR": "N/A",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 48,
+   "prodPosts": 48,
+   "matched": 48,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Video Views",
+    "Video Duration",
+    "Card Impressions",
+    "Card Clicks",
+    "Card CTR",
+    "Teaser Impressions",
+    "Teaser Clicks",
+    "Teaser CTR"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Video Views": "10,382,245",
+    "Video Duration": "1h51m46s",
+    "Card Impressions": "–",
+    "Card Clicks": "–",
+    "Card CTR": "N/A",
+    "Teaser Impressions": "–",
+    "Teaser Clicks": "–",
+    "Teaser CTR": "N/A"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "Amazon Prime Video",
+   "brand": "Amazon Prime Video",
+   "week": "Nov. 09, 2026 - Nov. 15, 2026",
+   "weekProd": "Nov. 09, 2026 - Nov. 15, 2026",
+   "note": "Both Tuesday rows (UCLA / University of California, Los Angeles and Wasserman / Gatorade) have 0 YouTube posts in the default week on dev and prod; ran on Amazon Prime Video per the case note 'Also use Amazon Prime Video on alternative days'."
+  }
+ },
+ "QA-20280": {
+  "opts": {
+   "ds": "YouTube Only: Subscribers & Playlists",
+   "channels": [
+    "youtube"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "48"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "youtube"
+    ],
+    "posts": "48"
+   },
+   "table": true,
+   "n": 48,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Video Views",
+    "Video Duration",
+    "Subscribers Gained",
+    "Subscribers Lost",
+    "Playlist Adds",
+    "Playlist Removes",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Video Views": "10,382,245",
+     "Video Duration": "1h51m46s",
+     "Subscribers Gained": "–",
+     "Subscribers Lost": "–",
+     "Playlist Adds": "–",
+     "Playlist Removes": "–",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "48"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "youtube"
+    ],
+    "posts": "48"
+   },
+   "table": true,
+   "n": 48,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Video Views",
+    "Video Duration",
+    "Subscribers Gained",
+    "Subscribers Lost",
+    "Playlist Adds",
+    "Playlist Removes",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Video Views": "10,382,245",
+     "Video Duration": "1h51m46s",
+     "Subscribers Gained": "–",
+     "Subscribers Lost": "–",
+     "Playlist Adds": "–",
+     "Playlist Removes": "–",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 48,
+   "prodPosts": 48,
+   "matched": 48,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Video Views",
+    "Video Duration",
+    "Subscribers Gained",
+    "Subscribers Lost",
+    "Playlist Adds",
+    "Playlist Removes"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Video Views": "10,382,245",
+    "Video Duration": "1h51m46s",
+    "Subscribers Gained": "–",
+    "Subscribers Lost": "–",
+    "Playlist Adds": "–",
+    "Playlist Removes": "–"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "Amazon Prime Video",
+   "brand": "Amazon Prime Video",
+   "week": "Nov. 09, 2026 - Nov. 15, 2026",
+   "weekProd": "Nov. 09, 2026 - Nov. 15, 2026",
+   "note": "Both Tuesday rows (UCLA / University of California, Los Angeles and Wasserman / Gatorade) have 0 YouTube posts in the default week on dev and prod; ran on Amazon Prime Video per the case note 'Also use Amazon Prime Video on alternative days'."
+  }
+ },
+ "QA-21019": {
+  "opts": {
+   "ds": "YouTube Only: Insights",
+   "channels": [
+    "youtube"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "48"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "youtube"
+    ],
+    "posts": "48"
+   },
+   "table": true,
+   "n": 48,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Video Views",
+    "Organic Views",
+    "Paid Views",
+    "Unclassified Views",
+    "Video Duration",
+    "YouTube Watch Time (Minutes)",
+    "Organic Watch Time (Minutes)",
+    "Paid Watch Time (Minutes)",
+    "Avg View Duration (Minutes)",
+    "Shares",
+    "Dislikes",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Video Views": "10,382,245",
+     "Organic Views": "–",
+     "Paid Views": "–",
+     "Unclassified Views": "10,382,245",
+     "Video Duration": "1h51m46s",
+     "YouTube Watch Time (Minutes)": "–",
+     "Organic Watch Time (Minutes)": "–",
+     "Paid Watch Time (Minutes)": "–",
+     "Avg View Duration (Minutes)": "N/A",
+     "Shares": "–",
+     "Dislikes": "–",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "48"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "youtube"
+    ],
+    "posts": "48"
+   },
+   "table": true,
+   "n": 48,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Video Views",
+    "Organic Views",
+    "Paid Views",
+    "Unclassified Views",
+    "Video Duration",
+    "YouTube Watch Time (Minutes)",
+    "Organic Watch Time (Minutes)",
+    "Paid Watch Time (Minutes)",
+    "Avg View Duration (Minutes)",
+    "Shares",
+    "Dislikes",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Video Views": "10,382,245",
+     "Organic Views": "–",
+     "Paid Views": "–",
+     "Unclassified Views": "10,382,245",
+     "Video Duration": "1h51m46s",
+     "YouTube Watch Time (Minutes)": "–",
+     "Organic Watch Time (Minutes)": "–",
+     "Paid Watch Time (Minutes)": "–",
+     "Avg View Duration (Minutes)": "N/A",
+     "Shares": "–",
+     "Dislikes": "–",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 48,
+   "prodPosts": 48,
+   "matched": 48,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Video Views",
+    "Organic Views",
+    "Paid Views",
+    "Unclassified Views",
+    "Video Duration",
+    "YouTube Watch Time (Minutes)",
+    "Organic Watch Time (Minutes)",
+    "Paid Watch Time (Minutes)",
+    "Avg View Duration (Minutes)",
+    "Shares",
+    "Dislikes"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Video Views": "10,382,245",
+    "Organic Views": "–",
+    "Paid Views": "–",
+    "Unclassified Views": "10,382,245",
+    "Video Duration": "1h51m46s",
+    "YouTube Watch Time (Minutes)": "–",
+    "Organic Watch Time (Minutes)": "–",
+    "Paid Watch Time (Minutes)": "–",
+    "Avg View Duration (Minutes)": "N/A",
+    "Shares": "–",
+    "Dislikes": "–"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "Amazon Prime Video",
+   "brand": "Amazon Prime Video",
+   "week": "Nov. 09, 2026 - Nov. 15, 2026",
+   "weekProd": "Nov. 09, 2026 - Nov. 15, 2026",
+   "note": "Both Tuesday rows (UCLA / University of California, Los Angeles and Wasserman / Gatorade) have 0 YouTube posts in the default week on dev and prod; ran on Amazon Prime Video per the case note 'Also use Amazon Prime Video on alternative days'. YouTube is greyed out under the generic Video Views data set, so the YouTube video-view metrics were compared under 'YouTube Only: Insights', as in earlier runs."
+  }
+ },
+ "QA-20276": {
+  "opts": {
+   "ds": "Instagram Only: Insights",
+   "channels": [
+    "instagram"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "11"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest",
+     "mk_line",
+     "mk_kakao",
+     "mk_wechat",
+     "mk_weibo"
+    ],
+    "enabled": [
+     "instagram"
+    ],
+    "posts": "11"
+   },
+   "table": true,
+   "n": 11,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Saves",
+    "Organic Saves",
+    "Paid Saves",
+    "Shares",
+    "Views",
+    "Private Likes",
+    "Effectiveness",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "25,223",
+     "Saves": "1,532",
+     "Organic Saves": "1,532",
+     "Paid Saves": "–",
+     "Shares": "2,415",
+     "Views": "1,832,946",
+     "Private Likes": "24,760",
+     "Effectiveness": "N/A",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "11"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest",
+     "mk_line",
+     "mk_kakao",
+     "mk_wechat",
+     "mk_weibo"
+    ],
+    "enabled": [
+     "instagram"
+    ],
+    "posts": "11"
+   },
+   "table": true,
+   "n": 11,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Saves",
+    "Organic Saves",
+    "Paid Saves",
+    "Shares",
+    "Views",
+    "Private Likes",
+    "Effectiveness",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "25,223",
+     "Saves": "1,532",
+     "Organic Saves": "1,532",
+     "Paid Saves": "–",
+     "Shares": "2,415",
+     "Views": "1,832,946",
+     "Private Likes": "24,760",
+     "Effectiveness": "N/A",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 11,
+   "prodPosts": 11,
+   "matched": 11,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Engagements",
+    "Saves",
+    "Organic Saves",
+    "Paid Saves",
+    "Shares",
+    "Views",
+    "Private Likes",
+    "Effectiveness"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Engagements": "25,223",
+    "Saves": "1,532",
+    "Organic Saves": "1,532",
+    "Paid Saves": "–",
+    "Shares": "2,415",
+    "Views": "1,832,946",
+    "Private Likes": "24,760",
+    "Effectiveness": "N/A"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "Michael Kors",
+   "brand": "Michael Kors",
+   "week": "Nov. 09, 2026 - Nov. 15, 2026",
+   "weekProd": "Nov. 09, 2026 - Nov. 15, 2026",
+   "note": "Tuesday row: Michael Kors / Michael Kors."
+  }
+ },
+ "QA-20279": {
+  "opts": {
+   "ds": "Pinterest Only: Basic",
+   "channels": [
+    "pinterest"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "311"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "pinterest"
+    ],
+    "posts": "311"
+   },
+   "table": true,
+   "n": 200,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Pin Saves",
+    "Comments",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "0",
+     "Pin Saves": "–",
+     "Comments": "0",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "311"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "pinterest"
+    ],
+    "posts": "311"
+   },
+   "table": true,
+   "n": 200,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Pin Saves",
+    "Comments",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "0",
+     "Pin Saves": "–",
+     "Comments": "0",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 200,
+   "prodPosts": 200,
+   "matched": 200,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Engagements",
+    "Pin Saves",
+    "Comments"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Engagements": "0",
+    "Pin Saves": "–",
+    "Comments": "0"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "Ralph Lauren",
+   "brand": "Ralph Lauren",
+   "week": "Nov. 09, 2026 - Nov. 15, 2026",
+   "weekProd": "Nov. 09, 2026 - Nov. 15, 2026",
+   "note": "Tuesday row: Ralph Lauren / Ralph Lauren. The header shows Posts (311) on both environments; Table View lists the top 200 rows, and all 200 were compared."
+  }
+ },
+ "QA-20277": {
+  "opts": {
+   "ds": "YouTube Only: Insights",
+   "channels": [
+    "youtube"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "9"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "youtube"
+    ],
+    "posts": "9"
+   },
+   "table": true,
+   "n": 9,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Video Views",
+    "Organic Views",
+    "Paid Views",
+    "Unclassified Views",
+    "Video Duration",
+    "YouTube Watch Time (Minutes)",
+    "Organic Watch Time (Minutes)",
+    "Paid Watch Time (Minutes)",
+    "Avg View Duration (Minutes)",
+    "Shares",
+    "Dislikes",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Video Views": "74,533",
+     "Organic Views": "–",
+     "Paid Views": "–",
+     "Unclassified Views": "74,533",
+     "Video Duration": "48m20s",
+     "YouTube Watch Time (Minutes)": "–",
+     "Organic Watch Time (Minutes)": "–",
+     "Paid Watch Time (Minutes)": "–",
+     "Avg View Duration (Minutes)": "N/A",
+     "Shares": "–",
+     "Dislikes": "–",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "9"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "youtube"
+    ],
+    "posts": "9"
+   },
+   "table": true,
+   "n": 9,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Video Views",
+    "Organic Views",
+    "Paid Views",
+    "Unclassified Views",
+    "Video Duration",
+    "YouTube Watch Time (Minutes)",
+    "Organic Watch Time (Minutes)",
+    "Paid Watch Time (Minutes)",
+    "Avg View Duration (Minutes)",
+    "Shares",
+    "Dislikes",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Video Views": "74,533",
+     "Organic Views": "–",
+     "Paid Views": "–",
+     "Unclassified Views": "74,533",
+     "Video Duration": "48m20s",
+     "YouTube Watch Time (Minutes)": "–",
+     "Organic Watch Time (Minutes)": "–",
+     "Paid Watch Time (Minutes)": "–",
+     "Avg View Duration (Minutes)": "N/A",
+     "Shares": "–",
+     "Dislikes": "–",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 9,
+   "prodPosts": 9,
+   "matched": 9,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Video Views",
+    "Organic Views",
+    "Paid Views",
+    "Unclassified Views",
+    "Video Duration",
+    "YouTube Watch Time (Minutes)",
+    "Organic Watch Time (Minutes)",
+    "Paid Watch Time (Minutes)",
+    "Avg View Duration (Minutes)",
+    "Shares",
+    "Dislikes"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Video Views": "74,533",
+    "Organic Views": "–",
+    "Paid Views": "–",
+    "Unclassified Views": "74,533",
+    "Video Duration": "48m20s",
+    "YouTube Watch Time (Minutes)": "–",
+    "Organic Watch Time (Minutes)": "–",
+    "Paid Watch Time (Minutes)": "–",
+    "Avg View Duration (Minutes)": "N/A",
+    "Shares": "–",
+    "Dislikes": "–"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "Disney Ad Sales",
+   "brand": "Disney Channel",
+   "week": "Nov. 09, 2026 - Nov. 15, 2026",
+   "weekProd": "Nov. 09, 2026 - Nov. 15, 2026",
+   "note": "Tuesday row: Disney Ad Sales / Disney Channel. The case covers two data sets; the report table shows YouTube Only: Insights. YouTube Only: Premium was compared separately with the same result: dev 9 / prod 9 posts, matched 9, column mismatches none, aggregate differences 0 (columns: Date, Channel, Brand, Type, Live, Publish Type, Paid, Sponsor, Collaborated, Premium Views, Organic Premium Views, Paid Premium Views, Video Duration, Premium Watch Time (Minutes), Organic Premium Watch Time (Minutes), Paid Premium Watch Time (Minutes)). On prod the new QA user's default brand for this account is 'Monsters University'; Disney Channel was selected from the brand picker (brand_id 3877 on both).",
+   "dsLabel": "YouTube Only: Insights + YouTube Only: Premium"
+  }
+ },
+ "_QA-20277-premium": {
+  "opts": {
+   "ds": "YouTube Only: Premium",
+   "channels": [
+    "youtube"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "9"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "youtube"
+    ],
+    "posts": "9"
+   },
+   "table": true,
+   "n": 9,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Premium Views",
+    "Organic Premium Views",
+    "Paid Premium Views",
+    "Video Duration",
+    "Premium Watch Time (Minutes)",
+    "Organic Premium Watch Time (Minutes)",
+    "Paid Premium Watch Time (Minutes)",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Premium Views": "–",
+     "Organic Premium Views": "–",
+     "Paid Premium Views": "–",
+     "Video Duration": "48m20s",
+     "Premium Watch Time (Minutes)": "–",
+     "Organic Premium Watch Time (Minutes)": "–",
+     "Paid Premium Watch Time (Minutes)": "–",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "9"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "youtube"
+    ],
+    "posts": "9"
+   },
+   "table": true,
+   "n": 9,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Premium Views",
+    "Organic Premium Views",
+    "Paid Premium Views",
+    "Video Duration",
+    "Premium Watch Time (Minutes)",
+    "Organic Premium Watch Time (Minutes)",
+    "Paid Premium Watch Time (Minutes)",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Premium Views": "–",
+     "Organic Premium Views": "–",
+     "Paid Premium Views": "–",
+     "Video Duration": "48m20s",
+     "Premium Watch Time (Minutes)": "–",
+     "Organic Premium Watch Time (Minutes)": "–",
+     "Paid Premium Watch Time (Minutes)": "–",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 9,
+   "prodPosts": 9,
+   "matched": 9,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Premium Views",
+    "Organic Premium Views",
+    "Paid Premium Views",
+    "Video Duration",
+    "Premium Watch Time (Minutes)",
+    "Organic Premium Watch Time (Minutes)",
+    "Paid Premium Watch Time (Minutes)"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Premium Views": "–",
+    "Organic Premium Views": "–",
+    "Paid Premium Views": "–",
+    "Video Duration": "48m20s",
+    "Premium Watch Time (Minutes)": "–",
+    "Organic Premium Watch Time (Minutes)": "–",
+    "Paid Premium Watch Time (Minutes)": "–"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "Disney Ad Sales",
+   "brand": "Disney Channel",
+   "week": "Nov. 09, 2026 - Nov. 15, 2026",
+   "weekProd": "Nov. 09, 2026 - Nov. 15, 2026"
+  }
+ },
+ "QA-100881": {
+  "opts": {
+   "ds": "Public",
+   "channels": [
+    "threads"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 2,
+    "idx": 0,
+    "posts": "4"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "threads"
+    ],
+    "posts": "4"
+   },
+   "table": true,
+   "n": 4,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Reactions",
+    "Comments",
+    "Shares",
+    "Response Rate",
+    "Video Views",
+    "Video Response Rate",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "6,035",
+     "Reactions": "4,975",
+     "Comments": "397",
+     "Shares": "663",
+     "Response Rate": "N/A",
+     "Video Views": "–",
+     "Video Response Rate": "N/A",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 2,
+    "idx": 0,
+    "posts": "107"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "threads"
+    ],
+    "posts": "4"
+   },
+   "table": true,
+   "n": 4,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Reactions",
+    "Comments",
+    "Shares",
+    "Response Rate",
+    "Video Views",
+    "Video Response Rate",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "6,035",
+     "Reactions": "4,975",
+     "Comments": "397",
+     "Shares": "663",
+     "Response Rate": "N/A",
+     "Video Views": "–",
+     "Video Response Rate": "N/A",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 4,
+   "prodPosts": 4,
+   "matched": 4,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Engagements",
+    "Reactions",
+    "Comments",
+    "Shares",
+    "Response Rate",
+    "Video Views",
+    "Video Response Rate"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Engagements": "6,035",
+    "Reactions": "4,975",
+    "Comments": "397",
+    "Shares": "663",
+    "Response Rate": "N/A",
+    "Video Views": "–",
+    "Video Response Rate": "N/A"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "HBO Max",
+   "brand": "HBO Max",
+   "week": "Nov. 09, 2026 - Nov. 15, 2026",
+   "weekProd": "Nov. 09, 2026 - Nov. 15, 2026",
+   "note": "Precondition \"logged in as Max\": account HBO Max, brand HBO Max."
+  }
+ },
+ "QA-100880": {
+  "opts": {
+   "ds": "Impressions",
+   "channels": [
+    "threads"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "4"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "threads"
+    ],
+    "posts": "4"
+   },
+   "table": true,
+   "n": 4,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Engagement Rate",
+    "Impressions",
+    "Organic Impressions",
+    "Paid Impressions",
+    "Reach",
+    "Organic Reach",
+    "Paid Reach",
+    "Engaged User Rate",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "6,035",
+     "Engagement Rate": "N/A",
+     "Impressions": "521,425",
+     "Organic Impressions": "–",
+     "Paid Impressions": "–",
+     "Reach": "N/A",
+     "Organic Reach": "N/A",
+     "Paid Reach": "N/A",
+     "Engaged User Rate": "N/A",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "4"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "threads"
+    ],
+    "posts": "4"
+   },
+   "table": true,
+   "n": 4,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Engagement Rate",
+    "Impressions",
+    "Organic Impressions",
+    "Paid Impressions",
+    "Reach",
+    "Organic Reach",
+    "Paid Reach",
+    "Engaged User Rate",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "6,035",
+     "Engagement Rate": "N/A",
+     "Impressions": "521,425",
+     "Organic Impressions": "–",
+     "Paid Impressions": "–",
+     "Reach": "N/A",
+     "Organic Reach": "N/A",
+     "Paid Reach": "N/A",
+     "Engaged User Rate": "N/A",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 4,
+   "prodPosts": 4,
+   "matched": 4,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Engagements",
+    "Engagement Rate",
+    "Impressions",
+    "Organic Impressions",
+    "Paid Impressions",
+    "Reach",
+    "Organic Reach",
+    "Paid Reach",
+    "Engaged User Rate"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Engagements": "6,035",
+    "Engagement Rate": "N/A",
+    "Impressions": "521,425",
+    "Organic Impressions": "–",
+    "Paid Impressions": "–",
+    "Reach": "N/A",
+    "Organic Reach": "N/A",
+    "Paid Reach": "N/A",
+    "Engaged User Rate": "N/A"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "HBO Max",
+   "brand": "HBO Max",
+   "week": "Nov. 09, 2026 - Nov. 15, 2026",
+   "weekProd": "Nov. 09, 2026 - Nov. 15, 2026",
+   "note": "Precondition \"logged in as Max\": account HBO Max, brand HBO Max."
+  }
+ },
+ "QA-100886": {
+  "opts": {
+   "ds": "Threads Only: Insights",
+   "channels": [
+    "threads"
+   ]
+  },
+  "dev": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "4"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "threads"
+    ],
+    "posts": "4"
+   },
+   "table": true,
+   "n": 4,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Likes",
+    "Replies",
+    "Quotes",
+    "Reposts",
+    "Shares",
+    "Views",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "6,035",
+     "Likes": "4,975",
+     "Replies": "397",
+     "Quotes": "73",
+     "Reposts": "416",
+     "Shares": "174",
+     "Views": "521,425",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "prod": {
+   "ds": {
+    "ok": true,
+    "n": 1,
+    "idx": 0,
+    "posts": "4"
+   },
+   "ch": {
+    "present": [
+     "facebook",
+     "twitter",
+     "instagram",
+     "tiktok",
+     "linkedin",
+     "threads",
+     "youtube",
+     "pinterest"
+    ],
+    "enabled": [
+     "threads"
+    ],
+    "posts": "4"
+   },
+   "table": true,
+   "n": 4,
+   "H": [
+    "Rank",
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Text",
+    "Engagements",
+    "Likes",
+    "Replies",
+    "Quotes",
+    "Reposts",
+    "Shares",
+    "Views",
+    "Actions"
+   ],
+   "agg": [
+    {
+     "Rank": "Sum Average",
+     "Date": "",
+     "Channel": "",
+     "Brand": "",
+     "Type": "",
+     "Live": "",
+     "Publish Type": "",
+     "Paid": "",
+     "Sponsor": "",
+     "Collaborated": "",
+     "Text": "",
+     "Engagements": "6,035",
+     "Likes": "4,975",
+     "Replies": "397",
+     "Quotes": "73",
+     "Reposts": "416",
+     "Shares": "174",
+     "Views": "521,425",
+     "Actions": "",
+     "_links": []
+    }
+   ]
+  },
+  "summary": {
+   "devPosts": 4,
+   "prodPosts": 4,
+   "matched": 4,
+   "onlyDev": 0,
+   "onlyProd": 0,
+   "onlyDevSample": [],
+   "onlyProdSample": [],
+   "colsCompared": [
+    "Date",
+    "Channel",
+    "Brand",
+    "Type",
+    "Live",
+    "Publish Type",
+    "Paid",
+    "Sponsor",
+    "Collaborated",
+    "Engagements",
+    "Likes",
+    "Replies",
+    "Quotes",
+    "Reposts",
+    "Shares",
+    "Views"
+   ],
+   "mismatchCols": {},
+   "mismatchSample": [],
+   "aggDiff": [],
+   "devAgg": {
+    "Engagements": "6,035",
+    "Likes": "4,975",
+    "Replies": "397",
+    "Quotes": "73",
+    "Reposts": "416",
+    "Shares": "174",
+    "Views": "521,425"
+   }
+  },
+  "verdict": "PASS",
+  "meta": {
+   "account": "HBO Max",
+   "brand": "HBO Max",
+   "week": "Nov. 09, 2026 - Nov. 15, 2026",
+   "weekProd": "Nov. 09, 2026 - Nov. 15, 2026",
+   "note": "Precondition \"logged in as Max\": account HBO Max, brand HBO Max."
+  }
+ },
+ "_note": "Dev-vs-Prod comparisons run 2026-11-17 (Tuesday rotation). Dev user from config/.env, prod QA user from config/.env.prod (new separate prod user). Default week Nov 09-15 2026 on both."
+}

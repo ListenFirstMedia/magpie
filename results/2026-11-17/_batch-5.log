@@ -1,0 +1,28 @@
+>> QA-90072 (full) — Tue Nov 17 18:36:44 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+>> usage: 6 turns | in 8 (+109740 cache-read, +23318 cache-write) | out 1945 | est $0.12
+**QA-90072: FAILED (blocked by open bug APPS-60871).** I didn't open the browser.
+
+The case file lists APPS-60871 (Open) under its open linked bugs. Rule 7 and the open-bug auto-fail directive fail the case on any open linked bug, so I wrote the report without running any steps.
+
+- **Assertion A6:** BLOCKED. I didn't compare LFM metrics against Native.
+- **Bugs filed:** none.
+- **Skills and regist
+>> done (rc=0) — report: results/2026-11-17/QA-90072-report.md
+>> QA-100878 (full) — Tue Nov 17 18:37:06 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+>> .. QA-100878 still running (60s / 1500s cap) — 18:38:06
+>> .. QA-100878 still running (120s / 1500s cap) — 18:39:06
+>> .. QA-100878 still running (180s / 1500s cap) — 18:40:06
+>> usage: 60 turns | in 96 (+2658343 cache-read, +65165 cache-write) | out 10314 | est $0.63
+**QA-100878: PASS.** I ran it on dev (app.lfmdev.in) as HBO Max, brand HBO Max, Jun 01–07, 2025, with the Threads Only: Insights data set.
+
+- **Assertion A4:** all six metrics (Engagements, Likes, Replies, Quotes, Reposts, Views) appear in the aggregate header and on all 21 post cards. A "Shares" column is also shown, which the case doesn't exclude.
+- **Account switch:** login landed on Adam Orfei
+>> done (rc=0) — report: results/2026-11-17/QA-100878-report.md
+>> QA-100879 (full) — Tue Nov 17 18:41:07 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+>> usage: 6 turns | in 8 (+107561 cache-read, +24537 cache-write) | out 1724 | est $0.13
+QA-100879 is marked **FAILED (blocked by open bug)**, and I did not run the browser flow.
+
+The case file lists LFMP-32113 (Open, "Brand Content > LFM vs Native - Past Date - native data is lower than LFM"). Rule 7 says any open linked bug means the case isn't run. This bug sits on the same LFM-vs-Native comparison as the case's only assertion, so a result wouldn't be trustworthy anyway.
+
+The repor
+>> done (rc=0) — report: results/2026-11-17/QA-100879-report.md

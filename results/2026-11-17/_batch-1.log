@@ -1,0 +1,42 @@
+>> QA-20984 (full) — Tue Nov 17 15:47:16 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+>> .. QA-20984 still running (60s / 1500s cap) — 15:48:16
+>> .. QA-20984 still running (120s / 1500s cap) — 15:49:16
+>> .. QA-20984 still running (180s / 1500s cap) — 15:50:16
+>> .. QA-20984 still running (240s / 1500s cap) — 15:51:16
+>> .. QA-20984 still running (300s / 1500s cap) — 15:52:17
+>> .. QA-20984 still running (360s / 1500s cap) — 15:53:17
+>> .. QA-20984 still running (420s / 1500s cap) — 15:54:17
+>> .. QA-20984 still running (480s / 1500s cap) — 15:55:17
+>> .. QA-20984 still running (540s / 1500s cap) — 15:56:17
+>> .. QA-20984 still running (600s / 1500s cap) — 15:57:17
+>> .. QA-20984 still running (660s / 1500s cap) — 15:58:17
+>> .. QA-20984 still running (720s / 1500s cap) — 15:59:18
+>> .. QA-20984 still running (780s / 1500s cap) — 16:00:18
+>> .. QA-20984 still running (840s / 1500s cap) — 16:01:18
+>> usage: 33 turns | in 60 (+1807907 cache-read, +87146 cache-write) | out 12481 | est $0.65
+**QA-20984 is PASS.** All five assertions held on dev for Amazon Prime Video, TikTok only, Feb 01 – Mar 31, 2025.
+
+- **Step 6 (counts):** the post-table header is Ads (21), the table has 21 rows, and the Active Ads tile is 21.
+- **Step 6 (Spend, Clicks):** Spend is $201,543.83 and Clicks is 145,516, each matching the aggregate row.
+- **Step 8:** 100% Completed Views is 459,968, matching the Video 
+>> done (rc=0) — report: results/2026-11-17/QA-20984-report.md
+>> QA-21912 (full) — Tue Nov 17 16:01:49 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+>> .. QA-21912 still running (60s / 1500s cap) — 16:02:49
+>> .. QA-21912 still running (120s / 1500s cap) — 16:03:50
+>> .. QA-21912 still running (180s / 1500s cap) — 16:04:50
+>> .. QA-21912 still running (240s / 1500s cap) — 16:05:50
+>> .. QA-21912 still running (300s / 1500s cap) — 16:06:50
+>> .. QA-21912 still running (360s / 1500s cap) — 16:07:50
+>> usage: 44 turns | in 72 (+2308873 cache-read, +77117 cache-write) | out 14579 | est $0.69
+QA-21912 is **PASS**, but only for the UCLA pair. The Wasserman / Gatorade pair couldn't be run because Gatorade has no Facebook posts in the default week. I appended a PASS line to `results/2026-11-17/results.tsv` too. The report is at `results/2026-11-17/QA-21912-report.md`.
+
+- **UCLA, dev, Facebook only, default range Nov 9–15:** the first post is "ICYMI: The "Mozart of Math"".
+
+| Metric | LFM 
+>> done (rc=0) — report: results/2026-11-17/QA-21912-report.md
+>> QA-21913 (full) — Tue Nov 17 16:08:25 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+>> usage: 6 turns | in 8 (+108944 cache-read, +22207 cache-write) | out 1953 | est $0.12
+**QA-21913 — FAILED (blocked by open bug).**
+
+The case file lists LFMP-32113 as Open ("Brand Content > LFM vs Native - Past Date - native data is lower than LFM"). Rule 7 (open-bug auto-fail) says not to run a case with an open linked bug, so I didn't open the browser. I used the case file's bug list, dated 2026-10-20, and didn't re-check Jira, since the Atlassian MCP isn't available in this headl
+>> done (rc=0) — report: results/2026-11-17/QA-21913-report.md

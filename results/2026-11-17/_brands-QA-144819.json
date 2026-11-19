@@ -1,0 +1,1462 @@
+{
+ "dev": {
+  "rows": [
+   {
+    "brand": "#1 Happy Family USA",
+    "channels": [
+     "IMDb",
+     "Metacritic",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {
+     "red": "2",
+     "green": "4"
+    },
+    "statusHtml": "<div class=\"collection-status-container\"><div class=\"status-badge-container\"><div class=\"status-badge red\"><i class=\"status-badge-icon fas fa-exclamation-circle"
+   },
+   {
+    "brand": "#1 Happy Family USA - Talent Roll-Up",
+    "channels": [
+     "Facebook",
+     "IMDb",
+     "Instagram",
+     "TikTok",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "007 Franchise",
+    "channels": [
+     "Facebook",
+     "Instagram",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "007: Road To A Million",
+    "channels": [
+     "IMDb",
+     "Metacritic",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {
+     "red": "2",
+     "green": "3"
+    },
+    "statusHtml": "<div class=\"collection-status-container\"><div class=\"status-badge-container\"><div class=\"status-badge red\"><i class=\"status-badge-icon fas fa-exclamation-circle"
+   },
+   {
+    "brand": "007: Road To A Million - Talent Roll-Up",
+    "channels": [
+     "IMDb",
+     "Instagram",
+     "TikTok",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "10 - ADS",
+    "channels": [
+     "Twitter",
+     "Wikipedia"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "10 - ATV",
+    "channels": [
+     "Twitter",
+     "Wikipedia"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "10 - NEW",
+    "channels": [
+     "Twitter",
+     "Wikipedia"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "10 - TEN",
+    "channels": [
+     "Twitter",
+     "Wikipedia"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "10 - TVQ",
+    "channels": [
+     "Twitter",
+     "Wikipedia"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "10 All Access",
+    "channels": [
+     "Twitter",
+     "YouTube"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "10 Million Dollar Bigfoot Bounty",
+    "channels": [
+     "Facebook",
+     "Twitter"
+    ],
+    "status": {
+     "blue": "4",
+     "green": "2"
+    },
+    "statusHtml": "<div class=\"collection-status-container\"><div class=\"status-badge-container\"><div class=\"status-badge blue\"><i class=\"status-badge-icon fas fa-plus-circle\"></i>"
+   },
+   {
+    "brand": "10 News First",
+    "channels": [
+     "Facebook",
+     "Instagram",
+     "TikTok",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {
+     "red": "6",
+     "blue": "7",
+     "green": "14"
+    },
+    "statusHtml": "<div class=\"collection-status-container\"><div class=\"status-badge-container\"><div class=\"status-badge red\"><i class=\"status-badge-icon fas fa-exclamation-circle"
+   },
+   {
+    "brand": "10 on Top",
+    "channels": [
+     "Facebook",
+     "IMDb",
+     "Twitter",
+     "YouTube"
+    ],
+    "status": {
+     "blue": "1",
+     "yellow": "1",
+     "green": "8"
+    },
+    "statusHtml": "<div class=\"collection-status-container\"><div class=\"status-badge-container\"><div class=\"status-badge blue\"><i class=\"status-badge-icon fas fa-plus-circle\"></i>"
+   },
+   {
+    "brand": "100 Streets",
+    "channels": [
+     "Facebook",
+     "IMDb",
+     "Metacritic",
+     "Rotten Tomatoes",
+     "Twitter",
+     "Wikipedia"
+    ],
+    "status": {
+     "blue": "4",
+     "green": "3"
+    },
+    "statusHtml": "<div class=\"collection-status-container\"><div class=\"status-badge-container\"><div class=\"status-badge blue\"><i class=\"status-badge-icon fas fa-plus-circle\"></i>"
+   },
+   {
+    "brand": "100 Things to do Before High School",
+    "channels": [
+     "IMDb",
+     "TikTok",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {
+     "blue": "2",
+     "green": "7"
+    },
+    "statusHtml": "<div class=\"collection-status-container\"><div class=\"status-badge-container\"><div class=\"status-badge blue\"><i class=\"status-badge-icon fas fa-plus-circle\"></i>"
+   },
+   {
+    "brand": "1000 Ways to Die",
+    "channels": [
+     "IMDb",
+     "Metacritic",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "10000 BC (United Kingdom)",
+    "channels": [
+     "IMDb",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "102 Not Out",
+    "channels": [
+     "IMDb",
+     "Rotten Tomatoes",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {
+     "yellow": "1",
+     "green": "3"
+    },
+    "statusHtml": "<div class=\"collection-status-container\"><div class=\"status-badge-container\"><div class=\"status-badge yellow\"><i class=\"status-badge-icon fas fa-clock\"></i><spa"
+   },
+   {
+    "brand": "106 & Park LIVE",
+    "channels": [
+     "Twitter"
+    ],
+    "status": {
+     "blue": "2",
+     "green": "3"
+    },
+    "statusHtml": "<div class=\"collection-status-container\"><div class=\"status-badge-container\"><div class=\"status-badge blue\"><i class=\"status-badge-icon fas fa-plus-circle\"></i>"
+   },
+   {
+    "brand": "10th Annual NFL Honors",
+    "channels": [
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "11 Minutes",
+    "channels": [
+     "Twitter",
+     "YouTube"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "120 Minutes",
+    "channels": [
+     "Facebook",
+     "IMDb",
+     "Instagram",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {
+     "blue": "7",
+     "yellow": "2",
+     "green": "14"
+    },
+    "statusHtml": "<div class=\"collection-status-container\"><div class=\"status-badge-container\"><div class=\"status-badge blue\"><i class=\"status-badge-icon fas fa-plus-circle\"></i>"
+   },
+   {
+    "brand": "13 Days in Ferguson",
+    "channels": [
+     "IMDb",
+     "Twitter",
+     "YouTube"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "13 Ghosts",
+    "channels": [
+     "IMDb",
+     "Metacritic",
+     "Rotten Tomatoes",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "13 Going on 30",
+    "channels": [
+     "IMDb",
+     "Metacritic",
+     "Rotten Tomatoes",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "13th Annual NFL Honors",
+    "channels": [
+     "IMDb",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "16 and Pregnant",
+    "channels": [
+     "Facebook",
+     "IMDb",
+     "Metacritic",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {
+     "blue": "3",
+     "yellow": "1",
+     "green": "17"
+    },
+    "statusHtml": "<div class=\"collection-status-container\"><div class=\"status-badge-container\"><div class=\"status-badge blue\"><i class=\"status-badge-icon fas fa-plus-circle\"></i>"
+   },
+   {
+    "brand": "16 and Pregnant ǀ MTV Deutschland",
+    "channels": [
+     "Facebook",
+     "IMDb",
+     "Metacritic",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {
+     "blue": "5",
+     "green": "15"
+    },
+    "statusHtml": "<div class=\"collection-status-container\"><div class=\"status-badge-container\"><div class=\"status-badge blue\"><i class=\"status-badge-icon fas fa-plus-circle\"></i>"
+   },
+   {
+    "brand": "16 and Recovering",
+    "channels": [
+     "IMDb",
+     "Twitter",
+     "YouTube"
+    ],
+    "status": {
+     "blue": "1",
+     "yellow": "1",
+     "green": "7"
+    },
+    "statusHtml": "<div class=\"collection-status-container\"><div class=\"status-badge-container\"><div class=\"status-badge blue\"><i class=\"status-badge-icon fas fa-plus-circle\"></i>"
+   },
+   {
+    "brand": "1776",
+    "channels": [
+     "IMDb",
+     "Rotten Tomatoes",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "1883",
+    "channels": [
+     "Facebook",
+     "IMDb",
+     "Instagram",
+     "Metacritic",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {
+     "yellow": "6",
+     "green": "20"
+    },
+    "statusHtml": "<div class=\"collection-status-container\"><div class=\"status-badge-container\"><div class=\"status-badge yellow\"><i class=\"status-badge-icon fas fa-clock\"></i><spa"
+   },
+   {
+    "brand": "1898: Los ultimos de Filipinas",
+    "channels": [
+     "IMDb",
+     "Rotten Tomatoes",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "1923",
+    "channels": [
+     "Facebook",
+     "IMDb",
+     "Instagram",
+     "Metacritic",
+     "TikTok",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {
+     "yellow": "6",
+     "green": "20"
+    },
+    "statusHtml": "<div class=\"collection-status-container\"><div class=\"status-badge-container\"><div class=\"status-badge yellow\"><i class=\"status-badge-icon fas fa-clock\"></i><spa"
+   },
+   {
+    "brand": "1923 Talent Roll-Up",
+    "channels": [
+     "Facebook",
+     "IMDb",
+     "Instagram",
+     "TikTok",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "1Up (APV)",
+    "channels": [
+     "IMDb",
+     "Metacritic",
+     "Rotten Tomatoes",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {
+     "red": "2",
+     "green": "3"
+    },
+    "statusHtml": "<div class=\"collection-status-container\"><div class=\"status-badge-container\"><div class=\"status-badge red\"><i class=\"status-badge-icon fas fa-exclamation-circle"
+   },
+   {
+    "brand": "2018 AmericanaFest",
+    "channels": [
+     "Twitter",
+     "YouTube"
+    ],
+    "status": {
+     "blue": "2",
+     "green": "2"
+    },
+    "statusHtml": "<div class=\"collection-status-container\"><div class=\"status-badge-container\"><div class=\"status-badge blue\"><i class=\"status-badge-icon fas fa-plus-circle\"></i>"
+   },
+   {
+    "brand": "2018 Best of Genius Talks",
+    "channels": [
+     "Twitter"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "2018 Trailblazer Honors",
+    "channels": [
+     "Twitter",
+     "Wikipedia"
+    ],
+    "status": {
+     "green": "1"
+    },
+    "statusHtml": "<div class=\"collection-status-container\"><div class=\"status-badge-container\"><div class=\"status-badge green\"><i class=\"status-badge-icon fas fa-check-circle\"></"
+   },
+   {
+    "brand": "2019 Soul Train Awards Post Show",
+    "channels": [
+     "Twitter",
+     "YouTube"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "2020 Soul Train Awards",
+    "channels": [
+     "IMDb",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "2021 Broadcaster Influencer Roll-Up",
+    "channels": [
+     "Facebook",
+     "IMDb",
+     "Instagram",
+     "TikTok",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "2021 Broadcaster Talent Roll-Up",
+    "channels": [
+     "Facebook",
+     "IMDb",
+     "Instagram",
+     "TikTok",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "2021 MTV Movie & TV Awards: Unscripted",
+    "channels": [
+     "IMDb",
+     "Twitter",
+     "YouTube"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "2021 Soul Train Awards",
+    "channels": [
+     "Twitter",
+     "YouTube"
+    ],
+    "status": {
+     "red": "1",
+     "blue": "1",
+     "green": "2"
+    },
+    "statusHtml": "<div class=\"collection-status-container\"><div class=\"status-badge-container\"><div class=\"status-badge red\"><i class=\"status-badge-icon fas fa-exclamation-circle"
+   },
+   {
+    "brand": "2022 MTV Movie & TV Awards: Unscripted",
+    "channels": [
+     "IMDb",
+     "Twitter",
+     "YouTube"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "2023 Soul Train Awards",
+    "channels": [
+     "Facebook",
+     "IMDb",
+     "Instagram",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {
+     "red": "3",
+     "blue": "1",
+     "green": "18"
+    },
+    "statusHtml": "<div class=\"collection-status-container\"><div class=\"status-badge-container\"><div class=\"status-badge red\"><i class=\"status-badge-icon fas fa-exclamation-circle"
+   },
+   {
+    "brand": "2023 Super Bowl Advertisers Roll-Up",
+    "channels": [
+     "Facebook",
+     "IMDb",
+     "Instagram",
+     "Metacritic",
+     "Pinterest",
+     "Rotten Tomatoes",
+     "TikTok",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "2025 Golden Globes Talent Roll-Up",
+    "channels": [
+     "Facebook",
+     "IMDb",
+     "Instagram",
+     "TikTok",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "2026 MTV Video Music Awards",
+    "channels": [
+     "IMDb",
+     "Twitter",
+     "YouTube"
+    ],
+    "status": {},
+    "statusHtml": ""
+   }
+  ],
+  "H": [
+   "Brand",
+   "Industry",
+   "Channels",
+   "Data Collection Status",
+   "Actions"
+  ],
+  "pager": "Page: 1 2 3 4 5 6 ... 123 © 2012-2026 LISTENFIRST MEDIA LLC | MADE IN NYC | PRIV",
+  "acct": "ADAM ORFEI"
+ },
+ "prod": {
+  "rows": [
+   {
+    "brand": "#1 Happy Family USA",
+    "channels": [
+     "IMDb",
+     "Metacritic",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {
+     "red": "2",
+     "green": "4"
+    },
+    "statusHtml": "<div class=\"collection-status-container\"><div class=\"status-badge-container\"><div class=\"status-badge red\"><i class=\"status-badge-icon fas fa-exclamation-circle"
+   },
+   {
+    "brand": "#1 Happy Family USA - Talent Roll-Up",
+    "channels": [
+     "Facebook",
+     "IMDb",
+     "Instagram",
+     "TikTok",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "007 Franchise",
+    "channels": [
+     "Facebook",
+     "Instagram",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "007: Road To A Million",
+    "channels": [
+     "IMDb",
+     "Metacritic",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {
+     "red": "2",
+     "green": "3"
+    },
+    "statusHtml": "<div class=\"collection-status-container\"><div class=\"status-badge-container\"><div class=\"status-badge red\"><i class=\"status-badge-icon fas fa-exclamation-circle"
+   },
+   {
+    "brand": "007: Road To A Million - Talent Roll-Up",
+    "channels": [
+     "IMDb",
+     "Instagram",
+     "TikTok",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "10 - ADS",
+    "channels": [
+     "Twitter",
+     "Wikipedia"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "10 - ATV",
+    "channels": [
+     "Twitter",
+     "Wikipedia"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "10 - NEW",
+    "channels": [
+     "Twitter",
+     "Wikipedia"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "10 - TEN",
+    "channels": [
+     "Twitter",
+     "Wikipedia"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "10 - TVQ",
+    "channels": [
+     "Twitter",
+     "Wikipedia"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "10 All Access",
+    "channels": [
+     "Twitter",
+     "YouTube"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "10 Million Dollar Bigfoot Bounty",
+    "channels": [
+     "Facebook",
+     "Twitter"
+    ],
+    "status": {
+     "blue": "4",
+     "green": "2"
+    },
+    "statusHtml": "<div class=\"collection-status-container\"><div class=\"status-badge-container\"><div class=\"status-badge blue\"><i class=\"status-badge-icon fas fa-plus-circle\"></i>"
+   },
+   {
+    "brand": "10 News First",
+    "channels": [
+     "Facebook",
+     "Instagram",
+     "TikTok",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {
+     "red": "6",
+     "blue": "7",
+     "green": "14"
+    },
+    "statusHtml": "<div class=\"collection-status-container\"><div class=\"status-badge-container\"><div class=\"status-badge red\"><i class=\"status-badge-icon fas fa-exclamation-circle"
+   },
+   {
+    "brand": "10 on Top",
+    "channels": [
+     "Facebook",
+     "IMDb",
+     "Twitter",
+     "YouTube"
+    ],
+    "status": {
+     "blue": "1",
+     "yellow": "1",
+     "green": "8"
+    },
+    "statusHtml": "<div class=\"collection-status-container\"><div class=\"status-badge-container\"><div class=\"status-badge blue\"><i class=\"status-badge-icon fas fa-plus-circle\"></i>"
+   },
+   {
+    "brand": "100 Streets",
+    "channels": [
+     "Facebook",
+     "IMDb",
+     "Metacritic",
+     "Rotten Tomatoes",
+     "Twitter",
+     "Wikipedia"
+    ],
+    "status": {
+     "blue": "4",
+     "green": "3"
+    },
+    "statusHtml": "<div class=\"collection-status-container\"><div class=\"status-badge-container\"><div class=\"status-badge blue\"><i class=\"status-badge-icon fas fa-plus-circle\"></i>"
+   },
+   {
+    "brand": "100 Things to do Before High School",
+    "channels": [
+     "IMDb",
+     "TikTok",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {
+     "blue": "2",
+     "green": "7"
+    },
+    "statusHtml": "<div class=\"collection-status-container\"><div class=\"status-badge-container\"><div class=\"status-badge blue\"><i class=\"status-badge-icon fas fa-plus-circle\"></i>"
+   },
+   {
+    "brand": "1000 Ways to Die",
+    "channels": [
+     "IMDb",
+     "Metacritic",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "10000 BC (United Kingdom)",
+    "channels": [
+     "IMDb",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "102 Not Out",
+    "channels": [
+     "IMDb",
+     "Rotten Tomatoes",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {
+     "yellow": "1",
+     "green": "3"
+    },
+    "statusHtml": "<div class=\"collection-status-container\"><div class=\"status-badge-container\"><div class=\"status-badge yellow\"><i class=\"status-badge-icon fas fa-clock\"></i><spa"
+   },
+   {
+    "brand": "106 & Park LIVE",
+    "channels": [
+     "Twitter"
+    ],
+    "status": {
+     "blue": "2",
+     "green": "3"
+    },
+    "statusHtml": "<div class=\"collection-status-container\"><div class=\"status-badge-container\"><div class=\"status-badge blue\"><i class=\"status-badge-icon fas fa-plus-circle\"></i>"
+   },
+   {
+    "brand": "10th Annual NFL Honors",
+    "channels": [
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "11 Minutes",
+    "channels": [
+     "Twitter",
+     "YouTube"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "120 Minutes",
+    "channels": [
+     "Facebook",
+     "IMDb",
+     "Instagram",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {
+     "blue": "7",
+     "yellow": "2",
+     "green": "14"
+    },
+    "statusHtml": "<div class=\"collection-status-container\"><div class=\"status-badge-container\"><div class=\"status-badge blue\"><i class=\"status-badge-icon fas fa-plus-circle\"></i>"
+   },
+   {
+    "brand": "13 Days in Ferguson",
+    "channels": [
+     "IMDb",
+     "Twitter",
+     "YouTube"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "13 Ghosts",
+    "channels": [
+     "IMDb",
+     "Metacritic",
+     "Rotten Tomatoes",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "13 Going on 30",
+    "channels": [
+     "IMDb",
+     "Metacritic",
+     "Rotten Tomatoes",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "13th Annual NFL Honors",
+    "channels": [
+     "IMDb",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "16 and Pregnant",
+    "channels": [
+     "Facebook",
+     "IMDb",
+     "Metacritic",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {
+     "blue": "3",
+     "yellow": "1",
+     "green": "17"
+    },
+    "statusHtml": "<div class=\"collection-status-container\"><div class=\"status-badge-container\"><div class=\"status-badge blue\"><i class=\"status-badge-icon fas fa-plus-circle\"></i>"
+   },
+   {
+    "brand": "16 and Pregnant ǀ MTV Deutschland",
+    "channels": [
+     "Facebook",
+     "IMDb",
+     "Metacritic",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {
+     "blue": "5",
+     "green": "15"
+    },
+    "statusHtml": "<div class=\"collection-status-container\"><div class=\"status-badge-container\"><div class=\"status-badge blue\"><i class=\"status-badge-icon fas fa-plus-circle\"></i>"
+   },
+   {
+    "brand": "16 and Recovering",
+    "channels": [
+     "IMDb",
+     "Twitter",
+     "YouTube"
+    ],
+    "status": {
+     "blue": "1",
+     "yellow": "1",
+     "green": "7"
+    },
+    "statusHtml": "<div class=\"collection-status-container\"><div class=\"status-badge-container\"><div class=\"status-badge blue\"><i class=\"status-badge-icon fas fa-plus-circle\"></i>"
+   },
+   {
+    "brand": "1776",
+    "channels": [
+     "IMDb",
+     "Rotten Tomatoes",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "1883",
+    "channels": [
+     "Facebook",
+     "IMDb",
+     "Instagram",
+     "Metacritic",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {
+     "yellow": "6",
+     "green": "20"
+    },
+    "statusHtml": "<div class=\"collection-status-container\"><div class=\"status-badge-container\"><div class=\"status-badge yellow\"><i class=\"status-badge-icon fas fa-clock\"></i><spa"
+   },
+   {
+    "brand": "1898: Los ultimos de Filipinas",
+    "channels": [
+     "IMDb",
+     "Rotten Tomatoes",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "1923",
+    "channels": [
+     "Facebook",
+     "IMDb",
+     "Instagram",
+     "Metacritic",
+     "TikTok",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {
+     "yellow": "6",
+     "green": "20"
+    },
+    "statusHtml": "<div class=\"collection-status-container\"><div class=\"status-badge-container\"><div class=\"status-badge yellow\"><i class=\"status-badge-icon fas fa-clock\"></i><spa"
+   },
+   {
+    "brand": "1923 Talent Roll-Up",
+    "channels": [
+     "Facebook",
+     "IMDb",
+     "Instagram",
+     "TikTok",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "1Up (APV)",
+    "channels": [
+     "IMDb",
+     "Metacritic",
+     "Rotten Tomatoes",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {
+     "red": "2",
+     "green": "3"
+    },
+    "statusHtml": "<div class=\"collection-status-container\"><div class=\"status-badge-container\"><div class=\"status-badge red\"><i class=\"status-badge-icon fas fa-exclamation-circle"
+   },
+   {
+    "brand": "2018 AmericanaFest",
+    "channels": [
+     "Twitter",
+     "YouTube"
+    ],
+    "status": {
+     "blue": "2",
+     "green": "2"
+    },
+    "statusHtml": "<div class=\"collection-status-container\"><div class=\"status-badge-container\"><div class=\"status-badge blue\"><i class=\"status-badge-icon fas fa-plus-circle\"></i>"
+   },
+   {
+    "brand": "2018 Best of Genius Talks",
+    "channels": [
+     "Twitter"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "2018 Trailblazer Honors",
+    "channels": [
+     "Twitter",
+     "Wikipedia"
+    ],
+    "status": {
+     "green": "1"
+    },
+    "statusHtml": "<div class=\"collection-status-container\"><div class=\"status-badge-container\"><div class=\"status-badge green\"><i class=\"status-badge-icon fas fa-check-circle\"></"
+   },
+   {
+    "brand": "2019 Soul Train Awards Post Show",
+    "channels": [
+     "Twitter",
+     "YouTube"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "2020 Soul Train Awards",
+    "channels": [
+     "IMDb",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "2021 Broadcaster Influencer Roll-Up",
+    "channels": [
+     "Facebook",
+     "IMDb",
+     "Instagram",
+     "TikTok",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "2021 Broadcaster Talent Roll-Up",
+    "channels": [
+     "Facebook",
+     "IMDb",
+     "Instagram",
+     "TikTok",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "2021 MTV Movie & TV Awards: Unscripted",
+    "channels": [
+     "IMDb",
+     "Twitter",
+     "YouTube"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "2021 Soul Train Awards",
+    "channels": [
+     "Twitter",
+     "YouTube"
+    ],
+    "status": {
+     "red": "1",
+     "blue": "1",
+     "green": "2"
+    },
+    "statusHtml": "<div class=\"collection-status-container\"><div class=\"status-badge-container\"><div class=\"status-badge red\"><i class=\"status-badge-icon fas fa-exclamation-circle"
+   },
+   {
+    "brand": "2022 MTV Movie & TV Awards: Unscripted",
+    "channels": [
+     "IMDb",
+     "Twitter",
+     "YouTube"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "2023 Soul Train Awards",
+    "channels": [
+     "Facebook",
+     "IMDb",
+     "Instagram",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {
+     "red": "3",
+     "blue": "1",
+     "green": "18"
+    },
+    "statusHtml": "<div class=\"collection-status-container\"><div class=\"status-badge-container\"><div class=\"status-badge red\"><i class=\"status-badge-icon fas fa-exclamation-circle"
+   },
+   {
+    "brand": "2023 Super Bowl Advertisers Roll-Up",
+    "channels": [
+     "Facebook",
+     "IMDb",
+     "Instagram",
+     "Metacritic",
+     "Pinterest",
+     "Rotten Tomatoes",
+     "TikTok",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "2025 Golden Globes Talent Roll-Up",
+    "channels": [
+     "Facebook",
+     "IMDb",
+     "Instagram",
+     "TikTok",
+     "Twitter",
+     "Wikipedia",
+     "YouTube"
+    ],
+    "status": {},
+    "statusHtml": ""
+   },
+   {
+    "brand": "2026 MTV Video Music Awards",
+    "channels": [
+     "IMDb",
+     "Twitter",
+     "YouTube"
+    ],
+    "status": {},
+    "statusHtml": ""
+   }
+  ],
+  "H": [
+   "Brand",
+   "Industry",
+   "Channels",
+   "Data Collection Status",
+   "Actions"
+  ],
+  "pager": "Page: 1 2 3 4 5 6 ... 123 © 2012-2026 LISTENFIRST MEDIA LLC | MADE IN NYC | PRIV",
+  "acct": "ADAM ORFEI"
+ },
+ "cmp": {
+  "devRows": 50,
+  "prodRows": 50,
+  "matched": 50,
+  "onlyDev": [],
+  "onlyProd": [],
+  "diffs": [],
+  "diffs2": [],
+  "withStatus": [
+   20,
+   20
+  ]
+ },
+ "dc": {
+  "dev": {
+   "clicked": "dispatched",
+   "pages": [],
+   "feeds": [],
+   "summary": ""
+  },
+  "prod": {
+   "clicked": "dispatched",
+   "pages": [],
+   "feeds": [],
+   "summary": ""
+  }
+ },
+ "dc2": {
+  "dev": {
+   "brandRows": [
+    "Podium.com | 8",
+    "NYC 22 | 9",
+    "#1 Happy Family USA | 2"
+   ],
+   "channelRows": [
+    "YouTube | 1 PAGE | 2",
+    "Pinterest | 0 PAGES",
+    "Wikipedia | 2 PAGES",
+    "Facebook | 0 PAGES",
+    "Twitter | 0 PAGES",
+    "Instagram | 0 PAGES",
+    "TikTok | 0 PAGES",
+    "LinkedIn | 0 PAGES",
+    "Threads | 0 PAGES"
+   ],
+   "pageRows": [],
+   "feeds": [],
+   "badges": [
+    "blue:8",
+    "blue:9",
+    "red:2",
+    "red:3",
+    "red:3",
+    "red:8",
+    "red:6",
+    "red:2",
+    "red:5",
+    "red:9",
+    "red:2",
+    "red:2"
+   ],
+   "text": "ACCOUNT: ADAM ORFEI\n/\nSETTINGS\nDATA COLLECTION\nHelp Center\nGuide\nInfo\nData Last Updated (PT): 11-17-2026 04:43 AM\nData Collection\nExport\n#1 HAPPY FAMILY USA\n Channel\n Status\n Feed Type\nApply Filters\nCheck Authorization\nMy Brands (5,355)\nSelect a brand to see the channels we're collecting\nPodium.com\n8\nNYC 22\n9\n#1 Happy Family USA\n2\nA Double Shot at Love\n3\nBreathe\n3\nCelebrity Hunted: Caccia all'uomo\n8\nDangerous Book For Boys\n6\nDesperately Seeking Soulmate: Escaping Twin Flames Universe\n2\nHappy Face (Paramount+)\n5\nHomecoming\n9\nJim Gaffigan: Dark Pale\n2\nChannels (9)\nSelect a channel to see the pages we're collecting\nYouTube\n1 PAGE\n2\nPinterest\n0 PAGES\nWikipedia\n2 PAGES\nFacebook\n0 PAGES\nTwitter\n0 PAGES\nInstagram\n0 PAGES\nTikTok\n0 PAGES\nLinkedIn\n0 PAGES\nThreads\n0 PAGES\nPages (0)\nSelect a page to see the data feeds we're collecting\n© 2012-2026 LISTENFIRST MEDIA LLC\n|\nMADE IN NYC\n|\nPRIVACY POLICY\n"
+  },
+  "prod": {
+   "brandRows": [
+    "Podium.com | 8",
+    "NYC 22 | 9",
+    "#1 Happy Family USA | 2"
+   ],
+   "channelRows": [
+    "YouTube | 1 PAGE | 2",
+    "Pinterest | 0 PAGES",
+    "Wikipedia | 2 PAGES",
+    "Facebook | 0 PAGES",
+    "Twitter | 0 PAGES",
+    "Instagram | 0 PAGES",
+    "TikTok | 0 PAGES",
+    "LinkedIn | 0 PAGES",
+    "Threads | 0 PAGES"
+   ],
+   "pageRows": [],
+   "feeds": [],
+   "badges": [
+    "blue:8",
+    "blue:9",
+    "red:2",
+    "red:3",
+    "red:3",
+    "red:8",
+    "red:6",
+    "red:2",
+    "red:5",
+    "red:9",
+    "red:2",
+    "red:2"
+   ],
+   "text": "ACCOUNT: ADAM ORFEI\n/\nSETTINGS\nDATA COLLECTION\nHelp Center\nGuide\nInfo\nData Last Updated (PT): 11-17-2026 04:43 AM\nData Collection\nExport\n#1 HAPPY FAMILY USA\n Channel\n Status\n Feed Type\nApply Filters\nCheck Authorization\nMy Brands (5,354)\nSelect a brand to see the channels we're collecting\nPodium.com\n8\nNYC 22\n9\n#1 Happy Family USA\n2\nA Double Shot at Love\n3\nBreathe\n3\nCelebrity Hunted: Caccia all'uomo\n8\nDangerous Book For Boys\n6\nDesperately Seeking Soulmate: Escaping Twin Flames Universe\n2\nHappy Face (Paramount+)\n5\nHomecoming\n9\nJim Gaffigan: Dark Pale\n2\nChannels (9)\nSelect a channel to see the pages we're collecting\nYouTube\n1 PAGE\n2\nPinterest\n0 PAGES\nWikipedia\n2 PAGES\nFacebook\n0 PAGES\nTwitter\n0 PAGES\nInstagram\n0 PAGES\nTikTok\n0 PAGES\nLinkedIn\n0 PAGES\nThreads\n0 PAGES\nPages (0)\nSelect a page to see the data feeds we're collecting\n© 2012-2026 LISTENFIRST MEDIA LLC\n|\nMADE IN NYC\n|\nPRIVACY POLICY\n"
+  },
+  "same": {
+   "channelRows": true,
+   "pageRows": true,
+   "feeds": true,
+   "badges": true
+  }
+ },
+ "feeds": {
+  "dev": {
+   "pages": [
+    "Prime Video | 2"
+   ],
+   "feeds": [
+    "Data Feed | ¦ | Start Date | ¦ | Last Collection Date | ¦ | Status",
+    "YouTube Page (Authorized) | ¦ Oct 15, 2018 ¦ Sep 1, 2024 ¦ Not Collecting",
+    "YouTube Posts & Audience (Authorized) | ¦ Apr 6, 2019 ¦ Sep 1, 2024 ¦ Not Collecting",
+    "YouTube Page (Public) | ¦ Dec 2, 2013 ¦ Nov 16, 2026 ¦ Collecting",
+    "YouTube Posts (Public) | ¦ Mar 26, 2014 ¦ Nov 16, 2026 ¦ Collecting"
+   ]
+  },
+  "prod": {
+   "pages": [
+    "Prime Video | 2"
+   ],
+   "feeds": [
+    "Data Feed | ¦ | Start Date | ¦ | Last Collection Date | ¦ | Status",
+    "YouTube Page (Authorized) | ¦ Oct 15, 2018 ¦ Sep 1, 2024 ¦ Not Collecting",
+    "YouTube Posts & Audience (Authorized) | ¦ Apr 6, 2019 ¦ Sep 1, 2024 ¦ Not Collecting",
+    "YouTube Page (Public) | ¦ Dec 2, 2013 ¦ Nov 16, 2026 ¦ Collecting",
+    "YouTube Posts (Public) | ¦ Mar 26, 2014 ¦ Nov 16, 2026 ¦ Collecting"
+   ]
+  }
+ },
+ "last": {
+  "dev": {
+   "n": 8,
+   "rows": [
+    "Z: The Beginning of Everything",
+    "Zoo",
+    "Zoofari",
+    "Zookeeper",
+    "Zorro",
+    "द व्हील ऑफ़ टाइम - Hindi",
+    "த வீல் ஆஃப் டைம் - Tamil",
+    "ద వీల్ ఆఫ్ టైమ్ - Telugu"
+   ],
+   "pager": "Page: 1 ... 118 119 120 121 122 123 © 2012-2026 LISTENFIRST ",
+   "pgEls": [
+    "BUTTON.al-button--tertiary-button large"
+   ]
+  },
+  "prod": {
+   "n": 3,
+   "rows": [
+    "द व्हील ऑफ़ टाइम - Hindi",
+    "த வீல் ஆஃப் டைம் - Tamil",
+    "ద వీల్ ఆఫ్ టైమ్ - Telugu"
+   ],
+   "pager": "Page: 1 ... 118 119 120 121 122 123 © 2012-2026 LISTENFIRST ",
+   "pgEls": [
+    "BUTTON.al-button--tertiary-button large"
+   ]
+  }
+ }
+}

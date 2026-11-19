@@ -1,0 +1,23 @@
+>> QA-90072 (full) — Wed Nov 18 13:30:24 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+>> usage: 6 turns | in 8 (+109859 cache-read, +23099 cache-write) | out 1786 | est $0.12
+QA-90072 is marked **FAILED (blocked by open bug APPS-60871)**. I didn't run the case or open the browser.
+
+APPS-60871 ("Endash (–) displayed for multiple metrics across datasets") is listed as Open in `cases/QA-90072.md`. Today's `results/open-bugs-2026-11-18.json` still shows it as Open. Rule 7 says any open linked bug means the case isn't run. The affected metrics include Instagram, which this 
+>> done (rc=0) — report: results/2026-11-18/QA-90072-report.md
+>> QA-100878 (full) — Wed Nov 18 13:30:46 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+>> .. QA-100878 still running (60s / 1500s cap) — 13:31:46
+>> .. QA-100878 still running (120s / 1500s cap) — 13:32:46
+>> .. QA-100878 still running (180s / 1500s cap) — 13:33:46
+>> .. QA-100878 still running (240s / 1500s cap) — 13:34:47
+>> usage: 20 turns | in 32 (+772904 cache-read, +59031 cache-write) | out 6618 | est $0.38
+**QA-100878: PASS.** The report is at `results/2026-11-18/QA-100878-report.md`.
+
+- **Metrics:** Engagements, Likes, Replies, Quotes, Reposts and Views all show in the aggregate header and on all 21 post cards. A "Shares" column also appears, which the assertion doesn't exclude.
+- **Setup:** The account was HBO Max and the brand was the exact HBO Max typeahead result (brand_id 155614). The range wa
+>> done (rc=0) — report: results/2026-11-18/QA-100878-report.md
+>> QA-100879 (full) — Wed Nov 18 13:34:58 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+>> usage: 7 turns | in 10 (+144713 cache-read, +23849 cache-write) | out 1936 | est $0.13
+QA-100879 is marked **FAILED (blocked by open bug)**. I didn't open the browser or run any of the 7 steps.
+
+The case has an open linked bug, LFMP-32113 ("Brand Content > LFM vs Native - Past Date - native data is lower than LFM"). The open-bug map for today, `results/open-bugs-2026-11-18.json`, still lists it as Open. Rule 7 in `skills/_shared/spec-adherence-rules.md` says to fail a case like this
+>> done (rc=0) — report: results/2026-11-18/QA-100879-report.md

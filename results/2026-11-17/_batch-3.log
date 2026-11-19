@@ -1,0 +1,43 @@
+>> QA-24279 (full) — Tue Nov 17 16:20:17 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+>> .. QA-24279 still running (60s / 1500s cap) — 16:21:17
+>> .. QA-24279 still running (120s / 1500s cap) — 16:22:17
+>> .. QA-24279 still running (180s / 1500s cap) — 16:23:17
+>> .. QA-24279 still running (240s / 1500s cap) — 16:24:18
+>> .. QA-24279 still running (300s / 1500s cap) — 16:25:18
+>> usage: 34 turns | in 58 (+1634726 cache-read, +70848 cache-write) | out 16015 | est $0.61
+**QA-24279 passes.**
+
+Organic + Paid + Unclassified = Video Views holds on the aggregate row (both Sum and Average) and on every post row. That covers all five channels: Facebook, Twitter, Instagram, TikTok and LinkedIn.
+
+- **Run setup:** I ran Tuesday's account, UCLA (account 799), on brand "University of California, Los Angeles". The date range was Nov 9–15, 2026, with the Video Views data set i
+>> done (rc=0) — report: results/2026-11-17/QA-24279-report.md
+>> QA-31572 (full) — Tue Nov 17 16:25:33 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+>> .. QA-31572 still running (60s / 1500s cap) — 16:26:33
+>> .. QA-31572 still running (120s / 1500s cap) — 16:27:33
+>> .. QA-31572 still running (180s / 1500s cap) — 16:28:33
+>> .. QA-31572 still running (240s / 1500s cap) — 16:29:33
+>> .. QA-31572 still running (300s / 1500s cap) — 16:30:33
+>> .. QA-31572 still running (360s / 1500s cap) — 16:31:34
+>> usage: 53 turns | in 102 (+3056861 cache-read, +75065 cache-write) | out 14727 | est $0.75
+**QA-31572 — PASS.** The Brand Insights Impressions number matches the Classic Reporting (Time Window Comparison) sum exactly.
+
+- **Insights:** Amazon Prime Video, Facebook, Twitter and Instagram only, Authorized data, Nov 9–15 2026. Impressions = 223,235,646.
+- **Time Window Comparison:** report 162856 gives Facebook Page Impressions 110,030,405, Twitter Organic Post Impressions 5,984,646 and Ins
+>> done (rc=0) — report: results/2026-11-17/QA-31572-report.md
+>> QA-32751 (full) — Tue Nov 17 16:31:39 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+>> .. QA-32751 still running (60s / 1500s cap) — 16:32:39
+>> .. QA-32751 still running (120s / 1500s cap) — 16:33:39
+>> .. QA-32751 still running (180s / 1500s cap) — 16:34:39
+>> .. QA-32751 still running (240s / 1500s cap) — 16:35:39
+>> .. QA-32751 still running (300s / 1500s cap) — 16:36:39
+>> usage: 65 turns | in 106 (+3405967 cache-read, +80875 cache-write) | out 17676 | est $0.84
+**QA-32751: PASS.** Report: `results/2026-11-17/QA-32751-report.md`.
+
+All five Instagram Paid big numbers on the Brand > Paid page equal the Time Window Comparison (TWC) Aggregate values. The window was Nov 9–15, 2026, on Michael Kors with Authorized data.
+
+| Metric | Paid page | TWC |
+|---|---|---|
+| Paid Impressions | 54,065,742 | 54,065,742 |
+| Spend | $588,941.99 | $588,941.99 |
+| Clicks | 1,2
+>> done (rc=0) — report: results/2026-11-17/QA-32751-report.md

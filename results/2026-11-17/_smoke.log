@@ -1,0 +1,5 @@
+>> QA-20984 (--login-only) — Tue Nov 17 15:46:35 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+Permission allow rule (.claude/settings.local.json): Bash(mv qa949-*.png .playwright-out/) has a wildcard before the rest of the command, so it also matches any options inserted at that position and approves them without a prompt. Replace that * with the exact value you mean, or only use * after the subcommand.
+Permission allow rule (.claude/settings.local.json): Bash(mv qa43916-*.png .playwright-out/) has a wildcard before the rest of the command, so it also matches any options inserted at that position and approves them without a prompt. Replace that * with the exact value you mean, or only use * after the subcommand.
+LOGIN OK https://app.lfmdev.in/#home
+>> done (rc=0) — report: results/2026-11-17/QA-20984-report.md

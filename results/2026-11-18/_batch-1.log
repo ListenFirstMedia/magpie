@@ -1,0 +1,45 @@
+>> QA-20984 (full) — Wed Nov 18 12:29:14 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+>> .. QA-20984 still running (60s / 1500s cap) — 12:30:14
+>> .. QA-20984 still running (120s / 1500s cap) — 12:31:14
+>> .. QA-20984 still running (180s / 1500s cap) — 12:32:14
+>> .. QA-20984 still running (240s / 1500s cap) — 12:33:14
+>> .. QA-20984 still running (300s / 1500s cap) — 12:34:15
+>> .. QA-20984 still running (360s / 1500s cap) — 12:35:15
+>> .. QA-20984 still running (420s / 1500s cap) — 12:36:15
+>> .. QA-20984 still running (480s / 1500s cap) — 12:37:15
+>> .. QA-20984 still running (540s / 1500s cap) — 12:38:15
+>> .. QA-20984 still running (600s / 1500s cap) — 12:39:15
+>> .. QA-20984 still running (660s / 1500s cap) — 12:40:15
+>> .. QA-20984 still running (720s / 1500s cap) — 12:41:15
+>> usage: 22 turns | in 38 (+1235929 cache-read, +83975 cache-write) | out 8142 | est $0.54
+**QA-20984: PASS** on dev, Amazon Prime Video, TikTok only, Feb 01 – Mar 31, 2025. The report is at `results/2026-11-18/QA-20984-report.md`.
+
+- **Post table, header and tile:** all three show 21. That is the "Ads (21)" header, 21 table rows and the Active Ads tile.
+- **Tiles vs the aggregate row:** each big number equals the table's Sum row for the paired data set, to the cent.
+
+| Big number | Dat
+>> done (rc=0) — report: results/2026-11-18/QA-20984-report.md
+>> QA-21912 (full) — Wed Nov 18 12:41:46 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+>> .. QA-21912 still running (60s / 1500s cap) — 12:42:46
+>> .. QA-21912 still running (120s / 1500s cap) — 12:43:46
+>> .. QA-21912 still running (180s / 1500s cap) — 12:44:46
+>> .. QA-21912 still running (240s / 1500s cap) — 12:45:46
+>> .. QA-21912 still running (300s / 1500s cap) — 12:46:46
+>> .. QA-21912 still running (360s / 1500s cap) — 12:47:47
+>> .. QA-21912 still running (420s / 1500s cap) — 12:48:47
+>> usage: 34 turns | in 60 (+1566191 cache-read, +61915 cache-write) | out 15719 | est $0.56
+**QA-21912: PASS.** Both Wednesday pairs ran in full, using the Description table rows (Viacom/MTV and Condé Nast/GQ - Japan).
+
+| Pair | Reactions (LFM → native) | Comments | Shares |
+|---|---|---|---|
+| Viacom / MTV | 33,910 → 34K | 171 → 190 (+11%) | 1,037 → 1K |
+| Condé Nast / GQ - Japan | 39,600 → 39.7K | 430 → 510 (+18.6%) | 937 → 941 |
+
+- **Verdict basis:** the spec gives no numeric threshol
+>> done (rc=0) — report: results/2026-11-18/QA-21912-report.md
+>> QA-21913 (full) — Wed Nov 18 12:49:27 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+>> usage: 7 turns | in 10 (+146999 cache-read, +25760 cache-write) | out 2310 | est $0.14
+**QA-21913: FAILED (blocked by open bug).** I didn't run the case. The case file lists LFMP-32113 as an open linked bug, and `results/open-bugs-2026-11-18.json` confirms it's still `[Open]` today. The bug is about native data being lower than LFM for past dates, which is the same comparison Assertion 6 makes. Under Rule 7 (open-bug auto-fail) I wrote the report without opening the browser.
+
+Report
+>> done (rc=0) — report: results/2026-11-18/QA-21913-report.md

@@ -1,0 +1,37 @@
+>> QA-21915 (full) — Tue Nov 17 16:08:50 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+>> .. QA-21915 still running (60s / 1500s cap) — 16:09:50
+>> .. QA-21915 still running (120s / 1500s cap) — 16:10:51
+>> .. QA-21915 still running (180s / 1500s cap) — 16:11:51
+>> .. QA-21915 still running (240s / 1500s cap) — 16:12:51
+>> .. QA-21915 still running (300s / 1500s cap) — 16:13:51
+>> .. QA-21915 still running (360s / 1500s cap) — 16:14:51
+>> .. QA-21915 still running (420s / 1500s cap) — 16:15:51
+>> usage: 31 turns | in 54 (+1621559 cache-read, +76897 cache-write) | out 12242 | est $0.59
+QA-21915 ran on dev and the verdict is **FAIL**. The UCLA row passes, but the Gatorade row has native likes about 13% below LFM Reactions.
+
+The Tuesday row of the case names two account/brand pairs, so I ran both. The first post on Instagram only (Nov 9–15 default week) gave:
+
+| Row | LFM Reactions | Native likes | Variation | Comments |
+| --- | --- | --- | --- | --- |
+| UCLA / University of Calif
+>> done (rc=0) — report: results/2026-11-17/QA-21915-report.md
+>> QA-21916 (full) — Tue Nov 17 16:15:56 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+>> .. QA-21916 still running (60s / 1500s cap) — 16:16:56
+>> .. QA-21916 still running (120s / 1500s cap) — 16:17:57
+>> .. QA-21916 still running (180s / 1500s cap) — 16:18:57
+>> usage: 29 turns | in 44 (+1127578 cache-read, +61724 cache-write) | out 9016 | est $0.45
+QA-21916 is **BLOCKED**. Neither Tuesday row had a first YouTube post to compare, so the assertion was never evaluated.
+
+- **UCLA** (University of California, Los Angeles): YouTube only shows `Posts (0)` for Nov 9–15, 2026.
+- **Wasserman / Gatorade**: same result, `Posts (0)`.
+
+I re-read both pages after an extra 8–10 seconds to rule out a slow load, and the result didn't change. I viewed the Gato
+>> done (rc=0) — report: results/2026-11-17/QA-21916-report.md
+>> QA-22104 (full) — Tue Nov 17 16:19:52 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+>> usage: 6 turns | in 8 (+110385 cache-read, +23592 cache-write) | out 1880 | est $0.12
+QA-22104 is **FAILED (blocked by open bug) — LFMP-32119**. I did not open the browser or run any steps.
+
+- **Why it was blocked:** `cases/QA-22104.md` lists LFMP-32119 as open. It is the Facebook past-date "big variations vs Native" bug, which is the exact thing this case asserts.
+- **Still open:** `results/open-bugs-2026-11-17.json` confirms LFMP-32119 is still open today.
+- **Rule applied:** Rul
+>> done (rc=0) — report: results/2026-11-17/QA-22104-report.md

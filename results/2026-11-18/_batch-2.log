@@ -1,0 +1,40 @@
+>> QA-21915 (full) — Wed Nov 18 12:49:53 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+>> .. QA-21915 still running (60s / 1500s cap) — 12:50:53
+>> .. QA-21915 still running (120s / 1500s cap) — 12:51:53
+>> .. QA-21915 still running (180s / 1500s cap) — 12:52:54
+>> .. QA-21915 still running (240s / 1500s cap) — 12:53:54
+>> .. QA-21915 still running (300s / 1500s cap) — 12:54:54
+>> usage: 23 turns | in 38 (+1068365 cache-read, +72951 cache-write) | out 10360 | est $0.50
+**QA-21915: PASS.** The report is at `results/2026-11-18/QA-21915-report.md`.
+
+I ran both Wednesday rows from the Description table on Instagram only, with the default Nov 10–16 date range. No linked bugs are open for this case. Each row used the exact spec brand.
+
+| Row | LFM first post (Reactions / Comments) | Native (likes / comments) | Result |
+| --- | --- | --- | --- |
+| Apple Services / Appl
+>> done (rc=0) — report: results/2026-11-18/QA-21915-report.md
+>> QA-21916 (full) — Wed Nov 18 12:55:20 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+>> .. QA-21916 still running (60s / 1500s cap) — 12:56:20
+>> .. QA-21916 still running (120s / 1500s cap) — 12:57:21
+>> .. QA-21916 still running (180s / 1500s cap) — 12:58:21
+>> .. QA-21916 still running (240s / 1500s cap) — 12:59:21
+>> .. QA-21916 still running (300s / 1500s cap) — 13:00:21
+>> .. QA-21916 still running (360s / 1500s cap) — 13:01:21
+>> usage: 27 turns | in 46 (+1293523 cache-read, +68588 cache-write) | out 13544 | est $0.54
+**QA-21916: PASS.** The report is at `results/2026-11-18/QA-21916-report.md`.
+
+I ran both Wednesday rows from the case's Description table on dev, YouTube only, over Nov 10–16, 2026. Each row's brand loaded as the exact spec name.
+
+| Row | LFM Likes | Native Likes | LFM Comments | Native Comments |
+|---|---|---|---|---|
+| Apple Services / Apple Music | 369 | 387 (+4.9%) | 66 | 67 (+1.5%) |
+| Condé
+>> done (rc=0) — report: results/2026-11-18/QA-21916-report.md
+>> QA-22104 (full) — Wed Nov 18 13:01:32 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+>> usage: 7 turns | in 10 (+145522 cache-read, +23092 cache-write) | out 1786 | est $0.12
+QA-22104 is **FAILED (blocked by open bug)**. I didn't run the case or open the browser.
+
+The case file lists LFMP-32119 as open. It describes the same Facebook past-date LFM-vs-Native variance that assertion 6 checks. Rule 7 says any open linked bug fails the case without running it. `results/open-bugs-2026-11-18.json` also shows LFMP-32119 as open.
+
+The report is at `results/2026-11-18/QA-22104-
+>> done (rc=0) — report: results/2026-11-18/QA-22104-report.md

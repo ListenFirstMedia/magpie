@@ -1,0 +1,229 @@
+== batch run: 15 cases from batches/qa-21686-devonly.txt, 5 batches of 3 ==
+>> smoke gate: login pre-flight (attempt 1/3)
+>> QA-20984 (--login-only) — Tue Nov 17 15:46:35 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+Permission allow rule (.claude/settings.local.json): Bash(mv qa949-*.png .playwright-out/) has a wildcard before the rest of the command, so it also matches any options inserted at that position and approves them without a prompt. Replace that * with the exact value you mean, or only use * after the subcommand.
+Permission allow rule (.claude/settings.local.json): Bash(mv qa43916-*.png .playwright-out/) has a wildcard before the rest of the command, so it also matches any options inserted at that position and approves them without a prompt. Replace that * with the exact value you mean, or only use * after the subcommand.
+LOGIN OK https://app.lfmdev.in/#home
+>> done (rc=0) — report: results/2026-11-17/QA-20984-report.md
+>> smoke gate passed
+== batch 1/5 ==
+  -> [1/15] QA-20984
+>> QA-20984 (full) — Tue Nov 17 15:47:16 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+>> .. QA-20984 still running (60s / 1500s cap) — 15:48:16
+>> .. QA-20984 still running (120s / 1500s cap) — 15:49:16
+>> .. QA-20984 still running (180s / 1500s cap) — 15:50:16
+>> .. QA-20984 still running (240s / 1500s cap) — 15:51:16
+>> .. QA-20984 still running (300s / 1500s cap) — 15:52:17
+>> .. QA-20984 still running (360s / 1500s cap) — 15:53:17
+>> .. QA-20984 still running (420s / 1500s cap) — 15:54:17
+>> .. QA-20984 still running (480s / 1500s cap) — 15:55:17
+>> .. QA-20984 still running (540s / 1500s cap) — 15:56:17
+>> .. QA-20984 still running (600s / 1500s cap) — 15:57:17
+>> .. QA-20984 still running (660s / 1500s cap) — 15:58:17
+>> .. QA-20984 still running (720s / 1500s cap) — 15:59:18
+>> .. QA-20984 still running (780s / 1500s cap) — 16:00:18
+>> .. QA-20984 still running (840s / 1500s cap) — 16:01:18
+>> usage: 33 turns | in 60 (+1807907 cache-read, +87146 cache-write) | out 12481 | est $0.65
+**QA-20984 is PASS.** All five assertions held on dev for Amazon Prime Video, TikTok only, Feb 01 – Mar 31, 2025.
+
+- **Step 6 (counts):** the post-table header is Ads (21), the table has 21 rows, and the Active Ads tile is 21.
+- **Step 6 (Spend, Clicks):** Spend is $201,543.83 and Clicks is 145,516, each matching the aggregate row.
+- **Step 8:** 100% Completed Views is 459,968, matching the Video 
+>> done (rc=0) — report: results/2026-11-17/QA-20984-report.md
+  -> [2/15] QA-21912
+>> QA-21912 (full) — Tue Nov 17 16:01:49 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+>> .. QA-21912 still running (60s / 1500s cap) — 16:02:49
+>> .. QA-21912 still running (120s / 1500s cap) — 16:03:50
+>> .. QA-21912 still running (180s / 1500s cap) — 16:04:50
+>> .. QA-21912 still running (240s / 1500s cap) — 16:05:50
+>> .. QA-21912 still running (300s / 1500s cap) — 16:06:50
+>> .. QA-21912 still running (360s / 1500s cap) — 16:07:50
+>> usage: 44 turns | in 72 (+2308873 cache-read, +77117 cache-write) | out 14579 | est $0.69
+QA-21912 is **PASS**, but only for the UCLA pair. The Wasserman / Gatorade pair couldn't be run because Gatorade has no Facebook posts in the default week. I appended a PASS line to `results/2026-11-17/results.tsv` too. The report is at `results/2026-11-17/QA-21912-report.md`.
+
+- **UCLA, dev, Facebook only, default range Nov 9–15:** the first post is "ICYMI: The "Mozart of Math"".
+
+| Metric | LFM 
+>> done (rc=0) — report: results/2026-11-17/QA-21912-report.md
+  -> [3/15] QA-21913
+>> QA-21913 (full) — Tue Nov 17 16:08:25 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+>> usage: 6 turns | in 8 (+108944 cache-read, +22207 cache-write) | out 1953 | est $0.12
+**QA-21913 — FAILED (blocked by open bug).**
+
+The case file lists LFMP-32113 as Open ("Brand Content > LFM vs Native - Past Date - native data is lower than LFM"). Rule 7 (open-bug auto-fail) says not to run a case with an open linked bug, so I didn't open the browser. I used the case file's bug list, dated 2026-10-20, and didn't re-check Jira, since the Atlassian MCP isn't available in this headl
+>> done (rc=0) — report: results/2026-11-17/QA-21913-report.md
+   checkpoint written: results/2026-11-17/summary.json
+== batch 2/5 ==
+  -> [4/15] QA-21915
+>> QA-21915 (full) — Tue Nov 17 16:08:50 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+>> .. QA-21915 still running (60s / 1500s cap) — 16:09:50
+>> .. QA-21915 still running (120s / 1500s cap) — 16:10:51
+>> .. QA-21915 still running (180s / 1500s cap) — 16:11:51
+>> .. QA-21915 still running (240s / 1500s cap) — 16:12:51
+>> .. QA-21915 still running (300s / 1500s cap) — 16:13:51
+>> .. QA-21915 still running (360s / 1500s cap) — 16:14:51
+>> .. QA-21915 still running (420s / 1500s cap) — 16:15:51
+>> usage: 31 turns | in 54 (+1621559 cache-read, +76897 cache-write) | out 12242 | est $0.59
+QA-21915 ran on dev and the verdict is **FAIL**. The UCLA row passes, but the Gatorade row has native likes about 13% below LFM Reactions.
+
+The Tuesday row of the case names two account/brand pairs, so I ran both. The first post on Instagram only (Nov 9–15 default week) gave:
+
+| Row | LFM Reactions | Native likes | Variation | Comments |
+| --- | --- | --- | --- | --- |
+| UCLA / University of Calif
+>> done (rc=0) — report: results/2026-11-17/QA-21915-report.md
+  -> [5/15] QA-21916
+>> QA-21916 (full) — Tue Nov 17 16:15:56 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+>> .. QA-21916 still running (60s / 1500s cap) — 16:16:56
+>> .. QA-21916 still running (120s / 1500s cap) — 16:17:57
+>> .. QA-21916 still running (180s / 1500s cap) — 16:18:57
+>> usage: 29 turns | in 44 (+1127578 cache-read, +61724 cache-write) | out 9016 | est $0.45
+QA-21916 is **BLOCKED**. Neither Tuesday row had a first YouTube post to compare, so the assertion was never evaluated.
+
+- **UCLA** (University of California, Los Angeles): YouTube only shows `Posts (0)` for Nov 9–15, 2026.
+- **Wasserman / Gatorade**: same result, `Posts (0)`.
+
+I re-read both pages after an extra 8–10 seconds to rule out a slow load, and the result didn't change. I viewed the Gato
+>> done (rc=0) — report: results/2026-11-17/QA-21916-report.md
+  -> [6/15] QA-22104
+>> QA-22104 (full) — Tue Nov 17 16:19:52 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+>> usage: 6 turns | in 8 (+110385 cache-read, +23592 cache-write) | out 1880 | est $0.12
+QA-22104 is **FAILED (blocked by open bug) — LFMP-32119**. I did not open the browser or run any steps.
+
+- **Why it was blocked:** `cases/QA-22104.md` lists LFMP-32119 as open. It is the Facebook past-date "big variations vs Native" bug, which is the exact thing this case asserts.
+- **Still open:** `results/open-bugs-2026-11-17.json` confirms LFMP-32119 is still open today.
+- **Rule applied:** Rul
+>> done (rc=0) — report: results/2026-11-17/QA-22104-report.md
+   checkpoint written: results/2026-11-17/summary.json
+== batch 3/5 ==
+  -> [7/15] QA-24279
+>> QA-24279 (full) — Tue Nov 17 16:20:17 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+>> .. QA-24279 still running (60s / 1500s cap) — 16:21:17
+>> .. QA-24279 still running (120s / 1500s cap) — 16:22:17
+>> .. QA-24279 still running (180s / 1500s cap) — 16:23:17
+>> .. QA-24279 still running (240s / 1500s cap) — 16:24:18
+>> .. QA-24279 still running (300s / 1500s cap) — 16:25:18
+>> usage: 34 turns | in 58 (+1634726 cache-read, +70848 cache-write) | out 16015 | est $0.61
+**QA-24279 passes.**
+
+Organic + Paid + Unclassified = Video Views holds on the aggregate row (both Sum and Average) and on every post row. That covers all five channels: Facebook, Twitter, Instagram, TikTok and LinkedIn.
+
+- **Run setup:** I ran Tuesday's account, UCLA (account 799), on brand "University of California, Los Angeles". The date range was Nov 9–15, 2026, with the Video Views data set i
+>> done (rc=0) — report: results/2026-11-17/QA-24279-report.md
+  -> [8/15] QA-31572
+>> QA-31572 (full) — Tue Nov 17 16:25:33 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+>> .. QA-31572 still running (60s / 1500s cap) — 16:26:33
+>> .. QA-31572 still running (120s / 1500s cap) — 16:27:33
+>> .. QA-31572 still running (180s / 1500s cap) — 16:28:33
+>> .. QA-31572 still running (240s / 1500s cap) — 16:29:33
+>> .. QA-31572 still running (300s / 1500s cap) — 16:30:33
+>> .. QA-31572 still running (360s / 1500s cap) — 16:31:34
+>> usage: 53 turns | in 102 (+3056861 cache-read, +75065 cache-write) | out 14727 | est $0.75
+**QA-31572 — PASS.** The Brand Insights Impressions number matches the Classic Reporting (Time Window Comparison) sum exactly.
+
+- **Insights:** Amazon Prime Video, Facebook, Twitter and Instagram only, Authorized data, Nov 9–15 2026. Impressions = 223,235,646.
+- **Time Window Comparison:** report 162856 gives Facebook Page Impressions 110,030,405, Twitter Organic Post Impressions 5,984,646 and Ins
+>> done (rc=0) — report: results/2026-11-17/QA-31572-report.md
+  -> [9/15] QA-32751
+>> QA-32751 (full) — Tue Nov 17 16:31:39 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+>> .. QA-32751 still running (60s / 1500s cap) — 16:32:39
+>> .. QA-32751 still running (120s / 1500s cap) — 16:33:39
+>> .. QA-32751 still running (180s / 1500s cap) — 16:34:39
+>> .. QA-32751 still running (240s / 1500s cap) — 16:35:39
+>> .. QA-32751 still running (300s / 1500s cap) — 16:36:39
+>> usage: 65 turns | in 106 (+3405967 cache-read, +80875 cache-write) | out 17676 | est $0.84
+**QA-32751: PASS.** Report: `results/2026-11-17/QA-32751-report.md`.
+
+All five Instagram Paid big numbers on the Brand > Paid page equal the Time Window Comparison (TWC) Aggregate values. The window was Nov 9–15, 2026, on Michael Kors with Authorized data.
+
+| Metric | Paid page | TWC |
+|---|---|---|
+| Paid Impressions | 54,065,742 | 54,065,742 |
+| Spend | $588,941.99 | $588,941.99 |
+| Clicks | 1,2
+>> done (rc=0) — report: results/2026-11-17/QA-32751-report.md
+   checkpoint written: results/2026-11-17/summary.json
+== batch 4/5 ==
+  -> [10/15] QA-38198
+>> QA-38198 (full) — Tue Nov 17 16:37:41 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+>> .. QA-38198 still running (60s / 1500s cap) — 16:38:42
+>> .. QA-38198 still running (120s / 1500s cap) — 16:39:42
+>> .. QA-38198 still running (180s / 1500s cap) — 16:40:42
+>> .. QA-38198 still running (240s / 1500s cap) — 16:41:42
+>> .. QA-38198 still running (300s / 1500s cap) — 16:52:12
+>> .. QA-38198 still running (360s / 1500s cap) — 18:12:46
+>> .. QA-38198 still running (420s / 1500s cap) — 18:22:47
+>> usage: 48 turns | in 92 (+2533751 cache-read, +73591 cache-write) | out 16078 | est $0.71
+**QA-38198 verdict: FAILED**, because of the open linked bug APPS-58195. Every data assertion passes. The report is at `results/2026-11-17/QA-38198-report.md`.
+
+I ran the case in full on dev: Sephora account, Sephora brand with Authorized Data, all 7 channels, story 162866, section "Social Activity - Year to Date".
+
+| Metric | Sum of channel rows | Donut |
+|---|---|---|
+| Impressions | 9,116,291,1
+>> done (rc=0) — report: results/2026-11-17/QA-38198-report.md
+  -> [11/15] QA-68228
+>> QA-68228 (full) — Tue Nov 17 18:23:37 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+>> .. QA-68228 still running (60s / 1500s cap) — 18:24:37
+>> .. QA-68228 still running (120s / 1500s cap) — 18:25:37
+>> .. QA-68228 still running (180s / 1500s cap) — 18:26:37
+>> .. QA-68228 still running (240s / 1500s cap) — 18:27:38
+>> .. QA-68228 still running (300s / 1500s cap) — 18:28:38
+>> .. QA-68228 still running (360s / 1500s cap) — 18:29:38
+>> .. QA-68228 still running (420s / 1500s cap) — 18:30:38
+>> usage: 28 turns | in 52 (+1443759 cache-read, +68888 cache-write) | out 12866 | est $0.55
+**QA-68228: PASS.** Report: `results/2026-11-17/QA-68228-report.md`.
+
+- **Check:** Engaged User Rate = Engagements ÷ Reach × 100 holds for 50 of 50 Hulu Instagram stories (week Nov 10–16, 2026, brand_id 5670, account Hulu). The largest gap between computed and displayed is 0.0050 pp, which is just the 2-decimal rounding of the display.
+- **Row matching:** I joined the Insights and Rates tables by 
+>> done (rc=0) — report: results/2026-11-17/QA-68228-report.md
+  -> [12/15] QA-81509
+>> QA-81509 (full) — Tue Nov 17 18:31:23 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+>> .. QA-81509 still running (60s / 1500s cap) — 18:32:23
+>> .. QA-81509 still running (120s / 1500s cap) — 18:33:23
+>> .. QA-81509 still running (180s / 1500s cap) — 18:34:23
+>> .. QA-81509 still running (240s / 1500s cap) — 18:35:24
+>> .. QA-81509 still running (300s / 1500s cap) — 18:36:24
+>> usage: 39 turns | in 64 (+1922775 cache-read, +69555 cache-write) | out 10285 | est $0.57
+**QA-81509 is BLOCKED.** Assertion 8 could not be evaluated because the native tweet page returns an x.com 403.
+
+- **Steps 1–6:** All ran as specified. After switching to Robinhood, I searched `#Robinhood` for Last 7 days (2,189 tweets), loaded tweets, and clicked View Now.
+- **Steps 7–8:** The first post is `@funtokio`. Clicking its image opened a tab that showed "Access to x.com was denied" (HTT
+>> done (rc=0) — report: results/2026-11-17/QA-81509-report.md
+   checkpoint written: results/2026-11-17/summary.json
+== batch 5/5 ==
+  -> [13/15] QA-90072
+>> QA-90072 (full) — Tue Nov 17 18:36:44 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+>> usage: 6 turns | in 8 (+109740 cache-read, +23318 cache-write) | out 1945 | est $0.12
+**QA-90072: FAILED (blocked by open bug APPS-60871).** I didn't open the browser.
+
+The case file lists APPS-60871 (Open) under its open linked bugs. Rule 7 and the open-bug auto-fail directive fail the case on any open linked bug, so I wrote the report without running any steps.
+
+- **Assertion A6:** BLOCKED. I didn't compare LFM metrics against Native.
+- **Bugs filed:** none.
+- **Skills and regist
+>> done (rc=0) — report: results/2026-11-17/QA-90072-report.md
+  -> [14/15] QA-100878
+>> QA-100878 (full) — Tue Nov 17 18:37:06 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+>> .. QA-100878 still running (60s / 1500s cap) — 18:38:06
+>> .. QA-100878 still running (120s / 1500s cap) — 18:39:06
+>> .. QA-100878 still running (180s / 1500s cap) — 18:40:06
+>> usage: 60 turns | in 96 (+2658343 cache-read, +65165 cache-write) | out 10314 | est $0.63
+**QA-100878: PASS.** I ran it on dev (app.lfmdev.in) as HBO Max, brand HBO Max, Jun 01–07, 2025, with the Threads Only: Insights data set.
+
+- **Assertion A4:** all six metrics (Engagements, Likes, Replies, Quotes, Reposts, Views) appear in the aggregate header and on all 21 post cards. A "Shares" column is also shown, which the case doesn't exclude.
+- **Account switch:** login landed on Adam Orfei
+>> done (rc=0) — report: results/2026-11-17/QA-100878-report.md
+  -> [15/15] QA-100879
+>> QA-100879 (full) — Tue Nov 17 18:41:07 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+>> usage: 6 turns | in 8 (+107561 cache-read, +24537 cache-write) | out 1724 | est $0.13
+QA-100879 is marked **FAILED (blocked by open bug)**, and I did not run the browser flow.
+
+The case file lists LFMP-32113 (Open, "Brand Content > LFM vs Native - Past Date - native data is lower than LFM"). Rule 7 says any open linked bug means the case isn't run. This bug sits on the same LFM-vs-Native comparison as the case's only assertion, so a result wouldn't be trustworthy anyway.
+
+The repor
+>> done (rc=0) — report: results/2026-11-17/QA-100879-report.md
+   checkpoint written: results/2026-11-17/summary.json
+== retry sweep 1/1: no cases without a verdict — nothing to retry ==
+== done. summary: results/2026-11-17/summary.json ==
+PASS 7 / FAIL 6 / BLOCKED 2 / SKIPPED 0 / TIMEOUT 0 / UNKNOWN 0  (of 15 run)

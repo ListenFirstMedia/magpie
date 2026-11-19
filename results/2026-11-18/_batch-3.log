@@ -1,0 +1,48 @@
+>> QA-24279 (full) — Wed Nov 18 13:01:57 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+>> .. QA-24279 still running (60s / 1500s cap) — 13:02:57
+>> .. QA-24279 still running (120s / 1500s cap) — 13:03:58
+>> .. QA-24279 still running (180s / 1500s cap) — 13:04:58
+>> .. QA-24279 still running (240s / 1500s cap) — 13:05:58
+>> .. QA-24279 still running (300s / 1500s cap) — 13:06:58
+>> .. QA-24279 still running (360s / 1500s cap) — 13:07:58
+>> .. QA-24279 still running (420s / 1500s cap) — 13:08:58
+>> usage: 44 turns | in 78 (+2288182 cache-read, +83572 cache-write) | out 21884 | est $0.78
+QA-24279 is a **PASS, with the LinkedIn leg not evaluable**. I ran it on Wednesday's rotation row, Apple Services › Apple Music.
+
+- **Facebook, Twitter, Instagram, TikTok:** Organic + Paid + Unclassified = Video Views holds on the aggregate row, in both Sum and Average. It also holds on every post row (3, 3, 19 and 21 posts).
+- **TikTok:** all views are Unclassified, with Organic and Paid showing 
+>> done (rc=0) — report: results/2026-11-18/QA-24279-report.md
+>> QA-31572 (full) — Wed Nov 18 13:09:58 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+>> .. QA-31572 still running (60s / 1500s cap) — 13:10:59
+>> .. QA-31572 still running (120s / 1500s cap) — 13:11:59
+>> .. QA-31572 still running (180s / 1500s cap) — 13:12:59
+>> .. QA-31572 still running (240s / 1500s cap) — 13:13:59
+>> .. QA-31572 still running (300s / 1500s cap) — 13:14:59
+>> .. QA-31572 still running (360s / 1500s cap) — 13:15:59
+>> .. QA-31572 still running (420s / 1500s cap) — 13:16:59
+>> .. QA-31572 still running (480s / 1500s cap) — 13:18:00
+>> usage: 60 turns | in 108 (+3582425 cache-read, +88079 cache-write) | out 18141 | est $0.89
+**QA-31572: PASS.** Brand Insights Impressions match the Classic Reporting total exactly, with a difference of 0.
+
+- **Insights:** Amazon Prime Video, Facebook + Twitter + Instagram, Authorized data, Nov 10–16, 2026 = **194,397,923**.
+- **Time Window Comparison (the Classic Reporting template):** same range, Aggregate, Authorized, with Facebook Page Impressions 88,411,650 + Twitter Organic Post Im
+>> done (rc=0) — report: results/2026-11-18/QA-31572-report.md
+>> QA-32751 (full) — Wed Nov 18 13:18:10 IST 2026  [timeout 1500s | model claude-sonnet-5-5@high]
+>> .. QA-32751 still running (60s / 1500s cap) — 13:19:10
+>> .. QA-32751 still running (120s / 1500s cap) — 13:20:10
+>> .. QA-32751 still running (180s / 1500s cap) — 13:21:10
+>> .. QA-32751 still running (240s / 1500s cap) — 13:22:10
+>> .. QA-32751 still running (300s / 1500s cap) — 13:23:11
+>> usage: 59 turns | in 104 (+2867453 cache-read, +67408 cache-write) | out 16230 | est $0.72
+QA-32751 is **PASS**: all five Instagram Paid big numbers on the Brand > Paid page equal the Time Window Comparison (TWC) values exactly.
+
+| Metric | Paid page | TWC value |
+|---|---|---|
+| Paid Impressions | 53,097,123 | 53,097,123 |
+| Spend | $598,961.86 | $598,961.86 |
+| Clicks | 1,225,589 | 1,225,589 |
+| Paid Actions | 2,556,836 | 2,556,836 |
+| 95% Completed Video Views | 212,139 | 212,139 |
+
+
+>> done (rc=0) — report: results/2026-11-18/QA-32751-report.md

@@ -30,6 +30,8 @@ right after capture. See known-quirks.md (2026-06-22).
    specifically (not the Corporate-email/SSO one).
 4. Wait for `app.lfmdev.in/#home` (title "Home - ListenFirst") to render.
 
+**Prod (Data Test sets only):** `config/.env.prod` (gitignored) holds the PROD QA user — a separate user from dev since 2026-11-17 — plus the prod hosts (`LFM_APP_URL` etc.). Dev tabs log in with `config/.env`, prod tabs with `config/.env.prod`. Prod is strictly read-only (see docs/PROMPT.md, DATA TEST SETS).
+
 **CI:** provide `LFM_EMAIL` / `LFM_PASSWORD` as secrets. `storageState.json` is no longer used for
 auth on this track.
 

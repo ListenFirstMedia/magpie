@@ -1,7 +1,7 @@
 ---
 name: brand-content-dev-vs-prod
-version: 1
-last_verified: 2026-10-20
+version: 2
+last_verified: 2026-11-17
 last_passed_run: 2026-10-20
 trust: untrusted
 pass_streak: 9
@@ -17,7 +17,7 @@ related_pages: ["/#explore/brand/content"]
 Compare every post's metrics between **dev** (`app.lfmdev.in`) and **prod** (`app.listenfirstmedia.com`) for one brand / data set / channel by scraping Table View on both environments and joining rows by post permalink. Verified 2026-10-20 on UCLA (9 cases, all PASS, 2–35 posts each).
 
 ## Mechanics
-1. **Two tabs, one browser context.** Open the prod tab first (`page.goto('https://app.listenfirstmedia.com')`), then `context.newPage()` for dev. Cookies are per host, so both Cognito sessions coexist. Both hosts use the same "With existing account" email/password form; credentials: `config/.env` (dev) and `config/.env.prod` (prod). Prod uses the same hash routes, selectors and default date week as dev (Mon–Sun of last week, e.g. `from=2026-10-12&to=2026-10-18`).
+1. **Two tabs, one browser context.** Open the prod tab first (`page.goto('https://app.listenfirstmedia.com')`), then `context.newPage()` for dev. Cookies are per host, so both Cognito sessions coexist. Both hosts use the same "With existing account" email/password form; credentials: `config/.env` (dev user) and `config/.env.prod` (prod user — a SEPARATE user, `lfiqaprod@…`, since 2026-11-17; set `ctx._creds` from the dev file and `ctx._credsProd` from the prod file before loading `devprod-helpers.js`). Prod uses the same hash routes, selectors and default date week as dev (Mon–Sun of last week, e.g. `from=2026-10-12&to=2026-10-18`).
 2. **Account switch on BOTH tabs** (profile menu trigger is `.navigation-controls-user .navigation-menu-header`; hover, then click if `[placeholder="Search Account"]` is not visible). Type the name with `pressSequentially`; poll for the visible `Results` header (retype the last character if it does not appear); then click the matching `.lfm-ta-option` **with a real mouse click at its bounding box** — `element.click()` dispatched from page JS is ignored. Verify `ACCOUNT: <NAME>` in the body text and `account_id=` in the URL (UCLA = 799 on both environments).
 3. **Brand > Content:** hover `.navigation-menus .navigation-menu-header-label` "Brand" → click the "Content" text. The account's default brand loads (UCLA → brand_id 127756 on both).
 4. **Data set BEFORE channel** (`brand-content-grid-math` rule): visible `.lfm-dropdown-select-box` → visible `.lfm-dropdown-option` with the exact label. Labels used here: Public, Clicks, Video Views, Impressions, Engagements Breakdown, Facebook Only: …, Twitter Only: …, YouTube Only: …, Instagram Only: …, Pinterest Only: Basic, Threads Only: Insights.
@@ -38,4 +38,6 @@ Compare every post's metrics between **dev** (`app.lfmdev.in`) and **prod** (`ap
 | 0 posts on both | no data for the brand/channel in the default week | BLOCKED-NODATA, name the selection |
 
 ## Changelog
+- **v2.1** (2026-11-18): run-level helpers that used to be retyped each session now live in `skills/_shared/playwright-helpers/devprod-session.js` (load after `devprod-helpers.js` and `set-helpers.js`, with `ctx._date` set): `m.setup2`, `m.runList`, `m.dump`, `m.topics`, `m.brandRows`. `compareOnce` returns BLOCKED-NODATA when both environments show 0 posts (no table renders). Write reports with `python3 bin/devprod_reports.py <date>`.
+- **v2** (2026-11-17): prod has its own QA user (`ctx._credsProd`). Its per-account DEFAULT brand differs from dev's (UCLA → "Ronald Reagan UCLA Medical Center" on prod vs "University of California, Los Angeles" on dev) — always set the brand explicitly on BOTH tabs and confirm the two brand names are equal before comparing. First prod Brand > Content load after the account switch can sit on "Loading" with a bare `#explore/brand/content` URL — reload once. A stale Cognito session shows "You're still signed in" / a forced "Change password" page with no email field: clear that host's cookies and sign in again (the helper does this); a genuinely forced password change must be done by the user. Strictly read-only (docs/PROMPT.md, Data Test rule).
 - **v1** (2026-10-20): initial from the Dev-vs-Prod run (QA-20534, 20533, 20268, 20536, 20537, 20535, 21031, 21032, 20269 all PASS on UCLA).

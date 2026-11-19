@@ -1,0 +1,41 @@
+{
+ "QA-20272": [
+  "APPS-62582 [Code Review] Brand > Content – Twitter Reactions in Engagements Breakdown Dataset Are Not Equal"
+ ],
+ "QA-21017": [
+  "LFMP-31931 [Open] Brand >Content : Twitter Video Views with Cross-Post Data Missing on Dev Environment"
+ ],
+ "QA-21913": [
+  "LFMP-32113 [Open] Brand Content > LFM vs Native - Past Date - native data is lower than LFM"
+ ],
+ "QA-100879": [
+  "LFMP-32113 [Open] Brand Content > LFM vs Native - Past Date - native data is lower than LFM"
+ ],
+ "QA-22104": [
+  "LFMP-32119 [Open] Brand Content > LFM vs Native > Facebook Channel - Past Date shows big variation"
+ ],
+ "QA-38198": [
+  "APPS-58195 [Code Review] Social Recap > FB and TW > Negative value displayed for the Video Views and Engagements"
+ ],
+ "QA-20275": [
+  "APPS-60871 [Open] Data Rendering Issue: Endash (–) Displayed for Multiple Metrics Across Datasets"
+ ],
+ "QA-20277": [
+  "APPS-60871 [Open] Data Rendering Issue: Endash (–) Displayed for Multiple Metrics Across Datasets"
+ ],
+ "QA-20278": [
+  "APPS-60871 [Open] Data Rendering Issue: Endash (–) Displayed for Multiple Metrics Across Datasets"
+ ],
+ "QA-20280": [
+  "APPS-60871 [Open] Data Rendering Issue: Endash (–) Displayed for Multiple Metrics Across Datasets"
+ ],
+ "QA-21019": [
+  "APPS-60871 [Open] Data Rendering Issue: Endash (–) Displayed for Multiple Metrics Across Datasets"
+ ],
+ "QA-70721": [
+  "APPS-60871 [Open] Data Rendering Issue: Endash (–) Displayed for Multiple Metrics Across Datasets"
+ ],
+ "QA-90072": [
+  "APPS-60871 [Open] Data Rendering Issue: Endash (–) Displayed for Multiple Metrics Across Datasets"
+ ]
+}
