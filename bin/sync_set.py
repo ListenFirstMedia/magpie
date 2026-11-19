@@ -8,9 +8,13 @@ for xray_report.py) and:
 
   1. writes the CURRENT member list (in set order) to the output batch file;
   2. ingests a cases/QA-<id>.md for every member that has no local case file;
-  3. refreshes the Jira-owned sections (Description / Preconditions / Steps / Assertions + the
-     header) of existing case files, PRESERVING every locally-added section verbatim
-     (## Notes, ## Open linked bugs, ## Probes, ## Cleanup, ...).
+  3. refreshes the Jira-owned sections (Description / Preconditions / Steps / Assertions /
+     Open linked bugs + the header) of existing case files, PRESERVING every locally-added
+     section verbatim (## Notes, ## Probes, ## Cleanup, ...).
+
+"## Open linked bugs (as of <date>)" is regenerated from the ticket's Jira issue-links on EVERY
+sync (never preserved), so the open-bug screen (spec-adherence Rule 7) always sees current status.
+Older hand-written variants ("Open bug(s) to probe", stale "Open linked bugs") are dropped.
 
 Usage:  sync_set.py QA-4325 /path/to/out-batch.txt
 Env:    XRAY_CLIENT_ID, XRAY_CLIENT_SECRET  (required)
@@ -23,10 +27,15 @@ import json, os, re, sys, urllib.request, urllib.error
 from datetime import date
 
 PRECOND, STEPS, ASSERT = "customfield_11100", "customfield_11101", "customfield_11103"
-JIRA_FIELDS = ["key", "summary", "priority", "description", "updated", PRECOND, STEPS, ASSERT]
+JIRA_FIELDS = ["key", "summary", "priority", "description", "updated", "issuelinks",
+               PRECOND, STEPS, ASSERT]
 # Sections OWNED by Jira — regenerated on every sync. Anything else in a case file is a local
-# annotation and is preserved verbatim.
-CANONICAL = {"description", "preconditions", "steps", "assertions"}
+# annotation and is preserved verbatim. The open-bug heading variants are listed so a stale or
+# legacy copy is dropped instead of preserved next to the freshly generated section.
+CANONICAL = {"description", "preconditions", "steps", "assertions",
+             "open linked bugs", "open bug to probe", "open bugs to probe"}
+# Linked issue types that count as a defect for the open-bug screen.
+BUG_TYPES = {"bug", "test failure", "problem/incident"}
 CASES_DIR = "cases"
 
 def log(*a): print(*a, file=sys.stderr)
@@ -76,8 +85,32 @@ def render_case(f, set_key):
         body += f"## Description\n{desc}\n\n"
     body += f"## Preconditions\n{adf_text(f.get(PRECOND)).strip() or '- (none specified in Jira)'}\n\n"
     body += f"## Steps\n{adf_text(f.get(STEPS)).strip() or '(no steps in Jira — explore per skill)'}\n\n"
-    body += f"## Assertions\n{adf_text(f.get(ASSERT)).strip() or '(no assertions in Jira)'}\n"
+    body += f"## Assertions\n{adf_text(f.get(ASSERT)).strip() or '(no assertions in Jira)'}\n\n"
+    body += render_open_bugs(f)
     return body
+
+def render_open_bugs(f):
+    """'## Open linked bugs' from Jira issue-links: every linked Bug / Test Failure / Problem whose
+    status category is not Done. Read by spec-adherence Rule 7 (execute, probe, then FAIL)."""
+    today = date.today().isoformat()
+    head = f"## Open linked bugs (as of {today})\n"
+    links = f.get("issuelinks")
+    if links is None:   # field not returned at all — say so instead of implying "none open"
+        return head + "- UNKNOWN — issue-links were not returned by the sync; open-bug status not checked\n"
+    seen, rows = set(), []
+    for l in links:
+        it = l.get("outwardIssue") or l.get("inwardIssue") or {}
+        key, fl = it.get("key"), it.get("fields") or {}
+        itype = ((fl.get("issuetype") or {}).get("name") or "").strip()
+        status = fl.get("status") or {}
+        done = (status.get("statusCategory") or {}).get("key") == "done"
+        if not key or key in seen or itype.lower() not in BUG_TYPES or done:
+            continue
+        seen.add(key)
+        prio = (fl.get("priority") or {}).get("name", "n/a")
+        rows.append(f"- {key} ({itype}, {prio}, {status.get('name', '?')}) — "
+                    f"{(fl.get('summary') or '').strip()}")
+    return head + ("\n".join(rows) if rows else "- None open") + "\n"
 
 def local_sections(path):
     """Return the non-canonical '## ' sections of an existing case file, verbatim and in order."""

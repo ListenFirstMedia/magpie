@@ -113,6 +113,12 @@ else
                    | sort -u | sed 's|^|skills/|' | head -3 || true)"
   BUG_MATCHES="$(grep -iw -A 8 -m 3 "${ID}" knowledge-base/bug-history.md 2>/dev/null | head -c 3500 || true)"
   QUIRK_MATCHES="$(grep -iw -B 1 -A 8 -m 2 "${ID}" knowledge-base/known-quirks.md 2>/dev/null | head -c 2000 || true)"
+  # Open-bug screen input (spec-adherence Rule 7), extracted shell-side so the agent can't miss a
+  # differently-named heading or read a missing section as "none open". Matches the synced
+  # "## Open linked bugs (as of …)" plus legacy "# Open bug(s) to probe" headings.
+  OPEN_BUGS="$(awk 'tolower($0) ~ /^#+ *open (linked )?bugs?( to probe)?/ {p=1; print; next}
+                    p && /^#/ {p=0} p' "$CASE_FILE" | grep -v '^[[:space:]]*$' | head -c 2500 || true)"
+  [[ -n "$OPEN_BUGS" ]] || OPEN_BUGS="UNKNOWN — ${CASE_FILE} has no open-linked-bugs section (case not synced from Jira). Run normally, but the report MUST state 'Open-bug status: UNKNOWN'."
 
   PROMPT="${GUIDE}
 
@@ -130,7 +136,8 @@ and finish. Never wait for input.
 The case is ALREADY INGESTED — do NOT re-fetch from Jira (the Atlassian MCP is absent in this
 headless run). Read the local file ${CASE_FILE} and execute it IN FULL, every step in order.
 The linked/known-bug check and the skill lookup are ALREADY DONE — their grep results are in the
-PRE-FETCHED CONTEXT section below; combine them with the case's own notes.
+PRE-FETCHED CONTEXT section below; combine them with the case's own notes. An open linked bug
+NEVER stops the run: execute every step, probe the bug, then report FAIL (Rule 7).
 
 TOKEN ECONOMY (this run bills a shared weekly usage limit — every case session pays for what it
 reads, so read narrowly; this overrides the guide's numbered reading list):
@@ -154,6 +161,10 @@ ID | Step | Expected | Actual | Status, evidence, 'Known bugs checked', 'Bugs fi
 Do NOT do skill/REGISTRY maintenance now — that is deferred to harvest.sh. Be terse in chat.
 
 ═══ PRE-FETCHED CONTEXT (grepped shell-side — do not repeat these greps) ═══
+OPEN LINKED BUGS for ${ID} (from Jira issue-links — apply spec-adherence Rule 7: execute the case
+IN FULL, probe EVERY bug listed below, and if any is open the verdict is FAIL):
+${OPEN_BUGS}
+
 Matching skill file(s) from skills/REGISTRY.md:
 ${SKILL_MATCHES:-none found — grep skills/REGISTRY.md ONCE by flow/page keyword, then open only that SKILL.md}
 

@@ -37,6 +37,8 @@ I'll send Jira links (https://listenfirstmedia.atlassian.net/browse/QA-XXXXX) or
 2. CHECK LINKED/RELATED BUGS (mandatory, before opening the browser): check BOTH the Jira ticket's
    issue-links (open AND closed — a fixed bug can regress) AND knowledge-base/bug-history.md (grep
    the QA-ID), plus any not-formally-linked but related bug on the same surface. Note what to watch.
+   An OPEN linked bug never blocks the case: run it in full, probe every open bug, and the verdict
+   is FAIL while any linked bug is open (spec-adherence Rule 7).
 3. SKILL: scan skills/REGISTRY.md for a skill that covers the flow. Reuse it aggressively (that is
    how cost drops). Only author a new skill when you must explore unfamiliar UI.
 4. RUN every step in spec, in order, in full. Never substitute brands, dates, or accounts. Never

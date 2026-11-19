@@ -116,11 +116,21 @@ This rule generalizes: never assert that a user-visible behavior is broken based
 - "The chart has no data" because the SVG path is empty → could be rendering at 0 height due to CSS; verify with the user
 - "The export silently fails" because no `URL.createObjectURL` hook fired → could use a different download path; ask the user to check Downloads folder
 
-## Rule 7 — Open-bug auto-fail (screen before running)
+## Rule 7 — Open linked bug: execute, probe, then FAIL
 
-Before executing any steps, read the case file's **"## Open linked bugs"** section (baked in from Jira at cache time, since the unattended `claude -p` run has no Jira/Atlassian MCP access).
+The open linked bugs come from the case file's **"## Open linked bugs (as of <date>)"** section, regenerated from the Jira issue-links by `bin/sync_set.py` on every sync (the unattended `claude -p` run has no Jira/Atlassian MCP access). `bin/run-case.sh` extracts it shell-side and puts it at the top of the PRE-FETCHED CONTEXT as **OPEN LINKED BUGS** — use that block; legacy headings such as `# Open bug to probe` count too.
 
-- If it says **"None open"** → screen passed; run the case normally.
-- If it lists **any OPEN bug** (e.g. `LFMP-31961(Open)`, or a Bug/Test Failure/Problem in `QA Ready`/`Code Review`/`Open`/`To Do`) → **do NOT run the case.** Immediately write the report with verdict **`FAILED (blocked by open bug)`**, cite the bug key(s), and STOP. Do not open the browser flow for that case.
+1. **Never block or skip the case because of an open bug.** Execute every step and evaluate every assertion in full, exactly as you would with no bug linked.
+2. **Probe every listed open bug** during the run: check on this surface whether the bug's symptom reproduces, and record the evidence (screenshot / DOM value / network status). Each bug gets one of `REPRODUCED`, `NOT REPRODUCED`, or `NOT PROBEABLE (<why>)`. You may NOT dismiss a listed bug as "does not apply", "outside this case's steps" or "not inspected" — if the case's own steps don't reach the bug's symptom, take the extra minimal action needed to probe it (without changing any assertion's result), or mark it `NOT PROBEABLE` with the concrete reason.
+3. **Verdict:** if **any** linked bug is open in the section, the verdict is **FAIL** — even if every assertion passed and even if the bug did NOT reproduce (it stays FAIL until the bug is closed in Jira and the case is re-synced). Write the verdict line exactly as:
+   `**Verdict: FAIL** (open linked bug: LFMP-31857 — REPRODUCED; LFMP-31915 — NOT REPRODUCED)`
+   and add a short note per NOT REPRODUCED bug: "close candidate — not reproduced on <date>".
+   The verdict line must not contain the words PASS or BLOCKED before FAIL (the batch scorer takes the first keyword).
+4. The assertions table is still filled normally (PASS/FAIL per assertion), so the report shows whether the rest of the feature works. Other genuine blocks (no test data, env down) are still recorded per assertion; the open bug still makes the overall verdict FAIL.
+5. **Section says "None open"** → no open-bug effect; the verdict comes from the assertions.
+6. **Section missing or `UNKNOWN`** → do NOT read that as "none open". Run normally, take the verdict from the assertions, and write `Open-bug status: UNKNOWN (no synced section)` in "Known bugs checked". Also probe any open bug that the pre-fetched bug-history lists for this case; if one of those REPRODUCES, the verdict is FAIL.
 
-Rationale: a case with an open linked defect can't produce a trustworthy PASS; running it wastes the per-case budget and risks a misleading result. Re-runs pick it up automatically once the bug closes and the cache is refreshed. (This mirrors the interactive open-bug-auto-fail discipline.)
+Rationale: a case with an open linked defect can't produce a trustworthy PASS, but blocking it without running hides whether the rest of the feature still works and whether the bug is actually still there. Running it in full gives both answers; the FAIL stays until the bug is closed in Jira.
+
+### Anti-pattern from this project (2026-11-17 run)
+QA-23991, QA-923, QA-947, QA-83977 and QA-6315 were all scored **PASS** while each had an open linked bug (LFMP-32010, LFMP-31857, LFMP-31781, LFMP-31814, LFMP-31800). The case files either had no section or used the heading `# Open bug to probe`, so the old screen read them as "none open"; the agent then dismissed the bugs as "does not apply" / "not separately inspected" — and QA-947 even recorded LFMP-31781 as **REPRODUCED** and still passed. Under this rule all five are FAIL.
