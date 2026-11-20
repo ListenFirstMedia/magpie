@@ -24,25 +24,28 @@ def JIRA_BASE     = 'https://listenfirstmedia.atlassian.net'
 // XRAY_CLIENT_ID / XRAY_CLIENT_SECRET come from Jenkins Global properties (Manage Jenkins →
 // System), same as the qa jobs — inherited into every build env, so no credential binding.
 
+// 2 SETS AT A TIME, ONE JOB, NO PLUGINS: concurrent builds are allowed (no
+// disableConcurrentBuilds), and the "Wait for slot" stage below holds a build — before it takes a
+// node — while MAX_RUNNING earlier builds of this job are still running. A queued set starts only
+// when one of the running sets finishes, oldest first. If two builds share a node they stay safe:
+// ci-runner only reaps orphaned Playwright processes, the browser install is serialized with
+// flock, and Cleanup skips the browser prune while Playwright is in use.
+def MAX_RUNNING = 2
+
 properties([
-  // Never overlap two builds of this job on QAPipelineMaster: they share ~/.cache/ms-playwright,
-  // and ci-runner's pre-run `pkill @playwright/mcp` kills a running sibling build's browser.
-  disableConcurrentBuilds(),
   // Prune old builds so the controller doesn't fill up. Each build archives per-case PNGs/MD/JSON
   // + a kept HTML report; unbounded, that filled the controller disk and killed running builds
   // with `No space left on device` (the CPS VM can't serialize its state). Keep the last 15
   // builds / 30 days of artifacts; keep build records a bit longer for history.
   buildDiscarder(logRotator(numToKeepStr: '10', daysToKeepStr: '7',
                             artifactNumToKeepStr: '15', artifactDaysToKeepStr: '30')),
-  // Start times (IST, Sun–Fri). One node, one set at a time: disableConcurrentBuilds() queues
-  // each later trigger until the running set finishes (two sets sharing a start time queue one
-  // behind the other; Jenkins doesn't guarantee which of the pair goes first).
-  // Adjust time/TZ as needed (Jenkins honors a leading TZ= line).
+  // Start times (IST, Sun–Fri): the two sets of each time slot run together. If the earlier pair
+  // is still running at the next slot, the new sets wait in "Wait for slot" until one finishes.
   pipelineTriggers([
     parameterizedCron('''
   TZ=IST
-  00 13 * * 0-5 %SET=qa-22298
-  00 13 * * 0-5 %SET=qa-4325
+  30 13 * * 0-5 %SET=qa-22298
+  30 13 * * 0-5 %SET=qa-4325
   00 15 * * 0-5 %SET=qa-22296
   00 15 * * 0-5 %SET=qa-21686
   00 17 * * 0-5 %SET=qa-26183
@@ -69,6 +72,26 @@ properties([
            description: 'Rebuild the case list from the LIVE Xray Test Set before running (new tests ingested, removed tests dropped, edited steps refreshed). Untick to run exactly the committed batches/<set>.txt snapshot.')
   ])
 ])
+
+// ---- Wait for slot: at most MAX_RUNNING builds of this job run at once ----
+// Runs outside node(), so a waiting build holds no executor. Counts the earlier builds of this
+// job that are still in progress (including ones that are themselves waiting), so builds start
+// in order, oldest first.
+stage('Wait for slot') {
+  def runningAhead = {
+    int n = 0
+    def b = currentBuild.previousBuildInProgress
+    while (b != null && n < 20) { n++; b = b.previousBuildInProgress }
+    return n
+  }
+  def ahead = runningAhead()
+  while (ahead >= MAX_RUNNING) {
+    echo "Waiting: ${ahead} earlier build(s) of this job still running (max ${MAX_RUNNING} at a time). Re-checking in 60s."
+    sleep(time: 60, unit: 'SECONDS')
+    ahead = runningAhead()
+  }
+  echo "Slot free (${ahead} earlier build(s) running) — starting."
+}
 
 node('QAPipelineMaster') {
   def runDir = null
@@ -192,7 +215,12 @@ node('QAPipelineMaster') {
         find "$HOME/.claude/shell-snapshots" "$HOME/.claude/todos" -type f -mtime +7 -delete 2>/dev/null || true
         # Browser builds not (re)installed in 45 days — a pruned current build just re-downloads
         # on the next run's `playwright install chromium`.
-        find "$HOME/.cache/ms-playwright" -mindepth 1 -maxdepth 1 -type d -mtime +45 -exec rm -rf {} + 2>/dev/null || true
+        # Skipped while any Playwright MCP is running here (another magpie build may share this node).
+        if pgrep -f '@playwright/mcp' >/dev/null 2>&1; then
+          echo "skip browser prune: Playwright MCP in use on this node"
+        else
+          find "$HOME/.cache/ms-playwright" -mindepth 1 -maxdepth 1 -type d -mtime +45 -exec rm -rf {} + 2>/dev/null || true
+        fi
       '''
       deleteDir()
       echo '========== STORAGE AFTER CLEANUP =========='

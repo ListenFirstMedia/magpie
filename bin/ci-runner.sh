@@ -167,6 +167,13 @@ export PW_VERSION PW_MCP_VERSION
 echo ">> pinned playwright@${PW_VERSION} / @playwright/mcp@${PW_MCP_VERSION}"
 
 echo ">> ensuring headless Chromium for Playwright MCP"
+# Two magpie builds can share a node: serialize the browser install so they never download into
+# ~/.cache/ms-playwright at the same time (flock is in util-linux on the Ubuntu nodes).
+mkdir -p "$HOME/.cache/ms-playwright"
+if command -v flock >/dev/null 2>&1; then
+  exec 9>"$HOME/.cache/ms-playwright/.magpie-install.lock"
+  flock 9
+fi
 # Prefer the MCP's own installer: it installs exactly the revision the MCP will look for.
 if ! npx --yes "@playwright/mcp@${PW_MCP_VERSION}" install-browser chrome-for-testing; then
   echo ">> MCP installer failed; trying playwright@${PW_VERSION} CLI"
@@ -184,6 +191,7 @@ if ! ls -1 "$HOME"/.cache/ms-playwright/chromium-*/chrome-linux*/chrome >/dev/nu
 fi
 echo ">> browser cache:"
 ls -1 "$HOME/.cache/ms-playwright" | sed 's/^/     /'
+if command -v flock >/dev/null 2>&1; then flock -u 9; exec 9>&-; fi
 
 # --- claude CLI present? (install fallback, matching the qa runner) ---
 command -v claude >/dev/null 2>&1 || npm install -g @anthropic-ai/claude-code
@@ -196,7 +204,11 @@ command -v claude >/dev/null 2>&1 || npm install -g @anthropic-ai/claude-code
 # use) and chromium reparented to init (ppid==1) — a concurrent job's live browser has a live
 # parent (ppid!=1) and is left alone.
 echo ">> pre-run sweep: reaping orphaned Playwright-MCP / chromium from any prior crashed build"
-pkill -f '@playwright/mcp' 2>/dev/null && echo "   killed stray @playwright/mcp server(s)" || true
+# Orphans only (ppid==1): another magpie build may be running on this node, and a machine-wide
+# `pkill @playwright/mcp` would kill its live browser mid-case.
+ps -eo pid=,ppid=,args= 2>/dev/null \
+  | awk '$2==1 && /@playwright\/mcp/ {print $1}' \
+  | while read -r p; do kill -KILL "$p" 2>/dev/null && echo "   killed orphaned @playwright/mcp pid $p" || true; done
 ps -eo pid=,ppid=,args= 2>/dev/null \
   | awk '$2==1 && /ms-playwright/ && /--headless/ {print $1}' \
   | while read -r p; do kill -KILL "$p" 2>/dev/null && echo "   killed orphaned chromium pid $p" || true; done
