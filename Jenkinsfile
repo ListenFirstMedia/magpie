@@ -39,21 +39,31 @@ properties([
   // builds / 30 days of artifacts; keep build records a bit longer for history.
   buildDiscarder(logRotator(numToKeepStr: '10', daysToKeepStr: '7',
                             artifactNumToKeepStr: '15', artifactDaysToKeepStr: '30')),
-  // Start times (IST, Sun–Fri): the two sets of each time slot run together. If the earlier pair
+  // Start times (IST, Sun–Thu): the two sets of each time slot run together. If the earlier pair
   // is still running at the next slot, the new sets wait in "Wait for slot" until one finishes.
   pipelineTriggers([
     parameterizedCron('''
   TZ=IST
-  30 13 * * 0-5 %SET=qa-22298
-  30 13 * * 0-5 %SET=qa-4325
-  00 15 * * 0-5 %SET=qa-22296
-  00 15 * * 0-5 %SET=qa-21686
-  00 17 * * 0-5 %SET=qa-26183
-  00 17 * * 0-5 %SET=qa-27628
+  00 12 * * 0-4 %SET=qa-22298 (Daily Regression Test Set - 1)
+  00 12 * * 0-4 %SET=qa-4325 (Daily Regression Test Set - 2)
+  00 16 * * 0-4 %SET=qa-22296 (Daily Regression Test Set - 3)
+  00 16 * * 0-4 %SET=qa-21686 (Daily Data Testing - 3)
+  00 20 * * 0-4 %SET=qa-26183 (Daily Data Testing - 2)
+  00 20 * * 0-4 %SET=qa-27628 (Daily Data Testing - 1)
   ''') ]),
   parameters([
-    choice(name: 'SET', choices: ['qa-22298', 'qa-4325', 'qa-22296', 'qa-21686', 'qa-26183', 'qa-27628', 'qa-4204', 'ci-smoke'],
-           description: 'Which batch set to run (file under batches/). qa-21686 / qa-26183 / qa-27628 = data sets with Dev-vs-Prod cases (need the magpie-lfm-prod credential). ci-smoke = 2 deterministic cases to validate the pipeline cheaply.'),
+    // Labels = "<batch key> (<Xray Test Set name>)". Only the first word (the key, e.g. qa-22298) is
+    // used to pick batches/<key>.txt; the name in brackets is for people. Cron lines below must use
+    // the FULL label (Jenkins rejects a choice value that isn't in this list).
+    choice(name: 'SET', choices: ['qa-22298 (Daily Regression Test Set - 1)',
+                                  'qa-4325 (Daily Regression Test Set - 2)',
+                                  'qa-22296 (Daily Regression Test Set - 3)',
+                                  'qa-4204 (Daily Regression Test Set - 4)',
+                                  'qa-27628 (Daily Data Testing - 1)',
+                                  'qa-26183 (Daily Data Testing - 2)',
+                                  'qa-21686 (Daily Data Testing - 3)',
+                                  'ci-smoke (CI pipeline check)'],
+           description: 'Which test set to run. Daily Data Testing sets have Dev-vs-Prod cases (need the magpie-lfm-prod credential). ci-smoke = 3 cases (incl. 1 Dev-vs-Prod) to validate the pipeline cheaply.'),
     string(name: 'TEST_CASES', defaultValue: '',
            description: 'Optional: comma/space-separated QA-IDs (e.g. "QA-84193, QA-949" or "84193 949"). When set, runs ONLY these cases and ignores SET.'),
     string(name: 'BRANCH', defaultValue: 'feature/jenkins-ci', description: 'magpie branch to test (must contain bin/ci-runner.sh).'),
@@ -99,6 +109,7 @@ node('QAPipelineMaster') {
   def failedIds = []
   def xrayKey = ''
   def adhoc = (params.TEST_CASES ?: '').trim()      // non-empty => ad-hoc run, SET ignored
+  def setKey = (params.SET ?: '').tokenize(' ')[0]   // "qa-22298 (Daily …)" -> "qa-22298"
   def label = adhoc ? 'ad-hoc' : params.SET
 
   buildName "${env.BUILD_NUMBER} - ${label}"
@@ -114,7 +125,7 @@ node('QAPipelineMaster') {
         withCredentials([string(credentialsId: CLAUDE_CRED, variable: 'CLAUDE_CODE_OAUTH_TOKEN'),
                          usernamePassword(credentialsId: PROD_CRED,
                                           usernameVariable: 'LFM_PROD_EMAIL', passwordVariable: 'LFM_PROD_PASSWORD')]) {
-          withEnv(["SET=${params.SET}", "TEST_CASES=${params.TEST_CASES}",
+          withEnv(["SET=${setKey}", "TEST_CASES=${params.TEST_CASES}",
                    "CASE_TIMEOUT=${params.CASE_TIMEOUT}", "BATCH_SIZE=${params.BATCH_SIZE}",
                    "CLAUDE_MODEL=${params.CLAUDE_MODEL}", "CLAUDE_EFFORT=${params.CLAUDE_EFFORT}",
                    "SYNC_SET=${params.SYNC_SET ? '1' : '0'}"]) {
@@ -181,9 +192,8 @@ node('QAPipelineMaster') {
       }
       slackSend channel: SLACK_CHANNEL,
         tokenCredentialId: SLACK_TOKEN,
-        message: "magpie regression — ${label}\n" +
+        message: "Test Set — ${label}\n" +
           "Status: ${status}\n" +
-          "Model: ${params.CLAUDE_MODEL}@${params.CLAUDE_EFFORT}\n" +
           xrayLine +
           "Build: <${env.BUILD_URL}|#${env.BUILD_NUMBER}>\n" +
           "Total: ${counts.total}  |  PASS: ${counts.passed}  FAIL: ${failedDisp}  BLOCKED: ${counts.blocked}  TIMEOUT: ${counts.timeout}  SKIPPED: ${counts.skipped}  UNKNOWN: ${counts.unknown}"
