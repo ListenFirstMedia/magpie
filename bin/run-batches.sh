@@ -169,6 +169,31 @@ if [[ $smoke_ok -ne 1 ]]; then
 fi
 echo ">> smoke gate passed"
 
+# --- prod smoke gate ---
+PROD_CASES=()
+for id in "${CASES[@]}"; do
+  grep -qE '\.env\.prod|[Dd]ev[- ]vs[- ][Pp]rod' "cases/${id}.md" 2>/dev/null && PROD_CASES+=("$id")
+done
+if [[ ${#PROD_CASES[@]} -gt 0 ]]; then
+  if [[ ! -f config/.env.prod ]]; then
+    echo "!! prod smoke gate: ${#PROD_CASES[@]} Dev-vs-Prod case(s) but no config/.env.prod. Aborting."
+    exit 2
+  fi
+  prod_ok=0
+  for ((attempt=1; attempt<=SMOKE_TRIES; attempt++)); do
+    echo ">> prod smoke gate: prod login pre-flight (attempt ${attempt}/${SMOKE_TRIES})"
+    bin/run-case.sh "${PROD_CASES[0]}" --prod-login-only 2>&1 | tee "${RUN_DIR}/_smoke_prod.log" || true
+    if grep -q "PROD LOGIN OK" "${RUN_DIR}/_smoke_prod.log"; then prod_ok=1; break; fi
+    echo "!! prod smoke gate attempt ${attempt} did not report PROD LOGIN OK"
+    if [[ $attempt -lt $SMOKE_TRIES ]]; then echo ">> retrying in ${SMOKE_WAIT}s"; sleep "$SMOKE_WAIT"; fi
+  done
+  if [[ $prod_ok -ne 1 ]]; then
+    echo "!! prod smoke gate FAILED after ${SMOKE_TRIES} attempts — prod login never reported PROD LOGIN OK. Check the magpie-lfm-prod Jenkins credential. Aborting. See ${RUN_DIR}/_smoke_prod.log"
+    exit 2
+  fi
+  echo ">> prod smoke gate passed"
+fi
+
 # --- run in batches ---
 idx=0; batch=0
 while [[ $idx -lt $TOTAL ]]; do

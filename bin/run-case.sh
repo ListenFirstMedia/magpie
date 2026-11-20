@@ -3,6 +3,8 @@
 #
 # Usage:   bin/run-case.sh QA-84193
 #          bin/run-case.sh QA-84193 --login-only   # just prove headless SSO, run no case
+#          bin/run-case.sh QA-20534 --prod-login-only   # same, against prod (config/.env.prod);
+#                                                       # run-batches uses the batch's first Dev-vs-Prod case
 #
 # Prereqs: config/.env holds LFM_EMAIL / LFM_PASSWORD; the case exists at cases/<ID>.md.
 #          MCP: a strict playwright-only headless config is generated per run and passed with
@@ -21,7 +23,7 @@ cd "$(dirname "$0")/.."   # repo root
 # reading the cwd it was already in.
 REPO_ROOT="$(pwd)"
 
-ID="${1:?usage: run-case.sh <QA-ID> [--login-only]}"
+ID="${1:?usage: run-case.sh <QA-ID> [--login-only|--prod-login-only]}"
 MODE="${2:-full}"
 CASE_TIMEOUT="${CASE_TIMEOUT:-900}"   # hard cap per case (seconds); stuck case is killed + marked failed
 # Pin model + effort: unpinned `claude -p` inherits the node's default model — pin it so the run
@@ -71,12 +73,36 @@ cat > "$MCP_CONFIG" <<EOF
 }
 EOF
 
-if [[ "$MODE" != "--login-only" && ! -f "$CASE_FILE" ]]; then
+# --login-only = dev login pre-flight; --prod-login-only = prod login pre-flight (config/.env.prod).
+LOGIN_MODE=0
+[[ "$MODE" == "--login-only" || "$MODE" == "--prod-login-only" ]] && LOGIN_MODE=1
+
+if [[ $LOGIN_MODE -eq 0 && ! -f "$CASE_FILE" ]]; then
   echo "ERROR: case file not found: $CASE_FILE" >&2
   exit 1
 fi
 
-if [[ "$MODE" == "--login-only" ]]; then
+if [[ "$MODE" == "--prod-login-only" ]]; then
+  # Prod twin of the dev smoke gate below, for batches with Dev-vs-Prod cases. Separate result
+  # keywords (PROD LOGIN OK/FAIL) so the two gates' logs can never be confused.
+  read -r -d '' PROMPT <<EOF || true
+You are running the magpie regression-testing framework, HEADLESS and UNATTENDED. No human can
+approve prompts or read chat.
+
+The repo is at ${REPO_ROOT}, which is your current directory. Read ${REPO_ROOT}/config/.env.prod
+for the PRODUCTION login (LFM_EMAIL / LFM_PASSWORD / LFM_APP_URL). Do NOT search the filesystem
+for the repo elsewhere — this path is authoritative.
+
+PRE-FLIGHT: browser_navigate to LFM_APP_URL from config/.env.prod (https://app.listenfirstmedia.com);
+when redirected to the Cognito hosted UI, fill the "With existing account" form (Email + Password)
+from ${REPO_ROOT}/config/.env.prod and click THAT form's Sign in button (not the Corporate/SSO one).
+Confirm app.listenfirstmedia.com/#home renders (title "Home - ListenFirst").
+This is PRODUCTION: only log in. Do not click, change or save anything else.
+
+TASK: Do ONLY the pre-flight login. Then report exactly one line to chat:
+'PROD LOGIN OK <current-url>' on success, or 'PROD LOGIN FAIL <reason>' on failure. Do nothing else.
+EOF
+elif [[ "$MODE" == "--login-only" ]]; then
   # Lightweight connectivity/SSO smoke gate — not a test case, so it doesn't need the full guide.
   # Unquoted heredoc so ${REPO_ROOT} expands — the agent must be told the REAL checkout path.
   read -r -d '' PROMPT <<EOF || true
@@ -198,7 +224,7 @@ reap_group() {
 # macOS + Linux (no `setsid` needed).
 USAGE_JSON="${RUN_DIR}/${ID}-usage.json"
 set -m
-if [[ "$MODE" == "--login-only" ]]; then
+if [[ $LOGIN_MODE -eq 1 ]]; then
   # Plain text output — the smoke gate greps the tee'd console for 'LOGIN OK'. A login needs only
   # a handful of turns; the tight cap kills a wedged Cognito redirect loop cheaply.
   claude -p "$PROMPT" --model "$CLAUDE_MODEL" --effort "$CLAUDE_EFFORT" \
@@ -260,7 +286,7 @@ reap_group "$CLAUDE_PID"
 # Surface the JSON envelope: append a run-level usage ledger row (usage.tsv), log a one-line
 # usage summary, and echo the model's final text so run-batches' limit-signal grep (tail of the
 # tee'd log) still works with --output-format json.
-if [[ "$MODE" != "--login-only" && -s "$USAGE_JSON" ]]; then
+if [[ $LOGIN_MODE -eq 0 && -s "$USAGE_JSON" ]]; then
   python3 - "$ID" "$USAGE_JSON" "$RUN_DIR" <<'PY' || echo ">> WARN: could not parse usage json for ${ID}"
 import json, os, sys
 cid, path, run_dir = sys.argv[1], sys.argv[2], sys.argv[3]

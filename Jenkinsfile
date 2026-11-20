@@ -149,7 +149,7 @@ node('QAPipelineMaster') {
     }
     stage('Notify') {
       def status = currentBuild.result ?: 'SUCCESS'
-      def xrayLine = xrayKey ? "    Xray: <${JIRA_BASE}/browse/${xrayKey}|${xrayKey}>\n" : ""
+      def xrayLine = xrayKey ? "Xray: <${JIRA_BASE}/browse/${xrayKey}|${xrayKey}>\n" : ""
       // Failed count links to a Jira JQL listing exactly the failed cases (same trick as qa).
       def failedDisp = "${counts.failed}"
       if (failedIds) {
@@ -158,11 +158,11 @@ node('QAPipelineMaster') {
       slackSend channel: SLACK_CHANNEL,
         tokenCredentialId: SLACK_TOKEN,
         message: "magpie regression — ${label}\n" +
-          "    Status: ${status}\n" +
-          "    Model: ${params.CLAUDE_MODEL}@${params.CLAUDE_EFFORT}\n" +
+          "Status: ${status}\n" +
+          "Model: ${params.CLAUDE_MODEL}@${params.CLAUDE_EFFORT}\n" +
           xrayLine +
-          "    Build: <${env.BUILD_URL}|#${env.BUILD_NUMBER}>\n" +
-          "    Total: ${counts.total}  |  PASS: ${counts.passed}  FAIL: ${failedDisp}  BLOCKED: ${counts.blocked}  TIMEOUT: ${counts.timeout}  SKIPPED: ${counts.skipped}  UNKNOWN: ${counts.unknown}"
+          "Build: <${env.BUILD_URL}|#${env.BUILD_NUMBER}>\n" +
+          "Total: ${counts.total}  |  PASS: ${counts.passed}  FAIL: ${failedDisp}  BLOCKED: ${counts.blocked}  TIMEOUT: ${counts.timeout}  SKIPPED: ${counts.skipped}  UNKNOWN: ${counts.unknown}"
     }
     stage('Cleanup') {
       // Storage report + cleanup, mirroring the qa testsets pipeline (STORAGE BEFORE/AFTER blocks).
