@@ -103,6 +103,29 @@ umask 077
 printf 'LFM_EMAIL=%s\nLFM_PASSWORD=%s\n' "$LFM_EMAIL" "$LFM_PASSWORD" > config/.env   # gitignored
 echo ">> wrote config/.env for ${LFM_EMAIL}"
 
+# --- Prod login for Dev-vs-Prod data cases -> config/.env.prod ---
+# Creds come from the Jenkins "Username with password" credential bound by the pipeline
+# (LFM_PROD_EMAIL / LFM_PROD_PASSWORD). The hosts are public, so they're plain defaults here.
+if [[ -n "${LFM_PROD_EMAIL:-}" && -n "${LFM_PROD_PASSWORD:-}" ]]; then
+  printf 'LFM_EMAIL=%s\nLFM_PASSWORD=%s\nLFM_APP_URL=%s\nLFM_REPORTING_URL=%s\nLFM_AUTH_URL=%s\n' \
+    "$LFM_PROD_EMAIL" "$LFM_PROD_PASSWORD" \
+    "${LFM_PROD_APP_URL:-https://app.listenfirstmedia.com}" \
+    "${LFM_PROD_REPORTING_URL:-https://app-reporting.listenfirstmedia.com}" \
+    "${LFM_PROD_AUTH_URL:-https://auth.listenfirstmedia.com}" > config/.env.prod   # gitignored
+  echo ">> wrote config/.env.prod for ${LFM_PROD_EMAIL}"
+fi
+
+# Fail fast if this batch has Dev-vs-Prod cases but no prod login: otherwise every one of them
+# burns a full claude session only to come back BLOCKED at the prod sign-in.
+PROD_CASES="$(grep -vE '^[[:space:]]*(#|$)' "$BATCH_FILE" | while read -r id _; do
+  grep -qE '\.env\.prod|[Dd]ev[- ]vs[- ][Pp]rod' "cases/${id}.md" 2>/dev/null && echo "$id"; done | tr '\n' ' ' || true)"
+if [[ -n "${PROD_CASES// /}" ]]; then
+  echo ">> Dev-vs-Prod cases in this batch: ${PROD_CASES}"
+  [[ -f config/.env.prod ]] || {
+    echo "ERROR: batch needs prod login but LFM_PROD_EMAIL/LFM_PROD_PASSWORD are not set (Jenkins credential magpie-lfm-prod)" >&2
+    exit 1; }
+fi
+
 # --- MCP config for CI ---
 # run-case.sh now generates a STRICT playwright-only headless config per run and passes it with
 # --strict-mcp-config: the committed .mcp.json is never loaded, so atlassian tool schemas can't

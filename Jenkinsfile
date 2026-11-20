@@ -16,6 +16,8 @@ library identifier: 'xenv-jenkins-lib@master',
 def MAGPIE_REPO   = 'git@github.com:ListenFirstMedia/magpie.git'
 def GIT_CRED      = '7056f520-1a30-4a75-a108-5ccbb1022604'   // reuse qa SSH cred (confirm org-wide access)
 def CLAUDE_CRED   = 'magpie-claude-oauth'                    // Secret text: `claude setup-token` OAuth token
+def PROD_CRED     = 'magpie-lfm-prod'                        // Username with password: prod QA login for Dev-vs-Prod cases
+                                                             // (ci-runner writes it to config/.env.prod; prod hosts are public, not secret)
 def SLACK_CHANNEL = 'magpie-regression'
 def SLACK_TOKEN   = 'magpie-slack-auth'
 def JIRA_BASE     = 'https://listenfirstmedia.atlassian.net'
@@ -32,17 +34,22 @@ properties([
   // builds / 30 days of artifacts; keep build records a bit longer for history.
   buildDiscarder(logRotator(numToKeepStr: '10', daysToKeepStr: '7',
                             artifactNumToKeepStr: '15', artifactDaysToKeepStr: '30')),
-  // Nightly. Adjust time/TZ as needed (Jenkins honors a leading TZ= line).
-  pipelineTriggers([ 
-    parameterizedCron(''' 
-  TZ=IST 
-  30 12 * * 0-4 %SET=qa-22298 
-  35 12 * * 0-4 %SET=qa-4325 
-  45 12 * * 0-4 %SET=qa-22296 
+  // Nightly start times (IST, Sun–Thu). One node, one set at a time: disableConcurrentBuilds()
+  // queues each later trigger until the running set finishes, so these run in this order.
+  // Adjust time/TZ as needed (Jenkins honors a leading TZ= line).
+  pipelineTriggers([
+    parameterizedCron('''
+  TZ=IST
+  30 12 * * 0-4 %SET=qa-22298
+  35 12 * * 0-4 %SET=qa-4325
+  45 12 * * 0-4 %SET=qa-22296
+  50 12 * * 0-4 %SET=qa-21686
+  55 12 * * 0-4 %SET=qa-26183
+  0 13 * * 0-4 %SET=qa-27628
   ''') ]),
   parameters([
-    choice(name: 'SET', choices: ['qa-22298', 'qa-4325', 'qa-22296', 'qa-4204', 'ci-smoke'],
-           description: 'Which batch set to run (file under batches/). ci-smoke = 2 deterministic cases to validate the pipeline cheaply.'),
+    choice(name: 'SET', choices: ['qa-22298', 'qa-4325', 'qa-22296', 'qa-21686', 'qa-26183', 'qa-27628', 'qa-4204', 'ci-smoke'],
+           description: 'Which batch set to run (file under batches/). qa-21686 / qa-26183 / qa-27628 = data sets with Dev-vs-Prod cases (need the magpie-lfm-prod credential). ci-smoke = 2 deterministic cases to validate the pipeline cheaply.'),
     string(name: 'TEST_CASES', defaultValue: '',
            description: 'Optional: comma/space-separated QA-IDs (e.g. "QA-84193, QA-949" or "84193 949"). When set, runs ONLY these cases and ignores SET.'),
     string(name: 'BRANCH', defaultValue: 'feature/jenkins-ci', description: 'magpie branch to test (must contain bin/ci-runner.sh).'),
@@ -80,7 +87,9 @@ node('QAPipelineMaster') {
 
     stage('Run set') {
       nvm(version: '20.18.0') {
-        withCredentials([string(credentialsId: CLAUDE_CRED, variable: 'CLAUDE_CODE_OAUTH_TOKEN')]) {
+        withCredentials([string(credentialsId: CLAUDE_CRED, variable: 'CLAUDE_CODE_OAUTH_TOKEN'),
+                         usernamePassword(credentialsId: PROD_CRED,
+                                          usernameVariable: 'LFM_PROD_EMAIL', passwordVariable: 'LFM_PROD_PASSWORD')]) {
           withEnv(["SET=${params.SET}", "TEST_CASES=${params.TEST_CASES}",
                    "CASE_TIMEOUT=${params.CASE_TIMEOUT}", "BATCH_SIZE=${params.BATCH_SIZE}",
                    "CLAUDE_MODEL=${params.CLAUDE_MODEL}", "CLAUDE_EFFORT=${params.CLAUDE_EFFORT}",
