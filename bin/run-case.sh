@@ -201,7 +201,8 @@ knowledge-base/known-quirks.md matches for ${ID}:
 ${QUIRK_MATCHES:-none}"
 fi
 
-echo ">> ${ID} (${MODE}) — $(date)  [timeout ${CASE_TIMEOUT}s | model ${CLAUDE_MODEL}@${CLAUDE_EFFORT}]"
+MODE_LABEL="$MODE"; [[ "$MODE" == "full" ]] && MODE_LABEL="test case"   # display only
+echo ">> ${ID} (${MODE_LABEL}) — $(date)  [timeout ${CASE_TIMEOUT}s | model ${CLAUDE_MODEL}@${CLAUDE_EFFORT}]"
 
 # The monitor subshell can't set variables in this shell, so it flags a timeout via this marker.
 TIMEOUT_FLAG="${RUN_DIR}/.${ID}.timeout"

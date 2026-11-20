@@ -34,18 +34,19 @@ properties([
   // builds / 30 days of artifacts; keep build records a bit longer for history.
   buildDiscarder(logRotator(numToKeepStr: '10', daysToKeepStr: '7',
                             artifactNumToKeepStr: '15', artifactDaysToKeepStr: '30')),
-  // Nightly start times (IST, Sun–Thu). One node, one set at a time: disableConcurrentBuilds()
-  // queues each later trigger until the running set finishes, so these run in this order.
+  // Start times (IST, Sun–Fri). One node, one set at a time: disableConcurrentBuilds() queues
+  // each later trigger until the running set finishes (two sets sharing a start time queue one
+  // behind the other; Jenkins doesn't guarantee which of the pair goes first).
   // Adjust time/TZ as needed (Jenkins honors a leading TZ= line).
   pipelineTriggers([
     parameterizedCron('''
   TZ=IST
-  30 12 * * 0-4 %SET=qa-22298
-  35 12 * * 0-4 %SET=qa-4325
-  45 12 * * 0-4 %SET=qa-22296
-  50 12 * * 0-4 %SET=qa-21686
-  55 12 * * 0-4 %SET=qa-26183
-  0 13 * * 0-4 %SET=qa-27628
+  00 13 * * 0-5 %SET=qa-22298
+  00 13 * * 0-5 %SET=qa-4325
+  00 15 * * 0-5 %SET=qa-22296
+  00 15 * * 0-5 %SET=qa-21686
+  00 17 * * 0-5 %SET=qa-26183
+  00 17 * * 0-5 %SET=qa-27628
   ''') ]),
   parameters([
     choice(name: 'SET', choices: ['qa-22298', 'qa-4325', 'qa-22296', 'qa-21686', 'qa-26183', 'qa-27628', 'qa-4204', 'ci-smoke'],
