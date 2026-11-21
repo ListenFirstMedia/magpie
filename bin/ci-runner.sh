@@ -134,7 +134,7 @@ fi
 export PLAYWRIGHT_BROWSER=chromium
 
 # --- Pinned Playwright / Playwright-MCP ---
-# QAPipelineMaster is Ubuntu 20.04. Playwright 1.63+ refuses to install browsers there, and
+# The CI nodes may be Ubuntu 20.04, where Playwright 1.63+ refuses to install browsers, and
 # `@latest` let the install step and the MCP drift onto different browser revisions (the install
 # GC'd chromium-1247 that the MCP still needed). Pin both to the 1.62 line, never GC, and fail
 # HARD if no usable browser ends up on disk — no more silent fallback into a failing smoke gate.

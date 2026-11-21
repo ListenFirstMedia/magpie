@@ -24,12 +24,16 @@ def JIRA_BASE     = 'https://listenfirstmedia.atlassian.net'
 // XRAY_CLIENT_ID / XRAY_CLIENT_SECRET come from Jenkins Global properties (Manage Jenkins →
 // System), same as the qa jobs — inherited into every build env, so no credential binding.
 
+// Runs on the same machines as the qa Playwright runner (qa-playwright-tests-runner): label
+// 'qasandbox' = qa_node_1 / qa_node_2 / qa_node_3, 1 executor each. So every magpie set gets a
+// machine to itself (QAPipelineMaster had 2 executors, so 2 sets shared one 8 GB box and ran slow).
+def NODE_LABEL = 'qasandbox'
+
 // 2 SETS AT A TIME, ONE JOB, NO PLUGINS: concurrent builds are allowed (no
 // disableConcurrentBuilds), and the "Wait for slot" stage below holds a build — before it takes a
 // node — while MAX_RUNNING earlier builds of this job are still running. A queued set starts only
-// when one of the running sets finishes, oldest first. If two builds share a node they stay safe:
-// ci-runner only reaps orphaned Playwright processes, the browser install is serialized with
-// flock, and Cleanup skips the browser prune while Playwright is in use.
+// when one of the running sets finishes, oldest first. With 1 executor per qasandbox node, the 2
+// running sets are always on 2 different machines and the 3rd node stays free for qa Playwright.
 def MAX_RUNNING = 2
 
 properties([
@@ -103,7 +107,7 @@ stage('Wait for slot') {
   echo "Slot free (${ahead} earlier build(s) running) — starting."
 }
 
-node('QAPipelineMaster') {
+node(NODE_LABEL) {
   def runDir = null
   def counts = [total: '?', passed: '?', failed: '?', blocked: '?', timeout: '?', skipped: '?', unknown: '?']
   def failedIds = []
@@ -116,6 +120,7 @@ node('QAPipelineMaster') {
 
   try {
     stage('Checkout') {
+      echo "Running on node: ${env.NODE_NAME}"
       deleteDir()
       git branch: params.BRANCH, credentialsId: GIT_CRED, url: MAGPIE_REPO
     }
@@ -204,9 +209,8 @@ node('QAPipelineMaster') {
       // agent's HOME and grows every run:
       //   - ~/.claude/projects/<workspace-slug>/  — `claude -p` writes a full transcript (page
       //     snapshots included) for EVERY case session (~200/night); nothing else deletes them
-      //   - ~/.cache/ms-playwright/               — old chromium builds pile up as
-      //     @playwright/mcp@latest bumps its playwright version (ci-runner re-installs the
-      //     current one when missing, so pruning stale builds is safe)
+      //   - ~/.cache/ms-playwright/               — reported only, NOT pruned: shared with the
+      //     qa Playwright runner on the qasandbox nodes
       echo '========== STORAGE BEFORE CLEANUP =========='
       sh '''
         echo "Workspace Size:";               du -sh "$WORKSPACE"                 2>/dev/null || true
@@ -223,14 +227,8 @@ node('QAPipelineMaster') {
         [ -n "$SLUG" ] && rm -rf "$HOME/.claude/projects/$SLUG" || true
         # Stale claude scratch (shell snapshots, todo files) older than a week.
         find "$HOME/.claude/shell-snapshots" "$HOME/.claude/todos" -type f -mtime +7 -delete 2>/dev/null || true
-        # Browser builds not (re)installed in 45 days — a pruned current build just re-downloads
-        # on the next run's `playwright install chromium`.
-        # Skipped while any Playwright MCP is running here (another magpie build may share this node).
-        if pgrep -f '@playwright/mcp' >/dev/null 2>&1; then
-          echo "skip browser prune: Playwright MCP in use on this node"
-        else
-          find "$HOME/.cache/ms-playwright" -mindepth 1 -maxdepth 1 -type d -mtime +45 -exec rm -rf {} + 2>/dev/null || true
-        fi
+        # No browser prune: ~/.cache/ms-playwright on the qasandbox nodes is shared with the qa
+        # Playwright runner, and deleting its browsers would break its next run.
       '''
       deleteDir()
       echo '========== STORAGE AFTER CLEANUP =========='
