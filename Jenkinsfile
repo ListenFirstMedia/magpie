@@ -24,17 +24,23 @@ def JIRA_BASE     = 'https://listenfirstmedia.atlassian.net'
 // XRAY_CLIENT_ID / XRAY_CLIENT_SECRET come from Jenkins Global properties (Manage Jenkins →
 // System), same as the qa jobs — inherited into every build env, so no credential binding.
 
-// Runs on the same machines as the qa Playwright runner (qa-playwright-tests-runner): label
-// 'qasandbox' = qa_node_1 / qa_node_2 / qa_node_3, 1 executor each. So every magpie set gets a
-// machine to itself (QAPipelineMaster had 2 executors, so 2 sets shared one 8 GB box and ran slow).
-def NODE_LABEL = 'qasandbox'
+// TWO NODE POOLS, ONE JOB:
+//   - Daily Regression sets (REGRESSION_SETS) -> 'QAPipelineMaster' (1 machine, 2 executors)
+//   - everything else (Daily Data Testing, ci-smoke, ad-hoc TEST_CASES) -> 'qasandbox'
+//     (qa_node_1 / qa_node_2 / qa_node_3, 1 executor each — the qa Playwright runner's machines,
+//     so 2 data sets are always on 2 different machines and the 3rd stays free for qa Playwright)
+def REGRESSION_SETS = ['qa-22298', 'qa-4325', 'qa-22296', 'qa-4204']
+def REGRESSION_NODE = 'QAPipelineMaster'
+def OTHER_NODE      = 'qasandbox'
 
-// 2 SETS AT A TIME, ONE JOB, NO PLUGINS: concurrent builds are allowed (no
-// disableConcurrentBuilds), and the "Wait for slot" stage below holds a build — before it takes a
-// node — while MAX_RUNNING earlier builds of this job are still running. A queued set starts only
-// when one of the running sets finishes, oldest first. With 1 executor per qasandbox node, the 2
-// running sets are always on 2 different machines and the 3rd node stays free for qa Playwright.
+// MAX 2 SETS AT A TIME PER POOL, NO PLUGINS: concurrent builds are allowed (no
+// disableConcurrentBuilds). Each build records its pool in the build description ("pool: <label>")
+// as its first action; the "Wait for slot" stage below then holds it — before it takes a node —
+// while MAX_RUNNING earlier builds of the SAME pool are still running. A queued set starts only when
+// a running set of its pool finishes, oldest first. A regression set never waits on a data set and
+// vice versa.
 def MAX_RUNNING = 2
+def POOL_PREFIX = 'pool: '
 
 properties([
   // Prune old builds so the controller doesn't fill up. Each build archives per-case PNGs/MD/JSON
@@ -51,9 +57,9 @@ properties([
   00 12 * * 0-4 %SET=qa-22298 (Daily Regression Test Set - 1)
   00 12 * * 0-4 %SET=qa-4325 (Daily Regression Test Set - 2)
   00 16 * * 0-4 %SET=qa-22296 (Daily Regression Test Set - 3)
-  00 16 * * 0-4 %SET=qa-21686 (Daily Data Testing - 3)
-  00 20 * * 0-4 %SET=qa-26183 (Daily Data Testing - 2)
-  00 20 * * 0-4 %SET=qa-27628 (Daily Data Testing - 1)
+  00 12 * * 0-4 %SET=qa-21686 (Daily Data Testing - 3)
+  00 12 * * 0-4 %SET=qa-26183 (Daily Data Testing - 2)
+  00 16 * * 0-4 %SET=qa-27628 (Daily Data Testing - 1)
   ''') ]),
   parameters([
     // Labels = "<batch key> (<Xray Test Set name>)". Only the first word (the key, e.g. qa-22298) is
@@ -87,34 +93,44 @@ properties([
   ])
 ])
 
-// ---- Wait for slot: at most MAX_RUNNING builds of this job run at once ----
+def adhoc  = (params.TEST_CASES ?: '').trim()      // non-empty => ad-hoc run, SET ignored
+def setKey = (params.SET ?: '').tokenize(' ')[0]   // "qa-22298 (Daily …)" -> "qa-22298"
+def label  = adhoc ? 'ad-hoc' : params.SET
+def pool   = (!adhoc && REGRESSION_SETS.contains(setKey)) ? REGRESSION_NODE : OTHER_NODE
+currentBuild.description = "${POOL_PREFIX}${pool}"   // read by later builds' "Wait for slot"
+
+// ---- Wait for slot: at most MAX_RUNNING builds of this job run at once in each pool ----
 // Runs outside node(), so a waiting build holds no executor. Counts the earlier builds of this
-// job that are still in progress (including ones that are themselves waiting), so builds start
-// in order, oldest first.
+// job in the same pool that are still in progress (including ones that are themselves waiting), so
+// builds start in order, oldest first. An earlier build with no pool description (started before
+// this change) is counted against both pools, to stay on the safe side.
 stage('Wait for slot') {
+  def mine = "${POOL_PREFIX}${pool}".toString()
   def runningAhead = {
-    int n = 0
+    int n = 0, seen = 0
     def b = currentBuild.previousBuildInProgress
-    while (b != null && n < 20) { n++; b = b.previousBuildInProgress }
+    while (b != null && seen < 30) {
+      seen++
+      def d = (b.description ?: '').toString()
+      if (!d.startsWith(POOL_PREFIX) || d == mine) { n++ }
+      b = b.previousBuildInProgress
+    }
     return n
   }
   def ahead = runningAhead()
   while (ahead >= MAX_RUNNING) {
-    echo "Waiting: ${ahead} earlier build(s) of this job still running (max ${MAX_RUNNING} at a time). Re-checking in 60s."
-    sleep(time: 60, unit: 'SECONDS')
+    echo "Waiting: ${ahead} earlier ${pool} build(s) of this job still running (max ${MAX_RUNNING} at a time per pool). Re-checking in 15 min."
+    sleep(time: 15, unit: 'MINUTES')
     ahead = runningAhead()
   }
-  echo "Slot free (${ahead} earlier build(s) running) — starting."
+  echo "Slot free in ${pool} (${ahead} earlier build(s) running there) — starting."
 }
 
-node(NODE_LABEL) {
+node(pool) {
   def runDir = null
   def counts = [total: '?', passed: '?', failed: '?', blocked: '?', timeout: '?', skipped: '?', unknown: '?']
   def failedIds = []
   def xrayKey = ''
-  def adhoc = (params.TEST_CASES ?: '').trim()      // non-empty => ad-hoc run, SET ignored
-  def setKey = (params.SET ?: '').tokenize(' ')[0]   // "qa-22298 (Daily …)" -> "qa-22298"
-  def label = adhoc ? 'ad-hoc' : params.SET
 
   buildName "${env.BUILD_NUMBER} - ${label}"
 
