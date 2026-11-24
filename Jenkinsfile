@@ -28,18 +28,18 @@ def JIRA_BASE     = 'https://listenfirstmedia.atlassian.net'
 //   - Daily Regression sets (REGRESSION_SETS) -> 'QAPipelineMaster' (1 machine, 2 executors)
 //   - everything else (Daily Data Testing, ci-smoke, ad-hoc TEST_CASES) -> 'qasandbox'
 //     (qa_node_1 / qa_node_2 / qa_node_3, 1 executor each — the qa Playwright runner's machines,
-//     so 2 data sets are always on 2 different machines and the 3rd stays free for qa Playwright)
+//     so the data set gets a machine to itself and the other 2 stay free for qa Playwright)
 def REGRESSION_SETS = ['qa-22298', 'qa-4325', 'qa-22296', 'qa-4204']
 def REGRESSION_NODE = 'QAPipelineMaster'
 def OTHER_NODE      = 'qasandbox'
 
-// MAX 2 SETS AT A TIME PER POOL, NO PLUGINS: concurrent builds are allowed (no
+// MAX 1 SET AT A TIME PER POOL, NO PLUGINS: concurrent builds are allowed (no
 // disableConcurrentBuilds). Each build records its pool in the build description ("pool: <label>")
 // as its first action; the "Wait for slot" stage below then holds it — before it takes a node —
 // while MAX_RUNNING earlier builds of the SAME pool are still running. A queued set starts only when
 // a running set of its pool finishes, oldest first. A regression set never waits on a data set and
 // vice versa.
-def MAX_RUNNING = 2
+def MAX_RUNNING = 1
 def POOL_PREFIX = 'pool: '
 
 properties([
@@ -49,17 +49,18 @@ properties([
   // builds / 30 days of artifacts; keep build records a bit longer for history.
   buildDiscarder(logRotator(numToKeepStr: '10', daysToKeepStr: '7',
                             artifactNumToKeepStr: '15', artifactDaysToKeepStr: '30')),
-  // Start times (IST, Sun–Thu): the two sets of each time slot run together. If the earlier pair
-  // is still running at the next slot, the new sets wait in "Wait for slot" until one finishes.
+  // Start times (IST, Sun–Thu). Only 1 set per pool runs at a time, so sets that start together (or
+  // while an earlier set of their pool is still running) wait in "Wait for slot" and run one after
+  // another, oldest first.
   pipelineTriggers([
     parameterizedCron('''
   TZ=IST
   00 12 * * 0-4 %SET=qa-22298 (Daily Regression Test Set - 1)
-  00 12 * * 0-4 %SET=qa-4325 (Daily Regression Test Set - 2)
-  00 16 * * 0-4 %SET=qa-22296 (Daily Regression Test Set - 3)
+  00 17 * * 0-4 %SET=qa-4325 (Daily Regression Test Set - 2)
+  00 22 * * 0-4 %SET=qa-22296 (Daily Regression Test Set - 3)
   00 12 * * 0-4 %SET=qa-21686 (Daily Data Testing - 3)
-  00 12 * * 0-4 %SET=qa-26183 (Daily Data Testing - 2)
-  00 16 * * 0-4 %SET=qa-27628 (Daily Data Testing - 1)
+  00 16 * * 0-4 %SET=qa-26183 (Daily Data Testing - 2)
+  00 20 * * 0-4 %SET=qa-27628 (Daily Data Testing - 1)
   ''') ]),
   parameters([
     // Labels = "<batch key> (<Xray Test Set name>)". Only the first word (the key, e.g. qa-22298) is
